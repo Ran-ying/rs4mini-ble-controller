@@ -1,11 +1,19 @@
 {
   "name": "rs4mini-sdk",
-  "version": "0.5.0",
+  "version": "0.7.0",
   "description": "Unofficial Node.js BLE controller for DJI RS 4 Mini",
   "type": "module",
   "main": "src/index.js",
   "types": "src/index.d.ts",
-  "files": ["src", "examples", "README.md", "API.md", "CHANGELOG.md", "LICENSE"],
+  "files": [
+    "src",
+    "examples",
+    "README.md",
+    "API.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "test"
+  ],
   "exports": {
     ".": {
       "types": "./src/index.d.ts",
@@ -19,7 +27,7 @@
   "scripts": {
     "test": "npm run test:protocol && npm run test:telemetry && npm run test:connection",
     "test:protocol": "node examples/protocol-test.js",
-    "test:connection": "node examples/connection-test.js",
+    "test:connection": "node --test test/*.test.js",
     "test:telemetry": "node examples/telemetry-test.js",
     "test:neutral": "node examples/neutral-test.js",
     "example:three-axis": "node examples/three-axis.js",
@@ -28,8 +36,18 @@
     "telemetry:capture": "node examples/telemetry-capture.js",
     "telemetry:analyze": "node examples/telemetry-analyze.js"
   },
-  "engines": { "node": ">=18" },
-  "dependencies": { "@stoprocent/noble": "^2.8.0" },
-  "keywords": ["dji", "rs4-mini", "gimbal", "bluetooth", "ble"],
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@stoprocent/noble": "^2.8.0"
+  },
+  "keywords": [
+    "dji",
+    "rs4-mini",
+    "gimbal",
+    "bluetooth",
+    "ble"
+  ],
   "license": "MIT"
 }

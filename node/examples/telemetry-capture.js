@@ -7,6 +7,7 @@ const here = dirname(fileURLToPath(import.meta.url));
 const deviceCacheFile = resolve(here, "../.rs4mini-device.json");
 const captureDirectory = resolve(here, "../captures");
 const durationMs = Number(process.env.RS4MINI_CAPTURE_MS || 10_000);
+if (!Number.isFinite(durationMs) || durationMs <= 0 || durationMs > 60_000) throw new RangeError('RS4MINI_CAPTURE_MS must be in 0..60000');
 
 async function loadCachedDeviceId() {
   try { return JSON.parse(await readFile(deviceCacheFile, "utf8")).deviceId || null; }
@@ -53,8 +54,8 @@ try {
   console.log(`capturing FFF4 for ${durationMs} ms without moving the gimbal...`);
   await new Promise(resolve => setTimeout(resolve, durationMs));
 } finally {
-  await writeFile(outputFile, rows.length ? `${rows.join("\n")}\n` : "", "utf8");
-  await gimbal.close();
+  try { await writeFile(outputFile, rows.length ? `${rows.join("\n")}\n` : "", "utf8"); }
+  finally { await gimbal.close(); }
 }
 
 console.log("\nDUML command counts:", Object.fromEntries([...commandCounts].sort()));

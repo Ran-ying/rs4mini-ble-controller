@@ -1,25 +1,7 @@
 #import <AppKit/AppKit.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 
-static uint8_t DJI_CRC8(const uint8_t *bytes, NSUInteger length) {
-    uint8_t crc = 0x77;
-    for (NSUInteger i = 0; i < length; i++) {
-        crc ^= bytes[i];
-        for (NSInteger bit = 0; bit < 8; bit++)
-            crc = (crc & 1) ? (uint8_t)((crc >> 1) ^ 0x8c) : (uint8_t)(crc >> 1);
-    }
-    return crc;
-}
-
-static uint16_t DJI_CRC16(const uint8_t *bytes, NSUInteger length) {
-    uint16_t crc = 0x3692;
-    for (NSUInteger i = 0; i < length; i++) {
-        crc ^= bytes[i];
-        for (NSInteger bit = 0; bit < 8; bit++)
-            crc = (crc & 1) ? (uint16_t)((crc >> 1) ^ 0x8408) : (uint16_t)(crc >> 1);
-    }
-    return crc;
-}
+#import "RSGimbal.h"
 
 @interface HoldButton : NSButton
 @property(nonatomic, copy) void (^onPress)(void);
@@ -35,266 +17,7 @@ static uint16_t DJI_CRC16(const uint8_t *bytes, NSUInteger length) {
 }
 @end
 
-typedef void (^StatusHandler)(NSString *text, BOOL ready);
-
-@interface RSGimbal : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>
-@property(nonatomic, strong) CBCentralManager *central;
-@property(nonatomic, strong) CBPeripheral *peripheral;
-@property(nonatomic, strong) CBCharacteristic *rx;
-@property(nonatomic, strong) CBCharacteristic *tx;
-@property(nonatomic, strong) NSTimer *velocityTimer;
-@property(nonatomic) uint16_t sequence;
-@property(nonatomic) double pan;
-@property(nonatomic) double tilt;
-@property(nonatomic) double roll;
-@property(nonatomic) NSInteger pendingStops;
-@property(nonatomic) BOOL ready;
-@property(nonatomic, copy) StatusHandler statusHandler;
-- (instancetype)initWithStatus:(StatusHandler)handler;
-- (void)connect;
-- (void)disconnect;
-- (void)drivePan:(double)pan tilt:(double)tilt roll:(double)roll;
-- (void)stop;
-- (void)recenter;
-@end
-
-@implementation RSGimbal
-
-- (instancetype)initWithStatus:(StatusHandler)handler {
-    if ((self = [super init])) {
-        _statusHandler = [handler copy];
-        _sequence = 0x0100;
-        _central = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_main_queue()];
-    }
-    return self;
-}
-
-- (void)setStatus:(NSString *)text ready:(BOOL)ready {
-    if (self.statusHandler) self.statusHandler(text, ready);
-}
-
-- (void)connect {
-    if (self.ready || self.peripheral.state == CBPeripheralStateConnected) return;
-    if (self.central.state != CBManagerStatePoweredOn) {
-        [self setStatus:@"等待 Mac 蓝牙可用…" ready:NO];
-        return;
-    }
-    [self setStatus:@"正在寻找 DJI RS 4 Mini…" ready:NO];
-    NSMutableDictionary<NSUUID *, CBPeripheral *> *known = [NSMutableDictionary dictionary];
-    for (CBUUID *service in @[[CBUUID UUIDWithString:@"FFF0"], [CBUUID UUIDWithString:@"1812"]]) {
-        for (CBPeripheral *candidate in [self.central retrieveConnectedPeripheralsWithServices:@[service]])
-            known[candidate.identifier] = candidate;
-    }
-    for (CBPeripheral *candidate in known.allValues) {
-        NSString *name = candidate.name ?: @"";
-        if ([name rangeOfString:@"DJI RS4 MINI" options:NSCaseInsensitiveSearch].location == NSNotFound &&
-            [name rangeOfString:@"DJI RS 4 MINI" options:NSCaseInsensitiveSearch].location == NSNotFound) continue;
-        self.peripheral = candidate;
-        candidate.delegate = self;
-        [self setStatus:[NSString stringWithFormat:@"正在连接 %@…", name] ready:NO];
-        [self.central connectPeripheral:candidate options:nil];
-        return;
-    }
-    [self.central scanForPeripheralsWithServices:nil
-                                         options:@{CBCentralManagerScanOptionAllowDuplicatesKey: @NO}];
-}
-
-- (void)disconnect {
-    [self stop];
-    CBPeripheral *p = self.peripheral;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.28 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        if (p) [self.central cancelPeripheralConnection:p];
-        self.ready = NO;
-        [self setStatus:@"已断开" ready:NO];
-    });
-}
-
-- (void)centralManagerDidUpdateState:(CBCentralManager *)central {
-    if (central.state == CBManagerStatePoweredOn) {
-        [self setStatus:@"蓝牙就绪，点击连接" ready:NO];
-    } else if (central.state == CBManagerStateUnauthorized) {
-        [self setStatus:@"请在系统设置中允许蓝牙权限" ready:NO];
-    } else if (central.state == CBManagerStatePoweredOff) {
-        [self setStatus:@"Mac 蓝牙已关闭" ready:NO];
-    } else {
-        [self setStatus:@"正在初始化蓝牙…" ready:NO];
-    }
-}
-
-- (void)centralManager:(CBCentralManager *)central
- didDiscoverPeripheral:(CBPeripheral *)peripheral
-     advertisementData:(NSDictionary<NSString *, id> *)advertisementData
-                  RSSI:(NSNumber *)RSSI {
-    NSString *name = advertisementData[CBAdvertisementDataLocalNameKey] ?: peripheral.name ?: @"";
-    if ([name rangeOfString:@"DJI RS4 MINI" options:NSCaseInsensitiveSearch].location == NSNotFound &&
-        [name rangeOfString:@"DJI RS 4 MINI" options:NSCaseInsensitiveSearch].location == NSNotFound) return;
-    [central stopScan];
-    self.peripheral = peripheral;
-    peripheral.delegate = self;
-    [self setStatus:[NSString stringWithFormat:@"正在连接 %@…", name] ready:NO];
-    [central connectPeripheral:peripheral options:nil];
-}
-
-- (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
-    [self setStatus:@"已连接，正在读取控制通道…" ready:NO];
-    [peripheral discoverServices:@[[CBUUID UUIDWithString:@"FFF0"]]];
-}
-
-- (void)centralManager:(CBCentralManager *)central
-didFailToConnectPeripheral:(CBPeripheral *)peripheral
-                  error:(NSError *)error {
-    [self setStatus:[NSString stringWithFormat:@"连接失败：%@", error.localizedDescription] ready:NO];
-}
-
-- (void)centralManager:(CBCentralManager *)central
-didDisconnectPeripheral:(CBPeripheral *)peripheral
-              timestamp:(CFAbsoluteTime)timestamp
-                 isReconnecting:(BOOL)isReconnecting
-                  error:(NSError *)error API_AVAILABLE(macos(13.0)) {
-    self.ready = NO;
-    self.rx = nil;
-    self.tx = nil;
-    [self.velocityTimer invalidate];
-    self.velocityTimer = nil;
-    [self setStatus:error ? @"连接已中断，点击重新连接" : @"已断开" ready:NO];
-}
-
-- (void)centralManager:(CBCentralManager *)central
-didDisconnectPeripheral:(CBPeripheral *)peripheral
-                  error:(NSError *)error {
-    self.ready = NO;
-    self.rx = nil;
-    self.tx = nil;
-    [self.velocityTimer invalidate];
-    self.velocityTimer = nil;
-    [self setStatus:error ? @"连接已中断，点击重新连接" : @"已断开" ready:NO];
-}
-
-- (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error {
-    if (error || peripheral.services.count == 0) {
-        [self setStatus:@"没有找到 FFF0 控制服务" ready:NO];
-        return;
-    }
-    for (CBService *service in peripheral.services)
-        [peripheral discoverCharacteristics:nil forService:service];
-}
-
-- (void)peripheral:(CBPeripheral *)peripheral
-didDiscoverCharacteristicsForService:(CBService *)service
-             error:(NSError *)error {
-    if (error) {
-        [self setStatus:@"读取控制通道失败" ready:NO];
-        return;
-    }
-    for (CBCharacteristic *c in service.characteristics) {
-        if ([c.UUID.UUIDString caseInsensitiveCompare:@"FFF4"] == NSOrderedSame) self.rx = c;
-        if ([c.UUID.UUIDString caseInsensitiveCompare:@"FFF5"] == NSOrderedSame) self.tx = c;
-    }
-    if (!self.rx || !self.tx) {
-        [self setStatus:@"控制通道不完整" ready:NO];
-        return;
-    }
-    [peripheral setNotifyValue:YES forCharacteristic:self.rx];
-}
-
-- (void)peripheral:(CBPeripheral *)peripheral
-didUpdateNotificationStateForCharacteristic:(CBCharacteristic *)characteristic
-             error:(NSError *)error {
-    if (error || !characteristic.isNotifying) {
-        [self setStatus:@"无法启用云台通知" ready:NO];
-        return;
-    }
-    self.ready = YES;
-    [self setStatus:[NSString stringWithFormat:@"已连接 · %@", peripheral.name ?: @"RS 4 Mini"] ready:YES];
-}
-
-- (NSData *)velocityFramePan:(double)pan tilt:(double)tilt roll:(double)roll {
-    enum { total = 22 };
-    uint8_t f[total]; memset(f, 0, sizeof(f));
-    f[0] = 0x55; f[1] = total; f[2] = 0x04; f[3] = DJI_CRC8(f, 3);
-    f[4] = 0x02; f[5] = 0x04;
-    f[6] = self.sequence & 0xff; f[7] = self.sequence >> 8; self.sequence++;
-    f[8] = 0x00; f[9] = 0x04; f[10] = 0x01;
-    int16_t t = (int16_t)lrint(1024.0 + fmax(-1, fmin(1, tilt)) * 660.0);
-    int16_t r = (int16_t)lrint(1024.0 + fmax(-1, fmin(1, roll)) * 660.0);
-    int16_t p = (int16_t)lrint(1024.0 + fmax(-1, fmin(1, pan)) * 660.0);
-    f[11] = t & 0xff; f[12] = t >> 8;
-    f[13] = r & 0xff; f[14] = r >> 8;
-    f[15] = p & 0xff; f[16] = p >> 8;
-    f[17] = 0; f[18] = 0; f[19] = 0x02;
-    uint16_t crc = DJI_CRC16(f, total - 2); f[20] = crc & 0xff; f[21] = crc >> 8;
-    return [NSData dataWithBytes:f length:total];
-}
-
-- (NSData *)recenterFrame {
-    enum { total = 15 };
-    uint8_t f[total]; memset(f, 0, sizeof(f));
-    f[0] = 0x55; f[1] = total; f[2] = 0x04; f[3] = DJI_CRC8(f, 3);
-    f[4] = 0x02; f[5] = 0x04;
-    f[6] = self.sequence & 0xff; f[7] = self.sequence >> 8; self.sequence++;
-    f[8] = 0x40; f[9] = 0x04; f[10] = 0x4c; f[11] = 0xfe; f[12] = 0x01;
-    uint16_t crc = DJI_CRC16(f, total - 2); f[13] = crc & 0xff; f[14] = crc >> 8;
-    return [NSData dataWithBytes:f length:total];
-}
-
-- (void)writeFrame:(NSData *)frame {
-    if (!self.ready || !self.tx || self.peripheral.state != CBPeripheralStateConnected) return;
-    for (NSUInteger off = 0; off < frame.length; off += 20) {
-        NSRange range = NSMakeRange(off, MIN((NSUInteger)20, frame.length - off));
-        [self.peripheral writeValue:[frame subdataWithRange:range]
-                  forCharacteristic:self.tx
-                               type:CBCharacteristicWriteWithoutResponse];
-    }
-}
-
-- (void)ensureVelocityTimer {
-    if (self.velocityTimer) return;
-    self.velocityTimer = [NSTimer scheduledTimerWithTimeInterval:(1.0 / 15.0)
-                                                          target:self
-                                                        selector:@selector(velocityTick:)
-                                                        userInfo:nil
-                                                         repeats:YES];
-    [[NSRunLoop mainRunLoop] addTimer:self.velocityTimer forMode:NSRunLoopCommonModes];
-}
-
-- (void)velocityTick:(NSTimer *)timer {
-    BOOL moving = self.pan != 0 || self.tilt != 0 || self.roll != 0;
-    if (!moving && self.pendingStops <= 0) {
-        [timer invalidate]; self.velocityTimer = nil; return;
-    }
-    if (!moving) self.pendingStops--;
-    [self writeFrame:[self velocityFramePan:self.pan tilt:self.tilt roll:self.roll]];
-}
-
-- (void)drivePan:(double)pan tilt:(double)tilt roll:(double)roll {
-    if (!self.ready) return;
-    self.pan = fmax(-1, fmin(1, pan));
-    self.tilt = fmax(-1, fmin(1, tilt));
-    self.roll = fmax(-1, fmin(1, roll));
-    self.pendingStops = 0;
-    [self ensureVelocityTimer];
-    [self writeFrame:[self velocityFramePan:self.pan tilt:self.tilt roll:self.roll]];
-}
-
-- (void)stop {
-    BOOL wasMoving = self.pan != 0 || self.tilt != 0 || self.roll != 0;
-    self.pan = 0; self.tilt = 0; self.roll = 0;
-    if (self.ready) {
-        self.pendingStops = MAX(self.pendingStops, wasMoving ? 3 : 1);
-        [self ensureVelocityTimer];
-    }
-}
-
-- (void)recenter {
-    [self stop];
-    if (!self.ready) return;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.22 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self writeFrame:[self recenterFrame]];
-    });
-}
-@end
-
-@interface AppDelegate : NSObject <NSApplicationDelegate>
+@interface AppDelegate : NSObject <NSApplicationDelegate, NSWindowDelegate>
 @property(nonatomic, strong) NSWindow *window;
 @property(nonatomic, strong) RSGimbal *gimbal;
 @property(nonatomic, strong) NSTextField *status;
@@ -302,6 +25,22 @@ didUpdateNotificationStateForCharacteristic:(CBCharacteristic *)characteristic
 @property(nonatomic, strong) NSSlider *speedSlider;
 @property(nonatomic, strong) NSTextField *speedLabel;
 @property(nonatomic, strong) NSArray<NSButton *> *motionButtons;
+@property(nonatomic, strong) NSTextField *telemetryLabel;
+@property(nonatomic, strong) NSArray<NSTextField *> *targetFields;
+@property(nonatomic, strong) NSArray<NSButton *> *targetChecks;
+@property(nonatomic, strong) NSButton *moveButton;
+@property(nonatomic, strong) NSButton *currentButton;
+@property(nonatomic, strong) NSDictionary *latestJoints;
+@property(nonatomic, strong) NSButton *autoReconnect;
+@property(nonatomic, strong) NSButton *saveHomeButton;
+@property(nonatomic, strong) NSButton *returnHomeButton;
+@property(nonatomic, strong) NSPopUpButton *scriptType;
+@property(nonatomic, strong) NSButton *runScriptButton;
+@property(nonatomic, strong) NSTextField *scriptLabel;
+@property(nonatomic, strong) NSDictionary *loadedScript;
+@property(nonatomic, strong) NSPopUpButton *quaternionOrder;
+@property(nonatomic, strong) NSButton *quaternionConjugate;
+@property(nonatomic, strong) NSTextField *orientationLabel;
 @end
 
 @implementation AppDelegate
@@ -315,16 +54,21 @@ static NSTextField *Label(NSString *text, CGFloat size, NSFontWeight weight) {
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
-    self.window = [[NSWindow alloc] initWithContentRect:NSMakeRect(0, 0, 420, 600)
+    self.window = [[NSWindow alloc] initWithContentRect:NSMakeRect(0, 0, 420, 820)
                                               styleMask:(NSWindowStyleMaskTitled | NSWindowStyleMaskClosable | NSWindowStyleMaskMiniaturizable)
                                                 backing:NSBackingStoreBuffered defer:NO];
     self.window.appearance = [NSAppearance appearanceNamed:NSAppearanceNameDarkAqua];
     self.window.title = @"RS 4 Mini Control";
+    self.window.delegate = self;
     self.window.backgroundColor = [NSColor colorWithWhite:0.075 alpha:1];
     [self.window center];
     [self.window makeKeyAndOrderFront:nil];
 
-    NSView *v = self.window.contentView;
+    NSScrollView *scroll = [[NSScrollView alloc] initWithFrame:self.window.contentView.bounds];
+    scroll.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable; scroll.hasVerticalScroller = YES;
+    scroll.autohidesScrollers = YES; scroll.drawsBackground = NO;
+    NSView *v = [[NSView alloc] initWithFrame:NSMakeRect(0, 0, 420, 1120)];
+    scroll.documentView = v; [self.window.contentView addSubview:scroll];
     NSTextField *title = Label(@"RS 4 MINI", 26, NSFontWeightBold);
     title.frame = NSMakeRect(40, 536, 340, 36); [v addSubview:title];
     NSTextField *subtitle = Label(@"DIRECT BLUETOOTH CONTROL", 11, NSFontWeightMedium);
@@ -368,18 +112,144 @@ static NSTextField *Label(NSString *text, CGFloat size, NSFontWeight weight) {
     center.frame = NSMakeRect(130, 40, 160, 36); center.bezelStyle = NSBezelStyleRounded;
     [v addSubview:center];
 
+    // Preserve the original hold controls above the telemetry and position form.
+    for (NSView *item in v.subviews) { NSRect frame = item.frame; frame.origin.y += 220; item.frame = frame; }
+    self.telemetryLabel = Label(@"姿态 / 机械关节：等待反馈", 12, NSFontWeightRegular);
+    self.telemetryLabel.frame = NSMakeRect(30, 202, 360, 46);
+    self.telemetryLabel.maximumNumberOfLines = 2; [v addSubview:self.telemetryLabel];
+    NSMutableArray *fields = [NSMutableArray array], *checks = [NSMutableArray array];
+    NSArray *names = @[@"Pan / Yaw", @"Tilt / Pitch", @"Roll"];
+    for (NSUInteger i = 0; i < 3; i++) {
+        double y = 154 - i * 40;
+        NSButton *check = [NSButton checkboxWithTitle:names[i] target:nil action:nil];
+        check.state = i == 0 ? NSControlStateValueOn : NSControlStateValueOff;
+        check.frame = NSMakeRect(40, y, 110, 28); [v addSubview:check]; [checks addObject:check];
+        NSTextField *field = [[NSTextField alloc] initWithFrame:NSMakeRect(165, y, 200, 28)];
+        field.placeholderString = @"机械目标角度（度）";
+        [v addSubview:field]; [fields addObject:field];
+    }
+    self.targetFields = fields; self.targetChecks = checks;
+    self.currentButton = [NSButton buttonWithTitle:@"填入当前角度" target:self action:@selector(useCurrent:)];
+    self.currentButton.frame = NSMakeRect(40, 22, 160, 34); self.currentButton.enabled = NO; [v addSubview:self.currentButton];
+    self.moveButton = [NSButton buttonWithTitle:@"低速移动到选中目标" target:self action:@selector(moveTapped:)];
+    self.moveButton.frame = NSMakeRect(210, 22, 180, 34); self.moveButton.enabled = NO; [v addSubview:self.moveButton];
+
+    for (NSView *item in v.subviews) { NSRect frame = item.frame; frame.origin.y += 300; item.frame = frame; }
+    self.autoReconnect = [NSButton checkboxWithTitle:@"意外断线自动重连（最多 5 次，不恢复运动）" target:self action:@selector(autoReconnectChanged:)];
+    self.autoReconnect.frame = NSMakeRect(35, 274, 360, 28); [v addSubview:self.autoReconnect];
+    self.saveHomeButton = [NSButton buttonWithTitle:@"保存当前位置" target:self action:@selector(saveHome:)];
+    self.saveHomeButton.frame = NSMakeRect(40, 232, 160, 32); [v addSubview:self.saveHomeButton];
+    self.returnHomeButton = [NSButton buttonWithTitle:@"选中轴返回保存位置" target:self action:@selector(returnHome:)];
+    self.returnHomeButton.frame = NSMakeRect(210, 232, 180, 32); [v addSubview:self.returnHomeButton];
+    self.scriptType = [[NSPopUpButton alloc] initWithFrame:NSMakeRect(40, 186, 150, 30) pullsDown:NO];
+    [self.scriptType addItemsWithTitles:@[@"速度关键帧", @"关节路点", @"实验指令（未验证）"]]; [v addSubview:self.scriptType];
+    NSButton *load = [NSButton buttonWithTitle:@"载入 JSON" target:self action:@selector(loadScript:)];
+    load.frame = NSMakeRect(200, 186, 90, 30); [v addSubview:load];
+    self.runScriptButton = [NSButton buttonWithTitle:@"执行" target:self action:@selector(runScript:)];
+    self.runScriptButton.frame = NSMakeRect(300, 186, 90, 30); [v addSubview:self.runScriptButton];
+    self.scriptLabel = Label(@"尚未载入 · 载入后需点击执行", 11, NSFontWeightRegular);
+    self.scriptLabel.frame = NSMakeRect(30, 150, 360, 28); self.scriptLabel.maximumNumberOfLines = 2; [v addSubview:self.scriptLabel];
+    self.quaternionOrder = [[NSPopUpButton alloc] initWithFrame:NSMakeRect(40, 104, 180, 28) pullsDown:NO];
+    [self.quaternionOrder addItemsWithTitles:@[@"四元数顺序（未确认）", @"wxyz", @"xyzw"]]; [v addSubview:self.quaternionOrder];
+    self.quaternionConjugate = [NSButton checkboxWithTitle:@"共轭" target:nil action:nil];
+    self.quaternionConjugate.frame = NSMakeRect(240, 104, 120, 28); [v addSubview:self.quaternionConjugate];
+    NSButton *convert = [NSButton buttonWithTitle:@"按所选约定换算" target:self action:@selector(convertOrientation:)];
+    convert.frame = NSMakeRect(40, 62, 150, 30); [v addSubview:convert];
+    self.orientationLabel = Label(@"仅数学转换\n不用于定位控制", 10, NSFontWeightRegular);
+    self.orientationLabel.frame = NSMakeRect(200, 54, 190, 44); self.orientationLabel.maximumNumberOfLines = 2; [v addSubview:self.orientationLabel];
+    NSTextField *note = Label(@"速度轨迹为开环；实验协议不代表 RS 4 Mini 已支持。", 10, NSFontWeightRegular);
+    note.frame = NSMakeRect(25, 14, 370, 28); [v addSubview:note];
+    [scroll.contentView scrollToPoint:NSMakePoint(0, 1120 - scroll.contentSize.height)]; [scroll reflectScrolledClipView:scroll.contentView];
+
     __weak typeof(self) weakSelf = self;
     self.gimbal = [[RSGimbal alloc] initWithStatus:^(NSString *text, BOOL ready) {
         weakSelf.status.stringValue = text;
         weakSelf.status.textColor = ready ? NSColor.systemGreenColor : NSColor.secondaryLabelColor;
-        weakSelf.connectButton.title = ready ? @"断开稳定器" : @"连接稳定器";
+        weakSelf.connectButton.title = ready ? @"断开稳定器" : (weakSelf.gimbal.connecting ? @"取消连接" : @"连接稳定器");
         weakSelf.connectButton.enabled = YES;
-        for (NSButton *button in weakSelf.motionButtons) button.enabled = ready;
+        for (NSButton *button in weakSelf.motionButtons) button.enabled = ready && !weakSelf.gimbal.busy;
+        weakSelf.moveButton.enabled = weakSelf.currentButton.enabled = ready && !weakSelf.gimbal.busy && weakSelf.latestJoints != nil;
+        [weakSelf refreshExpansion];
     }];
+    self.gimbal.telemetryHandler = ^(NSDictionary *sample) {
+        NSDictionary *attitude = sample[@"attitude"], *joints = sample[@"jointAngles"];
+        BOOL first = weakSelf.latestJoints == nil;
+        weakSelf.latestJoints = joints;
+        if (joints) {
+            weakSelf.telemetryLabel.stringValue = [NSString stringWithFormat:@"姿态 P %.1f°  R %.1f°  Y %.1f°\n关节 Pan %.2f°  Tilt %.1f°  Roll %.1f°", [attitude[@"pitch"] doubleValue], [attitude[@"roll"] doubleValue], [attitude[@"yaw"] doubleValue], [joints[@"yaw"] doubleValue], [joints[@"pitch"] doubleValue], [joints[@"roll"] doubleValue]];
+            if (first) [weakSelf useCurrent:nil];
+        } else weakSelf.telemetryLabel.stringValue = @"姿态 / 机械关节：等待反馈";
+        weakSelf.moveButton.enabled = weakSelf.currentButton.enabled = weakSelf.gimbal.ready && !weakSelf.gimbal.busy && joints != nil;
+        [weakSelf refreshExpansion];
+    };
+    self.gimbal.experimentalStatusHandler = ^(NSDictionary *sample) {
+        weakSelf.scriptLabel.stringValue = [@"实验状态（未验证）：" stringByAppendingString:sample.description];
+    };
+    [self refreshExpansion];
 }
 
+- (void)refreshExpansion {
+    BOOL ready = self.gimbal.ready && !self.gimbal.busy;
+    self.saveHomeButton.enabled = ready && self.latestJoints != nil;
+    self.returnHomeButton.enabled = ready && self.gimbal.home != nil;
+    self.runScriptButton.enabled = ready && self.loadedScript != nil;
+    self.autoReconnect.state = self.gimbal.autoReconnectEnabled ? NSControlStateValueOn : NSControlStateValueOff;
+}
+- (void)autoReconnectChanged:(NSButton *)button { self.gimbal.autoReconnectEnabled = button.state == NSControlStateValueOn; }
+- (void)saveHome:(id)sender { [self.gimbal captureHome]; [self refreshExpansion]; }
+- (void)returnHome:(id)sender {
+    NSMutableArray *axes = [NSMutableArray array]; NSArray *names = @[@"pan", @"tilt", @"roll"];
+    for (NSUInteger i = 0; i < 3; i++) if (self.targetChecks[i].state == NSControlStateValueOn) [axes addObject:names[i]];
+    [self.gimbal moveHomeAxes:axes];
+}
+- (void)loadScript:(id)sender {
+    NSOpenPanel *panel = [NSOpenPanel openPanel]; panel.canChooseDirectories = NO; panel.allowsMultipleSelection = NO;
+    NSInteger kind = self.scriptType.indexOfSelectedItem;
+    [panel beginSheetModalForWindow:self.window completionHandler:^(NSModalResponse response) {
+        if (response != NSModalResponseOK) return;
+        NSError *error; NSData *data = [NSData dataWithContentsOfURL:panel.URL options:0 error:&error];
+        id value = data ? [NSJSONSerialization JSONObjectWithData:data options:0 error:&error] : nil;
+        if (!value || (kind < 2 ? ![value isKindOfClass:NSArray.class] : ![value isKindOfClass:NSDictionary.class])) { self.status.stringValue = error.localizedDescription ?: @"轨迹/路点需 JSON 数组，实验指令需 JSON 对象"; return; }
+        self.loadedScript = @{@"kind": @(kind), @"payload": value};
+        self.scriptLabel.stringValue = [NSString stringWithFormat:@"已载入 %@：%@ · 尚未执行", @[@"速度关键帧", @"关节路点", @"实验指令"][kind], panel.URL.lastPathComponent];
+        [self refreshExpansion];
+    }];
+}
+- (void)runScript:(id)sender {
+    if (!self.loadedScript || self.gimbal.busy || !self.gimbal.ready) return;
+    NSInteger kind = [self.loadedScript[@"kind"] integerValue]; id value = self.loadedScript[@"payload"];
+    if (kind == 0) [self.gimbal runTrajectory:value interpolation:@"smoothstep"];
+    else if (kind == 1) [self.gimbal moveThrough:value];
+    else [self.gimbal sendExperimentalCommand:value];
+    [self refreshExpansion];
+}
+- (void)convertOrientation:(id)sender {
+    if (self.quaternionOrder.indexOfSelectedItem == 0) { self.orientationLabel.stringValue = @"请显式选择分量顺序\n设备约定仍未确认"; return; }
+    NSDictionary *value = [self.gimbal orientationWithOrder:self.quaternionOrder.titleOfSelectedItem conjugate:self.quaternionConjugate.state == NSControlStateValueOn];
+    if (!value) { self.orientationLabel.stringValue = @"暂无有效单位四元数"; return; }
+    NSDictionary *euler = value[@"euler"];
+    self.orientationLabel.stringValue = [NSString stringWithFormat:@"ZYX P %.1f R %.1f Y %.1f\n设备坐标未验证", [euler[@"pitch"] doubleValue], [euler[@"roll"] doubleValue], [euler[@"yaw"] doubleValue]];
+}
+
+- (void)useCurrent:(id)sender {
+    if (!self.latestJoints) return;
+    NSArray *keys = @[@"yaw", @"pitch", @"roll"];
+    for (NSUInteger i = 0; i < 3; i++) self.targetFields[i].stringValue = [NSString stringWithFormat:@"%.2f", [self.latestJoints[keys[i]] doubleValue]];
+}
+- (void)moveTapped:(id)sender {
+    NSMutableDictionary *targets = [NSMutableDictionary dictionary]; NSArray *keys = @[@"pan", @"tilt", @"roll"];
+    for (NSUInteger i = 0; i < 3; i++) if (self.targetChecks[i].state == NSControlStateValueOn) {
+        NSScanner *scanner = [NSScanner scannerWithString:self.targetFields[i].stringValue]; double value;
+        if (![scanner scanDouble:&value] || !scanner.isAtEnd || !isfinite(value) || fabs(value) > 180) { self.status.stringValue = @"请输入 -180 到 180 的有限角度"; return; }
+        targets[keys[i]] = @(value);
+    }
+    [self.gimbal moveTo:targets];
+}
+- (void)applicationWillResignActive:(NSNotification *)notification { [self.gimbal stop]; }
+- (void)windowDidResignKey:(NSNotification *)notification { [self.gimbal stop]; }
+
 - (void)connectTapped:(id)sender {
-    if (self.gimbal.ready) [self.gimbal disconnect];
+    if (self.gimbal.ready || self.gimbal.connecting) [self.gimbal disconnect];
     else { self.connectButton.enabled = NO; [self.gimbal connect]; }
 }
 
@@ -390,14 +260,15 @@ static NSTextField *Label(NSString *text, CGFloat size, NSFontWeight weight) {
 - (void)centerTapped:(id)sender { [self.gimbal recenter]; }
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender { return YES; }
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender {
-    if (self.gimbal.ready) {
-        [self.gimbal stop];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.28 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [sender replyToApplicationShouldTerminate:YES];
-        });
-        return NSTerminateLater;
-    }
-    return NSTerminateNow;
+    self.gimbal.autoReconnectEnabled = NO;
+    if (self.gimbal.connecting) { [self.gimbal disconnect]; return NSTerminateNow; }
+    if (!self.gimbal.ready) return NSTerminateNow;
+    [self.gimbal disconnect]; NSTimeInterval deadline = NSProcessInfo.processInfo.systemUptime + 5;
+    NSTimer *timer = [NSTimer timerWithTimeInterval:0.1 repeats:YES block:^(NSTimer *poll) {
+        if (!self.gimbal.ready || NSProcessInfo.processInfo.systemUptime >= deadline) { [poll invalidate]; [sender replyToApplicationShouldTerminate:YES]; }
+    }];
+    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+    return NSTerminateLater;
 }
 @end
 

@@ -17,6 +17,7 @@ class ClientParityTests(unittest.IsolatedAsyncioTestCase):
     async def asyncSetUp(self):
         self.gimbal = RS4Mini(nameIncludes="DJI RS4 MINI", rateHz=1000)
         self.gimbal.client = FakeClient()
+        self.gimbal._ready = True
 
     async def asyncTearDown(self):
         self.gimbal.client.is_connected = False

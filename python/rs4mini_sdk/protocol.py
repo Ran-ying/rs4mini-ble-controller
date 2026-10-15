@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import struct
+import math
 
 APP = 0x02
 GIMBAL = 0x04
@@ -59,8 +60,12 @@ def frame(
 
 
 def rc_units(value: float) -> int:
-    normalized = max(-1.0, min(1.0, float(value)))
-    return RC_MID + round(normalized * RC_SPAN)
+    number = float(value)
+    if not math.isfinite(number):
+        raise ValueError('Axis input must be finite')
+    normalized = max(-1.0, min(1.0, number))
+    # JavaScript Math.round: ties toward +infinity, including negative half steps.
+    return RC_MID + math.floor(normalized * RC_SPAN + 0.5)
 
 
 def velocity_payload(pan: float, tilt: float, roll: float) -> bytes:

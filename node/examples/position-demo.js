@@ -30,6 +30,7 @@ function shutdown(signal) {
   interruptedBy = signal;
   console.log(`\n${signal}: stopping safely...`);
   shutdownPromise = gimbal.close();
+  shutdownPromise.catch(error => console.error('BLE cleanup failed:', error));
 }
 
 process.on("SIGINT", () => shutdown("SIGINT"));

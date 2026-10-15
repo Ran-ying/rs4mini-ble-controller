@@ -1,10 +1,11 @@
 import { crc8, crc16 } from "./protocol.js";
+import { bytes as byteArray, view, hex, concat } from "./bytes.js";
 
 const MIN_FRAME_LENGTH = 13;
 const MAX_FRAME_LENGTH = 0x3ff;
 
 export function parseDumlFrame(bytes) {
-  const packet = Buffer.from(bytes);
+  const packet = byteArray(bytes);
   if (packet.length < MIN_FRAME_LENGTH) throw new RangeError("DUML frame is too short");
   if (packet[0] !== 0x55) throw new Error("DUML frame does not start with 0x55");
 
@@ -12,7 +13,7 @@ export function parseDumlFrame(bytes) {
   if (length !== packet.length) throw new Error(`DUML length mismatch: header=${length}, actual=${packet.length}`);
   if (crc8(packet.subarray(0, 3)) !== packet[3]) throw new Error("DUML header CRC8 mismatch");
 
-  const expectedCrc = packet.readUInt16LE(packet.length - 2);
+  const expectedCrc = view(packet).getUint16(packet.length - 2, true);
   const actualCrc = crc16(packet.subarray(0, packet.length - 2));
   if (actualCrc !== expectedCrc) throw new Error("DUML frame CRC16 mismatch");
 
@@ -21,7 +22,7 @@ export function parseDumlFrame(bytes) {
     length,
     sender: packet[4],
     receiver: packet[5],
-    sequence: packet.readUInt16LE(6),
+    sequence: view(packet).getUint16(6, true),
     flags: packet[8],
     commandSet: packet[9],
     commandId: packet[10],
@@ -31,28 +32,29 @@ export function parseDumlFrame(bytes) {
 
 export class DumlStreamDecoder {
   constructor({ maxBufferedBytes = 8192 } = {}) {
+    if (!Number.isInteger(maxBufferedBytes) || maxBufferedBytes < 13) throw new RangeError("maxBufferedBytes must be an integer >= 13");
     this.maxBufferedBytes = maxBufferedBytes;
-    this.buffer = Buffer.alloc(0);
+    this.buffer = byteArray(0);
     this.discardedBytes = 0;
     this.invalidFrames = 0;
   }
 
   reset() {
-    this.buffer = Buffer.alloc(0);
+    this.buffer = byteArray(0);
     this.discardedBytes = 0;
     this.invalidFrames = 0;
   }
 
   push(chunk) {
     if (!chunk?.length) return [];
-    this.buffer = Buffer.concat([this.buffer, Buffer.from(chunk)]);
+    this.buffer = concat([this.buffer, byteArray(chunk)]);
     if (this.buffer.length > this.maxBufferedBytes) {
       const keepFrom = Math.max(0, this.buffer.lastIndexOf(0x55));
       this.discardedBytes += keepFrom;
       this.buffer = this.buffer.subarray(keepFrom);
       if (this.buffer.length > this.maxBufferedBytes) {
         this.discardedBytes += this.buffer.length;
-        this.buffer = Buffer.alloc(0);
+        this.buffer = byteArray(0);
       }
     }
 
@@ -61,7 +63,7 @@ export class DumlStreamDecoder {
       const start = this.buffer.indexOf(0x55);
       if (start < 0) {
         this.discardedBytes += this.buffer.length;
-        this.buffer = Buffer.alloc(0);
+        this.buffer = byteArray(0);
         break;
       }
       if (start > 0) {
@@ -100,9 +102,9 @@ export function decodeGimbalTelemetry(message) {
   if (message.payload.length < 6) return null;
 
   const attitudeRaw = {
-    pitch: message.payload.readInt16LE(0),
-    roll: message.payload.readInt16LE(2),
-    yaw: message.payload.readInt16LE(4),
+    pitch: view(message.payload).getInt16(0, true),
+    roll: view(message.payload).getInt16(2, true),
+    yaw: view(message.payload).getInt16(4, true),
   };
   const attitude = {
     pitch: attitudeRaw.pitch / 10,
@@ -118,9 +120,9 @@ export function decodeGimbalTelemetry(message) {
   let jointAngles = null;
   if (message.payload.length >= 24) {
     const raw = {
-      pitch: message.payload.readInt16LE(20),
-      roll: message.payload.readInt16LE(22),
-      yaw: message.payload.readInt16LE(16),
+      pitch: view(message.payload).getInt16(20, true),
+      roll: view(message.payload).getInt16(22, true),
+      yaw: view(message.payload).getInt16(16, true),
     };
     jointAngles = {
       pitch: raw.pitch / 10,
@@ -135,7 +137,7 @@ export function decodeGimbalTelemetry(message) {
   // unverified until DJI's RS 4 Mini coordinate convention is established.
   let orientationQuaternion = null;
   if (message.payload.length >= 40) {
-    const components = [24, 28, 32, 36].map(offset => message.payload.readFloatLE(offset));
+    const components = [24, 28, 32, 36].map(offset => view(message.payload).getFloat32(offset, true));
     orientationQuaternion = {
       components,
       norm: Math.hypot(...components),
@@ -155,11 +157,11 @@ export function decodeGimbalTelemetry(message) {
     jointAngles,
     orientationQuaternion,
     modeFlags: message.payload.length >= 7 ? message.payload[6] : null,
-    rollAdjust: message.payload.length >= 8 ? message.payload.readInt8(7) : null,
-    yawAngle: message.payload.length >= 10 ? message.payload.readInt16LE(8) / 10 : null,
+    rollAdjust: message.payload.length >= 8 ? view(message.payload).getInt8(7) : null,
+    yawAngle: message.payload.length >= 10 ? view(message.payload).getInt16(8, true) / 10 : null,
     limitFlags: message.payload.length >= 11 ? message.payload[10] : null,
     stateFlags: message.payload.length >= 12 ? message.payload[11] : null,
-    payloadHex: message.payload.toString("hex"),
+    payloadHex: hex(message.payload),
     sequence: message.sequence,
     timestamp: message.receivedAt ?? Date.now(),
   };

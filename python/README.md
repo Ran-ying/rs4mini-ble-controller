@@ -1,0 +1,79 @@
+# Python SDK 0.7.0
+
+Python 3.8+、Bleak 后端。保留早期 camelCase 和 snake_case 调用，同时补充反馈、低速位置闭环、缓存 ID、停止取消和 `close()`。
+
+```sh
+python3 -m venv .venv
+.venv/bin/python -m pip install --upgrade pip
+.venv/bin/python -m pip install -e .
+.venv/bin/python -m unittest discover -s tests -v
+```
+
+```python
+import asyncio
+from rs4mini_sdk import RS4Mini
+
+async def main():
+    gimbal = RS4Mini(deviceId=None, ioTimeoutMs=3000)
+    try:
+        await gimbal.connect(timeoutMs=30000)
+        print(await gimbal.getJointAngles(fresh=True))
+    finally:
+        await gimbal.close()
+
+asyncio.run(main())
+```
+
+## API
+
+- `connect(timeoutMs=30000, directConnectTimeoutMs=5000, deviceId=...)`：总连接截止时间；缓存 ID 直连失败后扫描。旧参数 `timeout` 为秒，不能和 `timeoutMs` 同时指定。
+- `setVelocity(pan=0, tilt=0, roll=0)` / `set_velocity(...)`：标准化输入，-1..1。
+- `setVelocityDeg(...)` / `set_velocity_deg(...)`：经验角速度换算。
+- `moveFor(durationMs=500, pan=0.05)`；旧别名 `move_for(duration, ...)` 的时长为秒。
+- `getAttitude(fresh=False, timeoutMs=3000)` / `get_attitude(fresh=False, timeout_ms=3000)`。
+- `getJointAngles(...)` / `get_joint_angles(...)`：返回字典，含 pitch/roll/yaw、raw、unit、timestamp。
+- `moveTo(pan=..., tilt=..., roll=..., toleranceDeg=1, timeoutMs=30000, telemetryTimeoutMs=3000, gain=0.02, minSpeed=0.05, maxSpeed=0.18)`；`move_to` 使用对应下划线参数。
+- `stop()`：取消位置/限时运动并等待清理；`recenter()` 为三轴回中。
+- `disconnect()`：可重用；`close()`：永久关闭实例；异步上下文管理器退出使用 `close()`。
+
+位置目标为机械关节角，Pan=Yaw、Tilt=Pitch、Roll=Roll。反馈约 1 Hz。已进入容差的轴归零；Pan 用最短环绕差。默认参数与 Node 一致。
+
+有限运动、初次写入及停止清理期间互斥。冲突抛 `RS4MiniError.code == 'RS4MINI_BUSY'`。先创建并保存运动任务，再调用 `stop()`，并处理旧任务的 `RS4MINI_MOVE_CANCELLED`。外部 `task.cancel()` 保留 `asyncio.CancelledError`，同样清理；旧限时睡眠不会影响新命令。
+
+错误码还包括 `RS4MINI_MOVE_TIMEOUT`、`RS4MINI_TELEMETRY_TIMEOUT`、`RS4MINI_CONNECT_TIMEOUT`、`RS4MINI_CONNECT_CANCELLED`、`RS4MINI_IO_TIMEOUT`、`RS4MINI_DISCONNECTED`。位置总超时携带 `target` 和 `current`（无样本时为 None）。每次 BLE 写入与清理受 `ioTimeoutMs` 限制；失败后断开。后端需遵守 asyncio 取消约定；无法通过软件保证失去蓝牙后的物理停止。
+
+回调 `onNotification/onMessage/onTelemetry/onDisconnect/onError` 支持同步或异步函数；对应 `on_notification/on_message/on_telemetry/on_disconnect/on_error` 别名。反馈、速度与回调参数使用副本。导出的 `DumlStreamDecoder`、`parse_duml_frame`、`decode_gimbal_telemetry` 不需要实际蓝牙设备。
+
+运行 `examples/telemetry_capture.py` 只读取反馈；`examples/position_demo.py` 会移动，先确认平衡和空间。新行为尚待 [实机清单](../docs/HARDWARE_CHECKLIST.md) 验证。
+## 0.7.0 非相机扩展
+
+`enableAutoReconnect()` / `enable_auto_reconnect()`：显式启用有界退避重连。
+默认五次、500 ms 起步、二倍退避、上限 10 s；回调 `onReconnect` / `on_reconnect`、
+状态副本 `reconnectState` / `reconnect_state`。仅恢复链路，不重放旧速度和轨迹。
+`disconnect()`、`close()`、`await disable_auto_reconnect()` 取消策略与正在进行的重试。
+
+`runTrajectory(keyframes, interpolation='linear', maxLagMs=500)` 或
+`run_trajectory(keyframes, interpolation='linear', max_lag_ms=500)` 按 timeMs 速度关键帧执行。
+keyframes 示例：`[{'timeMs':0,'pan':0.05},{'timeMs':1000,'pan':0}]`。
+linear/smoothstep/step 插值共用串行写入、单调时钟与跳过迟到采样点的策略；结束或错误发送停止。
+这是开环速度轨迹，不能保证物理速度或角度精度。
+
+`moveThrough([{'pan':5,'holdMs':1000},{'pan':0}], timeoutMs=30000)` 逐点闭环定位并停止、停留。
+timeoutMs 分别限制每段，停留不计入下段；snake_case 为 `move_through(..., timeout_ms=...)`。
+两种轨迹均保持完整运动所有权，`stop()` 取消整条流程；进度副本为 `trajectory_progress`。
+
+`await capture_home(fresh=True)` 保存当前关节位置，`await move_home(axes=['pan'])` 仅返回指定轴。
+保存值限当前实例与设备。它不等于固件单轴回中。
+
+`get_orientation(component_order='wxyz', conjugate=False, fresh=True)` 支持显式指定 wxyz/xyzw
+并转换为标准右手内禀 ZYX 欧拉角，模长容差默认 0.1；短帧不会满足等待。
+纯函数 `orientation_from_components()` 可离线使用。设备分量约定仍未实测，结果带有
+`deviceConventionVerified=False`，不自动用于位置闭环。
+
+`gimbal.experimental.use_profile('rs3')` / `'rs3mini'` 开启显式研究配置。
+支持 `query(kind='version'|'position'|'controlStatus'|'type')`、`set_sleep(asleep=True)`，
+以及 rs3 配置下的 `absolute(pan=2,parameterByte=20,observeMs=3000)`、
+`rate_for(pan=2,duration_ms=500)`；含义及边界与 Node 实验接口一致，参见 `../node/API.md`。
+查询匹配连接、序号、端点、命令和响应位；超时取消排队写入，已经开始的帧有界完成。
+实验状态副本为 `experimental.status`，通知回调为 `on_experimental_status`。
+原生速率停止先释放再发送中位帧；物理执行/到位均未证实，不能据此声称完整支持 RS 4 Mini。

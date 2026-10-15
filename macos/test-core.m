@@ -1,0 +1,79 @@
+#import "RSControlCore.h"
+#include <math.h>
+
+static NSUInteger assertions;
+static void Require(BOOL value, NSString *message) { assertions++; if (!value) { fprintf(stderr, "FAIL: %s\n", message.UTF8String); exit(1); } }
+static NSString *Hex(NSData *data) { NSMutableString *hex = [NSMutableString string]; for (NSUInteger i = 0; i < data.length; i++) [hex appendFormat:@"%02x", ((const uint8_t *)data.bytes)[i]]; return hex; }
+int main(void) {
+    @autoreleasepool {
+        NSData *stop = RSVelocityFrame(0x100, 0, 0, 0);
+        Require([Hex(stop) isEqualToString:@"551604fc020400010004010004000400040000027705"], @"golden stop vector");
+        Require(RSVelocityFrame(1, NAN, 0, 0) == nil, @"reject NaN");
+        NSData *halfFrame = RSVelocityFrame(1, 0.5 / 660, -0.5 / 660, -1.5 / 660);
+        const uint8_t *half = halfFrame.bytes;
+        Require((half[15] | (half[16] << 8)) == 1025 && (half[11] | (half[12] << 8)) == 1024 && (half[13] | (half[14] << 8)) == 1023, @"JS half-step parity");
+        RSFrameDecoder *decoder = [RSFrameDecoder new];
+        Require([decoder push:[stop subdataWithRange:NSMakeRange(0, 20)]].count == 0, @"fragment held");
+        NSMutableData *tail = [[stop subdataWithRange:NSMakeRange(20, 2)] mutableCopy]; [tail appendData:stop];
+        Require([decoder push:tail].count == 2, @"fragment and coalesced frames");
+        NSMutableData *bad = [stop mutableCopy]; ((uint8_t *)bad.mutableBytes)[21] ^= 1; [bad appendData:stop];
+        Require([decoder push:bad].count == 1 && decoder.invalidFrames > 0, @"CRC resynchronization");
+        NSMutableData *payload = [NSMutableData dataWithLength:49]; uint8_t *p = payload.mutableBytes;
+        p[16] = 0x39; p[17] = 0x30; p[20] = 0xf6; p[21] = 0xff;
+        NSDictionary *sample = RSDecodeTelemetry(payload);
+        Require(fabs([sample[@"jointAngles"][@"yaw"] doubleValue] - 123.45) < 0.001 && [sample[@"jointAngles"][@"pitch"] doubleValue] == -1, @"joint scales and signs");
+        Require(RSDecodeTelemetry([NSMutableData dataWithLength:5]) == nil, @"short feedback rejected");
+        RSFrameQueue *queue = [RSFrameQueue new]; [queue enqueue:stop]; [queue enqueue:RSRecenterFrame(2)];
+        Require([queue nextChunk].length == 20, @"20-byte chunks"); [queue discardPending]; [queue enqueue:stop];
+        Require([queue nextChunk].length == 2 && [queue nextChunk].length == 20 && [queue nextChunk].length == 2 && queue.empty, @"stop keeps started frame and discards pending motion");
+        RSPositionLoop *loop = [RSPositionLoop new]; NSError *error;
+        Require(![loop begin:@{@"pan": @181} at:0 error:&error], @"invalid target rejected");
+        Require([loop begin:@{@"pan": @5, @"tilt": @5, @"roll": @(-4)} at:0 error:&error], @"start position");
+        Require(![loop begin:@{@"pan": @3} at:0 error:&error], @"position conflict rejected");
+        Require([[loop step:0.1] isEqualToString:@"waiting"], @"wait next feedback");
+        [loop feedback:@{@"yaw": @4.5, @"pitch": @0, @"roll": @0} at:0.2];
+        Require([[loop step:0.2] isEqualToString:@"moving"] && [loop.velocity[@"pan"] doubleValue] == 0 && [loop.velocity[@"tilt"] doubleValue] < 0 && [loop.velocity[@"roll"] doubleValue] < 0, @"per-axis tolerance and direction");
+        [loop feedback:@{@"yaw": @4.5, @"pitch": @4.5, @"roll": @(-3.5)} at:1];
+        Require([[loop step:1] isEqualToString:@"arrived"] && !loop.active, @"arrived and neutral");
+        [loop begin:@{@"pan": @(-179)} at:0 error:&error]; [loop feedback:@{@"yaw": @179, @"pitch": @0, @"roll": @0} at:0.1]; [loop step:0.1];
+        Require([loop.velocity[@"pan"] doubleValue] > 0, @"Pan shortest wrap"); [loop cancel];
+        Require(!loop.active && [loop.velocity[@"pan"] doubleValue] == 0, @"cancel clears motion");
+        [loop begin:@{@"pan": @5} at:0 error:&error];
+        Require([[loop step:3] isEqualToString:@"telemetryTimeout"], @"feedback watchdog");
+        [loop begin:@{@"pan": @5} at:0 error:&error];
+        Require([[loop step:30] isEqualToString:@"timeout"], @"total deadline distinct");
+        RSTrajectoryLoop *trajectory = [RSTrajectoryLoop new];
+        Require(![trajectory begin:@[@{@"timeMs": @1}, @{@"timeMs": @2}] interpolation:@"linear" at:0 error:&error], @"trajectory starts at zero");
+        Require(![trajectory begin:@[@{@"timeMs": @0}, @{@"timeMs": @0}] interpolation:@"linear" at:0 error:&error], @"trajectory times increase");
+        Require(![trajectory begin:@[@{@"timeMs": @0, @"pan": @2}, @{@"timeMs": @10}] interpolation:@"linear" at:0 error:&error], @"trajectory range validation");
+        Require(![trajectory begin:@[@{@"timeMs": @0, @"pan": @YES}, @{@"timeMs": @10}] interpolation:@"linear" at:0 error:&error], @"trajectory rejects boolean axis values");
+        NSMutableDictionary *point = [@{@"timeMs": @0, @"pan": @1} mutableCopy];
+        Require([trajectory begin:@[point, @{@"timeMs": @100, @"tilt": @(-1)}] interpolation:@"linear" at:0 error:&error], @"trajectory begins");
+        point[@"pan"] = @(-1); [trajectory step:.025];
+        Require(fabs([trajectory.velocity[@"pan"] doubleValue] - .75) < 1e-9 && fabs([trajectory.velocity[@"tilt"] doubleValue] + .25) < 1e-9, @"trajectory input copied and axes interpolate");
+        Require([[trajectory step:.1] isEqualToString:@"done"] && !trajectory.active, @"trajectory ends instead of holding final velocity");
+        [trajectory begin:@[@{@"timeMs": @0, @"pan": @1}, @{@"timeMs": @100}] interpolation:@"smoothstep" at:0 error:&error]; [trajectory step:.025];
+        Require(fabs([trajectory.velocity[@"pan"] doubleValue] - .84375) < 1e-9, @"smoothstep interpolation"); [trajectory cancel];
+        [trajectory begin:@[@{@"timeMs": @0, @"pan": @1}, @{@"timeMs": @100}] interpolation:@"step" at:0 error:&error]; [trajectory step:.099];
+        Require([trajectory.velocity[@"pan"] doubleValue] == 1, @"step interpolation holds preceding frame"); [trajectory cancel];
+        [trajectory begin:@[@{@"timeMs": @0, @"pan": @1}, @{@"timeMs": @1000}] interpolation:@"linear" at:0 error:&error];
+        Require([[trajectory step:.6] isEqualToString:@"overrun"] && !trajectory.active && [trajectory.velocity[@"pan"] doubleValue] == 0, @"late scheduler cancels rather than bursts");
+        NSDictionary *orientation = RSOrientation(@[@(M_SQRT1_2), @0, @0, @(M_SQRT1_2)], @"wxyz", NO);
+        Require(fabs([orientation[@"euler"][@"yaw"] doubleValue] - 90) < 1e-9 && ![orientation[@"deviceConventionVerified"] boolValue], @"quaternion conversion is mathematical with explicit unverified convention");
+        Require(fabs([RSOrientation(@[@0, @0, @(M_SQRT1_2), @(M_SQRT1_2)], @"xyzw", YES)[@"euler"][@"yaw"] doubleValue] + 90) < 1e-9, @"quaternion ordering and conjugation");
+        Require(!RSOrientation(@[@0, @0, @0, @0], @"wxyz", NO) && !RSOrientation(@[@1, @0, @0, @0], @"unknown", NO), @"quaternion rejects zero norm and unspecified order");
+        [decoder reset]; NSArray *absolute = [decoder push:RSResearchAbsoluteFrame(1, @{@"pan": @45}, 20)];
+        Require([Hex(absolute.firstObject[@"payload"]) isEqualToString:@"c201000000000d14"], @"RS 3 absolute-angle vector and omitted-axis mask");
+        [decoder reset]; NSArray *rate = [decoder push:RSResearchRateFrame(1, @{@"pan": @2}, NO)];
+        Require([Hex(rate.firstObject[@"payload"]) isEqualToString:@"14000000000080"], @"RS 3 native-rate vector");
+        [decoder reset]; NSArray *sleep = [decoder push:RSResearchSleepFrame(1, @"rs3mini", YES)];
+        Require([Hex(sleep.firstObject[@"payload"]) isEqualToString:@"230111"] && [sleep.firstObject[@"sequence"] intValue] == 1, @"RS 3 Mini sleep vector and frame metadata");
+        Require(!RSResearchAbsoluteFrame(1, @{@"pan": @181}, 20) && !RSResearchQueryFrame(1, @"calibrate"), @"research command ranges and query allowlist");
+        NSMutableData *battery = [NSMutableData dataWithLength:21]; ((uint8_t *)battery.mutableBytes)[20] = 67;
+        NSDictionary *message = @{@"sender": @0xe5, @"receiver": @2, @"commandSet": @0x0d, @"commandId": @2, @"payload": battery};
+        Require([RSDecodeResearchStatus(message, @"rs3mini")[@"batteryPercent"] intValue] == 67 && RSDecodeResearchStatus(message, @"rs3")[@"batteryPercent"] == NSNull.null, @"battery interpretation is model-specific");
+        Require(!RSDecodeResearchStatus(@{@"sender": @0xe5, @"receiver": @2, @"commandSet": @4, @"commandId": @0x66, @"payload": [NSData dataWithBytes:(uint8_t[]){1, 0x22, 2, 0} length:4]}, @"rs3mini"), @"malformed status TLV rejected");
+        printf("Native protocol, reassembly, stop queue and motion-core checks: %lu passed\n", (unsigned long)assertions);
+    }
+    return 0;
+}

@@ -92,3 +92,30 @@ uint8 source = 02
 - [dji-firmware-tools gimbal dissector](https://github.com/o-gs/dji-firmware-tools/blob/master/comm_dissector/wireshark/dji-dumlv1-gimbal.lua)
 
 以后变更协议字段时，优先提供本设备的分轴运动或离线合成帧证据，并在这里记录验证范围。
+
+## 非相机扩展的研究配置（尚未验证 RS 4 Mini）
+
+本轮只研究和运行离线测试，没有对稳定器发出新增命令。
+
+| 配置/来源 | 本项目采用的内容 | 验证边界 |
+|---|---|---|
+| [RS 3 原始研究](https://github.com/jdesbonnet/dji_rs3_control/blob/689884f2249e721c5b65c9c74804caddc1e7a68c/rs3_ble_protocol_spec.md) | `04:14` Pan/Roll/Tilt 十分之一度、无效轴掩码；`04:0C` 同次序原生速率；`04:0F` 休眠/唤醒 | 原作者只实测部分 Pan 行为；其他轴、控制位、末参数单位与本型号均需验证 |
+| [RS 3 Mini 原始实现](https://github.com/b-rutledge-code/rs3mini-bridge/blob/b64315754bb47be76d862ae8860764267215a7cf/lib/session-setup.js) | `04:0F` 型号独立的休眠字节 | 与 RS 3 字节不同，因此必须显式选择配置 |
+| [RS 3 Mini 状态实现](https://github.com/b-rutledge-code/rs3mini-bridge/blob/b64315754bb47be76d862ae8860764267215a7cf/lib/telemetry.js) | `0D:02` 的原始字段和候选百分比，`04:66` TLV | 本项目严格检查端点/长度；保留原始量，不用该布局覆盖 RS 4 Mini 关节角 |
+
+`experimental.absolute()` 按省略轴设置无效位；`parameterByte` 必须由调用方显式提供，
+不把未确认的末参数解释成秒。`observeMs` 只是本地观察时长，不是固件运动时间或到位判断。
+`experimental.rateFor()` 的清理先尝试 `04:0C` 零速/释放，再发送普通中位帧。
+这些写入均不能证明固件会执行或能够中断自身的动作。
+
+`experimental.query()` 只开放 version=`00:01`、position=`04:02`、
+controlStatus=`04:0B`、type=`04:1C`，匹配同连接、sequence、`04→02`、命令及响应位。
+它不开放任意命令、固件更新或校准触发；超时表示没有观察到关联响应，不能直接判定固件不支持。
+
+研究还发现校准 `04:08` 在 RS 3 上可能自主运动，且额外流量会干扰校准；
+本轮只解析候选进度 `04:30`，尚未开放触发接口。真正单轴回中、跟随模式参数、
+完整校准与电机调参、原生轨迹/全景程序仍需补充协议依据和受控验证。
+Osmo 示例的角度次序与这些 RS 资料冲突，不能直接移植。
+
+四元数接口只提供显式分量顺序下的标准右手内禀 ZYX 数学转换，
+结果带 `deviceConventionVerified:false`；没有自动识别 RS 4 Mini 坐标约定。

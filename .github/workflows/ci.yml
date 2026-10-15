@@ -27,6 +27,8 @@ jobs:
       - run: npm pack --dry-run
         working-directory: node
       - run: node --check web/rs4mini.js
+      - run: npm --prefix web test
+      - run: sh macos/test.sh
       - run: sh macos/build.sh
       - run: sh tools/ble-probe/build.sh
 

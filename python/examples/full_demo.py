@@ -9,7 +9,7 @@ async def main() -> None:
     # Snake_case aliases remain available for Python projects that prefer them.
     gimbal = RS4Mini(nameIncludes="DJI RS4 MINI", rateHz=15)
 
-    # FFF4 currently exposes raw packets. Set RS4MINI_LOG_PACKETS=1 to inspect them.
+    # Raw chunks and decoded feedback are both available in 0.6.0.
     def notification(packet: bytes) -> None:
         if os.getenv("RS4MINI_LOG_PACKETS") == "1":
             print("notify:", packet.hex())
@@ -22,6 +22,7 @@ async def main() -> None:
         # 1. Scan, connect, discover FFF4/FFF5, and subscribe to notifications.
         name = await gimbal.connect(timeoutMs=30_000)
         print("connected:", name, gimbal.deviceAddress)
+        print("joint angles:", await gimbal.getJointAngles(fresh=True))
 
         # 2. Safe, duration-bounded single-axis movements (-1..+1).
         await gimbal.moveFor(durationMs=600, pan=0.12)
@@ -48,7 +49,7 @@ async def main() -> None:
         await asyncio.sleep(2.0)
     finally:
         # Sends neutral frames before closing BLE, including after an exception.
-        await gimbal.disconnect()
+        await gimbal.close()
 
 
 if __name__ == "__main__":

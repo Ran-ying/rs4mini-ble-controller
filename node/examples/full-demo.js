@@ -30,12 +30,13 @@ gimbal.onError = error => console.error("BLE stream error:", error);
 
 function shutdown(signal) {
   if (shutdownPromise) {
-    console.error("second interrupt: forcing exit");
-    process.exit(130);
+    console.error("BLE cleanup is still in progress");
+    return;
   }
   interruptedBy = signal;
   console.log(`\n${signal}: stopping safely...`);
   shutdownPromise = gimbal.close();
+  shutdownPromise.catch(error => console.error('BLE cleanup failed:', error));
 }
 
 process.on("SIGINT", () => shutdown("SIGINT"));

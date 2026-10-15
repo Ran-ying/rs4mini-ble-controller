@@ -11,7 +11,7 @@ async def main():
         await gimbal.stop()
         print("neutral stop test complete")
     finally:
-        await gimbal.disconnect()
+        await gimbal.close()
 
 
 if __name__ == "__main__":

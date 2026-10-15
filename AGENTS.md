@@ -8,9 +8,14 @@ verification status changes.
 ## Objective and user decisions
 
 - Provide an unofficial, direct BLE controller for **DJI RS 4 Mini**, initially on macOS.
-- **Node.js is the authoritative implementation**; current package version is `0.5.0`.
-- Preserve the existing Python, native macOS, and browser implementations, but do
-  not claim feature parity. Python remains `0.2.1` and matches the early control API.
+- **Node.js is the authoritative implementation**; current package version is `0.7.0`.
+- The user subsequently requested completion of all existing ports. Python is now
+  `0.7.0`, Web shares the JS core, and the native panel is `0.3.0`. Describe the
+  documented feature differences; do not claim identical APIs or hardware proof.
+- After that delivery, the user requested the remaining **non-camera** capabilities
+  under the same autonomous/offline conditions. Expansion work is in progress;
+  see `docs/EXPANSION_PLAN.md`. The 0.7.0 source checkpoint and its remaining
+  verification gates are recorded in `docs/PROJECT_STATUS.md`.
 - The user chose direct computer control without a Bluetooth gamepad or Android intermediary.
 - Nikon Z6III integration, camera autofocus/shutter/video control, and vision
   tracking were explicitly removed from the current scope. Do not restart that
@@ -24,14 +29,16 @@ verification status changes.
 
 | Path | Role |
 |---|---|
-| `node/src/index.js` | Main `RS4Mini` API, Noble BLE lifecycle, command streaming, telemetry waits, position loop |
+| `node/src/index.js` | Node entry with independent lazy Noble backend |
+| `node/src/controller.js` | Shared motion ownership, deadlines, lifecycle, telemetry waits and position loop |
+| `node/src/noble-adapter.js` | Native Noble adapter factory and lazy cleanup |
 | `node/src/protocol.js` | Pure DUML encoder and CRCs |
 | `node/src/telemetry.js` | BLE stream reassembly, CRC verification, `04:05` feedback decoder |
 | `node/src/*.d.ts` | TypeScript declarations; keep synchronized with runtime |
 | `node/examples/` | Offline tests and separate explicit hardware demos |
-| `python/` | Legacy Bleak async controller, aliases, protocol and client tests |
+| `python/` | Bleak async controller, feedback/position API, aliases and regression tests |
 | `macos/` | Objective-C/AppKit/CoreBluetooth control panel and build script |
-| `web/` | Legacy Web Bluetooth module and HTML control page |
+| `web/` | Web Bluetooth adapter, shared core, feedback/position page and fake GATT tests |
 | `tools/ble-probe/` | macOS diagnostic probe used during original protocol research |
 | `docs/` | Protocol, development findings, verification history |
 
@@ -76,11 +83,17 @@ Do not edit generated `.app` bundles, native binaries, `node_modules`, or caches
   Tilt `-`, Roll `+`. Pan uses the shortest wrapped angular difference.
 - Defaults: tolerance `1°`, total timeout `30000 ms`, telemetry timeout `3000 ms`,
   gain `0.02`, minSpeed `0.05`, maxSpeed `0.18`.
-- `stop()` requests cancellation of an active `moveTo()` and sends neutral frames.
-  The movement promise rejects with `RS4MINI_MOVE_CANCELLED` when the loop resumes.
-  Do not assume the movement promise has already settled when `stop()` resolves.
-- `moveTo()` rejects conflicting velocity, bounded-motion, recenter, and second
-  position operations while active. Other motion combinations are not generally locked.
+- `stop()` cancels active position/duration work, sends neutral frames, and waits
+  until operation cleanup releases ownership. Handle the movement promise rejection.
+- All finite operations, initial velocity writes and final stops own the motion
+  slot. Conflicting commands fail with `RS4MINI_BUSY`; streaming manual velocity
+  may be updated after the preceding setter settles. New bounded operations stop
+  prior continuous velocity before waiting for feedback.
+- Each axis inside tolerance is individually zeroed; total position timeout is
+  consistently `RS4MINI_MOVE_TIMEOUT`, distinct from a shorter telemetry wait.
+- Each GATT write and cleanup is bounded by `ioTimeoutMs` (default 3000 ms).
+  A started DUML frame finishes its chunks before a stop; on write failure the
+  session is invalidated and disconnected instead of continuing a partial frame.
 - Each new process must call `connect()`. A CoreBluetooth handle cannot be shared
   across processes. Cache only the UUID; direct connect falls back to scanning.
 - `disconnect()` permits reuse of the instance; `close()` closes Noble's run
@@ -106,6 +119,8 @@ python -m pip install -e .
 python -m unittest discover -s tests -v
 ```
 
+Unified offline checks: `sh tools/check-offline.sh` (TypeScript must be cached).
+Web: `npm --prefix web test`. Native: `sh macos/test.sh`.
 Native macOS panel: `sh macos/build.sh`. Probe: `sh tools/ble-probe/build.sh`.
 Builds need Xcode Command Line Tools; generated apps/binaries are ignored.
 
@@ -135,39 +150,49 @@ accuracy after settling, at other loads, or in simultaneous three-axis motion.
 See `docs/VALIDATION.md` for exact readings. The v0.5.0 concurrency changes were
 covered by fake-adapter tests; do not call them independently hardware verified.
 
-## Open issues and next engineering work
+## Completed follow-ups and remaining hardware boundaries
 
-The current snapshot preserves the verified control implementation. Code review
-identified the following follow-ups, which must not be described as already fixed:
+The former 0.5.0 software follow-ups are implemented in 0.6.0: deterministic
+failure/cancellation coverage, per-axis tolerance, normalized move deadlines,
+cleanup ownership, connection-stage deadlines, callback isolation, cancellable
+duration operations, listener cleanup, JS-compatible Python/native half steps,
+and expanded TypeScript consumer checks. See the actual tests and validation log;
+passing mocks does not prove OS BLE callbacks or physical motor behavior.
 
-1. Add deterministic failure/cancellation tests, especially stopping during an
-   in-flight write, disconnect/reconnect listener cleanup, and close during a
-   direct connection or GATT discovery.
-2. Multi-axis `moveTo()` does not individually zero axes already within tolerance
-   while another axis is still moving; it can continue to command `minSpeed` on
-   a small residual error. Address before claiming multi-axis convergence quality.
-3. The total move deadline can surface as a generic telemetry-wait timeout when
-   it expires inside a wait, instead of `RS4MINI_MOVE_TIMEOUT`.
-4. `moveToActive` is cleared before its final asynchronous stop completes; guard
-   the cleanup interval against new motion commands. Current cancellation is
-   cooperative and not a complete motion scheduling system.
-5. `connect(timeoutMs)` does not bound every discovery/connection stage; strengthen
-   cleanup and deadlines rather than assuming a hard end-to-end limit.
-6. User callbacks can throw into notification processing; isolate errors before
-   supporting untrusted callbacks or long-running services.
-7. `moveFor()` is duration-bounded but its sleep is not cancellable and its later
-   stop can interfere with a new command. Define general operation ownership.
-8. Native stop writes are best-effort over BLE, not a firmware emergency-stop
-   guarantee. No absolute-angle command, single-axis recenter, or disconnect
-   auto-reconnect has been verified/implemented.
-9. Python uses Python's rounding convention; JavaScript uses `Math.round`.
-   Check half-step cases before claiming byte-for-byte parity.
-10. Type declarations now pass a TypeScript 5.9.3 consumer smoke check
-    (`node/examples/types-smoke.mts`), also configured in CI. Expand it when
-    extending the public API; it does not prove runtime or every consumer type.
+Node and Python expose copied state and isolate sync/async observer failures.
+Default Node controllers own independent lazy Noble backends. Power waits own
+cancellable listeners, so a cancelled powered-off connection leaves no SDK timer.
+Web uses the same controller via a Noble-compatible GATT adapter. Native has a
+separate tested position loop and backpressure queue with fixed low-speed settings.
 
-Choose follow-ups according to the next user request. Do not silently port all
-changes to Python or expand into camera/vision work.
+The user is away: do not scan, connect or move hardware until they return and
+request testing. Record required real-device checks in `docs/HARDWARE_CHECKLIST.md`.
+Native stops remain best-effort BLE writes. The development tree adds opt-in
+bounded automatic reconnect, velocity keyframe trajectories, waypoint sequences,
+saved-home axis selection and explicit-order quaternion math to Node/Python and
+the shared Web SDK and native panel. Web and native have explicit controls for
+home, JSON trajectories/waypoints, research profiles and quaternion math. Native
+queries own the operation slot and use 30-second per-attempt reconnect deadlines;
+the JS/Python limited queries may coexist with motion. No hardware or visual
+verification has been performed for the new features.
+
+`gimbal.experimental` requires explicit `rs3` or `rs3mini` research profiles.
+Absolute angles and native rates use RS 3 Pan/Roll/Tilt payload order (different
+from Osmo examples); sleep bytes differ by model. Limited queries correlate
+session, sequence, endpoints, command and response bit. Passive extra status is
+profile-labeled and never replaces verified RS 4 Mini joint feedback. No new
+protocol commands have been sent to hardware. Physical completion, firmware
+stop behavior, real single-axis recenter, quaternion convention and mechanical
+accuracy remain unproven. Saved-home return is not firmware single-axis recenter.
+Camera/vision work remains outside scope. On 2026-10-15 the user explicitly
+authorized committing and pushing the source and durable handoff to GitHub.
+This does not authorize npm publication or a remote binary release.
+
+Further static research downloaded the official Ronin 2.2.2/7096 APK into ignored
+`work/research/`. `docs/RESEARCH_NEXT.md` records its hash and candidate gimbal
+classes; only the AppGuard wrapper and raw class names were inspected. Business
+payload/request/model-branch reconstruction is unfinished. The APK was not
+installed or executed. Do not infer RS 4 Mini command layouts from class names.
 
 ## Publishing and repository hygiene
 

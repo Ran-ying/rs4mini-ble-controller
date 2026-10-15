@@ -1,0 +1,31 @@
+# Web Bluetooth 0.7.0
+
+从仓库根目录启动本机服务：
+
+```sh
+python3 -m http.server 8000 --bind 127.0.0.1
+```
+
+打开 `http://127.0.0.1:8000/web/`，使用提供 Web Bluetooth 的浏览器。设备选择必须由点击触发。页面会导入 `../node/src/controller.js`、协议和遥测模块；不能只发布 `web/` 文件夹。
+
+`RS4Mini` 提供与 Node 一致的 `connect/setVelocity/setVelocityDeg/moveFor/getAttitude/getJointAngles/moveTo/stop/recenter/disconnect/close`。连接参数、位置参数、错误码和并发规则见 [Node API](../node/API.md)。`device` 保留原生 BluetoothDevice；当前实例可重复连接已选择设备，跨页面持久化授权依浏览器实现，本 SDK 不承诺。
+
+浏览器返回字节为 Uint8Array；Node 返回 Buffer。为兼容旧 Web 调用，`velocityFrame(sequence, pan, tilt, roll)` 仍可使用，也支持 Node 风格的对象参数。
+
+页面显示姿态与机械关节，首次反馈将目标输入填为当前角度；勾选要移动的轴后低速定位。未选轴不运动，已进入 1° 容差的轴归零。页面隐藏、失焦或离开时请求停止；浏览器挂起、关闭或断线可能阻止停止帧送达，必须有人现场观察硬件。
+
+```sh
+npm test
+```
+
+测试模拟原生 GATT 事件、设备选择、通知、位置闭环、断线和失焦；并在无 Node Buffer 的进程中检查共享模块。测试不打开真实设备选择器、不连接蓝牙。浏览器/系统权限与新运动行为仍待 [统一实机验证](../docs/HARDWARE_CHECKLIST.md)。
+## 0.7.0 非相机扩展
+
+Web SDK 随共享核心增加 `enableAutoReconnect()`、`disableAutoReconnect()`、
+`runTrajectory()`、`moveThrough()`、`captureHome()`、`moveHome()`、`getOrientation()`。
+语义与参数见 `../node/API.md`。自动重试只使用本实例已选择的设备，不从后台弹出选择器；
+浏览器权限撤销或关闭页面后，需要再次点击连接。网页失焦也会取消新增轨迹。
+页面已加入自动重连开关、保存位置与按勾选轴返回、JSON 轨迹/路点载入和执行、显式四元数转换及实验 JSON 入口。
+载入文件不会自动执行；“用当前角度生成路点”可生成本机真实起点再编辑。
+`../examples/motions/` 提供共用格式，实验命令只允许已列明的几种类型，不能借此发送任意 DUML。
+页面事件已有假 DOM 验证；本机可视布局和真实浏览器权限/硬件效果仍待统一检查。

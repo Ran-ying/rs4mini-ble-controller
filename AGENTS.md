@@ -16,6 +16,10 @@ verification status changes.
   under the same autonomous/offline conditions. Expansion work is in progress;
   see `docs/EXPANSION_PLAN.md`. The 0.7.0 source checkpoint and its remaining
   verification gates are recorded in `docs/PROJECT_STATUS.md`.
+- The user requires a clear boundary between the BLE device SDK and motion/tasks
+  composed above it. See `docs/ARCHITECTURE.md`. Current `RS4Mini` remains a
+  combined compatibility facade; runtime separation is pending. Do not count
+  host algorithms such as `moveTo()` as new native BLE commands.
 - The user chose direct computer control without a Bluetooth gamepad or Android intermediary.
 - Nikon Z6III integration, camera autofocus/shutter/video control, and vision
   tracking were explicitly removed from the current scope. Do not restart that

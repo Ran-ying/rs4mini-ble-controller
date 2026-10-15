@@ -1,5 +1,10 @@
 # RS4 Mini Node API
 
+`RS4Mini` 当前是统一兼容入口，包含设备访问与电脑端组合运动。
+`setVelocity()`、三轴 `recenter()` 与反馈读取封装设备协议；`moveTo()`、`moveFor()`、
+轨迹、路点、保存位置返回是主机算法，不能作为设备具备同名原生命令的证据。
+完整归属和停止协作契约见 [架构边界](../docs/ARCHITECTURE.md)。
+
 所有公共方法均为异步方法。除读取缓存状态外，请在调用前完成 `await gimbal.connect()`。
 
 ## `new RS4Mini(options?)`

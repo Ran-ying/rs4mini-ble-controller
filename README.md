@@ -58,6 +58,11 @@ RS4MINI_POSITION_AXIS=tilt RS4MINI_POSITION_DELTA=3 npm run example:position
 
 默认位置示例为 Pan 5° 往返。`moveTo()` 以机械关节角为目标：Pan=Yaw、Tilt=Pitch、Roll=Roll；反馈约 1 Hz，适用于低速定位。`setVelocityDeg()` 是经验换算，不是闭环角速度。
 
+## SDK 与组合能力
+
+蓝牙设备 SDK 负责连接、协议、设备指令和反馈；`moveTo()`、轨迹、路点与保存位置返回由电脑端组合这些能力实现。
+当前 `RS4Mini` 是统一兼容入口，尚未拆成独立设备类和运动类。能力归属、姿态/关节解释及剩余功能可行性见 [架构边界](docs/ARCHITECTURE.md)。
+
 ## 各端状态
 
 | 功能 | Node 0.7.0 | Python 0.7.0 | Web 0.7.0 | macOS 面板 0.3.0 |

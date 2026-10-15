@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>RS 4 Mini · 3 Axis</title>
+  <style>
+    :root { color-scheme: dark; font-family: ui-sans-serif, system-ui, sans-serif; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; background:#090b0d; color:#f5f7f8; }
+    main { width:min(620px,100%); padding:28px 20px 48px; }
+    h1 { margin:0; letter-spacing:.06em; font-size:28px; }
+    .eyebrow { color:#7dffae; font:600 12px ui-monospace,monospace; letter-spacing:.12em; margin-bottom:8px; }
+    #status { margin:12px 0 22px; color:#9da5ac; }
+    button { border:1px solid #343a40; color:#f5f7f8; background:#171b1f; border-radius:12px; min-height:46px; font-size:15px; font-weight:650; }
+    button:active { background:#2b3530; border-color:#67ec9a; transform:scale(.98); }
+    button:disabled { opacity:.35; }
+    #connect { width:100%; background:#f5f7f8; color:#0b0d0f; }
+    .speed { margin:24px 0; display:grid; grid-template-columns:90px 1fr 52px; gap:12px; align-items:center; }
+    input { width:100%; accent-color:#6bf19e; }
+    .axes { display:grid; gap:12px; }
+    .axis { padding:14px; border:1px solid #262b2f; border-radius:16px; background:#101316; }
+    .axis header { display:flex; justify-content:space-between; margin-bottom:10px; }
+    .axis header span:last-child { color:#8a9298; font:12px ui-monospace,monospace; }
+    .pair { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    .actions { margin-top:14px; display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    #stop { background:#3b1719; border-color:#713035; }
+    footer { margin-top:20px; color:#707980; font-size:12px; line-height:1.55; }
+  </style>
+</head>
+<body>
+<main>
+  <div class="eyebrow">DIRECT WEB BLUETOOTH</div>
+  <h1>RS 4 MINI · 三轴控制</h1>
+  <div id="status">等待连接</div>
+  <button id="connect">选择并连接稳定器</button>
+  <div class="speed"><label for="speed">驱动力</label><input id="speed" type="range" min="0.03" max="0.8" step="0.01" value="0.2"><output id="speedOut">20%</output></div>
+  <section class="axes">
+    <div class="axis"><header><b>Pan 航向</b><span>左右</span></header><div class="pair"><button data-axis="pan" data-sign="-1">向左</button><button data-axis="pan" data-sign="1">向右</button></div></div>
+    <div class="axis"><header><b>Tilt 俯仰</b><span>上下</span></header><div class="pair"><button data-axis="tilt" data-sign="-1">向下</button><button data-axis="tilt" data-sign="1">向上</button></div></div>
+    <div class="axis"><header><b>Roll 横滚</b><span>旋转</span></header><div class="pair"><button data-axis="roll" data-sign="-1">逆时针</button><button data-axis="roll" data-sign="1">顺时针</button></div></div>
+  </section>
+  <div class="actions"><button id="stop">立即停止</button><button id="center">回中</button></div>
+  <footer>按住按钮转动，松开自动发送 3 个停止帧。需要 HTTPS 或 localhost。Android Chrome 与桌面 Chrome 可用；iPhone Safari 不提供 Web Bluetooth。</footer>
+</main>
+<script type="module">
+  import { RS4Mini } from "./rs4mini.js";
+  const gimbal = new RS4Mini();
+  const status = document.querySelector("#status");
+  const controls = [...document.querySelectorAll("[data-axis]")];
+  const setEnabled = enabled => controls.forEach(button => button.disabled = !enabled);
+  setEnabled(false);
+
+  document.querySelector("#speed").addEventListener("input", event => {
+    document.querySelector("#speedOut").value = Math.round(event.target.value * 100) + "%";
+  });
+  document.querySelector("#connect").addEventListener("click", async event => {
+    try {
+      if (gimbal.connected) {
+        await gimbal.disconnect(); event.target.textContent = "选择并连接稳定器"; status.textContent = "已断开"; setEnabled(false); return;
+      }
+      const name = await gimbal.connect();
+      status.textContent = "已连接 · " + name; event.target.textContent = "断开稳定器"; setEnabled(true);
+    } catch (error) { status.textContent = "连接失败 · " + error.message; }
+  });
+  for (const button of controls) {
+    button.addEventListener("pointerdown", async event => {
+      event.preventDefault(); button.setPointerCapture(event.pointerId);
+      const speed = Number(document.querySelector("#speed").value) * Number(button.dataset.sign);
+      await gimbal.setVelocity({ [button.dataset.axis]: speed });
+    });
+    const release = () => gimbal.stop().catch(() => {});
+    button.addEventListener("pointerup", release);
+    button.addEventListener("pointercancel", release);
+    button.addEventListener("lostpointercapture", release);
+  }
+  document.querySelector("#stop").addEventListener("click", () => gimbal.stop().catch(() => {}));
+  document.querySelector("#center").addEventListener("click", () => gimbal.recenter().catch(error => status.textContent = error.message));
+  gimbal.onDisconnect = () => { status.textContent = "连接已中断"; setEnabled(false); };
+</script>
+</body>
+</html>

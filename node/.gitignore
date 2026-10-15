@@ -1,0 +1,5 @@
+node_modules/
+.rs4mini-device.json
+captures/
+*.tgz
+.DS_Store

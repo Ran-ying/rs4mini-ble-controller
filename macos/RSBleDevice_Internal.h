@@ -1,0 +1,56 @@
+#import "RSBleDevice.h"
+#import "RSDeviceProtocol.h"
+// Subclass collaboration contract. Applications include RSGimbal.h only.
+@interface RSBleDevice ()
+@property(nonatomic) BOOL awaitingDeviceQuery;
+@property(nonatomic) NSTimeInterval deviceQueryDeadline;
+@property(nonatomic) uint16_t deviceQuerySequence;
+@property(nonatomic) BOOL ready;
+@property(nonatomic) BOOL connecting;
+@property(nonatomic) NSUInteger reconnectAttempt;
+@property(nonatomic, strong) CBCentralManager *central;
+@property(nonatomic, strong) CBPeripheral *peripheral;
+@property(nonatomic, strong) CBCharacteristic *rx;
+@property(nonatomic, strong) CBCharacteristic *tx;
+@property(nonatomic, strong) NSTimer *connectionTimer;
+@property(nonatomic, strong) NSTimer *tickTimer;
+@property(nonatomic, strong) RSFrameQueue *outgoing;
+@property(nonatomic, strong) RSFrameDecoder *decoder;
+@property(nonatomic, strong) NSTimer *reconnectTimer;
+@property(nonatomic) BOOL retrying;
+@property(nonatomic, strong) NSUUID *lastIdentifier;
+@property(nonatomic, strong) NSDictionary *latestJoints;
+@property(nonatomic) NSTimeInterval latestJointAt;
+@property(nonatomic, strong) NSDictionary *latestSample;
+@property(nonatomic, copy) NSString *researchProfile;
+@property(nonatomic, strong) NSMutableDictionary *researchStatus;
+@property(nonatomic) BOOL nativeRateActive;
+@property(nonatomic, copy) StatusHandler statusHandler;
+@property(nonatomic, copy) void (^afterStop)(void);
+@property(nonatomic, copy) NSString *stopMessage;
+@property(nonatomic) BOOL stopping;
+@property(nonatomic) BOOL disconnecting;
+@property(nonatomic) NSInteger pendingStops;
+@property(nonatomic) double pan;
+@property(nonatomic) double tilt;
+@property(nonatomic) double roll;
+@property(nonatomic) uint16_t sequence;
+@property(nonatomic) NSTimeInterval lastWriteProgress;
+- (void)status:(NSString *)text;
+- (void)resetLink:(NSString *)message;
+- (void)ensureTimer;
+- (void)beginStop:(void (^)(void))after message:(NSString *)message;
+- (void)tick;
+- (void)cancelPosition;
+- (void)cancelComposedMotion;
+- (void)checkComposedBackpressure;
+- (BOOL)advanceComposedMotion;
+- (void)didReceiveMessage:(NSDictionary *)message;
+- (void)didReceiveTelemetry:(NSDictionary *)sample;
+- (void)writeVelocityPan:(double)pan tilt:(double)tilt roll:(double)roll;
+- (NSDictionary *)prepareResearchCommand:(NSDictionary *)command;
+- (void)beginResearchRate;
+- (uint16_t)reserveSequence;
+- (void)writeResearchCommand:(NSDictionary *)command sequence:(uint16_t)sequence;
+- (BOOL)matchesResearchResponse:(NSDictionary *)message sequence:(uint16_t)sequence kind:(NSString *)kind;
+@end

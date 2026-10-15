@@ -1,0 +1,238 @@
+{
+  "schemaVersion": 1,
+  "scope": "DJI RS 4 Mini non-camera BLE; known inventory, not a complete firmware command enumeration",
+  "inventoryComplete": false,
+  "advancedDevelopment": {
+    "allowed": false,
+    "reason": "SDK command coverage and target-device validation are incomplete; preserve existing advanced features but add no further advanced functionality."
+  },
+  "commands": [
+    {
+      "key": "00:01",
+      "name": "版本查询",
+      "requestCodec": "implemented",
+      "responseCodec": "raw",
+      "targetEvidence": "other-model",
+      "implementation": [
+        "node/src/experimental-device.js",
+        "python/rs4mini_sdk/experimental_device.py",
+        "macos/RSBleDevice.m"
+      ],
+      "remaining": "响应返回原始消息，型号/版本字段未确认"
+    },
+    {
+      "key": "04:01",
+      "name": "虚拟摇杆及中位停止",
+      "requestCodec": "implemented",
+      "responseCodec": "not-applicable",
+      "targetEvidence": "hardware",
+      "implementation": [
+        "node/src/device.js",
+        "python/rs4mini_sdk/device.py",
+        "macos/RSBleDevice.m"
+      ],
+      "remaining": "历史设备行为已验证，无固件执行确认"
+    },
+    {
+      "key": "04:02",
+      "name": "位置查询",
+      "requestCodec": "implemented",
+      "responseCodec": "raw",
+      "targetEvidence": "other-model",
+      "implementation": [
+        "node/src/experimental-device.js",
+        "python/rs4mini_sdk/experimental_device.py",
+        "macos/RSBleDevice.m"
+      ],
+      "remaining": "本机历史尝试未收到有效响应，不能判断不支持"
+    },
+    {
+      "key": "04:05",
+      "name": "姿态与关节通知",
+      "requestCodec": "not-applicable",
+      "responseCodec": "partial",
+      "targetEvidence": "hardware",
+      "implementation": [
+        "node/src/telemetry.js",
+        "python/rs4mini_sdk/telemetry.py",
+        "macos/RSControlCore.m"
+      ],
+      "remaining": "姿态/关节映射已确认；四元数顺序及部分标志未知"
+    },
+    {
+      "key": "04:08",
+      "name": "校准触发候选",
+      "requestCodec": "not-exposed",
+      "responseCodec": "unknown",
+      "targetEvidence": "other-model",
+      "implementation": [],
+      "remaining": "其他型号研究有自主运动和中止风险，不提供触发"
+    },
+    {
+      "key": "04:0B",
+      "name": "控制状态查询",
+      "requestCodec": "implemented",
+      "responseCodec": "raw",
+      "targetEvidence": "other-model",
+      "implementation": [
+        "node/src/experimental-device.js",
+        "python/rs4mini_sdk/experimental_device.py",
+        "macos/RSBleDevice.m"
+      ],
+      "remaining": "响应字段未确认"
+    },
+    {
+      "key": "04:0C",
+      "name": "原生速率候选",
+      "requestCodec": "implemented",
+      "responseCodec": "unknown",
+      "targetEvidence": "other-model",
+      "implementation": [
+        "node/src/experimental-protocol.js",
+        "python/rs4mini_sdk/experimental_protocol.py",
+        "macos/RSControlCore.m"
+      ],
+      "remaining": "轴序/单位/释放仅有 RS 3 来源，本机未验证"
+    },
+    {
+      "key": "04:0F",
+      "name": "休眠/唤醒候选",
+      "requestCodec": "implemented",
+      "responseCodec": "partial",
+      "targetEvidence": "other-model",
+      "implementation": [
+        "node/src/experimental-protocol.js",
+        "python/rs4mini_sdk/experimental_protocol.py",
+        "macos/RSControlCore.m"
+      ],
+      "remaining": "RS 3 与 Mini 字节不同，本机效果未知"
+    },
+    {
+      "key": "04:14",
+      "name": "原生绝对角候选",
+      "requestCodec": "implemented",
+      "responseCodec": "unknown",
+      "targetEvidence": "other-model",
+      "implementation": [
+        "node/src/experimental-protocol.js",
+        "python/rs4mini_sdk/experimental_protocol.py",
+        "macos/RSControlCore.m"
+      ],
+      "remaining": "末参数单位、参考系与本机兼容性未知"
+    },
+    {
+      "key": "04:1C",
+      "name": "设备类型查询",
+      "requestCodec": "implemented",
+      "responseCodec": "raw",
+      "targetEvidence": "other-model",
+      "implementation": [
+        "node/src/experimental-device.js",
+        "python/rs4mini_sdk/experimental_device.py",
+        "macos/RSBleDevice.m"
+      ],
+      "remaining": "响应枚举未确认"
+    },
+    {
+      "key": "04:1E",
+      "name": "degree-info 请求",
+      "requestCodec": "implemented",
+      "responseCodec": "raw",
+      "targetEvidence": "hardware",
+      "implementation": [
+        "node/src/device.js",
+        "python/rs4mini_sdk/device.py",
+        "macos/RSBleDevice.m"
+      ],
+      "remaining": "requestDegreeInfo 封装关联原始响应；本机历史 00 不等于完整字段解析或增频确认"
+    },
+    {
+      "key": "04:30",
+      "name": "校准进度候选通知",
+      "requestCodec": "not-applicable",
+      "responseCodec": "partial",
+      "targetEvidence": "other-model",
+      "implementation": [
+        "node/src/experimental-protocol.js",
+        "python/rs4mini_sdk/experimental_protocol.py",
+        "macos/RSControlCore.m"
+      ],
+      "remaining": "仅被动解析，不触发校准"
+    },
+    {
+      "key": "04:4C",
+      "name": "重置/模式命令中的三轴回中",
+      "requestCodec": "partial",
+      "responseCodec": "unknown",
+      "targetEvidence": "hardware",
+      "implementation": [
+        "node/src/protocol.js",
+        "python/rs4mini_sdk/protocol.py",
+        "macos/RSControlCore.m"
+      ],
+      "remaining": "只确认 FE01/flags40 三轴回中；其余位/模式/单轴语义未知"
+    },
+    {
+      "key": "04:66",
+      "name": "状态 TLV 候选通知",
+      "requestCodec": "not-applicable",
+      "responseCodec": "partial",
+      "targetEvidence": "other-model",
+      "implementation": [
+        "node/src/experimental-protocol.js",
+        "python/rs4mini_sdk/experimental_protocol.py",
+        "macos/RSControlCore.m"
+      ],
+      "remaining": "保留 TLV 原始量，不假设本机 tag 语义"
+    },
+    {
+      "key": "0D:02",
+      "name": "电量候选通知",
+      "requestCodec": "not-applicable",
+      "responseCodec": "partial",
+      "targetEvidence": "other-model",
+      "implementation": [
+        "node/src/experimental-protocol.js",
+        "python/rs4mini_sdk/experimental_protocol.py",
+        "macos/RSControlCore.m"
+      ],
+      "remaining": "百分比仅为其他 Mini 研究格式，本机未证实"
+    },
+    {
+      "key": "unknown:follow-mode",
+      "name": "跟随模式与手柄参数",
+      "requestCodec": "unknown",
+      "responseCodec": "unknown",
+      "targetEvidence": "none",
+      "implementation": [],
+      "remaining": "缺少本机型号分支、命令与枚举证据"
+    },
+    {
+      "key": "unknown:motor-calibration",
+      "name": "电机参数/自动整定/水平校准",
+      "requestCodec": "unknown",
+      "responseCodec": "unknown",
+      "targetEvidence": "none",
+      "implementation": [],
+      "remaining": "不能由已有运动输入组合替代"
+    },
+    {
+      "key": "unknown:firmware-program",
+      "name": "固件动作程序",
+      "requestCodec": "unknown",
+      "responseCodec": "unknown",
+      "targetEvidence": "none",
+      "implementation": [],
+      "remaining": "缺少上传/启动/状态/取消的完整证据"
+    },
+    {
+      "key": "unknown:device-management",
+      "name": "激活/绑定/恢复设置/固件管理的 BLE 覆盖",
+      "requestCodec": "unknown",
+      "responseCodec": "unknown",
+      "targetEvidence": "none",
+      "implementation": [],
+      "remaining": "是否通过本 BLE 链路提供及其协议尚未枚举；连接成功不证明设备管理命令已全覆盖"
+    }
+  ]
+}

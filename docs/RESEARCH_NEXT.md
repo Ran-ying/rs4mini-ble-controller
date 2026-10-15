@@ -33,3 +33,11 @@
 继续静态还原时，需要同时证明请求构造、响应解析和 RS 4 Mini 的型号分支。仅恢复字符串或使用无人机/Osmo 的同名类不足以确认。
 现场条件具备后，可在 Ronin App 中一次只改变一个非相机设置，记录前后屏幕状态与受控 BLE 样本，匹配这些候选类和 DUML 字段。
 不得批量探测、重放校准或恢复默认参数命令。采样与运动仍遵循 `HARDWARE_CHECKLIST.md`。
+
+## 2026-10-16 命令覆盖复核
+
+公开来源复核仍未建立 RS 4 Mini 全部非相机 BLE 命令的型号专属枚举。
+另有 [dji-gimbal-ble 协议研究](https://github.com/malt4010/dji-gimbal-ble/blob/main/DJI_PROTOCOL.md)，其标识为 OSMO；
+没有据此移植模式/参数枚举，也未扩大本机已验证命令的声明。
+已将项目已用命令、请求/响应解析程度和未知功能分别登记在 `SDK_COMMANDS.md` 和 `../protocol/COMMANDS.json`。
+硬件不可用期间，静态类名与跨型号示例不能补足本机验证；新增高级功能继续受底层验收条件约束。

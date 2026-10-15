@@ -1,4 +1,4 @@
-# RS 4 Mini Control 0.3.0
+# RS 4 Mini Control 0.3.1
 
 Objective-C / AppKit / CoreBluetooth 原生面板，提供三轴按住速度控制、停止、三轴回中、姿态/机械关节反馈和低速关节目标定位，不依赖 Node 或 Python。
 
@@ -33,3 +33,9 @@ open "macos/RS 4 Mini Control.app"
 
 四元数区要求显式选择 wxyz/xyzw，可选共轭；仅进行标准 ZYX 数学转换，设备参考系未确认且不参与运动闭环。
 本轮只构建和测试，未启动含真实 CoreBluetooth 管理器的应用，可视布局待解锁后统一检查。
+
+## 分层与前置条件
+
+本版将设备访问与高级运动分为两个模块。应用继续使用原有 `RS4Mini`（原生为 `RSGimbal`）一个入口，
+基础操作也通过它访问设备 SDK；不新建第二条连接。底层命令尚未全部解析/验收，在此之前不新增高级功能。
+模块映射和限制见 [架构边界](../docs/ARCHITECTURE.md)，命令证据见 [设备命令审计](../docs/SDK_COMMANDS.md)。

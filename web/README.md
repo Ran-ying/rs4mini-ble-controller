@@ -1,4 +1,4 @@
-# Web Bluetooth 0.7.0
+# Web Bluetooth 0.7.1
 
 从仓库根目录启动本机服务：
 
@@ -19,7 +19,7 @@ npm test
 ```
 
 测试模拟原生 GATT 事件、设备选择、通知、位置闭环、断线和失焦；并在无 Node Buffer 的进程中检查共享模块。测试不打开真实设备选择器、不连接蓝牙。浏览器/系统权限与新运动行为仍待 [统一实机验证](../docs/HARDWARE_CHECKLIST.md)。
-## 0.7.0 非相机扩展
+## 0.7.1 非相机扩展
 
 Web SDK 随共享核心增加 `enableAutoReconnect()`、`disableAutoReconnect()`、
 `runTrajectory()`、`moveThrough()`、`captureHome()`、`moveHome()`、`getOrientation()`。
@@ -29,3 +29,9 @@ Web SDK 随共享核心增加 `enableAutoReconnect()`、`disableAutoReconnect()`
 载入文件不会自动执行；“用当前角度生成路点”可生成本机真实起点再编辑。
 `../examples/motions/` 提供共用格式，实验命令只允许已列明的几种类型，不能借此发送任意 DUML。
 页面事件已有假 DOM 验证；本机可视布局和真实浏览器权限/硬件效果仍待统一检查。
+
+## 分层与前置条件
+
+本版将设备访问与高级运动分为两个模块。应用继续使用原有 `RS4Mini`（原生为 `RSGimbal`）一个入口，
+基础操作也通过它访问设备 SDK；不新建第二条连接。底层命令尚未全部解析/验收，在此之前不新增高级功能。
+模块映射和限制见 [架构边界](../docs/ARCHITECTURE.md)，命令证据见 [设备命令审计](../docs/SDK_COMMANDS.md)。

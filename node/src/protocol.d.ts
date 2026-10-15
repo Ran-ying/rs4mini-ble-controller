@@ -1,4 +1,4 @@
-import type { AxisValues, ByteBuffer } from "./index.js";
+import type { AxisValues, ByteBuffer } from "./types.js";
 
 export function crc8(bytes: Uint8Array): number;
 export function crc16(bytes: Uint8Array): number;

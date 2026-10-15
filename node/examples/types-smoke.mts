@@ -56,3 +56,13 @@ for (const message of decoder.push(frame(1, 4, 5, bytes))) {
   console.log(decodeGimbalTelemetry(message)?.attitude.yaw);
 }
 void sampleConsumer;
+
+// Device SDK is deliberately narrower than the application entry.
+import { BleDevice } from "../src/device-node.js";
+const device = new BleDevice();
+void device.requestDegreeInfo({ timeoutMs: 100 });
+void RS4Mini.prototype.requestDegreeInfo;
+// @ts-expect-error position control belongs to the application wrapper
+void device.moveTo({ pan: 1 });
+// @ts-expect-error trajectories belong to the application wrapper
+void device.runTrajectory([]);

@@ -8,18 +8,25 @@ verification status changes.
 ## Objective and user decisions
 
 - Provide an unofficial, direct BLE controller for **DJI RS 4 Mini**, initially on macOS.
-- **Node.js is the authoritative implementation**; current package version is `0.7.0`.
+- **Node.js is the authoritative implementation**; current package version is `0.7.1`.
 - The user subsequently requested completion of all existing ports. Python is now
-  `0.7.0`, Web shares the JS core, and the native panel is `0.3.0`. Describe the
+  `0.7.1`, Web shares the JS core, and the native panel is `0.3.1`. Describe the
   documented feature differences; do not claim identical APIs or hardware proof.
 - After that delivery, the user requested the remaining **non-camera** capabilities
   under the same autonomous/offline conditions. Expansion work is in progress;
   see `docs/EXPANSION_PLAN.md`. The 0.7.0 source checkpoint and its remaining
   verification gates are recorded in `docs/PROJECT_STATUS.md`.
 - The user requires a clear boundary between the BLE device SDK and motion/tasks
-  composed above it. See `docs/ARCHITECTURE.md`. Current `RS4Mini` remains a
-  combined compatibility facade; runtime separation is pending. Do not count
-  host algorithms such as `moveTo()` as new native BLE commands.
+  composed above it. The modules are separated in 0.7.1; applications use only
+  `RS4Mini` (native `RSGimbal`), including basic device operations. The facade
+  inherits the device SDK and shares its single connection/queue/operation owner.
+  See `docs/ARCHITECTURE.md`; do not count `moveTo()` as a native BLE command.
+- The user requires full device-command decoding/encapsulation before further
+  advanced feature development. This gate is NOT met. Keep existing advanced
+  features working but add none while `protocol/COMMANDS.json` reports incomplete.
+  Audit codecs, response semantics and RS 4 Mini hardware evidence separately;
+  raw replies and other-model codecs are not complete target-device support.
+  See `docs/SDK_COMMANDS.md`; no blind probing or hardware use while the user is away.
 - The user chose direct computer control without a Bluetooth gamepad or Android intermediary.
 - Nikon Z6III integration, camera autofocus/shutter/video control, and vision
   tracking were explicitly removed from the current scope. Do not restart that
@@ -34,7 +41,8 @@ verification status changes.
 | Path | Role |
 |---|---|
 | `node/src/index.js` | Node entry with independent lazy Noble backend |
-| `node/src/controller.js` | Shared motion ownership, deadlines, lifecycle, telemetry waits and position loop |
+| `node/src/device.js` | BLE device lifecycle, queue, streaming, feedback and shared operation coordinator |
+| `node/src/controller.js` | Application entry above device SDK: existing composed motion and math |
 | `node/src/noble-adapter.js` | Native Noble adapter factory and lazy cleanup |
 | `node/src/protocol.js` | Pure DUML encoder and CRCs |
 | `node/src/telemetry.js` | BLE stream reassembly, CRC verification, `04:05` feedback decoder |

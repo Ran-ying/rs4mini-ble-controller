@@ -1,6 +1,6 @@
 # rs4mini-ble-controller
 
-通过电脑 BLE 直接控制 DJI RS 4 Mini 的非官方项目。Node.js **0.7.0** 为主实现；Python/Web **0.7.0**、macOS 原生面板 **0.3.0** 提供三轴速度、姿态/机械关节反馈、低速定位、轨迹与路点、保存位置返回和显式自动重连。相机控制和视觉跟踪不属于当前范围。
+通过电脑 BLE 直接控制 DJI RS 4 Mini 的非官方项目。Node.js **0.7.1** 为主实现；Python/Web **0.7.1**、macOS 原生面板 **0.3.1** 提供三轴速度、姿态/机械关节反馈、低速定位、轨迹与路点、保存位置返回和显式自动重连。相机控制和视觉跟踪不属于当前范围。
 
 **当前状态：本轮四端代码和离线交付已完成，全部非相机 BLE 能力尚未完成。**
 完成项、验证证据与后续接手入口统一保存在 [项目状态](docs/PROJECT_STATUS.md)。
@@ -61,11 +61,11 @@ RS4MINI_POSITION_AXIS=tilt RS4MINI_POSITION_DELTA=3 npm run example:position
 ## SDK 与组合能力
 
 蓝牙设备 SDK 负责连接、协议、设备指令和反馈；`moveTo()`、轨迹、路点与保存位置返回由电脑端组合这些能力实现。
-当前 `RS4Mini` 是统一兼容入口，尚未拆成独立设备类和运动类。能力归属、姿态/关节解释及剩余功能可行性见 [架构边界](docs/ARCHITECTURE.md)。
+当前已拆为设备 SDK 与高级封装两个模块，应用仅使用 `RS4Mini`（原生为 `RSGimbal`）入口；基础操作也通过该入口访问。能力归属、姿态/关节解释及剩余功能可行性见 [架构边界](docs/ARCHITECTURE.md)。
 
 ## 各端状态
 
-| 功能 | Node 0.7.0 | Python 0.7.0 | Web 0.7.0 | macOS 面板 0.3.0 |
+| 功能 | Node 0.7.1 | Python 0.7.1 | Web 0.7.1 | macOS 面板 0.3.1 |
 |---|---|---|---|---|
 | 三轴速度 / 停止 / 三轴回中 | 有 | 有 | 有 | 有 |
 | 反馈解析与 CRC 重组 | 有 | 有 | 共享 Node 核心 | 有 |
@@ -106,6 +106,8 @@ python3 -m http.server 8000 --bind 127.0.0.1
 ```
 
 打开 `http://127.0.0.1:8000/web/`。使用支持 Web Bluetooth 的浏览器并从点击操作选择设备。
+
+**底层命令完整性尚未验收，暂不新增高级功能。** 已知命令、未知字段和本机证据分别列在 [设备命令审计](docs/SDK_COMMANDS.md)，机器清单为 `protocol/COMMANDS.json`。
 
 ## 文档和限制
 

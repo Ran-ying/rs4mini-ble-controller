@@ -187,6 +187,19 @@ int main(void) {
         Require(gimbal.busy, @"query checks sequence, endpoints, command and response flag");
         notify.value = QueryResponse(seq, @"type", 4, 0x80); [gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil];
         Require(!gimbal.busy, @"matching query response releases motion slot");
+        [peripheral.writes setLength:0]; [gimbal requestDegreeInfo]; ThreeTicks(gimbal);
+        [decoder reset]; frames = [decoder push:peripheral.writes];
+        Require(gimbal.busy && [frames.lastObject[@"commandId"] intValue] == 0x1e, @"degree-info routes through SDK and awaits correlated raw reply");
+        uint16_t degreeSequence = [[gimbal valueForKey:@"deviceQuerySequence"] unsignedShortValue];
+        notify.value = QueryResponse(degreeSequence + 1, @"degreeInfo", 4, 0x80);
+        [gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil];
+        Require(gimbal.busy, @"degree-info rejects unrelated sequence");
+        notify.value = QueryResponse(degreeSequence, @"degreeInfo", 4, 0x80);
+        [gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil];
+        Require(!gimbal.busy, @"degree-info matching response releases SDK ownership");
+        [peripheral.writes setLength:0]; [gimbal requestDegreeInfo]; [gimbal stop]; ThreeTicks(gimbal);
+        [decoder reset]; frames = [decoder push:peripheral.writes];
+        Require(!gimbal.busy && [frames.lastObject[@"commandId"] intValue] != 0x1e, @"stop cancels delayed device query");
         [gimbal disconnect]; ThreeTicks(gimbal);
         printf("Native fake-device lifecycle checks: %lu passed (no Bluetooth manager created)\n", (unsigned long)assertions);
     }

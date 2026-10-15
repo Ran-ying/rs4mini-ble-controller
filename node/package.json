@@ -1,6 +1,6 @@
 {
   "name": "rs4mini-sdk",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Unofficial Node.js BLE controller for DJI RS 4 Mini",
   "type": "module",
   "main": "src/index.js",
@@ -22,6 +22,10 @@
     "./protocol": {
       "types": "./src/protocol.d.ts",
       "import": "./src/protocol.js"
+    },
+    "./device": {
+      "types": "./src/device-node.d.ts",
+      "import": "./src/device-node.js"
     }
   },
   "scripts": {

@@ -1,4 +1,4 @@
-# Python SDK 0.7.0
+# Python SDK 0.7.1
 
 Python 3.8+、Bleak 后端。保留早期 camelCase 和 snake_case 调用，同时补充反馈、低速位置闭环、缓存 ID、停止取消和 `close()`。
 
@@ -45,7 +45,7 @@ asyncio.run(main())
 回调 `onNotification/onMessage/onTelemetry/onDisconnect/onError` 支持同步或异步函数；对应 `on_notification/on_message/on_telemetry/on_disconnect/on_error` 别名。反馈、速度与回调参数使用副本。导出的 `DumlStreamDecoder`、`parse_duml_frame`、`decode_gimbal_telemetry` 不需要实际蓝牙设备。
 
 运行 `examples/telemetry_capture.py` 只读取反馈；`examples/position_demo.py` 会移动，先确认平衡和空间。新行为尚待 [实机清单](../docs/HARDWARE_CHECKLIST.md) 验证。
-## 0.7.0 非相机扩展
+## 0.7.1 非相机扩展
 
 `enableAutoReconnect()` / `enable_auto_reconnect()`：显式启用有界退避重连。
 默认五次、500 ms 起步、二倍退避、上限 10 s；回调 `onReconnect` / `on_reconnect`、
@@ -77,3 +77,9 @@ timeoutMs 分别限制每段，停留不计入下段；snake_case 为 `move_thro
 查询匹配连接、序号、端点、命令和响应位；超时取消排队写入，已经开始的帧有界完成。
 实验状态副本为 `experimental.status`，通知回调为 `on_experimental_status`。
 原生速率停止先释放再发送中位帧；物理执行/到位均未证实，不能据此声称完整支持 RS 4 Mini。
+
+## 分层与前置条件
+
+本版将设备访问与高级运动分为两个模块。应用继续使用原有 `RS4Mini`（原生为 `RSGimbal`）一个入口，
+基础操作也通过它访问设备 SDK；不新建第二条连接。底层命令尚未全部解析/验收，在此之前不新增高级功能。
+模块映射和限制见 [架构边界](../docs/ARCHITECTURE.md)，命令证据见 [设备命令审计](../docs/SDK_COMMANDS.md)。

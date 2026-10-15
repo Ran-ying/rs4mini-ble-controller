@@ -1,6 +1,7 @@
 # RS4 Mini Node API
 
-`RS4Mini` 当前是统一兼容入口，包含设备访问与电脑端组合运动。
+`RS4Mini` 是应用唯一入口；0.7.1 已将其下的设备 SDK 与电脑端组合运动拆成模块。
+基础操作继承自设备 SDK，高级方法使用同一个设备连接和操作协调器。
 `setVelocity()`、三轴 `recenter()` 与反馈读取封装设备协议；`moveTo()`、`moveFor()`、
 轨迹、路点、保存位置返回是主机算法，不能作为设备具备同名原生命令的证据。
 完整归属和停止协作契约见 [架构边界](../docs/ARCHITECTURE.md)。
@@ -238,3 +239,15 @@ idle/waiting/connecting/restored/exhausted，`reconnectState` 为副本。重连
 全部实验结果带 `deviceVerified:false`；写入结果还带 `physicalCompletionVerified:false`。
 本机固件是否执行、轴顺序和符号、停止能否打断固件自身动作，均需统一实机验证。
 协议来源及已知差异见 `../docs/PROTOCOL.md`。本轮没有发送这些命令。
+
+## 0.7.1 设备命令审计与维护入口
+
+应用继续 `import { RS4Mini } from 'rs4mini-sdk'`，所有基础/高级操作均经该入口。
+`import { BleDevice } from 'rs4mini-sdk/device'` 是独立设备模块的维护/协议验收入口，不提供 `moveTo()`、轨迹或保存位置。
+
+`await gimbal.requestDegreeInfo({timeoutMs:3000})` 发送已有探针证据的 `04:1E` 空负载请求，
+匹配连接、sequence、端点、命令与响应位，返回 `DumlMessage`。不需要选择其他型号配置；
+它不承诺反馈增频，不把历史单字节 `00` 扩大解释为完整字段语义。Python 支持同名方法与 snake_case 别名；
+原生入口同名方法是回调式，独占操作槽并通过 `messageHandler` 提供原始消息，当前固定 3 秒响应等待。
+
+完整设备命令前置验收尚未通过，已知缺口见 `../docs/SDK_COMMANDS.md`；当前不再新增高级功能。

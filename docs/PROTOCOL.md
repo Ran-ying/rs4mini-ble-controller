@@ -119,3 +119,10 @@ Osmo 示例的角度次序与这些 RS 资料冲突，不能直接移植。
 
 四元数接口只提供显式分量顺序下的标准右手内禀 ZYX 数学转换，
 结果带 `deviceConventionVerified:false`；没有自动识别 RS 4 Mini 坐标约定。
+
+## 0.7.1 设备模块审计
+
+现有编解码/发送已从主机运动算法中独立；详见 `ARCHITECTURE.md`。
+`requestDegreeInfo()` 补齐 04:1E 空负载请求和关联原始响应封装；没有对硬件执行，不解释新的响应字段或宣称增频。
+所有已知命令和未知缺口在 `../protocol/COMMANDS.json` 与 `SDK_COMMANDS.md` 中逐项记录。
+这份清单不构成完整固件 BLE 指令表，未完成本机语义和枚举证明前不进入新增高级功能阶段。

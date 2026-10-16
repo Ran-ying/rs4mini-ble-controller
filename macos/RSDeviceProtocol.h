@@ -36,3 +36,8 @@ NSDictionary *RSAppSettingsSchema(NSString *kind);
 NSDictionary *RSAppSettingsPatch(NSString *kind, NSDictionary *patch);
 NSDictionary *RSDecodeAppSettings(NSDictionary *reply, NSString *kind);
 NSData *RSAppSettingsFrame(uint16_t sequence, NSString *kind, NSDictionary *patch, NSNumber *currentValue);
+NSData *RSAppAutoTuneFrame(uint16_t sequence, NSNumber *start);
+NSData *RSAppCalibrationQueryFrame(uint16_t sequence);
+NSDictionary *RSDecodeAppCalibrationRecords(NSData *body);
+NSDictionary *RSDecodeAppCalibrationReply(NSDictionary *message, NSError **error);
+NSDictionary *RSDecodeAppCalibrationNotification(NSDictionary *message);

@@ -37,6 +37,7 @@
 @property(nonatomic, strong) NSArray *services;
 @property(nonatomic) BOOL canSendWriteWithoutResponse;
 @property(nonatomic) BOOL pauseAfterChunk;
+@property(nonatomic) BOOL pauseAfterShortChunk;
 @property(nonatomic, strong) NSMutableData *writes;
 @end
 @implementation FakePeripheral
@@ -44,7 +45,7 @@
 - (void)discoverCharacteristics:(NSArray *)characteristics forService:(id)service {}
 - (void)setNotifyValue:(BOOL)value forCharacteristic:(id)characteristic {}
 - (void)writeValue:(NSData *)value forCharacteristic:(id)characteristic type:(CBCharacteristicWriteType)type {
-    [self.writes appendData:value]; if (self.pauseAfterChunk) { self.canSendWriteWithoutResponse = NO; self.pauseAfterChunk = NO; }
+    [self.writes appendData:value]; if (self.pauseAfterChunk || (self.pauseAfterShortChunk && value.length < 20)) { self.canSendWriteWithoutResponse = NO; self.pauseAfterChunk = NO; self.pauseAfterShortChunk = NO; }
 }
 @end
 static NSUInteger assertions;
@@ -273,9 +274,37 @@ int main(void) {
         notify.value = AppResponse(appSequence,0x10,[NSData dataWithBytes:(uint8_t[]){0,132,1,128} length:4],4);
         [gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil]; ThreeTicks(gimbal); PumpCallbacks();
         Require(appCallbacks == 8 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_UNSUPPORTED_VALUE"], @"unknown custom bits reject writing after cleanup");
+        [peripheral.writes setLength:0]; [gimbal sendAutoTuneRequest:@1 completion:appDone]; PumpCallbacks();
+        Require(appCallbacks == 9 && !gimbal.busy && peripheral.writes.length == 0 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_INVALID_ARGUMENT"], @"auto-tune validates boolean before stop/write");
+        [gimbal sendAutoTuneRequest:@NO completion:appDone]; ThreeTicks(gimbal);
+        Require(gimbal.busy && ![[gimbal valueForKey:@"awaitingDeviceQuery"] boolValue], @"no ACK request owns host slot through write without awaiting reply");
+        [gimbal tick]; PumpCallbacks(); [decoder reset]; frames = [decoder push:peripheral.writes];
+        Require(appCallbacks == 10 && !gimbal.busy && [frames.lastObject[@"commandId"] intValue] == 0x6a && [frames.lastObject[@"flags"] intValue] == 0 && ![appResult[@"acknowledged"] boolValue] && ![appResult[@"physicalCompletionVerified"] boolValue], @"native no ACK result reports only local send");
+        [peripheral.writes setLength:0]; [gimbal sendAutoTuneRequest:@YES completion:appDone]; [gimbal tick]; [gimbal tick];
+        peripheral.pauseAfterShortChunk = YES; [gimbal tick];
+        [decoder reset]; frames = [decoder push:peripheral.writes];
+        Require(gimbal.busy && appCallbacks == 10 && [frames.lastObject[@"commandId"] intValue] != 0x6a, @"backpressure retains auto-tune ownership before any request chunk");
+        peripheral.canSendWriteWithoutResponse = YES; [gimbal peripheralIsReadyToSendWriteWithoutResponse:(id)peripheral]; [gimbal tick]; PumpCallbacks();
+        Require(appCallbacks == 11 && !gimbal.busy && [appResult[@"sent"] boolValue], @"auto-tune send finishes only when queue drains");
+        [peripheral.writes setLength:0]; [gimbal sendAutoTuneRequest:@YES completion:appDone]; [gimbal tick]; [gimbal tick];
+        peripheral.pauseAfterShortChunk = YES; [gimbal tick]; [gimbal stop]; peripheral.canSendWriteWithoutResponse = YES; ThreeTicks(gimbal); PumpCallbacks();
+        [decoder reset]; frames = [decoder push:peripheral.writes]; BOOL tuneWritten = NO;
+        for (NSDictionary *f in frames) if ([f[@"commandId"] intValue] == 0x6a) tuneWritten = YES;
+        Require(appCallbacks == 12 && !tuneWritten && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_OPERATION_CANCELLED"], @"stop discards queued auto-tune request without physical stop claim");
+        [gimbal queryCalibrationStatusWithTimeoutMs:1000 completion:appDone]; ThreeTicks(gimbal);
+        appSequence = [[gimbal valueForKey:@"deviceQuerySequence"] unsignedShortValue];
+        notify.value = AppResponse(appSequence,0x6e,[NSData dataWithBytes:(uint8_t[]){0,0,2,1,30} length:5],4);
+        [gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil]; PumpCallbacks();
+        Require(appCallbacks == 13 && [appResult[@"calibration"][@"state"] isEqualToString:@"Processing"] && [appResult[@"calibration"][@"percent"] intValue] == 30 && !gimbal.appCalibrationStatus, @"query return code is separate from TLV and does not populate notification cache");
+        __block NSUInteger statusCallbacks = 0; gimbal.appStatusHandler = ^(NSDictionary *status) { statusCallbacks++; };
+        NSMutableData *calPush = [AppResponse(1,0x6e,[NSData dataWithBytes:(uint8_t[]){0,2,2,100} length:4],4) mutableCopy];
+        uint8_t *calP = calPush.mutableBytes; calP[8] = 0; uint16_t calCrc = 0x3692; for (NSUInteger ci=0;ci<calPush.length-2;ci++) { calCrc ^= calP[ci]; for (int cb=0;cb<8;cb++) calCrc = calCrc & 1 ? (calCrc >> 1) ^ 0x8408 : calCrc >> 1; } calP[calPush.length-2] = calCrc; calP[calPush.length-1] = calCrc >> 8;
+        notify.value = calPush; [gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil];
+        Require(statusCallbacks == 1 && [gimbal.appCalibrationStatus[@"state"] isEqualToString:@"Complete"] && ![gimbal.appCalibrationStatus[@"physicalCompletionVerified"] boolValue], @"native passive calibration report has no program completion guarantee");
+        Require([gimbal useAppProfile:@"ronin-2.2.2"] && !gimbal.appCalibrationStatus, @"explicit profile reselection resets cached calibration report");
         [gimbal getFollowSensitivityWithTimeoutMs:1000 completion:appDone]; ThreeTicks(gimbal);
         [gimbal centralManager:(id)central didDisconnectPeripheral:(id)peripheral error:nil]; PumpCallbacks();
-        Require(appCallbacks == 9 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_DISCONNECTED"], @"native disconnect rejects pending App query");
+        Require(appCallbacks == 14 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_DISCONNECTED"], @"native disconnect rejects pending App query");
         [gimbal disconnect]; ThreeTicks(gimbal);
         printf("Native fake-device lifecycle checks: %lu passed (no Bluetooth manager created)\n", (unsigned long)assertions);
     }

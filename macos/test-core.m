@@ -24,6 +24,18 @@ int main(void) {
         Require(!RSAppSettingsFrame(1, @"customFollow", @{@"yaw": @YES}, @128) && !RSAppSettingsPatch(@"customFollow", @{@"yaw": @1}) && !RSAppSettingsPatch(@"customFollow", @{}) && !RSAppSettingsPatch(@"motor", @{@"preset": @YES}), @"settings reject unknown range and invalid boolean fields");
         NSDictionary *settingsResult = RSDecodeAppSettings(@{@"parameters": @[@{@"rawHex": @"9e"}]}, @"motor");
         Require([settingsResult[@"unknownBits"] intValue] == 142 && [settingsResult[@"settings"][@"enabled"] boolValue] && ![settingsResult[@"settings"][@"roll360"] boolValue], @"settings read keeps unknown bits");
+        NSDictionary *calRequest = [[RSFrameDecoder new] push:RSAppAutoTuneFrame(1,@YES)].firstObject;
+        Require([calRequest[@"flags"] intValue] == 0 && [Hex(calRequest[@"payload"]) isEqualToString:@"000101"] && RSAppAutoTuneFrame(1,@1) == nil, @"HG702 auto-tune request has no ACK and strict boolean action");
+        Require([Hex([[RSFrameDecoder new] push:RSAppAutoTuneFrame(1,@NO)].firstObject[@"payload"]) isEqualToString:@"000100"], @"false auto-tune request vector does not prove physical stop");
+        NSDictionary *calRecords = RSDecodeAppCalibrationRecords([NSData dataWithBytes:(uint8_t[]){1,0,0,3,2,100,99,7,1,44} length:10]);
+        Require([calRecords[@"state"] isEqualToString:@"Complete"] && [calRecords[@"percent"] intValue] == 100 && [calRecords[@"records"][1][@"rawHex"] isEqualToString:@"026463"], @"calibration records retain unknown tags and known record tail");
+        NSDictionary *unknownCal = RSDecodeAppCalibrationRecords([NSData dataWithBytes:(uint8_t[]){0,2,77,255} length:4]);
+        Require(unknownCal[@"state"] == NSNull.null && unknownCal[@"percent"] == NSNull.null && [unknownCal[@"rawPercent"] intValue] == 255, @"unknown calibration state and invalid percent remain raw");
+        NSMutableData *wideCalRecord = [NSMutableData dataWithLength:130]; ((uint8_t *)wideCalRecord.mutableBytes)[1] = 128;
+        Require(!RSDecodeAppCalibrationRecords(wideCalRecord) && !RSDecodeAppCalibrationRecords([NSData dataWithBytes:(uint8_t[]){0,1,2} length:3]) && !RSDecodeAppCalibrationRecords([NSData dataWithBytes:(uint8_t[]){0,2,1} length:3]), @"truncated calibration records reject");
+        Require(RSDecodeAppCalibrationRecords([NSData data])[@"rawState"] == NSNull.null && RSDecodeAppCalibrationRecords([NSData dataWithBytes:(uint8_t[]){1,0} length:2])[@"rawState"] == NSNull.null, @"no known calibration record does not synthesize zero state");
+        NSDictionary *duplicateCal = RSDecodeAppCalibrationRecords([NSData dataWithBytes:(uint8_t[]){0,2,1,10,0,2,3,20} length:8]);
+        Require([duplicateCal[@"state"] isEqualToString:@"Failure"] && [duplicateCal[@"percent"] intValue] == 20, @"last complete calibration record wins");
         NSData *stop = RSVelocityFrame(0x100, 0, 0, 0);
         Require([Hex(stop) isEqualToString:@"551604fc020400010004010004000400040000027705"], @"golden stop vector");
         Require(RSVelocityFrame(1, NAN, 0, 0) == nil, @"reject NaN");

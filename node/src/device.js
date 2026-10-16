@@ -31,7 +31,7 @@ export class BleDevice {
     this.reconnectPolicy = null; this.reconnectTask = null; this.reconnectController = null;
     this._reconnectState = { state: 'disabled', attempt: 0 }; this.onReconnect = null;
     this.experimental = new ExperimentalDevice(this); this.onExperimentalStatus = null;
-    this.appCommands = new AppCommands(this);
+    this.appCommands = new AppCommands(this); this.onAppStatus = null;
   }
 
   get connected() { return !!this.session?.ready && this.peripheral?.state === 'connected'; }
@@ -176,7 +176,7 @@ export class BleDevice {
     if (this.session !== session) return;
     this.session = null; this.peripheral = this.rx = this.tx = this.deviceName = null;
     this._latestTelemetry = null; this.decoder.reset(); this._velocity = zero(); this.motionEpoch++;
-    this._nativeRateProfile = null; this.experimental._reset();
+    this._nativeRateProfile = null; this.experimental._reset(); this.appCommands._reset();
     this.streamController?.abort(reason); this.operation?.controller.abort(reason); this._rejectWaiters(reason);
   }
 
@@ -264,6 +264,7 @@ export class BleDevice {
     this._emit('onNotification', bytes(data));
     for (const message of messages) {
       this.experimental._message(message);
+      this.appCommands._message(message);
       const telemetry = decodeGimbalTelemetry(message);
       if (telemetry) {
         this._latestTelemetry = telemetry;

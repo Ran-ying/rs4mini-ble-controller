@@ -116,6 +116,8 @@ test('protocol, telemetry and controller import without Node Buffer or Node modu
     assert(reply.message.payload instanceof Uint8Array);
     const settings = await import('./node/src/app-settings.js');
     assert.equal(settings.settingsWrite('motor', { enabled: true }, 255).payload[2], 254);
+    const calibration = await import('./node/src/app-calibration.js');
+    assert.equal(calibration.calibrationRecords(new Uint8Array([0,2,1,40])).state, 'Processing');
     assert.equal(typeof RS4Mini, 'function');
   `], { cwd: new URL('../../', import.meta.url), stdio: 'pipe' });
 });
@@ -153,4 +155,18 @@ test('Web current-App parameter SDK shares GATT connection and stops pending con
   await until(() => device.frames().some(f => f.commandId === 0x0f));
   window.dispatchEvent(new Event('blur')); await cancelled;
   assert.equal(gimbal.experimental.pending.size,0); assert.equal(gimbal.activeOperation,null);
+});
+test('Web blur cancels an auto-tune preamble before any firmware request', async t => {
+  const {gimbal,device,window}=setup(); t.after(()=>gimbal.close()); await gimbal.connect();
+  gimbal.appCommands.useProfile('ronin-2.2.2');
+  const blocked=gate(), started=gate(), original=device.tx.writeValueWithoutResponse.bind(device.tx);
+  let first=true;
+  device.tx.writeValueWithoutResponse=async value=>{
+    if(first) {first=false;started.resolve();await blocked.promise;}
+    return original(value);
+  };
+  const rejected=assert.rejects(gimbal.appCommands.sendAutoTuneRequest({start:true}),{code:'RS4MINI_OPERATION_CANCELLED'});
+  await started.promise; window.dispatchEvent(new Event('blur')); blocked.resolve(); await rejected;
+  assert.equal(device.frames().filter(f=>f.commandId===0x6a).length,0);
+  assert.equal(gimbal.activeOperation,null);
 });

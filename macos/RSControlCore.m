@@ -267,3 +267,46 @@ NSData *RSAppSettingsFrame(uint16_t sequence, NSString *kind, NSDictionary *patc
     uint8_t payload[] = {[schema[@"index"] unsignedCharValue], 1, value};
     return CommandFrame(sequence, 4, 0x0f, [NSData dataWithBytes:payload length:3], 0x40);
 }
+
+NSData *RSAppAutoTuneFrame(uint16_t sequence, NSNumber *start) {
+    if (![start isKindOfClass:NSNumber.class] || CFGetTypeID((__bridge CFTypeRef)start) != CFBooleanGetTypeID()) return nil;
+    uint8_t payload[] = {0, 1, start.boolValue};
+    return CommandFrame(sequence, 4, 0x6a, [NSData dataWithBytes:payload length:3], 0);
+}
+NSData *RSAppCalibrationQueryFrame(uint16_t sequence) {
+    return CommandFrame(sequence, 4, 0x6e, [NSData data], 0x40);
+}
+NSDictionary *RSDecodeAppCalibrationRecords(NSData *body) {
+    if (![body isKindOfClass:NSData.class]) return nil;
+    const uint8_t *p = body.bytes; NSUInteger offset = 0;
+    if (body.length && p[0] != 0 && p[0] != 1) return nil;
+    NSMutableArray *records = [NSMutableArray array]; id rawState = NSNull.null, rawPercent = NSNull.null;
+    while (offset < body.length) {
+        if (offset + 2 > body.length) return nil;
+        uint8_t tag = p[offset++], size = p[offset++];
+        if (size > 127 || offset + size > body.length || (tag == 0 && size < 2)) return nil;
+        [records addObject:@{@"tag": @(tag), @"size": @(size), @"rawHex": [Hex([body subdataWithRange:NSMakeRange(offset,size)]) copy]}];
+        if (tag == 0) { rawState = @(p[offset]); rawPercent = @(p[offset+1]); }
+        offset += size;
+    }
+    NSDictionary *states = @{@0: @"UnStart", @1: @"Processing", @2: @"Complete", @3: @"Failure", @255: @"UnKnown"};
+    return @{@"records": [records copy], @"rawState": rawState, @"state": states[rawState] ?: NSNull.null,
+             @"rawPercent": rawPercent, @"percent": rawPercent != NSNull.null && [rawPercent intValue] <= 100 ? rawPercent : NSNull.null,
+             @"bodyHex": [Hex(body) copy]};
+}
+NSDictionary *RSDecodeAppCalibrationReply(NSDictionary *message, NSError **error) {
+    NSDictionary *reply = RSDecodeAppReply(message, 0x6e, nil, error); if (!reply) return nil;
+    NSData *payload = message[@"payload"];
+    NSDictionary *calibration = RSDecodeAppCalibrationRecords([payload subdataWithRange:NSMakeRange(1, payload.length-1)]);
+    if (!calibration) { if (error) *error = RSAppError(@"RS4MINI_PROTOCOL_ERROR", @"Malformed current-App calibration records", nil); return nil; }
+    NSMutableDictionary *result = [reply mutableCopy]; result[@"calibration"] = calibration; return [result copy];
+}
+NSDictionary *RSDecodeAppCalibrationNotification(NSDictionary *message) {
+    if ([message[@"sender"] intValue] != 4 || [message[@"receiver"] intValue] != 2 || [message[@"commandSet"] intValue] != 4 || [message[@"commandId"] intValue] != 0x6e || ([message[@"flags"] intValue] & 0x80)) return nil;
+    NSDictionary *calibration = RSDecodeAppCalibrationRecords(message[@"payload"]);
+    if (!calibration || calibration[@"rawState"] == NSNull.null) return nil;
+    NSMutableDictionary *result = [calibration mutableCopy];
+    [result addEntriesFromDictionary:@{@"kind": @"calibration", @"profile": @"ronin-2.2.2", @"deviceVerified": @NO,
+        @"physicalCompletionVerified": @NO, @"timestamp": @(NSDate.date.timeIntervalSince1970*1000)}];
+    return [result copy];
+}

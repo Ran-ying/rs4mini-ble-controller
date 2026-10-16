@@ -31,7 +31,7 @@ static BOOL Matches(NSString *name) {
 
 - (void)resetLink:(NSString *)message {
     [self finishApp:nil error:RSAppError(@"RS4MINI_DISCONNECTED", message ?: @"Disconnected", nil)];
-    self.awaitingDeviceQuery = NO;
+    self.awaitingDeviceQuery = NO; self.appCalibrationStatus = nil;
     BOOL recover = self.autoReconnectEnabled && (self.ready || self.retrying) && !self.disconnecting;
     [self.central stopScan]; [self.connectionTimer invalidate]; self.connectionTimer = nil;
     [self.tickTimer invalidate]; self.tickTimer = nil; [self cancelComposedMotion];
@@ -161,7 +161,7 @@ static BOOL Matches(NSString *name) {
             ([message[@"flags"] intValue] & 0x80) && [message[@"commandSet"] intValue] == 4 && [message[@"commandId"] intValue] == self.appCommandId &&
             [message[@"sequence"] unsignedShortValue] == self.deviceQuerySequence) {
             NSError *appError = nil;
-            NSDictionary *result = RSDecodeAppReply(message, self.appCommandId, self.appParameters, &appError);
+            NSDictionary *result = self.appCommandId == 0x6e ? RSDecodeAppCalibrationReply(message, &appError) : RSDecodeAppReply(message, self.appCommandId, self.appParameters, &appError);
             if (appError) [self failApp:appError];
             else if (self.appSettingsPatch && self.appCommandId == 0x10) {
                 NSDictionary *before = RSDecodeAppSettings(result, self.appSettingsKind);
@@ -187,6 +187,14 @@ static BOOL Matches(NSString *name) {
         if (self.awaitingDeviceQuery && [self matchesResearchResponse:message sequence:self.deviceQuerySequence kind:@"degreeInfo"]) {
             self.awaitingDeviceQuery = NO;
             [self status:@"已收到 degree-info 原始响应，不代表反馈频率提高"];
+        }
+        if (self.appProfile) {
+            NSDictionary *appStatus = RSDecodeAppCalibrationNotification(message);
+            if (appStatus) {
+                self.appCalibrationStatus = appStatus;
+                @try { if (self.appStatusHandler) self.appStatusHandler(appStatus); }
+                @catch (NSException *exception) { NSLog(@"App status observer exception: %@", exception.name); }
+            }
         }
         if (self.messageHandler) self.messageHandler(message);
         [self didReceiveMessage:message];
@@ -261,6 +269,10 @@ static BOOL Matches(NSString *name) {
             if (self.stopMessage) [self status:self.stopMessage];
             if (after) after();
         }
+    } else if (self.appNoAckPending) {
+        if (self.outgoing.empty) [self finishApp:@{@"profile": @"ronin-2.2.2", @"sent": @YES, @"requestedStart": self.appRequestedStart,
+            @"acknowledgementRequested": @NO, @"acknowledged": @NO, @"deviceVerified": @NO, @"physicalCompletionVerified": @NO} error:nil];
+        else if (Clock() >= self.deviceQueryDeadline) [self failApp:RSAppError(@"RS4MINI_IO_TIMEOUT", @"Auto-tune request write timed out", nil)];
     } else if (self.awaitingDeviceQuery) {
         if (Clock() >= self.deviceQueryDeadline) {
             if (self.appCompletion) [self failApp:RSAppError(@"RS4MINI_RESPONSE_TIMEOUT", @"App transaction response timed out", nil)];
@@ -331,7 +343,7 @@ static BOOL Matches(NSString *name) {
     }
     if ([kind isEqualToString:@"sleep"] && (!job[@"asleep"] || CFGetTypeID((__bridge CFTypeRef)job[@"asleep"]) != CFBooleanGetTypeID())) { [self status:@"asleep 必须为布尔值"]; return nil; }
     if (![kind isEqualToString:@"observe"] && ![self researchFrame:job sequence:0]) { [self status:@"实验角度、速率或查询种类无效"]; return nil; }
-    self.appProfile = nil;
+    self.appProfile = nil; self.appCalibrationStatus = nil;
     return [job copy];
 }
 
@@ -347,12 +359,13 @@ static BOOL Matches(NSString *name) {
 }
 - (BOOL)useAppProfile:(NSString *)profile {
     if (![profile isEqualToString:@"ronin-2.2.2"] || self.busy) { [self status:@"必须在空闲时明确选择 ronin-2.2.2 协议来源"]; return NO; }
-    self.researchProfile = nil; self.researchStatus = nil; self.appProfile = [profile copy]; return YES;
+    self.researchProfile = nil; self.researchStatus = nil; self.appProfile = [profile copy]; self.appCalibrationStatus = nil; return YES;
 }
 - (void)finishApp:(NSDictionary *)result error:(NSError *)error {
     RSAppCompletion completion = self.appCompletion;
     if (!completion) return;
     self.appCompletion = nil; self.appParameters = nil; self.awaitingDeviceQuery = NO;
+    self.appNoAckPending = NO; self.appRequestedStart = nil;
     self.appSettingsKind = nil; self.appSettingsPatch = nil; self.appSettingsBefore = nil; self.appSettingsRequested = nil;
     dispatch_async(dispatch_get_main_queue(), ^{ completion(result, error); });
 }
@@ -361,6 +374,21 @@ static BOOL Matches(NSString *name) {
     NSUInteger token = self.appToken; __weak typeof(self) weak = self;
     [self beginStopKeepingApp:^{ if (weak.appToken == token) [weak finishApp:nil error:error]; } message:nil];
 }
+- (NSData *)appCommandFrame:(uint8_t)command sequence:(uint16_t)sequence context:(NSArray *)context mode:(NSNumber *)mode {
+    switch (command) {
+        case 0x10: return RSAppParameterRequestFrame(sequence, context);
+        case 0x0f: return RSAppSensitivityFrame(sequence, mode);
+        case 0x6a: return RSAppAutoTuneFrame(sequence, mode);
+        case 0x6e: return RSAppCalibrationQueryFrame(sequence);
+        default: return nil;
+    }
+}
+- (void)queryCalibrationStatusWithTimeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
+    [self startAppCommand:0x6e parameters:nil mode:nil settingsKind:nil settingsPatch:nil timeoutMs:timeoutMs completion:completion];
+}
+- (void)sendAutoTuneRequest:(NSNumber *)start completion:(RSAppCompletion)completion {
+    [self startAppCommand:0x6a parameters:nil mode:[start copy] settingsKind:nil settingsPatch:nil timeoutMs:3000 completion:completion];
+}
 - (void)startAppCommand:(uint8_t)command parameters:(NSArray *)parameters mode:(NSNumber *)mode settingsKind:(NSString *)settingsKind settingsPatch:(NSDictionary *)settingsPatch timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
     NSError *error = nil;
     if (![self.appProfile isEqualToString:@"ronin-2.2.2"]) error = RSAppError(@"RS4MINI_PROFILE_REQUIRED", @"Select explicit ronin-2.2.2 source profile", nil);
@@ -368,7 +396,7 @@ static BOOL Matches(NSString *name) {
     else if (self.busy) error = RSAppError(@"RS4MINI_BUSY", @"Device operation is active", nil);
     else if (!isfinite(timeoutMs) || timeoutMs <= 0 || timeoutMs > 60000) error = RSAppError(@"RS4MINI_INVALID_ARGUMENT", @"timeoutMs must be >0..60000", nil);
     NSArray *context = parameters ? RSAppParameterContext(parameters) : nil;
-    if (!error && !(command == 0x10 ? RSAppParameterRequestFrame(0, context) : RSAppSensitivityFrame(0, mode)))
+    if (!error && ![self appCommandFrame:command sequence:0 context:context mode:mode])
         error = RSAppError(@"RS4MINI_INVALID_ARGUMENT", @"Invalid App command arguments", nil);
     if (error) { if (completion) dispatch_async(dispatch_get_main_queue(), ^{ completion(nil, error); }); return; }
     self.appSettingsKind = settingsKind; self.appSettingsPatch = settingsPatch;
@@ -377,8 +405,9 @@ static BOOL Matches(NSString *name) {
     [self beginStopKeepingApp:^{
         if (!weak.ready || !weak.appCompletion || weak.appToken != token) return;
         weak.deviceQuerySequence = [weak reserveSequence]; weak.deviceQueryDeadline = Clock() + timeoutMs / 1000;
-        weak.awaitingDeviceQuery = YES;
-        NSData *packet = command == 0x10 ? RSAppParameterRequestFrame(weak.deviceQuerySequence, context) : RSAppSensitivityFrame(weak.deviceQuerySequence, mode);
+        weak.awaitingDeviceQuery = command != 0x6a;
+        weak.appNoAckPending = command == 0x6a; weak.appRequestedStart = command == 0x6a ? mode : nil;
+        NSData *packet = [weak appCommandFrame:command sequence:weak.deviceQuerySequence context:context mode:mode];
         [weak writeFrame:packet]; [weak ensureTimer];
     } message:nil];
 }

@@ -1,5 +1,8 @@
 """Current-App device commands share the existing connection/queue/pending map."""
 import time
+import copy
+from .protocol import frame
+from .app_calibration import auto_tune_payload, calibration_reply, calibration_notification
 from .app_settings import SCHEMAS, settings_patch, decode_settings, settings_write
 from .app_protocol import app_profile, parameter_context, parameter_request, sensitivity_payload, app_reply, parameter_reply
 from .experimental_device import _duration
@@ -9,8 +12,22 @@ from .errors import RS4MiniError
 class AppCommands:
     def __init__(self, owner):
         self.owner, self._profile = owner, None
+        self._calibration_status = None
 
     profile = property(lambda self: self._profile)
+    calibrationStatus = property(lambda self: copy.deepcopy(self._calibration_status))
+    calibration_status = calibrationStatus
+
+    def _reset(self):
+        self._calibration_status = None
+
+    def _message(self, message):
+        if not self._profile:
+            return
+        status = calibration_notification(message)
+        if status:
+            self._calibration_status = status
+            self.owner._emit('onAppStatus', copy.deepcopy(status))
 
     def useProfile(self, profile):
         app_profile(profile)
@@ -19,6 +36,7 @@ class AppCommands:
         self.owner.experimental._profile = None
         self.owner.experimental._reset()
         self._profile = profile
+        self._reset()
 
     use_profile = useProfile
 
@@ -40,6 +58,26 @@ class AppCommands:
         return result
 
     get_follow_sensitivity = getFollowSensitivity
+
+    async def queryCalibrationStatus(self, *, timeoutMs=3000):
+        self._require_profile()
+        response = await self.owner.experimental._query_payload_command('App calibration status', (4, 0x6e), b'', timeoutMs)
+        return calibration_reply(response)
+
+    query_calibration_status = queryCalibrationStatus
+
+    async def sendAutoTuneRequest(self, *, start):
+        self._require_profile()
+        payload = auto_tune_payload(start)
+        async def body(operation):
+            await self.owner._halt()
+            self.owner._check(operation)
+            await self.owner._enqueue(frame(self.owner._next_sequence(), 4, 0x6a, payload, flags=0), operation=operation, epoch=self.owner._epoch)
+            return dict(profile=self._profile, sent=True, requestedStart=start, acknowledgementRequested=False,
+                        acknowledged=False, deviceVerified=False, physicalCompletionVerified=False)
+        return await self.owner._run('sendAutoTuneRequest', body, False)
+
+    send_auto_tune_request = sendAutoTuneRequest
 
     async def _get_settings(self, kind, timeoutMs):
         result = await self.readParameters(parameters=[dict(index=SCHEMAS[kind]['index'], size=1)], timeoutMs=timeoutMs)

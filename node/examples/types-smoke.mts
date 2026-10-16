@@ -110,3 +110,14 @@ async function sourceSettingsTypes(gimbal: RS4Mini) {
   await gimbal.appCommands.setMotorSettings({ roll360: 1 });
   return [enabled, raw];
 }
+
+async function calibrationTypes(gimbal: RS4Mini) {
+  gimbal.onAppStatus = status => { const raw: number | null = status.rawState; console.log(raw); };
+  const sent = await gimbal.appCommands.sendAutoTuneRequest({start: false});
+  const noAck: false = sent.acknowledged;
+  const status = await gimbal.appCommands.queryCalibrationStatus();
+  const percent: number | null = status.calibration.percent;
+  // @ts-expect-error no numeric action or implicit coercion
+  await gimbal.appCommands.sendAutoTuneRequest({start: 1});
+  return [noAck, percent];
+}

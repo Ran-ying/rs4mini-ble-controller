@@ -216,8 +216,28 @@ export interface MotorSettings { enabled: boolean; forbidSelfie: boolean; forbid
 export type SettingsUpdate<T> = { [K in keyof T]: Pick<T, K> & Partial<Omit<T, K>> }[keyof T] & { timeoutMs?: number };
 export interface AppSettingsReading<T> extends AppParameterReply { settings: T; rawValue: number; unknownBits: number; }
 export interface AppSettingsWriteResult<T> extends AppCommandReply { previousRawValue: number; requestedRawValue: number; requestedSettings: Partial<T>; }
+export interface AppCalibrationRecords {
+  records: Array<{tag: number; size: number; rawHex: string}>;
+  rawState: number | null;
+  state: "UnStart" | "Processing" | "Complete" | "Failure" | "UnKnown" | null;
+  rawPercent: number | null;
+  percent: number | null;
+  bodyHex: string;
+}
+export interface AppCalibrationStatus extends AppCalibrationRecords {
+  kind: "calibration"; profile: "ronin-2.2.2"; timestamp: number;
+  deviceVerified: false; physicalCompletionVerified: false;
+}
+export interface AppAutoTuneSent {
+  profile: "ronin-2.2.2"; sent: true; requestedStart: boolean;
+  acknowledgementRequested: false; acknowledged: false;
+  deviceVerified: false; physicalCompletionVerified: false;
+}
 export interface AppCommands {
   readonly profile: "ronin-2.2.2" | null;
+  readonly calibrationStatus: AppCalibrationStatus | null;
+  queryCalibrationStatus(options?: { timeoutMs?: number }): Promise<AppCommandReply & {calibration: AppCalibrationRecords}>;
+  sendAutoTuneRequest(options: {start: boolean}): Promise<AppAutoTuneSent>;
   getCustomFollowSettings(options?: { timeoutMs?: number }): Promise<AppSettingsReading<CustomFollowSettings>>;
   getMotorSettings(options?: { timeoutMs?: number }): Promise<AppSettingsReading<MotorSettings>>;
   setCustomFollowSettings(options: SettingsUpdate<CustomFollowSettings>): Promise<AppSettingsWriteResult<CustomFollowSettings>>;

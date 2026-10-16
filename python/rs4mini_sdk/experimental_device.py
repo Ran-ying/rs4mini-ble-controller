@@ -34,6 +34,7 @@ class ExperimentalDevice:
         self._profile, self._status = profile, {}
         if hasattr(self.owner, "appCommands"):
             self.owner.appCommands._profile = None
+            self.owner.appCommands._reset()
 
     use_profile = useProfile
 

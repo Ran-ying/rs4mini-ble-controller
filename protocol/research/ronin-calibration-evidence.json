@@ -1,0 +1,183 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "derivedSha256": "4fdbd74a05df63d72a0feb1c907d9395426ec3cdb5d6aeb45e3836d856d66654",
+  "appCodeExecuted": false,
+  "targetDeviceVerified": false,
+  "wholeProtocolRecovered": false,
+  "hg724UsesHg702AutoTuneOverride": true,
+  "methods": [
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "startAutoTune",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6522036,
+      "instructionSha256": "26e3c7f249de4a9d81fed3fd7e18e3d32f3368c2c62a22a9319d5b40e0978d88"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG702Abstraction;",
+      "method": "onEvent3BackgroundThread",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalGetPushCalibrationStatus;)V",
+      "codeOffset": 6540004,
+      "instructionSha256": "44e913f4c92d477afff0287e05eca641605fd059196fd5cac454e9a7ed942679"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG702Abstraction;",
+      "method": "startAutoTune",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6540296,
+      "instructionSha256": "119b002fa9942e60e033346f4ae83aaa808cadd191f480c40a8e63cd5ff693cd"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG724Abstraction;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "codeOffset": 6541896,
+      "instructionSha256": "148a594c94136ccbf079ebed90476c5d78465acaf0ffdb925734c62f2202174b"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalCalibrate;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 4857300,
+      "instructionSha256": "aca037de136b94a4d432c88a8c8fde3461bde772d4a0cfbf3598db5244ff64c5"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalCalibrate;",
+      "method": "setStartCalbrate",
+      "descriptor": "(Z)V",
+      "codeOffset": 4857364,
+      "instructionSha256": "697bdc22ece407001779042e9612030a8d54ee11d75ea83a6841679734b50b1d"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalCalibrate;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4857388,
+      "instructionSha256": "cebcebc9cfee78976adaaac8882267f7a9c00dea73f6a8698039457d2febd4ea"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushCalibrationStatus;",
+      "method": "getCalibratePercent",
+      "descriptor": "()I",
+      "codeOffset": 4867016,
+      "instructionSha256": "6fba3381eacf9637b056f5d61f85f7438198a5f84c416abe0062511b9c68fa4d"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushCalibrationStatus;",
+      "method": "getCalibrateStatus",
+      "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetPushCalibrationStatus$CalibrationStatus;",
+      "codeOffset": 4867040,
+      "instructionSha256": "08f649e2725d2d1c854d01a156250b5e790d266d883ada048a53a56fdb05622f"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushCalibrationStatus;",
+      "method": "setPushRecData",
+      "descriptor": "([B)V",
+      "codeOffset": 4867072,
+      "instructionSha256": "7ecc171620d35e73ad31792659ab68fa0058b25b45a5f96d1a9853bcfd97d235"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushCalibrationStatus;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4867272,
+      "instructionSha256": "b4be22621c35d542566321b098cee8f0bf2b61a55dfade9045e08fb87d8d9146"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushCalibrationStatus$CalibrationStatus;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3463108,
+      "instructionSha256": "b5b0505494e5fcacee3aad6032650f8441e5c95b2d73e11aa7808678415c5b76"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushCalibrationStatus$CalibrationStatus;",
+      "method": "<init>",
+      "descriptor": "(Ljava/lang/String; I I)V",
+      "codeOffset": 3463252,
+      "instructionSha256": "ffa16787f3e43ecbe28f28195f5e57e7c57ae421543d3941f2a58d7eb9ed1b4c"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushCalibrationStatus$CalibrationStatus;",
+      "method": "find",
+      "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalGetPushCalibrationStatus$CalibrationStatus;",
+      "codeOffset": 3463280,
+      "instructionSha256": "6d299ea4ce5b340b524c4c82c03080dae68e6efa9574469d4a44a24bb0dbc223"
+    },
+    {
+      "className": "Ldji/midware/data/config/P3/DataConfig$NEEDACK;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3323936,
+      "instructionSha256": "ab90dd658517642465a6bbff6ace8d899cb0e9c2fda92670ad319639b47c0cf9"
+    },
+    {
+      "className": "Ldji/midware/data/packages/P3/SendPack;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 5031864,
+      "instructionSha256": "0f4b7e3cd180df4776166ce8cf055778ff0dc39eee3a00a8a14ba6fcff4a2996"
+    }
+  ],
+  "enums": {
+    "Ldji/midware/data/model/P3/DataGimbalGetPushCalibrationStatus$CalibrationStatus;": [
+      {
+        "name": "UnStart",
+        "ordinal": 0,
+        "value": 0
+      },
+      {
+        "name": "Processing",
+        "ordinal": 1,
+        "value": 1
+      },
+      {
+        "name": "Complete",
+        "ordinal": 2,
+        "value": 2
+      },
+      {
+        "name": "Failure",
+        "ordinal": 3,
+        "value": 3
+      },
+      {
+        "name": "UnKnown",
+        "ordinal": 4,
+        "value": 255
+      }
+    ],
+    "Ldji/midware/data/config/P3/DataConfig$NEEDACK;": [
+      {
+        "name": "NO",
+        "ordinal": 1,
+        "value": 0
+      },
+      {
+        "name": "YES",
+        "ordinal": 0,
+        "value": 2
+      }
+    ]
+  },
+  "sourceFacts": {
+    "requestCommand": "04:6A",
+    "requestPayloads": {
+      "false": "000100",
+      "true": "000101"
+    },
+    "requestAcknowledgement": false,
+    "statusCommand": "04:6E",
+    "statusQueryPayload": "",
+    "statusQueryAcknowledgement": true,
+    "notificationLayout": "tag + size + value records; first tag 0 or 1; tag0 values status/percent",
+    "sourceLengthIsSignedByte": true,
+    "acceptedRecordSizes": [
+      0,
+      127
+    ],
+    "sendSuccessIsNotFirmwareCompletion": true,
+    "stopEffectNotHardwareVerified": true
+  }
+}

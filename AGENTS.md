@@ -8,9 +8,9 @@ verification status changes.
 ## Objective and user decisions
 
 - Provide an unofficial, direct BLE controller for **DJI RS 4 Mini**, initially on macOS.
-- **Node.js is the authoritative implementation**; current package version is `0.7.4`.
+- **Node.js is the authoritative implementation**; current package version is `0.7.5`.
 - The user subsequently requested completion of all existing ports. Python is now
-  `0.7.4`, Web shares the JS core, and the native panel is `0.3.4`. Describe the
+  `0.7.5`, Web shares the JS core, and the native panel is `0.3.5`. Describe the
   documented feature differences; do not claim identical APIs or hardware proof.
 - After that delivery, the user requested the remaining **non-camera** capabilities
   under the same autonomous/offline conditions. Expansion work is in progress;
@@ -313,3 +313,30 @@ ranges are not mechanical safety guarantees. Tests: Node83/Web13, Python3.8/3.12
 each61, native58+74+3, research35; builds/types/boundaries passed. No hardware or
 live UI used; full inventory and advanced gates remain false. Other commands
 still need source field/model/response audit and SDK implementation.
+
+
+## Current runtime: 0.7.5 / native 0.3.5 build8
+
+HG724 inherits HG702.startAutoTune, which overrides Ronin2's parameter path.
+DataGimbalCalibrate sends04:6A payload000101/000100 with NEEDACK.NO/flags0.
+AppCommands.sendAutoTuneRequest({start:bool}) sends this only under explicit
+current-App profile, owns slot through pre-stop and local write, never waits for
+ACK and never claims firmware completion. Native sendAutoTuneRequest:@YES/@NO
+waits for queue drain. Once sent, firmware may keep running: stop() cancels host
+work/sends neutrals but does not automatically send6Afalse or guarantee abort.
+The false request's physical effect is unverified. Do not expose this as a
+completed AutoTune task or hold-until-firmware-complete feature.
+queryCalibrationStatus queries04:6E empty body with ACK. Response Ccode is
+separate from business TLVs; empty ACK has null status/percent. Passive status
+requires04->02,04:6E,no response flag; cached copies/onAppStatus are separate
+from query replies. Native appCalibrationStatus/appStatusHandler equivalent.
+Record first tag0/1; tag0 at least2 bytes (state/percent); retain unknown tails,
+last complete tag0 wins; source signed size only0..127 accepted. Unknown state
+and percent>100 remain raw/null. Unknown-only/malformed records do not zero the
+cache. Explicit profile changes and disconnect clear it (including Python
+reports arriving during disconnect stop). No program ID/correlation exists.
+See docs/APP_CALIBRATION.md and protocol/research/ronin-calibration-evidence.json.
+16 method hashes, state/NEEDACK enums and override were statically verified;
+no vendor code executed. Node90/Web14, Python3.8/3.12 each68, native65+83+3,
+research37, types/boundaries/builds passed. No hardware/live UI used. Full
+command inventory and further advanced-development gates remain false.

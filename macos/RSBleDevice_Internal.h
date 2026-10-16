@@ -4,6 +4,9 @@
 @interface RSBleDevice ()
 @property(nonatomic, copy) NSString *appProfile;
 @property(nonatomic, copy) RSAppCompletion appCompletion;
+@property(nonatomic, copy) NSDictionary *appCalibrationStatus;
+@property(nonatomic) BOOL appNoAckPending;
+@property(nonatomic, copy) NSNumber *appRequestedStart;
 @property(nonatomic, strong) NSArray *appParameters;
 @property(nonatomic, copy) NSString *appSettingsKind;
 @property(nonatomic, copy) NSDictionary *appSettingsPatch;

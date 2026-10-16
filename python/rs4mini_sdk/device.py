@@ -52,6 +52,7 @@ class BleDevice(ReconnectMixin):
         self._init_reconnect()
         self.experimental = ExperimentalDevice(self)
         self.appCommands = AppCommands(self)
+        self.onAppStatus = None
         self.app_commands = self.appCommands
         self.onExperimentalStatus = self._nativeRateProfile = None
 
@@ -230,6 +231,7 @@ class BleDevice(ReconnectMixin):
             if self.client is not candidate:
                 break
             self.experimental._message(message)
+            self.appCommands._message(message)
             telemetry = decode_gimbal_telemetry(message)
             if telemetry:
                 self._latestTelemetry = telemetry
@@ -252,6 +254,7 @@ class BleDevice(ReconnectMixin):
         self._ready = False
         self._nativeRateProfile = None
         self.experimental._reset()
+        self.appCommands._reset()
         self.decoder.reset()
         self._velocity = dict(pan=0.0, tilt=0.0, roll=0.0)
         self._epoch += 1
@@ -469,6 +472,7 @@ class BleDevice(ReconnectMixin):
     async def disconnect(self):
         self._cancel_reconnect()
         self.experimental._reset()
+        self.appCommands._reset()
         if self._disconnectTask:
             return await asyncio.shield(self._disconnectTask)
         if self._context:
@@ -486,6 +490,7 @@ class BleDevice(ReconnectMixin):
             if self._reconnectTask:
                 await self._reconnectTask
             candidate, self.client = self.client, None
+            self.appCommands._reset()
             self._ready = False
             self.deviceName = self._latestTelemetry = None
             if candidate:

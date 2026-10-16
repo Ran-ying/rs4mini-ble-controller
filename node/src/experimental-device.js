@@ -18,7 +18,7 @@ export class ExperimentalDevice {
     researchProfile(profile);
     if (this.owner.activeOperation || this.pending.size) throw failure('RS4MINI_BUSY', 'Cannot change research profile during an operation or query');
     this._profile = profile; this._status = {};
-    if (this.owner.appCommands) this.owner.appCommands._profile = null;
+    if (this.owner.appCommands) { this.owner.appCommands._profile = null; this.owner.appCommands._reset(); }
   }
   _requireProfile(rs3Only = false) {
     researchProfile(this._profile);

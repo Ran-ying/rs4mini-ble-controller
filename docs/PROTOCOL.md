@@ -176,3 +176,6 @@ HG724 跟随灵敏度 setter、参数管理器读取 gimbal_param_infos 的路�
 
 
 0.7.4 补齐两组命名位字段的寄存器读写事务：132自定义跟随、35电机标志。掩码、极性、来源与未验收边界见 [APP_SETTINGS.md](APP_SETTINGS.md)。未知位不覆盖，不从位字段推断PF/PTF或物理效果。
+
+
+0.7.5 已沿HG702覆盖路径确认04:6A为00 01 bool且不请求ACK，04:6E查询/通知业务体为记录。返回码与记录首tag不能混用，发送不代表完成；完整来源、长度边界和状态语义见 [APP_CALIBRATION.md](APP_CALIBRATION.md)。

@@ -105,5 +105,13 @@ if manifest.get('settingsResearch'):
     assert {m['method'] for m in settings['methods']} >= {'setMotorEnabled', 'setCustomFollowModeYawEnabled', 'setRonin2CommonUserParam'}
     assert settings['parameters']['CUSTOM_FOLLOW_SETTING']['index'] == 132
     assert settings['parameters']['MOTOR_SPECIAL_CMD']['index'] == 35
+if manifest.get('calibrationResearch'):
+    calibration = json.loads((root / manifest['calibrationResearch']).read_text())
+    assert calibration['derivedSha256'] == restored['derivedSha256']
+    assert calibration['appCodeExecuted'] is False and calibration['targetDeviceVerified'] is False
+    assert calibration['wholeProtocolRecovered'] is False
+    assert calibration['hg724UsesHg702AutoTuneOverride'] is True
+    assert calibration['sourceFacts']['requestAcknowledgement'] is False
+    assert calibration['sourceFacts']['statusQueryAcknowledgement'] is True
 print('Layer boundaries passed: device modules do not depend on motion; upper layers do not encode/write packets.')
 print('Protocol inventory: %d entries; inventoryComplete=false; further advanced development is gated.' % len(manifest['commands']))

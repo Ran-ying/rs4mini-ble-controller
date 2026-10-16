@@ -49,3 +49,6 @@ NOP/常量/返回模式只标记为保护桩候选，不把返回零解释成协
 
 
 `ronin_settings_trace.py` 补充八个继承setter的掩码/分支极性、命名键和两条参数记录，固定恢复与APK哈希。重现步骤与SDK契约见 [APP_SETTINGS.md](../../docs/APP_SETTINGS.md)。不输出完整指令体，不执行厂商代码，不推断本机支持。
+
+
+`ronin_calibration_trace.py` 校验固定APK/恢复视图，记录HG702覆盖的无ACK调参请求、状态枚举和16个方法指纹。复现和边界见 [APP_CALIBRATION.md](../../docs/APP_CALIBRATION.md)，不执行厂商代码或操作硬件。

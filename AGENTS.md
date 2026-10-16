@@ -8,9 +8,9 @@ verification status changes.
 ## Objective and user decisions
 
 - Provide an unofficial, direct BLE controller for **DJI RS 4 Mini**, initially on macOS.
-- **Node.js is the authoritative implementation**; current package version is `0.7.5`.
+- **Node.js is the authoritative implementation**; current package version is `0.7.6`.
 - The user subsequently requested completion of all existing ports. Python is now
-  `0.7.5`, Web shares the JS core, and the native panel is `0.3.5`. Describe the
+  `0.7.6`, Web shares the JS core, and the native panel is `0.3.6`. Describe the
   documented feature differences; do not claim identical APIs or hardware proof.
 - After that delivery, the user requested the remaining **non-camera** capabilities
   under the same autonomous/offline conditions. Expansion work is in progress;
@@ -340,3 +340,22 @@ See docs/APP_CALIBRATION.md and protocol/research/ronin-calibration-evidence.jso
 no vendor code executed. Node90/Web14, Python3.8/3.12 each68, native65+83+3,
 research37, types/boundaries/builds passed. No hardware/live UI used. Full
 command inventory and further advanced-development gates remain false.
+
+
+## Current runtime: 0.7.6 / native 0.3.6 build9
+
+AppCommands.getMotorTuning/setMotorTuning adds twelve named numerical motor
+parameters: stiffness, strength, gyroFiltering, preControl, each pitch/roll/yaw.
+Explicit current-App profile required; 04:31 write and 04:32 read are separate
+from ordinary 04:0F/10 despite overlapping parameter indices. Names resolve
+through recovered gimbal_param_infos; index0..11, typeINT08U, size1. Writes
+require one named axis/parameter and integer within source ranges (5..100,
+1..100,0..100,0..100 respectively), stop first, own the operation through ACK,
+and never update feedback optimistically. Reads require request width context,
+retain raw header byte, preserve out-of-range returned values. No arbitrary
+index writes or hardware-safe range claim. See docs/APP_MOTOR_TUNING.md.
+ronin_motor_trace.py verifies pinned hashes, twelve source setter/getter chains,
+26 method fingerprints and both INT08U packing branches/low-byte encoding.
+Node96/Web14, Python74, native69+88+3, research38 offline checks passed; installed
+packages are verified in the release handoff. No hardware/live UI used; HG724
+inheritance is not firmware/UI support evidence. Both completion gates false.

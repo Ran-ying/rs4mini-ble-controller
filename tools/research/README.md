@@ -52,3 +52,6 @@ NOP/常量/返回模式只标记为保护桩候选，不把返回零解释成协
 
 
 `ronin_calibration_trace.py` 校验固定APK/恢复视图，记录HG702覆盖的无ACK调参请求、状态枚举和16个方法指纹。复现和边界见 [APP_CALIBRATION.md](../../docs/APP_CALIBRATION.md)，不执行厂商代码或操作硬件。
+
+
+`ronin_motor_trace.py`固定命名电机参数的31/32空间、12条记录、26个方法指纹与INT08U实际编码路径，来源与复现见 [APP_MOTOR_TUNING.md](../../docs/APP_MOTOR_TUNING.md)。继承不代表型号固件支持，源范围不是机械安全保证。

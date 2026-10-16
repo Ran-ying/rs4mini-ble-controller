@@ -1,4 +1,4 @@
-# Web Bluetooth 0.7.5
+# Web Bluetooth 0.7.6
 
 从仓库根目录启动本机服务：
 
@@ -44,3 +44,6 @@ Web SDK 随共享核心增加 `enableAutoReconnect()`、`disableAutoReconnect()`
 
 
 0.7.5 封装当前型号路径的无ACK自动调参请求、校准状态查询/通知，严格区分本机写入、设备报告与物理完成。接口和待验收边界见 [调参请求与状态](../docs/APP_CALIBRATION.md)。
+
+
+0.7.6新增十二个命名电机数值参数的31/32读写，和普通用户参数命令空间分开；源码范围与实际设备效果分别验收。见 [电机参数SDK](../docs/APP_MOTOR_TUNING.md)。

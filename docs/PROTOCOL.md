@@ -179,3 +179,8 @@ HG724 跟随灵敏度 setter、参数管理器读取 gimbal_param_infos 的路�
 
 
 0.7.5 已沿HG702覆盖路径确认04:6A为00 01 bool且不请求ACK，04:6E查询/通知业务体为记录。返回码与记录首tag不能混用，发送不代表完成；完整来源、长度边界和状态语义见 [APP_CALIBRATION.md](APP_CALIBRATION.md)。
+
+
+## 0.7.6 命名电机参数
+
+0.7.6 命名电机数值使用独立04:31/32命名空间，索引0..11、size1、INT08U。04:32按请求上下文解码，第二头字节仍原样保留；04:31 ACK不代表参数已物理生效。详见 [APP_MOTOR_TUNING.md](APP_MOTOR_TUNING.md)。

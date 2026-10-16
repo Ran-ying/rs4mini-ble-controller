@@ -49,8 +49,8 @@ def app_reply(message, command_id):
                 statusCode=status, acknowledged=True, bodyHex=message['payload'][1:].hex(), message=copy.deepcopy(message))
 
 
-def parameter_reply(message, parameters):
-    context, result = parameter_context(parameters), app_reply(message, 0x10)
+def parameter_reply(message, parameters, command_id=0x10):
+    context, result = parameter_context(parameters), app_reply(message, command_id)
     body, offset, records = message['payload'][1:], 0, []
     for row in context:
         index, size = row['index'], row['size']

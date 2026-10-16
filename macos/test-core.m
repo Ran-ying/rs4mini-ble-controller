@@ -36,6 +36,16 @@ int main(void) {
         Require(RSDecodeAppCalibrationRecords([NSData data])[@"rawState"] == NSNull.null && RSDecodeAppCalibrationRecords([NSData dataWithBytes:(uint8_t[]){1,0} length:2])[@"rawState"] == NSNull.null, @"no known calibration record does not synthesize zero state");
         NSDictionary *duplicateCal = RSDecodeAppCalibrationRecords([NSData dataWithBytes:(uint8_t[]){0,2,1,10,0,2,3,20} length:8]);
         Require([duplicateCal[@"state"] isEqualToString:@"Failure"] && [duplicateCal[@"percent"] intValue] == 20, @"last complete calibration record wins");
+        NSArray *motorRows=RSAppMotorSelection(@{@"axis":@"yaw"}); NSMutableArray *motorContext=[NSMutableArray array];
+        for (NSDictionary *row in motorRows) [motorContext addObject:@{@"index":row[@"index"],@"size":@1}];
+        NSDictionary *motorQuery=[[RSFrameDecoder new] push:RSAppMotorReadFrame(1,motorContext)].firstObject;
+        Require([motorQuery[@"commandId"] intValue]==0x32 && [Hex(motorQuery[@"payload"]) isEqualToString:@"0205080b"],@"motor query uses separate namespace and explicit named order");
+        NSDictionary *motorWrite=[[RSFrameDecoder new] push:RSAppMotorWriteFrame(1,@[@{@"index":@1,@"size":@1}],@50)].firstObject;
+        Require([motorWrite[@"commandId"] intValue]==0x31 && [Hex(motorWrite[@"payload"]) isEqualToString:@"010132"],@"motor write scalar source vector");
+        Require(!RSAppMotorWriteSpec(@{@"axis":@"pitch",@"parameter":@"stiffness",@"value":@4}) && !RSAppMotorWriteSpec(@{@"axis":@"pitch",@"parameter":@"preControl",@"value":@YES}) && !RSAppMotorSelection(@{@"index":@0}),@"motor named writes reject unsafe source range and raw indexes");
+        NSMutableDictionary *motorMessage=[appMessage mutableCopy]; motorMessage[@"commandId"]=@0x32; motorMessage[@"payload"]=[NSData dataWithBytes:(uint8_t[]){0,0,9,255} length:4];
+        NSDictionary *motorResult=RSDecodeAppMotorReply(motorMessage,RSAppMotorSelection(@{@"axis":@"pitch",@"parameter":@"stiffness"}),&appError);
+        Require([motorResult[@"values"][0][@"rawValue"] intValue]==255 && ![motorResult[@"values"][0][@"withinSourceRange"] boolValue] && [motorResult[@"parameters"][0][@"headerByte"] intValue]==9,@"motor read retains unknown value and raw header using external width");
         NSData *stop = RSVelocityFrame(0x100, 0, 0, 0);
         Require([Hex(stop) isEqualToString:@"551604fc020400010004010004000400040000027705"], @"golden stop vector");
         Require(RSVelocityFrame(1, NAN, 0, 0) == nil, @"reject NaN");

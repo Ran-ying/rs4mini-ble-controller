@@ -29,8 +29,8 @@ export function appReply(message, commandId) {
   return { profile: APP_PROFILE, deviceVerified: false, physicalCompletionVerified: false,
     statusCode, acknowledged: true, bodyHex: hex(message.payload.subarray(1)), message: copyMessage(message) };
 }
-export function parameterReply(message, parameters) {
-  const context = parameterContext(parameters), result = appReply(message, 0x10), body = message.payload.subarray(1);
+export function parameterReply(message, parameters, commandId = 0x10) {
+  const context = parameterContext(parameters), result = appReply(message, commandId), body = message.payload.subarray(1);
   const records = []; let offset = 0;
   for (const { index, size } of context) {
     if (offset + 2 + size > body.length || body[offset] !== index) throw failure('RS4MINI_PROTOCOL_ERROR', 'Parameter response does not match request context');

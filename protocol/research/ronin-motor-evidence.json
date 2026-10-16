@@ -1,0 +1,387 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "derivedSha256": "4fdbd74a05df63d72a0feb1c907d9395426ec3cdb5d6aeb45e3836d856d66654",
+  "resourcePath": "res/DB.json",
+  "resourceSha256": "3391283785f9ff3bd0d449344bd1243f822a141b10b76751ad82205b1356db68",
+  "appCodeExecuted": false,
+  "targetDeviceVerified": false,
+  "wholeProtocolRecovered": false,
+  "parameterNamesSafeToInferFromWireIndex": false,
+  "sourceFacts": {
+    "writeCommand": "04:31",
+    "readCommand": "04:32",
+    "acknowledgementRequested": true,
+    "recordWidthsFromNamedMetadata": true,
+    "headerByteNotInterpretedAsWidth": true,
+    "namespaceDistinctFromUserParameters": true,
+    "sourceRangesAreNotMechanicalSafetyLimits": true
+  },
+  "scalarEncoding": {
+    "type": {
+      "name": "INT08U",
+      "ordinal": 0,
+      "value": 0
+    },
+    "switchCase": 4,
+    "targets": [
+      290,
+      536
+    ],
+    "lowByteFirst": true
+  },
+  "parameters": [
+    {
+      "axis": "pitch",
+      "parameter": "stiffness",
+      "key": "STIFFNESS_PITCH",
+      "setter": "setMotorControlStiffnessOnPitch",
+      "record": {
+        "name": "ronin_sensibility_pitch",
+        "index": 0,
+        "size": 1,
+        "typeID": 0,
+        "minValue": 5,
+        "maxValue": 100
+      }
+    },
+    {
+      "axis": "roll",
+      "parameter": "stiffness",
+      "key": "STIFFNESS_ROLL",
+      "setter": "setMotorControlStiffnessOnRoll",
+      "record": {
+        "name": "ronin_sensibility_roll",
+        "index": 1,
+        "size": 1,
+        "typeID": 0,
+        "minValue": 5,
+        "maxValue": 100
+      }
+    },
+    {
+      "axis": "yaw",
+      "parameter": "stiffness",
+      "key": "STIFFNESS_YAW",
+      "setter": "setMotorControlStiffnessOnYaw",
+      "record": {
+        "name": "ronin_sensibility_yaw",
+        "index": 2,
+        "size": 1,
+        "typeID": 0,
+        "minValue": 5,
+        "maxValue": 100
+      }
+    },
+    {
+      "axis": "pitch",
+      "parameter": "strength",
+      "key": "STRENGTH_PITCH",
+      "setter": "setMotorControlStrengthOnPitch",
+      "record": {
+        "name": "ronin_strength_pitch",
+        "index": 3,
+        "size": 1,
+        "typeID": 0,
+        "minValue": 1,
+        "maxValue": 100
+      }
+    },
+    {
+      "axis": "roll",
+      "parameter": "strength",
+      "key": "STRENGTH_ROLL",
+      "setter": "setMotorControlStrengthOnRoll",
+      "record": {
+        "name": "ronin_strength_roll",
+        "index": 4,
+        "size": 1,
+        "typeID": 0,
+        "minValue": 1,
+        "maxValue": 100
+      }
+    },
+    {
+      "axis": "yaw",
+      "parameter": "strength",
+      "key": "STRENGTH_YAW",
+      "setter": "setMotorControlStrengthOnYaw",
+      "record": {
+        "name": "ronin_strength_yaw",
+        "index": 5,
+        "size": 1,
+        "typeID": 0,
+        "minValue": 1,
+        "maxValue": 100
+      }
+    },
+    {
+      "axis": "pitch",
+      "parameter": "gyroFiltering",
+      "key": "FILTERING_PITCH",
+      "setter": "setMotorControlGyroFilteringOnPitch",
+      "record": {
+        "name": "ronin_filter_pitch",
+        "index": 6,
+        "size": 1,
+        "typeID": 0,
+        "minValue": 0,
+        "maxValue": 100
+      }
+    },
+    {
+      "axis": "roll",
+      "parameter": "gyroFiltering",
+      "key": "FILTERING_ROLL",
+      "setter": "setMotorControlGyroFilteringOnRoll",
+      "record": {
+        "name": "ronin_filter_roll",
+        "index": 7,
+        "size": 1,
+        "typeID": 0,
+        "minValue": 0,
+        "maxValue": 100
+      }
+    },
+    {
+      "axis": "yaw",
+      "parameter": "gyroFiltering",
+      "key": "FILTERING_YAW",
+      "setter": "setMotorControlGyroFilteringOnYaw",
+      "record": {
+        "name": "ronin_filter_yaw",
+        "index": 8,
+        "size": 1,
+        "typeID": 0,
+        "minValue": 0,
+        "maxValue": 100
+      }
+    },
+    {
+      "axis": "pitch",
+      "parameter": "preControl",
+      "key": "PRECONTROL_PITCH",
+      "setter": "setMotorControlPreControlOnPitch",
+      "record": {
+        "name": "ronin_feedback_pitch",
+        "index": 9,
+        "size": 1,
+        "typeID": 0,
+        "minValue": 0,
+        "maxValue": 100
+      }
+    },
+    {
+      "axis": "roll",
+      "parameter": "preControl",
+      "key": "PRECONTROL_ROLL",
+      "setter": "setMotorControlPreControlOnRoll",
+      "record": {
+        "name": "ronin_feedback_roll",
+        "index": 10,
+        "size": 1,
+        "typeID": 0,
+        "minValue": 0,
+        "maxValue": 100
+      }
+    },
+    {
+      "axis": "yaw",
+      "parameter": "preControl",
+      "key": "PRECONTROL_YAW",
+      "setter": "setMotorControlPreControlOnYaw",
+      "record": {
+        "name": "ronin_feedback_yaw",
+        "index": 11,
+        "size": 1,
+        "typeID": 0,
+        "minValue": 0,
+        "maxValue": 100
+      }
+    }
+  ],
+  "methods": [
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "setRonin2MotorParam",
+      "descriptor": "(I Ljava/lang/String; Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6508476,
+      "instructionSha256": "2965e0a57b28f7a0c60b888a81d08b8556f83452de56ebcb11d9abb3861ef46d"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "setMotorControlGyroFilteringOnPitch",
+      "descriptor": "(I Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6519728,
+      "instructionSha256": "e23dfa31d5a5cba6a2a6822a2aa2baf541519793bf705aec5b3ab8fff55091ca"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "setMotorControlGyroFilteringOnRoll",
+      "descriptor": "(I Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6519764,
+      "instructionSha256": "7a252b9db00b08f04f22f872df1cc80488625e11a2b249b8178f24c1c629bf9b"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "setMotorControlGyroFilteringOnYaw",
+      "descriptor": "(I Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6519800,
+      "instructionSha256": "b40a69870ad95e12134939f7d9452821934bcddc5dfce56a6e32ccdf813cf4fc"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "setMotorControlPreControlOnPitch",
+      "descriptor": "(I Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6519836,
+      "instructionSha256": "a85124e981f4bc27127a3fba292ba9889f2d763dbe7f26641b9055e73fec52ec"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "setMotorControlPreControlOnRoll",
+      "descriptor": "(I Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6519872,
+      "instructionSha256": "1d31b9a3064fbdda4622f1e684b9ba99c4da1c2f1672e79f8f42bb5bb324f931"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "setMotorControlPreControlOnYaw",
+      "descriptor": "(I Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6519908,
+      "instructionSha256": "b549e69561f2c30011705df862c4286c085ad7dcac598a661617d34346535a06"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "setMotorControlStiffnessOnPitch",
+      "descriptor": "(I Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6519944,
+      "instructionSha256": "7e4779228c5148db2555e052e0255a49f0851bb1da758d8d9458dd1ccb61ba1d"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "setMotorControlStiffnessOnRoll",
+      "descriptor": "(I Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6519980,
+      "instructionSha256": "2896ff66b54cd8a4a69a4f04e79efe198ac0ebbf2777e540e903319ba0bce2c0"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "setMotorControlStiffnessOnYaw",
+      "descriptor": "(I Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6520016,
+      "instructionSha256": "b827cb1ff5b8834aadbcfafdb7ff659a336a835c721a04fff974bf2d90c57aa4"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "setMotorControlStrengthOnPitch",
+      "descriptor": "(I Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6520052,
+      "instructionSha256": "b57a844fc47063f0bc56360b1f74d3bd0708546b5f3a751cf50f617f997dcce6"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "setMotorControlStrengthOnRoll",
+      "descriptor": "(I Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6520088,
+      "instructionSha256": "31a615ad08fdda852746375181629e5f2a1f8a262af60434b65ddd1f8dab117a"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "setMotorControlStrengthOnYaw",
+      "descriptor": "(I Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6520124,
+      "instructionSha256": "2ea1f0dcd4998829efaba74eea03360af086cc3c29cf0ce01f9017223d996463"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalRoninSetUserParams;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 4881024,
+      "instructionSha256": "da31240bed1970189ae1ff44d1973d9db53c0faa850602dabe1e72fc70301c61"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalRoninSetUserParams;",
+      "method": "setInfo",
+      "descriptor": "(Ljava/lang/String;)Ldji/midware/data/model/P3/DataGimbalRoninSetUserParams;",
+      "codeOffset": 4881736,
+      "instructionSha256": "a6a121f8dbd829cf26e5131faaca8030a9908f9eb42ed05c94415fda380dbb79"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalRoninSetUserParams;",
+      "method": "setInfo",
+      "descriptor": "(Ljava/lang/String; Ljava/lang/Number;)Ldji/midware/data/model/P3/DataGimbalRoninSetUserParams;",
+      "codeOffset": 4881776,
+      "instructionSha256": "291909e9c03c4c08464326bd39d3cf9ecd427b6a997eadf43a7970d69cbae038"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalRoninSetUserParams;",
+      "method": "setRecData",
+      "descriptor": "([B)V",
+      "codeOffset": 4881812,
+      "instructionSha256": "e124d5046e3e3e2d3d96c92715948869cb26906c2e536896ab5422b970b91c52"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalRoninSetUserParams;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4881904,
+      "instructionSha256": "ef7def3c63b86b09a9bff3515290e1e926bb11adc7c86325a0e373267e0e82c0"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalRoninGetUserParams;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 4880448,
+      "instructionSha256": "8cf292a188d14b80db6b6ef615d21dd3bda0fc804d94422c5d8d0a8915d77721"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalRoninGetUserParams;",
+      "method": "setRecData",
+      "descriptor": "([B)V",
+      "codeOffset": 4880588,
+      "instructionSha256": "f2111cf3fd4e597b30e54aeccd1a821df03102e7131522d16336fb4242a88e6d"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalRoninGetUserParams;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4880736,
+      "instructionSha256": "c065c654b18a325b53ebb88f3ba8c5a839f18a2966725a64b4301448316bc008"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataFlycGetParamInfo$TypeId;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3434760,
+      "instructionSha256": "b1fd6dc80b14240d11dcb6c6a640635af110255688920f41cf827b0b90123440"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalRoninSetUserParams$1;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3468524,
+      "instructionSha256": "a2c9393a009a34d0a5cb3e66fa5c4afe8bd62afd9c6d4367e5fb644c3055799d"
+    },
+    {
+      "className": "Ldji/midware/util/BytesUtil;",
+      "method": "getBytes",
+      "descriptor": "(I)[B",
+      "codeOffset": 3781968,
+      "instructionSha256": "dee6fdaa9e54d69b6b960831c94bf0957da7b40415706fd2f8f6a2edef556af7"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "checkValueValid",
+      "descriptor": "(Ljava/lang/Number; Ljava/lang/Number; Ljava/lang/Number;)Z",
+      "codeOffset": 5245276,
+      "instructionSha256": "0e8f9cf58c52a4585a6df052667d0b6fe24e55ad7ca8d6950e2d3db6a0e7ac68"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "checkValueValid",
+      "descriptor": "(Ljava/lang/Number; Ljava/lang/Number; Ljava/lang/Number; Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)Z",
+      "codeOffset": 5245348,
+      "instructionSha256": "44585d32c2f5c79b99f61aed32262d2974332274041161fdd1cb1876b6c21d2f"
+    }
+  ]
+}

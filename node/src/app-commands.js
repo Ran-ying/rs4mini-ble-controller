@@ -1,5 +1,6 @@
 // Device SDK facade: single owner/queue/pending map, no composed motion.
 import { appProfile, parameterContext, parameterRequest, sensitivityPayload, appReply, parameterReply } from './app-protocol.js';
+import { motorSelection, motorWrite, motorReply } from './app-motor.js';
 import { frame } from './protocol.js';
 import { autoTunePayload, calibrationReply, calibrationNotification } from './app-calibration.js';
 import { settingsSchema, settingsPatch, decodeSettings, settingsWrite } from './app-settings.js';
@@ -35,6 +36,24 @@ export class AppCommands {
     const result = await this.readParameters({ parameters: [{ index: 150, size: 1 }], timeoutMs: options.timeoutMs ?? 3000 });
     const rawValue = parseInt(result.parameters[0].rawHex, 16);
     return { ...result, rawValue, mode: [0, 1].includes(rawValue) ? rawValue : null };
+  }
+  async getMotorTuning(options = {}) {
+    optionsOnly(options, ['axis','parameter','timeoutMs']); this._requireProfile();
+    const {timeoutMs = 3000, ...filters}=options, selection=motorSelection(filters);
+    const context=selection.map(({index,size})=>({index,size}));
+    const response=await this.owner.experimental._queryPayloadCommand('App motor tuning',[4,0x32],parameterRequest(context),timeoutMs);
+    return motorReply(response,selection);
+  }
+  async setMotorTuning(options = {}) {
+    optionsOnly(options, ['axis','parameter','value','timeoutMs']); this._requireProfile();
+    const spec=motorWrite(options), timeoutMs=options.timeoutMs ?? 3000;
+    if (!Number.isFinite(timeoutMs) || timeoutMs<=0 || timeoutMs>60000) throw new RangeError('timeoutMs must be >0..60000');
+    return this.owner._run('setMotorTuning',async operation=>{
+      await this.owner._stop(); check(operation.controller.signal);
+      const response=await this.owner.experimental._queryPayloadCommand('App motor write',[4,0x31],spec.payload,timeoutMs,{signal:operation.controller.signal,epoch:this.owner.motionEpoch});
+      const {payload,...requested}=spec;
+      return {...appReply(response,0x31),...requested};
+    },false);
   }
   async queryCalibrationStatus(options = {}) {
     optionsOnly(options, ['timeoutMs']); this._requireProfile();

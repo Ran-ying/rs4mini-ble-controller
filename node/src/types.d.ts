@@ -233,9 +233,14 @@ export interface AppAutoTuneSent {
   acknowledgementRequested: false; acknowledged: false;
   deviceVerified: false; physicalCompletionVerified: false;
 }
+export type MotorTuningAxis = "pitch" | "roll" | "yaw";
+export type MotorTuningParameter = "stiffness" | "strength" | "gyroFiltering" | "preControl";
+export interface MotorTuningReading extends AppParameterContext { axis: MotorTuningAxis; parameter: MotorTuningParameter; headerByte: number; rawHex: string; rawValue: number; withinSourceRange: boolean; }
 export interface AppCommands {
   readonly profile: "ronin-2.2.2" | null;
   readonly calibrationStatus: AppCalibrationStatus | null;
+  getMotorTuning(options?: {axis?: MotorTuningAxis; parameter?: MotorTuningParameter; timeoutMs?: number}): Promise<AppParameterReply & {values: MotorTuningReading[]}>;
+  setMotorTuning(options: {axis: MotorTuningAxis; parameter: MotorTuningParameter; value: number; timeoutMs?: number}): Promise<AppCommandReply & {axis: MotorTuningAxis; parameter: MotorTuningParameter; requestedValue: number}>;
   queryCalibrationStatus(options?: { timeoutMs?: number }): Promise<AppCommandReply & {calibration: AppCalibrationRecords}>;
   sendAutoTuneRequest(options: {start: boolean}): Promise<AppAutoTuneSent>;
   getCustomFollowSettings(options?: { timeoutMs?: number }): Promise<AppSettingsReading<CustomFollowSettings>>;

@@ -1,4 +1,5 @@
 """Current-App device commands share the existing connection/queue/pending map."""
+from .app_motor import motor_selection, motor_write, motor_reply
 import time
 import copy
 from .protocol import frame
@@ -58,6 +59,28 @@ class AppCommands:
         return result
 
     get_follow_sensitivity = getFollowSensitivity
+
+    async def getMotorTuning(self, *, axis=None, parameter=None, timeoutMs=3000):
+        self._require_profile()
+        selection=motor_selection(axis,parameter)
+        context=[dict(index=row['index'],size=1) for row in selection]
+        response=await self.owner.experimental._query_payload_command('App motor tuning',(4,0x32),parameter_request(context),timeoutMs)
+        return motor_reply(response,selection)
+
+    get_motor_tuning=getMotorTuning
+
+    async def setMotorTuning(self, *, axis, parameter, value, timeoutMs=3000):
+        self._require_profile()
+        payload=motor_write(axis,parameter,value)
+        _duration(timeoutMs,'timeoutMs',False)
+        async def body(operation):
+            await self.owner._halt()
+            self.owner._check(operation)
+            response=await self.owner.experimental._query_payload_command('App motor write',(4,0x31),payload,timeoutMs,external_operation=operation,epoch=self.owner._epoch)
+            return dict(app_reply(response,0x31),axis=axis,parameter=parameter,requestedValue=value)
+        return await self.owner._run('setMotorTuning',body,False)
+
+    set_motor_tuning=setMotorTuning
 
     async def queryCalibrationStatus(self, *, timeoutMs=3000):
         self._require_profile()

@@ -113,5 +113,12 @@ if manifest.get('calibrationResearch'):
     assert calibration['hg724UsesHg702AutoTuneOverride'] is True
     assert calibration['sourceFacts']['requestAcknowledgement'] is False
     assert calibration['sourceFacts']['statusQueryAcknowledgement'] is True
+if manifest.get('motorTuningResearch'):
+    motor = json.loads((root / manifest['motorTuningResearch']).read_text())
+    assert motor['derivedSha256'] == restored['derivedSha256']
+    assert motor['appCodeExecuted'] is False and motor['targetDeviceVerified'] is False
+    assert motor['wholeProtocolRecovered'] is False and motor['parameterNamesSafeToInferFromWireIndex'] is False
+    assert motor['sourceFacts']['namespaceDistinctFromUserParameters'] is True
+    assert len(motor['parameters']) == 12 and motor['scalarEncoding']['switchCase'] == 4
 print('Layer boundaries passed: device modules do not depend on motion; upper layers do not encode/write packets.')
 print('Protocol inventory: %d entries; inventoryComplete=false; further advanced development is gated.' % len(manifest['commands']))

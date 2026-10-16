@@ -380,8 +380,32 @@ static BOOL Matches(NSString *name) {
         case 0x0f: return RSAppSensitivityFrame(sequence, mode);
         case 0x6a: return RSAppAutoTuneFrame(sequence, mode);
         case 0x6e: return RSAppCalibrationQueryFrame(sequence);
+        case 0x31: return RSAppMotorWriteFrame(sequence,context,mode);
+        case 0x32: return RSAppMotorReadFrame(sequence,context);
         default: return nil;
     }
+}
+- (void)getMotorTuning:(NSDictionary *)filters timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
+    NSArray *selection=RSAppMotorSelection(filters);
+    if (!selection) { if (completion) dispatch_async(dispatch_get_main_queue(), ^{ completion(nil,RSAppError(@"RS4MINI_INVALID_ARGUMENT",@"Invalid motor selection",nil)); }); return; }
+    NSMutableArray *context=[NSMutableArray array];
+    for (NSDictionary *row in selection) [context addObject:@{@"index":row[@"index"],@"size":@1}];
+    [self startAppCommand:0x32 parameters:context mode:nil settingsKind:nil settingsPatch:nil timeoutMs:timeoutMs completion:^(NSDictionary *reply,NSError *error) {
+        if (error) { if (completion) completion(nil,error); return; }
+        NSError *decodeError=nil; NSDictionary *result=RSDecodeAppMotorReply(reply[@"message"],selection,&decodeError);
+        if (completion) completion(result,decodeError);
+    }];
+}
+- (void)setMotorTuning:(NSDictionary *)spec timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
+    NSDictionary *row=RSAppMotorWriteSpec(spec);
+    if (!row) { if (completion) dispatch_async(dispatch_get_main_queue(), ^{ completion(nil,RSAppError(@"RS4MINI_INVALID_ARGUMENT",@"Invalid named motor value",nil)); }); return; }
+    NSArray *context=@[@{@"index":row[@"index"],@"size":@1}];
+    [self startAppCommand:0x31 parameters:context mode:row[@"value"] settingsKind:nil settingsPatch:nil timeoutMs:timeoutMs completion:^(NSDictionary *reply,NSError *error) {
+        if (error) { if (completion) completion(nil,error); return; }
+        NSMutableDictionary *result=[reply mutableCopy];
+        [result addEntriesFromDictionary:@{@"axis":row[@"axis"],@"parameter":row[@"parameter"],@"requestedValue":row[@"value"]}];
+        if (completion) completion([result copy],nil);
+    }];
 }
 - (void)queryCalibrationStatusWithTimeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
     [self startAppCommand:0x6e parameters:nil mode:nil settingsKind:nil settingsPatch:nil timeoutMs:timeoutMs completion:completion];
@@ -400,7 +424,7 @@ static BOOL Matches(NSString *name) {
         error = RSAppError(@"RS4MINI_INVALID_ARGUMENT", @"Invalid App command arguments", nil);
     if (error) { if (completion) dispatch_async(dispatch_get_main_queue(), ^{ completion(nil, error); }); return; }
     self.appSettingsKind = settingsKind; self.appSettingsPatch = settingsPatch;
-    self.appParameters = context; self.appCommandId = command; self.appCompletion = completion ?: ^(NSDictionary *result, NSError *error) {};
+    self.appParameters = (command == 0x10 || command == 0x32) ? context : nil; self.appCommandId = command; self.appCompletion = completion ?: ^(NSDictionary *result, NSError *error) {};
     NSUInteger token = ++self.appToken; __weak typeof(self) weak = self;
     [self beginStopKeepingApp:^{
         if (!weak.ready || !weak.appCompletion || weak.appToken != token) return;

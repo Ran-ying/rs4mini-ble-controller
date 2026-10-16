@@ -1,6 +1,6 @@
 # 设备 SDK 命令审计与高级开发前置条件
 
-2026-10-16，0.7.5 / 原生 0.3.5。**尚不能确认 RS 4 Mini 全部非相机 BLE 命令都已枚举、解析并封装。**
+2026-10-16，0.7.6 / 原生 0.3.6。**尚不能确认 RS 4 Mini 全部非相机 BLE 命令都已枚举、解析并封装。**
 机器清单是 [protocol/COMMANDS.json](../protocol/COMMANDS.json)，目前记录 48 个命令或缺口条目；
 它不是厂商完整命令表，不能以“所有已知代码已封装”代替“所有设备命令已知”。
 
@@ -33,7 +33,7 @@
 | `04:66` | 状态 TLV 候选通知 | `not-applicable` / `partial` | `other-model` | 保留 TLV 原始量，不假设本机 tag 语义 |
 | `0D:02` | 电量候选通知 | `not-applicable` / `partial` | `other-model` | 百分比仅为其他 Mini 研究格式，本机未证实 |
 | `unknown:follow-mode` | 跟随模式与手柄参数 | `unknown` / `unknown` | `app-code-path` | 灵敏度0/1及继承源码的自定义跟随启用/三轴位已封装；不等于PF/PTF/FPV预设，型号支持和本机效果待验收 |
-| `unknown:motor-calibration` | 电机参数/自动整定/水平校准 | `unknown` / `unknown` | `none` | 自动调参已沿HG702覆盖路径封装无ACK请求与04:6E状态；电机数值调参/水平校准/平衡测试和完整型号分支仍待封装与实机验收 |
+| `unknown:motor-calibration` | 电机参数/自动整定/水平校准 | `unknown` / `unknown` | `none` | 调参请求/状态和十二个命名电机数值字段已封装；平衡测试、水平校准及完整型号/物理验收仍待完成 |
 | `unknown:firmware-program` | 固件动作程序 | `unknown` / `unknown` | `none` | 通用程序代码已恢复；型号路径、完整字段、执行/取消/通知语义仍待逐项审计与封装 |
 | `unknown:device-management` | 激活/绑定/恢复设置/固件管理的 BLE 覆盖 | `unknown` / `unknown` | `none` | 是否通过本 BLE 链路提供及其协议尚未枚举；连接成功不证明设备管理命令已全覆盖 |
 | `04:07` | 官方 App 枚举：RollFinetune | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
@@ -48,8 +48,8 @@
 | `04:27` | 官方 App 枚举：GetPushAbnormalStatus | `unknown` / `partial` | `other-model` | 已有 RS 3 窄布局 sleep 候选解析；官方 App 名称为异常状态，完整字段和本机语义仍未知 |
 | `04:2B` | 官方 App 枚举：GetPushTutorialStatus | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
 | `04:2C` | 官方 App 枚举：SetTutorialStep | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
-| `04:31` | 官方 App 枚举：RoninSetParams | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
-| `04:32` | 官方 App 枚举：RoninGetParams | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
+| `04:31` | 命名电机参数写入 | `implemented` / `partial` | `app-code-path` | 显式当前App配置封装十二个命名电机字段的单项写入/ACK与按上下文读取，和0F/10空间分开；源范围不是机械安全保证，实际生效/持久化/型号UI支持未实机验收；未开放任意参数写入 |
+| `04:32` | 命名电机参数读取 | `implemented` / `partial` | `app-code-path` | 显式当前App配置封装十二个命名电机字段的单项写入/ACK与按上下文读取，和0F/10空间分开；源范围不是机械安全保证，实际生效/持久化/型号UI支持未实机验收；未开放任意参数写入 |
 | `04:33` | 官方 App 枚举：RobinPushBattery | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
 | `04:35` | 官方 App 枚举：SetHandleParams | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
 | `04:36` | 官方 App 枚举：GetHandleParams | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
@@ -107,3 +107,6 @@
 
 
 0.7.5沿HG702覆盖路径封装04:6A无ACK请求及04:6E查询/通知，见 [APP_CALIBRATION.md](APP_CALIBRATION.md)。没有把Ronin2父类路径直接用于HG724，也不由本机写入或一条Complete报告判定物理完成。
+
+
+0.7.6完成十二个继承源码命名电机字段的31/32封装，详见 [APP_MOTOR_TUNING.md](APP_MOTOR_TUNING.md)。输入范围、命令空间和ACK已核对，仍无本机接受/效果/持久化证据，两个完整性门槛保持false。

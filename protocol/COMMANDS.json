@@ -269,7 +269,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "none",
       "implementation": [],
-      "remaining": "自动调参已沿HG702覆盖路径封装无ACK请求与04:6E状态；电机数值调参/水平校准/平衡测试和完整型号分支仍待封装与实机验收"
+      "remaining": "调参请求/状态和十二个命名电机数值字段已封装；平衡测试、水平校准及完整型号/物理验收仍待完成"
     },
     {
       "key": "unknown:firmware-program",
@@ -465,30 +465,46 @@
     },
     {
       "key": "04:31",
-      "name": "官方 App 枚举：RoninSetParams",
-      "requestCodec": "unknown",
-      "responseCodec": "unknown",
-      "targetEvidence": "official-app-enum",
-      "implementation": [],
-      "remaining": "当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送",
+      "name": "命名电机参数写入",
+      "requestCodec": "implemented",
+      "responseCodec": "partial",
+      "targetEvidence": "app-code-path",
+      "implementation": [
+        "node/src/app-motor.js",
+        "node/src/app-commands.js",
+        "python/rs4mini_sdk/app_motor.py",
+        "python/rs4mini_sdk/app_commands.py",
+        "macos/RSBleDevice.m",
+        "macos/RSControlCore.m"
+      ],
+      "remaining": "显式当前App配置封装十二个命名电机字段的单项写入/ACK与按上下文读取，和0F/10空间分开；源范围不是机械安全保证，实际生效/持久化/型号UI支持未实机验收；未开放任意参数写入",
       "officialAppAliases": [
         "RoninSetParams"
       ],
-      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
+      "runtimeAppEvidence": "protocol/research/ronin-motor-evidence.json"
     },
     {
       "key": "04:32",
-      "name": "官方 App 枚举：RoninGetParams",
-      "requestCodec": "unknown",
-      "responseCodec": "unknown",
-      "targetEvidence": "official-app-enum",
-      "implementation": [],
-      "remaining": "当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送",
+      "name": "命名电机参数读取",
+      "requestCodec": "implemented",
+      "responseCodec": "partial",
+      "targetEvidence": "app-code-path",
+      "implementation": [
+        "node/src/app-motor.js",
+        "node/src/app-commands.js",
+        "python/rs4mini_sdk/app_motor.py",
+        "python/rs4mini_sdk/app_commands.py",
+        "macos/RSBleDevice.m",
+        "macos/RSControlCore.m"
+      ],
+      "remaining": "显式当前App配置封装十二个命名电机字段的单项写入/ACK与按上下文读取，和0F/10空间分开；源范围不是机械安全保证，实际生效/持久化/型号UI支持未实机验收；未开放任意参数写入",
       "officialAppAliases": [
         "RoninGetParams"
       ],
       "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
-      "offlineResearchEvidence": "protocol/research/msdk-4.18-evidence.json"
+      "offlineResearchEvidence": "protocol/research/msdk-4.18-evidence.json",
+      "runtimeAppEvidence": "protocol/research/ronin-motor-evidence.json"
     },
     {
       "key": "04:33",
@@ -718,5 +734,6 @@
   "codeRestorationResearch": "protocol/research/ronin-code-restoration-evidence.json",
   "commandMethodAudit": "protocol/research/ronin-command-audit.json",
   "settingsResearch": "protocol/research/ronin-settings-evidence.json",
-  "calibrationResearch": "protocol/research/ronin-calibration-evidence.json"
+  "calibrationResearch": "protocol/research/ronin-calibration-evidence.json",
+  "motorTuningResearch": "protocol/research/ronin-motor-evidence.json"
 }

@@ -104,3 +104,8 @@ Node/Web、Python 与原生已分别拆分；完整模块映射见 `ARCHITECTURE
 
 
 0.7.5 检查继承覆盖后封装了当前型号自动调参请求与校准状态，避免沿用Ronin2父类路径或错误等待ACK。没有高级程序等待/物理完成承诺，见 APP_CALIBRATION.md。
+
+
+## 0.7.6 命名电机参数
+
+0.7.6 新增十二个命名电机数值的四端SDK、类型和离线回归；复现工具 ronin_motor_trace.py 固定APK/恢复视图哈希并核对26个方法指纹、INT08U分支和低字节编码。参数范围仅是源码校验，不是机械安全范围。详见 [APP_MOTOR_TUNING.md](APP_MOTOR_TUNING.md)。

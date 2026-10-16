@@ -118,6 +118,8 @@ test('protocol, telemetry and controller import without Node Buffer or Node modu
     assert.equal(settings.settingsWrite('motor', { enabled: true }, 255).payload[2], 254);
     const calibration = await import('./node/src/app-calibration.js');
     assert.equal(calibration.calibrationRecords(new Uint8Array([0,2,1,40])).state, 'Processing');
+    const motor = await import('./node/src/app-motor.js');
+    assert.equal(motor.motorWrite({axis:'roll',parameter:'stiffness',value:50}).payload[0], 1);
     assert.equal(typeof RS4Mini, 'function');
   `], { cwd: new URL('../../', import.meta.url), stdio: 'pipe' });
 });

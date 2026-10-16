@@ -310,3 +310,57 @@ NSDictionary *RSDecodeAppCalibrationNotification(NSDictionary *message) {
         @"physicalCompletionVerified": @NO, @"timestamp": @(NSDate.date.timeIntervalSince1970*1000)}];
     return [result copy];
 }
+
+NSArray<NSDictionary *> *RSAppMotorSelection(NSDictionary *filters) {
+    filters = filters ?: @{};
+    if (![filters isKindOfClass:NSDictionary.class]) return nil;
+    for (id key in filters) if (![@[@"axis",@"parameter"] containsObject:key]) return nil;
+    NSArray *axes = @[@"pitch",@"roll",@"yaw"], *parameters = @[@"stiffness",@"strength",@"gyroFiltering",@"preControl"], *minimums = @[@5,@1,@0,@0];
+    if ((filters[@"axis"] && ![axes containsObject:filters[@"axis"]]) || (filters[@"parameter"] && ![parameters containsObject:filters[@"parameter"]])) return nil;
+    NSMutableArray *result = [NSMutableArray array];
+    for (NSUInteger g=0;g<4;g++) for (NSUInteger a=0;a<3;a++) {
+        if ((filters[@"axis"] && ![filters[@"axis"] isEqual:axes[a]]) || (filters[@"parameter"] && ![filters[@"parameter"] isEqual:parameters[g]])) continue;
+        [result addObject:@{@"axis":axes[a],@"parameter":parameters[g],@"index":@(g*3+a),@"size":@1,@"min":minimums[g],@"max":@100}];
+    }
+    return [result copy];
+}
+NSDictionary *RSAppMotorWriteSpec(NSDictionary *spec) {
+    if (![spec isKindOfClass:NSDictionary.class] || spec.count!=3 || !spec[@"axis"] || !spec[@"parameter"] || !spec[@"value"]) return nil;
+    NSArray *selected=RSAppMotorSelection(@{@"axis":spec[@"axis"],@"parameter":spec[@"parameter"]});
+    if (selected.count!=1 || !Numeric(spec[@"value"])) return nil;
+    double value=[spec[@"value"] doubleValue]; NSDictionary *row=selected[0];
+    if (floor(value)!=value || value<[row[@"min"] intValue] || value>[row[@"max"] intValue]) return nil;
+    NSMutableDictionary *result=[row mutableCopy]; result[@"value"]=@(value); return [result copy];
+}
+NSData *RSAppMotorReadFrame(uint16_t sequence, NSArray *context) {
+    context=RSAppParameterContext(context);
+    if (!context || context.count>12) return nil;
+    NSMutableData *payload=[NSMutableData data];
+    for (NSDictionary *row in context) {
+        if ([row[@"index"] intValue]>11 || [row[@"size"] intValue]!=1) return nil;
+        uint8_t index=[row[@"index"] unsignedCharValue]; [payload appendBytes:&index length:1];
+    }
+    return CommandFrame(sequence,4,0x32,payload,0x40);
+}
+NSData *RSAppMotorWriteFrame(uint16_t sequence, NSArray *context, NSNumber *value) {
+    if (!RSAppMotorReadFrame(0,context) || context.count!=1) return nil;
+    NSDictionary *row=RSAppMotorSelection(@{})[[context[0][@"index"] unsignedIntegerValue]];
+    NSDictionary *spec=RSAppMotorWriteSpec(@{@"axis":row[@"axis"],@"parameter":row[@"parameter"],@"value":value ?: NSNull.null});
+    if (!spec) return nil;
+    uint8_t payload[]={[row[@"index"] unsignedCharValue],1,[value unsignedCharValue]};
+    return CommandFrame(sequence,4,0x31,[NSData dataWithBytes:payload length:3],0x40);
+}
+NSDictionary *RSDecodeAppMotorReply(NSDictionary *message, NSArray *selection, NSError **error) {
+    NSMutableArray *context=[NSMutableArray array];
+    for (NSDictionary *row in selection) [context addObject:@{@"index":row[@"index"],@"size":@1}];
+    NSDictionary *reply=RSDecodeAppReply(message,0x32,context,error); if (!reply) return nil;
+    NSMutableArray *values=[NSMutableArray array];
+    for (NSUInteger i=0;i<selection.count;i++) {
+        NSDictionary *row=selection[i], *record=reply[@"parameters"][i]; unsigned int raw=0;
+        [[NSScanner scannerWithString:record[@"rawHex"]] scanHexInt:&raw];
+        NSMutableDictionary *entry=[record mutableCopy];
+        [entry addEntriesFromDictionary:@{@"axis":row[@"axis"],@"parameter":row[@"parameter"],@"rawValue":@(raw),@"withinSourceRange":@(raw>=[row[@"min"] unsignedIntValue] && raw<=[row[@"max"] unsignedIntValue])}];
+        [values addObject:[entry copy]];
+    }
+    NSMutableDictionary *result=[reply mutableCopy]; result[@"values"]=[values copy]; return [result copy];
+}

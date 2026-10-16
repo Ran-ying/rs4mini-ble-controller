@@ -302,9 +302,23 @@ int main(void) {
         notify.value = calPush; [gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil];
         Require(statusCallbacks == 1 && [gimbal.appCalibrationStatus[@"state"] isEqualToString:@"Complete"] && ![gimbal.appCalibrationStatus[@"physicalCompletionVerified"] boolValue], @"native passive calibration report has no program completion guarantee");
         Require([gimbal useAppProfile:@"ronin-2.2.2"] && !gimbal.appCalibrationStatus, @"explicit profile reselection resets cached calibration report");
+        [peripheral.writes setLength:0]; [gimbal setMotorTuning:@{@"axis":@"pitch",@"parameter":@"stiffness",@"value":@4} timeoutMs:1000 completion:appDone]; PumpCallbacks();
+        Require(appCallbacks==14 && peripheral.writes.length==0 && !gimbal.busy && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_INVALID_ARGUMENT"],@"invalid motor range rejected before stopping");
+        [gimbal setMotorTuning:@{@"axis":@"roll",@"parameter":@"stiffness",@"value":@50} timeoutMs:1000 completion:appDone]; ThreeTicks(gimbal);
+        [decoder reset]; frames=[decoder push:peripheral.writes];
+        Require(gimbal.busy && [frames.lastObject[@"commandId"] intValue]==0x31 && [frames.lastObject[@"payload"] isEqualToData:[NSData dataWithBytes:(uint8_t[]){1,1,50} length:3]],@"motor setter owns slot and uses31 namespace");
+        appSequence=[[gimbal valueForKey:@"deviceQuerySequence"] unsignedShortValue]; notify.value=AppResponse(appSequence,0x31,ok,4);
+        [gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil]; PumpCallbacks();
+        Require(appCallbacks==15 && !gimbal.busy && [appResult[@"requestedValue"] intValue]==50 && [appResult[@"axis"] isEqualToString:@"roll"] && ![appResult[@"physicalCompletionVerified"] boolValue],@"motor ACK validates no parameter body and does not imply physical effect");
+        [peripheral.writes setLength:0]; [gimbal getMotorTuning:@{@"axis":@"yaw"} timeoutMs:1000 completion:appDone]; ThreeTicks(gimbal);
+        [decoder reset]; frames=[decoder push:peripheral.writes];
+        Require([frames.lastObject[@"commandId"] intValue]==0x32 && [frames.lastObject[@"payload"] isEqualToData:[NSData dataWithBytes:(uint8_t[]){2,5,8,11} length:4]],@"native motor selection uses32 and source indexes");
+        appSequence=[[gimbal valueForKey:@"deviceQuerySequence"] unsignedShortValue]; notify.value=AppResponse(appSequence,0x32,[NSData dataWithBytes:(uint8_t[]){0,2,9,255,5,1,30,8,1,0,11,1,100} length:13],4);
+        [gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil]; PumpCallbacks();
+        Require(appCallbacks==16 && [appResult[@"values"] count]==4 && [appResult[@"values"][0][@"rawValue"] intValue]==255 && ![appResult[@"values"][0][@"withinSourceRange"] boolValue],@"native motor decode retains unknown source value without guessing defaults");
         [gimbal getFollowSensitivityWithTimeoutMs:1000 completion:appDone]; ThreeTicks(gimbal);
         [gimbal centralManager:(id)central didDisconnectPeripheral:(id)peripheral error:nil]; PumpCallbacks();
-        Require(appCallbacks == 14 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_DISCONNECTED"], @"native disconnect rejects pending App query");
+        Require(appCallbacks == 17 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_DISCONNECTED"], @"native disconnect rejects pending App query");
         [gimbal disconnect]; ThreeTicks(gimbal);
         printf("Native fake-device lifecycle checks: %lu passed (no Bluetooth manager created)\n", (unsigned long)assertions);
     }

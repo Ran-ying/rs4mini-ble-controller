@@ -1,4 +1,4 @@
-# 当前 App 来源的设备参数 SDK（0.7.5 / 原生 0.3.5）
+# 当前 App 来源的设备参数 SDK（0.7.6 / 原生 0.3.6）
 
 应用继续只创建 `RS4Mini`（原生 `RSGimbal`）。`appCommands` 是该对象的设备 SDK 子接口，复用已有连接、序号、队列、响应关联和操作协调器；没有另开蓝牙连接。高级组合能力没有增加。新接口尚未对设备发送或验收。
 
@@ -75,3 +75,6 @@ PYTHONPATH=work/research/analysis-libs work/python312/bin/python tools/research/
 
 
 0.7.5 新增无ACK调参请求及04:6E状态，见 [APP_CALIBRATION.md](APP_CALIBRATION.md)。其发送结果不使用参数写入的ACK成功语义，固件完成仍未验证。
+
+
+0.7.6新增独立31/32空间的命名电机参数，见 [APP_MOTOR_TUNING.md](APP_MOTOR_TUNING.md)。通用参数读取接口保持10空间，不会按相同索引自动命名电机字段。

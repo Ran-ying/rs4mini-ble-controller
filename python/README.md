@@ -1,4 +1,4 @@
-# Python SDK 0.7.5
+# Python SDK 0.7.6
 
 Python 3.8+、Bleak 后端。保留早期 camelCase 和 snake_case 调用，同时补充反馈、低速位置闭环、缓存 ID、停止取消和 `close()`。
 
@@ -92,3 +92,6 @@ timeoutMs 分别限制每段，停留不计入下段；snake_case 为 `move_thro
 
 
 0.7.5 封装当前型号路径的无ACK自动调参请求、校准状态查询/通知，严格区分本机写入、设备报告与物理完成。接口和待验收边界见 [调参请求与状态](../docs/APP_CALIBRATION.md)。
+
+
+0.7.6新增十二个命名电机数值参数的31/32读写，和普通用户参数命令空间分开；源码范围与实际设备效果分别验收。见 [电机参数SDK](../docs/APP_MOTOR_TUNING.md)。

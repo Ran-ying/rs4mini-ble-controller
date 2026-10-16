@@ -121,3 +121,14 @@ async function calibrationTypes(gimbal: RS4Mini) {
   await gimbal.appCommands.sendAutoTuneRequest({start: 1});
   return [noAck, percent];
 }
+
+async function motorTuningTypes(gimbal: RS4Mini) {
+  const read=await gimbal.appCommands.getMotorTuning({axis:'yaw'});
+  const raw: number=read.values[0].rawValue;
+  await gimbal.appCommands.setMotorTuning({axis:'roll',parameter:'stiffness',value:50});
+  // @ts-expect-error motor axis names are source pitch/roll/yaw, not virtual-stick pan
+  await gimbal.appCommands.getMotorTuning({axis:'pan'});
+  // @ts-expect-error no guessed motor parameter names
+  await gimbal.appCommands.setMotorTuning({axis:'yaw',parameter:'speed',value:50});
+  return raw;
+}

@@ -41,3 +41,8 @@ NSData *RSAppCalibrationQueryFrame(uint16_t sequence);
 NSDictionary *RSDecodeAppCalibrationRecords(NSData *body);
 NSDictionary *RSDecodeAppCalibrationReply(NSDictionary *message, NSError **error);
 NSDictionary *RSDecodeAppCalibrationNotification(NSDictionary *message);
+NSArray<NSDictionary *> *RSAppMotorSelection(NSDictionary *filters);
+NSDictionary *RSAppMotorWriteSpec(NSDictionary *spec);
+NSData *RSAppMotorReadFrame(uint16_t sequence, NSArray *context);
+NSData *RSAppMotorWriteFrame(uint16_t sequence, NSArray *context, NSNumber *value);
+NSDictionary *RSDecodeAppMotorReply(NSDictionary *message, NSArray *selection, NSError **error);

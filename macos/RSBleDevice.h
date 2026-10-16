@@ -29,6 +29,8 @@ typedef void (^RSAppCompletion)(NSDictionary *result, NSError *error);
 @property(nonatomic, copy) TelemetryHandler appStatusHandler;
 - (void)queryCalibrationStatusWithTimeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion;
 - (void)sendAutoTuneRequest:(NSNumber *)start completion:(RSAppCompletion)completion;
+- (void)getMotorTuning:(NSDictionary *)filters timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion;
+- (void)setMotorTuning:(NSDictionary *)spec timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion;
 @property(nonatomic, copy) TelemetryHandler messageHandler;
 - (void)connect;
 - (void)disconnect;

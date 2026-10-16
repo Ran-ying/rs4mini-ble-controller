@@ -242,3 +242,15 @@ context. Handle field offsets are legacy candidates with unknown target values.
 No new SDK commands, query allowlist, advanced feature or device evidence resulted.
 See `tools/research/MSDK_V4.md`. JAR/AAR/class files and complete disassembly remain
 ignored, not source deliverables; source release versions were not bumped.
+
+
+Further current-APK identity research ties display name DJI RS 4 Mini and BLE
+prefix dji rs4 mini- to HG724. Its app gimbal enum value is 103, not a validated
+wire offset or target query reading. The HG724-specific abstraction registers
+FollowModeSensitivity, but setter/parameter loading methods remain protected
+stubs. raw resources map to gimbal_param_infos (DB.json) and
+ronin2_gimbal_param_infos (jy.json); the active table selector is not recovered.
+See tools/research/HG724.md and protocol/research/ronin-hg724-evidence.json.
+Model identity is established in readable code; wire-command branches and target
+support are not. Do not turn the enum value or resource names into SDK decoding
+or writes. ronin_model_trace.py is offline-only; runtime versions remain unchanged.

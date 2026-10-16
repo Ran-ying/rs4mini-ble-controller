@@ -26,13 +26,13 @@
 | `04:0C` | 原生速率候选 | `implemented` / `unknown` | `other-model` | 轴序/单位/释放仅有 RS 3 来源，本机未验证 |
 | `04:0F` | 休眠/唤醒候选 | `implemented` / `partial` | `other-model` | RS 3 与 Mini 字节不同，本机效果未知；新增单字节研究 ACK 原始返回码，参数表的同编号别名不可自动套用 |
 | `04:14` | 原生绝对角候选 | `implemented` / `unknown` | `other-model` | 末参数单位、参考系与本机兼容性未知 |
-| `04:1C` | 设备类型查询 | `implemented` / `raw` | `other-model` | 响应枚举未确认 |
+| `04:1C` | 设备类型查询 | `implemented` / `raw` | `other-model` | 已在 App 可读代码中关联 RS 4 Mini=HG724，类型枚举值 103；线上偏移、返回码及本机响应未确认，仍返回原始消息 |
 | `04:1E` | degree-info 请求 | `implemented` / `raw` | `hardware` | requestDegreeInfo 封装关联原始响应；本机历史 00 不等于完整字段解析或增频确认 |
 | `04:30` | 校准进度候选通知 | `not-applicable` / `partial` | `other-model` | 仅被动解析，不触发校准 |
-| `04:4C` | 重置/模式命令中的三轴回中 | `partial` / `unknown` | `hardware` | 只确认 FE01/flags40 三轴回中；其余位/模式/单轴语义未知 |
+| `04:4C` | 重置/模式命令中的三轴回中 | `partial` / `unknown` | `hardware` | 只确认 FE01/flags40 本机三轴回中；旧 MSDK 的 YAW_CENTER=1 与本机效果不一致，旧轴枚举不能作为本机单轴回中；候选载荷仅做离线核对 |
 | `04:66` | 状态 TLV 候选通知 | `not-applicable` / `partial` | `other-model` | 保留 TLV 原始量，不假设本机 tag 语义 |
 | `0D:02` | 电量候选通知 | `not-applicable` / `partial` | `other-model` | 百分比仅为其他 Mini 研究格式，本机未证实 |
-| `unknown:follow-mode` | 跟随模式与手柄参数 | `unknown` / `unknown` | `none` | 已定位官方 App 候选命令号及相关参数/方法；受保护负载逻辑与 RS 4 Mini 型号分支尚未恢复，不能开放写入 |
+| `unknown:follow-mode` | 跟随模式与手柄参数 | `unknown` / `unknown` | `none` | 已确认 HG724 型号关联和 FollowModeSensitivity 注册入口；专属 setter 与参数表加载仍为保护桩，未恢复实际命令/索引/载荷，不开放写入 |
 | `unknown:motor-calibration` | 电机参数/自动整定/水平校准 | `unknown` / `unknown` | `none` | 已定位官方 App 候选命令号及相关参数/方法；受保护负载逻辑与 RS 4 Mini 型号分支尚未恢复，不能开放写入 |
 | `unknown:firmware-program` | 固件动作程序 | `unknown` / `unknown` | `none` | 已定位官方 App 候选命令号及相关参数/方法；受保护负载逻辑与 RS 4 Mini 型号分支尚未恢复，不能开放写入 |
 | `unknown:device-management` | 激活/绑定/恢复设置/固件管理的 BLE 覆盖 | `unknown` / `unknown` | `none` | 是否通过本 BLE 链路提供及其协议尚未枚举；连接成功不证明设备管理命令已全覆盖 |
@@ -49,10 +49,10 @@
 | `04:2B` | 官方 App 枚举：GetPushTutorialStatus | `unknown` / `unknown` | `official-app-enum` | 枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送 |
 | `04:2C` | 官方 App 枚举：SetTutorialStep | `unknown` / `unknown` | `official-app-enum` | 枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送 |
 | `04:31` | 官方 App 枚举：RoninSetParams | `unknown` / `unknown` | `official-app-enum` | 枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送 |
-| `04:32` | 官方 App 枚举：RoninGetParams | `unknown` / `unknown` | `official-app-enum` | 枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送 |
+| `04:32` | 官方 App 枚举：RoninGetParams | `unknown` / `unknown` | `official-app-enum` | 官方旧 MSDK 保留参数索引请求与依赖请求上下文/外部宽度的响应尾部逻辑；返回码可能在包层剥离。尚缺有效运行实现、参数表型号分支与本机样本，仅离线候选工具 |
 | `04:33` | 官方 App 枚举：RobinPushBattery | `unknown` / `unknown` | `official-app-enum` | 枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送 |
-| `04:35` | 官方 App 枚举：SetHandleParams | `unknown` / `unknown` | `official-app-enum` | 枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送 |
-| `04:36` | 官方 App 枚举：GetHandleParams | `unknown` / `unknown` | `official-app-enum` | 枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送 |
+| `04:35` | 官方 App 枚举：SetHandleParams | `unknown` / `unknown` | `official-app-enum` | 旧 MSDK 的不可达字节码尾部给出 8 字节手柄参数候选布局；本机字段含义/范围及模式分支未知，不开放写入 |
+| `04:36` | 官方 App 枚举：GetHandleParams | `unknown` / `unknown` | `official-app-enum` | 旧 MSDK 的不可达字节码尾部给出若干响应业务体偏移；需要区分包层返回码，不是本机验证。仅离线原始值解析，无新增查询 |
 | `04:37` | 官方 App 枚举：SetTimelapseParams | `unknown` / `unknown` | `official-app-enum` | 枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送 |
 | `04:38` | 官方 App 枚举：GetPushTimelapseStatus | `unknown` / `unknown` | `official-app-enum` | 枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送 |
 | `04:40` | 官方 App 枚举：BalanceAdjust | `unknown` / `unknown` | `official-app-enum` | 枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送 |
@@ -90,3 +90,5 @@
 进一步的官方 MSDK 交叉研究仅增加离线候选结构：04:4C 的旧轴枚举与本机回中语义有差异，
 04:32 需要请求上下文和外部宽度，04:35/36 仅定位旧业务体偏移。包层可剥离返回码，不能直接照搬业务方法偏移。
 详见 [MSDK_V4.md](../tools/research/MSDK_V4.md)。这些证据没有提升请求/响应支持等级，没有扩大发送允许列表。
+
+当前 Ronin 的 RS 4 Mini 型号已通过展示构造与 BLE 前缀关联为 HG724，但具体发送/参数表选择仍未恢复；见 [HG724 研究说明](../tools/research/HG724.md)。型号识别证据不提升命令封装或实机支持等级。

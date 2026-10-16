@@ -150,3 +150,13 @@ Osmo 示例的角度次序与这些 RS 资料冲突，不能直接移植。
 只供离线核对，详见 [研究说明](../tools/research/MSDK_V4.md)。它没有恢复当前 Ronin App 的有效打包方法。
 旧回中枚举与本机 FE01 三轴回中存在语义差异；接收包可能先剥离返回码，业务方法偏移不能直接复制到 BLE 解码器。
 不据此改变现有研究配置或本机反馈映射，没有新增发送接口。
+
+
+## HG724 型号与参数资源关联（2026-10-16）
+
+可读 App 指令已把展示名 DJI RS 4 Mini 与 BLE 前缀 dji rs4 mini- 关联到 HG724。
+HG724 类型枚举值 103 仅为 App 事实，不是已解码线上字段或本机查询结果。
+专属类注册 FollowModeSensitivity，但设置方法与参数加载仍为保护桩，未恢复具体命令/索引/载荷。
+两份资源原名分别为 gimbal_param_infos（res/DB.json）和 ronin2_gimbal_param_infos（res/jy.json），
+不能据资源名或继承关系认定本机采用哪一份。完整证据与复现见 [HG724.md](../tools/research/HG724.md)。
+本轮只增加离线研究工具，SDK/原生版本、48 条清单及完整性门槛不变，没有硬件操作。

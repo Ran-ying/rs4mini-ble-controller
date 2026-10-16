@@ -1,0 +1,379 @@
+{
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "source": "https://www.dji.com/downloads/djiapp/dji-ronin",
+  "targetDeviceVerified": false,
+  "wireCommandBranchRecovered": false,
+  "parameterResourceSelectionRecovered": false,
+  "originalProtectedMethodsRestored": false,
+  "recovery": [
+    {
+      "index": 0,
+      "base": 26204,
+      "size": 14135296,
+      "stringCount": 67006,
+      "unchangedStringIds": 34266,
+      "structurallyReadable": true,
+      "lastDamagedStringIdOffset": 131068,
+      "file": "business-00.dex",
+      "derivedSha256": "40464a1fd191dd70388972789143168c33819b661376ee572ebcfb5891cb41fb"
+    },
+    {
+      "index": 1,
+      "base": 14161500,
+      "size": 4427776,
+      "stringCount": 29629,
+      "unchangedStringIds": 0,
+      "structurallyReadable": false,
+      "lastDamagedStringIdOffset": 118624
+    },
+    {
+      "index": 2,
+      "base": 18589276,
+      "size": 5844992,
+      "stringCount": 36860,
+      "unchangedStringIds": 4120,
+      "structurallyReadable": true,
+      "lastDamagedStringIdOffset": 131068,
+      "file": "business-02.dex",
+      "derivedSha256": "b4e765c1510428c953179de1ae31f12d9ebb0b6b1e2778a400c18499fd1073db"
+    },
+    {
+      "index": 3,
+      "base": 24434268,
+      "size": 9973760,
+      "stringCount": 58169,
+      "unchangedStringIds": 25429,
+      "structurallyReadable": true,
+      "lastDamagedStringIdOffset": 131068,
+      "file": "business-03.dex",
+      "derivedSha256": "643e2a7ca7d31ee33c42a0696a0cef3dc7759a386777409bd81e9d985646f41c"
+    },
+    {
+      "index": 4,
+      "base": 34408028,
+      "size": 9613312,
+      "stringCount": 48677,
+      "unchangedStringIds": 15937,
+      "structurallyReadable": true,
+      "lastDamagedStringIdOffset": 131068,
+      "file": "business-04.dex",
+      "derivedSha256": "ae7b8d4cac7e3ad82d5518a2ab527b08bc4944be448918be188912e5480e11a3"
+    },
+    {
+      "index": 5,
+      "base": 44021340,
+      "size": 13815808,
+      "stringCount": 65293,
+      "unchangedStringIds": 32553,
+      "structurallyReadable": true,
+      "lastDamagedStringIdOffset": 131068,
+      "file": "business-05.dex",
+      "derivedSha256": "00cfa920406e2f0628427c9d2415a36624d0e11ad4809f5f06c3f07c27dc5458"
+    },
+    {
+      "index": 6,
+      "base": 57837148,
+      "size": 10326016,
+      "stringCount": 53196,
+      "unchangedStringIds": 20456,
+      "structurallyReadable": true,
+      "lastDamagedStringIdOffset": 131068,
+      "file": "business-06.dex",
+      "derivedSha256": "f46d51477bc2905063abbb610815cc3138675737126c9e8ab2a77d820ed75083"
+    },
+    {
+      "index": 7,
+      "base": 68163164,
+      "size": 1703944,
+      "stringCount": 17753,
+      "unchangedStringIds": 0,
+      "structurallyReadable": false,
+      "lastDamagedStringIdOffset": 71120
+    }
+  ],
+  "classes": [
+    {
+      "file": "business-03.dex",
+      "name": "Lcom/dji/ronin/ui/entry/DeviceSwitchTextView;",
+      "superclass": "Ljava/lang/Object;",
+      "methods": [
+        {
+          "name": "<clinit>",
+          "descriptor": "()V",
+          "codeOffset": 2650884,
+          "instructionSha256": "bc2c2126687f66b34ffe58fdcf71681b877c602c07e49c1f0707186e067d71b5",
+          "protectedStubCandidate": false,
+          "references": [
+            {
+              "op": "invoke-direct",
+              "operand": "v1, v2, v3, v4, Lcom/dji/ronin/ui/entry/DeviceTextViewItem;-><init>(Ldji/common/product/Model; Ljava/lang/String; Z)V"
+            },
+            {
+              "op": "sget-object",
+              "operand": "v2, Ldji/common/product/Model;->HG724 Ldji/common/product/Model;"
+            },
+            {
+              "op": "const-string/jumbo",
+              "operand": "v3, DJI RS 4 Mini"
+            },
+            {
+              "op": "invoke-direct",
+              "operand": "v1, v2, v3, v4, Lcom/dji/ronin/ui/entry/DeviceTextViewItem;-><init>(Ldji/common/product/Model; Ljava/lang/String; Z)V"
+            },
+            {
+              "op": "invoke-direct",
+              "operand": "v1, v5, v6, v2, Lcom/dji/ronin/ui/entry/DeviceTextViewItem;-><init>(Ldji/common/product/Model; Ljava/lang/String; Z)V"
+            },
+            {
+              "op": "invoke-direct",
+              "operand": "v1, v6, v7, v2, Lcom/dji/ronin/ui/entry/DeviceTextViewItem;-><init>(Ldji/common/product/Model; Ljava/lang/String; Z)V"
+            },
+            {
+              "op": "invoke-direct",
+              "operand": "v1, v6, v7, v4, Lcom/dji/ronin/ui/entry/DeviceTextViewItem;-><init>(Ldji/common/product/Model; Ljava/lang/String; Z)V"
+            },
+            {
+              "op": "invoke-direct",
+              "operand": "v1, v6, v7, v2, Lcom/dji/ronin/ui/entry/DeviceTextViewItem;-><init>(Ldji/common/product/Model; Ljava/lang/String; Z)V"
+            },
+            {
+              "op": "invoke-direct",
+              "operand": "v1, v6, v7, v2, Lcom/dji/ronin/ui/entry/DeviceTextViewItem;-><init>(Ldji/common/product/Model; Ljava/lang/String; Z)V"
+            },
+            {
+              "op": "invoke-direct",
+              "operand": "v1, v6, v7, v2, Lcom/dji/ronin/ui/entry/DeviceTextViewItem;-><init>(Ldji/common/product/Model; Ljava/lang/String; Z)V"
+            },
+            {
+              "op": "invoke-direct",
+              "operand": "v1, v6, v7, v2, Lcom/dji/ronin/ui/entry/DeviceTextViewItem;-><init>(Ldji/common/product/Model; Ljava/lang/String; Z)V"
+            },
+            {
+              "op": "invoke-direct",
+              "operand": "v1, v6, v7, v4, Lcom/dji/ronin/ui/entry/DeviceTextViewItem;-><init>(Ldji/common/product/Model; Ljava/lang/String; Z)V"
+            },
+            {
+              "op": "invoke-direct",
+              "operand": "v1, v6, v7, v4, Lcom/dji/ronin/ui/entry/DeviceTextViewItem;-><init>(Ldji/common/product/Model; Ljava/lang/String; Z)V"
+            },
+            {
+              "op": "invoke-direct",
+              "operand": "v1, v6, v7, v4, Lcom/dji/ronin/ui/entry/DeviceTextViewItem;-><init>(Ldji/common/product/Model; Ljava/lang/String; Z)V"
+            },
+            {
+              "op": "invoke-direct",
+              "operand": "v1, v5, v6, v4, Lcom/dji/ronin/ui/entry/DeviceTextViewItem;-><init>(Ldji/common/product/Model; Ljava/lang/String; Z)V"
+            },
+            {
+              "op": "invoke-direct",
+              "operand": "v1, v5, v6, v4, Lcom/dji/ronin/ui/entry/DeviceTextViewItem;-><init>(Ldji/common/product/Model; Ljava/lang/String; Z)V"
+            },
+            {
+              "op": "sget-object",
+              "operand": "v2, Ldji/common/product/Model;->HG724 Ldji/common/product/Model;"
+            },
+            {
+              "op": "invoke-direct",
+              "operand": "v1, v2, v3, v4, Lcom/dji/ronin/ui/entry/DeviceTextViewItem;-><init>(Ldji/common/product/Model; Ljava/lang/String; Z)V"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "business-05.dex",
+      "name": "Ldji/midware/ble2/RoninBluetoothConst;",
+      "superclass": "Ljava/lang/Enum;",
+      "methods": [
+        {
+          "name": "<clinit>",
+          "descriptor": "()V",
+          "codeOffset": 3278440,
+          "instructionSha256": "be901d86d9816cf2c6668a0b0915839daad97545c20516e0a31283585c33ea09",
+          "protectedStubCandidate": false,
+          "references": [
+            {
+              "op": "sget-object",
+              "operand": "v4, Ldji/midware/ble2/DJIBLEDeviceType;->HG724 Ldji/midware/ble2/DJIBLEDeviceType;"
+            },
+            {
+              "op": "sget-object",
+              "operand": "v5, Ldji/midware/component/DJIComponentManager$GimbalComponentType;->HG724 Ldji/midware/component/DJIComponentManager$GimbalComponentType;"
+            },
+            {
+              "op": "const-string/jumbo",
+              "operand": "v1, RONIN_HG724_NAME"
+            },
+            {
+              "op": "const-string/jumbo",
+              "operand": "v3, dji rs4 mini-"
+            },
+            {
+              "op": "invoke-direct/range",
+              "operand": "v0 ... v5, Ldji/midware/ble2/RoninBluetoothConst;-><init>(Ljava/lang/String; I Ljava/lang/String; Ldji/midware/ble2/DJIBLEDeviceType; Ldji/midware/component/DJIComponentManager$GimbalComponentType;)V"
+            },
+            {
+              "op": "sput-object",
+              "operand": "v0, Ldji/midware/ble2/RoninBluetoothConst;->RONIN_HG724_NAME Ldji/midware/ble2/RoninBluetoothConst;"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "business-05.dex",
+      "name": "Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager$1;",
+      "superclass": "Ljava/lang/Object;",
+      "methods": [
+        {
+          "name": "run",
+          "descriptor": "()V",
+          "codeOffset": 3336860,
+          "instructionSha256": "ad035c9e19f57fb3b1ada156b9c7e9bbf07087bd053d19c6b6510b9e4e1db1b6",
+          "protectedStubCandidate": true,
+          "references": []
+        }
+      ]
+    },
+    {
+      "file": "business-05.dex",
+      "name": "Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager;",
+      "superclass": "Ljava/lang/Object;",
+      "methods": [
+        {
+          "name": "init",
+          "descriptor": "()V",
+          "codeOffset": 3337144,
+          "instructionSha256": "0585b169b2668ee37e7826983f159bf8214422fe83f2c0502f0aab78c2a854de",
+          "protectedStubCandidate": true,
+          "references": []
+        },
+        {
+          "name": "readToMemory",
+          "descriptor": "(Ljava/lang/String;)V",
+          "codeOffset": 3337284,
+          "instructionSha256": "1b9e7d92ad8f5e558947603ebc20298db6b0befbf114e0a14ab9797c0eb5d441",
+          "protectedStubCandidate": true,
+          "references": []
+        }
+      ]
+    },
+    {
+      "file": "business-05.dex",
+      "name": "Ldji/midware/data/model/P3/DataGimbalGetPushType$DJIGimbalType;",
+      "superclass": "Ljava/lang/Enum;",
+      "methods": [
+        {
+          "name": "<clinit>",
+          "descriptor": "()V",
+          "codeOffset": 3466944,
+          "instructionSha256": "e2e0529bb45f0fdab7ffafa3963d46ebb0ffecdac3aabddde2651003a3e81c01",
+          "protectedStubCandidate": false,
+          "references": [
+            {
+              "op": "const-string/jumbo",
+              "operand": "v3, HG724"
+            },
+            {
+              "op": "sput-object",
+              "operand": "v0, Ldji/midware/data/model/P3/DataGimbalGetPushType$DJIGimbalType;->HG724 Ldji/midware/data/model/P3/DataGimbalGetPushType$DJIGimbalType;"
+            }
+          ],
+          "hg724Enum": {
+            "name": "HG724",
+            "ordinal": 31,
+            "value": 103
+          }
+        }
+      ]
+    },
+    {
+      "file": "business-05.dex",
+      "name": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG702Abstraction;",
+      "superclass": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "methods": [
+        {
+          "name": "startAutoTune",
+          "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+          "codeOffset": 6540296,
+          "instructionSha256": "4c4c84d78bd66bb0b51b2c9585657190c2510088cd6971c95bdcbe83163516f5",
+          "protectedStubCandidate": true,
+          "references": []
+        }
+      ]
+    },
+    {
+      "file": "business-05.dex",
+      "name": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG724Abstraction;",
+      "superclass": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG702Abstraction;",
+      "methods": [
+        {
+          "name": "init",
+          "descriptor": "(Ljava/lang/String; I Ldji/sdksharedlib/store/DJISDKCacheStoreLayer; Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$OnValueChangeListener;)V",
+          "codeOffset": 6541920,
+          "instructionSha256": "cd5fee3a3211949590a6dbd54b29974719c811f5c6e0856a92bf59a939a29272",
+          "protectedStubCandidate": false,
+          "references": [
+            {
+              "op": "iget-object",
+              "operand": "v1, v0, Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG724Abstraction;->mGimbalKeyListener Ldji/sdksharedlib/listener/DJISDKCacheListenerLayer$OnChangeListener;"
+            },
+            {
+              "op": "const-string/jumbo",
+              "operand": "v2, FollowModeSensitivity"
+            }
+          ]
+        },
+        {
+          "name": "onEvent3BackgroundThread",
+          "descriptor": "(Ldji/midware/data/model/P3/DataGimbalGetUserParams;)V",
+          "codeOffset": 6541968,
+          "instructionSha256": "78058c7a6be4ebc7caddd8b353b9e782e34314c00dccfa6baa03e956ac7b3b77",
+          "protectedStubCandidate": true,
+          "references": []
+        },
+        {
+          "name": "onEvent3BackgroundThread",
+          "descriptor": "(Ldji/midware/data/model/P3/DataWifiPingConnect;)V",
+          "codeOffset": 6542068,
+          "instructionSha256": "2f56fc0423bb619384daba717bdd006121b3e2c2d5522c1310c2a202d7ed4e7b",
+          "protectedStubCandidate": true,
+          "references": []
+        },
+        {
+          "name": "setFollowModeSensitivity",
+          "descriptor": "(I Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+          "codeOffset": 6542124,
+          "instructionSha256": "c7c6490e34a7307c823fcd48dc06954d5e09ae8695b1527791622afeb847e39a",
+          "protectedStubCandidate": true,
+          "references": []
+        }
+      ]
+    }
+  ],
+  "rawParameterResources": [
+    {
+      "package": "com.dji.ronin",
+      "id": 2131886110,
+      "name": "gimbal_param_infos",
+      "path": "res/DB.json"
+    },
+    {
+      "package": "com.dji.ronin",
+      "id": 2131886149,
+      "name": "ronin2_gimbal_param_infos",
+      "path": "res/jy.json"
+    }
+  ],
+  "identityLinkedByReadableAppCode": true,
+  "identityLabel": "HG724",
+  "identityDisplayName": "DJI RS 4 Mini",
+  "identityBlePrefix": "dji rs4 mini-",
+  "enumValueIsNotValidatedWireOffset": true,
+  "parameterNamesSafeToInferFromWireIndex": false,
+  "limitations": [
+    "Model identity and class inheritance do not recover command selection or payload packing.",
+    "FollowModeSensitivity registration is readable; setter and parameter-table loading are protected stubs.",
+    "HG724=103 is an app enum value, not a decoded wire reply or local device observation."
+  ]
+}

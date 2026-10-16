@@ -155,11 +155,12 @@
         "python/rs4mini_sdk/experimental_device.py",
         "macos/RSBleDevice.m"
       ],
-      "remaining": "响应枚举未确认",
+      "remaining": "已在 App 可读代码中关联 RS 4 Mini=HG724，类型枚举值 103；线上偏移、返回码及本机响应未确认，仍返回原始消息",
       "officialAppAliases": [
         "GetPushType"
       ],
-      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
+      "modelResearchEvidence": "protocol/research/ronin-hg724-evidence.json"
     },
     {
       "key": "04:1E",
@@ -246,7 +247,8 @@
       "responseCodec": "unknown",
       "targetEvidence": "none",
       "implementation": [],
-      "remaining": "已定位官方 App 候选命令号及相关参数/方法；受保护负载逻辑与 RS 4 Mini 型号分支尚未恢复，不能开放写入"
+      "remaining": "已确认 HG724 型号关联和 FollowModeSensitivity 注册入口；专属 setter 与参数表加载仍为保护桩，未恢复实际命令/索引/载荷，不开放写入",
+      "modelResearchEvidence": "protocol/research/ronin-hg724-evidence.json"
     },
     {
       "key": "unknown:motor-calibration",
@@ -670,6 +672,8 @@
   ],
   "offlineResearchTools": [
     "tools/research/msdk_static.py",
-    "tools/research/msdk_payloads.py"
-  ]
+    "tools/research/msdk_payloads.py",
+    "tools/research/ronin_model_trace.py"
+  ],
+  "modelIdentityResearch": "protocol/research/ronin-hg724-evidence.json"
 }

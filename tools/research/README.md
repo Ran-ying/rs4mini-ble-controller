@@ -34,3 +34,8 @@ NOP/常量/返回模式只标记为保护桩候选，不把返回零解释成协
 
 [MSDK_V4.md](MSDK_V4.md) 记录官方 provided JAR 的只读提取方法、回中/参数/手柄候选布局和跨型号差异。
 `msdk_static.py` 与 `msdk_payloads.py` 只用于离线研究；没有新增 SDK 发送能力或高级功能。
+
+## 当前 App 型号追踪
+
+[HG724.md](HG724.md) 记录 RS 4 Mini 展示名/蓝牙前缀的真实指令关联、专属设备类与参数资源原名。
+`ronin_model_trace.py` 只读固定 APK；身份识别与完整命令分支分开记录，不改变 SDK 发送能力。

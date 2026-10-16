@@ -78,3 +78,13 @@ SDK 仅增加研究配置下的被动参数响应原始结构解析；没有新�
 发现旧轴枚举与本机 FE01 效果有差异，也确认包层返回码可能在进入业务解码前被剥离。
 增加可复现提取器和纯离线候选载荷工具，未修改任何 SDK/UI 运行时或发送允许列表；命令清单仍为 48 条，完整性条件仍为 false。
 工具说明与不适用边界见 [MSDK_V4.md](../tools/research/MSDK_V4.md)。
+
+
+## HG724 型号与参数资源关联（2026-10-16）
+
+可读 App 指令已把展示名 DJI RS 4 Mini 与 BLE 前缀 dji rs4 mini- 关联到 HG724。
+HG724 类型枚举值 103 仅为 App 事实，不是已解码线上字段或本机查询结果。
+专属类注册 FollowModeSensitivity，但设置方法与参数加载仍为保护桩，未恢复具体命令/索引/载荷。
+两份资源原名分别为 gimbal_param_infos（res/DB.json）和 ronin2_gimbal_param_infos（res/jy.json），
+不能据资源名或继承关系认定本机采用哪一份。完整证据与复现见 [HG724.md](../tools/research/HG724.md)。
+本轮只增加离线研究工具，SDK/原生版本、48 条清单及完整性门槛不变，没有硬件操作。

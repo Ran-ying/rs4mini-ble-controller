@@ -81,3 +81,13 @@ SDK 本轮只补充 04:10 参数响应和 04:0F 单字节 ACK 的被动候选结
 可复现工具、静态方法指纹与离线核对载荷见 [研究说明](../tools/research/MSDK_V4.md) 和
 [事实记录](../protocol/research/msdk-4.18-evidence.json)。这些不是新设备支持；命令清单仍为 48 条，全部命令门槛未通过。
 新工具不被 SDK 或 UI 引用，没有发送接口。SDK/面板版本保持 0.7.2/0.3.2，既有安装包继续对应原交付提交。
+
+
+## HG724 型号与参数资源关联（2026-10-16）
+
+可读 App 指令已把展示名 DJI RS 4 Mini 与 BLE 前缀 dji rs4 mini- 关联到 HG724。
+HG724 类型枚举值 103 仅为 App 事实，不是已解码线上字段或本机查询结果。
+专属类注册 FollowModeSensitivity，但设置方法与参数加载仍为保护桩，未恢复具体命令/索引/载荷。
+两份资源原名分别为 gimbal_param_infos（res/DB.json）和 ronin2_gimbal_param_infos（res/jy.json），
+不能据资源名或继承关系认定本机采用哪一份。完整证据与复现见 [HG724.md](../tools/research/HG724.md)。
+本轮只增加离线研究工具，SDK/原生版本、48 条清单及完整性门槛不变，没有硬件操作。

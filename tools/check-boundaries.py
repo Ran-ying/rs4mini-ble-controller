@@ -71,5 +71,12 @@ for row in manifest['commands']:
 for source in manifest.get('offlineResearchTools', []):
     assert (root / source).is_file(), source
     assert source.startswith('tools/research/'), source
+if manifest.get('modelIdentityResearch'):
+    model = json.loads((root / manifest['modelIdentityResearch']).read_text())
+    assert model['identityLinkedByReadableAppCode'] is True
+    assert model['targetDeviceVerified'] is False
+    assert model['wireCommandBranchRecovered'] is False
+    assert model['parameterResourceSelectionRecovered'] is False
+    assert model['parameterNamesSafeToInferFromWireIndex'] is False
 print('Layer boundaries passed: device modules do not depend on motion; upper layers do not encode/write packets.')
 print('Protocol inventory: %d entries; inventoryComplete=false; further advanced development is gated.' % len(manifest['commands']))

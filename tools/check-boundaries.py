@@ -78,5 +78,13 @@ if manifest.get('modelIdentityResearch'):
     assert model['wireCommandBranchRecovered'] is False
     assert model['parameterResourceSelectionRecovered'] is False
     assert model['parameterNamesSafeToInferFromWireIndex'] is False
+if manifest.get('codeRestorationResearch'):
+    restored = json.loads((root / manifest['codeRestorationResearch']).read_text())
+    assert restored['methodBytesBackedByApk'] is True
+    assert restored['selectedStaticCommandPathRecovered'] is True
+    assert restored['targetDeviceVerified'] is False
+    assert restored['appCodeExecuted'] is False
+    assert restored['wholeProtocolRecovered'] is False
+    assert restored['parameterNamesSafeToInferFromWireIndex'] is False
 print('Layer boundaries passed: device modules do not depend on motion; upper layers do not encode/write packets.')
 print('Protocol inventory: %d entries; inventoryComplete=false; further advanced development is gated.' % len(manifest['commands']))

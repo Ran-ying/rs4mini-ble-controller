@@ -1,0 +1,574 @@
+{
+  "source": "https://www.dji.com/downloads/djiapp/dji-ronin",
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "segment": 5,
+  "originalSize": 11325384,
+  "bankOffset": 55346760,
+  "bankSha256": "ca8dab6c124b42a257c433c0314c6e5956eee19a4e6923ac88f36cf3b609faff",
+  "restoredCodeItems": 19436,
+  "derivedSha256": "4fdbd74a05df63d72a0feb1c907d9395426ec3cdb5d6aeb45e3836d856d66654",
+  "methodBytesBackedByApk": true,
+  "appCodeExecuted": false,
+  "targetDeviceVerified": false,
+  "otherSegmentsRestored": false,
+  "schemaVersion": 1,
+  "selectedStaticCommandPathRecovered": true,
+  "parameterNamesSafeToInferFromWireIndex": false,
+  "wholeProtocolRecovered": false,
+  "methods": [
+    {
+      "className": "Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager$1;",
+      "method": "run",
+      "descriptor": "()V",
+      "methodIndex": 12089,
+      "codeOffset": 3336860,
+      "instructionSha256": "a7fcbca1a14d6c0e88d235e6edab865943ca0af06a20606b19ac7fa3b26d7d3c",
+      "protectedStubBefore": true,
+      "protectedStubAfter": false,
+      "references": [
+        "Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager;->-$$Nest$sfgetcontext()Landroid/content/Context;",
+        "v2, Ldji/midware/R$raw;->gimbal_param_infos I",
+        "v0, v1, Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager;->-$$Nest$mreadToMemory(Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager; Ljava/lang/String;)V"
+      ],
+      "backup": {
+        "methodIndex": 12089,
+        "codeOffset": 3336860,
+        "slot": 2045287,
+        "size": 48,
+        "dataOffset": 144812,
+        "beforeSha256": "5c143c67f815b930022f619b9e617458b02144ef568788527d9feaf27284a45d",
+        "backupSha256": "9e7cd6d0029581ec6cea906efe93427b148cedde4522ee6be163d41372a9b81c"
+      }
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager;",
+      "method": "init",
+      "descriptor": "()V",
+      "methodIndex": 12096,
+      "codeOffset": 3337144,
+      "instructionSha256": "ed94b8adc7beaa48dc5f317561c93594b1ae4c13dd68125066cd9f99737f7d9c",
+      "protectedStubBefore": true,
+      "protectedStubAfter": false,
+      "references": [
+        "v1, v2, Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager$1;-><init>(Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager;)V"
+      ],
+      "backup": {
+        "methodIndex": 12096,
+        "codeOffset": 3337144,
+        "slot": 2045373,
+        "size": 44,
+        "dataOffset": 144860,
+        "beforeSha256": "ec9bc3481d4f56db3f274f8319e90a1adab57a40fb297ba69d295494938a0a05",
+        "backupSha256": "36a421e21e4d324aa657c47bf5810148a6fa6709ef86b837512f017079720d5e"
+      }
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager;",
+      "method": "read",
+      "descriptor": "(Ljava/lang/String;)Ldji/midware/data/params/P3/ParamInfo;",
+      "methodIndex": 12098,
+      "codeOffset": 3337248,
+      "instructionSha256": "7a8e4c27d3590efc5f02acd6613f4a55b79e48d79ad896077184f6d2a037e3bb",
+      "protectedStubBefore": false,
+      "protectedStubAfter": false,
+      "references": [
+        "v0, Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager;->infos Ljava/util/HashMap;"
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager;",
+      "method": "readToMemory",
+      "descriptor": "(Ljava/lang/String;)V",
+      "methodIndex": 12099,
+      "codeOffset": 3337284,
+      "instructionSha256": "50a9e35ae581cbb3de11042f14a816efad823ed637a1bc4f63b93041e513d4bc",
+      "protectedStubBefore": true,
+      "protectedStubAfter": false,
+      "references": [
+        "v0, v3, Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager$2;-><init>(Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager;)V",
+        "v0, Ldji/midware/data/params/P3/GimbalParamInfo;->copyOf(Ldji/midware/data/params/P3/ParamInfo;)Ldji/midware/data/params/P3/GimbalParamInfo;",
+        "v1, cmd_follow_mode_sensitivity",
+        "v1, Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager;->infos Ljava/util/HashMap;"
+      ],
+      "backup": {
+        "methodIndex": 12099,
+        "codeOffset": 3337284,
+        "slot": 2045394,
+        "size": 233,
+        "dataOffset": 144904,
+        "beforeSha256": "646cc30de2b197ceb4a83ed09813d51747e57f8281682322ee79503189797491",
+        "backupSha256": "a0296fdd21bf4c5a5d4d500b0133a92e88dde10344e6e9749a793ceeb95a04c9"
+      }
+    },
+    {
+      "className": "Ldji/midware/ronin2/Ronin2GimbalParamsManager$BaseCommand;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "methodIndex": 27158,
+      "codeOffset": 3728816,
+      "instructionSha256": "38bb193999c192890ce98dda452e438e6f5a880db1faf8ab5587320f113b1682",
+      "protectedStubBefore": false,
+      "protectedStubAfter": false,
+      "references": [
+        "v5, cmd_follow_mode_sensitivity",
+        "v2, CMD_FOLLOW_MODE_SENSITIVITY"
+      ]
+    },
+    {
+      "className": "Ldji/midware/ronin2/Ronin2GimbalParamsManager$BaseCommand;",
+      "method": "getKeyNameStr",
+      "descriptor": "()Ljava/lang/String;",
+      "methodIndex": 27163,
+      "codeOffset": 3731960,
+      "instructionSha256": "15375458e2fec53ef3485eb9d7367041a11302f9f0bc3e416ef694a158cf5fbd",
+      "protectedStubBefore": false,
+      "protectedStubAfter": false,
+      "references": []
+    },
+    {
+      "className": "Ldji/midware/ronin2/Ronin2GimbalParamsManager$FollowModeSensitivityVal;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "methodIndex": 27168,
+      "codeOffset": 3732044,
+      "instructionSha256": "cd13117df26f0f50952d6118be88e9af4265903362c9012b7b8d6960f7b08a5b",
+      "protectedStubBefore": false,
+      "protectedStubAfter": false,
+      "references": [
+        "v0, v1, v2, v2, Ldji/midware/ronin2/Ronin2GimbalParamsManager$FollowModeSensitivityVal;-><init>(Ljava/lang/String; I I)V",
+        "v0, v1, v2, v2, Ldji/midware/ronin2/Ronin2GimbalParamsManager$FollowModeSensitivityVal;-><init>(Ljava/lang/String; I I)V",
+        "Ldji/midware/ronin2/Ronin2GimbalParamsManager$FollowModeSensitivityVal;->$values()[Ldji/midware/ronin2/Ronin2GimbalParamsManager$FollowModeSensitivityVal;"
+      ]
+    },
+    {
+      "className": "Ldji/midware/ronin2/Ronin2GimbalParamsManager$FollowModeSensitivityVal;",
+      "method": "getValue",
+      "descriptor": "()I",
+      "methodIndex": 27170,
+      "codeOffset": 3732220,
+      "instructionSha256": "685b7e09cefb92209035203e0efd5d7e820e8f39cf7828c5d7880e136a7fd329",
+      "protectedStubBefore": false,
+      "protectedStubAfter": false,
+      "references": []
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/DJISDKCacheHWAbstractionLayer$3;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "methodIndex": 31580,
+      "codeOffset": 3907956,
+      "instructionSha256": "92f00bb862dc0374714fbe82a04c567d9c52168d2a5df8ed34770bb37d2acd7c",
+      "protectedStubBefore": false,
+      "protectedStubAfter": false,
+      "references": [
+        "v15, Ldji/midware/component/DJIComponentManager$GimbalComponentType;->HG724 Ldji/midware/component/DJIComponentManager$GimbalComponentType;",
+        "v1, Ldji/midware/component/DJIComponentManager$PlatformType;->HG724 Ldji/midware/component/DJIComponentManager$PlatformType;"
+      ]
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/DJISDKCacheHWAbstractionLayer;",
+      "method": "addGimbalAbstraction",
+      "descriptor": "()V",
+      "methodIndex": 31591,
+      "codeOffset": 3915752,
+      "instructionSha256": "ac696cc263ef61ac272503f62a51261096eb1ce9f7b87375a9ac28ad101d8227",
+      "protectedStubBefore": true,
+      "protectedStubAfter": false,
+      "references": [
+        "v0, Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG724Abstraction;"
+      ],
+      "backup": {
+        "methodIndex": 31591,
+        "codeOffset": 3915752,
+        "slot": 2164350,
+        "size": 844,
+        "dataOffset": 347784,
+        "beforeSha256": "81b2db7ce3ccec535c04eb75bacbb18cbe2a061fbe1b0e585803228e4beb4861",
+        "backupSha256": "f89df934e44f03f7a6eb2ea00bcd048dd2e0ec7c8da024ce843be7bcbd309af2"
+      }
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushType;",
+      "method": "getType",
+      "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetPushType$DJIGimbalType;",
+      "methodIndex": 19082,
+      "codeOffset": 4876920,
+      "instructionSha256": "1c076cbbe136e89415b0738e275da9e5eff27abb65daafc94b28d197852ed777",
+      "protectedStubBefore": true,
+      "protectedStubAfter": false,
+      "references": [],
+      "backup": {
+        "methodIndex": 19082,
+        "codeOffset": 4876920,
+        "slot": 2298235,
+        "size": 150,
+        "dataOffset": 856396,
+        "beforeSha256": "750183ebfba425b5e1686755f9bf99cc1d8f50d7770ac66c93412a18e0ff0cec",
+        "backupSha256": "a219ebbc08ba2de58c1adbc1b95113922f9a33717a9607f7e9bbf9ed82d16353"
+      }
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetUserParams;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "methodIndex": 19117,
+      "codeOffset": 4877720,
+      "instructionSha256": "96edd046f7fa5d089883685ccdcf11944dd4157d323938454f4eca72c7d2526e",
+      "protectedStubBefore": true,
+      "protectedStubAfter": false,
+      "references": [
+        "v2, Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager;->read(Ljava/lang/String;)Ldji/midware/data/params/P3/ParamInfo;",
+        "v1, Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager;->read(Ljava/lang/String;)Ldji/midware/data/params/P3/ParamInfo;"
+      ],
+      "backup": {
+        "methodIndex": 19117,
+        "codeOffset": 4877720,
+        "slot": 2298335,
+        "size": 168,
+        "dataOffset": 857016,
+        "beforeSha256": "195670283f6c0dfdae922ddecf06837d22b9ead6f6ed51ac9711fa61db81cfc4",
+        "backupSha256": "f0c2e577c0d3102c8ed886048612693e8e423ad5397a5dfca19d88ba960c71f7"
+      }
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetUserParams;",
+      "method": "setRecData",
+      "descriptor": "([B)V",
+      "methodIndex": 19124,
+      "codeOffset": 4877976,
+      "instructionSha256": "032cc430cae225d02d205f296fc70bf562f5cd40f7ce59bb148010c0b5bcb4ac",
+      "protectedStubBefore": true,
+      "protectedStubAfter": false,
+      "references": [
+        "v2, Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager;->read(Ljava/lang/String;)Ldji/midware/data/params/P3/ParamInfo;",
+        "v3, v4, Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager;->write(Ljava/lang/String; Ljava/lang/Number;)V",
+        "v3, Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager;->read(Ljava/lang/String;)Ldji/midware/data/params/P3/ParamInfo;",
+        "v2, v5, Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager;->writeStrValue(Ljava/lang/String; Ljava/lang/String;)V"
+      ],
+      "backup": {
+        "methodIndex": 19124,
+        "codeOffset": 4877976,
+        "slot": 2298363,
+        "size": 346,
+        "dataOffset": 857224,
+        "beforeSha256": "7c0ac2277d4dbd682663a7c69456b0c1082cdc437eafde1b824effb4fb3a04b1",
+        "backupSha256": "914bdcc89a73ec79d65ff8b533f805fa7c9fb20e51aa117688ff5c7d7daba5ef"
+      }
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetUserParams;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "methodIndex": 19129,
+      "codeOffset": 4878372,
+      "instructionSha256": "0d05970822b30bcaaee5034188f3f6e774c78bb52a037af03f12c0d0ca1d7586",
+      "protectedStubBefore": true,
+      "protectedStubAfter": false,
+      "references": [],
+      "backup": {
+        "methodIndex": 19129,
+        "codeOffset": 4878372,
+        "slot": 2298384,
+        "size": 170,
+        "dataOffset": 857572,
+        "beforeSha256": "12e0f70f6bdbffdb139a3f1a1cc206b5ca5e802ac39945a85a12387207f714f2",
+        "backupSha256": "9a7192bcb76597da0df7f990e8bd33f7bc8fd922a70dce73092091fb776be75c"
+      }
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalNewResetAndSetMode;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "methodIndex": 19131,
+      "codeOffset": 4878592,
+      "instructionSha256": "49e0c420bbab5cc3656c305c6bcd66be7f29d8c5dfea69189808999a87669513",
+      "protectedStubBefore": true,
+      "protectedStubAfter": false,
+      "references": [],
+      "backup": {
+        "methodIndex": 19131,
+        "codeOffset": 4878592,
+        "slot": 2298416,
+        "size": 80,
+        "dataOffset": 857744,
+        "beforeSha256": "3c11787d2a05bf3e14a6a8a74042087dedeaf3030b23b31b6983a3c6b782f377",
+        "backupSha256": "bbbfcbba715ba0ea68f211c148084bed471468cb7a954a3d9c81412dd46dc419"
+      }
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalNewResetAndSetMode;",
+      "method": "setGimbalControl",
+      "descriptor": "(Ldji/midware/data/model/P3/GimbalControlModeData;)Ldji/midware/data/model/P3/DataGimbalNewResetAndSetMode;",
+      "methodIndex": 19132,
+      "codeOffset": 4878672,
+      "instructionSha256": "0045a1b3f7eefe693506bfa164be9d2618ccd11c5bf384a2f3d9a99e10388bcc",
+      "protectedStubBefore": true,
+      "protectedStubAfter": false,
+      "references": [
+        "v1, v0, Ldji/midware/data/model/P3/DataGimbalNewResetAndSetMode;->setGimbalMode(Ldji/midware/data/model/P3/DataGimbalControl$MODE;)Ldji/midware/data/model/P3/DataGimbalNewResetAndSetMode;",
+        "v0, v2, Ldji/midware/data/model/P3/DataGimbalNewResetAndSetMode;->setReset(Z)Ldji/midware/data/model/P3/DataGimbalNewResetAndSetMode;"
+      ],
+      "backup": {
+        "methodIndex": 19132,
+        "codeOffset": 4878672,
+        "slot": 2298423,
+        "size": 50,
+        "dataOffset": 857824,
+        "beforeSha256": "16b713cc495b4ce25c8aa12c8be1bafa4593824b1d027bfb2a745326f5b5120f",
+        "backupSha256": "2ed13b75482f4fc59ad3ac35c564c2024f8e07acbee38978a895d790c991de40"
+      }
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalNewResetAndSetMode;",
+      "method": "start",
+      "descriptor": "()V",
+      "methodIndex": 19139,
+      "codeOffset": 4878848,
+      "instructionSha256": "0a9b0146b4e1c9fb7f869075bd9b0db28acbd54e97ab211b0a3c5143468691ac",
+      "protectedStubBefore": true,
+      "protectedStubAfter": false,
+      "references": [
+        "v1, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->ResetAndSetMode Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+        "v2, v0, Ldji/midware/data/model/P3/DataGimbalNewResetAndSetMode;->start(Ldji/midware/data/packages/P3/SendPack;)V"
+      ],
+      "backup": {
+        "methodIndex": 19139,
+        "codeOffset": 4878848,
+        "slot": 2298466,
+        "size": 146,
+        "dataOffset": 857876,
+        "beforeSha256": "2bb29af671975a9d15b19c6de7deaee744675c5817e30f45273515bb4cbe37c0",
+        "backupSha256": "cc8b208bad49be31ff562fa61a14825fcd14e6755c92d1a183f6804aa9e0cd10"
+      }
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalNewResetAndSetMode;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "methodIndex": 19142,
+      "codeOffset": 4878996,
+      "instructionSha256": "3cae0e6eb63d2ef907728b20dedfdae2b8bdfa9e69b44e3a3df541a7da2dbbe4",
+      "protectedStubBefore": true,
+      "protectedStubAfter": false,
+      "references": [
+        "v1, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->ResetAndSetMode Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+        "v3, v0, v4, Ldji/midware/data/model/P3/DataGimbalNewResetAndSetMode;->start(Ldji/midware/data/packages/P3/SendPack; Ldji/midware/interfaces/DJIDataCallBack;)V"
+      ],
+      "backup": {
+        "methodIndex": 19142,
+        "codeOffset": 4878996,
+        "slot": 2298473,
+        "size": 182,
+        "dataOffset": 858024,
+        "beforeSha256": "800ce2a86eb2b659bdc8f0de17713e50173d1d698fc90e8ccf045d592e74d818",
+        "backupSha256": "743a20eb82a050c6bb3e46cfa362f09398ad27fd713df8e4555bd0eb59786450"
+      }
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetUserParams;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "methodIndex": 19362,
+      "codeOffset": 4889600,
+      "instructionSha256": "ba8c45bc2b6c1b459b6c9ef30bc3998e379289abf6b78bf036a8160933225136",
+      "protectedStubBefore": true,
+      "protectedStubAfter": false,
+      "references": [
+        "v4, Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager;->read(Ljava/lang/String;)Ldji/midware/data/params/P3/ParamInfo;",
+        "v4, Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager;->read(Ljava/lang/String;)Ldji/midware/data/params/P3/ParamInfo;",
+        "v4, Ldji/midware/data/model/P3/DataGimbalSetUserParams$1;->$SwitchMap$dji$midware$data$model$P3$DataFlycGetParamInfo$TypeId [I",
+        "v0, Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager;->isConfigNameKey(Ljava/lang/String;)Z",
+        "v0, Ldji/midware/data/model/P3/DataGimbalSetUserParams$1;->$SwitchMap$dji$midware$data$model$P3$DataFlycGetParamInfo$TypeId [I"
+      ],
+      "backup": {
+        "methodIndex": 19362,
+        "codeOffset": 4889600,
+        "slot": 2300074,
+        "size": 840,
+        "dataOffset": 865204,
+        "beforeSha256": "026a606ac4862fb431dce058678583f65f2ac08538b3d2d536b4d0d54b0cb36a",
+        "backupSha256": "27015a2b018b66a4062d000e6c3facccb597a9cbea6f31316368a8f602943ae2"
+      }
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetUserParams;",
+      "method": "setInfo",
+      "descriptor": "(Ljava/lang/String;)Ldji/midware/data/model/P3/DataGimbalSetUserParams;",
+      "methodIndex": 19365,
+      "codeOffset": 4890464,
+      "instructionSha256": "8deae7d3902160baa7da0cd6764c3e1a66892ff24998c6dcc5d026d623223c6b",
+      "protectedStubBefore": false,
+      "protectedStubAfter": false,
+      "references": [
+        "v1, Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager;->read(Ljava/lang/String;)Ldji/midware/data/params/P3/ParamInfo;"
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetUserParams;",
+      "method": "setInfo",
+      "descriptor": "(Ljava/lang/String; Ljava/lang/Number;)Ldji/midware/data/model/P3/DataGimbalSetUserParams;",
+      "methodIndex": 19366,
+      "codeOffset": 4890504,
+      "instructionSha256": "27d79cc0dea0721e557841658c13f4831621fd67f08467fb0cc47b452896a1fa",
+      "protectedStubBefore": false,
+      "protectedStubAfter": false,
+      "references": [
+        "v1, Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager;->read(Ljava/lang/String;)Ldji/midware/data/params/P3/ParamInfo;"
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetUserParams;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "methodIndex": 19374,
+      "codeOffset": 4890736,
+      "instructionSha256": "e1411ba3ca5c21358d3f3ba6d730990c707694f18ce1366c824aa3ae7fbf408c",
+      "protectedStubBefore": true,
+      "protectedStubAfter": false,
+      "references": [
+        "v1, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->SetUserParams Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+        "v2, v0, v3, Ldji/midware/data/model/P3/DataGimbalSetUserParams;->start(Ldji/midware/data/packages/P3/SendPack; Ldji/midware/interfaces/DJIDataCallBack;)V"
+      ],
+      "backup": {
+        "methodIndex": 19374,
+        "codeOffset": 4890736,
+        "slot": 2300139,
+        "size": 170,
+        "dataOffset": 866132,
+        "beforeSha256": "eae8f8108dcae68c9fa144b87f3ca5ebf6e83001edd990079d9f4d75ed52c692",
+        "backupSha256": "1713f4868298bdcda1c773818dc4da61d5f865f1d41ac8027020db43afcd93f5"
+      }
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG724Abstraction;",
+      "method": "init",
+      "descriptor": "(Ljava/lang/String; I Ldji/sdksharedlib/store/DJISDKCacheStoreLayer; Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$OnValueChangeListener;)V",
+      "methodIndex": 35148,
+      "codeOffset": 6541920,
+      "instructionSha256": "cd5fee3a3211949590a6dbd54b29974719c811f5c6e0856a92bf59a939a29272",
+      "protectedStubBefore": false,
+      "protectedStubAfter": false,
+      "references": []
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG724Abstraction;",
+      "method": "onEvent3BackgroundThread",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalGetUserParams;)V",
+      "methodIndex": 35150,
+      "codeOffset": 6541968,
+      "instructionSha256": "6a72ccaff42a65503e8c2183b63413e37346be7c446ef5509a1cf63c9d12e2bb",
+      "protectedStubBefore": true,
+      "protectedStubAfter": false,
+      "references": [
+        "v0, Ldji/midware/ronin2/Ronin2GimbalParamsManager$BaseCommand;->CMD_FOLLOW_MODE_SENSITIVITY Ldji/midware/ronin2/Ronin2GimbalParamsManager$BaseCommand;",
+        "v0, Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager;->read(Ljava/lang/String;)Ldji/midware/data/params/P3/ParamInfo;",
+        "v3, v0, v1, Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG724Abstraction;->notifyValueChangeForKeyPath(Ljava/lang/Object; Ljava/lang/String;)V"
+      ],
+      "backup": {
+        "methodIndex": 35150,
+        "codeOffset": 6541968,
+        "slot": 2563065,
+        "size": 98,
+        "dataOffset": 2018820,
+        "beforeSha256": "e2f8b2812aaec23f87b7ed8abfd0cb006fd115db0eaf3f95b79e33292e67eda7",
+        "backupSha256": "150edeca8abd7cc464e2e814de00cc10e746fb439f7e8e4f61d5aaf55ab01f63"
+      }
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG724Abstraction;",
+      "method": "onEvent3BackgroundThread",
+      "descriptor": "(Ldji/midware/data/model/P3/DataWifiPingConnect;)V",
+      "methodIndex": 35151,
+      "codeOffset": 6542068,
+      "instructionSha256": "5e961daed51d788c3199aa1d379533d854c03754f2430c4dea89ef5e48f4fbe1",
+      "protectedStubBefore": true,
+      "protectedStubAfter": false,
+      "references": [],
+      "backup": {
+        "methodIndex": 35151,
+        "codeOffset": 6542068,
+        "slot": 2563072,
+        "size": 56,
+        "dataOffset": 2018920,
+        "beforeSha256": "0f9fed79f6a2a2d8ca69fb05b5d8cbaf6c8cf6ee7756ea35c75ac1f71f36a558",
+        "backupSha256": "1198f613d47f98342f916c1107833323eb07c2dbe10996e0e5f7b8ba16c2ea66"
+      }
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG724Abstraction;",
+      "method": "setFollowModeSensitivity",
+      "descriptor": "(I Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "methodIndex": 35152,
+      "codeOffset": 6542124,
+      "instructionSha256": "51039452ef3f1eec983bada6154ea4dfce5a96b5278cc762a870c1ae877b5478",
+      "protectedStubBefore": true,
+      "protectedStubAfter": false,
+      "references": [
+        "v0, Ldji/midware/ronin2/Ronin2GimbalParamsManager$FollowModeSensitivityVal;->DEFAULT_MODE Ldji/midware/ronin2/Ronin2GimbalParamsManager$FollowModeSensitivityVal;",
+        "v0, Ldji/midware/ronin2/Ronin2GimbalParamsManager$FollowModeSensitivityVal;->getValue()I",
+        "v1, Ldji/midware/ronin2/Ronin2GimbalParamsManager$FollowModeSensitivityVal;->SENSITIVITY_MODE Ldji/midware/ronin2/Ronin2GimbalParamsManager$FollowModeSensitivityVal;",
+        "v1, Ldji/midware/ronin2/Ronin2GimbalParamsManager$FollowModeSensitivityVal;->getValue()I",
+        "v3, Ldji/midware/ronin2/Ronin2GimbalParamsManager$FollowModeSensitivityVal;->SENSITIVITY_MODE Ldji/midware/ronin2/Ronin2GimbalParamsManager$FollowModeSensitivityVal;",
+        "v3, Ldji/midware/ronin2/Ronin2GimbalParamsManager$FollowModeSensitivityVal;->getValue()I",
+        "v3, Ldji/midware/data/model/P3/DataGimbalSetUserParams;-><init>()V",
+        "v3, v1, Ldji/midware/data/model/P3/DataGimbalSetUserParams;->setTimeOut(I)Ldji/midware/data/model/P3/DataGimbalSetUserParams;",
+        "v1, Ldji/midware/ronin2/Ronin2GimbalParamsManager$BaseCommand;->CMD_FOLLOW_MODE_SENSITIVITY Ldji/midware/ronin2/Ronin2GimbalParamsManager$BaseCommand;",
+        "v3, v1, v0, Ldji/midware/data/model/P3/DataGimbalSetUserParams;->setInfo(Ljava/lang/String; Ljava/lang/Number;)Ldji/midware/data/model/P3/DataGimbalSetUserParams;",
+        "v0, v2, v4, Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG724Abstraction$1;-><init>(Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG724Abstraction; Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+        "v3, v0, Ldji/midware/data/model/P3/DataGimbalSetUserParams;->start(Ldji/midware/interfaces/DJIDataCallBack;)V"
+      ],
+      "backup": {
+        "methodIndex": 35152,
+        "codeOffset": 6542124,
+        "slot": 2563079,
+        "size": 122,
+        "dataOffset": 2018976,
+        "beforeSha256": "868ed064003b6afac9f5d8c9d1bd1a43b391d712a9f889a9fd49b75850e9fe6b",
+        "backupSha256": "42616936be1f3d564bbb3a47a8e47d95303b08f46e24e4696a8e288db444a9ed"
+      }
+    }
+  ],
+  "reviewedPaths": {
+    "followSensitivity": {
+      "model": "HG724",
+      "setter": "DJIGimbalHG724Abstraction.setFollowModeSensitivity",
+      "property": "FollowModeSensitivity",
+      "command": "04:0F",
+      "parameterName": "cmd_follow_mode_sensitivity",
+      "index": 150,
+      "size": 1,
+      "sourceTable": "res/DB.json",
+      "sourceResource": "gimbal_param_infos",
+      "enumValues": {
+        "DEFAULT_MODE": 0,
+        "SENSITIVITY_MODE": 1
+      },
+      "appNormalization": "input==1 -> 1; all other integer inputs -> 0",
+      "writePayloads": {
+        "0": "960100",
+        "1": "960101"
+      },
+      "readCommand": "04:10",
+      "readPayload": "96",
+      "hardwareVerified": false,
+      "sdkWriteExposed": false
+    },
+    "parameterLoader": {
+      "manager": "DJIGimbalParamInfoManager",
+      "worker": "DJIGimbalParamInfoManager$1.run",
+      "resource": "gimbal_param_infos",
+      "path": "res/DB.json",
+      "mapKey": "parameter name",
+      "genericIndexNameInferenceAllowed": false
+    },
+    "currentReset": {
+      "command": "04:4C",
+      "layout": [
+        "mode.value() byte",
+        "resetGimbal boolean: 0 or 1"
+      ],
+      "axisSelector": false,
+      "knownExistingPayload": "fe01"
+    }
+  }
+}

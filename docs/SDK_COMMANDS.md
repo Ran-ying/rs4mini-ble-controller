@@ -24,15 +24,15 @@
 | `04:08` | 校准触发候选 | `not-exposed` / `unknown` | `other-model` | 其他型号研究有自主运动和中止风险，不提供触发 |
 | `04:0B` | 控制状态查询 | `implemented` / `raw` | `other-model` | 响应字段未确认 |
 | `04:0C` | 原生速率候选 | `implemented` / `unknown` | `other-model` | 轴序/单位/释放仅有 RS 3 来源，本机未验证 |
-| `04:0F` | 休眠/唤醒候选 | `implemented` / `partial` | `other-model` | RS 3 与 Mini 字节不同，本机效果未知；新增单字节研究 ACK 原始返回码，参数表的同编号别名不可自动套用 |
+| `04:0F` | 休眠/唤醒候选 | `implemented` / `partial` | `other-model` | SDK 现有休眠候选仍为跨型号；已从当前 App 恢复 HG724 灵敏度参数 150/size1/值0或1 的 04:0F 静态链和载荷，仅离线工具，未新增 SDK 写入；ACK 与本机效果待验收 |
 | `04:14` | 原生绝对角候选 | `implemented` / `unknown` | `other-model` | 末参数单位、参考系与本机兼容性未知 |
 | `04:1C` | 设备类型查询 | `implemented` / `raw` | `other-model` | 已在 App 可读代码中关联 RS 4 Mini=HG724，类型枚举值 103；线上偏移、返回码及本机响应未确认，仍返回原始消息 |
 | `04:1E` | degree-info 请求 | `implemented` / `raw` | `hardware` | requestDegreeInfo 封装关联原始响应；本机历史 00 不等于完整字段解析或增频确认 |
 | `04:30` | 校准进度候选通知 | `not-applicable` / `partial` | `other-model` | 仅被动解析，不触发校准 |
-| `04:4C` | 重置/模式命令中的三轴回中 | `partial` / `unknown` | `hardware` | 只确认 FE01/flags40 本机三轴回中；旧 MSDK 的 YAW_CENTER=1 与本机效果不一致，旧轴枚举不能作为本机单轴回中；候选载荷仅做离线核对 |
+| `04:4C` | 重置/模式命令中的三轴回中 | `partial` / `unknown` | `hardware` | 当前 App 的原代码备份确认两字节 mode+布尔reset；本机仍只确认 FE01 三轴回中，无按轴选择位，旧 MSDK 轴枚举不可套用；其他模式/响应待本机证据 |
 | `04:66` | 状态 TLV 候选通知 | `not-applicable` / `partial` | `other-model` | 保留 TLV 原始量，不假设本机 tag 语义 |
 | `0D:02` | 电量候选通知 | `not-applicable` / `partial` | `other-model` | 百分比仅为其他 Mini 研究格式，本机未证实 |
-| `unknown:follow-mode` | 跟随模式与手柄参数 | `unknown` / `unknown` | `none` | 已确认 HG724 型号关联和 FollowModeSensitivity 注册入口；专属 setter 与参数表加载仍为保护桩，未恢复实际命令/索引/载荷，不开放写入 |
+| `unknown:follow-mode` | 跟随模式与手柄参数 | `unknown` / `unknown` | `app-code-path` | 已恢复 HG724 跟随灵敏度 setter→cmd_follow_mode_sensitivity→通用参数表 index150→04:0F 静态链；仅离线源代码载荷，SDK 写入/响应与实机未验收，PF/PTF 等模式仍未完成 |
 | `unknown:motor-calibration` | 电机参数/自动整定/水平校准 | `unknown` / `unknown` | `none` | 已定位官方 App 候选命令号及相关参数/方法；受保护负载逻辑与 RS 4 Mini 型号分支尚未恢复，不能开放写入 |
 | `unknown:firmware-program` | 固件动作程序 | `unknown` / `unknown` | `none` | 已定位官方 App 候选命令号及相关参数/方法；受保护负载逻辑与 RS 4 Mini 型号分支尚未恢复，不能开放写入 |
 | `unknown:device-management` | 激活/绑定/恢复设置/固件管理的 BLE 覆盖 | `unknown` / `unknown` | `none` | 是否通过本 BLE 链路提供及其协议尚未枚举；连接成功不证明设备管理命令已全覆盖 |
@@ -92,3 +92,5 @@
 详见 [MSDK_V4.md](../tools/research/MSDK_V4.md)。这些证据没有提升请求/响应支持等级，没有扩大发送允许列表。
 
 当前 Ronin 的 RS 4 Mini 型号已通过展示构造与 BLE 前缀关联为 HG724，但具体发送/参数表选择仍未恢复；见 [HG724 研究说明](../tools/research/HG724.md)。型号识别证据不提升命令封装或实机支持等级。
+
+`app-code-path` 表示已从当前 App 内代码备份静态还原特定型号调用链，不代表 SDK 已封装或设备验证。后续恢复结果见 [代码备份恢复](../tools/research/CODE_RESTORATION.md)。整体完整性条件仍未通过。

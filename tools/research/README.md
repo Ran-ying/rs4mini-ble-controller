@@ -1,5 +1,7 @@
 # Ronin APK 静态研究工具
 
+最新进展：[CODE_RESTORATION.md](CODE_RESTORATION.md) 记录当前 APK 内部代码备份的离线恢复，已读到 HG724 灵敏度 setter 和参数加载逻辑；下面原有工具仍是 metadata-only 视图。
+
 此工具只读 ZIP/DEX 元数据，不安装或运行 APK，不使用 Frida、不连接设备。SDK 与默认测试不依赖可选分析库。
 输入限定为已检查的 DJI Ronin 2.2.2/7096 APK（完整 SHA256 见 `ronin_static.py`）；不同文件会在生成输出前拒绝。
 APK 从 [DJI 官方下载页](https://www.dji.com/downloads/djiapp/dji-ronin) 获取，不随仓库分发。

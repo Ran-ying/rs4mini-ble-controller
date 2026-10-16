@@ -121,11 +121,12 @@
         "python/rs4mini_sdk/experimental_protocol.py",
         "macos/RSControlCore.m"
       ],
-      "remaining": "RS 3 与 Mini 字节不同，本机效果未知；新增单字节研究 ACK 原始返回码，参数表的同编号别名不可自动套用",
+      "remaining": "SDK 现有休眠候选仍为跨型号；已从当前 App 恢复 HG724 灵敏度参数 150/size1/值0或1 的 04:0F 静态链和载荷，仅离线工具，未新增 SDK 写入；ACK 与本机效果待验收",
       "officialAppAliases": [
         "SetUserParams"
       ],
-      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
+      "restoredAppEvidence": "protocol/research/ronin-code-restoration-evidence.json"
     },
     {
       "key": "04:14",
@@ -203,12 +204,13 @@
         "python/rs4mini_sdk/protocol.py",
         "macos/RSControlCore.m"
       ],
-      "remaining": "只确认 FE01/flags40 本机三轴回中；旧 MSDK 的 YAW_CENTER=1 与本机效果不一致，旧轴枚举不能作为本机单轴回中；候选载荷仅做离线核对",
+      "remaining": "当前 App 的原代码备份确认两字节 mode+布尔reset；本机仍只确认 FE01 三轴回中，无按轴选择位，旧 MSDK 轴枚举不可套用；其他模式/响应待本机证据",
       "officialAppAliases": [
         "ResetAndSetMode"
       ],
       "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
-      "offlineResearchEvidence": "protocol/research/msdk-4.18-evidence.json"
+      "offlineResearchEvidence": "protocol/research/msdk-4.18-evidence.json",
+      "restoredAppEvidence": "protocol/research/ronin-code-restoration-evidence.json"
     },
     {
       "key": "04:66",
@@ -245,10 +247,11 @@
       "name": "跟随模式与手柄参数",
       "requestCodec": "unknown",
       "responseCodec": "unknown",
-      "targetEvidence": "none",
+      "targetEvidence": "app-code-path",
       "implementation": [],
-      "remaining": "已确认 HG724 型号关联和 FollowModeSensitivity 注册入口；专属 setter 与参数表加载仍为保护桩，未恢复实际命令/索引/载荷，不开放写入",
-      "modelResearchEvidence": "protocol/research/ronin-hg724-evidence.json"
+      "remaining": "已恢复 HG724 跟随灵敏度 setter→cmd_follow_mode_sensitivity→通用参数表 index150→04:0F 静态链；仅离线源代码载荷，SDK 写入/响应与实机未验收，PF/PTF 等模式仍未完成",
+      "modelResearchEvidence": "protocol/research/ronin-hg724-evidence.json",
+      "restoredAppEvidence": "protocol/research/ronin-code-restoration-evidence.json"
     },
     {
       "key": "unknown:motor-calibration",
@@ -673,7 +676,10 @@
   "offlineResearchTools": [
     "tools/research/msdk_static.py",
     "tools/research/msdk_payloads.py",
-    "tools/research/ronin_model_trace.py"
+    "tools/research/ronin_model_trace.py",
+    "tools/research/ronin_code_restore.py",
+    "tools/research/ronin_app_payloads.py"
   ],
-  "modelIdentityResearch": "protocol/research/ronin-hg724-evidence.json"
+  "modelIdentityResearch": "protocol/research/ronin-hg724-evidence.json",
+  "codeRestorationResearch": "protocol/research/ronin-code-restoration-evidence.json"
 }

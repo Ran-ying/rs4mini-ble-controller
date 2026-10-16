@@ -254,3 +254,23 @@ See tools/research/HG724.md and protocol/research/ronin-hg724-evidence.json.
 Model identity is established in readable code; wire-command branches and target
 support are not. Do not turn the enum value or resource names into SDK decoding
 or writes. ronin_model_trace.py is offline-only; runtime versions remain unchanged.
+
+
+## Current update: actual code-item backups recovered, runtime versions unchanged
+
+The earlier NOP-stub limitations describe metadata-only views. A new fdex/dgc2
+bank in classes6/business-05 holds plain original code_item backups. The stdlib
+ronin_code_restore.py matches all 19,436 backups to exact encoded-method code_off
+slots, validates complete sizes/units/tries/handlers/non-overlap, and restores an
+ignored analysis DEX. Never execute or distribute that view as application code.
+Optional inspection recovers the HG724 FollowModeSensitivity setter, generic
+parameter loader (gimbal_param_infos/res/DB.json), named index150/size1, and 04:0F
+payloads 960100/960101. The current reset doPack uses mode + boolean reset, no
+axis enum. See tools/research/CODE_RESTORATION.md and
+protocol/research/ronin-code-restoration-evidence.json. Existing source evidence
+files remain historical snapshots. A selected static command path is now known;
+full command coverage, SDK encapsulation and hardware compatibility are NOT.
+ronin_app_payloads.py is offline-only, not imported by SDK/UI. Do not apply legacy
+signed-index parsing to index150. Keep all-complete/advanced gates false, and do
+not use hardware while the user is away. Other banks/metadata remain outside
+this restoration tool's scope. No APK/JNI/app code was executed.

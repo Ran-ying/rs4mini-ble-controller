@@ -139,3 +139,6 @@ python3 -m http.server 8000 --bind 127.0.0.1
 0.7.7新增显式来源的平衡测试启动请求与三轴结果读取，见 [平衡测试SDK](docs/APP_BALANCE_TEST.md)；尚无实机验收。
 
 0.7.8新增与自动调参分开的system_calc自动校准请求/状态，见 [APP_SYSTEM_CALIBRATION.md](docs/APP_SYSTEM_CALIBRATION.md)，尚未确认水平校准身份或实机效果。
+
+
+多段恢复续报：已严格恢复6段49,542条code_item，原business05哈希不变；另外2段未恢复，模式UI语义仍需核对。见 [CODE_BANKS.md](tools/research/CODE_BANKS.md)。运行时保持0.7.8/0.3.8，无新增发送或硬件操作。

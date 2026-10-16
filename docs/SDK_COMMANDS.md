@@ -32,7 +32,7 @@
 | `04:4C` | 重置/模式命令中的三轴回中 | `partial` / `unknown` | `hardware` | 当前 App 的原代码备份确认两字节 mode+布尔reset；本机仍只确认 FE01 三轴回中，无按轴选择位，旧 MSDK 轴枚举不可套用；其他模式/响应待本机证据 |
 | `04:66` | 状态 TLV 候选通知 | `not-applicable` / `partial` | `other-model` | 保留 TLV 原始量，不假设本机 tag 语义 |
 | `0D:02` | 电量候选通知 | `not-applicable` / `partial` | `other-model` | 百分比仅为其他 Mini 研究格式，本机未证实 |
-| `unknown:follow-mode` | 跟随模式与手柄参数 | `unknown` / `unknown` | `app-code-path` | 灵敏度0/1及继承源码的自定义跟随启用/三轴位已封装；不等于PF/PTF/FPV预设，型号支持和本机效果待验收 |
+| `unknown:follow-mode` | 跟随模式与手柄参数 | `unknown` / `unknown` | `app-code-path` | 灵敏度0/1及继承源码的自定义跟随启用/三轴位已封装；不等于PF/PTF/FPV预设，型号支持和本机效果待验收；多段恢复后已定位40个模式键UI引用方法与打包位字段线索，轴/枚举/型号路径尚待完整核对，未开放六组模式写入 |
 | `unknown:motor-calibration` | 电机参数/自动整定/水平校准 | `unknown` / `unknown` | `none` | 自动调参请求/状态、十二个电机数值、平衡测试及system_calc自动校准请求/状态已封装；system_calc与水平校准的型号/UI身份仍未确认；其他字段、实机接受/效果/持久化和固件中止仍待完成 |
 | `unknown:firmware-program` | 固件动作程序 | `unknown` / `unknown` | `none` | 通用程序代码已恢复；型号路径、完整字段、执行/取消/通知语义仍待逐项审计与封装 |
 | `unknown:device-management` | 激活/绑定/恢复设置/固件管理的 BLE 覆盖 | `unknown` / `unknown` | `none` | 是否通过本 BLE 链路提供及其协议尚未枚举；连接成功不证明设备管理命令已全覆盖 |
@@ -119,3 +119,6 @@ HG724继承的启动路径为普通用户参数04:0F，balance_test/index37/size
 0.7.7已封装平衡测试固定启动请求与状态/三轴结果，见 [APP_BALANCE_TEST.md](APP_BALANCE_TEST.md)。本机接受/物理完成/中止仍未验收，全协议及高级门槛保持false。
 
 0.7.8提供独立system_calc自动校准请求/状态，来源和未验收项见 [APP_SYSTEM_CALIBRATION.md](APP_SYSTEM_CALIBRATION.md)，没有把它直接计为水平校准完成或实机支持。
+
+
+多段恢复已扩大到6段49,542条code_item并定位40个模式键UI引用方法；不代表字段或命令覆盖完成，六组模式仍待核对/封装。见 [CODE_BANKS.md](../tools/research/CODE_BANKS.md)。

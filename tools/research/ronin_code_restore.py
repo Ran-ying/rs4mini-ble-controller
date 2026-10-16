@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Restore pinned APK code-item backups into an ignored, non-executed DEX view.
 
-Only business-05/classes6 is in scope. No APK/JNI/JVM code is loaded or run.
+Default entry point restores business-05/classes6; ronin_code_banks.py reuses
+the validated helpers for other structurally corroborated banks. No App code runs.
 Header and backup formats are validated; unknown record words remain opaque.
 """
 import argparse
@@ -109,8 +110,11 @@ def encoded_methods(image):
     return slots
 
 
-def backup_table(container, base, limit):
+def backup_table(container, base, limit, expected_name=b'classes6.dex.dgc2'):
     """Inspect pinned fdex wrapper; return a single validated dgc2 code bank."""
+    allowed = {b'classes.dex.dgc2'} | {('classes%d.dex.dgc2' % i).encode('ascii') for i in range(2,9)}
+    if expected_name not in allowed:
+        raise ValueError('unsupported pinned backup entry name')
     candidates, cursor = [], base
     while True:
         footer = container.find(b'fdex', cursor, limit)
@@ -125,7 +129,7 @@ def backup_table(container, base, limit):
         if count != 1 or not 1 <= name_size <= 256 or start + 8 + entry_size != footer:
             continue
         name = checked(container, start + 12, name_size)
-        if name != b'classes6.dex.dgc2':
+        if name != expected_name:
             continue
         size_pos = (start + 12 + name_size + 3) & ~3
         blob_size = words(container, size_pos, '<', 1)[0]
@@ -154,7 +158,7 @@ def backup_table(container, base, limit):
         candidates.append(dict(originalSize=original_size, bankOffset=blob_start,
                                bankSha256=hashlib.sha256(blob).hexdigest(), rows=rows))
     if len(candidates) != 1:
-        raise ValueError('expected one unambiguous classes6 dgc2 bank')
+        raise ValueError('expected one unambiguous '+expected_name.decode('ascii')+' bank')
     return candidates[0]
 
 

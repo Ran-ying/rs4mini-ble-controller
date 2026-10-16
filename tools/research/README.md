@@ -59,3 +59,6 @@ NOP/常量/返回模式只标记为保护桩候选，不把返回零解释成协
 平衡测试新增静态证据：[调用链与同名参数冲突](BALANCE_TEST.md)。运行时版本未变，尚未新增该SDK接口或硬件验收。
 
 自动校准system_calc的固定哈希、命名数组槽、资源及14方法指纹复现工具为 `ronin_system_calibration_trace.py`；说明与未验收边界见 [APP_SYSTEM_CALIBRATION.md](../../docs/APP_SYSTEM_CALIBRATION.md)。不执行厂商代码。
+
+
+多段恢复续报：已严格恢复6段49,542条code_item，原business05哈希不变；另外2段未恢复，模式UI语义仍需核对。见 [CODE_BANKS.md](CODE_BANKS.md)。运行时保持0.7.8/0.3.8，无新增发送或硬件操作。

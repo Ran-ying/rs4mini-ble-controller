@@ -218,3 +218,8 @@ Node90、Web14、Python3.8/3.12各68、原生65+83+3、研究37；类型、模�
 ## 0.7.8 system_calc自动校准
 
 四端新增独立的普通0F/10/index36固定启动1和状态读取，与6A/6E自动调参分开。读取状态2/3不受写入范围0..1限制，未知值保留raw/null；ACK/报告不代表本次物理完成，取消不保证固件中止，无虚构写零停止。Node108/Web14/Python各86/native75+101+3/research45，类型/边界/构建通过。尚无水平校准身份或本机验收，未操作硬件/UI或新增高级任务。详见 [APP_SYSTEM_CALIBRATION.md](APP_SYSTEM_CALIBRATION.md)。
+
+
+## 多段代码恢复续报
+
+严格恢复固定APK6段49,542条原code_item，原business05哈希保持一致；2段仍缺可靠元数据，未恢复。新增40个模式键UI调用方指纹，可继续核对两位字段打包与型号分支。研究48项在Python3.8/3.12通过，实际独立目录复现一致；无SDK发送扩大、硬件/UI或厂商代码执行。运行时仍0.7.8/0.3.8，全协议/高级门槛false。见 [CODE_BANKS.md](../tools/research/CODE_BANKS.md)。

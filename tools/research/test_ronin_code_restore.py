@@ -26,11 +26,10 @@ def fixture():
     return image, bank
 
 
-def wrapped_bank():
+def wrapped_bank(name=b'classes6.dex.dgc2'):
     image, bank = fixture()
     base, original = 16, 512
     start = base + original
-    name = b'classes6.dex.dgc2'
     size_pos = (start + 12 + len(name) + 3) & ~3
     blob_start = size_pos + 4
     blob = (struct.pack('>6I', 68, 0xabbacddc, 24, 24, 48, 20)
@@ -70,6 +69,14 @@ class CodeBackupTests(unittest.TestCase):
         struct.pack_into('>I', damaged, blob + 4, 0)
         with self.assertRaises(ValueError):
             backup_table(damaged, base, len(damaged))
+
+    def test_explicit_bank_name_cannot_select_a_different_segment(self):
+        for name in (b'classes.dex.dgc2',b'classes5.dex.dgc2',b'classes8.dex.dgc2'):
+            raw,base,blob=wrapped_bank(name)
+            self.assertEqual(backup_table(raw,base,len(raw),name)['rows'][0]['slot'],150)
+            with self.assertRaises(ValueError):backup_table(raw,base,len(raw))
+        with self.assertRaisesRegex(ValueError,'unsupported'):
+            backup_table(b'',0,0,b'classes9.dex.dgc2')
 
     def test_bank_rejects_bad_row_allocation_and_gaps(self):
         raw, base, blob = wrapped_bank()

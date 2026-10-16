@@ -1,0 +1,450 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "derivedSha256": "bb50b39865520f55e97116ae1903bda3545b01c2fb7e2aba67a979dc264a9854",
+  "segment": 3,
+  "appCodeExecuted": false,
+  "targetDeviceVerified": false,
+  "wholeProtocolRecovered": false,
+  "fieldSemanticsFullyAudited": false,
+  "methods": [
+    {
+      "className": "Lcom/dji/ronin/ui/configuration/ConfigUserProfileView;",
+      "method": "setTrackAcceleration",
+      "descriptor": "(I)V",
+      "codeOffset": 2448236,
+      "instructionSha256": "ea33407cf9cccc660537068b41a738d615b14da20fc114f1f7f8686ee00a4a86",
+      "referencedModeKeys": [
+        "FollowAcceMode"
+      ]
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/configuration/ConfigUserProfileView;",
+      "method": "setTrackDeadband",
+      "descriptor": "(I)V",
+      "codeOffset": 2448404,
+      "instructionSha256": "f768cc1d36f15531a556f57feb2b6bc7d3edaf7dc65933306f42de7c62c1ae66",
+      "referencedModeKeys": [
+        "FollowDeadZoneMode"
+      ]
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/configuration/ConfigUserProfileView;",
+      "method": "setTrackSpeed",
+      "descriptor": "(I)V",
+      "codeOffset": 2449172,
+      "instructionSha256": "51a945685f8eeb04250c86e55e799ec430a9a91f293e0cab6e5a0e3db6fb5663",
+      "referencedModeKeys": [
+        "FollowSpeedMode"
+      ]
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/configuration/ConfigUserProfileView;",
+      "method": "updateTrackAccelerationView",
+      "descriptor": "()V",
+      "codeOffset": 2449996,
+      "instructionSha256": "d1f859a7c84ed56b6540c2154c14ceb4a8696c005d769e06001fc68cfbec52e6",
+      "referencedModeKeys": [
+        "FollowAcceMode"
+      ]
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/configuration/ConfigUserProfileView;",
+      "method": "updateTrackDeadbandView",
+      "descriptor": "()V",
+      "codeOffset": 2450328,
+      "instructionSha256": "c3c762b4a403512bfeea8a17c0a3d9f25daf28394038a18767fd45dc0eb7b972",
+      "referencedModeKeys": [
+        "FollowDeadZoneMode"
+      ]
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/configuration/ConfigUserProfileView;",
+      "method": "updateTrackSpeedView",
+      "descriptor": "()V",
+      "codeOffset": 2451736,
+      "instructionSha256": "882f1d9351f185bbb4e68c8ec17b7e441e4743335ceccd51c3ba82c0903904c6",
+      "referencedModeKeys": [
+        "FollowSpeedMode"
+      ]
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/configuration/ConfigUserProfileView;",
+      "method": "onAttachedToWindow",
+      "descriptor": "()V",
+      "codeOffset": 2452408,
+      "instructionSha256": "187afd1a54508d6ad2c7347d849d920899399ae5c47956ed6ec64db80d9ba580",
+      "referencedModeKeys": [
+        "FollowAcceMode",
+        "FollowDeadZoneMode",
+        "FollowSpeedMode"
+      ]
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/configuration/ConfigUserProfileView;",
+      "method": "onValueChange",
+      "descriptor": "(Ldji/sdksharedlib/keycatalog/DJISDKCacheKey; Ldji/sdksharedlib/store/DJISDKCacheParamValue; Ldji/sdksharedlib/store/DJISDKCacheParamValue;)V",
+      "codeOffset": 2452964,
+      "instructionSha256": "a4c2fb44b6cec27952e2fb11acb6716613cd332ec889290075bd698fd267ac70",
+      "referencedModeKeys": [
+        "FollowAcceMode",
+        "FollowDeadZoneMode",
+        "FollowSpeedMode"
+      ]
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/configuration/control/ConfigControlMovementView;",
+      "method": "initView",
+      "descriptor": "()V",
+      "codeOffset": 2461580,
+      "instructionSha256": "0e3ef92068fa6a463f161952f442f801b44ccd755525bca85928770ac04fc7e7",
+      "referencedModeKeys": [
+        "RcDeadZoneMode",
+        "RcSmoothMode",
+        "RcSpeedMode"
+      ]
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/configuration/control/ConfigControlMovementView;",
+      "method": "updateByViewDataWrapper",
+      "descriptor": "(Lcom/dji/ronin/ui/configuration/control/ConfigControlMovementView$ViewDataWrapper;)V",
+      "codeOffset": 2462736,
+      "instructionSha256": "af478eaf2410ad4871e59314332ef4e7640cbbe563847c14f77ae5b3dd786871",
+      "referencedModeKeys": [
+        "RcSpeedMode"
+      ]
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/configuration/control/ConfigControlMovementView;",
+      "method": "onAttachedToWindow",
+      "descriptor": "()V",
+      "codeOffset": 2463708,
+      "instructionSha256": "55306a813ecf42d861e8565b2118c982d2a4849a918e9e8af86afb58c82844c7",
+      "referencedModeKeys": [
+        "RcDeadZoneMode",
+        "RcSmoothMode",
+        "RcSpeedMode"
+      ]
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/configuration/control/ConfigControlMovementView;",
+      "method": "onValueChange",
+      "descriptor": "(Ldji/sdksharedlib/keycatalog/DJISDKCacheKey; Ldji/sdksharedlib/store/DJISDKCacheParamValue; Ldji/sdksharedlib/store/DJISDKCacheParamValue;)V",
+      "codeOffset": 2464220,
+      "instructionSha256": "31ab275aead6dcde67b37691a03cdb080cdee3b5f1035dac4f5af20f3283a910",
+      "referencedModeKeys": [
+        "RcDeadZoneMode",
+        "RcSmoothMode",
+        "RcSpeedMode"
+      ]
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/configuration/dialog/ConfigSelectSeekbarDialog$RCControlTypeBinding;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 2469160,
+      "instructionSha256": "166b446ad4162b94d521a54bbd7576cc2d7a06564f6ee3c3bcdd0ca62e4316e8",
+      "referencedModeKeys": [
+        "FollowSpeedMode"
+      ]
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/configuration/dialog/ConfigSelectSeekbarDialog$RCSpeedTypeBinding;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 2469676,
+      "instructionSha256": "9a0bfabc5a245b44e42b738c07ad92606600e9a44929790f4a6e3a4b7475759d",
+      "referencedModeKeys": [
+        "FollowSpeedMode"
+      ]
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/configuration/smoothtrack/ConfigSmoothTrackPanView;",
+      "method": "updateView",
+      "descriptor": "()V",
+      "codeOffset": 2494972,
+      "instructionSha256": "e5b92b88ac35dce8d7e9cbcf3531462b6dff9314521aa3e5e5f4ca28662bf4f8",
+      "referencedModeKeys": [
+        "FollowAcceMode",
+        "FollowDeadZoneMode",
+        "FollowSpeedMode"
+      ]
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/configuration/smoothtrack/ConfigSmoothTrackPanView;",
+      "method": "onAttachedToWindow",
+      "descriptor": "()V",
+      "codeOffset": 2495812,
+      "instructionSha256": "1d3474b8798f728be9cd0b7fbb468089ee807a039d4c773ac392ea409dbc9996",
+      "referencedModeKeys": [
+        "FollowAcceMode",
+        "FollowDeadZoneMode",
+        "FollowSpeedMode"
+      ]
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/configuration/smoothtrack/ConfigSmoothTrackPanView;",
+      "method": "onClick",
+      "descriptor": "(Landroid/view/View;)V",
+      "codeOffset": 2496088,
+      "instructionSha256": "a77f99fe86fac49c059f967da4f9116e5b037ee6ce90893b80ac5da6e8fa5530",
+      "referencedModeKeys": [
+        "FollowAcceMode",
+        "FollowDeadZoneMode",
+        "FollowSpeedMode"
+      ]
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/configuration/smoothtrack/ConfigSmoothTrackRollView;",
+      "method": "updateView",
+      "descriptor": "()V",
+      "codeOffset": 2497532,
+      "instructionSha256": "5921a4329029233e137a7b3d01f99f24c2aa760dee6ae041103d8e9bf7c89b4a",
+      "referencedModeKeys": [
+        "FollowAcceMode",
+        "FollowDeadZoneMode",
+        "FollowSpeedMode"
+      ]
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/configuration/smoothtrack/ConfigSmoothTrackRollView;",
+      "method": "onAttachedToWindow",
+      "descriptor": "()V",
+      "codeOffset": 2498320,
+      "instructionSha256": "9c06fb659bb8f565083603f8d4bad2c52d42fa7f0a48a25a52ba2a31066b6913",
+      "referencedModeKeys": [
+        "FollowAcceMode",
+        "FollowDeadZoneMode",
+        "FollowSpeedMode"
+      ]
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/configuration/smoothtrack/ConfigSmoothTrackRollView;",
+      "method": "onClick",
+      "descriptor": "(Landroid/view/View;)V",
+      "codeOffset": 2498632,
+      "instructionSha256": "4cef8454a9f28385dbc71da5ceb9e62ae4a1c3aa476d343acdd2eb74ee7f2e92",
+      "referencedModeKeys": [
+        "FollowAcceMode",
+        "FollowDeadZoneMode",
+        "FollowSpeedMode"
+      ]
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/configuration/smoothtrack/ConfigSmoothTrackTiltView;",
+      "method": "updateView",
+      "descriptor": "()V",
+      "codeOffset": 2500040,
+      "instructionSha256": "b0d003a0c0926a54a1e44b66ebd6391a004da4df8286e008a740af7abb54a5a3",
+      "referencedModeKeys": [
+        "FollowAcceMode",
+        "FollowDeadZoneMode",
+        "FollowSpeedMode"
+      ]
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/configuration/smoothtrack/ConfigSmoothTrackTiltView;",
+      "method": "onAttachedToWindow",
+      "descriptor": "()V",
+      "codeOffset": 2500828,
+      "instructionSha256": "86e5abb117ada47f373a5b45223271a814c21299a806663255a1f4ee603caf7f",
+      "referencedModeKeys": [
+        "FollowAcceMode",
+        "FollowDeadZoneMode",
+        "FollowSpeedMode"
+      ]
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/configuration/smoothtrack/ConfigSmoothTrackTiltView;",
+      "method": "onClick",
+      "descriptor": "(Landroid/view/View;)V",
+      "codeOffset": 2501104,
+      "instructionSha256": "5f0be57c249ee24e31de7b1e76cbeffaca5fc9ed69fe91803c170c0e90f82aa9",
+      "referencedModeKeys": [
+        "FollowAcceMode",
+        "FollowDeadZoneMode",
+        "FollowSpeedMode"
+      ]
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/forcemobile/CreateForceMobileView$Axis;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 2590576,
+      "instructionSha256": "2559bd09bbc311b621f4de43da5a9a26f8d90e94072eb6f05d1b390958944799",
+      "referencedModeKeys": [
+        "RcSmoothMode",
+        "RcSpeedMode"
+      ]
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/gamepad/GamePadControlView$Axis;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 2594984,
+      "instructionSha256": "99815f81cbf3742134f83e42064fe20c5d9e69f45c331cad6b1e54929c738d7b",
+      "referencedModeKeys": [
+        "RcSmoothMode",
+        "RcSpeedMode"
+      ]
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/video/CreateVideoView$Axis;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 2636504,
+      "instructionSha256": "43fd9ad0cc88c9d49398719bea3648ffb956acfa430b6493088c7916962c81e8",
+      "referencedModeKeys": [
+        "RcSmoothMode",
+        "RcSpeedMode"
+      ]
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/video/CreateVideoViewNew$Axis;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 2642668,
+      "instructionSha256": "f64446589eb20ba7074cfd375eaf6b43ad11dfe2f93cfc4e3cd3969d15cb66d1",
+      "referencedModeKeys": [
+        "RcSmoothMode",
+        "RcSpeedMode"
+      ]
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/forcemobile/CreateForceMobileView;",
+      "method": "addGimbalListener",
+      "descriptor": "()V",
+      "codeOffset": 3933616,
+      "instructionSha256": "0788db47e3438b6ad71ef72cc52de5119e13f44c3f32494eb7bec235bfa64cde",
+      "referencedModeKeys": [
+        "RcSmoothMode",
+        "RcSpeedMode"
+      ]
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/gamepad/GamePadControlView;",
+      "method": "addGimbalListener",
+      "descriptor": "()V",
+      "codeOffset": 3940476,
+      "instructionSha256": "95d1c8423842c0f7a6a095be30ac0cc9d3b320310c7079aeefab224eb44685d0",
+      "referencedModeKeys": [
+        "RcSmoothMode",
+        "RcSpeedMode"
+      ]
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/video/CreateVideoView;",
+      "method": "addGimbalListener",
+      "descriptor": "()V",
+      "codeOffset": 3963612,
+      "instructionSha256": "052f52da83ff3ce522bab60ef564e8f948aea77b07da528d9f90c122ba359fef",
+      "referencedModeKeys": [
+        "RcSmoothMode",
+        "RcSpeedMode"
+      ]
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/video/CreateVideoViewNew;",
+      "method": "addGimbalListener",
+      "descriptor": "()V",
+      "codeOffset": 3970504,
+      "instructionSha256": "d0e46e008486bb2e7f543c5ff1b7f3117918dc4210d40a90931c8c452928fe88",
+      "referencedModeKeys": [
+        "RcSmoothMode",
+        "RcSpeedMode"
+      ]
+    },
+    {
+      "className": "Lcom/dji/ronin/viewModel/CreateVideoViewModel;",
+      "method": "onValueChange",
+      "descriptor": "(Ldji/sdksharedlib/keycatalog/DJISDKCacheKey; Ldji/sdksharedlib/store/DJISDKCacheParamValue; Ldji/sdksharedlib/store/DJISDKCacheParamValue;)V",
+      "codeOffset": 4018188,
+      "instructionSha256": "60246cfc6a86ee405a83d65b80733032d691872c585eae65f8e72d2ee87289e7",
+      "referencedModeKeys": [
+        "RcSmoothMode",
+        "RcSpeedMode"
+      ]
+    },
+    {
+      "className": "Lcom/dji/ronin/viewModel/CreateVideoViewModel;",
+      "method": "performPitchSmoothSet",
+      "descriptor": "(I)V",
+      "codeOffset": 4019348,
+      "instructionSha256": "0eea73c59000afe48d913bd8dd6da0650b6b28aa8c267e0168ae7e7a4b04cc0e",
+      "referencedModeKeys": [
+        "RcSmoothMode"
+      ]
+    },
+    {
+      "className": "Lcom/dji/ronin/viewModel/CreateVideoViewModel;",
+      "method": "performPitchSpeedSet",
+      "descriptor": "(I)V",
+      "codeOffset": 4019412,
+      "instructionSha256": "89bf0d69215b73e38dd913ad3e5f1e4ad2dcf446929a8a2b3cd4f9b970c23f13",
+      "referencedModeKeys": [
+        "RcSpeedMode"
+      ]
+    },
+    {
+      "className": "Lcom/dji/ronin/viewModel/CreateVideoViewModel;",
+      "method": "performRollSmoothSet",
+      "descriptor": "(I)V",
+      "codeOffset": 4019476,
+      "instructionSha256": "e42ea1a94d5d42dd29c62b85bc8e0bdcc7b48948ed7277fce6350e2e85481d74",
+      "referencedModeKeys": [
+        "RcSmoothMode"
+      ]
+    },
+    {
+      "className": "Lcom/dji/ronin/viewModel/CreateVideoViewModel;",
+      "method": "performRollSpeedSet",
+      "descriptor": "(I)V",
+      "codeOffset": 4019540,
+      "instructionSha256": "a4beda57f6502e0747f40781836218b4fbe4de693a2a4ad4f40bd0bc15217ddd",
+      "referencedModeKeys": [
+        "RcSpeedMode"
+      ]
+    },
+    {
+      "className": "Lcom/dji/ronin/viewModel/CreateVideoViewModel;",
+      "method": "performYawSmoothSet",
+      "descriptor": "(I)V",
+      "codeOffset": 4019604,
+      "instructionSha256": "842764c37e55dd7824fbe8db535cf5e23e46b0d058e10e0591d1980fd4003bd5",
+      "referencedModeKeys": [
+        "RcSmoothMode"
+      ]
+    },
+    {
+      "className": "Lcom/dji/ronin/viewModel/CreateVideoViewModel;",
+      "method": "performYawSpeedSet",
+      "descriptor": "(I)V",
+      "codeOffset": 4019668,
+      "instructionSha256": "3e7fef10b0c59ab7d2508473b3749f5d46eec92c7251cdeda1d606219068a5cd",
+      "referencedModeKeys": [
+        "RcSpeedMode"
+      ]
+    },
+    {
+      "className": "Lcom/dji/ronin/viewModel/CreateVideoViewModel;",
+      "method": "updateAllData",
+      "descriptor": "()V",
+      "codeOffset": 4019732,
+      "instructionSha256": "d1501810a0a4e3b694421f4051d13a32e1757cf60c7df7253c77d1c43427b811",
+      "referencedModeKeys": [
+        "RcSmoothMode",
+        "RcSpeedMode"
+      ]
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/configuration/dialog/ConfigSelectSeekbarDialog;",
+      "method": "initData",
+      "descriptor": "()V",
+      "codeOffset": 4727680,
+      "instructionSha256": "49475358071a70f17ba0d0fa3747f4fd41e0a5edec7143b698d71143fefc84d0",
+      "referencedModeKeys": [
+        "RcSpeedMode"
+      ]
+    }
+  ]
+}

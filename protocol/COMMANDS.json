@@ -258,7 +258,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "app-code-path",
       "implementation": [],
-      "remaining": "灵敏度0/1及继承源码的自定义跟随启用/三轴位已封装；不等于PF/PTF/FPV预设，型号支持和本机效果待验收",
+      "remaining": "灵敏度0/1及继承源码的自定义跟随启用/三轴位已封装；不等于PF/PTF/FPV预设，型号支持和本机效果待验收；多段恢复后已定位40个模式键UI引用方法与打包位字段线索，轴/枚举/型号路径尚待完整核对，未开放六组模式写入",
       "modelResearchEvidence": "protocol/research/ronin-hg724-evidence.json",
       "restoredAppEvidence": "protocol/research/ronin-code-restoration-evidence.json"
     },
@@ -728,7 +728,8 @@
     "tools/research/msdk_payloads.py",
     "tools/research/ronin_model_trace.py",
     "tools/research/ronin_code_restore.py",
-    "tools/research/ronin_app_payloads.py"
+    "tools/research/ronin_app_payloads.py",
+    "tools/research/ronin_code_banks.py"
   ],
   "modelIdentityResearch": "protocol/research/ronin-hg724-evidence.json",
   "codeRestorationResearch": "protocol/research/ronin-code-restoration-evidence.json",
@@ -737,5 +738,7 @@
   "calibrationResearch": "protocol/research/ronin-calibration-evidence.json",
   "motorTuningResearch": "protocol/research/ronin-motor-evidence.json",
   "balanceResearch": "protocol/research/ronin-balance-evidence.json",
-  "systemCalibrationResearch": "protocol/research/ronin-system-calibration-evidence.json"
+  "systemCalibrationResearch": "protocol/research/ronin-system-calibration-evidence.json",
+  "codeBankResearch": "protocol/research/ronin-code-banks-evidence.json",
+  "controlModeCallerResearch": "protocol/research/ronin-control-mode-callers.json"
 }

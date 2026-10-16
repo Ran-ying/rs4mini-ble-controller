@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "appCodeExecuted": false,
+  "targetDeviceVerified": false,
+  "wholeProtocolRecovered": false,
+  "wholeAppRecovered": false,
+  "banks": [
+    {
+      "segment": 0,
+      "backupName": "classes.dex.dgc2",
+      "bankSha256": "82cb2bc0c008b30e1229c5ccd9ac7f9685b282f5ac56564f46a366be73c663a4",
+      "backupRecords": 16898,
+      "originalSize": 11863660,
+      "structurallyReadable": true,
+      "restored": true,
+      "restoredCodeItems": 16898,
+      "derivedFile": "business-00-code-restored.dex",
+      "derivedSha256": "76002e76e02e1306ad197c4af127975d573999de174e5a9e44cc6f840196f621"
+    },
+    {
+      "segment": 1,
+      "backupName": "classes2.dex.dgc2",
+      "bankSha256": "829f7dd7d3973e55907436bef531047f3ea1318a8b296e23ec9456c72d3ce852",
+      "backupRecords": 2623,
+      "originalSize": 4050468,
+      "structurallyReadable": false,
+      "restored": false,
+      "remaining": "metadata lacks corroborating unchanged string-id suffix; code slots not restored"
+    },
+    {
+      "segment": 2,
+      "backupName": "classes3.dex.dgc2",
+      "bankSha256": "2bac1c6837604550654b0e6bd0cf469ed76f741191edfe462866c53dea5408bc",
+      "backupRecords": 2689,
+      "originalSize": 5347368,
+      "structurallyReadable": true,
+      "restored": true,
+      "restoredCodeItems": 2689,
+      "derivedFile": "business-02-code-restored.dex",
+      "derivedSha256": "de69497b77de530d0d559646dc6d3fb24569e2ba8ba9502216f3d6c9fd6f3bf8"
+    },
+    {
+      "segment": 3,
+      "backupName": "classes4.dex.dgc2",
+      "bankSha256": "a32afce799386d5d52bf32f9c06f0e54f4413be28d807579ccd885597ca49ded",
+      "backupRecords": 6542,
+      "originalSize": 8893328,
+      "structurallyReadable": true,
+      "restored": true,
+      "restoredCodeItems": 6542,
+      "derivedFile": "business-03-code-restored.dex",
+      "derivedSha256": "bb50b39865520f55e97116ae1903bda3545b01c2fb7e2aba67a979dc264a9854"
+    },
+    {
+      "segment": 4,
+      "backupName": "classes5.dex.dgc2",
+      "bankSha256": "cb2a0e1ea84b15339dd339fa101b521a82622cc8086be77562f777d3903a757c",
+      "backupRecords": 1786,
+      "originalSize": 9362644,
+      "structurallyReadable": true,
+      "restored": true,
+      "restoredCodeItems": 1786,
+      "derivedFile": "business-04-code-restored.dex",
+      "derivedSha256": "2d3ff70fb84eb02ac75949ca6e7d5cc849a7f9ef55029fd168890c6dbccb1d12"
+    },
+    {
+      "segment": 5,
+      "backupName": "classes6.dex.dgc2",
+      "bankSha256": "ca8dab6c124b42a257c433c0314c6e5956eee19a4e6923ac88f36cf3b609faff",
+      "backupRecords": 19436,
+      "originalSize": 11325384,
+      "structurallyReadable": true,
+      "restored": true,
+      "restoredCodeItems": 19436,
+      "derivedFile": "business-05-code-restored.dex",
+      "derivedSha256": "4fdbd74a05df63d72a0feb1c907d9395426ec3cdb5d6aeb45e3836d856d66654"
+    },
+    {
+      "segment": 6,
+      "backupName": "classes7.dex.dgc2",
+      "bankSha256": "fc8b8c8442d24d8cedc596f58d85d3faa0de0db59931d17901aff3ae98306374",
+      "backupRecords": 2191,
+      "originalSize": 10032624,
+      "structurallyReadable": true,
+      "restored": true,
+      "restoredCodeItems": 2191,
+      "derivedFile": "business-06-code-restored.dex",
+      "derivedSha256": "057f13084cf969ffadcfa2150d1b3ae3ed8a7822c95fb54158781764c9156e2f"
+    },
+    {
+      "segment": 7,
+      "backupName": "classes8.dex.dgc2",
+      "bankSha256": "df2ce23a83701db68f92df716c8fe07fa3acfcbba1e25348fe3ad0310fc2b18d",
+      "backupRecords": 514,
+      "originalSize": 1632524,
+      "structurallyReadable": false,
+      "restored": false,
+      "remaining": "metadata lacks corroborating unchanged string-id suffix; code slots not restored"
+    }
+  ],
+  "restoredCodeItems": 49542
+}

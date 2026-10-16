@@ -409,3 +409,20 @@ do not claim that gap solved. See docs/APP_SYSTEM_CALIBRATION.md and protocol/
 research/ronin-system-calibration-evidence.json; pinned source tool14 fingerprints.
 Node108/Web14/Python86 each/native75+101+3/research45; types/boundaries/builds
 passed. No hardware/live UI or advanced additions, both completion gates false.
+
+
+## Multi-bank restoration (runtime stays0.7.8/native0.3.8)
+
+ronin_code_banks.py now restores6 structurally corroborated banks,49,542 exact
+code_items: segments0/2/3/4/5/6. Segment5 SHA stays4fdbd74a05df63d72a0feb1c907d9395426ec3cdb5d6aeb45e3836d856d66654. Segments1/7 have backup tables but lack reliable
+metadata suffix; no code-slot restoration or full-App/protocol claim. Shared
+backup_table accepts explicit pinned entry names, default remainsclasses6; all
+slot/footprint/handler/non-overlap constraints remain. Restored images never run.
+Optional inspect_control_modes pins bank3 SHA and fingerprints40 UI methods
+referencing six follow/RC mode keys. UI shows two-bit packing clues; fields,
+axis mapping,enums,model/UI support still need audit and SDK encapsulation.
+Do not expose raw mode-byte writing as completed decoding. See tools/research/
+CODE_BANKS.md, protocol/research/ronin-code-banks-evidence.json and ronin-control-
+mode-callers.json. Research48 tests pass inPython3.8/3.12; real pinnedAPK restores
+reproduce across directories. No SDK/UI sending/hardware or advanced additions.
+Both completion gates remain false. Prior only-bank5 limitations are historical.

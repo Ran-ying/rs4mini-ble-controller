@@ -77,3 +77,6 @@ python -m unittest discover -s tools/research -v
 
 `ronin_app_payloads.py` 是纯离线、无传输的源代码载荷核对工具，不被 SDK/UI 引用。全部设备命令的请求、响应、停止和本机验收尚未完成；
 `inventoryComplete` 与新增高级开发条件保持 false，未操作硬件。
+
+
+多段恢复续报：已严格恢复6段49,542条code_item，原business05哈希不变；另外2段未恢复，模式UI语义仍需核对。见 [CODE_BANKS.md](CODE_BANKS.md)。运行时保持0.7.8/0.3.8，无新增发送或硬件操作。

@@ -137,5 +137,19 @@ if manifest.get('systemCalibrationResearch'):
     assert [r['name'] for r in system['states']] == ['DEFAULT','START','FAIL','SUCCESS']
     assert system['sourceFacts']['horizontalCalibrationIdentityVerified'] is False
     assert system['sourceFacts']['abortCommandVerified'] is False
+if manifest.get('codeBankResearch'):
+    banks = json.loads((root / manifest['codeBankResearch']).read_text())
+    assert banks['appCodeExecuted'] is False and banks['targetDeviceVerified'] is False
+    assert banks['wholeProtocolRecovered'] is False and banks['wholeAppRecovered'] is False
+    assert len(banks['banks']) == 8 and sum(row['restored'] for row in banks['banks']) == 6
+    assert banks['restoredCodeItems'] == sum(row.get('restoredCodeItems',0) for row in banks['banks']) == 49542
+    assert banks['banks'][5]['derivedSha256'] == restored['derivedSha256']
+    assert [row['segment'] for row in banks['banks'] if not row['restored']] == [1,7]
+if manifest.get('controlModeCallerResearch'):
+    callers = json.loads((root / manifest['controlModeCallerResearch']).read_text())
+    assert callers['appCodeExecuted'] is False and callers['targetDeviceVerified'] is False
+    assert callers['wholeProtocolRecovered'] is False and callers['fieldSemanticsFullyAudited'] is False
+    assert callers['derivedSha256'] == banks['banks'][3]['derivedSha256']
+    assert len(callers['methods']) == 40
 print('Layer boundaries passed: device modules do not depend on motion; upper layers do not encode/write packets.')
 print('Protocol inventory: %d entries; inventoryComplete=false; further advanced development is gated.' % len(manifest['commands']))

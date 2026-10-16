@@ -6,6 +6,10 @@
 用户已要求将源码与相关信息提交至 GitHub。本记录随源码版本保存，提交和远端状态以 Git 历史为准；
 这不是 npm 发布或 GitHub 二进制 Release。
 
+## 最新研究：多段代码恢复与模式调用方
+
+已从固定APK严格恢复6段49,542条原code_item，原business05哈希不变；段01/07仍未恢复。新business03定位40个跟随/摇杆模式键UI引用方法，出现两位字段打包线索，不能把整字节当作单轴值。详见 [CODE_BANKS.md](../tools/research/CODE_BANKS.md)。本批未新增SDK发送或高级功能，运行时仍0.7.8/原生0.3.8；研究48项在两个Python环境通过，无硬件/UI操作，两个完成门槛仍false。
+
 ## 当前进度：0.7.8 system_calc自动校准
 
 四端提供sendAutoCalibrationRequest/getAutoCalibrationStatus（原生等价方法、Python别名），普通0F/10命名参数index36/size1，启动固定1。状态0 DEFAULT/1 START/2 FAIL/3 SUCCESS与写入范围分开，未知值保留；和6A/6E自动调参不混用，无自动轮询/等待完成或虚构中止。见 [APP_SYSTEM_CALIBRATION.md](APP_SYSTEM_CALIBRATION.md)。尚未确认水平校准身份、本机接受/完成/停止。Node108/Web14/Python各86/native75+101+3/research45，类型/边界/构建通过。无硬件/UI操作，全协议和高级门槛仍false。下方为历史记录。

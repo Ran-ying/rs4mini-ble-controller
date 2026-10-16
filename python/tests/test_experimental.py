@@ -131,3 +131,29 @@ class ExperimentalTests(unittest.IsolatedAsyncioTestCase):
         self.assertFalse(self.gimbal.experimental.status['battery-status']['deviceVerified'])
         await self.gimbal.disconnect()
         self.assertEqual(self.gimbal.experimental.status, {})
+
+    async def test_legacy_parameter_response_records_and_malformed_payloads(self):
+        msg = lambda command, payload, flags=0x80: parse_duml_frame(incoming(1, 4, command, bytes(payload), flags=flags))
+        value = decode_research_status(msg(0x10, [0, 18, 1, 0]), 'rs3')
+        self.assertEqual(value['parameters'], [dict(index=18, size=1, rawHex='00')])
+        self.assertFalse(value['deviceVerified'])
+        self.assertEqual(value['layoutSource'], 'legacy-duml')
+        value = decode_research_status(msg(0x10, [5, 18, 1, 0, 18, 2, 255, 255, 255, 62, 8] + [255] * 8), 'rs3mini')
+        self.assertEqual(value['statusCode'], 5)
+        self.assertEqual(value['parameters'], [dict(index=18, size=1, rawHex='00'), dict(index=18, size=2, rawHex='ffff'), dict(errorCode=-1), dict(index=62, size=8, rawHex='ffffffffffffffff')])
+        self.assertEqual(decode_research_status(msg(0x0f, [7]), 'rs3')['statusCode'], 7)
+        for payload in ([], [0, 18], [0, 18, 0], [0, 18, 3, 1, 2, 3], [0, 18, 2, 1]):
+            self.assertIsNone(decode_research_status(msg(0x10, payload), 'rs3'))
+        self.assertIsNone(decode_research_status(msg(0x10, [0, 18, 1, 0], 0x40), 'rs3'))
+        self.assertIsNone(decode_research_status(msg(0x0f, [7], 0), 'rs3'))
+
+    async def test_parameter_responses_are_passive_and_profile_gated(self):
+        packet = incoming(1, 4, 0x10, bytes([0, 18, 1, 0]))
+        self.client.notify(None, packet)
+        self.assertEqual(self.gimbal.experimental.status, {})
+        self.gimbal.experimental.useProfile('rs3')
+        self.client.notify(None, packet)
+        value = self.gimbal.experimental.status
+        value['user-parameters']['parameters'][0]['rawHex'] = 'ff'
+        self.assertEqual(self.gimbal.experimental.status['user-parameters']['parameters'][0]['rawHex'], '00')
+        self.assertEqual(self.client.frames(), [])

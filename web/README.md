@@ -1,4 +1,4 @@
-# Web Bluetooth 0.7.1
+# Web Bluetooth 0.7.2
 
 从仓库根目录启动本机服务：
 
@@ -19,7 +19,7 @@ npm test
 ```
 
 测试模拟原生 GATT 事件、设备选择、通知、位置闭环、断线和失焦；并在无 Node Buffer 的进程中检查共享模块。测试不打开真实设备选择器、不连接蓝牙。浏览器/系统权限与新运动行为仍待 [统一实机验证](../docs/HARDWARE_CHECKLIST.md)。
-## 0.7.1 非相机扩展
+## 0.7.2 非相机扩展
 
 Web SDK 随共享核心增加 `enableAutoReconnect()`、`disableAutoReconnect()`、
 `runTrajectory()`、`moveThrough()`、`captureHome()`、`moveHome()`、`getOrientation()`。

@@ -66,3 +66,15 @@ void RS4Mini.prototype.requestDegreeInfo;
 void device.moveTo({ pan: 1 });
 // @ts-expect-error trajectories belong to the application wrapper
 void device.runTrajectory([]);
+
+// Parameter research records remain tagged raw values or per-record errors.
+import type { ResearchStatus as ParameterResearchStatus } from '../src/index.js';
+const consumeParameterReport = (status: ParameterResearchStatus) => {
+  if (status.kind === 'user-parameters') {
+    for (const record of status.parameters) {
+      if ('index' in record) console.log(record.index, record.size, record.rawHex);
+      else console.log(record.errorCode);
+    }
+  } else if (status.kind === 'user-parameter-ack') console.log(status.statusCode);
+};
+void consumeParameterReport;

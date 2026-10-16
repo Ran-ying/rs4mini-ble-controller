@@ -19,3 +19,7 @@ work/
 .env
 .env.*
 !.env.example
+
+# External APKs and derived research bytecode are never source deliverables.
+*.apk
+*.dex

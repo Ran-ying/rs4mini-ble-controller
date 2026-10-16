@@ -98,3 +98,35 @@ test('status decoders require known endpoints and preserve profile uncertainty',
   assert.equal(decodeResearchStatus(malformed, 'rs3mini'), null);
   await gimbal.disconnect(); assert.deepEqual(gimbal.experimental.status, {});
 });
+
+test('legacy parameter responses preserve raw values, duplicate indexes and per-record errors', () => {
+  const msg = (id, payload, flags = 0x80) => parseDumlFrame(incoming(1, 4, id, payload, { flags }));
+  const sample = decodeResearchStatus(msg(0x10, [0, 18, 1, 0]), 'rs3');
+  assert.deepEqual(sample.parameters, [{ index: 18, size: 1, rawHex: '00' }]);
+  assert.equal(sample.deviceVerified, false);
+  assert.equal(sample.layoutSource, 'legacy-duml');
+  const mixed = decodeResearchStatus(msg(0x10, [5, 18, 1, 0, 18, 2, 255, 255, 255, 62, 8, 255, 255, 255, 255, 255, 255, 255, 255]), 'rs3mini');
+  assert.equal(mixed.statusCode, 5);
+  assert.deepEqual(mixed.parameters, [
+    { index: 18, size: 1, rawHex: '00' }, { index: 18, size: 2, rawHex: 'ffff' },
+    { errorCode: -1 }, { index: 62, size: 8, rawHex: 'ffffffffffffffff' },
+  ]);
+  assert.equal(decodeResearchStatus(msg(0x0f, [7]), 'rs3').statusCode, 7);
+  for (const value of [[], [0, 18], [0, 18, 0], [0, 18, 3, 1, 2, 3], [0, 18, 2, 1]])
+    assert.equal(decodeResearchStatus(msg(0x10, value), 'rs3'), null);
+  assert.equal(decodeResearchStatus(msg(0x10, [0, 18, 1, 0], 0x40), 'rs3'), null);
+  assert.equal(decodeResearchStatus(msg(0x0f, [7], 0), 'rs3'), null);
+});
+
+test('parameter responses stay passive, copied and absent without explicit research profile', async t => {
+  const { gimbal, peripheral } = await connected(t);
+  const packet = incoming(1, 4, 0x10, [0, 18, 1, 0]);
+  peripheral.rx.emit('data', packet, true);
+  assert.deepEqual(gimbal.experimental.status, {});
+  gimbal.experimental.useProfile('rs3');
+  peripheral.rx.emit('data', packet, true);
+  const value = gimbal.experimental.status;
+  value['user-parameters'].parameters[0].rawHex = 'ff';
+  assert.equal(gimbal.experimental.status['user-parameters'].parameters[0].rawHex, '00');
+  assert.equal(peripheral.frames().length, 0);
+});

@@ -1,0 +1,936 @@
+{
+  "schemaVersion": 1,
+  "source": "https://www.dji.com/downloads/djiapp/dji-ronin",
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "targetDeviceVerified": false,
+  "rs4MiniModelBranchRecovered": false,
+  "originalProtectedMethodsRestored": false,
+  "metadata": {
+    "segments": 8,
+    "structurallyReadable": 6,
+    "records": [
+      {
+        "index": 0,
+        "base": 26204,
+        "size": 14135296,
+        "stringCount": 67006,
+        "unchangedStringIds": 34266,
+        "structurallyReadable": true,
+        "lastDamagedStringIdOffset": 131068,
+        "file": "business-00.dex",
+        "derivedSha256": "40464a1fd191dd70388972789143168c33819b661376ee572ebcfb5891cb41fb"
+      },
+      {
+        "index": 1,
+        "base": 14161500,
+        "size": 4427776,
+        "stringCount": 29629,
+        "unchangedStringIds": 0,
+        "structurallyReadable": false,
+        "lastDamagedStringIdOffset": 118624
+      },
+      {
+        "index": 2,
+        "base": 18589276,
+        "size": 5844992,
+        "stringCount": 36860,
+        "unchangedStringIds": 4120,
+        "structurallyReadable": true,
+        "lastDamagedStringIdOffset": 131068,
+        "file": "business-02.dex",
+        "derivedSha256": "b4e765c1510428c953179de1ae31f12d9ebb0b6b1e2778a400c18499fd1073db"
+      },
+      {
+        "index": 3,
+        "base": 24434268,
+        "size": 9973760,
+        "stringCount": 58169,
+        "unchangedStringIds": 25429,
+        "structurallyReadable": true,
+        "lastDamagedStringIdOffset": 131068,
+        "file": "business-03.dex",
+        "derivedSha256": "643e2a7ca7d31ee33c42a0696a0cef3dc7759a386777409bd81e9d985646f41c"
+      },
+      {
+        "index": 4,
+        "base": 34408028,
+        "size": 9613312,
+        "stringCount": 48677,
+        "unchangedStringIds": 15937,
+        "structurallyReadable": true,
+        "lastDamagedStringIdOffset": 131068,
+        "file": "business-04.dex",
+        "derivedSha256": "ae7b8d4cac7e3ad82d5518a2ab527b08bc4944be448918be188912e5480e11a3"
+      },
+      {
+        "index": 5,
+        "base": 44021340,
+        "size": 13815808,
+        "stringCount": 65293,
+        "unchangedStringIds": 32553,
+        "structurallyReadable": true,
+        "lastDamagedStringIdOffset": 131068,
+        "file": "business-05.dex",
+        "derivedSha256": "00cfa920406e2f0628427c9d2415a36624d0e11ad4809f5f06c3f07c27dc5458"
+      },
+      {
+        "index": 6,
+        "base": 57837148,
+        "size": 10326016,
+        "stringCount": 53196,
+        "unchangedStringIds": 20456,
+        "structurallyReadable": true,
+        "lastDamagedStringIdOffset": 131068,
+        "file": "business-06.dex",
+        "derivedSha256": "f46d51477bc2905063abbb610815cc3138675737126c9e8ab2a77d820ed75083"
+      },
+      {
+        "index": 7,
+        "base": 68163164,
+        "size": 1703944,
+        "stringCount": 17753,
+        "unchangedStringIds": 0,
+        "structurallyReadable": false,
+        "lastDamagedStringIdOffset": 71120
+      }
+    ]
+  },
+  "enumEvidence": {
+    "className": "Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+    "method": "<clinit>",
+    "codeOffset": 4652020,
+    "instructionSha256": "89d7e5d4c317f54eb541d186eff2e608a50e62f9387974ef9c74a54543aa6609"
+  },
+  "enumEntries": [
+    {
+      "name": "Control",
+      "ordinal": 0,
+      "value": 1,
+      "wireValue": true,
+      "instructionOffset": 14,
+      "scope": "non-camera-candidate"
+    },
+    {
+      "name": "GetPushParams",
+      "ordinal": 1,
+      "value": 5,
+      "wireValue": true,
+      "instructionOffset": 44,
+      "scope": "non-camera-candidate"
+    },
+    {
+      "name": "RollFinetune",
+      "ordinal": 2,
+      "value": 7,
+      "wireValue": true,
+      "instructionOffset": 68,
+      "scope": "non-camera-candidate"
+    },
+    {
+      "name": "AutoCalibration",
+      "ordinal": 3,
+      "value": 8,
+      "wireValue": true,
+      "instructionOffset": 100,
+      "scope": "non-camera-candidate"
+    },
+    {
+      "name": "SetAngle",
+      "ordinal": 4,
+      "value": 10,
+      "wireValue": true,
+      "instructionOffset": 126,
+      "scope": "non-camera-candidate"
+    },
+    {
+      "name": "SetOnOrOff",
+      "ordinal": 5,
+      "value": 13,
+      "wireValue": true,
+      "instructionOffset": 152,
+      "scope": "non-camera-candidate"
+    },
+    {
+      "name": "SpeedControl",
+      "ordinal": 6,
+      "value": 12,
+      "wireValue": true,
+      "instructionOffset": 178,
+      "scope": "non-camera-candidate"
+    },
+    {
+      "name": "AngleControl",
+      "ordinal": 7,
+      "value": 10,
+      "wireValue": true,
+      "instructionOffset": 198,
+      "scope": "non-camera-candidate"
+    },
+    {
+      "name": "SetUserParams",
+      "ordinal": 8,
+      "value": 15,
+      "wireValue": true,
+      "instructionOffset": 226,
+      "scope": "non-camera-candidate"
+    },
+    {
+      "name": "GetUserParams",
+      "ordinal": 9,
+      "value": 16,
+      "wireValue": true,
+      "instructionOffset": 262,
+      "scope": "non-camera-candidate"
+    },
+    {
+      "name": "SaveUserParams",
+      "ordinal": 10,
+      "value": 17,
+      "wireValue": true,
+      "instructionOffset": 286,
+      "scope": "non-camera-candidate"
+    },
+    {
+      "name": "SubscribeGimbalParams",
+      "ordinal": 11,
+      "value": 18,
+      "wireValue": true,
+      "instructionOffset": 318,
+      "scope": "non-camera-candidate"
+    },
+    {
+      "name": "ResetUserParams",
+      "ordinal": 12,
+      "value": 19,
+      "wireValue": true,
+      "instructionOffset": 342,
+      "scope": "non-camera-candidate"
+    },
+    {
+      "name": "AbsAngleControl",
+      "ordinal": 13,
+      "value": 20,
+      "wireValue": true,
+      "instructionOffset": 366,
+      "scope": "non-camera-candidate"
+    },
+    {
+      "name": "GetPushType",
+      "ordinal": 14,
+      "value": 28,
+      "wireValue": true,
+      "instructionOffset": 400,
+      "scope": "non-camera-candidate"
+    },
+    {
+      "name": "GetPushUserParams",
+      "ordinal": 15,
+      "value": 36,
+      "wireValue": true,
+      "instructionOffset": 434,
+      "scope": "non-camera-candidate"
+    },
+    {
+      "name": "SetDelayTimelapseParams",
+      "ordinal": 16,
+      "value": 37,
+      "wireValue": true,
+      "instructionOffset": 462,
+      "scope": "non-camera-candidate"
+    },
+    {
+      "name": "GetPushAbnormalStatus",
+      "ordinal": 17,
+      "value": 39,
+      "wireValue": true,
+      "instructionOffset": 496,
+      "scope": "non-camera-candidate"
+    },
+    {
+      "name": "GetPushTutorialStatus",
+      "ordinal": 18,
+      "value": 43,
+      "wireValue": true,
+      "instructionOffset": 530,
+      "scope": "non-camera-candidate"
+    },
+    {
+      "name": "SetTutorialStep",
+      "ordinal": 19,
+      "value": 44,
+      "wireValue": true,
+      "instructionOffset": 554,
+      "scope": "non-camera-candidate"
+    },
+    {
+      "name": "FocusControl",
+      "ordinal": 20,
+      "value": 47,
+      "wireValue": true,
+      "instructionOffset": 590,
+      "scope": "excluded-camera"
+    },
+    {
+      "name": "GetPushSensorCalibrationStatus",
+      "ordinal": 21,
+      "value": 48,
+      "wireValue": true,
+      "instructionOffset": 624,
+      "scope": "non-camera-candidate"
+    },
+    {
+      "name": "RoninSetParams",
+      "ordinal": 22,
+      "value": 49,
+      "wireValue": true,
+      "instructionOffset": 652,
+      "scope": "non-camera-candidate"
+    },
+    {
+      "name": "RoninGetParams",
+      "ordinal": 23,
+      "value": 50,
+      "wireValue": true,
+      "instructionOffset": 688,
+      "scope": "non-camera-candidate"
+    },
+    {
+      "name": "RobinPushBattery",
+      "ordinal": 24,
+      "value": 51,
+      "wireValue": true,
+      "instructionOffset": 722,
+      "scope": "non-camera-candidate"
+    },
+    {
+      "name": "SetHandleParams",
+      "ordinal": 25,
+      "value": 53,
+      "wireValue": true,
+      "instructionOffset": 750,
+      "scope": "non-camera-candidate"
+    },
+    {
+      "name": "GetHandleParams",
+      "ordinal": 26,
+      "value": 54,
+      "wireValue": true,
+      "instructionOffset": 778,
+      "scope": "non-camera-candidate"
+    },
+    {
+      "name": "SetTimelapseParams",
+      "ordinal": 27,
+      "value": 55,
+      "wireValue": true,
+      "instructionOffset": 806,
+      "scope": "non-camera-candidate"
+    },
+    {
+      "name": "GetPushTimelapseStatus",
+      "ordinal": 28,
+      "value": 56,
+      "wireValue": true,
+      "instructionOffset": 840,
+      "scope": "non-camera-candidate"
+    },
+    {
+      "name": "BalanceAdjust",
+      "ordinal": 29,
+      "value": 64,
+      "wireValue": true,
+      "instructionOffset": 876,
+      "scope": "non-camera-candidate"
+    },
+    {
+      "name": "SetCalibration",
+      "ordinal": 30,
+      "value": 106,
+      "wireValue": true,
+      "instructionOffset": 904,
+      "scope": "non-camera-candidate"
+    },
+    {
+      "name": "SetTrack",
+      "ordinal": 31,
+      "value": 98,
+      "wireValue": true,
+      "instructionOffset": 932,
+      "scope": "non-camera-candidate"
+    },
+    {
+      "name": "SetPanorama",
+      "ordinal": 32,
+      "value": 99,
+      "wireValue": true,
+      "instructionOffset": 960,
+      "scope": "non-camera-candidate"
+    },
+    {
+      "name": "GetPushPanorama",
+      "ordinal": 33,
+      "value": 100,
+      "wireValue": true,
+      "instructionOffset": 994,
+      "scope": "non-camera-candidate"
+    },
+    {
+      "name": "GetPushTrackAndTimelapse",
+      "ordinal": 34,
+      "value": 107,
+      "wireValue": true,
+      "instructionOffset": 1028,
+      "scope": "non-camera-candidate"
+    },
+    {
+      "name": "GetPushCalibration",
+      "ordinal": 35,
+      "value": 110,
+      "wireValue": true,
+      "instructionOffset": 1064,
+      "scope": "non-camera-candidate"
+    },
+    {
+      "name": "NotiFyCameraId",
+      "ordinal": 36,
+      "value": 86,
+      "wireValue": true,
+      "instructionOffset": 1092,
+      "scope": "excluded-camera"
+    },
+    {
+      "name": "SetPushPeripheralStatus",
+      "ordinal": 37,
+      "value": 102,
+      "wireValue": true,
+      "instructionOffset": 1126,
+      "scope": "non-camera-candidate"
+    },
+    {
+      "name": "GetPushExternalDeviceData",
+      "ordinal": 38,
+      "value": 105,
+      "wireValue": true,
+      "instructionOffset": 1162,
+      "scope": "non-camera-candidate"
+    },
+    {
+      "name": "GetPushHandheldStickState",
+      "ordinal": 39,
+      "value": 87,
+      "wireValue": true,
+      "instructionOffset": 1196,
+      "scope": "non-camera-candidate"
+    },
+    {
+      "name": "SetHandheldStickControlEnabled",
+      "ordinal": 40,
+      "value": 88,
+      "wireValue": true,
+      "instructionOffset": 1224,
+      "scope": "non-camera-candidate"
+    },
+    {
+      "name": "ResetAndSetMode",
+      "ordinal": 41,
+      "value": 76,
+      "wireValue": true,
+      "instructionOffset": 1252,
+      "scope": "non-camera-candidate"
+    },
+    {
+      "name": "Other",
+      "ordinal": 42,
+      "value": 511,
+      "wireValue": false,
+      "instructionOffset": 1280,
+      "scope": "sentinel"
+    }
+  ],
+  "inspectedMethods": {
+    "count": 98,
+    "stubCandidates": 74,
+    "selected": [
+      {
+        "className": "Ldji/midware/data/model/P3/DataGimbalAbsAngleControl;",
+        "method": "doPack",
+        "descriptor": "()V",
+        "codeOffset": 4854632,
+        "protectedStubCandidate": true,
+        "instructionSha256": "1345f11ae3bc1a0e55b20b63efac574a1724b2949a0e2de832cf625b602b5439"
+      },
+      {
+        "className": "Ldji/midware/data/model/P3/DataGimbalAngleControl;",
+        "method": "doPack",
+        "descriptor": "()V",
+        "codeOffset": 4855512,
+        "protectedStubCandidate": true,
+        "instructionSha256": "312c418933d925d10e267b137165e35875fa70d2b11fb04ab4213993a3297d2d"
+      },
+      {
+        "className": "Ldji/midware/data/model/P3/DataGimbalGetPushType;",
+        "method": "doPack",
+        "descriptor": "()V",
+        "codeOffset": 4876900,
+        "protectedStubCandidate": false,
+        "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674"
+      },
+      {
+        "className": "Ldji/midware/data/model/P3/DataGimbalGetPushType;",
+        "method": "getType",
+        "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetPushType$DJIGimbalType;",
+        "codeOffset": 4876920,
+        "protectedStubCandidate": true,
+        "instructionSha256": "177a54e40e954eb3f807629854ddad80231cfc95ac60297204bd0d1838f154ec"
+      },
+      {
+        "className": "Ldji/midware/data/model/P3/DataGimbalNewResetAndSetMode;",
+        "method": "doPack",
+        "descriptor": "()V",
+        "codeOffset": 4878592,
+        "protectedStubCandidate": true,
+        "instructionSha256": "26164b18c0a90e25141ca9dd89637d6b189607710e9e5408e7a1f2dbe86a3b65"
+      },
+      {
+        "className": "Ldji/midware/data/model/P3/DataGimbalRoninGetUserParams;",
+        "method": "doPack",
+        "descriptor": "()V",
+        "codeOffset": 4880448,
+        "protectedStubCandidate": true,
+        "instructionSha256": "a75aa95e5009ddbe7ab9c97bb6618caa0a09dace6fd54822d9d7cbe57f2d0619"
+      },
+      {
+        "className": "Ldji/midware/data/model/P3/DataGimbalRoninGetUserParams;",
+        "method": "setRecData",
+        "descriptor": "([B)V",
+        "codeOffset": 4880588,
+        "protectedStubCandidate": true,
+        "instructionSha256": "97d290a1365f9565cd346c5f29420b24ef29265c4fd43a4e70046548ed47ad71"
+      },
+      {
+        "className": "Ldji/midware/data/model/P3/DataGimbalRoninSetUserParams;",
+        "method": "doPack",
+        "descriptor": "()V",
+        "codeOffset": 4881024,
+        "protectedStubCandidate": true,
+        "instructionSha256": "fac10fb6575d51addb1123f8658e5e90dc738bc85959cf23e8cd011855212d55"
+      },
+      {
+        "className": "Ldji/midware/data/model/P3/DataGimbalRoninSetUserParams;",
+        "method": "setRecData",
+        "descriptor": "([B)V",
+        "codeOffset": 4881812,
+        "protectedStubCandidate": true,
+        "instructionSha256": "c750bf3db23132bfe7693b23c1f20cc5b80aace69fd5b7ffaa0263e3e79e1f4a"
+      },
+      {
+        "className": "Ldji/midware/data/model/P3/DataCommonGetVersion;",
+        "method": "doPack",
+        "descriptor": "()V",
+        "codeOffset": 5896704,
+        "protectedStubCandidate": false,
+        "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674"
+      },
+      {
+        "className": "Ldji/midware/data/model/P3/DataCommonGetVersion;",
+        "method": "getFirmVer",
+        "descriptor": "(Ljava/lang/String; Z)Ljava/lang/String;",
+        "codeOffset": 5896880,
+        "protectedStubCandidate": true,
+        "instructionSha256": "9887d8563e3056a27f5fb91d8ad4584a7a44663a2a99a55dcca2ebf06e2eafec"
+      }
+    ]
+  },
+  "parameterResources": [
+    {
+      "path": "res/DB.json",
+      "sha256": "3391283785f9ff3bd0d449344bd1243f822a141b10b76751ad82205b1356db68",
+      "entries": 106,
+      "duplicateIndexes": {
+        "0": [
+          "table_choice",
+          "ronin_sensibility_pitch"
+        ],
+        "1": [
+          "silent_mode",
+          "ronin_sensibility_roll"
+        ],
+        "2": [
+          "yaw_speed",
+          "ronin_sensibility_yaw"
+        ],
+        "3": [
+          "pitch_speed",
+          "ronin_strength_pitch"
+        ],
+        "4": [
+          "yaw_deadband",
+          "ronin_strength_roll"
+        ],
+        "5": [
+          "pitch_deadband",
+          "ronin_strength_yaw"
+        ],
+        "6": [
+          "yaw_expo",
+          "ronin_filter_pitch"
+        ],
+        "7": [
+          "pitch_expo",
+          "ronin_filter_roll"
+        ],
+        "8": [
+          "yaw_time_expo",
+          "ronin_filter_yaw"
+        ],
+        "9": [
+          "pitch_time_expo",
+          "ronin_feedback_pitch"
+        ],
+        "10": [
+          "pitch_exp",
+          "ronin_feedback_roll"
+        ],
+        "11": [
+          "yaw_follow_exp",
+          "ronin_feedback_yaw"
+        ],
+        "21": [
+          "ronin_yaw_left",
+          "pitch_push_enable"
+        ],
+        "22": [
+          "ronin_yaw_right",
+          "roll_push_enable"
+        ],
+        "23": [
+          "ronin_pitch_up",
+          "yaw_fine_tuning"
+        ],
+        "24": [
+          "ronin_pitch_down",
+          "pitch_fine_tuning"
+        ],
+        "34": [
+          "enable_camera_up_side_down",
+          "flower_special_cmd"
+        ],
+        "35": [
+          "shut_down_motor",
+          "motor_special_cmd"
+        ],
+        "37": [
+          "balance_test",
+          "balance_test"
+        ]
+      }
+    },
+    {
+      "path": "res/jy.json",
+      "sha256": "c0df3a92bec91ba161923de9fe53cc930448be343d733d0d7cc8d711ca60e2e0",
+      "entries": 33,
+      "duplicateIndexes": {}
+    }
+  ],
+  "selectedParameterFacts": [
+    {
+      "resource": "res/DB.json",
+      "index": 18,
+      "typeID": 0,
+      "size": 1,
+      "attribute": 0,
+      "minValue": 0,
+      "maxValue": 1,
+      "defaultValue": 0,
+      "name": "pitch_smooth_track"
+    },
+    {
+      "resource": "res/DB.json",
+      "index": 35,
+      "typeID": 0,
+      "size": 1,
+      "attribute": 0,
+      "minValue": 0,
+      "maxValue": 1,
+      "defaultValue": 0,
+      "name": "shut_down_motor"
+    },
+    {
+      "resource": "res/DB.json",
+      "index": 35,
+      "typeID": 0,
+      "size": 1,
+      "attribute": 0,
+      "minValue": 0,
+      "maxValue": 255,
+      "defaultValue": 0,
+      "name": "motor_special_cmd"
+    },
+    {
+      "resource": "res/DB.json",
+      "index": 63,
+      "typeID": 0,
+      "size": 1,
+      "attribute": 0,
+      "minValue": 0,
+      "maxValue": 1,
+      "defaultValue": 0,
+      "name": "ronin_auto_tune_enabled"
+    },
+    {
+      "resource": "res/DB.json",
+      "index": 64,
+      "typeID": 0,
+      "size": 1,
+      "attribute": 0,
+      "minValue": 30,
+      "maxValue": 100,
+      "defaultValue": 30,
+      "name": "ronin_auto_tune_percent"
+    },
+    {
+      "resource": "res/DB.json",
+      "index": 65,
+      "typeID": 0,
+      "size": 1,
+      "attribute": 0,
+      "minValue": 0,
+      "maxValue": 255,
+      "defaultValue": 0,
+      "name": "ronin_follow_speed_mode"
+    },
+    {
+      "resource": "res/DB.json",
+      "index": 66,
+      "typeID": 0,
+      "size": 1,
+      "attribute": 0,
+      "minValue": 0,
+      "maxValue": 255,
+      "defaultValue": 0,
+      "name": "ronin_follow_dead_zone_mode"
+    },
+    {
+      "resource": "res/DB.json",
+      "index": 67,
+      "typeID": 0,
+      "size": 1,
+      "attribute": 0,
+      "minValue": 0,
+      "maxValue": 255,
+      "defaultValue": 0,
+      "name": "ronin_rc_speed_mode"
+    },
+    {
+      "resource": "res/DB.json",
+      "index": 68,
+      "typeID": 0,
+      "size": 1,
+      "attribute": 0,
+      "minValue": 0,
+      "maxValue": 255,
+      "defaultValue": 0,
+      "name": "ronin_rc_dead_zone_mode"
+    },
+    {
+      "resource": "res/DB.json",
+      "index": 69,
+      "typeID": 0,
+      "size": 1,
+      "attribute": 0,
+      "minValue": 0,
+      "maxValue": 255,
+      "defaultValue": 255,
+      "name": "ronin_rc_smooth_mode"
+    },
+    {
+      "resource": "res/DB.json",
+      "index": 70,
+      "typeID": 0,
+      "size": 1,
+      "attribute": 0,
+      "minValue": 0,
+      "maxValue": 255,
+      "defaultValue": 0,
+      "name": "ronin_control_param_mode"
+    },
+    {
+      "resource": "res/DB.json",
+      "index": 71,
+      "typeID": 0,
+      "size": 1,
+      "attribute": 0,
+      "minValue": 0,
+      "maxValue": 255,
+      "defaultValue": 0,
+      "name": "ronin_follow_acce_mode"
+    },
+    {
+      "resource": "res/DB.json",
+      "index": 60,
+      "typeID": 0,
+      "size": 1,
+      "attribute": 0,
+      "minValue": 0,
+      "maxValue": 128,
+      "defaultValue": 0,
+      "name": "ronin_gimbal_hold_type"
+    },
+    {
+      "resource": "res/DB.json",
+      "index": 62,
+      "typeID": 0,
+      "size": 1,
+      "attribute": 0,
+      "minValue": 0,
+      "maxValue": 128,
+      "defaultValue": 0,
+      "name": "ronin_gimbal_work_mode"
+    },
+    {
+      "resource": "res/jy.json",
+      "index": 35,
+      "typeID": 0,
+      "size": 1,
+      "attribute": 0,
+      "minValue": 0,
+      "maxValue": 32,
+      "defaultValue": 0,
+      "name": "motor_special_cmd"
+    },
+    {
+      "resource": "res/jy.json",
+      "index": 63,
+      "typeID": 0,
+      "size": 1,
+      "attribute": 0,
+      "minValue": 0,
+      "maxValue": 1,
+      "defaultValue": 0,
+      "name": "ronin_auto_tune_enabled"
+    },
+    {
+      "resource": "res/jy.json",
+      "index": 64,
+      "typeID": 0,
+      "size": 1,
+      "attribute": 0,
+      "minValue": 30,
+      "maxValue": 100,
+      "defaultValue": 30,
+      "name": "ronin_auto_tune_percent"
+    },
+    {
+      "resource": "res/jy.json",
+      "index": 65,
+      "typeID": 0,
+      "size": 1,
+      "attribute": 0,
+      "minValue": 0,
+      "maxValue": 255,
+      "defaultValue": 0,
+      "name": "ronin_follow_speed_mode"
+    },
+    {
+      "resource": "res/jy.json",
+      "index": 66,
+      "typeID": 0,
+      "size": 1,
+      "attribute": 0,
+      "minValue": 0,
+      "maxValue": 255,
+      "defaultValue": 0,
+      "name": "ronin_follow_dead_zone_mode"
+    },
+    {
+      "resource": "res/jy.json",
+      "index": 67,
+      "typeID": 0,
+      "size": 1,
+      "attribute": 0,
+      "minValue": 0,
+      "maxValue": 255,
+      "defaultValue": 0,
+      "name": "ronin_rc_speed_mode"
+    },
+    {
+      "resource": "res/jy.json",
+      "index": 68,
+      "typeID": 0,
+      "size": 1,
+      "attribute": 0,
+      "minValue": 0,
+      "maxValue": 255,
+      "defaultValue": 0,
+      "name": "ronin_rc_dead_zone_mode"
+    },
+    {
+      "resource": "res/jy.json",
+      "index": 69,
+      "typeID": 0,
+      "size": 1,
+      "attribute": 0,
+      "minValue": 0,
+      "maxValue": 255,
+      "defaultValue": 255,
+      "name": "ronin_rc_smooth_mode"
+    },
+    {
+      "resource": "res/jy.json",
+      "index": 70,
+      "typeID": 0,
+      "size": 1,
+      "attribute": 0,
+      "minValue": 0,
+      "maxValue": 255,
+      "defaultValue": 0,
+      "name": "ronin_control_param_mode"
+    },
+    {
+      "resource": "res/jy.json",
+      "index": 71,
+      "typeID": 0,
+      "size": 1,
+      "attribute": 0,
+      "minValue": 0,
+      "maxValue": 255,
+      "defaultValue": 0,
+      "name": "ronin_follow_acce_mode"
+    },
+    {
+      "resource": "res/jy.json",
+      "index": 60,
+      "typeID": 0,
+      "size": 1,
+      "attribute": 0,
+      "minValue": 0,
+      "maxValue": 128,
+      "defaultValue": 0,
+      "name": "ronin_gimbal_hold_type"
+    },
+    {
+      "resource": "res/jy.json",
+      "index": 62,
+      "typeID": 0,
+      "size": 1,
+      "attribute": 0,
+      "minValue": 0,
+      "maxValue": 128,
+      "defaultValue": 0,
+      "name": "ronin_gimbal_work_mode"
+    }
+  ],
+  "parameterNamesSafeToInferFromWireIndex": false,
+  "layoutReferences": [
+    {
+      "url": "https://github.com/o-gs/dji-firmware-tools/blob/master/comm_dissector/wireshark/dji-dumlv1-gimbal.lua",
+      "gitBlob": "544f758ee1890c0be55687f8db52c970241d3736",
+      "scope": "legacy Phantom-era DUML; not RS 4 Mini validation"
+    },
+    {
+      "url": "https://github.com/jdesbonnet/dji_rs3_control/blob/689884f2249e721c5b65c9c74804caddc1e7a68c/rs3_ble_protocol_spec.md",
+      "sample": "04:10 request 12, response 00120100",
+      "scope": "RS 3 source only"
+    }
+  ]
+}

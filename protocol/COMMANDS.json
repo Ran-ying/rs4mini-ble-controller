@@ -31,7 +31,11 @@
         "python/rs4mini_sdk/device.py",
         "macos/RSBleDevice.m"
       ],
-      "remaining": "历史设备行为已验证，无固件执行确认"
+      "remaining": "历史设备行为已验证，无固件执行确认",
+      "officialAppAliases": [
+        "Control"
+      ],
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
     },
     {
       "key": "04:02",
@@ -57,7 +61,11 @@
         "python/rs4mini_sdk/telemetry.py",
         "macos/RSControlCore.m"
       ],
-      "remaining": "姿态/关节映射已确认；四元数顺序及部分标志未知"
+      "remaining": "姿态/关节映射已确认；四元数顺序及部分标志未知",
+      "officialAppAliases": [
+        "GetPushParams"
+      ],
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
     },
     {
       "key": "04:08",
@@ -66,7 +74,11 @@
       "responseCodec": "unknown",
       "targetEvidence": "other-model",
       "implementation": [],
-      "remaining": "其他型号研究有自主运动和中止风险，不提供触发"
+      "remaining": "其他型号研究有自主运动和中止风险，不提供触发",
+      "officialAppAliases": [
+        "AutoCalibration"
+      ],
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
     },
     {
       "key": "04:0B",
@@ -92,7 +104,11 @@
         "python/rs4mini_sdk/experimental_protocol.py",
         "macos/RSControlCore.m"
       ],
-      "remaining": "轴序/单位/释放仅有 RS 3 来源，本机未验证"
+      "remaining": "轴序/单位/释放仅有 RS 3 来源，本机未验证",
+      "officialAppAliases": [
+        "SpeedControl"
+      ],
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
     },
     {
       "key": "04:0F",
@@ -105,7 +121,11 @@
         "python/rs4mini_sdk/experimental_protocol.py",
         "macos/RSControlCore.m"
       ],
-      "remaining": "RS 3 与 Mini 字节不同，本机效果未知"
+      "remaining": "RS 3 与 Mini 字节不同，本机效果未知；新增单字节研究 ACK 原始返回码，参数表的同编号别名不可自动套用",
+      "officialAppAliases": [
+        "SetUserParams"
+      ],
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
     },
     {
       "key": "04:14",
@@ -118,7 +138,11 @@
         "python/rs4mini_sdk/experimental_protocol.py",
         "macos/RSControlCore.m"
       ],
-      "remaining": "末参数单位、参考系与本机兼容性未知"
+      "remaining": "末参数单位、参考系与本机兼容性未知",
+      "officialAppAliases": [
+        "AbsAngleControl"
+      ],
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
     },
     {
       "key": "04:1C",
@@ -131,7 +155,11 @@
         "python/rs4mini_sdk/experimental_device.py",
         "macos/RSBleDevice.m"
       ],
-      "remaining": "响应枚举未确认"
+      "remaining": "响应枚举未确认",
+      "officialAppAliases": [
+        "GetPushType"
+      ],
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
     },
     {
       "key": "04:1E",
@@ -157,7 +185,11 @@
         "python/rs4mini_sdk/experimental_protocol.py",
         "macos/RSControlCore.m"
       ],
-      "remaining": "仅被动解析，不触发校准"
+      "remaining": "仅被动解析，不触发校准",
+      "officialAppAliases": [
+        "GetPushSensorCalibrationStatus"
+      ],
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
     },
     {
       "key": "04:4C",
@@ -170,7 +202,11 @@
         "python/rs4mini_sdk/protocol.py",
         "macos/RSControlCore.m"
       ],
-      "remaining": "只确认 FE01/flags40 三轴回中；其余位/模式/单轴语义未知"
+      "remaining": "只确认 FE01/flags40 三轴回中；其余位/模式/单轴语义未知",
+      "officialAppAliases": [
+        "ResetAndSetMode"
+      ],
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
     },
     {
       "key": "04:66",
@@ -183,7 +219,11 @@
         "python/rs4mini_sdk/experimental_protocol.py",
         "macos/RSControlCore.m"
       ],
-      "remaining": "保留 TLV 原始量，不假设本机 tag 语义"
+      "remaining": "保留 TLV 原始量，不假设本机 tag 语义",
+      "officialAppAliases": [
+        "SetPushPeripheralStatus"
+      ],
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
     },
     {
       "key": "0D:02",
@@ -205,7 +245,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "none",
       "implementation": [],
-      "remaining": "缺少本机型号分支、命令与枚举证据"
+      "remaining": "已定位官方 App 候选命令号及相关参数/方法；受保护负载逻辑与 RS 4 Mini 型号分支尚未恢复，不能开放写入"
     },
     {
       "key": "unknown:motor-calibration",
@@ -214,7 +254,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "none",
       "implementation": [],
-      "remaining": "不能由已有运动输入组合替代"
+      "remaining": "已定位官方 App 候选命令号及相关参数/方法；受保护负载逻辑与 RS 4 Mini 型号分支尚未恢复，不能开放写入"
     },
     {
       "key": "unknown:firmware-program",
@@ -223,7 +263,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "none",
       "implementation": [],
-      "remaining": "缺少上传/启动/状态/取消的完整证据"
+      "remaining": "已定位官方 App 候选命令号及相关参数/方法；受保护负载逻辑与 RS 4 Mini 型号分支尚未恢复，不能开放写入"
     },
     {
       "key": "unknown:device-management",
@@ -233,6 +273,395 @@
       "targetEvidence": "none",
       "implementation": [],
       "remaining": "是否通过本 BLE 链路提供及其协议尚未枚举；连接成功不证明设备管理命令已全覆盖"
+    },
+    {
+      "key": "04:07",
+      "name": "官方 App 枚举：RollFinetune",
+      "requestCodec": "unknown",
+      "responseCodec": "unknown",
+      "targetEvidence": "official-app-enum",
+      "implementation": [],
+      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "officialAppAliases": [
+        "RollFinetune"
+      ],
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+    },
+    {
+      "key": "04:0A",
+      "name": "官方 App 枚举：SetAngle",
+      "requestCodec": "unknown",
+      "responseCodec": "unknown",
+      "targetEvidence": "official-app-enum",
+      "implementation": [],
+      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "officialAppAliases": [
+        "SetAngle",
+        "AngleControl"
+      ],
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+    },
+    {
+      "key": "04:0D",
+      "name": "官方 App 枚举：SetOnOrOff",
+      "requestCodec": "unknown",
+      "responseCodec": "unknown",
+      "targetEvidence": "official-app-enum",
+      "implementation": [],
+      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "officialAppAliases": [
+        "SetOnOrOff"
+      ],
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+    },
+    {
+      "key": "04:10",
+      "name": "用户参数读取候选",
+      "requestCodec": "not-exposed",
+      "responseCodec": "candidate-structured",
+      "targetEvidence": "other-model",
+      "implementation": [
+        "node/src/experimental-protocol.js",
+        "python/rs4mini_sdk/experimental_protocol.py",
+        "macos/RSControlCore.m"
+      ],
+      "remaining": "仅被动解析旧 DUML/RS 3 样本格式：状态、索引/宽度/原始值或逐项错误；不映射名称/数值类型，不增加查询发送",
+      "officialAppAliases": [
+        "GetUserParams"
+      ],
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+    },
+    {
+      "key": "04:11",
+      "name": "官方 App 枚举：SaveUserParams",
+      "requestCodec": "unknown",
+      "responseCodec": "unknown",
+      "targetEvidence": "official-app-enum",
+      "implementation": [],
+      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "officialAppAliases": [
+        "SaveUserParams"
+      ],
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+    },
+    {
+      "key": "04:12",
+      "name": "官方 App 枚举：SubscribeGimbalParams",
+      "requestCodec": "unknown",
+      "responseCodec": "unknown",
+      "targetEvidence": "official-app-enum",
+      "implementation": [],
+      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "officialAppAliases": [
+        "SubscribeGimbalParams"
+      ],
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+    },
+    {
+      "key": "04:13",
+      "name": "官方 App 枚举：ResetUserParams",
+      "requestCodec": "unknown",
+      "responseCodec": "unknown",
+      "targetEvidence": "official-app-enum",
+      "implementation": [],
+      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "officialAppAliases": [
+        "ResetUserParams"
+      ],
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+    },
+    {
+      "key": "04:24",
+      "name": "官方 App 枚举：GetPushUserParams",
+      "requestCodec": "unknown",
+      "responseCodec": "unknown",
+      "targetEvidence": "official-app-enum",
+      "implementation": [],
+      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "officialAppAliases": [
+        "GetPushUserParams"
+      ],
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+    },
+    {
+      "key": "04:25",
+      "name": "官方 App 枚举：SetDelayTimelapseParams",
+      "requestCodec": "unknown",
+      "responseCodec": "unknown",
+      "targetEvidence": "official-app-enum",
+      "implementation": [],
+      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "officialAppAliases": [
+        "SetDelayTimelapseParams"
+      ],
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+    },
+    {
+      "key": "04:27",
+      "name": "官方 App 枚举：GetPushAbnormalStatus",
+      "requestCodec": "unknown",
+      "responseCodec": "partial",
+      "targetEvidence": "other-model",
+      "implementation": [
+        "node/src/experimental-protocol.js",
+        "python/rs4mini_sdk/experimental_protocol.py",
+        "macos/RSControlCore.m"
+      ],
+      "remaining": "已有 RS 3 窄布局 sleep 候选解析；官方 App 名称为异常状态，完整字段和本机语义仍未知",
+      "officialAppAliases": [
+        "GetPushAbnormalStatus"
+      ],
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+    },
+    {
+      "key": "04:2B",
+      "name": "官方 App 枚举：GetPushTutorialStatus",
+      "requestCodec": "unknown",
+      "responseCodec": "unknown",
+      "targetEvidence": "official-app-enum",
+      "implementation": [],
+      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "officialAppAliases": [
+        "GetPushTutorialStatus"
+      ],
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+    },
+    {
+      "key": "04:2C",
+      "name": "官方 App 枚举：SetTutorialStep",
+      "requestCodec": "unknown",
+      "responseCodec": "unknown",
+      "targetEvidence": "official-app-enum",
+      "implementation": [],
+      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "officialAppAliases": [
+        "SetTutorialStep"
+      ],
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+    },
+    {
+      "key": "04:31",
+      "name": "官方 App 枚举：RoninSetParams",
+      "requestCodec": "unknown",
+      "responseCodec": "unknown",
+      "targetEvidence": "official-app-enum",
+      "implementation": [],
+      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "officialAppAliases": [
+        "RoninSetParams"
+      ],
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+    },
+    {
+      "key": "04:32",
+      "name": "官方 App 枚举：RoninGetParams",
+      "requestCodec": "unknown",
+      "responseCodec": "unknown",
+      "targetEvidence": "official-app-enum",
+      "implementation": [],
+      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "officialAppAliases": [
+        "RoninGetParams"
+      ],
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+    },
+    {
+      "key": "04:33",
+      "name": "官方 App 枚举：RobinPushBattery",
+      "requestCodec": "unknown",
+      "responseCodec": "unknown",
+      "targetEvidence": "official-app-enum",
+      "implementation": [],
+      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "officialAppAliases": [
+        "RobinPushBattery"
+      ],
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+    },
+    {
+      "key": "04:35",
+      "name": "官方 App 枚举：SetHandleParams",
+      "requestCodec": "unknown",
+      "responseCodec": "unknown",
+      "targetEvidence": "official-app-enum",
+      "implementation": [],
+      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "officialAppAliases": [
+        "SetHandleParams"
+      ],
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+    },
+    {
+      "key": "04:36",
+      "name": "官方 App 枚举：GetHandleParams",
+      "requestCodec": "unknown",
+      "responseCodec": "unknown",
+      "targetEvidence": "official-app-enum",
+      "implementation": [],
+      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "officialAppAliases": [
+        "GetHandleParams"
+      ],
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+    },
+    {
+      "key": "04:37",
+      "name": "官方 App 枚举：SetTimelapseParams",
+      "requestCodec": "unknown",
+      "responseCodec": "unknown",
+      "targetEvidence": "official-app-enum",
+      "implementation": [],
+      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "officialAppAliases": [
+        "SetTimelapseParams"
+      ],
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+    },
+    {
+      "key": "04:38",
+      "name": "官方 App 枚举：GetPushTimelapseStatus",
+      "requestCodec": "unknown",
+      "responseCodec": "unknown",
+      "targetEvidence": "official-app-enum",
+      "implementation": [],
+      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "officialAppAliases": [
+        "GetPushTimelapseStatus"
+      ],
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+    },
+    {
+      "key": "04:40",
+      "name": "官方 App 枚举：BalanceAdjust",
+      "requestCodec": "unknown",
+      "responseCodec": "unknown",
+      "targetEvidence": "official-app-enum",
+      "implementation": [],
+      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "officialAppAliases": [
+        "BalanceAdjust"
+      ],
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+    },
+    {
+      "key": "04:6A",
+      "name": "官方 App 枚举：SetCalibration",
+      "requestCodec": "unknown",
+      "responseCodec": "unknown",
+      "targetEvidence": "official-app-enum",
+      "implementation": [],
+      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "officialAppAliases": [
+        "SetCalibration"
+      ],
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+    },
+    {
+      "key": "04:62",
+      "name": "官方 App 枚举：SetTrack",
+      "requestCodec": "unknown",
+      "responseCodec": "unknown",
+      "targetEvidence": "official-app-enum",
+      "implementation": [],
+      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "officialAppAliases": [
+        "SetTrack"
+      ],
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+    },
+    {
+      "key": "04:63",
+      "name": "官方 App 枚举：SetPanorama",
+      "requestCodec": "unknown",
+      "responseCodec": "unknown",
+      "targetEvidence": "official-app-enum",
+      "implementation": [],
+      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "officialAppAliases": [
+        "SetPanorama"
+      ],
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+    },
+    {
+      "key": "04:64",
+      "name": "官方 App 枚举：GetPushPanorama",
+      "requestCodec": "unknown",
+      "responseCodec": "unknown",
+      "targetEvidence": "official-app-enum",
+      "implementation": [],
+      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "officialAppAliases": [
+        "GetPushPanorama"
+      ],
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+    },
+    {
+      "key": "04:6B",
+      "name": "官方 App 枚举：GetPushTrackAndTimelapse",
+      "requestCodec": "unknown",
+      "responseCodec": "unknown",
+      "targetEvidence": "official-app-enum",
+      "implementation": [],
+      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "officialAppAliases": [
+        "GetPushTrackAndTimelapse"
+      ],
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+    },
+    {
+      "key": "04:6E",
+      "name": "官方 App 枚举：GetPushCalibration",
+      "requestCodec": "unknown",
+      "responseCodec": "unknown",
+      "targetEvidence": "official-app-enum",
+      "implementation": [],
+      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "officialAppAliases": [
+        "GetPushCalibration"
+      ],
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+    },
+    {
+      "key": "04:69",
+      "name": "官方 App 枚举：GetPushExternalDeviceData",
+      "requestCodec": "unknown",
+      "responseCodec": "unknown",
+      "targetEvidence": "official-app-enum",
+      "implementation": [],
+      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "officialAppAliases": [
+        "GetPushExternalDeviceData"
+      ],
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+    },
+    {
+      "key": "04:57",
+      "name": "官方 App 枚举：GetPushHandheldStickState",
+      "requestCodec": "unknown",
+      "responseCodec": "unknown",
+      "targetEvidence": "official-app-enum",
+      "implementation": [],
+      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "officialAppAliases": [
+        "GetPushHandheldStickState"
+      ],
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+    },
+    {
+      "key": "04:58",
+      "name": "官方 App 枚举：SetHandheldStickControlEnabled",
+      "requestCodec": "unknown",
+      "responseCodec": "unknown",
+      "targetEvidence": "official-app-enum",
+      "implementation": [],
+      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "officialAppAliases": [
+        "SetHandheldStickControlEnabled"
+      ],
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
     }
+  ],
+  "researchEvidence": [
+    "protocol/research/ronin-2.2.2-evidence.json"
   ]
 }

@@ -73,6 +73,16 @@ int main(void) {
         NSDictionary *message = @{@"sender": @0xe5, @"receiver": @2, @"commandSet": @0x0d, @"commandId": @2, @"payload": battery};
         Require([RSDecodeResearchStatus(message, @"rs3mini")[@"batteryPercent"] intValue] == 67 && RSDecodeResearchStatus(message, @"rs3")[@"batteryPercent"] == NSNull.null, @"battery interpretation is model-specific");
         Require(!RSDecodeResearchStatus(@{@"sender": @0xe5, @"receiver": @2, @"commandSet": @4, @"commandId": @0x66, @"payload": [NSData dataWithBytes:(uint8_t[]){1, 0x22, 2, 0} length:4]}, @"rs3mini"), @"malformed status TLV rejected");
+        NSDictionary *(^parameterMessage)(NSUInteger, NSData *, NSUInteger) = ^NSDictionary *(NSUInteger command, NSData *payload, NSUInteger flags) {
+            return @{@"sender": @4, @"receiver": @2, @"commandSet": @4, @"commandId": @(command), @"flags": @(flags), @"payload": payload};
+        };
+        NSDictionary *params = RSDecodeResearchStatus(parameterMessage(0x10, [NSData dataWithBytes:(uint8_t[]){0,18,1,0,18,2,255,255,255} length:9], 0x80), @"rs3");
+        Require([params[@"parameters"] count] == 3 && [params[@"parameters"][2][@"errorCode"] intValue] == -1, @"parameter responses preserve duplicates and signed retrieval errors");
+        Require([params[@"parameters"][1][@"rawHex"] isEqualToString:@"ffff"] && ![params[@"deviceVerified"] boolValue], @"parameter values remain raw and unverified");
+        Require([RSDecodeResearchStatus(parameterMessage(0x0f, [NSData dataWithBytes:(uint8_t[]){7} length:1], 0x80), @"rs3")[@"statusCode"] intValue] == 7, @"parameter write ACK retains raw status without writing");
+        for (NSData *bad in @[[NSData data], [NSData dataWithBytes:(uint8_t[]){0,18} length:2], [NSData dataWithBytes:(uint8_t[]){0,18,0} length:3], [NSData dataWithBytes:(uint8_t[]){0,18,3,1,2,3} length:6], [NSData dataWithBytes:(uint8_t[]){0,18,2,1} length:4]])
+            Require(!RSDecodeResearchStatus(parameterMessage(0x10, bad, 0x80), @"rs3"), @"malformed parameter payload rejected");
+        Require(!RSDecodeResearchStatus(parameterMessage(0x10, [NSData dataWithBytes:(uint8_t[]){0,18,1,0} length:4], 0x40), @"rs3"), @"parameter response requires response bit");
         printf("Native protocol, reassembly, stop queue and motion-core checks: %lu passed\n", (unsigned long)assertions);
     }
     return 0;

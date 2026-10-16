@@ -50,5 +50,16 @@ assert len({row['key'] for row in manifest['commands']}) == len(manifest['comman
 for row in manifest['commands']:
     for source in row['implementation']:
         assert (root / source).is_file(), (row['key'], source)
+# An app enum identifies a candidate; it must never silently become target support.
+for row in manifest['commands']:
+    if row['targetEvidence'] == 'official-app-enum':
+        assert row['requestCodec'] in {'unknown', 'not-exposed'} and not row['implementation'], row['key']
+    if row.get('officialAppEvidence'):
+        evidence_path = root / row['officialAppEvidence']
+        evidence = json.loads(evidence_path.read_text())
+        assert evidence['targetDeviceVerified'] is False
+        assert evidence['parameterNamesSafeToInferFromWireIndex'] is False
+        for item in evidence['enumEntries']:
+            assert item['wireValue'] == (0 <= item['value'] <= 255)
 print('Layer boundaries passed: device modules do not depend on motion; upper layers do not encode/write packets.')
 print('Protocol inventory: %d entries; inventoryComplete=false; further advanced development is gated.' % len(manifest['commands']))

@@ -82,7 +82,20 @@ NSDictionary *RSDecodeResearchStatus(NSDictionary *message, NSString *profile) {
     const uint8_t *p = payload.bytes; NSUInteger n = payload.length;
     NSMutableDictionary *result = [@{@"profile": profile, @"deviceVerified": @NO, @"payloadHex": Hex(payload)} mutableCopy];
     int set = [message[@"commandSet"] intValue], cmd = [message[@"commandId"] intValue], sender = [message[@"sender"] intValue];
-    if (sender == 4 && set == 4 && cmd == 0x27 && n == 5 && p[0] == 0 && p[1] == 0 && p[2] == 0 && p[3] == 0 && p[4] <= 1) { result[@"kind"] = @"sleep"; result[@"asleep"] = @(p[4] == 1); }
+    if (sender == 4 && set == 4 && ([message[@"flags"] intValue] & 0x80) && cmd == 0x10 && n) {
+        NSMutableArray *parameters = [NSMutableArray array]; NSUInteger offset = 1;
+        while (offset < n) {
+            uint8_t index = p[offset++];
+            if (index >= 0x80) { [parameters addObject:@{@"errorCode": @((int)index - 256)}]; continue; }
+            if (offset >= n) return nil;
+            uint8_t size = p[offset++];
+            if (!(size == 1 || size == 2 || size == 4 || size == 8) || offset + size > n) return nil;
+            [parameters addObject:@{@"index": @(index), @"size": @(size), @"rawHex": Hex([payload subdataWithRange:NSMakeRange(offset, size)])}]; offset += size;
+        }
+        result[@"kind"] = @"user-parameters"; result[@"layoutSource"] = @"legacy-duml"; result[@"statusCode"] = @(p[0]); result[@"parameters"] = parameters;
+    } else if (sender == 4 && set == 4 && ([message[@"flags"] intValue] & 0x80) && cmd == 0x0f && n == 1) {
+        result[@"kind"] = @"user-parameter-ack"; result[@"layoutSource"] = @"legacy-duml"; result[@"statusCode"] = @(p[0]);
+    } else if (sender == 4 && set == 4 && cmd == 0x27 && n == 5 && p[0] == 0 && p[1] == 0 && p[2] == 0 && p[3] == 0 && p[4] <= 1) { result[@"kind"] = @"sleep"; result[@"asleep"] = @(p[4] == 1); }
     else if (sender == 4 && set == 4 && cmd == 0x0f && n == 4 && p[0] == 0 && p[1] == 0x23 && p[2] == 1 && (p[3] == ([profile isEqualToString:@"rs3mini"] ? 0x10 : 0) || p[3] == ([profile isEqualToString:@"rs3mini"] ? 0x11 : 1))) { result[@"kind"] = @"sleep"; result[@"asleep"] = @((p[3] & 1) != 0); }
     else if (sender == 4 && set == 4 && cmd == 0x30 && n == 2 && p[0] <= 100 && p[1] <= 1) { result[@"kind"] = @"calibration"; result[@"percent"] = @(p[0]); result[@"inProgress"] = @(p[1] != 0); }
     else if (sender == 0xe5 && set == 0x0d && cmd == 2 && n >= 17) {

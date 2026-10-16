@@ -55,6 +55,25 @@ def decode_research_status(message, profile):
     payload = message['payload']
     base = dict(profile=profile, deviceVerified=False, timestamp=message.get('receivedAt', time.time() * 1000), payloadHex=payload.hex())
     if message['sender'] == 4 and message['commandSet'] == 4:
+        if message.get('flags', 0) & 0x80 and message['commandId'] == 0x10 and payload:
+            parameters, offset = [], 1
+            while offset < len(payload):
+                index = payload[offset]
+                offset += 1
+                if index >= 0x80:
+                    parameters.append(dict(errorCode=index - 256))
+                    continue
+                if offset >= len(payload):
+                    return None
+                size = payload[offset]
+                offset += 1
+                if size not in (1, 2, 4, 8) or offset + size > len(payload):
+                    return None
+                parameters.append(dict(index=index, size=size, rawHex=payload[offset:offset + size].hex()))
+                offset += size
+            return dict(base, kind='user-parameters', layoutSource='legacy-duml', statusCode=payload[0], parameters=parameters)
+        if message.get('flags', 0) & 0x80 and message['commandId'] == 0x0f and len(payload) == 1:
+            return dict(base, kind='user-parameter-ack', layoutSource='legacy-duml', statusCode=payload[0])
         if message['commandId'] == 0x27 and len(payload) == 5 and payload[:4] == b'\0' * 4 and payload[4] <= 1:
             return dict(base, kind='sleep', asleep=bool(payload[4]))
         values = (0x10, 0x11) if profile == 'rs3mini' else (0, 1)

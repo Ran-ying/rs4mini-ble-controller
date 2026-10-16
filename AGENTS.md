@@ -8,9 +8,9 @@ verification status changes.
 ## Objective and user decisions
 
 - Provide an unofficial, direct BLE controller for **DJI RS 4 Mini**, initially on macOS.
-- **Node.js is the authoritative implementation**; current package version is `0.7.1`.
+- **Node.js is the authoritative implementation**; current package version is `0.7.2`.
 - The user subsequently requested completion of all existing ports. Python is now
-  `0.7.1`, Web shares the JS core, and the native panel is `0.3.1`. Describe the
+  `0.7.2`, Web shares the JS core, and the native panel is `0.3.2`. Describe the
   documented feature differences; do not claim identical APIs or hardware proof.
 - After that delivery, the user requested the remaining **non-camera** capabilities
   under the same autonomous/offline conditions. Expansion work is in progress;
@@ -200,11 +200,18 @@ Camera/vision work remains outside scope. On 2026-10-15 the user explicitly
 authorized committing and pushing the source and durable handoff to GitHub.
 This does not authorize npm publication or a remote binary release.
 
-Further static research downloaded the official Ronin 2.2.2/7096 APK into ignored
-`work/research/`. `docs/RESEARCH_NEXT.md` records its hash and candidate gimbal
-classes; only the AppGuard wrapper and raw class names were inspected. Business
-payload/request/model-branch reconstruction is unfinished. The APK was not
-installed or executed. Do not infer RS 4 Mini command layouts from class names.
+Further static research inspected the pinned official Ronin 2.2.2/7096 APK in
+ignored `work/research/`. `tools/research/ronin_static.py` reconstructs metadata for
+6 of 8 hidden DEX segments and extracts the readable command enum. Critical
+`doPack()`/response methods still contain protected NOP stubs, not original logic.
+The 43 enum entries (41 unique byte-sized IDs, including two excluded camera
+names and a non-wire sentinel) and selected parameter-resource facts are recorded
+in `protocol/research/ronin-2.2.2-evidence.json`; they do NOT prove RS 4 Mini paths.
+Parameter indexes may have multiple names even within one resource. Do not turn
+the app ranges/defaults or mode enums into safe device writes. The SDK adds only
+passive legacy-DUML parameter records/ACKs with raw values and explicit research
+labels. No new query/write allowlist or advanced feature was added. The APK was
+not installed/executed, and no device was scanned or connected.
 
 ## Publishing and repository hygiene
 

@@ -176,7 +176,10 @@ export interface HomePosition extends Required<AxisValues> { timestamp: number; 
 export type ResearchProfile = "rs3" | "rs3mini";
 export interface ResearchWriteResult { sent: true; deviceVerified: false; physicalCompletionVerified: false; }
 export interface ResearchStatusBase { profile: ResearchProfile; deviceVerified: false; timestamp: number; payloadHex: string; }
+export type ResearchParameter = { index: number; size: 1 | 2 | 4 | 8; rawHex: string } | { errorCode: number };
 export type ResearchStatus = ResearchStatusBase & (
+  | { kind: "user-parameters"; layoutSource: "legacy-duml"; statusCode: number; parameters: ResearchParameter[] }
+  | { kind: "user-parameter-ack"; layoutSource: "legacy-duml"; statusCode: number }
   | { kind: "sleep"; asleep: boolean }
   | { kind: "calibration"; percent: number; inProgress: boolean }
   | { kind: "battery-status"; rawFields: number[]; batteryPercent: number | null }

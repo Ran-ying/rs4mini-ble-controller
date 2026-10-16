@@ -44,6 +44,21 @@ export function decodeResearchStatus(message, profile) {
   const p = message.payload, v = view(p);
   const base = { profile, deviceVerified: false, timestamp: message.receivedAt ?? Date.now(), payloadHex: hex(p) };
   if (message.sender === 4 && message.commandSet === 4) {
+    // Legacy DUML framing, corroborated by an RS 3 04:10 sample. No parameter names/types inferred.
+    if ((message.flags & 0x80) && message.commandId === 0x10 && p.length) {
+      const parameters = []; let offset = 1;
+      while (offset < p.length) {
+        const index = p[offset++];
+        if (index >= 0x80) { parameters.push({ errorCode: index - 256 }); continue; }
+        if (offset >= p.length) return null;
+        const size = p[offset++];
+        if (![1, 2, 4, 8].includes(size) || offset + size > p.length) return null;
+        parameters.push({ index, size, rawHex: hex(p.subarray(offset, offset + size)) }); offset += size;
+      }
+      return { ...base, kind: 'user-parameters', layoutSource: 'legacy-duml', statusCode: p[0], parameters };
+    }
+    if ((message.flags & 0x80) && message.commandId === 0x0f && p.length === 1)
+      return { ...base, kind: 'user-parameter-ack', layoutSource: 'legacy-duml', statusCode: p[0] };
     if (message.commandId === 0x27 && p.length === 5 && p.slice(0, 4).every(value => value === 0) && p[4] <= 1)
       return { ...base, kind: 'sleep', asleep: p[4] === 1 };
     if (message.commandId === 0x0f && p.length === 4 && p[0] === 0 && p[1] === 0x23 && p[2] === 1 &&

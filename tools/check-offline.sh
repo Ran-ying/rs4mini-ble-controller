@@ -18,6 +18,7 @@ else
   python_bin=python3
 fi
 "$python_bin" tools/check-boundaries.py
+"$python_bin" -m unittest discover -s tools/research -v
 "$python_bin" -m unittest discover -s python/tests -v
 if [ "$(uname -s)" = Darwin ]; then
   sh macos/test.sh

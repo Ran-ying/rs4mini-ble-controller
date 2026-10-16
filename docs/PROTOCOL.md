@@ -126,3 +126,19 @@ Osmo 示例的角度次序与这些 RS 资料冲突，不能直接移植。
 `requestDegreeInfo()` 补齐 04:1E 空负载请求和关联原始响应封装；没有对硬件执行，不解释新的响应字段或宣称增频。
 所有已知命令和未知缺口在 `../protocol/COMMANDS.json` 与 `SDK_COMMANDS.md` 中逐项记录。
 这份清单不构成完整固件 BLE 指令表，未完成本机语义和枚举证明前不进入新增高级功能阶段。
+
+## 0.7.2 被动用户参数候选解析
+
+依据 [o-gs 原始 DUML 解码器](https://github.com/o-gs/dji-firmware-tools/blob/master/comm_dissector/wireshark/dji-dumlv1-gimbal.lua)
+（本轮检查的文件 Git blob：`544f758ee1890c0be55687f8db52c970241d3736`），以及已登记 RS 3 来源的
+`04:10 payload=12` / 响应 `00120100` 样本，显式研究配置支持以下候选格式：
+
+- 仅 `04→02`、command-set=04、响应位 80 的消息进入新解析分支。
+- 04:10：首字节为原始返回码；后续正索引项为 index / size / raw bytes，宽度严格限定 1/2/4/8。
+  旧格式中的负 int8 项作为逐项 errorCode 保留。数组保留重复索引；截断、零宽度或未知宽度拒绝。
+- 04:0F：仅一字节响应返回原始 statusCode。既有研究 sleep 布局不受影响。
+- 新结果为 `user-parameters` / `user-parameter-ack`，附 `layoutSource:'legacy-duml'` 与
+  `deviceVerified:false`。不会根据资源表自动命名参数、解释有符号/浮点数或判定本机兼容。
+
+该来源是早期其他产品格式，不是 RS 4 Mini 字段验证。显式研究配置默认不启用；本轮不增加查询或写入接口。
+官方 Ronin APK 的可读枚举和参数资源作为独立事实保存，不能替代协议布局与本机证据。

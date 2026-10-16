@@ -1,4 +1,4 @@
-# RS 4 Mini Control 0.3.1
+# RS 4 Mini Control 0.3.2
 
 Objective-C / AppKit / CoreBluetooth 原生面板，提供三轴按住速度控制、停止、三轴回中、姿态/机械关节反馈和低速关节目标定位，不依赖 Node 或 Python。
 

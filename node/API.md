@@ -251,3 +251,15 @@ idle/waiting/connecting/restored/exhausted，`reconnectState` 为副本。重连
 原生入口同名方法是回调式，独占操作槽并通过 `messageHandler` 提供原始消息，当前固定 3 秒响应等待。
 
 完整设备命令前置验收尚未通过，已知缺口见 `../docs/SDK_COMMANDS.md`；当前不再新增高级功能。
+
+## 0.7.2 被动参数研究状态
+
+在已显式选择 rs3/rs3mini 研究配置的状态通道中，新增：
+
+- `kind:'user-parameters'`：`statusCode`、`parameters` 数组；值项为 `{index,size,rawHex}`，
+  旧格式的逐项错误为 `{errorCode}`。保留重复项和 8 字节原始值，不转换为可能失真的 JS 数字。
+- `kind:'user-parameter-ack'`：单字节参数 ACK 的原始 `statusCode`。
+
+两者均含 `layoutSource:'legacy-duml'`、`deviceVerified:false`；不按索引推断唯一参数名称，
+不代表本机命令支持或物理执行确认。仅被动解析，不新增任何发送方法或更改发送允许列表。
+Python/Web/原生提供对应状态。协议来源与保护桩边界见 `docs/PROTOCOL.md` 和 `docs/RESEARCH_NEXT.md`（仓库根目录）。

@@ -46,3 +46,6 @@ NOP/常量/返回模式只标记为保护桩候选，不把返回零解释成协
 ## 命令方法审计与当前 SDK
 
 `ronin_command_audit.py` 对固定恢复视图校验SHA256，输出55类/631方法的哈希、位置和命令枚举引用，不输出完整厂商指令体、不执行代码。可选依赖仍为Androguard4.1.3，复现命令与新参数SDK边界见 [APP_COMMANDS.md](../../docs/APP_COMMANDS.md)。默认测试不导入可选分析依赖。
+
+
+`ronin_settings_trace.py` 补充八个继承setter的掩码/分支极性、命名键和两条参数记录，固定恢复与APK哈希。重现步骤与SDK契约见 [APP_SETTINGS.md](../../docs/APP_SETTINGS.md)。不输出完整指令体，不执行厂商代码，不推断本机支持。

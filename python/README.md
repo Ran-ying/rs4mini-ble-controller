@@ -1,4 +1,4 @@
-# Python SDK 0.7.3
+# Python SDK 0.7.4
 
 Python 3.8+、Bleak 后端。保留早期 camelCase 和 snake_case 调用，同时补充反馈、低速位置闭环、缓存 ID、停止取消和 `close()`。
 
@@ -86,3 +86,6 @@ timeoutMs 分别限制每段，停留不计入下段；snake_case 为 `move_thro
 
 
 当前 App 来源参数 SDK 提供显式配置下的参数读取和跟随灵敏度读写，复用既有连接。调用入口、各端差异与未验收边界见 [参数 SDK](../docs/APP_COMMANDS.md)。全部底层命令仍未完成，高级功能开发继续暂停。
+
+
+0.7.4 新增显式当前App来源的自定义跟随与电机设置位字段读取/修改；保留其他位、共享事务截止时间和操作槽。入口及未验收边界见 [命名设置SDK](../docs/APP_SETTINGS.md)。

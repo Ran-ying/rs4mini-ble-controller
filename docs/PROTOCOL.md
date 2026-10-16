@@ -173,3 +173,6 @@ HG724 跟随灵敏度 setter、参数管理器读取 gimbal_param_infos 的路�
 ## 0.7.3 当前 App 参数事务
 
 显式来源 SDK 的04:0F/04:10返回码与高索引解码、外部宽度上下文及来源边界见 [APP_COMMANDS.md](APP_COMMANDS.md)。Ccode.OK=0；返回码与业务索引分离，第二头字节不解释为宽度。不是新硬件证据。
+
+
+0.7.4 补齐两组命名位字段的寄存器读写事务：132自定义跟随、35电机标志。掩码、极性、来源与未验收边界见 [APP_SETTINGS.md](APP_SETTINGS.md)。未知位不覆盖，不从位字段推断PF/PTF或物理效果。

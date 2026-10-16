@@ -1,4 +1,4 @@
-# 当前 App 来源的设备参数 SDK（0.7.3 / 原生 0.3.3）
+# 当前 App 来源的设备参数 SDK（0.7.4 / 原生 0.3.4）
 
 应用继续只创建 `RS4Mini`（原生 `RSGimbal`）。`appCommands` 是该对象的设备 SDK 子接口，复用已有连接、序号、队列、响应关联和操作协调器；没有另开蓝牙连接。高级组合能力没有增加。新接口尚未对设备发送或验收。
 
@@ -69,3 +69,6 @@ PYTHONPATH=work/research/analysis-libs work/python312/bin/python tools/research/
 ```
 
 参数基础不是完整参数 SDK：没有任意参数写入、索引到名称自动映射、跟随模式选择、校准或电机调参。其他已恢复通用命令仍须逐项核对字段、HG724调用分支、回复和通知条件，再封装。系统管理命令与其他代码银行仍未完成审计。`inventoryComplete=false` 和高级开发门槛 false 均保持。
+
+
+0.7.4 新增两组命名位字段事务，详见 [APP_SETTINGS.md](APP_SETTINGS.md)。这是对继承源码的封装，不是新增PF/PTF预设，也没有任意参数写入或实机证据。

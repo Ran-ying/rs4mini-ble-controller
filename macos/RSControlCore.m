@@ -227,3 +227,43 @@ NSDictionary *RSDecodeAppReply(NSDictionary *message, uint8_t command, NSArray *
     }
     return [result copy];
 }
+
+NSDictionary *RSAppSettingsSchema(NSString *kind) {
+    if ([kind isEqualToString:@"customFollow"]) return @{@"index": @132, @"max": @15, @"mask": @15, @"fields": @{@"enabled": @1, @"pitch": @2, @"roll": @4, @"yaw": @8}};
+    if ([kind isEqualToString:@"motor"]) return @{@"index": @35, @"max": @255, @"mask": @113, @"fields": @{@"enabled": @1, @"forbidSelfie": @16, @"forbidVertical": @32, @"roll360": @64}};
+    return nil;
+}
+NSDictionary *RSAppSettingsPatch(NSString *kind, NSDictionary *patch) {
+    NSDictionary *schema = RSAppSettingsSchema(kind);
+    if (!schema || ![patch isKindOfClass:NSDictionary.class] || !patch.count) return nil;
+    NSMutableDictionary *result = [NSMutableDictionary dictionary];
+    for (id key in patch) {
+        id value = patch[key];
+        if (![key isKindOfClass:NSString.class] || !schema[@"fields"][key] || ![value isKindOfClass:NSNumber.class] || CFGetTypeID((__bridge CFTypeRef)value) != CFBooleanGetTypeID()) return nil;
+        result[key] = value;
+    }
+    return [result copy];
+}
+NSDictionary *RSDecodeAppSettings(NSDictionary *reply, NSString *kind) {
+    NSDictionary *schema = RSAppSettingsSchema(kind); if (!schema) return nil;
+    unsigned int raw = 0; [[NSScanner scannerWithString:reply[@"parameters"][0][@"rawHex"]] scanHexInt:&raw];
+    NSMutableDictionary *settings = [NSMutableDictionary dictionary];
+    for (NSString *key in schema[@"fields"]) {
+        BOOL enabled = (raw & [schema[@"fields"][key] intValue]) != 0;
+        settings[key] = @([kind isEqualToString:@"motor"] && [key isEqualToString:@"enabled"] ? !enabled : enabled);
+    }
+    NSMutableDictionary *result = [reply mutableCopy]; result[@"settings"] = [settings copy]; result[@"rawValue"] = @(raw);
+    result[@"unknownBits"] = @(raw & (255 ^ [schema[@"mask"] intValue])); return [result copy];
+}
+NSData *RSAppSettingsFrame(uint16_t sequence, NSString *kind, NSDictionary *patch, NSNumber *currentValue) {
+    NSDictionary *schema = RSAppSettingsSchema(kind); patch = RSAppSettingsPatch(kind, patch);
+    if (!patch || !Numeric(currentValue) || floor(currentValue.doubleValue) != currentValue.doubleValue || currentValue.doubleValue < 0 || currentValue.doubleValue > [schema[@"max"] intValue]) return nil;
+    int value = currentValue.intValue;
+    for (NSString *key in patch) {
+        int bit = [schema[@"fields"][key] intValue]; BOOL enabled = [patch[key] boolValue];
+        if ([kind isEqualToString:@"motor"] && [key isEqualToString:@"enabled"]) enabled = !enabled;
+        value = enabled ? value | bit : value & (255 ^ bit);
+    }
+    uint8_t payload[] = {[schema[@"index"] unsignedCharValue], 1, value};
+    return CommandFrame(sequence, 4, 0x0f, [NSData dataWithBytes:payload length:3], 0x40);
+}

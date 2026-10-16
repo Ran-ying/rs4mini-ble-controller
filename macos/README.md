@@ -1,4 +1,4 @@
-# RS 4 Mini Control 0.3.3
+# RS 4 Mini Control 0.3.4
 
 Objective-C / AppKit / CoreBluetooth 原生面板，提供三轴按住速度控制、停止、三轴回中、姿态/机械关节反馈和低速关节目标定位，不依赖 Node 或 Python。
 
@@ -42,3 +42,6 @@ open "macos/RS 4 Mini Control.app"
 
 
 当前 App 来源参数 SDK 提供显式配置下的参数读取和跟随灵敏度读写，复用既有连接。调用入口、各端差异与未验收边界见 [参数 SDK](../docs/APP_COMMANDS.md)。全部底层命令仍未完成，高级功能开发继续暂停。
+
+
+0.7.4 新增显式当前App来源的自定义跟随与电机设置位字段读取/修改；保留其他位、共享事务截止时间和操作槽。入口及未验收边界见 [命名设置SDK](../docs/APP_SETTINGS.md)。

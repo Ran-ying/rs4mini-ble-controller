@@ -95,3 +95,18 @@ async function currentAppCommands() {
   return mode;
 }
 void currentAppCommands;
+
+async function sourceSettingsTypes(gimbal: RS4Mini) {
+  const flags = await gimbal.appCommands.getMotorSettings();
+  const enabled: boolean = flags.settings.enabled;
+  const raw: number = flags.unknownBits;
+  await gimbal.appCommands.setCustomFollowSettings({ yaw: true });
+  await gimbal.appCommands.setMotorSettings({ enabled: false, forbidVertical: true });
+  // @ts-expect-error at least one named setting is required
+  await gimbal.appCommands.setMotorSettings({ timeoutMs: 1000 });
+  // @ts-expect-error no PF preset is inferred from bitfields
+  await gimbal.appCommands.setCustomFollowSettings({ preset: 'PF' });
+  // @ts-expect-error booleans are required
+  await gimbal.appCommands.setMotorSettings({ roll360: 1 });
+  return [enabled, raw];
+}

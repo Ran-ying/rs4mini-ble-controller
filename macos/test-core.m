@@ -19,6 +19,11 @@ int main(void) {
         Require(RSDecodeAppReply(badApp, 16, appContext, &appError) == nil && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_PROTOCOL_ERROR"], @"App truncated data rejects");
         const uint8_t rejection[] = {7}; badApp[@"payload"] = [NSData dataWithBytes:rejection length:1];
         Require(RSDecodeAppReply(badApp,16,appContext,&appError) == nil && [appError.userInfo[@"statusCode"] intValue] == 7, @"App nonzero device status rejects before business decoding");
+        Require([Hex([[RSFrameDecoder new] push:RSAppSettingsFrame(1, @"customFollow", @{@"enabled": @YES, @"pitch": @NO}, @14)].firstObject[@"payload"]) isEqualToString:@"84010d"], @"custom follow bits preserve other axes");
+        Require([Hex([[RSFrameDecoder new] push:RSAppSettingsFrame(1, @"motor", @{@"enabled": @YES, @"forbidSelfie": @YES, @"roll360": @NO}, @207)].firstObject[@"payload"]) isEqualToString:@"23019e"], @"motor bit is inverted and unknown bits preserved");
+        Require(!RSAppSettingsFrame(1, @"customFollow", @{@"yaw": @YES}, @128) && !RSAppSettingsPatch(@"customFollow", @{@"yaw": @1}) && !RSAppSettingsPatch(@"customFollow", @{}) && !RSAppSettingsPatch(@"motor", @{@"preset": @YES}), @"settings reject unknown range and invalid boolean fields");
+        NSDictionary *settingsResult = RSDecodeAppSettings(@{@"parameters": @[@{@"rawHex": @"9e"}]}, @"motor");
+        Require([settingsResult[@"unknownBits"] intValue] == 142 && [settingsResult[@"settings"][@"enabled"] boolValue] && ![settingsResult[@"settings"][@"roll360"] boolValue], @"settings read keeps unknown bits");
         NSData *stop = RSVelocityFrame(0x100, 0, 0, 0);
         Require([Hex(stop) isEqualToString:@"551604fc020400010004010004000400040000027705"], @"golden stop vector");
         Require(RSVelocityFrame(1, NAN, 0, 0) == nil, @"reject NaN");

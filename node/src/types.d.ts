@@ -211,8 +211,17 @@ export interface AppCommandReply {
 export interface AppParameterReply extends AppCommandReply {
   parameters: Array<AppParameterContext & { headerByte: number; rawHex: string }>;
 }
+export interface CustomFollowSettings { enabled: boolean; pitch: boolean; roll: boolean; yaw: boolean; }
+export interface MotorSettings { enabled: boolean; forbidSelfie: boolean; forbidVertical: boolean; roll360: boolean; }
+export type SettingsUpdate<T> = { [K in keyof T]: Pick<T, K> & Partial<Omit<T, K>> }[keyof T] & { timeoutMs?: number };
+export interface AppSettingsReading<T> extends AppParameterReply { settings: T; rawValue: number; unknownBits: number; }
+export interface AppSettingsWriteResult<T> extends AppCommandReply { previousRawValue: number; requestedRawValue: number; requestedSettings: Partial<T>; }
 export interface AppCommands {
   readonly profile: "ronin-2.2.2" | null;
+  getCustomFollowSettings(options?: { timeoutMs?: number }): Promise<AppSettingsReading<CustomFollowSettings>>;
+  getMotorSettings(options?: { timeoutMs?: number }): Promise<AppSettingsReading<MotorSettings>>;
+  setCustomFollowSettings(options: SettingsUpdate<CustomFollowSettings>): Promise<AppSettingsWriteResult<CustomFollowSettings>>;
+  setMotorSettings(options: SettingsUpdate<MotorSettings>): Promise<AppSettingsWriteResult<MotorSettings>>;
   useProfile(profile: "ronin-2.2.2"): void;
   readParameters(options: { parameters: AppParameterContext[]; timeoutMs?: number }): Promise<AppParameterReply>;
   getFollowSensitivity(options?: { timeoutMs?: number }): Promise<AppParameterReply & { rawValue: number; mode: 0 | 1 | null }>;

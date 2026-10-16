@@ -12,7 +12,7 @@ export class RS4Mini {
   readonly velocity: Velocity;
   closed: boolean;
   readonly moveToActive: boolean;
-  readonly activeOperation: "setFollowSensitivity" | "setVelocity" | "moveFor" | "moveTo" | "recenter" | "runTrajectory" | "moveThrough" | "experimentalAbsolute" | "experimentalRate" | "experimentalSleep" | "stop" | null;
+  readonly activeOperation: "setFollowSensitivity" | "setCustomFollowSettings" | "setMotorSettings" | "setVelocity" | "moveFor" | "moveTo" | "recenter" | "runTrajectory" | "moveThrough" | "experimentalAbsolute" | "experimentalRate" | "experimentalSleep" | "stop" | null;
   readonly latestTelemetry: GimbalTelemetry | null;
   readonly decoder: DumlStreamDecoder;
   readonly reconnectState: ReconnectState;

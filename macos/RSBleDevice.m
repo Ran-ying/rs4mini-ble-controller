@@ -162,7 +162,27 @@ static BOOL Matches(NSString *name) {
             [message[@"sequence"] unsignedShortValue] == self.deviceQuerySequence) {
             NSError *appError = nil;
             NSDictionary *result = RSDecodeAppReply(message, self.appCommandId, self.appParameters, &appError);
-            if (appError) [self failApp:appError]; else [self finishApp:result error:nil];
+            if (appError) [self failApp:appError];
+            else if (self.appSettingsPatch && self.appCommandId == 0x10) {
+                NSDictionary *before = RSDecodeAppSettings(result, self.appSettingsKind);
+                NSData *candidate = RSAppSettingsFrame(0, self.appSettingsKind, self.appSettingsPatch, before[@"rawValue"]);
+                if (!candidate) [self failApp:RSAppError(@"RS4MINI_UNSUPPORTED_VALUE", @"Current settings exceed source setter range; no write sent", nil)];
+                else if (Clock() >= self.deviceQueryDeadline) [self failApp:RSAppError(@"RS4MINI_RESPONSE_TIMEOUT", @"Settings transaction deadline expired", nil)];
+                else {
+                    self.appSettingsBefore = before[@"rawValue"];
+                    self.appSettingsRequested = @(((const uint8_t *)candidate.bytes)[13]);
+                    self.appCommandId = 0x0f; self.appParameters = nil;
+                    self.deviceQuerySequence = [self reserveSequence];
+                    [self writeFrame:RSAppSettingsFrame(self.deviceQuerySequence, self.appSettingsKind, self.appSettingsPatch, self.appSettingsBefore)];
+                }
+            } else {
+                if (self.appSettingsPatch) {
+                    NSMutableDictionary *ack = [result mutableCopy];
+                    ack[@"previousRawValue"] = self.appSettingsBefore; ack[@"requestedRawValue"] = self.appSettingsRequested;
+                    ack[@"requestedSettings"] = self.appSettingsPatch; result = [ack copy];
+                }
+                [self finishApp:result error:nil];
+            }
         }
         if (self.awaitingDeviceQuery && [self matchesResearchResponse:message sequence:self.deviceQuerySequence kind:@"degreeInfo"]) {
             self.awaitingDeviceQuery = NO;
@@ -333,6 +353,7 @@ static BOOL Matches(NSString *name) {
     RSAppCompletion completion = self.appCompletion;
     if (!completion) return;
     self.appCompletion = nil; self.appParameters = nil; self.awaitingDeviceQuery = NO;
+    self.appSettingsKind = nil; self.appSettingsPatch = nil; self.appSettingsBefore = nil; self.appSettingsRequested = nil;
     dispatch_async(dispatch_get_main_queue(), ^{ completion(result, error); });
 }
 - (void)failApp:(NSError *)error {
@@ -340,7 +361,7 @@ static BOOL Matches(NSString *name) {
     NSUInteger token = self.appToken; __weak typeof(self) weak = self;
     [self beginStopKeepingApp:^{ if (weak.appToken == token) [weak finishApp:nil error:error]; } message:nil];
 }
-- (void)startAppCommand:(uint8_t)command parameters:(NSArray *)parameters mode:(NSNumber *)mode timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
+- (void)startAppCommand:(uint8_t)command parameters:(NSArray *)parameters mode:(NSNumber *)mode settingsKind:(NSString *)settingsKind settingsPatch:(NSDictionary *)settingsPatch timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
     NSError *error = nil;
     if (![self.appProfile isEqualToString:@"ronin-2.2.2"]) error = RSAppError(@"RS4MINI_PROFILE_REQUIRED", @"Select explicit ronin-2.2.2 source profile", nil);
     else if (!self.ready) error = RSAppError(@"RS4MINI_DISCONNECTED", @"Device is not connected", nil);
@@ -350,6 +371,7 @@ static BOOL Matches(NSString *name) {
     if (!error && !(command == 0x10 ? RSAppParameterRequestFrame(0, context) : RSAppSensitivityFrame(0, mode)))
         error = RSAppError(@"RS4MINI_INVALID_ARGUMENT", @"Invalid App command arguments", nil);
     if (error) { if (completion) dispatch_async(dispatch_get_main_queue(), ^{ completion(nil, error); }); return; }
+    self.appSettingsKind = settingsKind; self.appSettingsPatch = settingsPatch;
     self.appParameters = context; self.appCommandId = command; self.appCompletion = completion ?: ^(NSDictionary *result, NSError *error) {};
     NSUInteger token = ++self.appToken; __weak typeof(self) weak = self;
     [self beginStopKeepingApp:^{
@@ -360,8 +382,33 @@ static BOOL Matches(NSString *name) {
         [weak writeFrame:packet]; [weak ensureTimer];
     } message:nil];
 }
+- (void)getAppSettings:(NSString *)kind timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
+    [self readAppParameters:@[@{@"index": RSAppSettingsSchema(kind)[@"index"], @"size": @1}] timeoutMs:timeoutMs completion:^(NSDictionary *reply, NSError *error) {
+        if (completion) completion(error ? nil : RSDecodeAppSettings(reply, kind), error);
+    }];
+}
+- (void)getCustomFollowSettingsWithTimeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
+    [self getAppSettings:@"customFollow" timeoutMs:timeoutMs completion:completion];
+}
+- (void)getMotorSettingsWithTimeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
+    [self getAppSettings:@"motor" timeoutMs:timeoutMs completion:completion];
+}
+- (void)setAppSettings:(NSString *)kind settings:(NSDictionary *)settings timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
+    NSDictionary *patch = RSAppSettingsPatch(kind, settings);
+    if (!patch) {
+        if (completion) dispatch_async(dispatch_get_main_queue(), ^{ completion(nil, RSAppError(@"RS4MINI_INVALID_ARGUMENT", @"Settings require named boolean fields", nil)); }); return;
+    }
+    NSArray *context = @[@{@"index": RSAppSettingsSchema(kind)[@"index"], @"size": @1}];
+    [self startAppCommand:0x10 parameters:context mode:nil settingsKind:kind settingsPatch:patch timeoutMs:timeoutMs completion:completion];
+}
+- (void)setCustomFollowSettings:(NSDictionary *)settings timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
+    [self setAppSettings:@"customFollow" settings:settings timeoutMs:timeoutMs completion:completion];
+}
+- (void)setMotorSettings:(NSDictionary *)settings timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
+    [self setAppSettings:@"motor" settings:settings timeoutMs:timeoutMs completion:completion];
+}
 - (void)readAppParameters:(NSArray<NSDictionary *> *)parameters timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
-    [self startAppCommand:0x10 parameters:parameters mode:nil timeoutMs:timeoutMs completion:completion];
+    [self startAppCommand:0x10 parameters:parameters mode:nil settingsKind:nil settingsPatch:nil timeoutMs:timeoutMs completion:completion];
 }
 - (void)getFollowSensitivityWithTimeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
     [self readAppParameters:@[@{@"index": @150, @"size": @1}] timeoutMs:timeoutMs completion:^(NSDictionary *result, NSError *error) {
@@ -374,7 +421,7 @@ static BOOL Matches(NSString *name) {
 }
 - (void)setFollowSensitivity:(NSNumber *)mode timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
     NSNumber *snapshot = [mode copy];
-    [self startAppCommand:0x0f parameters:nil mode:snapshot timeoutMs:timeoutMs completion:^(NSDictionary *result, NSError *error) {
+    [self startAppCommand:0x0f parameters:nil mode:snapshot settingsKind:nil settingsPatch:nil timeoutMs:timeoutMs completion:^(NSDictionary *result, NSError *error) {
         if (!completion) return;
         if (error) { completion(nil, error); return; }
         NSMutableDictionary *value = [result mutableCopy]; value[@"requestedMode"] = snapshot;

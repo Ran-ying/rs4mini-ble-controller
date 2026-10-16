@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "derivedSha256": "4fdbd74a05df63d72a0feb1c907d9395426ec3cdb5d6aeb45e3836d856d66654",
+  "resourcePath": "res/DB.json",
+  "resourceSha256": "3391283785f9ff3bd0d449344bd1243f822a141b10b76751ad82205b1356db68",
+  "baseCommandEnumSha256": "38bb193999c192890ce98dda452e438e6f5a880db1faf8ab5587320f113b1682",
+  "appCodeExecuted": false,
+  "targetDeviceVerified": false,
+  "wholeProtocolRecovered": false,
+  "inheritanceOnlyDoesNotProveFirmwareSupport": true,
+  "parameterNamesSafeToInferFromWireIndex": false,
+  "chain": [
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG724Abstraction;",
+      "superclass": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG702Abstraction;"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG702Abstraction;",
+      "superclass": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "superclass": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninBaseAbstraction;"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninBaseAbstraction;",
+      "superclass": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction;"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction;",
+      "superclass": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalX3Abstraction;"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalX3Abstraction;",
+      "superclass": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAircraftAbstraction;"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAircraftAbstraction;",
+      "superclass": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "superclass": "Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction;"
+    }
+  ],
+  "parameters": {
+    "CUSTOM_FOLLOW_SETTING": {
+      "name": "ronin_custom_follow_setting",
+      "index": 132,
+      "size": 1,
+      "typeID": 0,
+      "minValue": 0,
+      "maxValue": 15,
+      "getter": "Ldji/midware/data/model/P3/DataGimbalGetUserParams;"
+    },
+    "MOTOR_SPECIAL_CMD": {
+      "name": "motor_special_cmd",
+      "index": 35,
+      "size": 1,
+      "typeID": 0,
+      "minValue": 0,
+      "maxValue": 255,
+      "getter": "Ldji/midware/data/model/P3/DataGimbalGetUserParams;"
+    }
+  },
+  "methods": [
+    {
+      "method": "setRonin2CommonUserParam",
+      "descriptor": "(I Ljava/lang/String; Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6507964,
+      "instructionSha256": "d44a62c6d5af2b2b1c888381d67d2a526858649139274bcc167abca1fac71030"
+    },
+    {
+      "method": "setCustomFollowModeEnabled",
+      "descriptor": "(Z Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6518908,
+      "instructionSha256": "e3e6680a56287fe18b5eb682f8329cd27ff2eff632577a9d3944dc6da8187ce8",
+      "key": "CUSTOM_FOLLOW_SETTING",
+      "bit": 1,
+      "inverted": false
+    },
+    {
+      "method": "setCustomFollowModePitchEnabled",
+      "descriptor": "(Z Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6518992,
+      "instructionSha256": "57efba29483dccc48171eb54c3dc447e3cb2d2ca978d5883634d40b39e72fe28",
+      "key": "CUSTOM_FOLLOW_SETTING",
+      "bit": 2,
+      "inverted": false
+    },
+    {
+      "method": "setCustomFollowModeRollEnabled",
+      "descriptor": "(Z Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6519076,
+      "instructionSha256": "9b955a93d104bda287f81a03cab59d512f6d0cb4c3b0798211ff6d21d68c1b82",
+      "key": "CUSTOM_FOLLOW_SETTING",
+      "bit": 4,
+      "inverted": false
+    },
+    {
+      "method": "setCustomFollowModeYawEnabled",
+      "descriptor": "(Z Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6519160,
+      "instructionSha256": "58c3741520f695a0424db76986bd7b28427157952b41d57fd18ad21f77d4f189",
+      "key": "CUSTOM_FOLLOW_SETTING",
+      "bit": 8,
+      "inverted": false
+    },
+    {
+      "method": "setForbidSelfieEnabled",
+      "descriptor": "(Z Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6519352,
+      "instructionSha256": "125fbc12a871ce2f665dfbbf110d77591c44820c6e973eb6dc21ee96270e6724",
+      "key": "MOTOR_SPECIAL_CMD",
+      "bit": 16,
+      "inverted": false
+    },
+    {
+      "method": "setForbidVerticalShootingEnabled",
+      "descriptor": "(Z Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6519436,
+      "instructionSha256": "7273dc80a5d7be98d4cf41f8a954e98ae73690dba7516853374a1847d1ceb601",
+      "key": "MOTOR_SPECIAL_CMD",
+      "bit": 32,
+      "inverted": false
+    },
+    {
+      "method": "setMotorEnabled",
+      "descriptor": "(Z Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6520160,
+      "instructionSha256": "1a94750170d36df5d967a32723463bc854829945496dad4de9c637775ef7df3c",
+      "key": "MOTOR_SPECIAL_CMD",
+      "bit": 1,
+      "inverted": true
+    },
+    {
+      "method": "setRoll360Enabled",
+      "descriptor": "(Z Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6520496,
+      "instructionSha256": "cf31f32d6fedb50b74c717a094feec4fa1116fb4c407500cbc713d3915677605",
+      "key": "MOTOR_SPECIAL_CMD",
+      "bit": 64,
+      "inverted": false
+    }
+  ]
+}

@@ -31,3 +31,8 @@ NSData *RSAppParameterRequestFrame(uint16_t sequence, NSArray *parameters);
 NSData *RSAppSensitivityFrame(uint16_t sequence, NSNumber *mode);
 NSError *RSAppError(NSString *code, NSString *message, NSNumber *statusCode);
 NSDictionary *RSDecodeAppReply(NSDictionary *message, uint8_t command, NSArray *parameters, NSError **error);
+// Named current-App settings; only these groups/boolean fields may be written.
+NSDictionary *RSAppSettingsSchema(NSString *kind);
+NSDictionary *RSAppSettingsPatch(NSString *kind, NSDictionary *patch);
+NSDictionary *RSDecodeAppSettings(NSDictionary *reply, NSString *kind);
+NSData *RSAppSettingsFrame(uint16_t sequence, NSString *kind, NSDictionary *patch, NSNumber *currentValue);

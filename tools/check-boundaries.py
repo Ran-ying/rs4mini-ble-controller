@@ -96,5 +96,14 @@ if manifest.get('commandMethodAudit'):
     for cls in audit['classes']:
         for method in cls['methods']:
             assert re.fullmatch('[0-9a-f]{64}', method['instructionSha256'])
+if manifest.get('settingsResearch'):
+    settings = json.loads((root / manifest['settingsResearch']).read_text())
+    assert settings['derivedSha256'] == restored['derivedSha256']
+    assert settings['appCodeExecuted'] is False and settings['targetDeviceVerified'] is False
+    assert settings['wholeProtocolRecovered'] is False
+    assert settings['parameterNamesSafeToInferFromWireIndex'] is False
+    assert {m['method'] for m in settings['methods']} >= {'setMotorEnabled', 'setCustomFollowModeYawEnabled', 'setRonin2CommonUserParam'}
+    assert settings['parameters']['CUSTOM_FOLLOW_SETTING']['index'] == 132
+    assert settings['parameters']['MOTOR_SPECIAL_CMD']['index'] == 35
 print('Layer boundaries passed: device modules do not depend on motion; upper layers do not encode/write packets.')
 print('Protocol inventory: %d entries; inventoryComplete=false; further advanced development is gated.' % len(manifest['commands']))

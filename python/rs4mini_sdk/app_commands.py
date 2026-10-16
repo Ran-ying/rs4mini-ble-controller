@@ -1,4 +1,6 @@
 """Current-App device commands share the existing connection/queue/pending map."""
+import time
+from .app_settings import SCHEMAS, settings_patch, decode_settings, settings_write
 from .app_protocol import app_profile, parameter_context, parameter_request, sensitivity_payload, app_reply, parameter_reply
 from .experimental_device import _duration
 from .errors import RS4MiniError
@@ -38,6 +40,53 @@ class AppCommands:
         return result
 
     get_follow_sensitivity = getFollowSensitivity
+
+    async def _get_settings(self, kind, timeoutMs):
+        result = await self.readParameters(parameters=[dict(index=SCHEMAS[kind]['index'], size=1)], timeoutMs=timeoutMs)
+        return decode_settings(result, kind)
+
+    async def getCustomFollowSettings(self, *, timeoutMs=3000):
+        return await self._get_settings('customFollow', timeoutMs)
+
+    get_custom_follow_settings = getCustomFollowSettings
+
+    async def getMotorSettings(self, *, timeoutMs=3000):
+        return await self._get_settings('motor', timeoutMs)
+
+    get_motor_settings = getMotorSettings
+
+    async def setCustomFollowSettings(self, *, timeoutMs=3000, **fields):
+        return await self._set_settings('customFollow', fields, timeoutMs)
+
+    set_custom_follow_settings = setCustomFollowSettings
+
+    async def setMotorSettings(self, *, timeoutMs=3000, **fields):
+        return await self._set_settings('motor', fields, timeoutMs)
+
+    set_motor_settings = setMotorSettings
+
+    async def _set_settings(self, kind, fields, timeoutMs):
+        self._require_profile()
+        patch = settings_patch(kind, fields)
+        _duration(timeoutMs, 'timeoutMs', False)
+        name = 'setMotorSettings' if kind == 'motor' else 'setCustomFollowSettings'
+        async def body(operation):
+            await self.owner._halt()
+            self.owner._check(operation)
+            deadline = time.monotonic() + timeoutMs / 1000
+            def remaining():
+                left = (deadline - time.monotonic()) * 1000
+                if left <= 0:
+                    raise RS4MiniError('RS4MINI_RESPONSE_TIMEOUT', 'Settings transaction deadline expired')
+                return left
+            parameters = [dict(index=SCHEMAS[kind]['index'], size=1)]
+            response = await self.owner.experimental._query_payload_command(name + ' read', (4, 0x10), parameter_request(parameters), remaining(), external_operation=operation, epoch=self.owner._epoch)
+            before = decode_settings(parameter_reply(response, parameters), kind)
+            self.owner._check(operation)
+            payload, value = settings_write(kind, patch, before['rawValue'])
+            ack = await self.owner.experimental._query_payload_command(name + ' write', (4, 0x0f), payload, remaining(), external_operation=operation, epoch=self.owner._epoch)
+            return dict(app_reply(ack, 0x0f), previousRawValue=before['rawValue'], requestedRawValue=value, requestedSettings=patch)
+        return await self.owner._run(name, body, False)
 
     async def setFollowSensitivity(self, *, mode, timeoutMs=3000):
         self._require_profile()

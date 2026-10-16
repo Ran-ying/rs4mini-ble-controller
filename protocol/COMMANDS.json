@@ -112,7 +112,7 @@
     },
     {
       "key": "04:0F",
-      "name": "用户参数写入（灵敏度）及旧休眠候选",
+      "name": "用户参数写入与旧休眠候选",
       "requestCodec": "implemented",
       "responseCodec": "partial",
       "targetEvidence": "app-code-path",
@@ -124,15 +124,18 @@
         "node/src/app-commands.js",
         "python/rs4mini_sdk/app_protocol.py",
         "python/rs4mini_sdk/app_commands.py",
-        "macos/RSBleDevice.m"
+        "macos/RSBleDevice.m",
+        "node/src/app-settings.js",
+        "python/rs4mini_sdk/app_settings.py"
       ],
-      "remaining": "显式当前 App 配置已封装 HG724 灵敏度 index150/size1/值0或1 写入及状态 ACK；未提供任意参数写入，旧休眠仍为其他型号；本机效果未验收",
+      "remaining": "显式当前 App 配置已封装 HG724 灵敏度 index150/size1/值0或1 写入及状态 ACK；未提供任意参数写入，旧休眠仍为其他型号；本机效果未验收；0.7.4增加继承源码中的自定义跟随/电机位字段读取与保留其余位的读写事务，非PF/PTF预设，无本机证据",
       "officialAppAliases": [
         "SetUserParams"
       ],
       "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
       "restoredAppEvidence": "protocol/research/ronin-code-restoration-evidence.json",
-      "runtimeAppEvidence": "protocol/research/ronin-command-audit.json"
+      "runtimeAppEvidence": "protocol/research/ronin-command-audit.json",
+      "settingsEvidence": "protocol/research/ronin-settings-evidence.json"
     },
     {
       "key": "04:14",
@@ -255,7 +258,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "app-code-path",
       "implementation": [],
-      "remaining": "HG724 跟随灵敏度 0/1 读写已进入显式来源配置 SDK；不等于 PF/PTF/FPV 跟随模式，后者及本机效果仍未完成",
+      "remaining": "灵敏度0/1及继承源码的自定义跟随启用/三轴位已封装；不等于PF/PTF/FPV预设，型号支持和本机效果待验收",
       "modelResearchEvidence": "protocol/research/ronin-hg724-evidence.json",
       "restoredAppEvidence": "protocol/research/ronin-code-restoration-evidence.json"
     },
@@ -340,14 +343,17 @@
         "node/src/app-commands.js",
         "python/rs4mini_sdk/app_protocol.py",
         "python/rs4mini_sdk/app_commands.py",
-        "macos/RSBleDevice.m"
+        "macos/RSBleDevice.m",
+        "node/src/app-settings.js",
+        "python/rs4mini_sdk/app_settings.py"
       ],
-      "remaining": "显式当前 App 配置按请求 index/size 读取，返回码与无符号索引分离，第二头字节保留原始量；不自动推断参数名/类型，本机读数未验收",
+      "remaining": "显式当前 App 配置按请求 index/size 读取，返回码与无符号索引分离，第二头字节保留原始量；不自动推断参数名/类型，本机读数未验收；0.7.4增加继承源码中的自定义跟随/电机位字段读取与保留其余位的读写事务，非PF/PTF预设，无本机证据",
       "officialAppAliases": [
         "GetUserParams"
       ],
       "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
-      "runtimeAppEvidence": "protocol/research/ronin-command-audit.json"
+      "runtimeAppEvidence": "protocol/research/ronin-command-audit.json",
+      "settingsEvidence": "protocol/research/ronin-settings-evidence.json"
     },
     {
       "key": "04:11",
@@ -694,5 +700,6 @@
   ],
   "modelIdentityResearch": "protocol/research/ronin-hg724-evidence.json",
   "codeRestorationResearch": "protocol/research/ronin-code-restoration-evidence.json",
-  "commandMethodAudit": "protocol/research/ronin-command-audit.json"
+  "commandMethodAudit": "protocol/research/ronin-command-audit.json",
+  "settingsResearch": "protocol/research/ronin-settings-evidence.json"
 }

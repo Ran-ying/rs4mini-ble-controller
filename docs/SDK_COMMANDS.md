@@ -1,6 +1,6 @@
 # 设备 SDK 命令审计与高级开发前置条件
 
-2026-10-16，0.7.3 / 原生 0.3.3。**尚不能确认 RS 4 Mini 全部非相机 BLE 命令都已枚举、解析并封装。**
+2026-10-16，0.7.4 / 原生 0.3.4。**尚不能确认 RS 4 Mini 全部非相机 BLE 命令都已枚举、解析并封装。**
 机器清单是 [protocol/COMMANDS.json](../protocol/COMMANDS.json)，目前记录 48 个命令或缺口条目；
 它不是厂商完整命令表，不能以“所有已知代码已封装”代替“所有设备命令已知”。
 
@@ -24,7 +24,7 @@
 | `04:08` | 校准触发候选 | `not-exposed` / `unknown` | `other-model` | 其他型号研究有自主运动和中止风险，不提供触发 |
 | `04:0B` | 控制状态查询 | `implemented` / `raw` | `other-model` | 响应字段未确认 |
 | `04:0C` | 原生速率候选 | `implemented` / `unknown` | `other-model` | 轴序/单位/释放仅有 RS 3 来源，本机未验证 |
-| `04:0F` | 用户参数写入（灵敏度）及旧休眠候选 | `implemented` / `partial` | `app-code-path` | 显式当前 App 配置已封装 HG724 灵敏度 index150/size1/值0或1 写入及状态 ACK；未提供任意参数写入，旧休眠仍为其他型号；本机效果未验收 |
+| `04:0F` | 用户参数写入与旧休眠候选 | `implemented` / `partial` | `app-code-path` | 显式当前 App 配置已封装 HG724 灵敏度 index150/size1/值0或1 写入及状态 ACK；未提供任意参数写入，旧休眠仍为其他型号；本机效果未验收；0.7.4增加继承源码中的自定义跟随/电机位字段读取与保留其余位的读写事务，非PF/PTF预设，无本机证据 |
 | `04:14` | 原生绝对角候选 | `implemented` / `unknown` | `other-model` | 末参数单位、参考系与本机兼容性未知 |
 | `04:1C` | 设备类型查询 | `implemented` / `raw` | `other-model` | 已在 App 可读代码中关联 RS 4 Mini=HG724，类型枚举值 103；线上偏移、返回码及本机响应未确认，仍返回原始消息 |
 | `04:1E` | degree-info 请求 | `implemented` / `raw` | `hardware` | requestDegreeInfo 封装关联原始响应；本机历史 00 不等于完整字段解析或增频确认 |
@@ -32,14 +32,14 @@
 | `04:4C` | 重置/模式命令中的三轴回中 | `partial` / `unknown` | `hardware` | 当前 App 的原代码备份确认两字节 mode+布尔reset；本机仍只确认 FE01 三轴回中，无按轴选择位，旧 MSDK 轴枚举不可套用；其他模式/响应待本机证据 |
 | `04:66` | 状态 TLV 候选通知 | `not-applicable` / `partial` | `other-model` | 保留 TLV 原始量，不假设本机 tag 语义 |
 | `0D:02` | 电量候选通知 | `not-applicable` / `partial` | `other-model` | 百分比仅为其他 Mini 研究格式，本机未证实 |
-| `unknown:follow-mode` | 跟随模式与手柄参数 | `unknown` / `unknown` | `app-code-path` | HG724 跟随灵敏度 0/1 读写已进入显式来源配置 SDK；不等于 PF/PTF/FPV 跟随模式，后者及本机效果仍未完成 |
+| `unknown:follow-mode` | 跟随模式与手柄参数 | `unknown` / `unknown` | `app-code-path` | 灵敏度0/1及继承源码的自定义跟随启用/三轴位已封装；不等于PF/PTF/FPV预设，型号支持和本机效果待验收 |
 | `unknown:motor-calibration` | 电机参数/自动整定/水平校准 | `unknown` / `unknown` | `none` | 已定位官方 App 候选命令号及相关参数/方法；受保护负载逻辑与 RS 4 Mini 型号分支尚未恢复，不能开放写入 |
 | `unknown:firmware-program` | 固件动作程序 | `unknown` / `unknown` | `none` | 已定位官方 App 候选命令号及相关参数/方法；受保护负载逻辑与 RS 4 Mini 型号分支尚未恢复，不能开放写入 |
 | `unknown:device-management` | 激活/绑定/恢复设置/固件管理的 BLE 覆盖 | `unknown` / `unknown` | `none` | 是否通过本 BLE 链路提供及其协议尚未枚举；连接成功不证明设备管理命令已全覆盖 |
 | `04:07` | 官方 App 枚举：RollFinetune | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
 | `04:0A` | 官方 App 枚举：SetAngle | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
 | `04:0D` | 官方 App 枚举：SetOnOrOff | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
-| `04:10` | 当前 App 用户参数读取 | `implemented` / `partial` | `app-code-path` | 显式当前 App 配置按请求 index/size 读取，返回码与无符号索引分离，第二头字节保留原始量；不自动推断参数名/类型，本机读数未验收 |
+| `04:10` | 当前 App 用户参数读取 | `implemented` / `partial` | `app-code-path` | 显式当前 App 配置按请求 index/size 读取，返回码与无符号索引分离，第二头字节保留原始量；不自动推断参数名/类型，本机读数未验收；0.7.4增加继承源码中的自定义跟随/电机位字段读取与保留其余位的读写事务，非PF/PTF预设，无本机证据 |
 | `04:11` | 官方 App 枚举：SaveUserParams | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
 | `04:12` | 官方 App 枚举：SubscribeGimbalParams | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
 | `04:13` | 官方 App 枚举：ResetUserParams | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
@@ -101,3 +101,6 @@
 当前实现见 [APP_COMMANDS.md](APP_COMMANDS.md)。显式 `ronin-2.2.2` 配置提供参数读取与跟随灵敏度读写，四端共享各自已有连接与队列。它与旧研究配置互斥，不新增高级组合功能。ACK=0 仅代表协议响应成功，不能代表物理到位。
 
 静态审计已固定 55 类、631 个方法指纹（含 Ccode）；其中原命令扫描为 54 类、620 个方法。审计输出不含完整厂商代码。通用方法存在不代表该命令有 HG724 调用分支；48 项清单与两个完整性门槛仍不变。
+
+
+0.7.4 的两个继承源码位字段组已封装为设备事务，见 [APP_SETTINGS.md](APP_SETTINGS.md)。设置共用04:10读取与04:0F写入，并非新增八个独立命令；继承链不能替代本机验收。

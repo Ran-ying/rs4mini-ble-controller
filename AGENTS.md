@@ -8,9 +8,9 @@ verification status changes.
 ## Objective and user decisions
 
 - Provide an unofficial, direct BLE controller for **DJI RS 4 Mini**, initially on macOS.
-- **Node.js is the authoritative implementation**; current package version is `0.7.3`.
+- **Node.js is the authoritative implementation**; current package version is `0.7.4`.
 - The user subsequently requested completion of all existing ports. Python is now
-  `0.7.3`, Web shares the JS core, and the native panel is `0.3.3`. Describe the
+  `0.7.4`, Web shares the JS core, and the native panel is `0.3.4`. Describe the
   documented feature differences; do not claim identical APIs or hardware proof.
 - After that delivery, the user requested the remaining **non-camera** capabilities
   under the same autonomous/offline conditions. Expansion work is in progress;
@@ -291,3 +291,25 @@ fixes55classes/631method hashes (including Ccode11methods), without full vendor
 instructions. Other restored command fields/model paths and SDK interfaces
 remain unfinished. Both gates stay false; add no advanced features. Historical
 0.7.2/no SDK sending text above is superseded for this specific batch.
+
+
+## Current runtime: 0.7.4 / native 0.3.4 build7
+
+AppCommands adds get/setCustomFollowSettings and get/setMotorSettings; Python
+has snake_case aliases, native RSGimbal inherits equivalent methods. Explicit
+current-App profile is still required. The eight setters are inherited Ronin2
+source, not proof of HG724 firmware/UI support. Named records: custom132/size1
+(bits enabled1,pitch2,roll4,yaw8), motor35/size1 (disabled1,forbidSelfie16,
+forbidVertical32,roll36064). No PF/PTF presets or arbitrary writes inferred.
+Setters own one slot through fresh04:10 read and04:0F ACK, stop first, preserve
+unspecified bits and share one monotonic deadline after preamble. Unknown motor
+bits are preserved; custom value>15 remains readable but refuses write because
+it exceeds source validator range. Stop/disconnect/Web blur cancel; no replay
+or rollback promise. This is a device-register transaction, no advanced feature.
+See docs/APP_SETTINGS.md and protocol/research/ronin-settings-evidence.json.
+ronin_settings_trace.py validates pinned APK/restored SHA, named constructors,
+unique records, masks and branch polarity; no vendor code executed. Source
+ranges are not mechanical safety guarantees. Tests: Node83/Web13, Python3.8/3.12
+each61, native58+74+3, research35; builds/types/boundaries passed. No hardware or
+live UI used; full inventory and advanced gates remain false. Other commands
+still need source field/model/response audit and SDK implementation.

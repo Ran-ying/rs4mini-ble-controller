@@ -1,6 +1,6 @@
 # rs4mini-ble-controller
 
-通过电脑 BLE 直接控制 DJI RS 4 Mini 的非官方项目。Node.js **0.7.3** 为主实现；Python/Web **0.7.3**、macOS 原生面板 **0.3.3** 提供三轴速度、姿态/机械关节反馈、低速定位、轨迹与路点、保存位置返回和显式自动重连。相机控制和视觉跟踪不属于当前范围。
+通过电脑 BLE 直接控制 DJI RS 4 Mini 的非官方项目。Node.js **0.7.4** 为主实现；Python/Web **0.7.4**、macOS 原生面板 **0.3.4** 提供三轴速度、姿态/机械关节反馈、低速定位、轨迹与路点、保存位置返回和显式自动重连。相机控制和视觉跟踪不属于当前范围。
 
 **当前状态：底层 SDK 新增当前 App 参数事务封装；全部非相机 BLE 能力仍未完成。**
 完成项、验证证据与后续接手入口统一保存在 [项目状态](docs/PROJECT_STATUS.md)。
@@ -65,7 +65,7 @@ RS4MINI_POSITION_AXIS=tilt RS4MINI_POSITION_DELTA=3 npm run example:position
 
 ## 各端状态
 
-| 功能 | Node 0.7.3 | Python 0.7.3 | Web 0.7.3 | macOS 面板 0.3.3 |
+| 功能 | Node 0.7.4 | Python 0.7.4 | Web 0.7.4 | macOS 面板 0.3.4 |
 |---|---|---|---|---|
 | 三轴速度 / 停止 / 三轴回中 | 有 | 有 | 有 | 有 |
 | 反馈解析与 CRC 重组 | 有 | 有 | 共享 Node 核心 | 有 |
@@ -124,3 +124,6 @@ python3 -m http.server 8000 --bind 127.0.0.1
 
 
 当前 App 来源参数 SDK 提供显式配置下的参数读取和跟随灵敏度读写，复用既有连接。调用入口、各端差异与未验收边界见 [参数 SDK](docs/APP_COMMANDS.md)。全部底层命令仍未完成，高级功能开发继续暂停。
+
+
+0.7.4 新增显式当前App来源的自定义跟随与电机设置位字段读取/修改；保留其他位、共享事务截止时间和操作槽。入口及未验收边界见 [命名设置SDK](docs/APP_SETTINGS.md)。

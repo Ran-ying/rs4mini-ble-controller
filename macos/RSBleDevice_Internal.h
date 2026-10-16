@@ -5,6 +5,10 @@
 @property(nonatomic, copy) NSString *appProfile;
 @property(nonatomic, copy) RSAppCompletion appCompletion;
 @property(nonatomic, strong) NSArray *appParameters;
+@property(nonatomic, copy) NSString *appSettingsKind;
+@property(nonatomic, copy) NSDictionary *appSettingsPatch;
+@property(nonatomic, strong) NSNumber *appSettingsBefore;
+@property(nonatomic, strong) NSNumber *appSettingsRequested;
 @property(nonatomic) uint8_t appCommandId;
 @property(nonatomic) NSUInteger appToken;
 - (void)finishApp:(NSDictionary *)result error:(NSError *)error;

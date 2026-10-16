@@ -98,3 +98,6 @@ Node/Web、Python 与原生已分别拆分；完整模块映射见 `ARCHITECTURE
 
 
 0.7.3 将已恢复 HG724 参数静态链接入四端设备 SDK；接口和并发差异见 APP_COMMANDS.md。ronin_command_audit.py 可重现方法指纹。源码证据与硬件证据分开，继续其余底层命令，高级门槛仍 false。
+
+
+0.7.4 继续封装继承源码中的八个布尔setter，合并为两组命名SDK事务，复用已有连接和操作槽；不是新增八个固件命令。见 APP_SETTINGS.md。其余命令和全量硬件验收仍未完成。

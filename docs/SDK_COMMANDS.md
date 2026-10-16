@@ -1,6 +1,6 @@
 # 设备 SDK 命令审计与高级开发前置条件
 
-2026-10-16，0.7.9 / 原生 0.3.9。**尚不能确认 RS 4 Mini 全部非相机 BLE 命令都已枚举、解析并封装。**
+2026-10-16，0.7.10 / 原生 0.3.10。**尚不能确认 RS 4 Mini 全部非相机 BLE 命令都已枚举、解析并封装。**
 机器清单是 [protocol/COMMANDS.json](../protocol/COMMANDS.json)，目前记录 48 个命令或缺口条目；
 它不是厂商完整命令表，不能以“所有已知代码已封装”代替“所有设备命令已知”。
 
@@ -24,7 +24,7 @@
 | `04:08` | 校准触发候选 | `not-exposed` / `unknown` | `other-model` | 其他型号研究有自主运动和中止风险，不提供触发 |
 | `04:0B` | 控制状态查询 | `implemented` / `raw` | `other-model` | 响应字段未确认 |
 | `04:0C` | 原生速率候选 | `implemented` / `unknown` | `other-model` | 轴序/单位/释放仅有 RS 3 来源，本机未验证 |
-| `04:0F` | 用户参数写入与旧休眠候选 | `implemented` / `partial` | `app-code-path` | 当前App配置封装灵敏度、两组位设置、平衡/系统校准请求、六组按轴档位读改写及ACK；非任意参数写入。PF/PTF、其余字段、持久化与本机效果未验收，旧休眠仍为其他型号来源 |
+| `04:0F` | 用户参数写入与旧休眠候选 | `implemented` / `partial` | `app-code-path` | 当前App配置封装灵敏度、两组位设置、平衡/系统校准请求、六组按轴档位读改写及ACK；非任意参数写入。PF/PTF、其余字段、持久化与本机效果未验收，旧休眠仍为其他型号来源；0.7.10新增18项普通命名数值的1/2字节读写和异常原值保留，不自动切预设/输入源，活动预设与实际效果未验收 |
 | `04:14` | 原生绝对角候选 | `implemented` / `unknown` | `other-model` | 末参数单位、参考系与本机兼容性未知 |
 | `04:1C` | 设备类型查询 | `implemented` / `raw` | `other-model` | 已在 App 可读代码中关联 RS 4 Mini=HG724，类型枚举值 103；线上偏移、返回码及本机响应未确认，仍返回原始消息 |
 | `04:1E` | degree-info 请求 | `implemented` / `raw` | `hardware` | requestDegreeInfo 封装关联原始响应；本机历史 00 不等于完整字段解析或增频确认 |
@@ -32,14 +32,14 @@
 | `04:4C` | 重置/模式命令中的三轴回中 | `partial` / `unknown` | `hardware` | 当前 App 的原代码备份确认两字节 mode+布尔reset；本机仍只确认 FE01 三轴回中，无按轴选择位，旧 MSDK 轴枚举不可套用；其他模式/响应待本机证据 |
 | `04:66` | 状态 TLV 候选通知 | `not-applicable` / `partial` | `other-model` | 保留 TLV 原始量，不假设本机 tag 语义 |
 | `0D:02` | 电量候选通知 | `not-applicable` / `partial` | `other-model` | 百分比仅为其他 Mini 研究格式，本机未证实 |
-| `unknown:follow-mode` | 跟随模式与手柄参数 | `unknown` / `unknown` | `app-code-path` | 灵敏度、自定义跟随轴和六组跟随/RC参数按轴档位已封装；不等于PF/PTF/FPV完整预设，各轴custom数值、其他手柄字段、低两位及型号UI/本机接受/效果仍待验收；18项普通数值已核对源码/类型/宽度及有效继承，SDK尚待封装；独立配置另有6字段且App与输入源2同包写入，不自动选路 |
+| `unknown:follow-mode` | 跟随模式与手柄参数 | `unknown` / `unknown` | `app-code-path` | 灵敏度、自定义跟随轴、六组按轴档位及18项普通跟随/RC数值已封装；PF/PTF/FPV完整预设、活动custom预设验证、独立配置输入源组合、低两位及型号/本机效果仍待完成 |
 | `unknown:motor-calibration` | 电机参数/自动整定/水平校准 | `unknown` / `unknown` | `none` | 自动调参请求/状态、十二个电机数值、平衡测试及system_calc自动校准请求/状态已封装；system_calc与水平校准的型号/UI身份仍未确认；其他字段、实机接受/效果/持久化和固件中止仍待完成 |
 | `unknown:firmware-program` | 固件动作程序 | `unknown` / `unknown` | `none` | 通用程序代码已恢复；型号路径、完整字段、执行/取消/通知语义仍待逐项审计与封装 |
 | `unknown:device-management` | 激活/绑定/恢复设置/固件管理的 BLE 覆盖 | `unknown` / `unknown` | `none` | 是否通过本 BLE 链路提供及其协议尚未枚举；连接成功不证明设备管理命令已全覆盖 |
 | `04:07` | 官方 App 枚举：RollFinetune | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
 | `04:0A` | 官方 App 枚举：SetAngle | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
 | `04:0D` | 官方 App 枚举：SetOnOrOff | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
-| `04:10` | 当前 App 用户参数读取 | `implemented` / `partial` | `app-code-path` | 当前App配置按请求index/size读取，返回码、无符号索引和原始头字节分离；命名设置/状态/六组按轴档位已解码，未按索引推断其他字段，本机读数和更多参数仍待验收 |
+| `04:10` | 当前 App 用户参数读取 | `implemented` / `partial` | `app-code-path` | 当前App配置按请求index/size读取，返回码、无符号索引和原始头字节分离；命名设置/状态/六组按轴档位已解码，未按索引推断其他字段，本机读数和更多参数仍待验收；0.7.10新增18项普通命名数值的1/2字节读写和异常原值保留，不自动切预设/输入源，活动预设与实际效果未验收 |
 | `04:11` | 官方 App 枚举：SaveUserParams | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
 | `04:12` | 官方 App 枚举：SubscribeGimbalParams | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
 | `04:13` | 官方 App 枚举：ResetUserParams | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
@@ -126,3 +126,5 @@ HG724继承的启动路径为普通用户参数04:0F，balance_test/index37/size
 0.7.9六组按轴档位已跨SDK/UI核对并封装，见 [APP_FOLLOW_MODES.md](APP_FOLLOW_MODES.md)；PF/PTF预设、custom数值、低两位、型号/UI和实机效果仍未完成。
 
 数值静态研究已区分普通18字段和独立配置输入源同包路径；源码证据不等于SDK或型号验收。见 [NUMERIC_PARAMS.md](../tools/research/NUMERIC_PARAMS.md)。
+
+0.7.10封装18项普通数值并以源码证据逐项检查三端目录，见 [APP_NUMERIC_TUNING.md](APP_NUMERIC_TUNING.md)。活动预设和本机效果未验收，不计作全部命令完成。

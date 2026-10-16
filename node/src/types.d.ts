@@ -246,7 +246,15 @@ export type AppAxisMode = 'custom'|'low'|'middle'|'high';
 export interface AppAxisModes {pitch:AppAxisMode;roll:AppAxisMode;yaw:AppAxisMode;}
 export type FollowParameter = 'speed'|'acceleration'|'deadZone';
 export type RcParameter = 'speed'|'deadZone'|'smoothing';
+export interface AppTuningReading extends AppParameterReply {
+  activePresetVerified:false;
+  values:Array<AppParameterContext & {headerByte:number;rawHex:string;axis:MotorTuningAxis;parameter:FollowParameter|RcParameter;rawValue:number;withinSourceRange:boolean}>;
+}
 export interface AppCommands {
+  getFollowTuning(options?:{axis?:MotorTuningAxis;parameter?:FollowParameter;timeoutMs?:number}):Promise<AppTuningReading>;
+  getRcTuning(options?:{axis?:MotorTuningAxis;parameter?:RcParameter;timeoutMs?:number}):Promise<AppTuningReading>;
+  setFollowTuning(options:{axis:MotorTuningAxis;parameter:FollowParameter;value:number;timeoutMs?:number}):Promise<AppCommandReply & {axis:MotorTuningAxis;parameter:FollowParameter;requestedValue:number;activePresetVerified:false}>;
+  setRcTuning(options:{axis:MotorTuningAxis;parameter:RcParameter;value:number;timeoutMs?:number}):Promise<AppCommandReply & {axis:MotorTuningAxis;parameter:RcParameter;requestedValue:number;activePresetVerified:false}>;
   getFollowSettings(options:{parameter:FollowParameter;timeoutMs?:number}):Promise<AppSettingsReading<AppAxisModes>>;
   setFollowSettings(options:SettingsUpdate<AppAxisModes> & {parameter:FollowParameter}):Promise<AppSettingsWriteResult<AppAxisModes>>;
   getRcSettings(options:{parameter:RcParameter;timeoutMs?:number}):Promise<AppSettingsReading<AppAxisModes>>;

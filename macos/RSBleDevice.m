@@ -379,7 +379,8 @@ static BOOL Matches(NSString *name) {
         case 0x10: return RSAppParameterRequestFrame(sequence, context);
         case 0x0f:
             if (context) {
-                if (mode || context.count!=1 || [context[0][@"size"] intValue]!=1) return nil;
+                if (mode) return RSAppTuningWriteFrame(sequence,context,mode);
+                if (context.count!=1 || [context[0][@"size"] intValue]!=1) return nil;
                 if ([context[0][@"index"] intValue]==37) return RSAppBalanceStartFrame(sequence);
                 if ([context[0][@"index"] intValue]==36) return RSAppSystemCalibrationStartFrame(sequence);
                 return nil;
@@ -412,6 +413,35 @@ static BOOL Matches(NSString *name) {
     [self startAppCommand:0x0f parameters:@[@{@"index":@37,@"size":@1}] mode:nil settingsKind:nil settingsPatch:nil timeoutMs:timeoutMs completion:^(NSDictionary *reply,NSError *error) {
         NSMutableDictionary *result=[reply mutableCopy]; if (result) result[@"requestedValue"]=@64;
         if (completion) completion(result?[result copy]:nil,error);
+    }];
+}
+- (void)getFollowTuning:(NSDictionary *)filters timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
+    [self getNumericTuning:@"follow" filters:filters timeoutMs:timeoutMs completion:completion];
+}
+- (void)setFollowTuning:(NSDictionary *)spec timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
+    [self setNumericTuning:@"follow" spec:spec timeoutMs:timeoutMs completion:completion];
+}
+- (void)getRcTuning:(NSDictionary *)filters timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
+    [self getNumericTuning:@"rc" filters:filters timeoutMs:timeoutMs completion:completion];
+}
+- (void)setRcTuning:(NSDictionary *)spec timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
+    [self setNumericTuning:@"rc" spec:spec timeoutMs:timeoutMs completion:completion];
+}
+- (void)getNumericTuning:(NSString *)domain filters:(NSDictionary *)filters timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
+    NSArray *selection=RSAppTuningSelection(domain,filters);
+    if (!selection) { if(completion)dispatch_async(dispatch_get_main_queue(), ^{completion(nil,RSAppError(@"RS4MINI_INVALID_ARGUMENT",@"Invalid numeric tuning selection",nil));});return; }
+    NSMutableArray *context=[NSMutableArray array];for(NSDictionary *row in selection)[context addObject:@{@"index":row[@"index"],@"size":row[@"size"]}];
+    [self startAppCommand:0x10 parameters:context mode:nil settingsKind:nil settingsPatch:nil timeoutMs:timeoutMs completion:^(NSDictionary *reply,NSError *error) {
+        if(error){if(completion)completion(nil,error);return;}
+        NSError *decodeError=nil;NSDictionary *result=RSDecodeAppTuningReply(reply[@"message"],selection,&decodeError);if(completion)completion(result,decodeError);
+    }];
+}
+- (void)setNumericTuning:(NSString *)domain spec:(NSDictionary *)spec timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
+    NSDictionary *row=RSAppTuningWriteSpec(domain,spec);
+    if(!row){if(completion)dispatch_async(dispatch_get_main_queue(), ^{completion(nil,RSAppError(@"RS4MINI_INVALID_ARGUMENT",@"Invalid named numeric tuning value",nil));});return;}
+    [self startAppCommand:0x0f parameters:@[@{@"index":row[@"index"],@"size":row[@"size"]}] mode:row[@"value"] settingsKind:nil settingsPatch:nil timeoutMs:timeoutMs completion:^(NSDictionary *reply,NSError *error) {
+        NSMutableDictionary *result=[reply mutableCopy];if(result)[result addEntriesFromDictionary:@{@"axis":row[@"axis"],@"parameter":row[@"parameter"],@"requestedValue":row[@"value"],@"activePresetVerified":@NO}];
+        if(completion)completion(result?[result copy]:nil,error);
     }];
 }
 - (void)getMotorTuning:(NSDictionary *)filters timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {

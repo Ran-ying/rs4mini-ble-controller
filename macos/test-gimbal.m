@@ -369,9 +369,23 @@ int main(void) {
         [peripheral.writes setLength:0];[gimbal setRcSettings:@"deadZone" settings:@{@"roll":@"low"} timeoutMs:1000 completion:appDone];ThreeTicks(gimbal);[gimbal stop];ThreeTicks(gimbal);PumpCallbacks();
         [decoder reset];frames=[decoder push:peripheral.writes];BOOL modeWritten=NO;for(NSDictionary *f in frames)if([f[@"commandId"] intValue]==0x0f)modeWritten=YES;
         Require(appCallbacks==27 && !modeWritten && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_OPERATION_CANCELLED"],@"cancel before mode read reply prevents write");
+        [peripheral.writes setLength:0];[gimbal setFollowTuning:@{@"axis":@"pitch",@"parameter":@"speed",@"value":@0} timeoutMs:1000 completion:appDone];PumpCallbacks();
+        Require(appCallbacks==28 && peripheral.writes.length==0 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_INVALID_ARGUMENT"],@"invalid numeric source range rejects before stopping");
+        NSMutableDictionary *numericSpec=[@{@"axis":@"pitch",@"parameter":@"speed",@"value":@100} mutableCopy];[gimbal setFollowTuning:numericSpec timeoutMs:1000 completion:appDone];numericSpec[@"value"]=@50;ThreeTicks(gimbal);
+        [decoder reset];frames=[decoder push:peripheral.writes];
+        Require(gimbal.busy && [frames.lastObject[@"commandId"] intValue]==0x0f && [frames.lastObject[@"payload"] isEqualToData:[NSData dataWithBytes:(uint8_t[]){3,2,100,0} length:4]],@"numeric setter copies value and sends one named two-byte write");
+        appSequence=[[gimbal valueForKey:@"deviceQuerySequence"] unsignedShortValue];notify.value=AppResponse(appSequence,0x0f,ok,4);[gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil];PumpCallbacks();
+        Require(appCallbacks==29 && !gimbal.busy && [appResult[@"requestedValue"] intValue]==100 && ![appResult[@"physicalCompletionVerified"] boolValue] && ![appResult[@"activePresetVerified"] boolValue],@"numeric ACK releases host slot without physical or active-preset claim");
+        [peripheral.writes setLength:0];[gimbal getRcTuning:@{@"axis":@"yaw",@"parameter":@"smoothing"} timeoutMs:1000 completion:appDone];ThreeTicks(gimbal);[decoder reset];frames=[decoder push:peripheral.writes];
+        Require([frames.lastObject[@"commandId"] intValue]==0x10 && [frames.lastObject[@"payload"] isEqualToData:[NSData dataWithBytes:(uint8_t[]){8} length:1]],@"numeric RC getter queries ordinary index8 without switching inputs");
+        appSequence=[[gimbal valueForKey:@"deviceQuerySequence"] unsignedShortValue];notify.value=AppResponse(appSequence,0x10,[NSData dataWithBytes:(uint8_t[]){0,8,9,0x34,0x12} length:5],4);[gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil];PumpCallbacks();
+        Require(appCallbacks==30 && [appResult[@"values"][0][@"rawValue"] intValue]==4660 && ![appResult[@"values"][0][@"withinSourceRange"] boolValue],@"numeric native query preserves unknown unsigned feedback");
+        [peripheral.writes setLength:0];[gimbal setRcTuning:@{@"axis":@"roll",@"parameter":@"deadZone",@"value":@0} timeoutMs:1000 completion:appDone];ThreeTicks(gimbal);[gimbal stop];ThreeTicks(gimbal);PumpCallbacks();
+        [decoder reset];frames=[decoder push:peripheral.writes];NSUInteger numericWrites=0;for(NSDictionary *f in frames)if([f[@"commandId"] intValue]==0x0f)numericWrites++;
+        Require(appCallbacks==31 && numericWrites==1 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_OPERATION_CANCELLED"],@"numeric cancellation clears pending ACK without replay");
         [gimbal getFollowSensitivityWithTimeoutMs:1000 completion:appDone]; ThreeTicks(gimbal);
         [gimbal centralManager:(id)central didDisconnectPeripheral:(id)peripheral error:nil]; PumpCallbacks();
-        Require(appCallbacks == 28 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_DISCONNECTED"], @"native disconnect rejects pending App query");
+        Require(appCallbacks == 32 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_DISCONNECTED"], @"native disconnect rejects pending App query");
         [gimbal disconnect]; ThreeTicks(gimbal);
         printf("Native fake-device lifecycle checks: %lu passed (no Bluetooth manager created)\n", (unsigned long)assertions);
     }

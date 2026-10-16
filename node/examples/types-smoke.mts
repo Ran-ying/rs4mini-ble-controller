@@ -68,6 +68,13 @@ void balanceResult;
   // @ts-expect-error no raw values or guessed modes
   await gimbal.appCommands.setFollowSettings({parameter:'speed',yaw:1});
 
+  await gimbal.appCommands.setFollowTuning({axis:'pitch',parameter:'speed',value:100});
+  await gimbal.appCommands.getRcTuning({parameter:'smoothing'});
+  // @ts-expect-error tuning takes raw integer values, not mode names
+  await gimbal.appCommands.setRcTuning({axis:'yaw',parameter:'speed',value:'low'});
+  // @ts-expect-error standalone create fields are not ordinary tuning selectors
+  await gimbal.appCommands.getRcTuning({parameter:'gimbal_create_max_speed_yaw'});
+
 }
 
 const bytes = velocityFrame(1, { pan: 0.1 });

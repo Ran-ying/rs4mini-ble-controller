@@ -1,10 +1,14 @@
 # 项目状态与接手入口
 
-更新日期：2026-10-16。当前源码检查点为 Node/Python/Web **0.7.9**、macOS 原生面板 **0.3.9**。
+更新日期：2026-10-16。当前源码检查点为 Node/Python/Web **0.7.10**、macOS 原生面板 **0.3.10**。
 
 **当前 App 参数事务已进入四端设备 SDK；全部非相机 BLE 能力整体目标尚未完成。**
 用户已要求将源码与相关信息提交至 GitHub。本记录随源码版本保存，提交和远端状态以 Git 历史为准；
 这不是 npm 发布或 GitHub 二进制 Release。
+
+## 当前进度：0.7.10 普通数值SDK
+
+四端get/setFollowTuning与get/setRcTuning提供18项普通跟随/RC数值读取与单项写入，宽度和范围逐项绑定源码，保留未知无符号原值。单次写入独占到ACK，无自动重发或切预设/输入源；activePresetVerified:false，型号/真实效果仍待验收。见 [APP_NUMERIC_TUNING.md](APP_NUMERIC_TUNING.md)。三端目录逐项和源码比对；Node119/Web14/Python各97/native83+113+3/research53，类型/边界/构建通过。无硬件/UI或高级新增，独立配置、预设验证及全部命令仍未完成。下方为历史记录。
 
 ## 最新研究：数值参数与输入源分支
 

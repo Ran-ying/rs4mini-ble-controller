@@ -56,3 +56,8 @@ NSDictionary *RSAppSystemCalibrationFields(uint8_t rawValue);
 NSDictionary *RSDecodeAppSystemCalibrationReply(NSDictionary *reply);
 
 NSString *RSAppModeKind(NSString *domain, NSString *parameter);
+
+NSArray<NSDictionary *> *RSAppTuningSelection(NSString *domain, NSDictionary *filters);
+NSDictionary *RSAppTuningWriteSpec(NSString *domain, NSDictionary *spec);
+NSData *RSAppTuningWriteFrame(uint16_t sequence, NSArray *context, NSNumber *value);
+NSDictionary *RSDecodeAppTuningReply(NSDictionary *message, NSArray *selection, NSError **error);

@@ -419,3 +419,57 @@ NSDictionary *RSDecodeAppSystemCalibrationReply(NSDictionary *reply) {
     if (![scanner scanHexInt:&value] || !scanner.isAtEnd || value>255) return nil;
     NSMutableDictionary *result=[reply mutableCopy];result[@"systemCalibration"]=RSAppSystemCalibrationFields((uint8_t)value);return [result copy];
 }
+
+NSArray<NSDictionary *> *RSAppTuningSelection(NSString *domain, NSDictionary *filters) {
+    if (![domain isKindOfClass:NSString.class]) return nil;
+    NSArray *groups=@{@"follow":@[@[@"speed",@[@3,@12,@2],@2,@1,@100],@[@"acceleration",@[@15,@16,@14],@2,@1,@100],@[@"deadZone",@[@5,@13,@4],@2,@0,@100]],
+        @"rc":@[@[@"speed",@[@42,@43,@41],@2,@0,@100],@[@"deadZone",@[@27,@40,@26],@1,@0,@100],@[@"smoothing",@[@9,@39,@8],@2,@0,@30]]}[domain];
+    if (!groups || (filters && ![filters isKindOfClass:NSDictionary.class])) return nil;
+    for (id key in filters) if (![@[@"axis",@"parameter"] containsObject:key]) return nil;
+    NSArray *axes=@[@"pitch",@"roll",@"yaw"];
+    if (filters[@"axis"] && ![axes containsObject:filters[@"axis"]]) return nil;
+    BOOL found=filters[@"parameter"]==nil;
+    NSMutableArray *result=[NSMutableArray array];
+    for (NSArray *group in groups) {
+        if (filters[@"parameter"] && ![filters[@"parameter"] isEqual:group[0]]) continue;
+        found=YES;
+        for (NSUInteger i=0;i<3;i++) {
+            if (filters[@"axis"] && ![filters[@"axis"] isEqual:axes[i]]) continue;
+            [result addObject:@{@"axis":axes[i],@"parameter":group[0],@"index":group[1][i],@"size":group[2],@"min":group[3],@"max":group[4]}];
+        }
+    }
+    return found?[result copy]:nil;
+}
+NSDictionary *RSAppTuningWriteSpec(NSString *domain, NSDictionary *spec) {
+    if (![spec isKindOfClass:NSDictionary.class] || spec.count!=3 || !spec[@"axis"] || !spec[@"parameter"] || !Numeric(spec[@"value"])) return nil;
+    NSArray *selected=RSAppTuningSelection(domain,@{@"axis":spec[@"axis"],@"parameter":spec[@"parameter"]});
+    if (selected.count!=1) return nil;
+    double value=[spec[@"value"] doubleValue];NSDictionary *row=selected[0];
+    if (floor(value)!=value || value<[row[@"min"] intValue] || value>[row[@"max"] intValue]) return nil;
+    NSMutableDictionary *result=[row mutableCopy];result[@"value"]=@(value);return [result copy];
+}
+NSData *RSAppTuningWriteFrame(uint16_t sequence, NSArray *context, NSNumber *value) {
+    context=RSAppParameterContext(context);if (context.count!=1 || !Numeric(value)) return nil;
+    for (NSString *domain in @[@"follow",@"rc"]) for (NSDictionary *row in RSAppTuningSelection(domain,nil)) {
+        if (![row[@"index"] isEqual:context[0][@"index"]] || ![row[@"size"] isEqual:context[0][@"size"]]) continue;
+        if (!RSAppTuningWriteSpec(domain,@{@"axis":row[@"axis"],@"parameter":row[@"parameter"],@"value":value})) return nil;
+        uint8_t payload[]={[row[@"index"] unsignedCharValue],[row[@"size"] unsignedCharValue],value.unsignedIntValue&255,(value.unsignedIntValue>>8)&255};
+        return CommandFrame(sequence,4,0x0f,[NSData dataWithBytes:payload length:2+[row[@"size"] unsignedIntegerValue]],0x40);
+    }
+    return nil;
+}
+NSDictionary *RSDecodeAppTuningReply(NSDictionary *message, NSArray *selection, NSError **error) {
+    NSMutableArray *context=[NSMutableArray array];
+    for (NSDictionary *row in selection) [context addObject:@{@"index":row[@"index"],@"size":row[@"size"]}];
+    NSDictionary *reply=RSDecodeAppReply(message,0x10,context,error);if (!reply) return nil;
+    NSMutableArray *values=[NSMutableArray array];
+    for (NSUInteger i=0;i<selection.count;i++) {
+        NSDictionary *row=selection[i],*record=reply[@"parameters"][i];NSString *hex=record[@"rawHex"];NSUInteger size=[row[@"size"] unsignedIntegerValue];unsigned raw=0;
+        if (size<1 || size>2 || hex.length!=size*2) { if(error)*error=RSAppError(@"RS4MINI_PROTOCOL_ERROR",@"Invalid tuning width",nil);return nil; }
+        for (NSUInteger b=0;b<size;b++) { unsigned byte=0;NSScanner *scanner=[NSScanner scannerWithString:[hex substringWithRange:NSMakeRange(b*2,2)]];
+            if (![scanner scanHexInt:&byte] || !scanner.isAtEnd) { if(error)*error=RSAppError(@"RS4MINI_PROTOCOL_ERROR",@"Invalid tuning bytes",nil);return nil; }raw|=byte<<(8*b);
+        }
+        NSMutableDictionary *value=[record mutableCopy];[value addEntriesFromDictionary:@{@"axis":row[@"axis"],@"parameter":row[@"parameter"],@"rawValue":@(raw),@"withinSourceRange":@(raw>=[row[@"min"] unsignedIntValue] && raw<=[row[@"max"] unsignedIntValue])}];[values addObject:[value copy]];
+    }
+    NSMutableDictionary *result=[reply mutableCopy];result[@"values"]=[values copy];result[@"activePresetVerified"]=@NO;return [result copy];
+}

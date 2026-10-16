@@ -126,9 +126,11 @@
         "python/rs4mini_sdk/app_commands.py",
         "macos/RSBleDevice.m",
         "node/src/app-settings.js",
-        "python/rs4mini_sdk/app_settings.py"
+        "python/rs4mini_sdk/app_settings.py",
+        "node/src/app-tuning.js",
+        "python/rs4mini_sdk/app_tuning.py"
       ],
-      "remaining": "当前App配置封装灵敏度、两组位设置、平衡/系统校准请求、六组按轴档位读改写及ACK；非任意参数写入。PF/PTF、其余字段、持久化与本机效果未验收，旧休眠仍为其他型号来源",
+      "remaining": "当前App配置封装灵敏度、两组位设置、平衡/系统校准请求、六组按轴档位读改写及ACK；非任意参数写入。PF/PTF、其余字段、持久化与本机效果未验收，旧休眠仍为其他型号来源；0.7.10新增18项普通命名数值的1/2字节读写和异常原值保留，不自动切预设/输入源，活动预设与实际效果未验收",
       "officialAppAliases": [
         "SetUserParams"
       ],
@@ -258,7 +260,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "app-code-path",
       "implementation": [],
-      "remaining": "灵敏度、自定义跟随轴和六组跟随/RC参数按轴档位已封装；不等于PF/PTF/FPV完整预设，各轴custom数值、其他手柄字段、低两位及型号UI/本机接受/效果仍待验收；18项普通数值已核对源码/类型/宽度及有效继承，SDK尚待封装；独立配置另有6字段且App与输入源2同包写入，不自动选路",
+      "remaining": "灵敏度、自定义跟随轴、六组按轴档位及18项普通跟随/RC数值已封装；PF/PTF/FPV完整预设、活动custom预设验证、独立配置输入源组合、低两位及型号/本机效果仍待完成",
       "modelResearchEvidence": "protocol/research/ronin-hg724-evidence.json",
       "restoredAppEvidence": "protocol/research/ronin-code-restoration-evidence.json"
     },
@@ -345,9 +347,11 @@
         "python/rs4mini_sdk/app_commands.py",
         "macos/RSBleDevice.m",
         "node/src/app-settings.js",
-        "python/rs4mini_sdk/app_settings.py"
+        "python/rs4mini_sdk/app_settings.py",
+        "node/src/app-tuning.js",
+        "python/rs4mini_sdk/app_tuning.py"
       ],
-      "remaining": "当前App配置按请求index/size读取，返回码、无符号索引和原始头字节分离；命名设置/状态/六组按轴档位已解码，未按索引推断其他字段，本机读数和更多参数仍待验收",
+      "remaining": "当前App配置按请求index/size读取，返回码、无符号索引和原始头字节分离；命名设置/状态/六组按轴档位已解码，未按索引推断其他字段，本机读数和更多参数仍待验收；0.7.10新增18项普通命名数值的1/2字节读写和异常原值保留，不自动切预设/输入源，活动预设与实际效果未验收",
       "officialAppAliases": [
         "GetUserParams"
       ],
@@ -742,5 +746,20 @@
   "codeBankResearch": "protocol/research/ronin-code-banks-evidence.json",
   "controlModeCallerResearch": "protocol/research/ronin-control-mode-callers.json",
   "followModeResearch": "protocol/research/ronin-follow-modes-evidence.json",
-  "numericParameterResearch": "protocol/research/ronin-numeric-params-evidence.json"
+  "numericParameterResearch": "protocol/research/ronin-numeric-params-evidence.json",
+  "numericParameterSdk": {
+    "implemented": true,
+    "targetDeviceVerified": false,
+    "namedParameterCount": 18,
+    "domains": [
+      "follow",
+      "rc"
+    ],
+    "source": "protocol/research/ronin-numeric-params-evidence.json",
+    "files": [
+      "node/src/app-tuning.js",
+      "python/rs4mini_sdk/app_tuning.py",
+      "macos/RSControlCore.m"
+    ]
+  }
 }

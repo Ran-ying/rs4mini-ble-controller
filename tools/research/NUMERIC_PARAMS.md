@@ -55,3 +55,5 @@ PYTHONPATH=work/research/analysis-libs work/python312/bin/python tools/research/
 [证据JSON](../../protocol/research/ronin-numeric-params-evidence.json) 含18条普通命名记录、独立配置6条与输入源记录、有效继承路径、类型/分支及42方法指纹。工具固定APK与两段恢复视图哈希，核对实际寄存器绑定，遇到映射歧义或条件分支不猜值；输出不含完整厂商方法体。
 
 标准库研究测试在Python3.8/3.12各53项通过，固定APK复现一致。没有SDK发送扩大、扫描、连接、运动、实时UI或App代码执行。型号/预设条件、数值SDK接口、本机效果/持久化、输入源选择等仍待完成；全协议和高级门槛保持false。
+
+后续0.7.10已封装18项普通数值SDK，当前范围与活动预设未验证边界见 [APP_NUMERIC_TUNING.md](../../docs/APP_NUMERIC_TUNING.md)。独立配置输入源组合仍未封装；本工具本身不提供SDK或发送能力。

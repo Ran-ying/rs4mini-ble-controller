@@ -61,6 +61,13 @@ int main(void) {
         NSDictionary *modeReply=RSDecodeAppSettings(@{@"parameters":@[@{@"rawHex":@"9b"}]},@"rcSpeed");
         Require([modeReply[@"settings"][@"pitch"] isEqualToString:@"middle"] && [modeReply[@"settings"][@"roll"] isEqualToString:@"low"] && [modeReply[@"settings"][@"yaw"] isEqualToString:@"middle"] && [modeReply[@"unknownBits"] intValue]==3,@"packed axis shifts and source enum decode");
         Require(!RSAppSettingsPatch(@"followSpeed",@{@"yaw":@1}) && !RSAppSettingsPatch(@"followSpeed",@{@"pan":@"low"}) && !RSAppSettingsPatch(@"followSpeed",@{}),@"mode patch rejects numeric value unknown axis and empty update");
+        Require(RSAppTuningSelection(@"follow",nil).count==9 && RSAppTuningSelection(@"rc",nil).count==9 && [RSAppTuningSelection(@"follow",@{@"axis":@"roll",@"parameter":@"acceleration"})[0][@"index"] intValue]==16,@"ordinary numeric catalogs use source names and indexes");
+        NSDictionary *numericWrite=[[RSFrameDecoder new] push:RSAppTuningWriteFrame(1,@[@{@"index":@3,@"size":@2}],@100)].firstObject;
+        Require([Hex(numericWrite[@"payload"]) isEqualToString:@"03026400"] && !RSAppTuningWriteFrame(1,@[@{@"index":@3,@"size":@1}],@100) && !RSAppTuningWriteFrame(1,@[@{@"index":@72,@"size":@1}],@2),@"numeric write uses metadata width and excludes input source");
+        NSMutableDictionary *numericMessage=[appMessage mutableCopy];numericMessage[@"payload"]=[NSData dataWithBytes:(uint8_t[]){0,3,9,0x34,0x12} length:5];numericMessage[@"commandId"]=@0x10;
+        NSDictionary *numericResult=RSDecodeAppTuningReply(numericMessage,RSAppTuningSelection(@"follow",@{@"axis":@"pitch",@"parameter":@"speed"}),&appError);
+        Require([numericResult[@"values"][0][@"rawValue"] intValue]==4660 && ![numericResult[@"values"][0][@"withinSourceRange"] boolValue] && [numericResult[@"parameters"][0][@"headerByte"] intValue]==9 && ![numericResult[@"activePresetVerified"] boolValue],@"numeric decode retains unsigned little-endian feedback outside source range");
+        Require([Hex([[[RSFrameDecoder new] push:RSAppTuningWriteFrame(1,@[@{@"index":@26,@"size":@1}],@100)] firstObject][@"payload"]) isEqualToString:@"1a0164"] && !RSAppTuningWriteSpec(@"follow",@{@"axis":@"pitch",@"parameter":@"speed",@"value":@0}) && !RSAppTuningWriteSpec(@"rc",@{@"axis":@"pitch",@"parameter":@"speed",@"value":@YES}),@"one-byte numeric fields retain independent ranges and boolean rejection");
         NSData *stop = RSVelocityFrame(0x100, 0, 0, 0);
         Require([Hex(stop) isEqualToString:@"551604fc020400010004010004000400040000027705"], @"golden stop vector");
         Require(RSVelocityFrame(1, NAN, 0, 0) == nil, @"reject NaN");

@@ -1,4 +1,5 @@
 """Current-App device commands share the existing connection/queue/pending map."""
+from .app_tuning import tuning_selection,tuning_write,tuning_reply
 from .app_motor import motor_selection, motor_write, motor_reply
 from .app_system_calibration import system_calibration_reply
 from .app_balance import balance_reply
@@ -95,6 +96,44 @@ class AppCommands:
         return await self.owner._run('sendBalanceTestRequest',body,False)
 
     send_balance_test_request=sendBalanceTestRequest
+
+    async def getFollowTuning(self, *, axis=None, parameter=None, timeoutMs=3000):
+        return await self._get_tuning('follow',axis,parameter,timeoutMs)
+
+    get_follow_tuning=getFollowTuning
+
+    async def setFollowTuning(self, *, axis, parameter, value, timeoutMs=3000):
+        return await self._set_tuning('follow',axis,parameter,value,timeoutMs)
+
+    set_follow_tuning=setFollowTuning
+
+    async def getRcTuning(self, *, axis=None, parameter=None, timeoutMs=3000):
+        return await self._get_tuning('rc',axis,parameter,timeoutMs)
+
+    get_rc_tuning=getRcTuning
+
+    async def setRcTuning(self, *, axis, parameter, value, timeoutMs=3000):
+        return await self._set_tuning('rc',axis,parameter,value,timeoutMs)
+
+    set_rc_tuning=setRcTuning
+
+    async def _get_tuning(self,domain,axis,parameter,timeoutMs):
+        self._require_profile()
+        selection=tuning_selection(domain,axis,parameter)
+        context=[dict(index=row['index'],size=row['size']) for row in selection]
+        response=await self.owner.experimental._query_payload_command('App numeric tuning',(4,0x10),parameter_request(context),timeoutMs)
+        return tuning_reply(response,selection)
+
+    async def _set_tuning(self,domain,axis,parameter,value,timeoutMs):
+        self._require_profile()
+        payload=tuning_write(domain,axis,parameter,value)
+        _duration(timeoutMs,'timeoutMs',False)
+        async def body(operation):
+            await self.owner._halt()
+            self.owner._check(operation)
+            response=await self.owner.experimental._query_payload_command('App numeric write',(4,0x0f),payload,timeoutMs,external_operation=operation,epoch=self.owner._epoch)
+            return dict(app_reply(response,0x0f),axis=axis,parameter=parameter,requestedValue=value,activePresetVerified=False)
+        return await self.owner._run('setFollowTuning' if domain=='follow' else 'setRcTuning',body,False)
 
     async def getMotorTuning(self, *, axis=None, parameter=None, timeoutMs=3000):
         self._require_profile()

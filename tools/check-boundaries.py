@@ -172,5 +172,23 @@ if manifest.get('numericParameterResearch'):
     assert [r['value'] for r in numeric['unsignedTypes']] == [0,1]
     assert numeric['distinctCreatePath']['inputSource']['index'] == 72 and numeric['distinctCreatePath']['inputValue'] == 2
     assert numeric['distinctCreatePath']['sourceCombinesInputAndValueInOneRequest'] is True
+if manifest.get('numericParameterSdk',{}).get('implemented'):
+    sdk = manifest['numericParameterSdk']
+    assert sdk['targetDeviceVerified'] is False and sdk['namedParameterCount'] == 18
+    for filename in sdk['files']:assert (root / filename).is_file()
+    expected = {(r['domain'],r['parameter'],r['axis']):(r['index'],r['size'],r['minValue'],r['maxValue']) for r in numeric['parameters']}
+    def normalize(groups):
+        return {(domain,parameter,axis):(indices[i],size,minimum,maximum)
+                for domain,rows in groups.items() for parameter,indices,size,minimum,maximum in rows
+                for i,axis in enumerate(('pitch','roll','yaw'))}
+    tree = ast.parse((root / 'python/rs4mini_sdk/app_tuning.py').read_text())
+    py_groups = ast.literal_eval(next(n.value for n in tree.body if isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and t.id=='GROUPS' for t in n.targets)))
+    js_text = (root / 'node/src/app-tuning.js').read_text()
+    js_literal = re.search(r'const groups=(\{.*?\});',js_text,re.S).group(1)
+    js_groups = ast.literal_eval(re.sub(r'\b(follow|rc):',r'"\1":',js_literal))
+    native = (root / 'macos/RSControlCore.m').read_text().split('NSArray<NSDictionary *> *RSAppTuningSelection(',1)[1]
+    native_literal = re.search(r'NSArray \*groups=(@\{.*?\})\[domain\];',native,re.S).group(1)
+    native_groups = json.loads(native_literal.replace('@',''))
+    assert normalize(py_groups) == normalize(js_groups) == normalize(native_groups) == expected
 print('Layer boundaries passed: device modules do not depend on motion; upper layers do not encode/write packets.')
 print('Protocol inventory: %d entries; inventoryComplete=false; further advanced development is gated.' % len(manifest['commands']))

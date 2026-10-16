@@ -204,3 +204,8 @@ HG724 跟随灵敏度 setter、参数管理器读取 gimbal_param_infos 的路�
 ## 数值参数与输入源分支续报
 
 18项普通跟随/RC数值已核对有效继承、命名映射、缺省读取模型及INT08U/INT16U两条单项/数组打包分支；另6项独立配置在App与输入源2同包写入，不能按名称相似自动替换。42方法指纹实际固定APK复现一致；研究53项在Python3.8/3.12通过，无新增SDK发送或硬件/UI操作。运行时仍0.7.9/0.3.9，全协议和高级门槛false。见 [NUMERIC_PARAMS.md](../tools/research/NUMERIC_PARAMS.md)。
+
+
+## 0.7.10 普通数值SDK
+
+18项普通跟随/RC数值已同步四端，1/2字节小端与无符号异常原值按上下文解码，单项写入独占到ACK、取消无重放。不自动切档位/预设/输入源，activePresetVerified:false，独立配置和实机效果仍待完成。Node119/Web14/Python各97/native83+113+3/research53，类型/边界/构建通过，三端目录逐项匹配源码。无硬件/UI或高级新增。详见 [APP_NUMERIC_TUNING.md](APP_NUMERIC_TUNING.md)。

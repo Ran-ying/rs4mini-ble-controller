@@ -1,3 +1,4 @@
+import { tuningSelection, tuningWrite, tuningReply } from './app-tuning.js';
 import { systemCalibrationPayload, systemCalibrationReply } from './app-system-calibration.js';
 import { balanceStartPayload, balanceReply } from './app-balance.js';
 // Device SDK facade: single owner/queue/pending map, no composed motion.
@@ -65,6 +66,28 @@ export class AppCommands {
       await this.owner._stop(); check(operation.controller.signal);
       const response=await this.owner.experimental._queryPayloadCommand('App balance start',[4,0x0f],balanceStartPayload(),timeoutMs,{signal:operation.controller.signal,epoch:this.owner.motionEpoch});
       return {...appReply(response,0x0f),requestedValue:64};
+    },false);
+  }
+  getFollowTuning(options = {}) { return this._getTuning('follow',options); }
+  setFollowTuning(options = {}) { return this._setTuning('follow',options); }
+  getRcTuning(options = {}) { return this._getTuning('rc',options); }
+  setRcTuning(options = {}) { return this._setTuning('rc',options); }
+  async _getTuning(domain,options) {
+    optionsOnly(options,['axis','parameter','timeoutMs']);this._requireProfile();
+    const {timeoutMs=3000,...filters}=options,selection=tuningSelection(domain,filters);
+    const context=selection.map(({index,size})=>({index,size}));
+    const response=await this.owner.experimental._queryPayloadCommand('App numeric tuning',[4,0x10],parameterRequest(context),timeoutMs);
+    return tuningReply(response,selection);
+  }
+  async _setTuning(domain,options) {
+    optionsOnly(options,['axis','parameter','value','timeoutMs']);this._requireProfile();
+    const spec=tuningWrite(domain,options),timeoutMs=options.timeoutMs ?? 3000;
+    if (!Number.isFinite(timeoutMs) || timeoutMs<=0 || timeoutMs>60000) throw new RangeError('timeoutMs must be >0..60000');
+    return this.owner._run(domain==='follow'?'setFollowTuning':'setRcTuning',async operation=>{
+      await this.owner._stop();check(operation.controller.signal);
+      const response=await this.owner.experimental._queryPayloadCommand('App numeric write',[4,0x0f],spec.payload,timeoutMs,{signal:operation.controller.signal,epoch:this.owner.motionEpoch});
+      const {payload,...requested}=spec;
+      return {...appReply(response,0x0f),...requested,activePresetVerified:false};
     },false);
   }
   async getMotorTuning(options = {}) {

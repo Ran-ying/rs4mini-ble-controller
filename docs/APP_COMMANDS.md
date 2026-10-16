@@ -1,4 +1,4 @@
-# 当前 App 来源的设备参数 SDK（0.7.9 / 原生 0.3.9）
+# 当前 App 来源的设备参数 SDK（0.7.10 / 原生 0.3.10）
 
 应用继续只创建 `RS4Mini`（原生 `RSGimbal`）。`appCommands` 是该对象的设备 SDK 子接口，复用已有连接、序号、队列、响应关联和操作协调器；没有另开蓝牙连接。高级组合能力没有增加。新接口尚未对设备发送或验收。
 
@@ -90,3 +90,8 @@ PYTHONPATH=work/research/analysis-libs work/python312/bin/python tools/research/
 ## 0.7.9 跟随/RC按轴档位
 
 六组参数档位已同步四端，Pitch/Roll/Yaw字段为bits2..3/4..5/6..7，custom/low/middle/high为0/1/2/3；先读后改写，保留其他轴和未知低两位，共用操作槽和总截止时间。Node113/Web14/Python各91/native79+107+3/research49，类型/边界/构建通过；无硬件/UI/高级新增，PF/PTF和custom数值未因此完成。详见 [APP_FOLLOW_MODES.md](APP_FOLLOW_MODES.md)。
+
+
+## 0.7.10 普通数值SDK
+
+18项普通跟随/RC数值已同步四端，1/2字节小端与无符号异常原值按上下文解码，单项写入独占到ACK、取消无重放。不自动切档位/预设/输入源，activePresetVerified:false，独立配置和实机效果仍待完成。Node119/Web14/Python各97/native83+113+3/research53，类型/边界/构建通过，三端目录逐项匹配源码。无硬件/UI或高级新增。详见 [APP_NUMERIC_TUNING.md](APP_NUMERIC_TUNING.md)。

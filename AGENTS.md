@@ -8,9 +8,9 @@ verification status changes.
 ## Objective and user decisions
 
 - Provide an unofficial, direct BLE controller for **DJI RS 4 Mini**, initially on macOS.
-- **Node.js is the authoritative implementation**; current package version is `0.7.9`.
+- **Node.js is the authoritative implementation**; current package version is `0.7.10`.
 - The user subsequently requested completion of all existing ports. Python is now
-  `0.7.9`, Web shares the JS core, and the native panel is `0.3.9`. Describe the
+  `0.7.10`, Web shares the JS core, and the native panel is `0.3.10`. Describe the
   documented feature differences; do not claim identical APIs or hardware proof.
 - After that delivery, the user requested the remaining **non-camera** capabilities
   under the same autonomous/offline conditions. Expansion work is in progress;
@@ -468,3 +468,24 @@ physical effect proof. See tools/research/NUMERIC_PARAMS.md and protocol/
 research/ronin-numeric-params-evidence.json. Research53 inbothPython environments
 and actual pinned-source reproduction pass. No hardware/live UI/App execution
 or sending/advanced additions; both completion gates false.
+
+
+## Current runtime0.7.10/native0.3.10 build13
+
+Four ports get/setFollowTuning and get/setRcTuning implement18 ordinary numeric
+fields from numeric source evidence. Default each domain reads9, filtered by
+pitch/roll/yaw and named parameter. All use common0F/10, explicitwidth1/2 and
+little-endian unsigned decoding; unknown65535/255 etc stayraw withwithinSourceRange
+false, never clamped or legacy error-code interpreted. Single named integer write
+validates/copies before pre-stop, owns through ACK and supports cancellation/
+timeout without replay. No optimistic cache, mode/preset/input-source writes.
+Active firmware preset is unverified (including inherited Follow Pitch/Yaw
+custom advanced profile check); both reads/writes returnactivePresetVerified:false.
+Create fields/input_source72 pair remain separate and unexposed. See docs/
+APP_NUMERIC_TUNING.md. Native context-based0F allowlist only expands to these18
+exact index/width/range records; no arbitrary parameter writes. Boundary checker
+parses JS/Python/native catalog literals offline and compares all18 to pinned
+source records. Node119/Web14/Python97 each/native83+113+3/research53,
+types/boundaries/builds passed. No hardware/live UI/advanced additions; both
+completion gates remain false. Historical numeric research no-SDK text above
+is superseded only for these18 ordinary fields, not independent create profiles.

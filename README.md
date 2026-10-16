@@ -133,3 +133,5 @@ python3 -m http.server 8000 --bind 127.0.0.1
 
 
 0.7.6新增十二个命名电机数值参数的31/32读写，和普通用户参数命令空间分开；源码范围与实际设备效果分别验收。见 [电机参数SDK](docs/APP_MOTOR_TUNING.md)。
+
+平衡测试新增静态证据：[调用链与同名参数冲突](tools/research/BALANCE_TEST.md)。运行时版本未变，尚未新增该SDK接口或硬件验收。

@@ -120,5 +120,13 @@ if manifest.get('motorTuningResearch'):
     assert motor['wholeProtocolRecovered'] is False and motor['parameterNamesSafeToInferFromWireIndex'] is False
     assert motor['sourceFacts']['namespaceDistinctFromUserParameters'] is True
     assert len(motor['parameters']) == 12 and motor['scalarEncoding']['switchCase'] == 4
+if manifest.get('balanceResearch'):
+    balance = json.loads((root / manifest['balanceResearch']).read_text())
+    assert balance['derivedSha256'] == restored['derivedSha256']
+    assert balance['appCodeExecuted'] is False and balance['targetDeviceVerified'] is False
+    assert balance['sdkEncapsulationComplete'] is False and balance['wholeProtocolRecovered'] is False
+    assert [r['maxValue'] for r in balance['matchingResourceRecords']] == [1,255]
+    assert balance['sourceFacts']['startValue'] == 64
+    assert balance['sourceFacts']['startCommand'] == '04:0F'
 print('Layer boundaries passed: device modules do not depend on motion; upper layers do not encode/write packets.')
 print('Protocol inventory: %d entries; inventoryComplete=false; further advanced development is gated.' % len(manifest['commands']))

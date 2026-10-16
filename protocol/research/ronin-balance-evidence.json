@@ -1,0 +1,212 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "derivedSha256": "4fdbd74a05df63d72a0feb1c907d9395426ec3cdb5d6aeb45e3836d856d66654",
+  "resourceSha256": "3391283785f9ff3bd0d449344bd1243f822a141b10b76751ad82205b1356db68",
+  "appCodeExecuted": false,
+  "targetDeviceVerified": false,
+  "wholeProtocolRecovered": false,
+  "sdkEncapsulationComplete": false,
+  "inheritance": [
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG724Abstraction;",
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG702Abstraction;",
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninBaseAbstraction;",
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction;",
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalX3Abstraction;",
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAircraftAbstraction;",
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;"
+  ],
+  "parameterKey": {
+    "name": "balance_test",
+    "getter": "Ldji/midware/data/model/P3/DataGimbalGetUserParams;"
+  },
+  "matchingResourceRecords": [
+    {
+      "resourceOrdinal": 36,
+      "name": "balance_test",
+      "index": 37,
+      "typeID": 0,
+      "size": 1,
+      "minValue": 0,
+      "maxValue": 1
+    },
+    {
+      "resourceOrdinal": 74,
+      "name": "balance_test",
+      "index": 37,
+      "typeID": 0,
+      "size": 1,
+      "minValue": 0,
+      "maxValue": 255
+    }
+  ],
+  "methods": [
+    {
+      "className": "Ldji/midware/ronin2/Ronin2GimbalParamsManager$BaseCommand;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3728816,
+      "instructionSha256": "38bb193999c192890ce98dda452e438e6f5a880db1faf8ab5587320f113b1682"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "startGimbalBalanceTest",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6522076,
+      "instructionSha256": "e13bb0b34c85bf0ee4b815b80532fcc368a83f1c1590d2359d19b99e95a3e99e"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "setRonin2CommonUserParam",
+      "descriptor": "(I Ljava/lang/String; Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6507964,
+      "instructionSha256": "d44a62c6d5af2b2b1c888381d67d2a526858649139274bcc167abca1fac71030"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager;",
+      "method": "readToMemory",
+      "descriptor": "(Ljava/lang/String;)V",
+      "codeOffset": 3337284,
+      "instructionSha256": "50a9e35ae581cbb3de11042f14a816efad823ed637a1bc4f63b93041e513d4bc"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager$1;",
+      "method": "run",
+      "descriptor": "()V",
+      "codeOffset": 3336860,
+      "instructionSha256": "a7fcbca1a14d6c0e88d235e6edab865943ca0af06a20606b19ac7fa3b26d7d3c"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "onEvent3BackgroundThread",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalGetUserParams;)V",
+      "codeOffset": 6509328,
+      "instructionSha256": "a134a94955e57310e7515f7923b5ae2317f0648d56ca2221153f4e9d57b24fa1"
+    },
+    {
+      "className": "Ldji/common/gimbal/BalanceTestStatus;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3010380,
+      "instructionSha256": "6d35dd2d2fce3cb1f0a6a98cf8c13f5a03d67bbc30d430af705bc79057aa1b93"
+    },
+    {
+      "className": "Ldji/common/gimbal/BalanceTestResult;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3010120,
+      "instructionSha256": "1674d23d68c54935bd5742aad89788d9e0079cee90a8fe46a030506bc8dc3b44"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager;",
+      "method": "read",
+      "descriptor": "(Ljava/lang/String;)Ldji/midware/data/params/P3/ParamInfo;",
+      "codeOffset": 3337248,
+      "instructionSha256": "7a8e4c27d3590efc5f02acd6613f4a55b79e48d79ad896077184f6d2a037e3bb"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetUserParams;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 4889600,
+      "instructionSha256": "ba8c45bc2b6c1b459b6c9ef30bc3998e379289abf6b78bf036a8160933225136"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetUserParams;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4890736,
+      "instructionSha256": "e1411ba3ca5c21358d3f3ba6d730990c707694f18ce1366c824aa3ae7fbf408c"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetUserParams;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 4877720,
+      "instructionSha256": "96edd046f7fa5d089883685ccdcf11944dd4157d323938454f4eca72c7d2526e"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetUserParams;",
+      "method": "setRecData",
+      "descriptor": "([B)V",
+      "codeOffset": 4877976,
+      "instructionSha256": "032cc430cae225d02d205f296fc70bf562f5cd40f7ce59bb148010c0b5bcb4ac"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetUserParams;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4878372,
+      "instructionSha256": "0d05970822b30bcaaee5034188f3f6e774c78bb52a037af03f12c0d0ca1d7586"
+    }
+  ],
+  "statusEnums": [
+    {
+      "name": "DEFAULT",
+      "ordinal": 0,
+      "value": 0
+    },
+    {
+      "name": "TESTING",
+      "ordinal": 1,
+      "value": 1
+    },
+    {
+      "name": "FINISH",
+      "ordinal": 2,
+      "value": 2
+    },
+    {
+      "name": "ERROR",
+      "ordinal": 3,
+      "value": 3
+    }
+  ],
+  "resultEnums": [
+    {
+      "name": "PASS",
+      "ordinal": 0
+    },
+    {
+      "name": "MARGINAL",
+      "ordinal": 1
+    },
+    {
+      "name": "FAIL",
+      "ordinal": 2
+    },
+    {
+      "name": "UNKNOWN",
+      "ordinal": 3
+    }
+  ],
+  "sourceFacts": {
+    "startCommand": "04:0F",
+    "startValue": 64,
+    "candidatePayloadHex": "250140",
+    "readCommand": "04:10",
+    "candidateReadHex": "25",
+    "sourceStartDoesNotCallBalanceAdjust40": true,
+    "duplicateNameMap": "ordered list iteration inserts by name into HashMap; later successful insertion replaces earlier",
+    "duplicateRangesRequireExplicitHandling": true,
+    "resultStatusMask": 192,
+    "resultStatusShift": 6,
+    "resultAxes": {
+      "roll": {
+        "mask": 48,
+        "shift": 4
+      },
+      "pitch": {
+        "mask": 12,
+        "shift": 2
+      },
+      "yaw": {
+        "mask": 3,
+        "shift": 0
+      }
+    },
+    "resultEnumeration": "two-bit field minus one indexes PASS/MARGINAL/FAIL; zero is invalid, not PASS",
+    "physicalStopAndCompletionUnverified": true
+  }
+}

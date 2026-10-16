@@ -269,7 +269,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "none",
       "implementation": [],
-      "remaining": "调参请求/状态和十二个命名电机数值字段已封装；平衡测试、水平校准及完整型号/物理验收仍待完成"
+      "remaining": "调参请求/状态和十二个命名电机数值字段已封装；平衡测试、水平校准及完整型号/物理验收仍待完成；平衡测试已静态确认继承路径为普通0F/10的balance_test/index37，启动值64；资源有两条同名范围记录，SDK接口及结果处理尚未封装"
     },
     {
       "key": "unknown:firmware-program",
@@ -580,7 +580,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送",
+      "remaining": "当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送；HG724继承的startGimbalBalanceTest静态路径不直接调用此命令，而使用0F的命名参数；不能仅凭类名替代",
       "officialAppAliases": [
         "BalanceAdjust"
       ],
@@ -735,5 +735,6 @@
   "commandMethodAudit": "protocol/research/ronin-command-audit.json",
   "settingsResearch": "protocol/research/ronin-settings-evidence.json",
   "calibrationResearch": "protocol/research/ronin-calibration-evidence.json",
-  "motorTuningResearch": "protocol/research/ronin-motor-evidence.json"
+  "motorTuningResearch": "protocol/research/ronin-motor-evidence.json",
+  "balanceResearch": "protocol/research/ronin-balance-evidence.json"
 }

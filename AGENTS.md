@@ -359,3 +359,18 @@ ronin_motor_trace.py verifies pinned hashes, twelve source setter/getter chains,
 Node96/Web14, Python74, native69+88+3, research38 offline checks passed; installed
 packages are verified in the release handoff. No hardware/live UI used; HG724
 inheritance is not firmware/UI support evidence. Both completion gates false.
+
+
+## Balance-test static follow-up (runtime unchanged)
+
+ronin_balance_trace.py pins APK/restoration hashes and 14 method fingerprints.
+HG724/HG702 inherit Ronin2.startGimbalBalanceTest: BALANCE_TEST name balance_test,
+value64 via common DataGimbalSetUserParams/04:0F, getter04:10, index37,size1,type0.
+Not direct04:40. DB.json has duplicate same-name records at ordinals36/74 with
+max1/max255. readToMemory iterates List and HashMap.put by name; later successful
+insertion overwrites earlier. Do not use unique_record or first-match selection.
+Status bits6..7: DEFAULT0 TESTING1 FINISH2 ERROR3; roll4..5,pitch2..3,yaw0..1;
+result field minus1 indexes PASS/MARGINAL/FAIL. Zero is invalid, never PASS.
+See tools/research/BALANCE_TEST.md and protocol/research/ronin-balance-evidence.json.
+No SDK interface/hardware support claimed yet, no new sending or advanced feature.
+Research42 tests pass on Python3.8/3.12; runtime remains0.7.6/native0.3.6.

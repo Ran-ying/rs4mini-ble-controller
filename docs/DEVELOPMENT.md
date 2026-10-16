@@ -109,3 +109,8 @@ Node/Web、Python 与原生已分别拆分；完整模块映射见 `ARCHITECTURE
 ## 0.7.6 命名电机参数
 
 0.7.6 新增十二个命名电机数值的四端SDK、类型和离线回归；复现工具 ronin_motor_trace.py 固定APK/恢复视图哈希并核对26个方法指纹、INT08U分支和低字节编码。参数范围仅是源码校验，不是机械安全范围。详见 [APP_MOTOR_TUNING.md](APP_MOTOR_TUNING.md)。
+
+
+## 0.7.7 平衡测试SDK
+
+四端封装0F/10命名平衡测试启动64与状态/三轴结果，零结果保留null，取消不发未证实的中止。Node102/Web14/Python两环境各80/native72+94+3/research42，类型/边界/构建通过。没有硬件、UI或高级新增；实机效果与全部命令仍未验收。详见 [APP_BALANCE_TEST.md](APP_BALANCE_TEST.md)。

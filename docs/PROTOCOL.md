@@ -184,3 +184,8 @@ HG724 跟随灵敏度 setter、参数管理器读取 gimbal_param_infos 的路�
 ## 0.7.6 命名电机参数
 
 0.7.6 命名电机数值使用独立04:31/32命名空间，索引0..11、size1、INT08U。04:32按请求上下文解码，第二头字节仍原样保留；04:31 ACK不代表参数已物理生效。详见 [APP_MOTOR_TUNING.md](APP_MOTOR_TUNING.md)。
+
+
+## 0.7.7 平衡测试SDK
+
+四端封装0F/10命名平衡测试启动64与状态/三轴结果，零结果保留null，取消不发未证实的中止。Node102/Web14/Python两环境各80/native72+94+3/research42，类型/边界/构建通过。没有硬件、UI或高级新增；实机效果与全部命令仍未验收。详见 [APP_BALANCE_TEST.md](APP_BALANCE_TEST.md)。

@@ -8,9 +8,9 @@ verification status changes.
 ## Objective and user decisions
 
 - Provide an unofficial, direct BLE controller for **DJI RS 4 Mini**, initially on macOS.
-- **Node.js is the authoritative implementation**; current package version is `0.7.6`.
+- **Node.js is the authoritative implementation**; current package version is `0.7.7`.
 - The user subsequently requested completion of all existing ports. Python is now
-  `0.7.6`, Web shares the JS core, and the native panel is `0.3.6`. Describe the
+  `0.7.7`, Web shares the JS core, and the native panel is `0.3.7`. Describe the
   documented feature differences; do not claim identical APIs or hardware proof.
 - After that delivery, the user requested the remaining **non-camera** capabilities
   under the same autonomous/offline conditions. Expansion work is in progress;
@@ -374,3 +374,20 @@ result field minus1 indexes PASS/MARGINAL/FAIL. Zero is invalid, never PASS.
 See tools/research/BALANCE_TEST.md and protocol/research/ronin-balance-evidence.json.
 No SDK interface/hardware support claimed yet, no new sending or advanced feature.
 Research42 tests pass on Python3.8/3.12; runtime remains0.7.6/native0.3.6.
+
+
+## Current runtime: 0.7.7 / native0.3.7 build10
+
+Four ports add sendBalanceTestRequest/getBalanceTestStatus (native equivalents,
+Python snake_case aliases), explicit App profile. Fixed0F payload250140 and10
+request25/index37size1. No arbitrary value/axis or inferred abort. Start owns
+slot through pre-stop/write/ACK only; stop/disconnect cancel pending host work,
+never claim firmware abort/completion or auto-send zero/replay. ACK releases slot.
+Status is not correlated to a program ID; state bits6..7 DEFAULT/TESTING/FINISH/
+ERROR0..3, roll4..5,pitch2..3,yaw0..1. Axis1/2/3 PASS/MARGINAL/FAIL;0null, each
+raw retained; axisFieldsValid only mapping validity, not successful testing.
+Node/Python reads may coexist with motion, native reads own slot/pre-stop.
+See docs/APP_BALANCE_TEST.md. Source helper now describes researchToolProvidesSdkInterface
+false rather than a historical runtime encapsulation flag. Node102/Web14,
+Python80 each, native72+94+3/research42, types/boundaries/builds passed. No
+hardware/live UI or advanced additions; both completion gates remain false.

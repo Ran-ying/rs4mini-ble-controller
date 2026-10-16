@@ -124,7 +124,7 @@ if manifest.get('balanceResearch'):
     balance = json.loads((root / manifest['balanceResearch']).read_text())
     assert balance['derivedSha256'] == restored['derivedSha256']
     assert balance['appCodeExecuted'] is False and balance['targetDeviceVerified'] is False
-    assert balance['sdkEncapsulationComplete'] is False and balance['wholeProtocolRecovered'] is False
+    assert balance['researchToolProvidesSdkInterface'] is False and balance['wholeProtocolRecovered'] is False
     assert [r['maxValue'] for r in balance['matchingResourceRecords']] == [1,255]
     assert balance['sourceFacts']['startValue'] == 64
     assert balance['sourceFacts']['startCommand'] == '04:0F'

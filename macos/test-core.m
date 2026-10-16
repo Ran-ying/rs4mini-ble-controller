@@ -46,6 +46,11 @@ int main(void) {
         NSMutableDictionary *motorMessage=[appMessage mutableCopy]; motorMessage[@"commandId"]=@0x32; motorMessage[@"payload"]=[NSData dataWithBytes:(uint8_t[]){0,0,9,255} length:4];
         NSDictionary *motorResult=RSDecodeAppMotorReply(motorMessage,RSAppMotorSelection(@{@"axis":@"pitch",@"parameter":@"stiffness"}),&appError);
         Require([motorResult[@"values"][0][@"rawValue"] intValue]==255 && ![motorResult[@"values"][0][@"withinSourceRange"] boolValue] && [motorResult[@"parameters"][0][@"headerByte"] intValue]==9,@"motor read retains unknown value and raw header using external width");
+        NSDictionary *balanceFrame=[[RSFrameDecoder new] push:RSAppBalanceStartFrame(1)].firstObject;
+        Require([balanceFrame[@"commandId"] intValue]==0x0f && [Hex(balanceFrame[@"payload"]) isEqualToString:@"250140"],@"balance start uses common parameter namespace and fixed64");
+        NSDictionary *balance=RSAppBalanceFields(0x9b);
+        Require([balance[@"state"] isEqualToString:@"FINISH"] && [balance[@"axisResults"][@"roll"][@"result"] isEqualToString:@"PASS"] && [balance[@"axisResults"][@"pitch"][@"result"] isEqualToString:@"MARGINAL"] && [balance[@"axisResults"][@"yaw"][@"result"] isEqualToString:@"FAIL"],@"balance status and axis bits source vector");
+        Require(RSAppBalanceFields(0)[@"axisResults"][@"yaw"][@"result"]==NSNull.null && ![RSAppBalanceFields(0x90)[@"axisFieldsValid"] boolValue] && [RSAppBalanceFields(255)[@"state"] isEqualToString:@"ERROR"],@"zero fields stay invalid and unknown values remain raw");
         NSData *stop = RSVelocityFrame(0x100, 0, 0, 0);
         Require([Hex(stop) isEqualToString:@"551604fc020400010004010004000400040000027705"], @"golden stop vector");
         Require(RSVelocityFrame(1, NAN, 0, 0) == nil, @"reject NaN");

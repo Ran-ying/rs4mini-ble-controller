@@ -6,7 +6,6 @@
   "appCodeExecuted": false,
   "targetDeviceVerified": false,
   "wholeProtocolRecovered": false,
-  "sdkEncapsulationComplete": false,
   "inheritance": [
     "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG724Abstraction;",
     "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG702Abstraction;",
@@ -208,5 +207,6 @@
     },
     "resultEnumeration": "two-bit field minus one indexes PASS/MARGINAL/FAIL; zero is invalid, not PASS",
     "physicalStopAndCompletionUnverified": true
-  }
+  },
+  "researchToolProvidesSdkInterface": false
 }

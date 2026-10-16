@@ -316,9 +316,25 @@ int main(void) {
         appSequence=[[gimbal valueForKey:@"deviceQuerySequence"] unsignedShortValue]; notify.value=AppResponse(appSequence,0x32,[NSData dataWithBytes:(uint8_t[]){0,2,9,255,5,1,30,8,1,0,11,1,100} length:13],4);
         [gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil]; PumpCallbacks();
         Require(appCallbacks==16 && [appResult[@"values"] count]==4 && [appResult[@"values"][0][@"rawValue"] intValue]==255 && ![appResult[@"values"][0][@"withinSourceRange"] boolValue],@"native motor decode retains unknown source value without guessing defaults");
+        [peripheral.writes setLength:0]; [gimbal sendBalanceTestRequestWithTimeoutMs:1000 completion:appDone]; ThreeTicks(gimbal);
+        [decoder reset]; frames=[decoder push:peripheral.writes];
+        Require(gimbal.busy && [frames.lastObject[@"commandId"] intValue]==0x0f && [frames.lastObject[@"payload"] isEqualToData:[NSData dataWithBytes:(uint8_t[]){37,1,64} length:3]],@"balance start owns request ACK and selects0F not40");
+        appSequence=[[gimbal valueForKey:@"deviceQuerySequence"] unsignedShortValue]; notify.value=AppResponse(appSequence,0x0f,ok,4);
+        [gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil]; PumpCallbacks();
+        Require(appCallbacks==17 && !gimbal.busy && [appResult[@"requestedValue"] intValue]==64 && ![appResult[@"physicalCompletionVerified"] boolValue],@"balance ACK releases host slot without claiming physical completion");
+        [peripheral.writes setLength:0]; [gimbal getBalanceTestStatusWithTimeoutMs:1000 completion:appDone]; ThreeTicks(gimbal);
+        [decoder reset]; frames=[decoder push:peripheral.writes];
+        Require([frames.lastObject[@"commandId"] intValue]==0x10 && [frames.lastObject[@"payload"] isEqualToData:[NSData dataWithBytes:(uint8_t[]){37} length:1]],@"balance status uses named read index37");
+        appSequence=[[gimbal valueForKey:@"deviceQuerySequence"] unsignedShortValue]; notify.value=AppResponse(appSequence,0x10,[NSData dataWithBytes:(uint8_t[]){0,37,9,0x90} length:4],4);
+        [gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil]; PumpCallbacks();
+        Require(appCallbacks==18 && [appResult[@"balance"][@"state"] isEqualToString:@"FINISH"] && appResult[@"balance"][@"axisResults"][@"yaw"][@"result"]==NSNull.null && [appResult[@"parameters"][0][@"headerByte"] intValue]==9,@"balance decode keeps invalid results and external width");
+        [peripheral.writes setLength:0]; [gimbal sendBalanceTestRequestWithTimeoutMs:1000 completion:appDone]; ThreeTicks(gimbal); [gimbal stop]; ThreeTicks(gimbal); PumpCallbacks();
+        [decoder reset]; frames=[decoder push:peripheral.writes]; NSUInteger balanceWrites=0;
+        for (NSDictionary *f in frames) if ([f[@"commandId"] intValue]==0x0f) { balanceWrites++; Require([f[@"payload"] isEqualToData:[NSData dataWithBytes:(uint8_t[]){37,1,64} length:3]],@"no invented balance abort value"); }
+        Require(appCallbacks==19 && balanceWrites==1 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_OPERATION_CANCELLED"],@"balance cancellation clears pending without replay");
         [gimbal getFollowSensitivityWithTimeoutMs:1000 completion:appDone]; ThreeTicks(gimbal);
         [gimbal centralManager:(id)central didDisconnectPeripheral:(id)peripheral error:nil]; PumpCallbacks();
-        Require(appCallbacks == 17 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_DISCONNECTED"], @"native disconnect rejects pending App query");
+        Require(appCallbacks == 20 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_DISCONNECTED"], @"native disconnect rejects pending App query");
         [gimbal disconnect]; ThreeTicks(gimbal);
         printf("Native fake-device lifecycle checks: %lu passed (no Bluetooth manager created)\n", (unsigned long)assertions);
     }

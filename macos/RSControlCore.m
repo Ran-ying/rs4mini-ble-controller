@@ -364,3 +364,27 @@ NSDictionary *RSDecodeAppMotorReply(NSDictionary *message, NSArray *selection, N
     }
     NSMutableDictionary *result=[reply mutableCopy]; result[@"values"]=[values copy]; return [result copy];
 }
+
+NSData *RSAppBalanceStartFrame(uint16_t sequence) {
+    uint8_t payload[]={37,1,64};
+    return Frame(sequence,0x0f,[NSData dataWithBytes:payload length:3],0x40);
+}
+NSDictionary *RSAppBalanceFields(uint8_t rawValue) {
+    NSUInteger stateCode=rawValue>>6;
+    NSMutableDictionary *axes=[NSMutableDictionary dictionary];
+    NSArray *names=@[@"roll",@"pitch",@"yaw"], *results=@[@"PASS",@"MARGINAL",@"FAIL"];
+    BOOL valid=YES;
+    for (NSUInteger i=0;i<3;i++) {
+        NSUInteger value=(rawValue>>(4-2*i))&3;
+        axes[names[i]]=@{@"rawValue":@(value),@"result":value?results[value-1]:NSNull.null};
+        if (!value) valid=NO;
+    }
+    return @{@"rawValue":@(rawValue),@"stateCode":@(stateCode),@"state":@[@"DEFAULT",@"TESTING",@"FINISH",@"ERROR"][stateCode],@"axisResults":[axes copy],@"axisFieldsValid":@(valid)};
+}
+NSDictionary *RSDecodeAppBalanceReply(NSDictionary *reply) {
+    NSArray *records=reply[@"parameters"];
+    if (records.count!=1 || [records[0][@"index"] intValue]!=37 || [records[0][@"size"] intValue]!=1) return nil;
+    unsigned value=0; NSScanner *scanner=[NSScanner scannerWithString:records[0][@"rawHex"]];
+    if (![scanner scanHexInt:&value] || !scanner.isAtEnd || value>255) return nil;
+    NSMutableDictionary *result=[reply mutableCopy];result[@"balance"]=RSAppBalanceFields((uint8_t)value);return [result copy];
+}

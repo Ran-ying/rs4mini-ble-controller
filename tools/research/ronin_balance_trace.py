@@ -114,7 +114,7 @@ def trace(apk, dex_path):
     methods=[dict(className=m.get_class_name(),method=m.get_name(),descriptor=m.get_descriptor(),codeOffset=m.get_code_off(),
                   instructionSha256=hashlib.sha256(m.get_code().get_bc().get_raw()).hexdigest()) for m in selected]
     return dict(schemaVersion=1,apkSha256=APK_SHA256,derivedSha256=DERIVED_SHA256,resourceSha256=hashlib.sha256(resource).hexdigest(),
-                appCodeExecuted=False,targetDeviceVerified=False,wholeProtocolRecovered=False,sdkEncapsulationComplete=False,
+                appCodeExecuted=False,targetDeviceVerified=False,wholeProtocolRecovered=False,researchToolProvidesSdkInterface=False,
                 inheritance=chain,parameterKey=key,matchingResourceRecords=records,methods=methods,statusEnums=statuses,resultEnums=results,
                 sourceFacts=dict(startCommand='04:0F',startValue=64,candidatePayloadHex='250140',readCommand='04:10',candidateReadHex='25',
                                  sourceStartDoesNotCallBalanceAdjust40=True,duplicateNameMap='ordered list iteration inserts by name into HashMap; later successful insertion replaces earlier',

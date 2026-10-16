@@ -46,3 +46,7 @@ NSDictionary *RSAppMotorWriteSpec(NSDictionary *spec);
 NSData *RSAppMotorReadFrame(uint16_t sequence, NSArray *context);
 NSData *RSAppMotorWriteFrame(uint16_t sequence, NSArray *context, NSNumber *value);
 NSDictionary *RSDecodeAppMotorReply(NSDictionary *message, NSArray *selection, NSError **error);
+
+NSData *RSAppBalanceStartFrame(uint16_t sequence);
+NSDictionary *RSAppBalanceFields(uint8_t rawValue);
+NSDictionary *RSDecodeAppBalanceReply(NSDictionary *reply);

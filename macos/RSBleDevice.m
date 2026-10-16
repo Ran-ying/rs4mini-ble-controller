@@ -377,13 +377,26 @@ static BOOL Matches(NSString *name) {
 - (NSData *)appCommandFrame:(uint8_t)command sequence:(uint16_t)sequence context:(NSArray *)context mode:(NSNumber *)mode {
     switch (command) {
         case 0x10: return RSAppParameterRequestFrame(sequence, context);
-        case 0x0f: return RSAppSensitivityFrame(sequence, mode);
+        case 0x0f:
+            if (context) return (mode==nil && context.count==1 && [context[0][@"index"] intValue]==37 && [context[0][@"size"] intValue]==1) ? RSAppBalanceStartFrame(sequence) : nil;
+            return RSAppSensitivityFrame(sequence, mode);
         case 0x6a: return RSAppAutoTuneFrame(sequence, mode);
         case 0x6e: return RSAppCalibrationQueryFrame(sequence);
         case 0x31: return RSAppMotorWriteFrame(sequence,context,mode);
         case 0x32: return RSAppMotorReadFrame(sequence,context);
         default: return nil;
     }
+}
+- (void)getBalanceTestStatusWithTimeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
+    [self readAppParameters:@[@{@"index":@37,@"size":@1}] timeoutMs:timeoutMs completion:^(NSDictionary *reply,NSError *error) {
+        if (completion) completion(error?nil:RSDecodeAppBalanceReply(reply),error);
+    }];
+}
+- (void)sendBalanceTestRequestWithTimeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
+    [self startAppCommand:0x0f parameters:@[@{@"index":@37,@"size":@1}] mode:nil settingsKind:nil settingsPatch:nil timeoutMs:timeoutMs completion:^(NSDictionary *reply,NSError *error) {
+        NSMutableDictionary *result=[reply mutableCopy]; if (result) result[@"requestedValue"]=@64;
+        if (completion) completion(result?[result copy]:nil,error);
+    }];
 }
 - (void)getMotorTuning:(NSDictionary *)filters timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
     NSArray *selection=RSAppMotorSelection(filters);

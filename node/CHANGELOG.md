@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.7.7
+
+- 同步四端平衡测试启动请求sendBalanceTestRequest和getBalanceTestStatus，固定04:0F启动64、04:10命名读取，保留零结果字段为null。
+- 启动独占到ACK，超时/取消不重放、不发虚构中止；状态不与本机请求关联，ACK和FINISH不当作物理完成证据。
+- 离线覆盖命令隔离、原值保留、畸形响应、互斥和清理。没有硬件/UI操作或高级新增。
+
 ## 0.7.6
 
 - 显式当前App配置新增getMotorTuning/setMotorTuning，封装三轴刚度/强度/陀螺仪滤波/PreControl十二个命名字段；同步Python/Web/原生SDK。

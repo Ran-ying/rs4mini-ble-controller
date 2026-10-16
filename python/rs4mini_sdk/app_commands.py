@@ -1,5 +1,6 @@
 """Current-App device commands share the existing connection/queue/pending map."""
 from .app_motor import motor_selection, motor_write, motor_reply
+from .app_balance import balance_reply
 import time
 import copy
 from .protocol import frame
@@ -59,6 +60,23 @@ class AppCommands:
         return result
 
     get_follow_sensitivity = getFollowSensitivity
+
+    async def getBalanceTestStatus(self, *, timeoutMs=3000):
+        return balance_reply(await self.readParameters(parameters=[dict(index=37,size=1)],timeoutMs=timeoutMs))
+
+    get_balance_test_status=getBalanceTestStatus
+
+    async def sendBalanceTestRequest(self, *, timeoutMs=3000):
+        self._require_profile()
+        _duration(timeoutMs,'timeoutMs',False)
+        async def body(operation):
+            await self.owner._halt()
+            self.owner._check(operation)
+            response=await self.owner.experimental._query_payload_command('App balance start',(4,0x0f),bytes((37,1,64)),timeoutMs,external_operation=operation,epoch=self.owner._epoch)
+            return dict(app_reply(response,0x0f),requestedValue=64)
+        return await self.owner._run('sendBalanceTestRequest',body,False)
+
+    send_balance_test_request=sendBalanceTestRequest
 
     async def getMotorTuning(self, *, axis=None, parameter=None, timeoutMs=3000):
         self._require_profile()

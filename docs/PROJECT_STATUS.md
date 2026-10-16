@@ -1,10 +1,14 @@
 # 项目状态与接手入口
 
-更新日期：2026-10-16。当前源码检查点为 Node/Python/Web **0.7.6**、macOS 原生面板 **0.3.6**。
+更新日期：2026-10-16。当前源码检查点为 Node/Python/Web **0.7.7**、macOS 原生面板 **0.3.7**。
 
 **当前 App 参数事务已进入四端设备 SDK；全部非相机 BLE 能力整体目标尚未完成。**
 用户已要求将源码与相关信息提交至 GitHub。本记录随源码版本保存，提交和远端状态以 Git 历史为准；
 这不是 npm 发布或 GitHub 二进制 Release。
+
+## 当前进度：0.7.7 平衡测试请求与结果
+
+四端提供sendBalanceTestRequest/getBalanceTestStatus（原生等价接口），普通0F/10命名参数index37，启动值固定64。保留原值、零结果为null，无任意参数写入或虚构中止；ACK后释放主机槽，固件完成/停止仍未实机验收。见 [APP_BALANCE_TEST.md](APP_BALANCE_TEST.md)。没有硬件/UI操作，全命令及高级门槛仍false。Node102/Web14、Python各80、原生72+94+3、研究42；类型/边界/构建通过。下方为历史记录。
 
 ## 当前进度：0.7.6 命名电机参数
 

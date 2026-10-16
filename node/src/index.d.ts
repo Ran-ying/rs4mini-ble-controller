@@ -13,7 +13,7 @@ export class RS4Mini {
   readonly velocity: Velocity;
   closed: boolean;
   readonly moveToActive: boolean;
-  readonly activeOperation: "setMotorTuning" | "sendAutoTuneRequest" | "setFollowSensitivity" | "setCustomFollowSettings" | "setMotorSettings" | "setVelocity" | "moveFor" | "moveTo" | "recenter" | "runTrajectory" | "moveThrough" | "experimentalAbsolute" | "experimentalRate" | "experimentalSleep" | "stop" | null;
+  readonly activeOperation: "sendBalanceTestRequest" | "setMotorTuning" | "sendAutoTuneRequest" | "setFollowSensitivity" | "setCustomFollowSettings" | "setMotorSettings" | "setVelocity" | "moveFor" | "moveTo" | "recenter" | "runTrajectory" | "moveThrough" | "experimentalAbsolute" | "experimentalRate" | "experimentalSleep" | "stop" | null;
   readonly latestTelemetry: GimbalTelemetry | null;
   readonly decoder: DumlStreamDecoder;
   readonly reconnectState: ReconnectState;

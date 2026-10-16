@@ -1,6 +1,6 @@
 # 平衡测试调用链与同名参数冲突
 
-2026-10-16，运行时保持 Node/Python/Web0.7.6、原生0.3.6。本批只读静态研究，不增加SDK发送接口，不执行App或硬件操作。
+2026-10-16，运行时保持 Node/Python/Web0.7.6、原生0.3.6。该阶段为只读静态研究，没有执行App或硬件操作。后续0.7.7已封装接口，当前SDK范围与限制见 [APP_BALANCE_TEST.md](../../docs/APP_BALANCE_TEST.md)，本工具本身不提供SDK或发送能力。
 
 HG724→HG702→Ronin2继承链未覆盖 `startGimbalBalanceTest()`。Ronin2实现以BaseCommand.BALANCE_TEST取名字 `balance_test`，值64传给 `setRonin2CommonUserParam()`，经 `DataGimbalSetUserParams/04:0F`。对应getter是 `DataGimbalGetUserParams/04:10`。因此不能因 `DataGimbalBalanceAdjust/04:40` 的类名而用它替代该路径；其他型号或业务路径可能使用40，本研究不否定它们。
 
@@ -15,7 +15,7 @@ HG724→HG702→Ronin2继承链未覆盖 `startGimbalBalanceTest()`。Ronin2实�
 
 参数加载线程选择gimbal_param_infos；readToMemory取得List并顺序迭代，将成功转换的记录以name为键HashMap.put。后一次成功插入替换此前同名项。不能使用“名字唯一”查找器，也不能取第一条记录后将64误判为非法值。本批保留两条及其顺序；没有把此规则扩展成任意参数写入。
 
-现有公共用户参数编解码结合该静态路径得到候选请求体 `25 01 40`，读取体 `25`。这些字节不是已发送抓包；尚未新增SDK接口，ACK、实机兼容、动作完成和中止仍待验收。不会假设写零就是停止。
+现有公共用户参数编解码结合该静态路径得到候选请求体 `25 01 40`，读取体 `25`。这些字节不是已发送抓包；后续SDK仅按固定启动值开放；实机兼容、动作完成和中止仍待验收。不会假设写零就是停止。
 
 ## 结果字段
 

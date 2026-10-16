@@ -128,7 +128,7 @@
         "node/src/app-settings.js",
         "python/rs4mini_sdk/app_settings.py"
       ],
-      "remaining": "显式当前 App 配置已封装 HG724 灵敏度 index150/size1/值0或1 写入及状态 ACK；未提供任意参数写入，旧休眠仍为其他型号；本机效果未验收；0.7.4增加继承源码中的自定义跟随/电机位字段读取与保留其余位的读写事务，非PF/PTF预设，无本机证据",
+      "remaining": "显式当前 App 配置已封装 HG724 灵敏度 index150/size1/值0或1 写入及状态 ACK；未提供任意参数写入，旧休眠仍为其他型号；本机效果未验收；0.7.4增加继承源码中的自定义跟随/电机位字段读取与保留其余位的读写事务，非PF/PTF预设，无本机证据；0.7.7新增balance_test/index37启动64及状态/三轴结果读取，零字段保留未知，ACK和主机取消不代表固件完成或停止，尚无实机验收",
       "officialAppAliases": [
         "SetUserParams"
       ],
@@ -269,7 +269,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "none",
       "implementation": [],
-      "remaining": "调参请求/状态和十二个命名电机数值字段已封装；平衡测试、水平校准及完整型号/物理验收仍待完成；平衡测试已静态确认继承路径为普通0F/10的balance_test/index37，启动值64；资源有两条同名范围记录，SDK接口及结果处理尚未封装"
+      "remaining": "自动调参请求/状态、十二个电机数值和平衡测试启动/结果已封装；平衡请求ACK不代表完成，主机stop不保证固件中止；水平校准、其他调参字段与型号/实机效果/持久化仍待完成"
     },
     {
       "key": "unknown:firmware-program",
@@ -347,7 +347,7 @@
         "node/src/app-settings.js",
         "python/rs4mini_sdk/app_settings.py"
       ],
-      "remaining": "显式当前 App 配置按请求 index/size 读取，返回码与无符号索引分离，第二头字节保留原始量；不自动推断参数名/类型，本机读数未验收；0.7.4增加继承源码中的自定义跟随/电机位字段读取与保留其余位的读写事务，非PF/PTF预设，无本机证据",
+      "remaining": "显式当前 App 配置按请求 index/size 读取，返回码与无符号索引分离，第二头字节保留原始量；不自动推断参数名/类型，本机读数未验收；0.7.4增加继承源码中的自定义跟随/电机位字段读取与保留其余位的读写事务，非PF/PTF预设，无本机证据；0.7.7新增balance_test/index37启动64及状态/三轴结果读取，零字段保留未知，ACK和主机取消不代表固件完成或停止，尚无实机验收",
       "officialAppAliases": [
         "GetUserParams"
       ],

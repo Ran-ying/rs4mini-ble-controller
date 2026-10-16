@@ -47,6 +47,13 @@ async function sampleConsumer() {
   gimbal.decoder.reset();
   await gimbal.close();
   return value;
+const balanceStatus = await gimbal.appCommands.getBalanceTestStatus();
+const balanceResult: 'PASS'|'MARGINAL'|'FAIL'|null = balanceStatus.balance.axisResults.yaw.result;
+await gimbal.appCommands.sendBalanceTestRequest({timeoutMs:3000});
+// @ts-expect-error balance stop value is not a documented operation
+await gimbal.appCommands.sendBalanceTestRequest({value:0});
+void balanceResult;
+
 }
 
 const bytes = velocityFrame(1, { pan: 0.1 });

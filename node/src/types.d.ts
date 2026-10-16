@@ -236,7 +236,14 @@ export interface AppAutoTuneSent {
 export type MotorTuningAxis = "pitch" | "roll" | "yaw";
 export type MotorTuningParameter = "stiffness" | "strength" | "gyroFiltering" | "preControl";
 export interface MotorTuningReading extends AppParameterContext { axis: MotorTuningAxis; parameter: MotorTuningParameter; headerByte: number; rawHex: string; rawValue: number; withinSourceRange: boolean; }
+export interface AppBalanceState {
+  rawValue:number; stateCode:number; state:'DEFAULT'|'TESTING'|'FINISH'|'ERROR';
+  axisResults:Record<'roll'|'pitch'|'yaw',{rawValue:number; result:'PASS'|'MARGINAL'|'FAIL'|null}>;
+  axisFieldsValid:boolean;
+}
 export interface AppCommands {
+  getBalanceTestStatus(options?: {timeoutMs?:number}):Promise<AppParameterReply & {balance:AppBalanceState}>;
+  sendBalanceTestRequest(options?: {timeoutMs?:number}):Promise<AppCommandReply & {requestedValue:64}>;
   readonly profile: "ronin-2.2.2" | null;
   readonly calibrationStatus: AppCalibrationStatus | null;
   getMotorTuning(options?: {axis?: MotorTuningAxis; parameter?: MotorTuningParameter; timeoutMs?: number}): Promise<AppParameterReply & {values: MotorTuningReading[]}>;

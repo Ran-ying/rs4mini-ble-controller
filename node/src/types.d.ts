@@ -241,7 +241,10 @@ export interface AppBalanceState {
   axisResults:Record<'roll'|'pitch'|'yaw',{rawValue:number; result:'PASS'|'MARGINAL'|'FAIL'|null}>;
   axisFieldsValid:boolean;
 }
+export interface AppSystemCalibrationState {rawValue:number; state:'DEFAULT'|'START'|'FAIL'|'SUCCESS'|null;}
 export interface AppCommands {
+  getAutoCalibrationStatus(options?: {timeoutMs?:number}):Promise<AppParameterReply & {systemCalibration:AppSystemCalibrationState}>;
+  sendAutoCalibrationRequest(options?: {timeoutMs?:number}):Promise<AppCommandReply & {requestedValue:1}>;
   getBalanceTestStatus(options?: {timeoutMs?:number}):Promise<AppParameterReply & {balance:AppBalanceState}>;
   sendBalanceTestRequest(options?: {timeoutMs?:number}):Promise<AppCommandReply & {requestedValue:64}>;
   readonly profile: "ronin-2.2.2" | null;

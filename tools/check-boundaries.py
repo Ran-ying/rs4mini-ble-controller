@@ -128,5 +128,14 @@ if manifest.get('balanceResearch'):
     assert [r['maxValue'] for r in balance['matchingResourceRecords']] == [1,255]
     assert balance['sourceFacts']['startValue'] == 64
     assert balance['sourceFacts']['startCommand'] == '04:0F'
+if manifest.get('systemCalibrationResearch'):
+    system = json.loads((root / manifest['systemCalibrationResearch']).read_text())
+    assert system['derivedSha256'] == restored['derivedSha256']
+    assert system['appCodeExecuted'] is False and system['targetDeviceVerified'] is False
+    assert system['wholeProtocolRecovered'] is False
+    assert system['parameter']['name'] == 'system_calc' and system['parameter']['index'] == 36
+    assert [r['name'] for r in system['states']] == ['DEFAULT','START','FAIL','SUCCESS']
+    assert system['sourceFacts']['horizontalCalibrationIdentityVerified'] is False
+    assert system['sourceFacts']['abortCommandVerified'] is False
 print('Layer boundaries passed: device modules do not depend on motion; upper layers do not encode/write packets.')
 print('Protocol inventory: %d entries; inventoryComplete=false; further advanced development is gated.' % len(manifest['commands']))

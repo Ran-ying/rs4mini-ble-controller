@@ -332,9 +332,29 @@ int main(void) {
         [decoder reset]; frames=[decoder push:peripheral.writes]; NSUInteger balanceWrites=0;
         for (NSDictionary *f in frames) if ([f[@"commandId"] intValue]==0x0f) { balanceWrites++; Require([f[@"payload"] isEqualToData:[NSData dataWithBytes:(uint8_t[]){37,1,64} length:3]],@"no invented balance abort value"); }
         Require(appCallbacks==19 && balanceWrites==1 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_OPERATION_CANCELLED"],@"balance cancellation clears pending without replay");
+        [peripheral.writes setLength:0]; [gimbal sendAutoCalibrationRequestWithTimeoutMs:1000 completion:appDone]; ThreeTicks(gimbal);
+        [decoder reset]; frames=[decoder push:peripheral.writes];
+        Require(gimbal.busy && [frames.lastObject[@"commandId"] intValue]==0x0f && [frames.lastObject[@"payload"] isEqualToData:[NSData dataWithBytes:(uint8_t[]){36,1,1} length:3]],@"system calibration owns ACK and is distinct from6A/08");
+        appSequence=[[gimbal valueForKey:@"deviceQuerySequence"] unsignedShortValue]; notify.value=AppResponse(appSequence,0x0f,ok,4);
+        [gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil]; PumpCallbacks();
+        Require(appCallbacks==20 && !gimbal.busy && [appResult[@"requestedValue"] intValue]==1 && ![appResult[@"physicalCompletionVerified"] boolValue],@"system calibration request ACK does not prove completion");
+        [peripheral.writes setLength:0]; [gimbal getAutoCalibrationStatusWithTimeoutMs:1000 completion:appDone]; ThreeTicks(gimbal);
+        [decoder reset]; frames=[decoder push:peripheral.writes];
+        Require([frames.lastObject[@"commandId"] intValue]==0x10 && [frames.lastObject[@"payload"] isEqualToData:[NSData dataWithBytes:(uint8_t[]){36} length:1]],@"system calibration reads named36 via10");
+        appSequence=[[gimbal valueForKey:@"deviceQuerySequence"] unsignedShortValue]; notify.value=AppResponse(appSequence,0x10,[NSData dataWithBytes:(uint8_t[]){0,36,9,3} length:4],4);
+        [gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil]; PumpCallbacks();
+        Require(appCallbacks==21 && [appResult[@"systemCalibration"][@"state"] isEqualToString:@"SUCCESS"] && [appResult[@"parameters"][0][@"headerByte"] intValue]==9,@"system status allows source enum3 beyond write range and keeps raw header");
+        [gimbal getAutoCalibrationStatusWithTimeoutMs:1000 completion:appDone]; ThreeTicks(gimbal);
+        appSequence=[[gimbal valueForKey:@"deviceQuerySequence"] unsignedShortValue]; notify.value=AppResponse(appSequence,0x10,[NSData dataWithBytes:(uint8_t[]){0,36,1,255} length:4],4);
+        [gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil]; PumpCallbacks();
+        Require(appCallbacks==22 && appResult[@"systemCalibration"][@"state"]==NSNull.null && [appResult[@"systemCalibration"][@"rawValue"] intValue]==255,@"unknown system status never becomes success or default");
+        [peripheral.writes setLength:0]; [gimbal sendAutoCalibrationRequestWithTimeoutMs:1000 completion:appDone]; ThreeTicks(gimbal); [gimbal stop]; ThreeTicks(gimbal); PumpCallbacks();
+        [decoder reset]; frames=[decoder push:peripheral.writes]; NSUInteger systemWrites=0;
+        for (NSDictionary *f in frames) if ([f[@"commandId"] intValue]==0x0f) { systemWrites++; Require([f[@"payload"] isEqualToData:[NSData dataWithBytes:(uint8_t[]){36,1,1} length:3]],@"system calibration cancellation never writes zero abort"); }
+        Require(appCallbacks==23 && systemWrites==1 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_OPERATION_CANCELLED"],@"system cancellation clears host transaction without replay");
         [gimbal getFollowSensitivityWithTimeoutMs:1000 completion:appDone]; ThreeTicks(gimbal);
         [gimbal centralManager:(id)central didDisconnectPeripheral:(id)peripheral error:nil]; PumpCallbacks();
-        Require(appCallbacks == 20 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_DISCONNECTED"], @"native disconnect rejects pending App query");
+        Require(appCallbacks == 24 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_DISCONNECTED"], @"native disconnect rejects pending App query");
         [gimbal disconnect]; ThreeTicks(gimbal);
         printf("Native fake-device lifecycle checks: %lu passed (no Bluetooth manager created)\n", (unsigned long)assertions);
     }

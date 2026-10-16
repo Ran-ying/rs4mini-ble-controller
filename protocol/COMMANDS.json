@@ -128,7 +128,7 @@
         "node/src/app-settings.js",
         "python/rs4mini_sdk/app_settings.py"
       ],
-      "remaining": "显式当前 App 配置已封装 HG724 灵敏度 index150/size1/值0或1 写入及状态 ACK；未提供任意参数写入，旧休眠仍为其他型号；本机效果未验收；0.7.4增加继承源码中的自定义跟随/电机位字段读取与保留其余位的读写事务，非PF/PTF预设，无本机证据；0.7.7新增balance_test/index37启动64及状态/三轴结果读取，零字段保留未知，ACK和主机取消不代表固件完成或停止，尚无实机验收",
+      "remaining": "显式当前 App 配置已封装 HG724 灵敏度 index150/size1/值0或1 写入及状态 ACK；未提供任意参数写入，旧休眠仍为其他型号；本机效果未验收；0.7.4增加继承源码中的自定义跟随/电机位字段读取与保留其余位的读写事务，非PF/PTF预设，无本机证据；0.7.7新增balance_test/index37启动64及状态/三轴结果读取，零字段保留未知，ACK和主机取消不代表固件完成或停止，尚无实机验收；0.7.8新增继承的system_calc/index36固定启动1与状态0..3读取，不等于已确认水平校准，物理完成/中止未实机验收",
       "officialAppAliases": [
         "SetUserParams"
       ],
@@ -269,7 +269,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "none",
       "implementation": [],
-      "remaining": "自动调参请求/状态、十二个电机数值和平衡测试启动/结果已封装；平衡请求ACK不代表完成，主机stop不保证固件中止；水平校准、其他调参字段与型号/实机效果/持久化仍待完成"
+      "remaining": "自动调参请求/状态、十二个电机数值、平衡测试及system_calc自动校准请求/状态已封装；system_calc与水平校准的型号/UI身份仍未确认；其他字段、实机接受/效果/持久化和固件中止仍待完成"
     },
     {
       "key": "unknown:firmware-program",
@@ -347,7 +347,7 @@
         "node/src/app-settings.js",
         "python/rs4mini_sdk/app_settings.py"
       ],
-      "remaining": "显式当前 App 配置按请求 index/size 读取，返回码与无符号索引分离，第二头字节保留原始量；不自动推断参数名/类型，本机读数未验收；0.7.4增加继承源码中的自定义跟随/电机位字段读取与保留其余位的读写事务，非PF/PTF预设，无本机证据；0.7.7新增balance_test/index37启动64及状态/三轴结果读取，零字段保留未知，ACK和主机取消不代表固件完成或停止，尚无实机验收",
+      "remaining": "显式当前 App 配置按请求 index/size 读取，返回码与无符号索引分离，第二头字节保留原始量；不自动推断参数名/类型，本机读数未验收；0.7.4增加继承源码中的自定义跟随/电机位字段读取与保留其余位的读写事务，非PF/PTF预设，无本机证据；0.7.7新增balance_test/index37启动64及状态/三轴结果读取，零字段保留未知，ACK和主机取消不代表固件完成或停止，尚无实机验收；0.7.8新增继承的system_calc/index36固定启动1与状态0..3读取，不等于已确认水平校准，物理完成/中止未实机验收",
       "officialAppAliases": [
         "GetUserParams"
       ],
@@ -736,5 +736,6 @@
   "settingsResearch": "protocol/research/ronin-settings-evidence.json",
   "calibrationResearch": "protocol/research/ronin-calibration-evidence.json",
   "motorTuningResearch": "protocol/research/ronin-motor-evidence.json",
-  "balanceResearch": "protocol/research/ronin-balance-evidence.json"
+  "balanceResearch": "protocol/research/ronin-balance-evidence.json",
+  "systemCalibrationResearch": "protocol/research/ronin-system-calibration-evidence.json"
 }

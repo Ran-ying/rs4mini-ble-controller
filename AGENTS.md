@@ -8,9 +8,9 @@ verification status changes.
 ## Objective and user decisions
 
 - Provide an unofficial, direct BLE controller for **DJI RS 4 Mini**, initially on macOS.
-- **Node.js is the authoritative implementation**; current package version is `0.7.7`.
+- **Node.js is the authoritative implementation**; current package version is `0.7.8`.
 - The user subsequently requested completion of all existing ports. Python is now
-  `0.7.7`, Web shares the JS core, and the native panel is `0.3.7`. Describe the
+  `0.7.8`, Web shares the JS core, and the native panel is `0.3.8`. Describe the
   documented feature differences; do not claim identical APIs or hardware proof.
 - After that delivery, the user requested the remaining **non-camera** capabilities
   under the same autonomous/offline conditions. Expansion work is in progress;
@@ -391,3 +391,21 @@ See docs/APP_BALANCE_TEST.md. Source helper now describes researchToolProvidesSd
 false rather than a historical runtime encapsulation flag. Node102/Web14,
 Python80 each, native72+94+3/research42, types/boundaries/builds passed. No
 hardware/live UI or advanced additions; both completion gates remain false.
+
+
+## Current runtime: 0.7.8 / native0.3.8 build11
+
+Four ports expose sendAutoCalibrationRequest/getAutoCalibrationStatus plus
+Python aliases/native equivalents under explicit App profile. Inherited HG724
+->HG702->Ronin2->RoninBase.startGimbalAutoCalibration resolves RONIN_COMMAND
+slot22 to system_calc/index36/size1/type0. Start0F payload240101 fixed1; read10
+payload24. Source status enum ordinals DEFAULT0 START1 FAIL2 SUCCESS3, not limited
+to write range0..1. Unknown bytes stay raw/state null. Distinct from auto-tune
+6A/6E; no shared progress/cache, automatic polling or host wait-for-completion.
+Start owns slot through pre-stop/ACK only. Host stop/disconnect/blur cancel
+pending transaction, never invent zero abort/replay or imply firmware completion.
+No program ID, physical finish/abort or horizontal-calibration identity proof;
+do not claim that gap solved. See docs/APP_SYSTEM_CALIBRATION.md and protocol/
+research/ronin-system-calibration-evidence.json; pinned source tool14 fingerprints.
+Node108/Web14/Python86 each/native75+101+3/research45; types/boundaries/builds
+passed. No hardware/live UI or advanced additions, both completion gates false.

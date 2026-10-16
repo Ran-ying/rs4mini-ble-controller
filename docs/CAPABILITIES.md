@@ -52,3 +52,8 @@
 ## 0.7.7 平衡测试SDK
 
 四端封装0F/10命名平衡测试启动64与状态/三轴结果，零结果保留null，取消不发未证实的中止。Node102/Web14/Python两环境各80/native72+94+3/research42，类型/边界/构建通过。没有硬件、UI或高级新增；实机效果与全部命令仍未验收。详见 [APP_BALANCE_TEST.md](APP_BALANCE_TEST.md)。
+
+
+## 0.7.8 system_calc自动校准
+
+四端新增独立的普通0F/10/index36固定启动1和状态读取，与6A/6E自动调参分开。读取状态2/3不受写入范围0..1限制，未知值保留raw/null；ACK/报告不代表本次物理完成，取消不保证固件中止，无虚构写零停止。Node108/Web14/Python各86/native75+101+3/research45，类型/边界/构建通过。尚无水平校准身份或本机验收，未操作硬件/UI或新增高级任务。详见 [APP_SYSTEM_CALIBRATION.md](APP_SYSTEM_CALIBRATION.md)。

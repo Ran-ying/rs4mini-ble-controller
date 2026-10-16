@@ -54,6 +54,13 @@ await gimbal.appCommands.sendBalanceTestRequest({timeoutMs:3000});
 await gimbal.appCommands.sendBalanceTestRequest({value:0});
 void balanceResult;
 
+  const systemCalibration=await gimbal.appCommands.getAutoCalibrationStatus();
+  const systemState:'DEFAULT'|'START'|'FAIL'|'SUCCESS'|null=systemCalibration.systemCalibration.state;
+  await gimbal.appCommands.sendAutoCalibrationRequest();
+  // @ts-expect-error no inferred abort or numeric action
+  await gimbal.appCommands.sendAutoCalibrationRequest({start:false});
+  void systemState;
+
 }
 
 const bytes = velocityFrame(1, { pan: 0.1 });

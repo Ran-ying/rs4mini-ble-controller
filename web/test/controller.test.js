@@ -118,6 +118,9 @@ test('protocol, telemetry and controller import without Node Buffer or Node modu
     assert.equal(settings.settingsWrite('motor', { enabled: true }, 255).payload[2], 254);
     const calibration = await import('./node/src/app-calibration.js');
     assert.equal(calibration.calibrationRecords(new Uint8Array([0,2,1,40])).state, 'Processing');
+    const systemCalibration = await import('./node/src/app-system-calibration.js');
+    assert.deepEqual([...systemCalibration.systemCalibrationPayload()], [36,1,1]);
+    assert.equal(systemCalibration.systemCalibrationFields(255).state, null);
     const balance = await import('./node/src/app-balance.js');
     assert.deepEqual([...balance.balanceStartPayload()], [37,1,64]);
     assert.equal(balance.balanceFields(0).axisResults.yaw.result, null);

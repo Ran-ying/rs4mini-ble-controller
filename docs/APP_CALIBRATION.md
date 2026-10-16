@@ -74,3 +74,8 @@ PYTHONPATH=work/research/analysis-libs work/python312/bin/python tools/research/
 ```
 
 需用户返回统一验证：命令接收/效果、start:false中止、状态查询实际响应、推送启停条件、运行中其他运动命令行为、停止后的读数、未知记录及固件差异。不要用主机停止帧或一次Complete报告替代这些证据。电机数值调参、平衡测试、水平校准及其他底层命令仍未完成，高级开发门槛继续为false。
+
+
+## 0.7.8 system_calc自动校准
+
+四端新增独立的普通0F/10/index36固定启动1和状态读取，与6A/6E自动调参分开。读取状态2/3不受写入范围0..1限制，未知值保留raw/null；ACK/报告不代表本次物理完成，取消不保证固件中止，无虚构写零停止。Node108/Web14/Python各86/native75+101+3/research45，类型/边界/构建通过。尚无水平校准身份或本机验收，未操作硬件/UI或新增高级任务。详见 [APP_SYSTEM_CALIBRATION.md](APP_SYSTEM_CALIBRATION.md)。

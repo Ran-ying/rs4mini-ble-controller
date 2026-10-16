@@ -1,10 +1,14 @@
 # 项目状态与接手入口
 
-更新日期：2026-10-16。当前源码检查点为 Node/Python/Web **0.7.7**、macOS 原生面板 **0.3.7**。
+更新日期：2026-10-16。当前源码检查点为 Node/Python/Web **0.7.8**、macOS 原生面板 **0.3.8**。
 
 **当前 App 参数事务已进入四端设备 SDK；全部非相机 BLE 能力整体目标尚未完成。**
 用户已要求将源码与相关信息提交至 GitHub。本记录随源码版本保存，提交和远端状态以 Git 历史为准；
 这不是 npm 发布或 GitHub 二进制 Release。
+
+## 当前进度：0.7.8 system_calc自动校准
+
+四端提供sendAutoCalibrationRequest/getAutoCalibrationStatus（原生等价方法、Python别名），普通0F/10命名参数index36/size1，启动固定1。状态0 DEFAULT/1 START/2 FAIL/3 SUCCESS与写入范围分开，未知值保留；和6A/6E自动调参不混用，无自动轮询/等待完成或虚构中止。见 [APP_SYSTEM_CALIBRATION.md](APP_SYSTEM_CALIBRATION.md)。尚未确认水平校准身份、本机接受/完成/停止。Node108/Web14/Python各86/native75+101+3/research45，类型/边界/构建通过。无硬件/UI操作，全协议和高级门槛仍false。下方为历史记录。
 
 ## 当前进度：0.7.7 平衡测试请求与结果
 

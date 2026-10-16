@@ -388,3 +388,17 @@ NSDictionary *RSDecodeAppBalanceReply(NSDictionary *reply) {
     if (![scanner scanHexInt:&value] || !scanner.isAtEnd || value>255) return nil;
     NSMutableDictionary *result=[reply mutableCopy];result[@"balance"]=RSAppBalanceFields((uint8_t)value);return [result copy];
 }
+
+NSData *RSAppSystemCalibrationStartFrame(uint16_t sequence) {
+    uint8_t payload[]={36,1,1};return Frame(sequence,0x0f,[NSData dataWithBytes:payload length:3],0x40);
+}
+NSDictionary *RSAppSystemCalibrationFields(uint8_t rawValue) {
+    return @{@"rawValue":@(rawValue),@"state":rawValue<4?@[@"DEFAULT",@"START",@"FAIL",@"SUCCESS"][rawValue]:NSNull.null};
+}
+NSDictionary *RSDecodeAppSystemCalibrationReply(NSDictionary *reply) {
+    NSArray *records=reply[@"parameters"];
+    if (records.count!=1 || [records[0][@"index"] intValue]!=36 || [records[0][@"size"] intValue]!=1) return nil;
+    unsigned value=0;NSScanner *scanner=[NSScanner scannerWithString:records[0][@"rawHex"]];
+    if (![scanner scanHexInt:&value] || !scanner.isAtEnd || value>255) return nil;
+    NSMutableDictionary *result=[reply mutableCopy];result[@"systemCalibration"]=RSAppSystemCalibrationFields((uint8_t)value);return [result copy];
+}

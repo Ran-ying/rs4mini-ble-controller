@@ -51,6 +51,10 @@ int main(void) {
         NSDictionary *balance=RSAppBalanceFields(0x9b);
         Require([balance[@"state"] isEqualToString:@"FINISH"] && [balance[@"axisResults"][@"roll"][@"result"] isEqualToString:@"PASS"] && [balance[@"axisResults"][@"pitch"][@"result"] isEqualToString:@"MARGINAL"] && [balance[@"axisResults"][@"yaw"][@"result"] isEqualToString:@"FAIL"],@"balance status and axis bits source vector");
         Require(RSAppBalanceFields(0)[@"axisResults"][@"yaw"][@"result"]==NSNull.null && ![RSAppBalanceFields(0x90)[@"axisFieldsValid"] boolValue] && [RSAppBalanceFields(255)[@"state"] isEqualToString:@"ERROR"],@"zero fields stay invalid and unknown values remain raw");
+        NSDictionary *systemCalibrationFrame=[[RSFrameDecoder new] push:RSAppSystemCalibrationStartFrame(1)].firstObject;
+        Require([systemCalibrationFrame[@"commandId"] intValue]==0x0f && [Hex(systemCalibrationFrame[@"payload"]) isEqualToString:@"240101"],@"system calibration starts through index36 common namespace");
+        Require([RSAppSystemCalibrationFields(0)[@"state"] isEqualToString:@"DEFAULT"] && [RSAppSystemCalibrationFields(1)[@"state"] isEqualToString:@"START"] && [RSAppSystemCalibrationFields(2)[@"state"] isEqualToString:@"FAIL"] && [RSAppSystemCalibrationFields(3)[@"state"] isEqualToString:@"SUCCESS"],@"system calibration reply enum is not restricted to write range");
+        Require(RSAppSystemCalibrationFields(255)[@"state"]==NSNull.null && [RSAppSystemCalibrationFields(255)[@"rawValue"] intValue]==255,@"unknown system calibration stays raw instead of indexing enum out of bounds");
         NSData *stop = RSVelocityFrame(0x100, 0, 0, 0);
         Require([Hex(stop) isEqualToString:@"551604fc020400010004010004000400040000027705"], @"golden stop vector");
         Require(RSVelocityFrame(1, NAN, 0, 0) == nil, @"reject NaN");

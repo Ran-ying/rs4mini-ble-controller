@@ -26,14 +26,15 @@
 
 | 验证 | 本地结果 |
 |---|---|
-| Node | 64 项生命周期/运动/扩展测试，另有协议与遥测检查 |
+| Node | 69 项生命周期/运动/扩展测试，另有协议与遥测检查 |
 | Web | 12 项模拟 GATT 与页面事件检查 |
-| Python | 3.8.10/Bleak 0.22.3 和 3.12.13/Bleak 1.1.1，各 44 项 |
-| macOS | 39 项纯核心、53 项假设备断言；面板与探针构建及 ad-hoc 签名通过 |
-| 类型与安装包 | TypeScript 5.9.3 strict/NodeNext；Node tarball 安装后 64 项、Python wheel 安装后 44 项通过 |
+| Python | 3.8.10/Bleak 0.22.3 和 3.12.13/Bleak 1.1.1，各 48 项 |
+| macOS | 48 项纯核心、57 项假设备和 3 项独立设备 SDK 断言；面板与探针构建及 ad-hoc 签名通过 |
+| 类型与安装包 | TypeScript 5.9.3 strict/NodeNext；Node tarball 安装后 69 项、Python wheel 安装后 48 项通过 |
 
 离线复现入口是 `sh tools/check-offline.sh`；安装要求见根 README。
-GitHub Actions 在推送后运行独立检查，不能把本地通过视为云端通过。
+静态研究工具另有 4 项合成边界测试通过。
+源码提交 `f15ba51` 的 [GitHub Actions 独立检查](https://github.com/Ran-ying/rs4mini-ble-controller/actions/runs/38867602073) 已成功；后续提交以各自运行结果为准。
 详细证据和历史实机读数见 [VALIDATION.md](VALIDATION.md)。
 
 0.5.0 部署后的真实连接采样成功（5 秒、5 帧、约 1 Hz）。历史版本有分轴低速定位记录，

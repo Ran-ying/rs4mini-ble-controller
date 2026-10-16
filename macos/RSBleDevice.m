@@ -7,7 +7,7 @@ static BOOL Matches(NSString *name) {
     return [normalized containsString:@"DJIRS4MINI"];
 }
 @implementation RSBleDevice
-- (BOOL)busy { return self.stopping || self.disconnecting || self.awaitingDeviceQuery; }
+- (BOOL)busy { return self.stopping || self.disconnecting || self.awaitingDeviceQuery || self.appCompletion != nil; }
 - (NSDictionary *)experimentalStatus {
     if (!self.researchStatus) return @{};
     NSData *json = [NSJSONSerialization dataWithJSONObject:self.researchStatus options:0 error:nil];
@@ -30,6 +30,7 @@ static BOOL Matches(NSString *name) {
 - (void)status:(NSString *)text { if (self.statusHandler) self.statusHandler(text, self.ready); }
 
 - (void)resetLink:(NSString *)message {
+    [self finishApp:nil error:RSAppError(@"RS4MINI_DISCONNECTED", message ?: @"Disconnected", nil)];
     self.awaitingDeviceQuery = NO;
     BOOL recover = self.autoReconnectEnabled && (self.ready || self.retrying) && !self.disconnecting;
     [self.central stopScan]; [self.connectionTimer invalidate]; self.connectionTimer = nil;
@@ -156,6 +157,13 @@ static BOOL Matches(NSString *name) {
                 if (self.experimentalStatusHandler) self.experimentalStatusHandler(extra);
             }
         }
+        if (self.appCompletion && self.awaitingDeviceQuery && [message[@"sender"] intValue] == 4 && [message[@"receiver"] intValue] == 2 &&
+            ([message[@"flags"] intValue] & 0x80) && [message[@"commandSet"] intValue] == 4 && [message[@"commandId"] intValue] == self.appCommandId &&
+            [message[@"sequence"] unsignedShortValue] == self.deviceQuerySequence) {
+            NSError *appError = nil;
+            NSDictionary *result = RSDecodeAppReply(message, self.appCommandId, self.appParameters, &appError);
+            if (appError) [self failApp:appError]; else [self finishApp:result error:nil];
+        }
         if (self.awaitingDeviceQuery && [self matchesResearchResponse:message sequence:self.deviceQuerySequence kind:@"degreeInfo"]) {
             self.awaitingDeviceQuery = NO;
             [self status:@"已收到 degree-info 原始响应，不代表反馈频率提高"];
@@ -200,6 +208,15 @@ static BOOL Matches(NSString *name) {
 }
 
 - (void)beginStop:(void (^)(void))after message:(NSString *)message {
+    if (self.appCompletion) {
+        NSUInteger token = self.appToken; __weak typeof(self) weak = self;
+        [self beginStopKeepingApp:^{
+            if (weak.appToken == token) [weak finishApp:nil error:RSAppError(@"RS4MINI_OPERATION_CANCELLED", @"App transaction cancelled by stop", nil)];
+            if (after) after();
+        } message:message];
+    } else [self beginStopKeepingApp:after message:message];
+}
+- (void)beginStopKeepingApp:(void (^)(void))after message:(NSString *)message {
     self.awaitingDeviceQuery = NO;
     self.pan = self.tilt = self.roll = 0; [self cancelPosition];
     self.afterStop = after; self.stopMessage = message;
@@ -225,7 +242,10 @@ static BOOL Matches(NSString *name) {
             if (after) after();
         }
     } else if (self.awaitingDeviceQuery) {
-        if (Clock() >= self.deviceQueryDeadline) { self.awaitingDeviceQuery = NO; [self status:@"degree-info 查询超时"]; }
+        if (Clock() >= self.deviceQueryDeadline) {
+            if (self.appCompletion) [self failApp:RSAppError(@"RS4MINI_RESPONSE_TIMEOUT", @"App transaction response timed out", nil)];
+            else { self.awaitingDeviceQuery = NO; [self status:@"degree-info 查询超时"]; }
+        }
     } else if ([self advanceComposedMotion]) {
     } else if ((self.pan || self.tilt || self.roll) && self.outgoing.empty) [self writeFrame:RSVelocityFrame(self.sequence++, self.pan, self.tilt, self.roll)];
     else if (self.outgoing.empty) { [self.tickTimer invalidate]; self.tickTimer = nil; }
@@ -291,6 +311,7 @@ static BOOL Matches(NSString *name) {
     }
     if ([kind isEqualToString:@"sleep"] && (!job[@"asleep"] || CFGetTypeID((__bridge CFTypeRef)job[@"asleep"]) != CFBooleanGetTypeID())) { [self status:@"asleep 必须为布尔值"]; return nil; }
     if (![kind isEqualToString:@"observe"] && ![self researchFrame:job sequence:0]) { [self status:@"实验角度、速率或查询种类无效"]; return nil; }
+    self.appProfile = nil;
     return [job copy];
 }
 
@@ -303,6 +324,62 @@ static BOOL Matches(NSString *name) {
         [weak writeResearchCommand:@{@"command": @"query", @"kind": @"degreeInfo"} sequence:weak.deviceQuerySequence];
         [weak ensureTimer];
     } message:nil];
+}
+- (BOOL)useAppProfile:(NSString *)profile {
+    if (![profile isEqualToString:@"ronin-2.2.2"] || self.busy) { [self status:@"必须在空闲时明确选择 ronin-2.2.2 协议来源"]; return NO; }
+    self.researchProfile = nil; self.researchStatus = nil; self.appProfile = [profile copy]; return YES;
+}
+- (void)finishApp:(NSDictionary *)result error:(NSError *)error {
+    RSAppCompletion completion = self.appCompletion;
+    if (!completion) return;
+    self.appCompletion = nil; self.appParameters = nil; self.awaitingDeviceQuery = NO;
+    dispatch_async(dispatch_get_main_queue(), ^{ completion(result, error); });
+}
+- (void)failApp:(NSError *)error {
+    if (!self.appCompletion) return;
+    NSUInteger token = self.appToken; __weak typeof(self) weak = self;
+    [self beginStopKeepingApp:^{ if (weak.appToken == token) [weak finishApp:nil error:error]; } message:nil];
+}
+- (void)startAppCommand:(uint8_t)command parameters:(NSArray *)parameters mode:(NSNumber *)mode timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
+    NSError *error = nil;
+    if (![self.appProfile isEqualToString:@"ronin-2.2.2"]) error = RSAppError(@"RS4MINI_PROFILE_REQUIRED", @"Select explicit ronin-2.2.2 source profile", nil);
+    else if (!self.ready) error = RSAppError(@"RS4MINI_DISCONNECTED", @"Device is not connected", nil);
+    else if (self.busy) error = RSAppError(@"RS4MINI_BUSY", @"Device operation is active", nil);
+    else if (!isfinite(timeoutMs) || timeoutMs <= 0 || timeoutMs > 60000) error = RSAppError(@"RS4MINI_INVALID_ARGUMENT", @"timeoutMs must be >0..60000", nil);
+    NSArray *context = parameters ? RSAppParameterContext(parameters) : nil;
+    if (!error && !(command == 0x10 ? RSAppParameterRequestFrame(0, context) : RSAppSensitivityFrame(0, mode)))
+        error = RSAppError(@"RS4MINI_INVALID_ARGUMENT", @"Invalid App command arguments", nil);
+    if (error) { if (completion) dispatch_async(dispatch_get_main_queue(), ^{ completion(nil, error); }); return; }
+    self.appParameters = context; self.appCommandId = command; self.appCompletion = completion ?: ^(NSDictionary *result, NSError *error) {};
+    NSUInteger token = ++self.appToken; __weak typeof(self) weak = self;
+    [self beginStopKeepingApp:^{
+        if (!weak.ready || !weak.appCompletion || weak.appToken != token) return;
+        weak.deviceQuerySequence = [weak reserveSequence]; weak.deviceQueryDeadline = Clock() + timeoutMs / 1000;
+        weak.awaitingDeviceQuery = YES;
+        NSData *packet = command == 0x10 ? RSAppParameterRequestFrame(weak.deviceQuerySequence, context) : RSAppSensitivityFrame(weak.deviceQuerySequence, mode);
+        [weak writeFrame:packet]; [weak ensureTimer];
+    } message:nil];
+}
+- (void)readAppParameters:(NSArray<NSDictionary *> *)parameters timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
+    [self startAppCommand:0x10 parameters:parameters mode:nil timeoutMs:timeoutMs completion:completion];
+}
+- (void)getFollowSensitivityWithTimeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
+    [self readAppParameters:@[@{@"index": @150, @"size": @1}] timeoutMs:timeoutMs completion:^(NSDictionary *result, NSError *error) {
+        if (!completion) return;
+        if (error) { completion(nil, error); return; }
+        unsigned int raw = 0; [[NSScanner scannerWithString:result[@"parameters"][0][@"rawHex"]] scanHexInt:&raw];
+        NSMutableDictionary *reading = [result mutableCopy]; reading[@"rawValue"] = @(raw); reading[@"mode"] = raw <= 1 ? @(raw) : NSNull.null;
+        completion([reading copy], nil);
+    }];
+}
+- (void)setFollowSensitivity:(NSNumber *)mode timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
+    NSNumber *snapshot = [mode copy];
+    [self startAppCommand:0x0f parameters:nil mode:snapshot timeoutMs:timeoutMs completion:^(NSDictionary *result, NSError *error) {
+        if (!completion) return;
+        if (error) { completion(nil, error); return; }
+        NSMutableDictionary *value = [result mutableCopy]; value[@"requestedMode"] = snapshot;
+        completion([value copy], nil);
+    }];
 }
 - (void)cancelPosition {}
 - (void)cancelComposedMotion {}

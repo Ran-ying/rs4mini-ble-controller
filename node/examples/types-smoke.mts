@@ -78,3 +78,20 @@ const consumeParameterReport = (status: ParameterResearchStatus) => {
   } else if (status.kind === 'user-parameter-ack') console.log(status.statusCode);
 };
 void consumeParameterReport;
+
+
+async function currentAppCommands() {
+  const { RS4Mini } = await import('../src/index.js');
+  const gimbal = new RS4Mini();
+  gimbal.appCommands.useProfile('ronin-2.2.2');
+  const reading = await gimbal.appCommands.getFollowSensitivity({ timeoutMs: 1000 });
+  const mode: 0 | 1 | null = reading.mode;
+  await gimbal.appCommands.setFollowSensitivity({ mode: 1 });
+  await gimbal.appCommands.readParameters({ parameters: [{ index: 150, size: 1 }] });
+  // @ts-expect-error source setter only accepts its two supported enum modes
+  await gimbal.appCommands.setFollowSensitivity({ mode: 2 });
+  // @ts-expect-error unsupported scalar width
+  await gimbal.appCommands.readParameters({ parameters: [{ index: 150, size: 3 }] });
+  return mode;
+}
+void currentAppCommands;

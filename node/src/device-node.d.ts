@@ -1,8 +1,9 @@
 import type { RS4MiniOptions, ConnectOptions, AxisValues, TelemetryReadOptions,
   AttitudeReading, JointAnglesReading, Velocity, GimbalTelemetry, AutoReconnectOptions,
-  ReconnectState, ByteBuffer, DumlMessage, ExperimentalGimbal, ResearchStatus } from "./types.js";
+  ReconnectState, ByteBuffer, DumlMessage, ExperimentalGimbal, ResearchStatus, AppCommands } from "./types.js";
 export class BleDevice {
   constructor(options?: RS4MiniOptions);
+  readonly appCommands: AppCommands;
   readonly connected: boolean;
   readonly closed: boolean;
   readonly activeOperation: string | null;

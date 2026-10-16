@@ -41,3 +41,8 @@ NOP/常量/返回模式只标记为保护桩候选，不把返回零解释成协
 
 [HG724.md](HG724.md) 记录 RS 4 Mini 展示名/蓝牙前缀的真实指令关联、专属设备类与参数资源原名。
 `ronin_model_trace.py` 只读固定 APK；身份识别与完整命令分支分开记录，不改变 SDK 发送能力。
+
+
+## 命令方法审计与当前 SDK
+
+`ronin_command_audit.py` 对固定恢复视图校验SHA256，输出55类/631方法的哈希、位置和命令枚举引用，不输出完整厂商指令体、不执行代码。可选依赖仍为Androguard4.1.3，复现命令与新参数SDK边界见 [APP_COMMANDS.md](../../docs/APP_COMMANDS.md)。默认测试不导入可选分析依赖。

@@ -1,6 +1,6 @@
 # 设备 SDK 命令审计与高级开发前置条件
 
-2026-10-16，0.7.2 / 原生 0.3.2。**尚不能确认 RS 4 Mini 全部非相机 BLE 命令都已枚举、解析并封装。**
+2026-10-16，0.7.3 / 原生 0.3.3。**尚不能确认 RS 4 Mini 全部非相机 BLE 命令都已枚举、解析并封装。**
 机器清单是 [protocol/COMMANDS.json](../protocol/COMMANDS.json)，目前记录 48 个命令或缺口条目；
 它不是厂商完整命令表，不能以“所有已知代码已封装”代替“所有设备命令已知”。
 
@@ -24,7 +24,7 @@
 | `04:08` | 校准触发候选 | `not-exposed` / `unknown` | `other-model` | 其他型号研究有自主运动和中止风险，不提供触发 |
 | `04:0B` | 控制状态查询 | `implemented` / `raw` | `other-model` | 响应字段未确认 |
 | `04:0C` | 原生速率候选 | `implemented` / `unknown` | `other-model` | 轴序/单位/释放仅有 RS 3 来源，本机未验证 |
-| `04:0F` | 休眠/唤醒候选 | `implemented` / `partial` | `other-model` | SDK 现有休眠候选仍为跨型号；已从当前 App 恢复 HG724 灵敏度参数 150/size1/值0或1 的 04:0F 静态链和载荷，仅离线工具，未新增 SDK 写入；ACK 与本机效果待验收 |
+| `04:0F` | 用户参数写入（灵敏度）及旧休眠候选 | `implemented` / `partial` | `app-code-path` | 显式当前 App 配置已封装 HG724 灵敏度 index150/size1/值0或1 写入及状态 ACK；未提供任意参数写入，旧休眠仍为其他型号；本机效果未验收 |
 | `04:14` | 原生绝对角候选 | `implemented` / `unknown` | `other-model` | 末参数单位、参考系与本机兼容性未知 |
 | `04:1C` | 设备类型查询 | `implemented` / `raw` | `other-model` | 已在 App 可读代码中关联 RS 4 Mini=HG724，类型枚举值 103；线上偏移、返回码及本机响应未确认，仍返回原始消息 |
 | `04:1E` | degree-info 请求 | `implemented` / `raw` | `hardware` | requestDegreeInfo 封装关联原始响应；本机历史 00 不等于完整字段解析或增频确认 |
@@ -32,39 +32,39 @@
 | `04:4C` | 重置/模式命令中的三轴回中 | `partial` / `unknown` | `hardware` | 当前 App 的原代码备份确认两字节 mode+布尔reset；本机仍只确认 FE01 三轴回中，无按轴选择位，旧 MSDK 轴枚举不可套用；其他模式/响应待本机证据 |
 | `04:66` | 状态 TLV 候选通知 | `not-applicable` / `partial` | `other-model` | 保留 TLV 原始量，不假设本机 tag 语义 |
 | `0D:02` | 电量候选通知 | `not-applicable` / `partial` | `other-model` | 百分比仅为其他 Mini 研究格式，本机未证实 |
-| `unknown:follow-mode` | 跟随模式与手柄参数 | `unknown` / `unknown` | `app-code-path` | 已恢复 HG724 跟随灵敏度 setter→cmd_follow_mode_sensitivity→通用参数表 index150→04:0F 静态链；仅离线源代码载荷，SDK 写入/响应与实机未验收，PF/PTF 等模式仍未完成 |
+| `unknown:follow-mode` | 跟随模式与手柄参数 | `unknown` / `unknown` | `app-code-path` | HG724 跟随灵敏度 0/1 读写已进入显式来源配置 SDK；不等于 PF/PTF/FPV 跟随模式，后者及本机效果仍未完成 |
 | `unknown:motor-calibration` | 电机参数/自动整定/水平校准 | `unknown` / `unknown` | `none` | 已定位官方 App 候选命令号及相关参数/方法；受保护负载逻辑与 RS 4 Mini 型号分支尚未恢复，不能开放写入 |
 | `unknown:firmware-program` | 固件动作程序 | `unknown` / `unknown` | `none` | 已定位官方 App 候选命令号及相关参数/方法；受保护负载逻辑与 RS 4 Mini 型号分支尚未恢复，不能开放写入 |
 | `unknown:device-management` | 激活/绑定/恢复设置/固件管理的 BLE 覆盖 | `unknown` / `unknown` | `none` | 是否通过本 BLE 链路提供及其协议尚未枚举；连接成功不证明设备管理命令已全覆盖 |
-| `04:07` | 官方 App 枚举：RollFinetune | `unknown` / `unknown` | `official-app-enum` | 枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送 |
-| `04:0A` | 官方 App 枚举：SetAngle | `unknown` / `unknown` | `official-app-enum` | 枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送 |
-| `04:0D` | 官方 App 枚举：SetOnOrOff | `unknown` / `unknown` | `official-app-enum` | 枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送 |
-| `04:10` | 用户参数读取候选 | `not-exposed` / `candidate-structured` | `other-model` | 仅被动解析旧 DUML/RS 3 样本格式：状态、索引/宽度/原始值或逐项错误；不映射名称/数值类型，不增加查询发送 |
-| `04:11` | 官方 App 枚举：SaveUserParams | `unknown` / `unknown` | `official-app-enum` | 枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送 |
-| `04:12` | 官方 App 枚举：SubscribeGimbalParams | `unknown` / `unknown` | `official-app-enum` | 枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送 |
-| `04:13` | 官方 App 枚举：ResetUserParams | `unknown` / `unknown` | `official-app-enum` | 枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送 |
-| `04:24` | 官方 App 枚举：GetPushUserParams | `unknown` / `unknown` | `official-app-enum` | 枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送 |
-| `04:25` | 官方 App 枚举：SetDelayTimelapseParams | `unknown` / `unknown` | `official-app-enum` | 枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送 |
+| `04:07` | 官方 App 枚举：RollFinetune | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
+| `04:0A` | 官方 App 枚举：SetAngle | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
+| `04:0D` | 官方 App 枚举：SetOnOrOff | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
+| `04:10` | 当前 App 用户参数读取 | `implemented` / `partial` | `app-code-path` | 显式当前 App 配置按请求 index/size 读取，返回码与无符号索引分离，第二头字节保留原始量；不自动推断参数名/类型，本机读数未验收 |
+| `04:11` | 官方 App 枚举：SaveUserParams | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
+| `04:12` | 官方 App 枚举：SubscribeGimbalParams | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
+| `04:13` | 官方 App 枚举：ResetUserParams | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
+| `04:24` | 官方 App 枚举：GetPushUserParams | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
+| `04:25` | 官方 App 枚举：SetDelayTimelapseParams | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
 | `04:27` | 官方 App 枚举：GetPushAbnormalStatus | `unknown` / `partial` | `other-model` | 已有 RS 3 窄布局 sleep 候选解析；官方 App 名称为异常状态，完整字段和本机语义仍未知 |
-| `04:2B` | 官方 App 枚举：GetPushTutorialStatus | `unknown` / `unknown` | `official-app-enum` | 枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送 |
-| `04:2C` | 官方 App 枚举：SetTutorialStep | `unknown` / `unknown` | `official-app-enum` | 枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送 |
-| `04:31` | 官方 App 枚举：RoninSetParams | `unknown` / `unknown` | `official-app-enum` | 枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送 |
-| `04:32` | 官方 App 枚举：RoninGetParams | `unknown` / `unknown` | `official-app-enum` | 官方旧 MSDK 保留参数索引请求与依赖请求上下文/外部宽度的响应尾部逻辑；返回码可能在包层剥离。尚缺有效运行实现、参数表型号分支与本机样本，仅离线候选工具 |
-| `04:33` | 官方 App 枚举：RobinPushBattery | `unknown` / `unknown` | `official-app-enum` | 枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送 |
-| `04:35` | 官方 App 枚举：SetHandleParams | `unknown` / `unknown` | `official-app-enum` | 旧 MSDK 的不可达字节码尾部给出 8 字节手柄参数候选布局；本机字段含义/范围及模式分支未知，不开放写入 |
-| `04:36` | 官方 App 枚举：GetHandleParams | `unknown` / `unknown` | `official-app-enum` | 旧 MSDK 的不可达字节码尾部给出若干响应业务体偏移；需要区分包层返回码，不是本机验证。仅离线原始值解析，无新增查询 |
-| `04:37` | 官方 App 枚举：SetTimelapseParams | `unknown` / `unknown` | `official-app-enum` | 枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送 |
-| `04:38` | 官方 App 枚举：GetPushTimelapseStatus | `unknown` / `unknown` | `official-app-enum` | 枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送 |
-| `04:40` | 官方 App 枚举：BalanceAdjust | `unknown` / `unknown` | `official-app-enum` | 枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送 |
-| `04:6A` | 官方 App 枚举：SetCalibration | `unknown` / `unknown` | `official-app-enum` | 枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送 |
-| `04:62` | 官方 App 枚举：SetTrack | `unknown` / `unknown` | `official-app-enum` | 枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送 |
-| `04:63` | 官方 App 枚举：SetPanorama | `unknown` / `unknown` | `official-app-enum` | 枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送 |
-| `04:64` | 官方 App 枚举：GetPushPanorama | `unknown` / `unknown` | `official-app-enum` | 枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送 |
-| `04:6B` | 官方 App 枚举：GetPushTrackAndTimelapse | `unknown` / `unknown` | `official-app-enum` | 枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送 |
-| `04:6E` | 官方 App 枚举：GetPushCalibration | `unknown` / `unknown` | `official-app-enum` | 枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送 |
-| `04:69` | 官方 App 枚举：GetPushExternalDeviceData | `unknown` / `unknown` | `official-app-enum` | 枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送 |
-| `04:57` | 官方 App 枚举：GetPushHandheldStickState | `unknown` / `unknown` | `official-app-enum` | 枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送 |
-| `04:58` | 官方 App 枚举：SetHandheldStickControlEnabled | `unknown` / `unknown` | `official-app-enum` | 枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送 |
+| `04:2B` | 官方 App 枚举：GetPushTutorialStatus | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
+| `04:2C` | 官方 App 枚举：SetTutorialStep | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
+| `04:31` | 官方 App 枚举：RoninSetParams | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
+| `04:32` | 官方 App 枚举：RoninGetParams | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
+| `04:33` | 官方 App 枚举：RobinPushBattery | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
+| `04:35` | 官方 App 枚举：SetHandleParams | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
+| `04:36` | 官方 App 枚举：GetHandleParams | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
+| `04:37` | 官方 App 枚举：SetTimelapseParams | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
+| `04:38` | 官方 App 枚举：GetPushTimelapseStatus | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
+| `04:40` | 官方 App 枚举：BalanceAdjust | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
+| `04:6A` | 官方 App 枚举：SetCalibration | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
+| `04:62` | 官方 App 枚举：SetTrack | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
+| `04:63` | 官方 App 枚举：SetPanorama | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
+| `04:64` | 官方 App 枚举：GetPushPanorama | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
+| `04:6B` | 官方 App 枚举：GetPushTrackAndTimelapse | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
+| `04:6E` | 官方 App 枚举：GetPushCalibration | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
+| `04:69` | 官方 App 枚举：GetPushExternalDeviceData | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
+| `04:57` | 官方 App 枚举：GetPushHandheldStickState | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
+| `04:58` | 官方 App 枚举：SetHandheldStickControlEnabled | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
 
 ## 验收要求
 
@@ -82,7 +82,7 @@
 所有硬件采样等待用户返回并明确要求测试；不批量探测未知指令。
 
 
-0.7.2 的新增候选编号来自官方 App 的可读枚举，相关方法仍可能是保护桩；
+历史0.7.2阶段的新增候选编号来自官方 App 的可读枚举，相关方法仍可能是保护桩；
 48 条清单不是新增 48 项设备支持。详细证据见 `RESEARCH_NEXT.md` 与 `protocol/research/ronin-2.2.2-evidence.json`（仓库根目录）。
 参数被动解析没有扩大任何发送允许列表，也没有解除高级功能前置条件。
 
@@ -91,6 +91,13 @@
 04:32 需要请求上下文和外部宽度，04:35/36 仅定位旧业务体偏移。包层可剥离返回码，不能直接照搬业务方法偏移。
 详见 [MSDK_V4.md](../tools/research/MSDK_V4.md)。这些证据没有提升请求/响应支持等级，没有扩大发送允许列表。
 
-当前 Ronin 的 RS 4 Mini 型号已通过展示构造与 BLE 前缀关联为 HG724，但具体发送/参数表选择仍未恢复；见 [HG724 研究说明](../tools/research/HG724.md)。型号识别证据不提升命令封装或实机支持等级。
+早期 HG724 型号研究只恢复了身份关联；随后代码备份恢复已确认本批灵敏度写入与参数加载链。历史见 [HG724 研究说明](../tools/research/HG724.md)，当前实现以下方0.7.3与 APP_COMMANDS.md 为准，仍无实机证据。
 
 `app-code-path` 表示已从当前 App 内代码备份静态还原特定型号调用链，不代表 SDK 已封装或设备验证。后续恢复结果见 [代码备份恢复](../tools/research/CODE_RESTORATION.md)。整体完整性条件仍未通过。
+
+
+## 0.7.3 当前 App 参数事务
+
+当前实现见 [APP_COMMANDS.md](APP_COMMANDS.md)。显式 `ronin-2.2.2` 配置提供参数读取与跟随灵敏度读写，四端共享各自已有连接与队列。它与旧研究配置互斥，不新增高级组合功能。ACK=0 仅代表协议响应成功，不能代表物理到位。
+
+静态审计已固定 55 类、631 个方法指纹（含 Ccode）；其中原命令扫描为 54 类、620 个方法。审计输出不含完整厂商代码。通用方法存在不代表该命令有 HG724 调用分支；48 项清单与两个完整性门槛仍不变。

@@ -263,3 +263,8 @@ idle/waiting/connecting/restored/exhausted，`reconnectState` 为副本。重连
 两者均含 `layoutSource:'legacy-duml'`、`deviceVerified:false`；不按索引推断唯一参数名称，
 不代表本机命令支持或物理执行确认。仅被动解析，不新增任何发送方法或更改发送允许列表。
 Python/Web/原生提供对应状态。协议来源与保护桩边界见 `docs/PROTOCOL.md` 和 `docs/RESEARCH_NEXT.md`（仓库根目录）。
+
+
+## 0.7.3 当前 App 参数设备接口
+
+同一个 `RS4Mini.appCommands` 显式选择 `ronin-2.2.2` 来源，提供 `readParameters()`、`getFollowSensitivity()`、`setFollowSensitivity()`。与旧 experimental 配置互斥；参数、返回码、停止/查询并发和硬件边界见 [APP_COMMANDS.md](../docs/APP_COMMANDS.md)。属于设备 SDK，本机兼容和效果未验证。

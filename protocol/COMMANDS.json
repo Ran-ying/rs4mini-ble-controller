@@ -112,21 +112,27 @@
     },
     {
       "key": "04:0F",
-      "name": "休眠/唤醒候选",
+      "name": "用户参数写入（灵敏度）及旧休眠候选",
       "requestCodec": "implemented",
       "responseCodec": "partial",
-      "targetEvidence": "other-model",
+      "targetEvidence": "app-code-path",
       "implementation": [
         "node/src/experimental-protocol.js",
         "python/rs4mini_sdk/experimental_protocol.py",
-        "macos/RSControlCore.m"
+        "macos/RSControlCore.m",
+        "node/src/app-protocol.js",
+        "node/src/app-commands.js",
+        "python/rs4mini_sdk/app_protocol.py",
+        "python/rs4mini_sdk/app_commands.py",
+        "macos/RSBleDevice.m"
       ],
-      "remaining": "SDK 现有休眠候选仍为跨型号；已从当前 App 恢复 HG724 灵敏度参数 150/size1/值0或1 的 04:0F 静态链和载荷，仅离线工具，未新增 SDK 写入；ACK 与本机效果待验收",
+      "remaining": "显式当前 App 配置已封装 HG724 灵敏度 index150/size1/值0或1 写入及状态 ACK；未提供任意参数写入，旧休眠仍为其他型号；本机效果未验收",
       "officialAppAliases": [
         "SetUserParams"
       ],
       "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
-      "restoredAppEvidence": "protocol/research/ronin-code-restoration-evidence.json"
+      "restoredAppEvidence": "protocol/research/ronin-code-restoration-evidence.json",
+      "runtimeAppEvidence": "protocol/research/ronin-command-audit.json"
     },
     {
       "key": "04:14",
@@ -249,7 +255,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "app-code-path",
       "implementation": [],
-      "remaining": "已恢复 HG724 跟随灵敏度 setter→cmd_follow_mode_sensitivity→通用参数表 index150→04:0F 静态链；仅离线源代码载荷，SDK 写入/响应与实机未验收，PF/PTF 等模式仍未完成",
+      "remaining": "HG724 跟随灵敏度 0/1 读写已进入显式来源配置 SDK；不等于 PF/PTF/FPV 跟随模式，后者及本机效果仍未完成",
       "modelResearchEvidence": "protocol/research/ronin-hg724-evidence.json",
       "restoredAppEvidence": "protocol/research/ronin-code-restoration-evidence.json"
     },
@@ -287,7 +293,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "remaining": "当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送",
       "officialAppAliases": [
         "RollFinetune"
       ],
@@ -300,7 +306,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "remaining": "当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送",
       "officialAppAliases": [
         "SetAngle",
         "AngleControl"
@@ -314,7 +320,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "remaining": "当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送",
       "officialAppAliases": [
         "SetOnOrOff"
       ],
@@ -322,20 +328,26 @@
     },
     {
       "key": "04:10",
-      "name": "用户参数读取候选",
-      "requestCodec": "not-exposed",
-      "responseCodec": "candidate-structured",
-      "targetEvidence": "other-model",
+      "name": "当前 App 用户参数读取",
+      "requestCodec": "implemented",
+      "responseCodec": "partial",
+      "targetEvidence": "app-code-path",
       "implementation": [
         "node/src/experimental-protocol.js",
         "python/rs4mini_sdk/experimental_protocol.py",
-        "macos/RSControlCore.m"
+        "macos/RSControlCore.m",
+        "node/src/app-protocol.js",
+        "node/src/app-commands.js",
+        "python/rs4mini_sdk/app_protocol.py",
+        "python/rs4mini_sdk/app_commands.py",
+        "macos/RSBleDevice.m"
       ],
-      "remaining": "仅被动解析旧 DUML/RS 3 样本格式：状态、索引/宽度/原始值或逐项错误；不映射名称/数值类型，不增加查询发送",
+      "remaining": "显式当前 App 配置按请求 index/size 读取，返回码与无符号索引分离，第二头字节保留原始量；不自动推断参数名/类型，本机读数未验收",
       "officialAppAliases": [
         "GetUserParams"
       ],
-      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
+      "runtimeAppEvidence": "protocol/research/ronin-command-audit.json"
     },
     {
       "key": "04:11",
@@ -344,7 +356,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "remaining": "当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送",
       "officialAppAliases": [
         "SaveUserParams"
       ],
@@ -357,7 +369,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "remaining": "当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送",
       "officialAppAliases": [
         "SubscribeGimbalParams"
       ],
@@ -370,7 +382,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "remaining": "当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送",
       "officialAppAliases": [
         "ResetUserParams"
       ],
@@ -383,7 +395,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "remaining": "当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送",
       "officialAppAliases": [
         "GetPushUserParams"
       ],
@@ -396,7 +408,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "remaining": "当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送",
       "officialAppAliases": [
         "SetDelayTimelapseParams"
       ],
@@ -426,7 +438,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "remaining": "当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送",
       "officialAppAliases": [
         "GetPushTutorialStatus"
       ],
@@ -439,7 +451,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "remaining": "当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送",
       "officialAppAliases": [
         "SetTutorialStep"
       ],
@@ -452,7 +464,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "remaining": "当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送",
       "officialAppAliases": [
         "RoninSetParams"
       ],
@@ -465,7 +477,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "官方旧 MSDK 保留参数索引请求与依赖请求上下文/外部宽度的响应尾部逻辑；返回码可能在包层剥离。尚缺有效运行实现、参数表型号分支与本机样本，仅离线候选工具",
+      "remaining": "当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送",
       "officialAppAliases": [
         "RoninGetParams"
       ],
@@ -479,7 +491,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "remaining": "当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送",
       "officialAppAliases": [
         "RobinPushBattery"
       ],
@@ -492,7 +504,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "旧 MSDK 的不可达字节码尾部给出 8 字节手柄参数候选布局；本机字段含义/范围及模式分支未知，不开放写入",
+      "remaining": "当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送",
       "officialAppAliases": [
         "SetHandleParams"
       ],
@@ -506,7 +518,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "旧 MSDK 的不可达字节码尾部给出若干响应业务体偏移；需要区分包层返回码，不是本机验证。仅离线原始值解析，无新增查询",
+      "remaining": "当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送",
       "officialAppAliases": [
         "GetHandleParams"
       ],
@@ -520,7 +532,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "remaining": "当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送",
       "officialAppAliases": [
         "SetTimelapseParams"
       ],
@@ -533,7 +545,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "remaining": "当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送",
       "officialAppAliases": [
         "GetPushTimelapseStatus"
       ],
@@ -546,7 +558,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "remaining": "当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送",
       "officialAppAliases": [
         "BalanceAdjust"
       ],
@@ -559,7 +571,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "remaining": "当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送",
       "officialAppAliases": [
         "SetCalibration"
       ],
@@ -572,7 +584,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "remaining": "当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送",
       "officialAppAliases": [
         "SetTrack"
       ],
@@ -585,7 +597,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "remaining": "当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送",
       "officialAppAliases": [
         "SetPanorama"
       ],
@@ -598,7 +610,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "remaining": "当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送",
       "officialAppAliases": [
         "GetPushPanorama"
       ],
@@ -611,7 +623,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "remaining": "当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送",
       "officialAppAliases": [
         "GetPushTrackAndTimelapse"
       ],
@@ -624,7 +636,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "remaining": "当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送",
       "officialAppAliases": [
         "GetPushCalibration"
       ],
@@ -637,7 +649,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "remaining": "当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送",
       "officialAppAliases": [
         "GetPushExternalDeviceData"
       ],
@@ -650,7 +662,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "remaining": "当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送",
       "officialAppAliases": [
         "GetPushHandheldStickState"
       ],
@@ -663,7 +675,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "remaining": "当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送",
       "officialAppAliases": [
         "SetHandheldStickControlEnabled"
       ],
@@ -681,5 +693,6 @@
     "tools/research/ronin_app_payloads.py"
   ],
   "modelIdentityResearch": "protocol/research/ronin-hg724-evidence.json",
-  "codeRestorationResearch": "protocol/research/ronin-code-restoration-evidence.json"
+  "codeRestorationResearch": "protocol/research/ronin-code-restoration-evidence.json",
+  "commandMethodAudit": "protocol/research/ronin-command-audit.json"
 }

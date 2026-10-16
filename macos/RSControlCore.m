@@ -167,3 +167,63 @@ NSDictionary *RSDecodeResearchStatus(NSDictionary *message, NSString *profile) {
 - (void)discardPending { [_pending removeAllObjects]; }
 - (void)reset { _pending = [NSMutableArray array]; _current = nil; _offset = 0; }
 @end
+
+
+NSArray<NSDictionary *> *RSAppParameterContext(NSArray *parameters) {
+    if (![parameters isKindOfClass:NSArray.class] || !parameters.count || parameters.count > 64) return nil;
+    NSMutableArray *result = [NSMutableArray array];
+    for (id row in parameters) {
+        if (![row isKindOfClass:NSDictionary.class] || [row count] != 2 || !row[@"index"] || !row[@"size"]) return nil;
+        NSNumber *index = row[@"index"], *size = row[@"size"];
+        if (!Numeric(index) || index.doubleValue != floor(index.doubleValue) || index.doubleValue < 0 || index.doubleValue > 255 ||
+            !Numeric(size) || ![@[@1, @2, @4, @8] containsObject:size]) return nil;
+        [result addObject:@{@"index": @(index.unsignedIntegerValue), @"size": @(size.unsignedIntegerValue)}];
+    }
+    return [result copy];
+}
+NSData *RSAppParameterRequestFrame(uint16_t sequence, NSArray *parameters) {
+    NSArray *context = RSAppParameterContext(parameters); if (!context) return nil;
+    NSMutableData *data = [NSMutableData dataWithCapacity:context.count];
+    for (NSDictionary *row in context) { uint8_t index = [row[@"index"] unsignedCharValue]; [data appendBytes:&index length:1]; }
+    return Frame(sequence, 0x10, data, 0x40);
+}
+NSData *RSAppSensitivityFrame(uint16_t sequence, NSNumber *mode) {
+    if (!Numeric(mode)) return nil;
+    if (![@[@0, @1] containsObject:mode]) return nil;
+    uint8_t data[] = {150, 1, mode.unsignedCharValue};
+    return Frame(sequence, 0x0f, [NSData dataWithBytes:data length:3], 0x40);
+}
+NSError *RSAppError(NSString *code, NSString *message, NSNumber *statusCode) {
+    NSMutableDictionary *info = [@{@"code": code, NSLocalizedDescriptionKey: message} mutableCopy];
+    if (statusCode) info[@"statusCode"] = statusCode;
+    return [NSError errorWithDomain:@"RS4MiniSDK" code:statusCode ? statusCode.integerValue : -1 userInfo:info];
+}
+NSDictionary *RSDecodeAppReply(NSDictionary *message, uint8_t command, NSArray *parameters, NSError **error) {
+    NSData *payload = message[@"payload"];
+    if ([message[@"sender"] intValue] != 4 || [message[@"receiver"] intValue] != 2 || [message[@"commandSet"] intValue] != 4 ||
+        [message[@"commandId"] intValue] != command || !([message[@"flags"] intValue] & 0x80) || ![payload isKindOfClass:NSData.class] || !payload.length) {
+        if (error) *error = RSAppError(@"RS4MINI_PROTOCOL_ERROR", @"Expected correlated App response with status byte", nil); return nil;
+    }
+    const uint8_t *p = payload.bytes;
+    if (p[0]) { if (error) *error = RSAppError(@"RS4MINI_DEVICE_ERROR", @"Device rejected App command", @(p[0])); return nil; }
+    NSMutableDictionary *result = [@{@"profile": @"ronin-2.2.2", @"statusCode": @0, @"acknowledged": @YES,
+        @"deviceVerified": @NO, @"physicalCompletionVerified": @NO, @"message": [message copy],
+        @"bodyHex": Hex([payload subdataWithRange:NSMakeRange(1, payload.length - 1)])} mutableCopy];
+    if (parameters) {
+        NSArray *context = RSAppParameterContext(parameters); NSUInteger offset = 1;
+        NSMutableArray *records = [NSMutableArray array];
+        if (!context) { if (error) *error = RSAppError(@"RS4MINI_PROTOCOL_ERROR", @"Invalid parameter context", nil); return nil; }
+        for (NSDictionary *row in context) {
+            NSUInteger size = [row[@"size"] unsignedIntegerValue];
+            if (offset + 2 + size > payload.length || p[offset] != [row[@"index"] unsignedCharValue]) {
+                if (error) *error = RSAppError(@"RS4MINI_PROTOCOL_ERROR", @"Parameter response does not match request context", nil); return nil;
+            }
+            [records addObject:@{@"index": row[@"index"], @"size": row[@"size"], @"headerByte": @(p[offset + 1]),
+                @"rawHex": Hex([payload subdataWithRange:NSMakeRange(offset + 2, size)])}];
+            offset += 2 + size;
+        }
+        if (offset != payload.length) { if (error) *error = RSAppError(@"RS4MINI_PROTOCOL_ERROR", @"Unconsumed parameter response bytes", nil); return nil; }
+        result[@"parameters"] = [records copy];
+    }
+    return [result copy];
+}

@@ -11,6 +11,7 @@ from .telemetry import DumlStreamDecoder, decode_gimbal_telemetry
 from .errors import RS4MiniError, positive, finite
 from .reconnect import ReconnectMixin
 from .experimental_device import ExperimentalDevice
+from .app_commands import AppCommands
 from .experimental_protocol import rs3_rate_frame
 
 NOTIFY = '0000fff4-0000-1000-8000-00805f9b34fb'
@@ -50,6 +51,8 @@ class BleDevice(ReconnectMixin):
         self._epoch = 0
         self._init_reconnect()
         self.experimental = ExperimentalDevice(self)
+        self.appCommands = AppCommands(self)
+        self.app_commands = self.appCommands
         self.onExperimentalStatus = self._nativeRateProfile = None
 
     @property

@@ -73,6 +73,16 @@ static NSData *QueryResponse(uint16_t sequence, NSString *kind, uint8_t sender, 
     for (NSUInteger i = 0; i < data.length - 2; i++) { crc ^= p[i]; for (NSUInteger bit = 0; bit < 8; bit++) crc = crc & 1 ? (crc >> 1) ^ 0x8408 : crc >> 1; }
     p[data.length - 2] = crc & 255; p[data.length - 1] = crc >> 8; return data;
 }
+static NSData *AppResponse(uint16_t sequence, uint8_t command, NSData *payload, uint8_t sender) {
+    NSMutableData *data = [NSMutableData dataWithLength:13 + payload.length]; uint8_t *p = data.mutableBytes;
+    p[0] = 0x55; p[1] = data.length & 255; p[2] = 4 | ((data.length >> 8) & 3);
+    uint8_t c8 = 0x77; for (NSUInteger i=0;i<3;i++) { c8 ^= p[i]; for (int b=0;b<8;b++) c8 = c8 & 1 ? (c8 >> 1) ^ 0x8c : c8 >> 1; } p[3] = c8;
+    p[4] = sender; p[5] = 2; p[6] = sequence & 255; p[7] = sequence >> 8; p[8] = 0x80; p[9] = 4; p[10] = command;
+    memcpy(p+11, payload.bytes, payload.length); uint16_t crc = 0x3692;
+    for (NSUInteger i=0;i<data.length-2;i++) { crc ^= p[i]; for (int b=0;b<8;b++) crc = crc & 1 ? (crc >> 1) ^ 0x8408 : crc >> 1; }
+    p[data.length-2] = crc & 255; p[data.length-1] = crc >> 8; return data;
+}
+static void PumpCallbacks(void) { [[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.003]]; }
 int main(void) {
     @autoreleasepool {
         FakeCentral *central = [FakeCentral new]; central.state = CBManagerStatePoweredOn;
@@ -200,6 +210,42 @@ int main(void) {
         [peripheral.writes setLength:0]; [gimbal requestDegreeInfo]; [gimbal stop]; ThreeTicks(gimbal);
         [decoder reset]; frames = [decoder push:peripheral.writes];
         Require(!gimbal.busy && [frames.lastObject[@"commandId"] intValue] != 0x1e, @"stop cancels delayed device query");
+        Require([gimbal useAppProfile:@"ronin-2.2.2"], @"explicit current App profile accepted when idle");
+        __block NSDictionary *appResult = nil; __block NSError *appError = nil; __block NSUInteger appCallbacks = 0;
+        RSAppCompletion appDone = ^(NSDictionary *result, NSError *error) { appResult = result; appError = error; appCallbacks++; };
+        [peripheral.writes setLength:0]; [gimbal setFollowSensitivity:@1 timeoutMs:1000 completion:appDone];
+        Require(gimbal.busy && ![gimbal useAppProfile:@"ronin-2.2.2"], @"App preamble owns native operation and blocks profile changes");
+        ThreeTicks(gimbal); [decoder reset]; frames = [decoder push:peripheral.writes];
+        Require([frames.lastObject[@"commandId"] intValue] == 0x0f && [frames.lastObject[@"payload"] isEqualToData:[NSData dataWithBytes:(uint8_t[]){150,1,1} length:3]], @"native setter sends exact source payload");
+        uint16_t appSequence = [[gimbal valueForKey:@"deviceQuerySequence"] unsignedShortValue];
+        NSData *ok = [NSData dataWithBytes:(uint8_t[]){0} length:1];
+        notify.value = AppResponse(appSequence+1,0x0f,ok,4); [gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil];
+        notify.value = AppResponse(appSequence,0x0f,ok,0x24); [gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil];
+        Require(gimbal.busy && appCallbacks == 0, @"native App ACK correlates exact sequence and endpoint");
+        notify.value = AppResponse(appSequence,0x0f,ok,4); [gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil]; PumpCallbacks();
+        Require(!gimbal.busy && appCallbacks == 1 && appError == nil && [appResult[@"requestedMode"] intValue] == 1 && ![appResult[@"physicalCompletionVerified"] boolValue], @"native acknowledged result does not imply physical completion");
+        appResult = nil; appError = nil;
+        [gimbal getFollowSensitivityWithTimeoutMs:1000 completion:appDone]; ThreeTicks(gimbal);
+        appSequence = [[gimbal valueForKey:@"deviceQuerySequence"] unsignedShortValue];
+        notify.value = AppResponse(appSequence,0x10,[NSData dataWithBytes:(uint8_t[]){0,150,1,255} length:4],4);
+        [gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil]; PumpCallbacks();
+        Require(appCallbacks == 2 && [appResult[@"rawValue"] intValue] == 255 && appResult[@"mode"] == NSNull.null, @"native high index and unknown mode remain raw");
+        appError = nil; [gimbal setFollowSensitivity:@0 timeoutMs:1000 completion:appDone]; ThreeTicks(gimbal);
+        appSequence = [[gimbal valueForKey:@"deviceQuerySequence"] unsignedShortValue];
+        notify.value = AppResponse(appSequence,0x0f,[NSData dataWithBytes:(uint8_t[]){7} length:1],4);
+        [gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil];
+        Require(gimbal.busy, @"device rejection retains ownership through neutral cleanup"); ThreeTicks(gimbal); PumpCallbacks();
+        Require(appCallbacks == 3 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_DEVICE_ERROR"] && [appError.userInfo[@"statusCode"] intValue] == 7, @"native device return code is an error");
+        [peripheral.writes setLength:0]; [gimbal setFollowSensitivity:@1 timeoutMs:1000 completion:appDone]; [gimbal stop]; ThreeTicks(gimbal); PumpCallbacks();
+        [decoder reset]; frames = [decoder push:peripheral.writes];
+        BOOL appSent = NO; for (NSDictionary *f in frames) if ([f[@"commandId"] intValue] == 0x0f) appSent = YES;
+        Require(!appSent && appCallbacks == 4 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_OPERATION_CANCELLED"], @"stop cancels App preamble without sending setting");
+        [gimbal setFollowSensitivity:@1 timeoutMs:1000 completion:appDone]; ThreeTicks(gimbal);
+        [gimbal setValue:@(NSProcessInfo.processInfo.systemUptime - 1) forKey:@"deviceQueryDeadline"]; [gimbal tick]; ThreeTicks(gimbal); PumpCallbacks();
+        Require(appCallbacks == 5 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_RESPONSE_TIMEOUT"] && !gimbal.busy, @"native App timeout cleans up exactly once");
+        [gimbal getFollowSensitivityWithTimeoutMs:1000 completion:appDone]; ThreeTicks(gimbal);
+        [gimbal centralManager:(id)central didDisconnectPeripheral:(id)peripheral error:nil]; PumpCallbacks();
+        Require(appCallbacks == 6 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_DISCONNECTED"], @"native disconnect rejects pending App query");
         [gimbal disconnect]; ThreeTicks(gimbal);
         printf("Native fake-device lifecycle checks: %lu passed (no Bluetooth manager created)\n", (unsigned long)assertions);
     }

@@ -1,0 +1,4833 @@
+{
+  "schemaVersion": 1,
+  "derivedSha256": "4fdbd74a05df63d72a0feb1c907d9395426ec3cdb5d6aeb45e3836d856d66654",
+  "appCodeExecuted": false,
+  "targetDeviceVerified": false,
+  "inventoryComplete": false,
+  "classCount": 55,
+  "methodCount": 631,
+  "classes": [
+    {
+      "className": "Ldji/midware/data/config/P3/Ccode;",
+      "methods": [
+        {
+          "method": "$values",
+          "descriptor": "()[Ldji/midware/data/config/P3/Ccode;",
+          "codeOffset": 3319460,
+          "instructionSha256": "314e3c9f0b0cb739ea8754a81a77b75de340e92f4412494ab18b61a000b6c35a",
+          "commandEnums": []
+        },
+        {
+          "method": "<clinit>",
+          "descriptor": "()V",
+          "codeOffset": 3319692,
+          "instructionSha256": "a9da688ce57ba37773c36fe5c8de8227f8f0492e4fcbab612fb43c0fd1ddf142",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "(Ljava/lang/String; I I)V",
+          "codeOffset": 3321124,
+          "instructionSha256": "a4cc02eb538bf0ec771842b5972147e7649c01dc79fe5c8b9297508753fd66ca",
+          "commandEnums": []
+        },
+        {
+          "method": "find",
+          "descriptor": "(I)Ldji/midware/data/config/P3/Ccode;",
+          "codeOffset": 3321152,
+          "instructionSha256": "07dfbb370a1a4357a0b877d0f1014c21a5bb174dd23d85e2ad6933d76e899e31",
+          "commandEnums": []
+        },
+        {
+          "method": "valueOf",
+          "descriptor": "(Ljava/lang/String;)Ldji/midware/data/config/P3/Ccode;",
+          "codeOffset": 3321240,
+          "instructionSha256": "5d1596f6b76c6793defbce4e7beb833c15adf5a12d0ac9066bc360b6e8ff9654",
+          "commandEnums": []
+        },
+        {
+          "method": "values",
+          "descriptor": "()[Ldji/midware/data/config/P3/Ccode;",
+          "codeOffset": 3321276,
+          "instructionSha256": "d017290b4ea32b42756a35734cc0e987ddf7762f1471989da44e7701e62e1bf4",
+          "commandEnums": []
+        },
+        {
+          "method": "_equals",
+          "descriptor": "(I)Z",
+          "codeOffset": 3321312,
+          "instructionSha256": "dc061e6d4e575483ec55cd4bcb0b268f5fcc728cb456b06729a057365af11253",
+          "commandEnums": []
+        },
+        {
+          "method": "getData",
+          "descriptor": "()I",
+          "codeOffset": 3321344,
+          "instructionSha256": "b0a181d68f711b7de553402f124df00bc138e15e63bc62882e4775a15308700c",
+          "commandEnums": []
+        },
+        {
+          "method": "relValue",
+          "descriptor": "()I",
+          "codeOffset": 3321368,
+          "instructionSha256": "e1fb59d63c18819a5e140e3858b66bc90f700e7696a425f61d01efb84eecdd18",
+          "commandEnums": []
+        },
+        {
+          "method": "relValue",
+          "descriptor": "(I)V",
+          "codeOffset": 3321392,
+          "instructionSha256": "5b5c7fc70045a7440b5ad8491e2a4ad4002c4e5200d4aa5b6c7516bb5f8c7dff",
+          "commandEnums": []
+        },
+        {
+          "method": "value",
+          "descriptor": "()I",
+          "codeOffset": 3321416,
+          "instructionSha256": "b0a181d68f711b7de553402f124df00bc138e15e63bc62882e4775a15308700c",
+          "commandEnums": []
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/config/P3/DJICmdSetBase;",
+      "methods": [
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 3322964,
+          "instructionSha256": "519b2c6064a523bb35ca52cdb1549202d341d6b7a2a993deca23f0bf5dc7b703",
+          "commandEnums": []
+        },
+        {
+          "method": "getDataBase",
+          "descriptor": "(I)Ldji/midware/data/manager/P3/DataBase;",
+          "codeOffset": 3323048,
+          "instructionSha256": "c494fdc95c78a88a5151c2f97f5089bdf9718672332c40ac3b7c95b2de1be9d2",
+          "commandEnums": []
+        },
+        {
+          "method": "getDataModel",
+          "descriptor": "(I)Ljava/lang/Class;",
+          "codeOffset": 3323100,
+          "instructionSha256": "43ae541f66bc1408825d6e12bb55fecf9d3af9004ee98b49b8a0076ef277a63c",
+          "commandEnums": []
+        },
+        {
+          "method": "isBlock",
+          "descriptor": "(I)Z",
+          "codeOffset": 3323152,
+          "instructionSha256": "7fa158265b7011ea6066e085324a63d9382ca15b58e22c1cb84b58b86340d8e5",
+          "commandEnums": []
+        },
+        {
+          "method": "isMix",
+          "descriptor": "(I)Z",
+          "codeOffset": 3323204,
+          "instructionSha256": "c1bf5a0e385567bf0aeb934289c8f506a1c8bac6621cc9bb42b1d110e9313f53",
+          "commandEnums": []
+        },
+        {
+          "method": "isNeedCcode",
+          "descriptor": "(I)Z",
+          "codeOffset": 3323256,
+          "instructionSha256": "6051e59b0f01d28a35ef2d5e906a7e0f03ddef6848acc9c5ec51f5e35e268f6a",
+          "commandEnums": []
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalFocusControl-IA;",
+      "methods": []
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushCalibrationStatus-IA;",
+      "methods": []
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalStatus-IA;",
+      "methods": []
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushParams-IA;",
+      "methods": []
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSubscribeParams-IA;",
+      "methods": []
+    },
+    {
+      "className": "Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+      "methods": [
+        {
+          "method": "$values",
+          "descriptor": "()[Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+          "codeOffset": 4651820,
+          "instructionSha256": "baab9b742889abcd0c7f9e1e30f763657f24807e61a65807c17bd891cb7fc98d",
+          "commandEnums": [
+            "v1, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->Control Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v2, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->GetPushParams Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v3, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->RollFinetune Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v4, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->AutoCalibration Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v5, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->SetAngle Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v6, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->SetOnOrOff Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v7, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->SpeedControl Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v8, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->AngleControl Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v9, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->SetUserParams Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v10, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->GetUserParams Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v11, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->SaveUserParams Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v12, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->SubscribeGimbalParams Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v13, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->ResetUserParams Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v14, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->AbsAngleControl Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v15, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->GetPushType Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v16, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->GetPushUserParams Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v17, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->SetDelayTimelapseParams Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v18, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->GetPushAbnormalStatus Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v19, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->GetPushTutorialStatus Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v20, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->SetTutorialStep Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v21, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->FocusControl Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v22, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->GetPushSensorCalibrationStatus Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v23, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->RoninSetParams Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v24, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->RoninGetParams Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v25, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->RobinPushBattery Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v26, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->SetHandleParams Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v27, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->GetHandleParams Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v28, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->SetTimelapseParams Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v29, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->GetPushTimelapseStatus Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v30, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->BalanceAdjust Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v31, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->SetCalibration Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v32, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->SetTrack Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v33, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->SetPanorama Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v34, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->GetPushPanorama Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v35, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->GetPushTrackAndTimelapse Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v36, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->GetPushCalibration Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v37, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->NotiFyCameraId Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v38, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->SetPushPeripheralStatus Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v39, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->GetPushExternalDeviceData Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v40, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->GetPushHandheldStickState Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v41, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->SetHandheldStickControlEnabled Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v42, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->ResetAndSetMode Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v43, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->Other Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;"
+          ]
+        },
+        {
+          "method": "<clinit>",
+          "descriptor": "()V",
+          "codeOffset": 4652020,
+          "instructionSha256": "89d7e5d4c317f54eb541d186eff2e608a50e62f9387974ef9c74a54543aa6609",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "(Ljava/lang/String; I I)V",
+          "codeOffset": 4653352,
+          "instructionSha256": "1184096218063b65ae6d4ff211c39addd7b116b497237dca47112186677a37f8",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "(Ljava/lang/String; I I Z Ljava/lang/Class;)V",
+          "codeOffset": 4653392,
+          "instructionSha256": "c11f4dd857657d0a36d78937c4f73c8c4bb4dbb2da0c9fa41b7ad3d16d1a8833",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "(Ljava/lang/String; I I Z Z Ljava/lang/Class;)V",
+          "codeOffset": 4653448,
+          "instructionSha256": "2c0f3af622479a731043a447d72ce978c24c750b014e727ac5cd307d1a854df0",
+          "commandEnums": []
+        },
+        {
+          "method": "find",
+          "descriptor": "(I)Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+          "codeOffset": 4653500,
+          "instructionSha256": "aa2cd4f232b8a4ef45897509b4ff46026e774e054390916cd15ae1b6228c9f8f",
+          "commandEnums": [
+            "v0, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->Other Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v2, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->items [Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v4, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->items [Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;"
+          ]
+        },
+        {
+          "method": "valueOf",
+          "descriptor": "(Ljava/lang/String;)Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+          "codeOffset": 4653568,
+          "instructionSha256": "892250ccbdfe3ce8b28a9233dc1a3985065d8218df129aad84ab6b5604af8cce",
+          "commandEnums": []
+        },
+        {
+          "method": "values",
+          "descriptor": "()[Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+          "codeOffset": 4653604,
+          "instructionSha256": "38dd866386101f842a9fad36ed1231812cdb7339d5ac253e89abe4ad52ec9e91",
+          "commandEnums": [
+            "v0, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->$VALUES [Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;"
+          ]
+        },
+        {
+          "method": "_equals",
+          "descriptor": "(I)Z",
+          "codeOffset": 4653640,
+          "instructionSha256": "7fd98a518fb0897976b9b2c3048b028a1fd9720d71d1edf6dac4719b2586f6d7",
+          "commandEnums": []
+        },
+        {
+          "method": "getDataBase",
+          "descriptor": "()Ldji/midware/data/manager/P3/DataBase;",
+          "codeOffset": 4653672,
+          "instructionSha256": "ed36ac790283331ab1a88b46e346619e19464523a9ce9daa6bb5fa3dc64e3ae2",
+          "commandEnums": []
+        },
+        {
+          "method": "getDataModel",
+          "descriptor": "()Ljava/lang/Class;",
+          "codeOffset": 4653696,
+          "instructionSha256": "4b79651bc34dfd33c6ae201f11167908e23550efbece5846f505053a0b016583",
+          "commandEnums": []
+        },
+        {
+          "method": "isBlock",
+          "descriptor": "()Z",
+          "codeOffset": 4653720,
+          "instructionSha256": "40825be4be0be8ad0b16d6f7b2ebede1a70854ed92089707694c2eedfd115ae1",
+          "commandEnums": []
+        },
+        {
+          "method": "isMix",
+          "descriptor": "()Z",
+          "codeOffset": 4653744,
+          "instructionSha256": "556425a9390940a0409945465ef35bd0c9d9ad04de78a69c41c1bfab6a5fc021",
+          "commandEnums": []
+        },
+        {
+          "method": "isNeedCcode",
+          "descriptor": "()Z",
+          "codeOffset": 4653768,
+          "instructionSha256": "cdbefba08f513c5881e2d27c6f2904e1312e1949ce93078fcc2f20c11153eebe",
+          "commandEnums": []
+        },
+        {
+          "method": "value",
+          "descriptor": "()I",
+          "codeOffset": 4653788,
+          "instructionSha256": "d0b13ae1e07cede5deafa08177a3c7f7c37ad74beefabb6fbb4a30a2b1c43c96",
+          "commandEnums": []
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalAbsAngleControl;",
+      "methods": [
+        {
+          "method": "<clinit>",
+          "descriptor": "()V",
+          "codeOffset": 4854500,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 4854520,
+          "instructionSha256": "11e3485784024cbd37a63104956081ea5d10f700788e82c3e8d645827db74eb8",
+          "commandEnums": []
+        },
+        {
+          "method": "getInstance",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalAbsAngleControl;",
+          "codeOffset": 4854552,
+          "instructionSha256": "94f6bbf174144e30f2ed44f222d99eaa450033acc2302a9e7f409bb88be2f358",
+          "commandEnums": []
+        },
+        {
+          "method": "doPack",
+          "descriptor": "()V",
+          "codeOffset": 4854632,
+          "instructionSha256": "54d2ef252d489d6b68176fb528acc0fbab5463ba405d23ddfbdbaa917ff17ee8",
+          "commandEnums": []
+        },
+        {
+          "method": "setControlMode",
+          "descriptor": "(Z)Ldji/midware/data/model/P3/DataGimbalAbsAngleControl;",
+          "codeOffset": 4854876,
+          "instructionSha256": "46f2a1e38b1af85eb040991a1b9bbc65a005768117c935524ebe29694b4a5002",
+          "commandEnums": []
+        },
+        {
+          "method": "setOvertime",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalAbsAngleControl;",
+          "codeOffset": 4854900,
+          "instructionSha256": "241f2cb4c257e460edf7b7db86006bf9179eb47d35c6adbe3fd39644edbb83b2",
+          "commandEnums": []
+        },
+        {
+          "method": "setPitch",
+          "descriptor": "(S)Ldji/midware/data/model/P3/DataGimbalAbsAngleControl;",
+          "codeOffset": 4854924,
+          "instructionSha256": "67b7a40f8a18e968a26e53b8ac92ed68004536d71aaf0b266bd5823dc4fc33dc",
+          "commandEnums": []
+        },
+        {
+          "method": "setPitchInvalid",
+          "descriptor": "(Z)Ldji/midware/data/model/P3/DataGimbalAbsAngleControl;",
+          "codeOffset": 4854948,
+          "instructionSha256": "ab311e11fad11c590e847be4955e699a097417e9d1bfd4208f8ec1bcfcbd2205",
+          "commandEnums": []
+        },
+        {
+          "method": "setRoll",
+          "descriptor": "(S)Ldji/midware/data/model/P3/DataGimbalAbsAngleControl;",
+          "codeOffset": 4854972,
+          "instructionSha256": "9fad406b3d341b6a83af0aff254748693c96191388d88c23a3a1d3915f3ccb66",
+          "commandEnums": []
+        },
+        {
+          "method": "setRollInvalid",
+          "descriptor": "(Z)Ldji/midware/data/model/P3/DataGimbalAbsAngleControl;",
+          "codeOffset": 4854996,
+          "instructionSha256": "5c0ff136a10809a12f246214a856ff21f3de431d98dc242d47f2d6f3c72836c3",
+          "commandEnums": []
+        },
+        {
+          "method": "setYaw",
+          "descriptor": "(S)Ldji/midware/data/model/P3/DataGimbalAbsAngleControl;",
+          "codeOffset": 4855020,
+          "instructionSha256": "9a9a0cbd3ff66e20a57fc9a3894b178ad532f85e95a1ef207c824dd3107423e0",
+          "commandEnums": []
+        },
+        {
+          "method": "setYawInvalid",
+          "descriptor": "(Z)Ldji/midware/data/model/P3/DataGimbalAbsAngleControl;",
+          "codeOffset": 4855044,
+          "instructionSha256": "091ea2bbe3a4b8b2bd5a8f0f6103d6ba5b2d39f5215b6903727d2dec1642c091",
+          "commandEnums": []
+        },
+        {
+          "method": "start",
+          "descriptor": "()V",
+          "codeOffset": 4855068,
+          "instructionSha256": "dac019d109783821a8f37b3b0109868cd8d7e14cdfc22228c8d926aa0da0aa50",
+          "commandEnums": [
+            "v1, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->AbsAngleControl Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;"
+          ]
+        },
+        {
+          "method": "start",
+          "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+          "codeOffset": 4855216,
+          "instructionSha256": "2e997035732e591844e6d74bbc759e02e33e3986f14417edf7d69c2c383c3316",
+          "commandEnums": [
+            "v1, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->AbsAngleControl Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;"
+          ]
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalAngleControl;",
+      "methods": [
+        {
+          "method": "<clinit>",
+          "descriptor": "()V",
+          "codeOffset": 4855364,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 4855384,
+          "instructionSha256": "b4c10778abfa4169db6686575c8a796362213b9dbefd908a13dcb81b903882e9",
+          "commandEnums": []
+        },
+        {
+          "method": "getInstance",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalAngleControl;",
+          "codeOffset": 4855432,
+          "instructionSha256": "173a4ceeb2cad2e983b4264e8368b8abb29a175eff731a3bc5d87cf9a2aab4f4",
+          "commandEnums": []
+        },
+        {
+          "method": "doPack",
+          "descriptor": "()V",
+          "codeOffset": 4855512,
+          "instructionSha256": "991ca766198905316c34701710a3bd8fa832510598370f1aa4e7f049a627272c",
+          "commandEnums": []
+        },
+        {
+          "method": "setAbsolute",
+          "descriptor": "(Z)Ldji/midware/data/model/P3/DataGimbalAngleControl;",
+          "codeOffset": 4855812,
+          "instructionSha256": "47f8f214dbd5bd5132702044e267309ef14241234f703728d535875b8b39bfd1",
+          "commandEnums": []
+        },
+        {
+          "method": "setOvertime",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalAngleControl;",
+          "codeOffset": 4855836,
+          "instructionSha256": "e89337551bc348edd63c67ffb22ac35c8b1c8efe87d59b15eaf7f469830a134d",
+          "commandEnums": []
+        },
+        {
+          "method": "setPermission",
+          "descriptor": "(Z)Ldji/midware/data/model/P3/DataGimbalAngleControl;",
+          "codeOffset": 4855860,
+          "instructionSha256": "d20b0e689a29d34e13c96d1fc73ac5a160421e3059340ceccb5c05f467b16918",
+          "commandEnums": []
+        },
+        {
+          "method": "setPitch",
+          "descriptor": "(S)Ldji/midware/data/model/P3/DataGimbalAngleControl;",
+          "codeOffset": 4855884,
+          "instructionSha256": "a0579551b07c8aeec1c52098cf36f2ced5038274aa2b89628756db68f4469531",
+          "commandEnums": []
+        },
+        {
+          "method": "setPitchCtrlIsValid",
+          "descriptor": "(Z)Ldji/midware/data/model/P3/DataGimbalAngleControl;",
+          "codeOffset": 4855908,
+          "instructionSha256": "02d9a1c43efc289682440716e89e3cde3198f49bcab0ead56ac08aee3bcf7be4",
+          "commandEnums": []
+        },
+        {
+          "method": "setReference",
+          "descriptor": "(Z)Ldji/midware/data/model/P3/DataGimbalAngleControl;",
+          "codeOffset": 4855932,
+          "instructionSha256": "209c455563f7a61b8a00fb5e0e21334791c3bbfdeb01d3ba5a12f9fd38178904",
+          "commandEnums": []
+        },
+        {
+          "method": "setRoll",
+          "descriptor": "(S)Ldji/midware/data/model/P3/DataGimbalAngleControl;",
+          "codeOffset": 4855956,
+          "instructionSha256": "cf839bdc2131b2c854faf789913e081304e769a975be6ea4b16d2049b243c6f7",
+          "commandEnums": []
+        },
+        {
+          "method": "setRollCtrlIsValid",
+          "descriptor": "(Z)Ldji/midware/data/model/P3/DataGimbalAngleControl;",
+          "codeOffset": 4855980,
+          "instructionSha256": "da921ba2995d8a0fd9a74210f40a783bb51ba1577a7d638f6cc21ff19dab4817",
+          "commandEnums": []
+        },
+        {
+          "method": "setYaw",
+          "descriptor": "(S)Ldji/midware/data/model/P3/DataGimbalAngleControl;",
+          "codeOffset": 4856004,
+          "instructionSha256": "4a83320436ff865b9d1128294c18ffd2c53a50d5dd6366fb0219f65d419ced44",
+          "commandEnums": []
+        },
+        {
+          "method": "setYawCtrlIsValid",
+          "descriptor": "(Z)Ldji/midware/data/model/P3/DataGimbalAngleControl;",
+          "codeOffset": 4856028,
+          "instructionSha256": "a9d6a1a4fb8a908adb848dbe3b8a4a54fcd6a0440231c4324a84618c7e384393",
+          "commandEnums": []
+        },
+        {
+          "method": "start",
+          "descriptor": "()V",
+          "codeOffset": 4856052,
+          "instructionSha256": "7dff3ec0718f0d959005eb9f411576b8a2d65375256913e308547020121736bd",
+          "commandEnums": [
+            "v1, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->AngleControl Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;"
+          ]
+        },
+        {
+          "method": "start",
+          "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+          "codeOffset": 4856200,
+          "instructionSha256": "77d54347103ad78ab4ab410b482066ca82613a3241023a381710f9fbfc9c3d4d",
+          "commandEnums": [
+            "v1, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->AngleControl Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;"
+          ]
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+      "methods": [
+        {
+          "method": "<clinit>",
+          "descriptor": "()V",
+          "codeOffset": 4856348,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 4856368,
+          "instructionSha256": "e265b36a5559e4c726841e9c440c6f19e8033aa17431fa78fef1970e39593196",
+          "commandEnums": []
+        },
+        {
+          "method": "getInstance",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+          "codeOffset": 4856400,
+          "instructionSha256": "b815788eb757a672f9fb86741ef103491473eb39b9a15985246865b8f0abe14e",
+          "commandEnums": []
+        },
+        {
+          "method": "doPack",
+          "descriptor": "()V",
+          "codeOffset": 4856480,
+          "instructionSha256": "96473d63b55cec5e4b419a2279ade5e9b36488da489fda413a1d90409d16d707",
+          "commandEnums": []
+        },
+        {
+          "method": "getStatus",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationStatus;",
+          "codeOffset": 4856528,
+          "instructionSha256": "bc2b38e0c3ffe937c9cb3933a7fb9897eeadf6023e0547733c49ac4702aafdd8",
+          "commandEnums": []
+        },
+        {
+          "method": "getType",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationPart;",
+          "codeOffset": 4856636,
+          "instructionSha256": "38fb5916f644d6abd437666d334dc2cf5581da04f1ada8083a8ca31fbe24f087",
+          "commandEnums": []
+        },
+        {
+          "method": "setCalType",
+          "descriptor": "(Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationPart;)Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+          "codeOffset": 4856724,
+          "instructionSha256": "ea7743b7664d319776d8ddd8a84fc5c7955b32cacd08dc1714b8a27938711032",
+          "commandEnums": []
+        },
+        {
+          "method": "start",
+          "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+          "codeOffset": 4856748,
+          "instructionSha256": "27687e2efcbeaf5e0101b03ffcdbee547f9862a5a1a8b18f1536c0a07660c42f",
+          "commandEnums": [
+            "v1, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->AutoCalibration Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;"
+          ]
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalBalanceAdjust;",
+      "methods": [
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 4856908,
+          "instructionSha256": "20b19993098dcc58f25a499e08c6c24946fc39bc2fcc929f0911519d944f68f9",
+          "commandEnums": []
+        },
+        {
+          "method": "getInstance",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalBalanceAdjust;",
+          "codeOffset": 4856932,
+          "instructionSha256": "e49ae0c3c1bccad3bbb2fef6389fc2eb80885fba6fac552e87c3e802bb095a58",
+          "commandEnums": []
+        },
+        {
+          "method": "setSendData",
+          "descriptor": "(Ldji/midware/data/model/P3/DataGimbalBalanceAdjust$GimbalAdjustTypeId; I [B)V",
+          "codeOffset": 4856960,
+          "instructionSha256": "39d82542f9d5174a77cc113d77268c96f8dd93fb6877f29093127fc6f9acc004",
+          "commandEnums": []
+        },
+        {
+          "method": "doPack",
+          "descriptor": "()V",
+          "codeOffset": 4857044,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "setGimbalAdjustRequest",
+          "descriptor": "(Ldji/midware/data/model/P3/DataGimbalBalanceAdjust$GimbalAdjustRequest;)Ldji/midware/data/model/P3/DataGimbalBalanceAdjust;",
+          "codeOffset": 4857064,
+          "instructionSha256": "bc33995ebba41634aae96503d3f5ab7179572849ce36714554e42b5d4445dcde",
+          "commandEnums": []
+        },
+        {
+          "method": "start",
+          "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+          "codeOffset": 4857116,
+          "instructionSha256": "6b4a2bd4f0d111caae6f2943adb9b9193c3f5444631361daf81eb444a4eb2c1e",
+          "commandEnums": [
+            "v1, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->BalanceAdjust Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;"
+          ]
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalCalibrate;",
+      "methods": [
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 4857276,
+          "instructionSha256": "20b19993098dcc58f25a499e08c6c24946fc39bc2fcc929f0911519d944f68f9",
+          "commandEnums": []
+        },
+        {
+          "method": "doPack",
+          "descriptor": "()V",
+          "codeOffset": 4857300,
+          "instructionSha256": "aca037de136b94a4d432c88a8c8fde3461bde772d4a0cfbf3598db5244ff64c5",
+          "commandEnums": []
+        },
+        {
+          "method": "setStartCalbrate",
+          "descriptor": "(Z)V",
+          "codeOffset": 4857364,
+          "instructionSha256": "697bdc22ece407001779042e9612030a8d54ee11d75ea83a6841679734b50b1d",
+          "commandEnums": []
+        },
+        {
+          "method": "start",
+          "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+          "codeOffset": 4857388,
+          "instructionSha256": "cebcebc9cfee78976adaaac8882267f7a9c00dea73f6a8698039457d2febd4ea",
+          "commandEnums": [
+            "v1, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->SetCalibration Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;"
+          ]
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalCameraIdNotify;",
+      "methods": [
+        {
+          "method": "<clinit>",
+          "descriptor": "()V",
+          "codeOffset": 4857536,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 4857556,
+          "instructionSha256": "a7895b48a5ad026d3feb321e618993bf75612ce8e9dfed0aa14e414f36ae6df9",
+          "commandEnums": []
+        },
+        {
+          "method": "getInstance",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalCameraIdNotify;",
+          "codeOffset": 4857588,
+          "instructionSha256": "6524e7bd14736aa98e4229fc5f16917d7df6bb419d8aa1f9c93168876e0d621e",
+          "commandEnums": []
+        },
+        {
+          "method": "doPack",
+          "descriptor": "()V",
+          "codeOffset": 4857668,
+          "instructionSha256": "d3fe1fd76f025b3c9627a2e0a835d4890db734aca746329ea2c9987e1073f586",
+          "commandEnums": []
+        },
+        {
+          "method": "getRecvPack",
+          "descriptor": "()Ldji/midware/data/packages/P3/RecvPack;",
+          "codeOffset": 4857724,
+          "instructionSha256": "560736fe9a9995f27b6766661a5d5d382e0f245edd9be142c4b63fe68ca34769",
+          "commandEnums": []
+        },
+        {
+          "method": "setCameraId",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalCameraIdNotify;",
+          "codeOffset": 4857748,
+          "instructionSha256": "350be552882bf8755c01524442a40055923d6da8aef65e17c325aa6c47989e3d",
+          "commandEnums": []
+        },
+        {
+          "method": "start",
+          "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+          "codeOffset": 4857772,
+          "instructionSha256": "8f96f5a278624f7810cb32f77d824939a42af786ae7388aa4644a79bcf899751",
+          "commandEnums": [
+            "v1, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->NotiFyCameraId Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;"
+          ]
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalControl;",
+      "methods": [
+        {
+          "method": "<clinit>",
+          "descriptor": "()V",
+          "codeOffset": 4857980,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 4858000,
+          "instructionSha256": "d4058d3f0fc2cbacb86ab6d89dc3a013ccd07f9ba1368176b435c736650efa06",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "(Ldji/midware/data/config/P3/DeviceType; I)V",
+          "codeOffset": 4858048,
+          "instructionSha256": "c219478dceb5e5e693078471ed59e0623ccd1eae18164b471aa18bd27f3d580d",
+          "commandEnums": []
+        },
+        {
+          "method": "getInstance",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalControl;",
+          "codeOffset": 4858104,
+          "instructionSha256": "90b022aad1d97678139a2c96613b63254262538138a97bb51f64115cc35c6381",
+          "commandEnums": []
+        },
+        {
+          "method": "doPack",
+          "descriptor": "()V",
+          "codeOffset": 4858184,
+          "instructionSha256": "482a9090ef34feac879f02c7c38b08e595abd84cce30787bd7fe8c0fa14e0ff2",
+          "commandEnums": []
+        },
+        {
+          "method": "reset",
+          "descriptor": "(Z)Ldji/midware/data/model/P3/DataGimbalControl;",
+          "codeOffset": 4858368,
+          "instructionSha256": "57593501f9ef95904e4087a2fe8a500d7e0ddeb7809b6dbb51b14703fa1f40ad",
+          "commandEnums": []
+        },
+        {
+          "method": "setMode",
+          "descriptor": "(Ldji/midware/data/model/P3/DataGimbalControl$MODE;)Ldji/midware/data/model/P3/DataGimbalControl;",
+          "codeOffset": 4858392,
+          "instructionSha256": "daf767fabfb90dc1bbc2742f01a4cdb8284a43ddeee5279e977accf86ab7fffd",
+          "commandEnums": []
+        },
+        {
+          "method": "setPitch",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalControl;",
+          "codeOffset": 4858416,
+          "instructionSha256": "45f2b71f879f198cafe2f930721490725273f7302d3339cb0b58978c2f1fc419",
+          "commandEnums": []
+        },
+        {
+          "method": "setRoll",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalControl;",
+          "codeOffset": 4858440,
+          "instructionSha256": "9d321bb1b3fbcb75db83817019a9838182a7f266f4e13ec05f032864947513ed",
+          "commandEnums": []
+        },
+        {
+          "method": "setSource",
+          "descriptor": "(Ldji/midware/data/model/P3/DataGimbalControl$SOURCE;)Ldji/midware/data/model/P3/DataGimbalControl;",
+          "codeOffset": 4858464,
+          "instructionSha256": "0b6629496e1541f6b46030a48c60a56d9ac8ac1ab5c6df8f6a13eef9ab1ec114",
+          "commandEnums": []
+        },
+        {
+          "method": "setYaw",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalControl;",
+          "codeOffset": 4858488,
+          "instructionSha256": "7195f49dba73f8b5357a176b5057607c45e9c83e8a9afb6f488d9e57e5c076e5",
+          "commandEnums": []
+        },
+        {
+          "method": "start",
+          "descriptor": "()V",
+          "codeOffset": 4858512,
+          "instructionSha256": "299d4f8915cdb33329b0e64499b8e44163b50cf8e89a4185e441a339e8819631",
+          "commandEnums": [
+            "v1, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->Control Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;"
+          ]
+        },
+        {
+          "method": "start",
+          "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+          "codeOffset": 4858660,
+          "instructionSha256": "93fb97d733f3ed776059b3e5d99ca251407381778faddf7de2cb9e5f1bd84b80",
+          "commandEnums": [
+            "v1, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->Control Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;"
+          ]
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalFocusControl;",
+      "methods": [
+        {
+          "method": "<clinit>",
+          "descriptor": "()V",
+          "codeOffset": 4858816,
+          "instructionSha256": "7d58945b2bb3638f7111b10bcc4466bd598b7862f2ff36fd70b85b1cb9a90dec",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 4858924,
+          "instructionSha256": "a3c3dbaaf30814072b7a1240a0632ebeb7bab78e11c044648d92bcaaa15f6d8f",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "(Ldji/midware/component/DJIComponentManager$GimbalComponentType;)V",
+          "codeOffset": 4859140,
+          "instructionSha256": "9bf599cc3c5d93d19f956edde48c56bd3364355a3628630953bba62ecdfd7915",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "(Ldji/midware/data/model/P3/DataGimbalFocusControl-IA;)V",
+          "codeOffset": 4859316,
+          "instructionSha256": "05e50699c7f3cdb01dc2ef94905dd6b14ee71d2f1a167b8608c2f2d24e1eec39",
+          "commandEnums": []
+        },
+        {
+          "method": "getInstance",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalFocusControl;",
+          "codeOffset": 4859340,
+          "instructionSha256": "aa3a5e7fb9a33f3ab48dc807820771dfca3432cd2bf5b99860b9ae5997bb72d6",
+          "commandEnums": []
+        },
+        {
+          "method": "supportGimbalControlCamera",
+          "descriptor": "()Z",
+          "codeOffset": 4859368,
+          "instructionSha256": "f1e7c59e898e32b6f26c8d52df2a70cdce92ac4b363600d0e071660e3804d06e",
+          "commandEnums": []
+        },
+        {
+          "method": "updateInit",
+          "descriptor": "(Z)V",
+          "codeOffset": 4859500,
+          "instructionSha256": "49c4ffc96400822b2f7c5e4035164a5dee27eaef941b97dd8342dc3667d675a9",
+          "commandEnums": []
+        },
+        {
+          "method": "updateReceiver",
+          "descriptor": "()V",
+          "codeOffset": 4859524,
+          "instructionSha256": "725e3a6a3df3a38a3a30fc30f9826a5bf93093b11aed06dce498d82cabd61bd8",
+          "commandEnums": []
+        },
+        {
+          "method": "updateReceiverForLidar",
+          "descriptor": "()Z",
+          "codeOffset": 4859664,
+          "instructionSha256": "ff28ebdf44307e5ec17dbda6824c5a0dd010134c5560de48821505e3121a0e82",
+          "commandEnums": []
+        },
+        {
+          "method": "doPack",
+          "descriptor": "()V",
+          "codeOffset": 4859836,
+          "instructionSha256": "c04351fa2725f745ddb1baf779f1a33fc349e89be520f01a4fb376bc5521bf8c",
+          "commandEnums": []
+        },
+        {
+          "method": "getActiveLensNumberFromPush",
+          "descriptor": "()I",
+          "codeOffset": 4861152,
+          "instructionSha256": "bd7dd18e4234edc8090993b20957bcc708121cd1452da346b9aadb581219c2fc",
+          "commandEnums": []
+        },
+        {
+          "method": "getAppLensConfig",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalFocusControl$LensFromAppConfig;",
+          "codeOffset": 4861176,
+          "instructionSha256": "7cb96f8f14d533d7a563ae16d7709521bc40ac385cca192224a200e45e604c90",
+          "commandEnums": []
+        },
+        {
+          "method": "getCaliStatus",
+          "descriptor": "()I",
+          "codeOffset": 4861200,
+          "instructionSha256": "5b57ab57bfea0c42b97ce328f30ec7fb2db59c4afeceed9a073b85773dc8786e",
+          "commandEnums": []
+        },
+        {
+          "method": "getCreatePositionEnd",
+          "descriptor": "()I",
+          "codeOffset": 4861224,
+          "instructionSha256": "8c75ad2e5d348a21c288a32b63a174bb1ba07e23693bb1e32be1a2ebd3cc15bd",
+          "commandEnums": []
+        },
+        {
+          "method": "getCreatePositionStart",
+          "descriptor": "()I",
+          "codeOffset": 4861248,
+          "instructionSha256": "733a1db101811510e30913a518dd2016dbaee6926366fdfc2d2204ad189a3e65",
+          "commandEnums": []
+        },
+        {
+          "method": "getCreateProgress",
+          "descriptor": "()I",
+          "codeOffset": 4861272,
+          "instructionSha256": "aa63a94ae279be1594fae1bad3c1adca8e0755ef4cbc1b897aecf2b3ad7381d4",
+          "commandEnums": []
+        },
+        {
+          "method": "getFocusMotorPosition",
+          "descriptor": "()I",
+          "codeOffset": 4861296,
+          "instructionSha256": "175b30a37f19b0394104814c1834a500f584851cb2f1afe160cd044a34345bd7",
+          "commandEnums": []
+        },
+        {
+          "method": "getGUILensConfig",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalFocusControl$LensFromGuiConfig;",
+          "codeOffset": 4861320,
+          "instructionSha256": "350cfd3bfb9cc6e8e79991546526bcd47949d2bef6e883125c582501c6fbb62b",
+          "commandEnums": []
+        },
+        {
+          "method": "getMaxPosition",
+          "descriptor": "()I",
+          "codeOffset": 4861344,
+          "instructionSha256": "6e2d1edb6ff97887a567ec29f44b665c170c14213411092a133f4fabd6edd7b8",
+          "commandEnums": []
+        },
+        {
+          "method": "getMaxSupportConfigNum",
+          "descriptor": "()I",
+          "codeOffset": 4861368,
+          "instructionSha256": "beb4ebb0e9e1cd773c3101cc08a4519e6e1dd70581c878afcf65befb7efd1d25",
+          "commandEnums": []
+        },
+        {
+          "method": "getMinPosition",
+          "descriptor": "()I",
+          "codeOffset": 4861392,
+          "instructionSha256": "92fef1f03694b31280275c10d2a74acfa674e91cac0ecedeb4d3190aa4cffa08",
+          "commandEnums": []
+        },
+        {
+          "method": "getMotorConnected",
+          "descriptor": "()Z",
+          "codeOffset": 4861416,
+          "instructionSha256": "359b3fa5e1b3f1e5844a2394402999706a38aa7c2e696984bbc5c7dec4baab0d",
+          "commandEnums": []
+        },
+        {
+          "method": "getPushInstallLens",
+          "descriptor": "()I",
+          "codeOffset": 4861452,
+          "instructionSha256": "b28c7ad26182656ec8396c5223e115253097d89d7cfc21bd7d4fff8de3cc940e",
+          "commandEnums": []
+        },
+        {
+          "method": "getRecId",
+          "descriptor": "()I",
+          "codeOffset": 4861476,
+          "instructionSha256": "c502c233b2e1c5544da6e89777cd69288b0ab30f42f6ea5ecfa3910f11c18c41",
+          "commandEnums": []
+        },
+        {
+          "method": "getTofStatus",
+          "descriptor": "()I",
+          "codeOffset": 4861500,
+          "instructionSha256": "4455619a51e2bf7a544c0a02c070255efab02b4d8396a4bac9c1a2d3851648e7",
+          "commandEnums": []
+        },
+        {
+          "method": "isChanged",
+          "descriptor": "([B)Z",
+          "codeOffset": 4861524,
+          "instructionSha256": "2152dda32da4d7e693404a188472204fe1fdb3aa4f1fb658a68841010b8603e7",
+          "commandEnums": []
+        },
+        {
+          "method": "isPushLosed",
+          "descriptor": "(I)Z",
+          "codeOffset": 4861544,
+          "instructionSha256": "74ee31ca57d4129c029605355a3d88f081654ba3040999ee3a01ffe68cfa6429",
+          "commandEnums": []
+        },
+        {
+          "method": "isReceiverSupportLidar",
+          "descriptor": "()Z",
+          "codeOffset": 4861708,
+          "instructionSha256": "592410ca778332b621a211182aa10674185e70d558912096907fba26864706e5",
+          "commandEnums": []
+        },
+        {
+          "method": "sendFocusPingHeart",
+          "descriptor": "(I)V",
+          "codeOffset": 4861764,
+          "instructionSha256": "98ea0097a7a91859d63ec17633e40e6c08c6a38ef14dd8e2b4712678988aefd4",
+          "commandEnums": [
+            "v3, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->FocusControl Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;"
+          ]
+        },
+        {
+          "method": "setCaliCommand",
+          "descriptor": "(Ldji/midware/data/model/P3/DataGimbalFocusControl$CaliCommand;)Ldji/midware/data/model/P3/DataGimbalFocusControl;",
+          "codeOffset": 4861932,
+          "instructionSha256": "2aea6a98cc441c2d0b4e91f952158f8079887c8cacafdc56a489692df8de5d4b",
+          "commandEnums": []
+        },
+        {
+          "method": "setClearType",
+          "descriptor": "(Ldji/midware/data/model/P3/DataGimbalFocusControl$ClearCommand;)Ldji/midware/data/model/P3/DataGimbalFocusControl;",
+          "codeOffset": 4861956,
+          "instructionSha256": "4f43ec5964da3de8b419d25addd74698a3f1f8c9117fba863dc853b299635b63",
+          "commandEnums": []
+        },
+        {
+          "method": "setControlMethod",
+          "descriptor": "(Ldji/midware/data/model/P3/DataGimbalFocusControl$ControlMethod;)Ldji/midware/data/model/P3/DataGimbalFocusControl;",
+          "codeOffset": 4861980,
+          "instructionSha256": "ce9c20b73dd92199b13e0161fb06282cdc13cc44807c5ec85ed9e509229e3739",
+          "commandEnums": []
+        },
+        {
+          "method": "setControlType",
+          "descriptor": "(Ldji/midware/data/model/P3/DataGimbalFocusControl$ControlType;)Ldji/midware/data/model/P3/DataGimbalFocusControl;",
+          "codeOffset": 4862004,
+          "instructionSha256": "f812d6bdd4c7e0e492665c13afc19ee880bb7c05812708fdcc3c2d0b5fe100c5",
+          "commandEnums": []
+        },
+        {
+          "method": "setCreateSetCommand",
+          "descriptor": "(Ldji/midware/data/model/P3/DataGimbalFocusControl$CreateSetCommand;)Ldji/midware/data/model/P3/DataGimbalFocusControl;",
+          "codeOffset": 4862028,
+          "instructionSha256": "9576b2a34b43dfc5ef18ac1c4f6264e0134e2fc92688ad7c21e3012507f21dac",
+          "commandEnums": []
+        },
+        {
+          "method": "setFlangeDistance",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalFocusControl;",
+          "codeOffset": 4862052,
+          "instructionSha256": "767c9dc597c43588bde8416edd71fce5fd8d54510e1ca3a6c8de2601f5b6ab9c",
+          "commandEnums": []
+        },
+        {
+          "method": "setFocusMotorControl",
+          "descriptor": "(Z)Ldji/midware/data/model/P3/DataGimbalFocusControl;",
+          "codeOffset": 4862076,
+          "instructionSha256": "e356bd92c25c3365d53e0d94951767757ab19719c703fabf9724d6b5c7316866",
+          "commandEnums": []
+        },
+        {
+          "method": "setFocusPosition",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalFocusControl;",
+          "codeOffset": 4862160,
+          "instructionSha256": "7eb357cb8d867b335f436c5f8795ff8f3685e4b9fd3da7321457dc1d455c7a2b",
+          "commandEnums": []
+        },
+        {
+          "method": "setFocusSpeed",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalFocusControl;",
+          "codeOffset": 4862184,
+          "instructionSha256": "aa474d353043d99059b2ff75731fea9a2d5ac0026687fc4939f7d51040000697",
+          "commandEnums": []
+        },
+        {
+          "method": "setLensCalibrationParam",
+          "descriptor": "(Ldji/midware/data/model/P3/DataGimbalFocusControl$LensCalibrationParam;)Ldji/midware/data/model/P3/DataGimbalFocusControl;",
+          "codeOffset": 4862208,
+          "instructionSha256": "17e2ce35c0a85622dae2d0615fc0932621c88f4224f0bdc75f234bc7391d2e15",
+          "commandEnums": []
+        },
+        {
+          "method": "setLensConfigNumber",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalFocusControl;",
+          "codeOffset": 4862232,
+          "instructionSha256": "1e3a2facc3c78028dde05fa0c60d45583820bde6863aa4e301883b0807903f78",
+          "commandEnums": []
+        },
+        {
+          "method": "setLensInstallDis",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalFocusControl;",
+          "codeOffset": 4862256,
+          "instructionSha256": "f081bd6f558d696351ce6956cbb689a60d7399ed1537585f564304b922093ede",
+          "commandEnums": []
+        },
+        {
+          "method": "setLensName",
+          "descriptor": "(Ljava/lang/String;)Ldji/midware/data/model/P3/DataGimbalFocusControl;",
+          "codeOffset": 4862280,
+          "instructionSha256": "d05822714a567b6019f0060742f1a63598bafd4a83412976754c609b3522a7f2",
+          "commandEnums": []
+        },
+        {
+          "method": "setPushRecData",
+          "descriptor": "([B)V",
+          "codeOffset": 4862304,
+          "instructionSha256": "37cd9c4c171d2c3d6a2115cd113a4e92863eb883566c421608a0bda5a8be9635",
+          "commandEnums": []
+        },
+        {
+          "method": "start",
+          "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+          "codeOffset": 4863564,
+          "instructionSha256": "e59c010b3cbc7964f9e53d17a48d14c1956ffc6f97147a90e3a4592cc8435746",
+          "commandEnums": [
+            "v1, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->FocusControl Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;"
+          ]
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo;",
+      "methods": [
+        {
+          "method": "<clinit>",
+          "descriptor": "()V",
+          "codeOffset": 4863768,
+          "instructionSha256": "c45cac2051fccb24cf6b413c478c3796ec9273f2d6c47b81f3a2da508944b18c",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 4863900,
+          "instructionSha256": "20b19993098dcc58f25a499e08c6c24946fc39bc2fcc929f0911519d944f68f9",
+          "commandEnums": []
+        },
+        {
+          "method": "getInstance",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo;",
+          "codeOffset": 4863924,
+          "instructionSha256": "0a97c0b0e2b51ad352022ea113688a4a583894f1ef9ce417dd25ed309a36dd37",
+          "commandEnums": []
+        },
+        {
+          "method": "doPack",
+          "descriptor": "()V",
+          "codeOffset": 4863952,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "getGimbalTestStatus",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo$GimbalTestStatus;",
+          "codeOffset": 4863972,
+          "instructionSha256": "0a2e960f2da74616babed08c50f96705f5b415a29580c7773096766419928baf",
+          "commandEnums": []
+        },
+        {
+          "method": "getPitchAdjustAdvice",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo$GimbalBalanceAdjustAdvice;",
+          "codeOffset": 4864004,
+          "instructionSha256": "e6ddd01a8dc6d9b0fc9b8e256498e0ac17b4fb6e771f9af120ec3bc519daf298",
+          "commandEnums": []
+        },
+        {
+          "method": "getPitchTestResult",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo$GimbalTestResult;",
+          "codeOffset": 4864036,
+          "instructionSha256": "a20a16f0ce5f47b3f7b97d9daea3aa33728e1add54a99f290894695995761eee",
+          "commandEnums": []
+        },
+        {
+          "method": "getRollAdjustAdvice",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo$GimbalBalanceAdjustAdvice;",
+          "codeOffset": 4864068,
+          "instructionSha256": "9a1e397113c3ebeb3898265ac01320c1029959139514a05d0965e84566bc3ca9",
+          "commandEnums": []
+        },
+        {
+          "method": "getRollTestResult",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo$GimbalTestResult;",
+          "codeOffset": 4864100,
+          "instructionSha256": "d7e88c8f08a78d2b0e203df0d9b90c2dadcc94c5102924db2567f3b1e878d794",
+          "commandEnums": []
+        },
+        {
+          "method": "getYawAdjustAdvice",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo$GimbalBalanceAdjustAdvice;",
+          "codeOffset": 4864132,
+          "instructionSha256": "1f83483fc765653cd4d62be1fbc09deba97f0d8e30fbe3b85904b2210bd6447d",
+          "commandEnums": []
+        },
+        {
+          "method": "getYawTestResult",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo$GimbalTestResult;",
+          "codeOffset": 4864164,
+          "instructionSha256": "f3109a2072963fbd66df8bd907a68356bd73f19cde73f4658083fad4b9d56574",
+          "commandEnums": []
+        },
+        {
+          "method": "setPushRecData",
+          "descriptor": "([B)V",
+          "codeOffset": 4864196,
+          "instructionSha256": "450aa25356bd768365315b38210dfff0ea192440c9363dbde315e84b559fde3e",
+          "commandEnums": []
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetHandleParams;",
+      "methods": [
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 4864520,
+          "instructionSha256": "20b19993098dcc58f25a499e08c6c24946fc39bc2fcc929f0911519d944f68f9",
+          "commandEnums": []
+        },
+        {
+          "method": "doPack",
+          "descriptor": "()V",
+          "codeOffset": 4864544,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "getCellphoneSensorDisable",
+          "descriptor": "()Z",
+          "codeOffset": 4864564,
+          "instructionSha256": "e93cff3daf63569009604322842d675194727fd8153b76df12436437f1c09e25",
+          "commandEnums": []
+        },
+        {
+          "method": "getDualChannelEnable",
+          "descriptor": "()I",
+          "codeOffset": 4864624,
+          "instructionSha256": "1ce95cd025aa10d91b5ec3a25bd38894dcc4682e49c90b7deadb1b9991de845a",
+          "commandEnums": []
+        },
+        {
+          "method": "getPanDirection",
+          "descriptor": "()I",
+          "codeOffset": 4864676,
+          "instructionSha256": "5036c6f59b7e478919fb5686b81395fec707298a2c9e1f4f6c47b40cab29a580",
+          "commandEnums": []
+        },
+        {
+          "method": "getPitchFree",
+          "descriptor": "()I",
+          "codeOffset": 4864728,
+          "instructionSha256": "d52907f3c163792cd26ad9a3f06f40aef30da468209ee6c8c727fe0912de609a",
+          "commandEnums": []
+        },
+        {
+          "method": "getProfile",
+          "descriptor": "()I",
+          "codeOffset": 4864780,
+          "instructionSha256": "ced899487e063e891c0fa7ca078fa070850cc0de510040ce4cc07f1f8c8feefa",
+          "commandEnums": []
+        },
+        {
+          "method": "getRotationFocusEnable",
+          "descriptor": "()Z",
+          "codeOffset": 4864832,
+          "instructionSha256": "293be58c502d1eed2a6671281297cdb42636418b74f2ca38de8dddad00dc562f",
+          "commandEnums": []
+        },
+        {
+          "method": "getTiltDirection",
+          "descriptor": "()I",
+          "codeOffset": 4864892,
+          "instructionSha256": "27c141d93ab3b64c2f7c220c127a946a6b0f087aac259242ba7b22a5e69c8d4b",
+          "commandEnums": []
+        },
+        {
+          "method": "getZoom2SpeedEnable",
+          "descriptor": "()Z",
+          "codeOffset": 4864944,
+          "instructionSha256": "8b902b52fcd0270e7bcd132dd555269a95a1d6d54f6d1f4048773b6f88193d14",
+          "commandEnums": []
+        },
+        {
+          "method": "start",
+          "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+          "codeOffset": 4865004,
+          "instructionSha256": "59d84f9e8a6620d8cb3f8df85bf7e4a9883fc390a57741a799d97b97ff14686f",
+          "commandEnums": [
+            "v1, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->GetHandleParams Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;"
+          ]
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushAbnormalStatus;",
+      "methods": [
+        {
+          "method": "<clinit>",
+          "descriptor": "()V",
+          "codeOffset": 4865152,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 4865172,
+          "instructionSha256": "20b19993098dcc58f25a499e08c6c24946fc39bc2fcc929f0911519d944f68f9",
+          "commandEnums": []
+        },
+        {
+          "method": "getInstance",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetPushAbnormalStatus;",
+          "codeOffset": 4865196,
+          "instructionSha256": "014be1e735fe1540a0106ac45aad310aa6bbb419aa64ff439158874f53939bc1",
+          "commandEnums": []
+        },
+        {
+          "method": "doPack",
+          "descriptor": "()V",
+          "codeOffset": 4865276,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "getFanDirection",
+          "descriptor": "()I",
+          "codeOffset": 4865296,
+          "instructionSha256": "eb61b24d07624be20acd8b749886ffb0aadb013107e1a5c2caf59099e7e7350f",
+          "commandEnums": []
+        },
+        {
+          "method": "getGimbalDirectionWhenVertical",
+          "descriptor": "()I",
+          "codeOffset": 4865352,
+          "instructionSha256": "16b4f3aa28d2c1b23bf7fd40d3e996035ed63c95dad9dcf4aeff52ae318b3ca5",
+          "commandEnums": []
+        },
+        {
+          "method": "getGimbalGravity",
+          "descriptor": "()I",
+          "codeOffset": 4865412,
+          "instructionSha256": "5b16ac272ad5b89f5a5a28dc5f6da8f254351c58100c4d0ccbf1548713b7485d",
+          "commandEnums": []
+        },
+        {
+          "method": "getSleepMode",
+          "descriptor": "()I",
+          "codeOffset": 4865468,
+          "instructionSha256": "f1199fef3688ad98c4742d7e22ff877b2677f6eda694866c089fc89648a21f5a",
+          "commandEnums": []
+        },
+        {
+          "method": "getVerticalDirection",
+          "descriptor": "()I",
+          "codeOffset": 4865524,
+          "instructionSha256": "cfe23cd1cd08f177626b18fcfcd1e439c75a5b08560c3e10541a4c469c310b2f",
+          "commandEnums": []
+        },
+        {
+          "method": "isErrorRecentOrSelfie",
+          "descriptor": "()Z",
+          "codeOffset": 4865580,
+          "instructionSha256": "edd4e2cb8278ef613d259ce5bb4733d5f368b2d7d0e61647a0e593415fe4724f",
+          "commandEnums": []
+        },
+        {
+          "method": "isErrorRecentWhenStartUp",
+          "descriptor": "()Z",
+          "codeOffset": 4865644,
+          "instructionSha256": "3805c4db0324e7a5b38bc98bf06981b6f33ea5b8322cf7cecf4936393bfc35c1",
+          "commandEnums": []
+        },
+        {
+          "method": "isGimbalLocked",
+          "descriptor": "()Z",
+          "codeOffset": 4865708,
+          "instructionSha256": "3e5edd94319d310a4ad76378d37ca8d34242eb0b84f3d37b3e4d764261bf6539",
+          "commandEnums": []
+        },
+        {
+          "method": "isInFlashlight",
+          "descriptor": "()Z",
+          "codeOffset": 4865760,
+          "instructionSha256": "8dd3e40860aa6dc6e157316ed4fa42001e105b71537eee732ce9dfc29d05d202",
+          "commandEnums": []
+        },
+        {
+          "method": "isJointLockAfterStartup",
+          "descriptor": "()Z",
+          "codeOffset": 4865824,
+          "instructionSha256": "8c5cef73806fdd03f59f88780954d4d65eef33c038758731f04acf0ef7dd0c6c",
+          "commandEnums": []
+        },
+        {
+          "method": "isJointLockWhenStartup",
+          "descriptor": "()Z",
+          "codeOffset": 4865884,
+          "instructionSha256": "bbda78a43afb262d19ed0b212e6277f5dc30a21acbdfbc440d794bdb1e3898ea",
+          "commandEnums": []
+        },
+        {
+          "method": "isMotorProtected",
+          "descriptor": "()Z",
+          "codeOffset": 4865944,
+          "instructionSha256": "ad78f351233873c4859c372294bde6f1e4aaceccc596d8219774d399aea1e77e",
+          "commandEnums": []
+        },
+        {
+          "method": "isPanoReady",
+          "descriptor": "()Z",
+          "codeOffset": 4866008,
+          "instructionSha256": "f9df252be1389915d3e527c5252e7e83c20912eefb20290350af0ff8f4e43e60",
+          "commandEnums": []
+        },
+        {
+          "method": "isPhoneOutGimbal",
+          "descriptor": "()Z",
+          "codeOffset": 4866072,
+          "instructionSha256": "da2951e3f8d853dfee74befb5d048a2834c6c09de0b2d028cf08a6ff356f2fd4",
+          "commandEnums": []
+        },
+        {
+          "method": "isPitchLimitedInTracking",
+          "descriptor": "()Z",
+          "codeOffset": 4866132,
+          "instructionSha256": "869b3974eb9e6cdc974f30d03789f804116371e276758f2f14049fb2bdc2f8fc",
+          "commandEnums": []
+        },
+        {
+          "method": "isPitchLocked",
+          "descriptor": "()Z",
+          "codeOffset": 4866196,
+          "instructionSha256": "2c0784cc507bb726c67c5569e23a59f3d0880b6d341589d15599cb7c3fa7129d",
+          "commandEnums": []
+        },
+        {
+          "method": "isPortrait",
+          "descriptor": "()Z",
+          "codeOffset": 4866256,
+          "instructionSha256": "ec53f4e69594571078dae456c561ec8603f91d42c248681eca7a0d3b9cef3716",
+          "commandEnums": []
+        },
+        {
+          "method": "isRollLocked",
+          "descriptor": "()Z",
+          "codeOffset": 4866320,
+          "instructionSha256": "be9d2d8b836fd6e92f9721b1e070c36a23c803300b528226b3a41098bf916129",
+          "commandEnums": []
+        },
+        {
+          "method": "isUpgrading",
+          "descriptor": "()Z",
+          "codeOffset": 4866380,
+          "instructionSha256": "b8b27ce7636ec998d1e7a91cf55ffcf5d0a1fc65d107665f47aed1e96bfea7fd",
+          "commandEnums": []
+        },
+        {
+          "method": "isYawLimit",
+          "descriptor": "()Z",
+          "codeOffset": 4866444,
+          "instructionSha256": "6422bd4ff7e730707516a1f1ee2352018dcf2b27229b76a4d528c37d3a9d7406",
+          "commandEnums": []
+        },
+        {
+          "method": "isYawLimitedInTracking",
+          "descriptor": "()Z",
+          "codeOffset": 4866508,
+          "instructionSha256": "ccad9bbeec821238cab79a9ddd968573441cbd989e2f236968e5d706608ea2bc",
+          "commandEnums": []
+        },
+        {
+          "method": "isYawLocked",
+          "descriptor": "()Z",
+          "codeOffset": 4866572,
+          "instructionSha256": "2d5b5e703a4d10da4db9158a21736d18240902c5a268dcacf880bc7cf82c7c52",
+          "commandEnums": []
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushAutoCalibrationStatus;",
+      "methods": [
+        {
+          "method": "<clinit>",
+          "descriptor": "()V",
+          "codeOffset": 4866636,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 4866656,
+          "instructionSha256": "20b19993098dcc58f25a499e08c6c24946fc39bc2fcc929f0911519d944f68f9",
+          "commandEnums": []
+        },
+        {
+          "method": "getInstance",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetPushAutoCalibrationStatus;",
+          "codeOffset": 4866680,
+          "instructionSha256": "03d1454e37f27f60c59e221da36a4796de592951f305ef971754d277087bd249",
+          "commandEnums": []
+        },
+        {
+          "method": "doPack",
+          "descriptor": "()V",
+          "codeOffset": 4866760,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "getProgress",
+          "descriptor": "([I)I",
+          "codeOffset": 4866780,
+          "instructionSha256": "bb4beeb0afdf811bf7eee55c58ce783c5bb52a9fadfb13843b65bd724e50d1c6",
+          "commandEnums": []
+        },
+        {
+          "method": "getStatus",
+          "descriptor": "()I",
+          "codeOffset": 4866828,
+          "instructionSha256": "bf07d32ff100a44423308c8c334ddcdbba9fcecf83c03a44266c2db7a70f7ff9",
+          "commandEnums": []
+        },
+        {
+          "method": "isChanged",
+          "descriptor": "([B)Z",
+          "codeOffset": 4866880,
+          "instructionSha256": "2152dda32da4d7e693404a188472204fe1fdb3aa4f1fb658a68841010b8603e7",
+          "commandEnums": []
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushCalibrationStatus;",
+      "methods": [
+        {
+          "method": "<clinit>",
+          "descriptor": "()V",
+          "codeOffset": 4866900,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 4866920,
+          "instructionSha256": "20b19993098dcc58f25a499e08c6c24946fc39bc2fcc929f0911519d944f68f9",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "(Ldji/midware/data/model/P3/DataGimbalGetPushCalibrationStatus-IA;)V",
+          "codeOffset": 4866944,
+          "instructionSha256": "7745a65ec060344758e2ba008c147f51c74aa167119b0743b3ee5702d29fad52",
+          "commandEnums": []
+        },
+        {
+          "method": "getInstance",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetPushCalibrationStatus;",
+          "codeOffset": 4866968,
+          "instructionSha256": "c9a45d8ce684bb164d9ca24dd44efb15b623ac18bc9b5b013423c30f8219d65c",
+          "commandEnums": []
+        },
+        {
+          "method": "doPack",
+          "descriptor": "()V",
+          "codeOffset": 4866996,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "getCalibratePercent",
+          "descriptor": "()I",
+          "codeOffset": 4867016,
+          "instructionSha256": "6fba3381eacf9637b056f5d61f85f7438198a5f84c416abe0062511b9c68fa4d",
+          "commandEnums": []
+        },
+        {
+          "method": "getCalibrateStatus",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetPushCalibrationStatus$CalibrationStatus;",
+          "codeOffset": 4867040,
+          "instructionSha256": "08f649e2725d2d1c854d01a156250b5e790d266d883ada048a53a56fdb05622f",
+          "commandEnums": []
+        },
+        {
+          "method": "setPushRecData",
+          "descriptor": "([B)V",
+          "codeOffset": 4867072,
+          "instructionSha256": "7ecc171620d35e73ad31792659ab68fa0058b25b45a5f96d1a9853bcfd97d235",
+          "commandEnums": []
+        },
+        {
+          "method": "start",
+          "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+          "codeOffset": 4867272,
+          "instructionSha256": "b4be22621c35d542566321b098cee8f0bf2b61a55dfade9045e08fb87d8d9146",
+          "commandEnums": [
+            "v1, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->GetPushCalibration Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;"
+          ]
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushCheckStatus;",
+      "methods": [
+        {
+          "method": "<clinit>",
+          "descriptor": "()V",
+          "codeOffset": 4867432,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 4867452,
+          "instructionSha256": "20b19993098dcc58f25a499e08c6c24946fc39bc2fcc929f0911519d944f68f9",
+          "commandEnums": []
+        },
+        {
+          "method": "getInstance",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetPushCheckStatus;",
+          "codeOffset": 4867476,
+          "instructionSha256": "38ed888e533dfd63e2bef6284cb57ba3198f29538a26ea6978aab1aae77430c0",
+          "commandEnums": []
+        },
+        {
+          "method": "isHandheldGimbal",
+          "descriptor": "()Z",
+          "codeOffset": 4867556,
+          "instructionSha256": "28b582931c55de0fad904f4db49ea5ed1b04c72ee6852ab93a8eb74811993e8d",
+          "commandEnums": []
+        },
+        {
+          "method": "doPack",
+          "descriptor": "()V",
+          "codeOffset": 4867872,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "getCalibration",
+          "descriptor": "()Z",
+          "codeOffset": 4867892,
+          "instructionSha256": "9db7fd04156f4973e6adc61fbdd56c2bba59f578f6445427f1982cedcb73f248",
+          "commandEnums": []
+        },
+        {
+          "method": "getDataReceiveStatus",
+          "descriptor": "()Z",
+          "codeOffset": 4867968,
+          "instructionSha256": "5852802ffea002ed4f191a33f215ba86f4970ccaccfe5b011af88400e0439085",
+          "commandEnums": []
+        },
+        {
+          "method": "getGimbalCalibrateIsError",
+          "descriptor": "()Z",
+          "codeOffset": 4868032,
+          "instructionSha256": "5155b513c39341c193139c7e52de9dc3e1958911340d3b2ea252f8326b02ad19",
+          "commandEnums": []
+        },
+        {
+          "method": "getGyroscopeStatus",
+          "descriptor": "()Z",
+          "codeOffset": 4868096,
+          "instructionSha256": "e1296922cd4f91b0bb6af999a5ad4c00c45997e6aae5f989284832136cd08cc9",
+          "commandEnums": []
+        },
+        {
+          "method": "getIMUCalibrateMatchStatus",
+          "descriptor": "()Z",
+          "codeOffset": 4868156,
+          "instructionSha256": "ea271ef4f10d2c14ee5f99942bdf285a6cf2649cda85949e525b8ff96787b8d0",
+          "commandEnums": []
+        },
+        {
+          "method": "getJoystickStatus",
+          "descriptor": "()Z",
+          "codeOffset": 4868220,
+          "instructionSha256": "b5d382856fc7fa6a62f5b06d57aa8f8893271905cf621d895b572c5bfb022572",
+          "commandEnums": []
+        },
+        {
+          "method": "getLimitStatus",
+          "descriptor": "()I",
+          "codeOffset": 4868296,
+          "instructionSha256": "c78e24584bd0def64f0fba9e3bfff3a6548814c066cc0d871394a7af0acb5579",
+          "commandEnums": []
+        },
+        {
+          "method": "getPitchMotorStatus",
+          "descriptor": "()Z",
+          "codeOffset": 4868356,
+          "instructionSha256": "874fb3b16fd0cc89c788850d0302da5dd6c9c9257c437e483d7c8f08344908d0",
+          "commandEnums": []
+        },
+        {
+          "method": "getPitchStatus",
+          "descriptor": "()Z",
+          "codeOffset": 4868500,
+          "instructionSha256": "53cf89c061052f802536347cf990b57ea4ce38c69c49b8485100acbe248b93e6",
+          "commandEnums": []
+        },
+        {
+          "method": "getPosture",
+          "descriptor": "()Z",
+          "codeOffset": 4868564,
+          "instructionSha256": "4c709adb63b2380ab85a565533e715bed4f6f014530a3059ef21e99bd804c5e8",
+          "commandEnums": []
+        },
+        {
+          "method": "getRollMotorStatus",
+          "descriptor": "()Z",
+          "codeOffset": 4868708,
+          "instructionSha256": "2678b8a3272d80b91b2534a949aec64e4746e98e9dbb5c0207c8527cf2166be3",
+          "commandEnums": []
+        },
+        {
+          "method": "getRollStatus",
+          "descriptor": "()Z",
+          "codeOffset": 4868852,
+          "instructionSha256": "be1ff677ab8e6bdbb066d2aee4603b5c8045a5840437631f9520b7a2d3d535b4",
+          "commandEnums": []
+        },
+        {
+          "method": "getVibrateStatus",
+          "descriptor": "()Z",
+          "codeOffset": 4868916,
+          "instructionSha256": "d5261d1bca3839b6dac91c93195b84fce95b0f6c6529c770f1a6813ced326604",
+          "commandEnums": []
+        },
+        {
+          "method": "getYawMotorStatus",
+          "descriptor": "()Z",
+          "codeOffset": 4868980,
+          "instructionSha256": "2a8370f37f8da84752717a4e59b7a911f83bc6ff22a154385be7dc7387f2f4b5",
+          "commandEnums": []
+        },
+        {
+          "method": "getYawStatus",
+          "descriptor": "()Z",
+          "codeOffset": 4869124,
+          "instructionSha256": "51a85ae2882388b472c02d92ca5f82182864237261bfd6068fd7657d9c1649aa",
+          "commandEnums": []
+        },
+        {
+          "method": "getZeroPosition",
+          "descriptor": "()Z",
+          "codeOffset": 4869188,
+          "instructionSha256": "6f2745fcb46ff572c0de03e2463c61f228f83263053fb7974dcf0e35132ba3ad",
+          "commandEnums": []
+        },
+        {
+          "method": "hasException",
+          "descriptor": "()Z",
+          "codeOffset": 4869332,
+          "instructionSha256": "4702e16223896ffbad5e5802735622165d57c9b11e1a80c85a16a9f2b1336372",
+          "commandEnums": []
+        },
+        {
+          "method": "isConnectBackupGPS",
+          "descriptor": "()Z",
+          "codeOffset": 4869492,
+          "instructionSha256": "defef52c0f05c96bf321377d5dd8223234b78fec140e094c9a087faf0c8b604e",
+          "commandEnums": []
+        },
+        {
+          "method": "isConnectGPS",
+          "descriptor": "()Z",
+          "codeOffset": 4869556,
+          "instructionSha256": "ef0e1425a0ea33aed7767232a24d845bf51fa4aadf956373b42ae73015ab4395",
+          "commandEnums": []
+        },
+        {
+          "method": "isConnectLiveView",
+          "descriptor": "()Z",
+          "codeOffset": 4869620,
+          "instructionSha256": "d812b0f1afa967489d76da94fff8657455a45fe2273eed38cce48da826c63850",
+          "commandEnums": []
+        },
+        {
+          "method": "isConnectRemoteControl",
+          "descriptor": "()Z",
+          "codeOffset": 4869684,
+          "instructionSha256": "d9b9873ccbf28f4363dce91194dc071b95514d6ca38af46a0161222e95523817",
+          "commandEnums": []
+        },
+        {
+          "method": "isConnectShutter",
+          "descriptor": "()Z",
+          "codeOffset": 4869828,
+          "instructionSha256": "529e9b56a92320359b116883e2c62c676598d63d346567c09f80e59aebd1ba14",
+          "commandEnums": []
+        },
+        {
+          "method": "isConnectZoomFocus",
+          "descriptor": "()Z",
+          "codeOffset": 4869972,
+          "instructionSha256": "20b748f01c52a2220c2cea7d778de43d62bab73270977942937737516009f58e",
+          "commandEnums": []
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData;",
+      "methods": [
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 4870036,
+          "instructionSha256": "20b19993098dcc58f25a499e08c6c24946fc39bc2fcc929f0911519d944f68f9",
+          "commandEnums": []
+        },
+        {
+          "method": "convertTwoSignInt",
+          "descriptor": "(B B)I",
+          "codeOffset": 4870060,
+          "instructionSha256": "b9acd3987799fd6d6ffb7f87f85e55a52473c43be750b5b31858bab8e8df0128",
+          "commandEnums": []
+        },
+        {
+          "method": "getInstance",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData;",
+          "codeOffset": 4870088,
+          "instructionSha256": "98cc240a26dd7912c484c0e9aa7195f4941db55ec42beaee42d528ba001ee5f2",
+          "commandEnums": []
+        },
+        {
+          "method": "resetValue",
+          "descriptor": "()V",
+          "codeOffset": 4870116,
+          "instructionSha256": "83449f428b22a69e87e4c29fe06ec2b036ce3c76f583b38a921afe2951b0037a",
+          "commandEnums": []
+        },
+        {
+          "method": "doPack",
+          "descriptor": "()V",
+          "codeOffset": 4870148,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "getPitchSpeed",
+          "descriptor": "()I",
+          "codeOffset": 4870168,
+          "instructionSha256": "100566087203035bc61203de6bb469eb3a9718f4c0b686bab8ce64f6b10a24b8",
+          "commandEnums": []
+        },
+        {
+          "method": "getRollSpeed",
+          "descriptor": "()I",
+          "codeOffset": 4870192,
+          "instructionSha256": "37866d9a154262a8d483f585092ed39b1375d450383678ac2427ee168ce8daac",
+          "commandEnums": []
+        },
+        {
+          "method": "getSpeedControlType",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData$SpeedControlType;",
+          "codeOffset": 4870216,
+          "instructionSha256": "990ae7a966a8dee7499524cb22420b9e43777f2f4acff2dd3e0b813aaa98b920",
+          "commandEnums": []
+        },
+        {
+          "method": "getYawSpeed",
+          "descriptor": "()I",
+          "codeOffset": 4870248,
+          "instructionSha256": "08f9a6a2be2500b6839c6e3d8b6b86a68f20e1bdaeb06d596c85e1a56773af0f",
+          "commandEnums": []
+        },
+        {
+          "method": "setPushRecData",
+          "descriptor": "([B)V",
+          "codeOffset": 4870272,
+          "instructionSha256": "7102b0da156a3e4ae7d8e60dbe62c03732037419617083772cfedf24251e03d9",
+          "commandEnums": []
+        },
+        {
+          "method": "start",
+          "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+          "codeOffset": 4870536,
+          "instructionSha256": "bdbee2d3cbb106ba67e118f59ecac33da297a53f1921d0ae7c779edf54152a94",
+          "commandEnums": [
+            "v1, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->GetPushExternalDeviceData Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;"
+          ]
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalStatus;",
+      "methods": [
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 4870696,
+          "instructionSha256": "91b396d4fadd1e33fdc6205ac6e6cf8ac2d27caed630dc9cc3ff3dc71aebfa04",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "(Ldji/midware/data/model/P3/DataGimbalGetPushExternalStatus-IA;)V",
+          "codeOffset": 4870728,
+          "instructionSha256": "12bd3bf7f646a21ed10fc342cd3429220b9e10ded97732661651e1eb6c86d52b",
+          "commandEnums": []
+        },
+        {
+          "method": "getInstance",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetPushExternalStatus;",
+          "codeOffset": 4870752,
+          "instructionSha256": "6fb15de7605d003164e86d7f9f6bd4a07b10c0868f4c09053217fcf53849477c",
+          "commandEnums": []
+        },
+        {
+          "method": "doPack",
+          "descriptor": "()V",
+          "codeOffset": 4870780,
+          "instructionSha256": "27d3c0d2cbb2642d1380283df31aa87e7cd4fa7571be0190d1088d493d7104e4",
+          "commandEnums": []
+        },
+        {
+          "method": "getCmdId",
+          "descriptor": "()Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+          "codeOffset": 4870872,
+          "instructionSha256": "c7bfad7002f79fda51670783ce67da019dea446300d6fc590fe771a8380c96a8",
+          "commandEnums": []
+        },
+        {
+          "method": "getPanoCurPicture",
+          "descriptor": "()I",
+          "codeOffset": 4870896,
+          "instructionSha256": "2613f4ada2373be70548e7ddb34f709546beb3a8cbd02150e11440b68d50463e",
+          "commandEnums": []
+        },
+        {
+          "method": "getPanoStatus",
+          "descriptor": "()I",
+          "codeOffset": 4870920,
+          "instructionSha256": "3206a704987f7811c7c37c59c15b607c171eb914800c5fe31a0f6d8a5299f011",
+          "commandEnums": []
+        },
+        {
+          "method": "getPanoTotalPictures",
+          "descriptor": "()I",
+          "codeOffset": 4870944,
+          "instructionSha256": "aa74964b6b8fd446698e8036bc9f0c4f8e05e4b7a12a9b34314e3bd3fe474038",
+          "commandEnums": []
+        },
+        {
+          "method": "getTimelapseCurRoadPercent",
+          "descriptor": "()I",
+          "codeOffset": 4870968,
+          "instructionSha256": "a360926dfea3343c3afd82212d5b0568a900bab3ea0fc8bbfaa202f1d9c325c4",
+          "commandEnums": []
+        },
+        {
+          "method": "getTimelapseFinishedPoints",
+          "descriptor": "()I",
+          "codeOffset": 4870992,
+          "instructionSha256": "99fedea20886f9ef770615e8acd99600571bafd49248dd3470f9e10358214cd9",
+          "commandEnums": []
+        },
+        {
+          "method": "getTimelapseRecordingOrPreview",
+          "descriptor": "()I",
+          "codeOffset": 4871016,
+          "instructionSha256": "1b5e63cf7d5f6c983ae3f32a9b22afec0f7553394853b4de56cb09cb9b1bf230",
+          "commandEnums": []
+        },
+        {
+          "method": "getTimelapseStatus",
+          "descriptor": "()I",
+          "codeOffset": 4871040,
+          "instructionSha256": "e1dbb3721e73af9d3ff112300e9183d9ea4268b0a2144b2a8528cdb97631b968",
+          "commandEnums": []
+        },
+        {
+          "method": "getTimelapseTotalRoadPercent",
+          "descriptor": "()I",
+          "codeOffset": 4871064,
+          "instructionSha256": "05604b77e02d9680049666d57e7f32d7cccdafc874cc064a8b6625e8e5b8e614",
+          "commandEnums": []
+        },
+        {
+          "method": "getTrackCurPercent",
+          "descriptor": "()I",
+          "codeOffset": 4871088,
+          "instructionSha256": "8629dc77e15450cabbb7589ebac656cef90b043b39ced9e825016ed3eba5b9d0",
+          "commandEnums": []
+        },
+        {
+          "method": "getTrackFinishedPoints",
+          "descriptor": "()I",
+          "codeOffset": 4871112,
+          "instructionSha256": "e44f15dea4206711faaf408a2265a894a98d7cbc3e58feee372b9ff6361966a2",
+          "commandEnums": []
+        },
+        {
+          "method": "getTrackStatus",
+          "descriptor": "()I",
+          "codeOffset": 4871136,
+          "instructionSha256": "91356140ef7297da4c5f8d5292e602ecfa2bbe8f1bc9b25470363aa7c0727645",
+          "commandEnums": []
+        },
+        {
+          "method": "getTrackTotalPercent",
+          "descriptor": "()I",
+          "codeOffset": 4871160,
+          "instructionSha256": "d6459d2e26fb2e2d62ec4278a0b257809b487f73ada9e164273e442c42c32872",
+          "commandEnums": []
+        },
+        {
+          "method": "isSuccess",
+          "descriptor": "()Z",
+          "codeOffset": 4871184,
+          "instructionSha256": "dbcfa69cb6876821d6a79450197f4f1141b949727838131996dc709d502d910f",
+          "commandEnums": []
+        },
+        {
+          "method": "setCmdId",
+          "descriptor": "(Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;)Ldji/midware/data/model/P3/DataGimbalGetPushExternalStatus;",
+          "codeOffset": 4871208,
+          "instructionSha256": "8f643772401cfd2f605c540a5ece445a457dee74e59e6104bbf7d0b3cc22b0f3",
+          "commandEnums": []
+        },
+        {
+          "method": "setPushRecData",
+          "descriptor": "([B)V",
+          "codeOffset": 4871232,
+          "instructionSha256": "98b064a1102be6fc376574fe26402870506819d6a8f7813eb9fabdfa35450ffc",
+          "commandEnums": [
+            "v6, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->SetTrack Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v2, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->SetTrack Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v6, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->SetTimelapseParams Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v2, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->SetTimelapseParams Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v6, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->SetPanorama Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+            "v2, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->SetPanorama Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;"
+          ]
+        },
+        {
+          "method": "setRequestType",
+          "descriptor": "(Ldji/midware/data/model/P3/DataGimbalGetPushExternalStatus$RequestType;)Ldji/midware/data/model/P3/DataGimbalGetPushExternalStatus;",
+          "codeOffset": 4871884,
+          "instructionSha256": "a2b5f79a9c1d122ede3b457cf9f9a4b448def02634c324c0d09f4c124116ae75",
+          "commandEnums": []
+        },
+        {
+          "method": "start",
+          "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+          "codeOffset": 4871908,
+          "instructionSha256": "12f21fc6140ffa79540b3e12103a2a9c4915b41c1f44920d09c50b115a9ca8cd",
+          "commandEnums": [
+            "v1, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->GetPushTrackAndTimelapse Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;"
+          ]
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushHandheldStickState;",
+      "methods": [
+        {
+          "method": "<clinit>",
+          "descriptor": "()V",
+          "codeOffset": 4872068,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 4872088,
+          "instructionSha256": "20b19993098dcc58f25a499e08c6c24946fc39bc2fcc929f0911519d944f68f9",
+          "commandEnums": []
+        },
+        {
+          "method": "getInstance",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetPushHandheldStickState;",
+          "codeOffset": 4872112,
+          "instructionSha256": "61621b2a1e6d200c3753faf5cae4e00fc8531d8b016529d2ab735c4a9ba917f8",
+          "commandEnums": []
+        },
+        {
+          "method": "doPack",
+          "descriptor": "()V",
+          "codeOffset": 4872192,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "getStickX",
+          "descriptor": "()I",
+          "codeOffset": 4872212,
+          "instructionSha256": "581ed052a5ab192c90b06c2ab632c248609c601cc38e3d006d5a9f20a9dbe8a2",
+          "commandEnums": []
+        },
+        {
+          "method": "getStickY",
+          "descriptor": "()I",
+          "codeOffset": 4872264,
+          "instructionSha256": "89c03644fbb7b5e42ca18f6daf576339d7274da63468ba2bb5b5ba03daf6f560",
+          "commandEnums": []
+        },
+        {
+          "method": "isStickGimbalControlEnabled",
+          "descriptor": "()Z",
+          "codeOffset": 4872316,
+          "instructionSha256": "8571cc80c9bab834e934241d84e5c140b7610f6b8d7e8ca53e921b47c2ef973b",
+          "commandEnums": []
+        },
+        {
+          "method": "isTriggerPressed",
+          "descriptor": "()Z",
+          "codeOffset": 4872380,
+          "instructionSha256": "a21214cae53cdd3a570877c56efe6a30c3f4159da3eebae46ea91287de525859",
+          "commandEnums": []
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushLog;",
+      "methods": [
+        {
+          "method": "<clinit>",
+          "descriptor": "()V",
+          "codeOffset": 4872444,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 4872464,
+          "instructionSha256": "20b19993098dcc58f25a499e08c6c24946fc39bc2fcc929f0911519d944f68f9",
+          "commandEnums": []
+        },
+        {
+          "method": "getInstance",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetPushLog;",
+          "codeOffset": 4872488,
+          "instructionSha256": "f5663832db9a365a33c587d9ae8dca863fd5233ae66451db15db2bfdc5c09bbd",
+          "commandEnums": []
+        },
+        {
+          "method": "doPack",
+          "descriptor": "()V",
+          "codeOffset": 4872568,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "getLog",
+          "descriptor": "()Ljava/lang/String;",
+          "codeOffset": 4872588,
+          "instructionSha256": "0dba7a755d9d2efc5ec6e6a5327557ffae142a48e77690bddc62162b85f25f5b",
+          "commandEnums": []
+        },
+        {
+          "method": "getType",
+          "descriptor": "()I",
+          "codeOffset": 4872632,
+          "instructionSha256": "617a7790b3f0d19154c58b3035372427a8a88be928321e85b9e3eb3b93fca134",
+          "commandEnums": []
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushPanoramaStatus;",
+      "methods": [
+        {
+          "method": "<clinit>",
+          "descriptor": "()V",
+          "codeOffset": 4872684,
+          "instructionSha256": "e99696f891ee13d092d5ac2b370e7e0a636683d1793e6ca364078258233a44b9",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 4872716,
+          "instructionSha256": "20b19993098dcc58f25a499e08c6c24946fc39bc2fcc929f0911519d944f68f9",
+          "commandEnums": []
+        },
+        {
+          "method": "getInstance",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetPushPanoramaStatus;",
+          "codeOffset": 4872740,
+          "instructionSha256": "4dc9150e3aa0edca8aa139f863b4d97c1ebe23c55c7e07136bbbcd897388e4e9",
+          "commandEnums": []
+        },
+        {
+          "method": "doPack",
+          "descriptor": "()V",
+          "codeOffset": 4872764,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "getCurPicture",
+          "descriptor": "()I",
+          "codeOffset": 4872784,
+          "instructionSha256": "7da97dd1b5363be2a539b5b9fff06bb13bcbb1fb9c55a98625f01f07c81cf14b",
+          "commandEnums": []
+        },
+        {
+          "method": "getStatus",
+          "descriptor": "()I",
+          "codeOffset": 4872844,
+          "instructionSha256": "bac1c6404dd8cb47ffd2459ed7ac5d420260395f82e87aefce5e74a239d184a2",
+          "commandEnums": []
+        },
+        {
+          "method": "getTotalPictures",
+          "descriptor": "()I",
+          "codeOffset": 4872900,
+          "instructionSha256": "93062cfd6abae1379a73a08894bec69598d5fb891ace7ba09816dd49770b84c2",
+          "commandEnums": []
+        },
+        {
+          "method": "isChanged",
+          "descriptor": "([B)Z",
+          "codeOffset": 4872960,
+          "instructionSha256": "3863fab8420441745638f5e4e7cd5033081f84a64e08bf4ffeff32f5e1b9812e",
+          "commandEnums": []
+        },
+        {
+          "method": "start",
+          "descriptor": "()V",
+          "codeOffset": 4872992,
+          "instructionSha256": "ff4c673452a0b829d5f78adcae9c38dcfecad56be9fb382659148ee1fbe080fb",
+          "commandEnums": [
+            "v1, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->GetPushPanorama Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;"
+          ]
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushParams;",
+      "methods": [
+        {
+          "method": "<clinit>",
+          "descriptor": "()V",
+          "codeOffset": 4873212,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 4873232,
+          "instructionSha256": "639e9d33e41f1a21e71236be2128037ed623a2f173551dc69a65b6ee29cb7536",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "(Z)V",
+          "codeOffset": 4873264,
+          "instructionSha256": "5ffdf6e53f7747c724790d93a7cc2faa16021c010f29901704ee02742010f42d",
+          "commandEnums": []
+        },
+        {
+          "method": "getInstance",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetPushParams;",
+          "codeOffset": 4873296,
+          "instructionSha256": "fe709b3b31d73a5892c0ffd56ffea65f250372316df1ef1a64e7190157479749",
+          "commandEnums": []
+        },
+        {
+          "method": "autoCalibrationResult",
+          "descriptor": "()Z",
+          "codeOffset": 4873388,
+          "instructionSha256": "22a8931841f43870fe2ba4dd351b606af98861db7011e5e4bf361bbc64d8270d",
+          "commandEnums": []
+        },
+        {
+          "method": "doPack",
+          "descriptor": "()V",
+          "codeOffset": 4873452,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "getGimbalRole",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetPushParams$GimbalRole;",
+          "codeOffset": 4873472,
+          "instructionSha256": "cfb4af5254ddd002b7b4a96dc6413af0200a6877770b8c645b427ccf595711cf",
+          "commandEnums": []
+        },
+        {
+          "method": "getJoystickHorDirection",
+          "descriptor": "()I",
+          "codeOffset": 4873536,
+          "instructionSha256": "e5243a62447805ccd5a9d4238c50c6b3d1d1f51f2ea323a2ecf18a2ee5760f0c",
+          "commandEnums": []
+        },
+        {
+          "method": "getJoystickVerDirection",
+          "descriptor": "()I",
+          "codeOffset": 4873600,
+          "instructionSha256": "f0c22f35b99351bc85daf7b820f7b9e190d1485604c00c4f7bd707737c56e07b",
+          "commandEnums": []
+        },
+        {
+          "method": "getMode",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalControl$MODE;",
+          "codeOffset": 4873660,
+          "instructionSha256": "55a9adeae8862b22f4962ba0f907d0b5c5f9f7ed2de94f91f6586e8576642a62",
+          "commandEnums": []
+        },
+        {
+          "method": "getPitch",
+          "descriptor": "()I",
+          "codeOffset": 4873724,
+          "instructionSha256": "39b563d621f59fa4ee12ed7f2eee21233a42242865530146be6874ed3274076e",
+          "commandEnums": []
+        },
+        {
+          "method": "getPitchAdjust",
+          "descriptor": "()B",
+          "codeOffset": 4873776,
+          "instructionSha256": "abdfdc5cef93dd1450e1b53a27093d3c7546747b6c00c37beea4ec0d6ada4621",
+          "commandEnums": []
+        },
+        {
+          "method": "getReceivePack",
+          "descriptor": "()Ldji/midware/data/packages/P3/Pack;",
+          "codeOffset": 4873832,
+          "instructionSha256": "7b51caba522831ff256609b958d944d620df6eb290a91178a81fc1a51e6feca8",
+          "commandEnums": []
+        },
+        {
+          "method": "getRoll",
+          "descriptor": "()I",
+          "codeOffset": 4873856,
+          "instructionSha256": "551f5b6fecf3b1830d01eb7a0a3f676744e128f24b82ab116561b5e1f3dff57f",
+          "commandEnums": []
+        },
+        {
+          "method": "getRollAdjust",
+          "descriptor": "()B",
+          "codeOffset": 4873908,
+          "instructionSha256": "47226c90f62612644de7d88df81aa048d90eb87ccf8804bf2b5bae31c22a964f",
+          "commandEnums": []
+        },
+        {
+          "method": "getSubMode",
+          "descriptor": "()I",
+          "codeOffset": 4873964,
+          "instructionSha256": "6bf5aca2b15a7455d2dca3517bd00287fab43592d6ec9d1d20ede78d4551309c",
+          "commandEnums": []
+        },
+        {
+          "method": "getTimeStamp",
+          "descriptor": "()I",
+          "codeOffset": 4874024,
+          "instructionSha256": "37a496d97b99cdde632a0bced2dcacf9a0c746fea156e2d9e2a560c3ea70c186",
+          "commandEnums": []
+        },
+        {
+          "method": "getVersion",
+          "descriptor": "()I",
+          "codeOffset": 4874080,
+          "instructionSha256": "9fde42ea4f7a8383a8c1ad2019c2738c3cd0d92cfd533ff3e72aa7d8dfccb0a0",
+          "commandEnums": []
+        },
+        {
+          "method": "getYaw",
+          "descriptor": "()I",
+          "codeOffset": 4874140,
+          "instructionSha256": "0bfa2fb11f0a8e07ee38e7b44a7019e0bfacd8f4652f8fadb84aa304e147f4d2",
+          "commandEnums": []
+        },
+        {
+          "method": "getYawAngle",
+          "descriptor": "([I)I",
+          "codeOffset": 4874192,
+          "instructionSha256": "534b7d139a7c29621130a222b38f57c885d2882d1c2452cd6bbfd94b57279037",
+          "commandEnums": []
+        },
+        {
+          "method": "isAutoCalibration",
+          "descriptor": "()Z",
+          "codeOffset": 4874240,
+          "instructionSha256": "9f261448e95fd05e18bdef0974c99e080901be941d95049be6dc1057085c39a0",
+          "commandEnums": []
+        },
+        {
+          "method": "isDoubleClick",
+          "descriptor": "()Z",
+          "codeOffset": 4874304,
+          "instructionSha256": "b720bb79672e39d6073177966429e2c43aa4e7edd71c6df49ca192e095b4812b",
+          "commandEnums": []
+        },
+        {
+          "method": "isFpvGimbal",
+          "descriptor": "()Z",
+          "codeOffset": 4874368,
+          "instructionSha256": "e9e2e7b1520ce0e35a97dc5467b4caa8ddf113d6c28b3ec9841ec8ddff322fc2",
+          "commandEnums": []
+        },
+        {
+          "method": "isMainGimbalLose",
+          "descriptor": "()Z",
+          "codeOffset": 4874416,
+          "instructionSha256": "06072ec36af60793be914c670a89d4442b344a55e4a9dd5ea925f6ab7e283925",
+          "commandEnums": []
+        },
+        {
+          "method": "isPitchInLimit",
+          "descriptor": "()Z",
+          "codeOffset": 4874468,
+          "instructionSha256": "097efdd43a0475a2def87da45d7ad11b05b5267ab6585a4f7b74a8c9ae56e352",
+          "commandEnums": []
+        },
+        {
+          "method": "isRollInLimit",
+          "descriptor": "()Z",
+          "codeOffset": 4874532,
+          "instructionSha256": "2df1d9fd67833ae055ccd36bd09f9f9560b6846a7792ee5c48d280d459b43981",
+          "commandEnums": []
+        },
+        {
+          "method": "isSingleClick",
+          "descriptor": "()Z",
+          "codeOffset": 4874596,
+          "instructionSha256": "79987bb12fefa2e54f6a0a5e78975071f948b3a229cf894dd2afbd49b2d29efc",
+          "commandEnums": []
+        },
+        {
+          "method": "isStuck",
+          "descriptor": "()Z",
+          "codeOffset": 4874660,
+          "instructionSha256": "0a620e648caa7af72e613cee7f2974f58b3750b91e44d9e5d16c73be34125481",
+          "commandEnums": []
+        },
+        {
+          "method": "isTopPosition",
+          "descriptor": "()Z",
+          "codeOffset": 4874724,
+          "instructionSha256": "e799173886d181bdf5079e549df15fd01438fccf91ff9f806ee344d476836ccf",
+          "commandEnums": []
+        },
+        {
+          "method": "isTripleClick",
+          "descriptor": "()Z",
+          "codeOffset": 4874788,
+          "instructionSha256": "c0aa6ae24ff55d52497409dbe607504630950ab85b95fd2dde28ea69d872a2f3",
+          "commandEnums": []
+        },
+        {
+          "method": "isYawInLimit",
+          "descriptor": "()Z",
+          "codeOffset": 4874852,
+          "instructionSha256": "15a1f087407db1f69389d8135ebc7afbf1cd97edc546c6e62fd4ef951231eb9e",
+          "commandEnums": []
+        },
+        {
+          "method": "setRecPack",
+          "descriptor": "(Ldji/midware/data/packages/P3/RecvPack;)V",
+          "codeOffset": 4874916,
+          "instructionSha256": "597968b518f3d9cf6320a5ca50214ec19e37f1bde9320441883198302eba14ef",
+          "commandEnums": []
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushSensorCalibrateStatus;",
+      "methods": [
+        {
+          "method": "<clinit>",
+          "descriptor": "()V",
+          "codeOffset": 4874964,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 4874984,
+          "instructionSha256": "20b19993098dcc58f25a499e08c6c24946fc39bc2fcc929f0911519d944f68f9",
+          "commandEnums": []
+        },
+        {
+          "method": "getInstance",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetPushSensorCalibrateStatus;",
+          "codeOffset": 4875008,
+          "instructionSha256": "79e61f7c143ea29b80034294f5e49745af269b15d23b62210dbbed9ac3d70641",
+          "commandEnums": []
+        },
+        {
+          "method": "doPack",
+          "descriptor": "()V",
+          "codeOffset": 4875088,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "getProgress",
+          "descriptor": "()I",
+          "codeOffset": 4875108,
+          "instructionSha256": "f50090bb1599164cb1e81bde5dd27fdda42f203af8cc19f99948d57aba47c531",
+          "commandEnums": []
+        },
+        {
+          "method": "getStatus",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetPushSensorCalibrateStatus$CalibrationStatus;",
+          "codeOffset": 4875180,
+          "instructionSha256": "4674e27b0f8ca92f08175d7e3355e02dc0c520df59003505eb13df2555693d3f",
+          "commandEnums": []
+        },
+        {
+          "method": "start",
+          "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+          "codeOffset": 4875264,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushTimelapseStatus;",
+      "methods": [
+        {
+          "method": "<clinit>",
+          "descriptor": "()V",
+          "codeOffset": 4875284,
+          "instructionSha256": "9c7efb5582bc0fd5b4bd1ab2ece80c943244a531b4d7480338c0d3327cfa8e5f",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 4875316,
+          "instructionSha256": "20b19993098dcc58f25a499e08c6c24946fc39bc2fcc929f0911519d944f68f9",
+          "commandEnums": []
+        },
+        {
+          "method": "getInstance",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetPushTimelapseStatus;",
+          "codeOffset": 4875340,
+          "instructionSha256": "1c48b45afed07ac7d77ace04abc1553aa994a060d98887d89a3247d4179fd40b",
+          "commandEnums": []
+        },
+        {
+          "method": "doPack",
+          "descriptor": "()V",
+          "codeOffset": 4875364,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "getCurRoadPercent",
+          "descriptor": "()I",
+          "codeOffset": 4875384,
+          "instructionSha256": "f2f2c0af78a47e72dd7d3279a9845cafe6e7bb0ad767c84d6eed9a41f5918242",
+          "commandEnums": []
+        },
+        {
+          "method": "getFinishedPoints",
+          "descriptor": "()I",
+          "codeOffset": 4875440,
+          "instructionSha256": "eb84ecd4201f371cff0d748e78e38c66d752a0efca3a1f830986b46c7cd84199",
+          "commandEnums": []
+        },
+        {
+          "method": "getTakingOrPreview",
+          "descriptor": "()I",
+          "codeOffset": 4875496,
+          "instructionSha256": "960ea25e61919e32459ab47a192f86e4ae2d2ec7c9926a139b7113a11e1334a0",
+          "commandEnums": []
+        },
+        {
+          "method": "getTimelapseStatus",
+          "descriptor": "()I",
+          "codeOffset": 4875552,
+          "instructionSha256": "bfa471e12ac1f663cab8f73a4181adcb3c9b0a819bfec9b1350baa6da4093e8e",
+          "commandEnums": []
+        },
+        {
+          "method": "getTotalRoadPercent",
+          "descriptor": "()I",
+          "codeOffset": 4875608,
+          "instructionSha256": "68c36a72452dcd31d4dfdac174eeb4b7eaac8b70d99b917b4610d447a85a3c0b",
+          "commandEnums": []
+        },
+        {
+          "method": "isChanged",
+          "descriptor": "([B)Z",
+          "codeOffset": 4875664,
+          "instructionSha256": "1cdd983622c21daabba2194c167eff3c404b9217718ac7a0e822717ed978d32a",
+          "commandEnums": []
+        },
+        {
+          "method": "start",
+          "descriptor": "()V",
+          "codeOffset": 4875696,
+          "instructionSha256": "721f036af57bf2c2f9438c28bce3510a4ce0fdfa81322be58e1b62938c2e8ebb",
+          "commandEnums": [
+            "v1, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->GetPushTimelapseStatus Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;"
+          ]
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushTutorialStatus;",
+      "methods": [
+        {
+          "method": "<clinit>",
+          "descriptor": "()V",
+          "codeOffset": 4875844,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 4875864,
+          "instructionSha256": "20b19993098dcc58f25a499e08c6c24946fc39bc2fcc929f0911519d944f68f9",
+          "commandEnums": []
+        },
+        {
+          "method": "getInstance",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetPushTutorialStatus;",
+          "codeOffset": 4875888,
+          "instructionSha256": "98b7a29f9cd4a16816cc09da3dc795234498f94584edd88a4bb87d842e0d9e03",
+          "commandEnums": []
+        },
+        {
+          "method": "doPack",
+          "descriptor": "()V",
+          "codeOffset": 4875968,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "getCurStep",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetPushTutorialStatus$TutorialStatus;",
+          "codeOffset": 4875988,
+          "instructionSha256": "7429e31590cae17b839efaa1074befc8af482d1c6638efb9d518fcde1825d466",
+          "commandEnums": []
+        },
+        {
+          "method": "getIsAppControlFinish",
+          "descriptor": "()I",
+          "codeOffset": 4876048,
+          "instructionSha256": "61c4240eb4efbec6f124a3a87df040b6971c39fc30345a77611e86cb6e4268c5",
+          "commandEnums": []
+        },
+        {
+          "method": "getIsFollowFinish",
+          "descriptor": "()I",
+          "codeOffset": 4876108,
+          "instructionSha256": "da973b3c2fd84c5b966695c1e4c009bb7bffdb43e475b89f0adb78dd345ecff4",
+          "commandEnums": []
+        },
+        {
+          "method": "getIsHandlePushFinish",
+          "descriptor": "()I",
+          "codeOffset": 4876168,
+          "instructionSha256": "b2bdb57bece77dbfdd5dcc69c0181cb84d243f8fac188add6ae4e711440b827e",
+          "commandEnums": []
+        },
+        {
+          "method": "getIsLockDirectionFinish",
+          "descriptor": "()I",
+          "codeOffset": 4876228,
+          "instructionSha256": "53807b3b1ed897cfba90a6cd8f24284fa79caa5330691904e3994dd23b26db39",
+          "commandEnums": []
+        },
+        {
+          "method": "getIsRecentFinish",
+          "descriptor": "()I",
+          "codeOffset": 4876284,
+          "instructionSha256": "90592f27efd0cf305a203df0b2e5b8d524983b0b1da877e1e72bf1cefd4d1424",
+          "commandEnums": []
+        },
+        {
+          "method": "getIsSelfieFinish",
+          "descriptor": "()I",
+          "codeOffset": 4876344,
+          "instructionSha256": "058ed127288ca32b9c6447ee9b508a23e38bd355ea9393e79e83d01abb533a32",
+          "commandEnums": []
+        },
+        {
+          "method": "getIsStickFinish",
+          "descriptor": "()I",
+          "codeOffset": 4876404,
+          "instructionSha256": "131bfd146cee33e56c6b2bd932f35929442abd39f22bb6b8811b7f2aee213aa2",
+          "commandEnums": []
+        },
+        {
+          "method": "getIsUnlock",
+          "descriptor": "()I",
+          "codeOffset": 4876464,
+          "instructionSha256": "16b20467547c459d3a61493feb2de6f1516fb8e6f9c5e71bc1c64d29e05edde5",
+          "commandEnums": []
+        },
+        {
+          "method": "getIsUpright",
+          "descriptor": "()I",
+          "codeOffset": 4876520,
+          "instructionSha256": "300f8bb89fe9235486d86c0b9fedafb68afec5d0fad93585b995ed616d71befe",
+          "commandEnums": []
+        },
+        {
+          "method": "getStepStatus",
+          "descriptor": "(Ldji/midware/data/model/P3/DataGimbalGetPushTutorialStatus$TutorialStatus;)Z",
+          "codeOffset": 4876576,
+          "instructionSha256": "6d2abce769f5c74bb7350b0843461b97d4199e652e1f30009d61fccf7a1ebba3",
+          "commandEnums": []
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushType;",
+      "methods": [
+        {
+          "method": "<clinit>",
+          "descriptor": "()V",
+          "codeOffset": 4876652,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 4876672,
+          "instructionSha256": "25c7028668b91fa28ab580724ca7f7807dbca821a12b24add59c1099362fe051",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "(Z)V",
+          "codeOffset": 4876724,
+          "instructionSha256": "9744e487f50a3a3d0b43062959b7d0d132ca1d540066fc82c2193287868d0838",
+          "commandEnums": []
+        },
+        {
+          "method": "getInstance",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetPushType;",
+          "codeOffset": 4876772,
+          "instructionSha256": "7ecb6ffc3b33414834b7ef7e4f5d690382df2389aabcc23b8353b15a5b1bf7d4",
+          "commandEnums": []
+        },
+        {
+          "method": "addOnPushLostListener",
+          "descriptor": "(Ldji/midware/data/model/P3/DataGimbalGetPushType$OnPushLostListener;)V",
+          "codeOffset": 4876852,
+          "instructionSha256": "021365e14c5da94d75e757462ebe0aecf95dd666e717dc5948f724898ad6c677",
+          "commandEnums": []
+        },
+        {
+          "method": "doPack",
+          "descriptor": "()V",
+          "codeOffset": 4876900,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "getType",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetPushType$DJIGimbalType;",
+          "codeOffset": 4876920,
+          "instructionSha256": "1c076cbbe136e89415b0738e275da9e5eff27abb65daafc94b28d197852ed777",
+          "commandEnums": []
+        },
+        {
+          "method": "hasReceivedGimbalPush",
+          "descriptor": "()Z",
+          "codeOffset": 4877072,
+          "instructionSha256": "735c4052c44ceb90c894de3ec9d0c02966be4945d490d9439bbb3c778c8be2e1",
+          "commandEnums": []
+        },
+        {
+          "method": "isGimbalPushLost",
+          "descriptor": "()Z",
+          "codeOffset": 4877112,
+          "instructionSha256": "17e21055c995bc0c07f12a690e115bb72c9108d9ccded095947489e36f9e6370",
+          "commandEnums": []
+        },
+        {
+          "method": "removeOnPushLostListener",
+          "descriptor": "(Ldji/midware/data/model/P3/DataGimbalGetPushType$OnPushLostListener;)V",
+          "codeOffset": 4877180,
+          "instructionSha256": "610b519b717756116c9867c0c720d63496fcaca4e5ed9ab0ebc7a648bf627c4d",
+          "commandEnums": []
+        },
+        {
+          "method": "setPushLose",
+          "descriptor": "()V",
+          "codeOffset": 4877208,
+          "instructionSha256": "df7c702acf9f21d181d4456f5dfc874ebbd4b0a62314b719a7dbc1903da5c635",
+          "commandEnums": []
+        },
+        {
+          "method": "setPushRecData",
+          "descriptor": "([B)V",
+          "codeOffset": 4877368,
+          "instructionSha256": "5cddc2722d117b972056c8ba04a5d30d2365121ca86d5e62e6bf8001efb0421e",
+          "commandEnums": []
+        },
+        {
+          "method": "setPushRecPack",
+          "descriptor": "(Ldji/midware/data/packages/P3/Pack;)V",
+          "codeOffset": 4877480,
+          "instructionSha256": "59024bc7ac16459bccb8ee609b00de8d703327b22b15bf499c4906819666a1c6",
+          "commandEnums": []
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetUserParams;",
+      "methods": [
+        {
+          "method": "<clinit>",
+          "descriptor": "()V",
+          "codeOffset": 4877568,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 4877588,
+          "instructionSha256": "2f270507fd903c915db54a26eaca8a516555f4b3dac1a83ed827601254ae2f36",
+          "commandEnums": []
+        },
+        {
+          "method": "getInstance",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetUserParams;",
+          "codeOffset": 4877640,
+          "instructionSha256": "41d3a426c103ecc3002d292cc43816a4580733b80ea5ea16e83e6e8cfe20aa6e",
+          "commandEnums": []
+        },
+        {
+          "method": "doPack",
+          "descriptor": "()V",
+          "codeOffset": 4877720,
+          "instructionSha256": "96edd046f7fa5d089883685ccdcf11944dd4157d323938454f4eca72c7d2526e",
+          "commandEnums": []
+        },
+        {
+          "method": "post",
+          "descriptor": "()V",
+          "codeOffset": 4877888,
+          "instructionSha256": "b916a95bed2ac1ab80c5d73a345f37b9330a05af143db4ed9543127f101f4601",
+          "commandEnums": []
+        },
+        {
+          "method": "setGimbalNameIndexs",
+          "descriptor": "([Ljava/lang/String;)Ldji/midware/data/model/P3/DataGimbalGetUserParams;",
+          "codeOffset": 4877928,
+          "instructionSha256": "dd631bb7ab5e7fc6dc09bc6900e0c26f8d51062d11240bfe28c8cd153a59fede",
+          "commandEnums": []
+        },
+        {
+          "method": "setInfos",
+          "descriptor": "([Ljava/lang/String;)Ldji/midware/data/model/P3/DataGimbalGetUserParams;",
+          "codeOffset": 4877952,
+          "instructionSha256": "2570d1f5946c5fb5adcabdecb03aec17714ce60442057385c7f706c3a5365b38",
+          "commandEnums": []
+        },
+        {
+          "method": "setRecData",
+          "descriptor": "([B)V",
+          "codeOffset": 4877976,
+          "instructionSha256": "032cc430cae225d02d205f296fc70bf562f5cd40f7ce59bb148010c0b5bcb4ac",
+          "commandEnums": []
+        },
+        {
+          "method": "setRepeatTimes",
+          "descriptor": "(I)V",
+          "codeOffset": 4878324,
+          "instructionSha256": "5852e6ab4b74bafad4f925a10527f7f43ee335653e319e357cba98aa02d33409",
+          "commandEnums": []
+        },
+        {
+          "method": "setTimeOut",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalGetUserParams;",
+          "codeOffset": 4878348,
+          "instructionSha256": "f3fb8242f348bb1159e2802753a585bd05c9ec076860d4243de428436b523f8a",
+          "commandEnums": []
+        },
+        {
+          "method": "start",
+          "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+          "codeOffset": 4878372,
+          "instructionSha256": "0d05970822b30bcaaee5034188f3f6e774c78bb52a037af03f12c0d0ca1d7586",
+          "commandEnums": [
+            "v1, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->GetUserParams Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;"
+          ]
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalNewResetAndSetMode;",
+      "methods": [
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 4878544,
+          "instructionSha256": "73eef13ecbd0954e066ede1999fdb4ff4f4de50616922a02a069e017c863bfcd",
+          "commandEnums": []
+        },
+        {
+          "method": "doPack",
+          "descriptor": "()V",
+          "codeOffset": 4878592,
+          "instructionSha256": "49e0c420bbab5cc3656c305c6bcd66be7f29d8c5dfea69189808999a87669513",
+          "commandEnums": []
+        },
+        {
+          "method": "setGimbalControl",
+          "descriptor": "(Ldji/midware/data/model/P3/GimbalControlModeData;)Ldji/midware/data/model/P3/DataGimbalNewResetAndSetMode;",
+          "codeOffset": 4878672,
+          "instructionSha256": "0045a1b3f7eefe693506bfa164be9d2618ccd11c5bf384a2f3d9a99e10388bcc",
+          "commandEnums": []
+        },
+        {
+          "method": "setGimbalMode",
+          "descriptor": "(Ldji/midware/data/model/P3/DataGimbalControl$MODE;)Ldji/midware/data/model/P3/DataGimbalNewResetAndSetMode;",
+          "codeOffset": 4878724,
+          "instructionSha256": "c7d56ddc1cd0d716c36a2bf83dd76a4380ba66d0ec3047217536f33475e3a124",
+          "commandEnums": []
+        },
+        {
+          "method": "setReceiverId",
+          "descriptor": "(I)Ldji/midware/data/manager/P3/DataBase;",
+          "codeOffset": 4878748,
+          "instructionSha256": "fcf12ea5915e97b47a3807ac506373a30c34e5e0bab298f5fadd6802614644cc",
+          "commandEnums": []
+        },
+        {
+          "method": "setReceiverId",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalNewResetAndSetMode;",
+          "codeOffset": 4878776,
+          "instructionSha256": "ffcce478d16f6a099b48faa5ba7762fef0bec4a496baaf869f72f28f76f13105",
+          "commandEnums": []
+        },
+        {
+          "method": "setReset",
+          "descriptor": "(Z)Ldji/midware/data/model/P3/DataGimbalNewResetAndSetMode;",
+          "codeOffset": 4878800,
+          "instructionSha256": "21ea59eefab676c249e8fe64dbfc93051ef997c81e644bf36faca6cd97dd4778",
+          "commandEnums": []
+        },
+        {
+          "method": "setmReceiverType",
+          "descriptor": "(Ldji/midware/data/config/P3/DeviceType;)Ldji/midware/data/model/P3/DataGimbalNewResetAndSetMode;",
+          "codeOffset": 4878824,
+          "instructionSha256": "b893e943d4d54f9eec90ff2c8342608906e92f4903f9bbd80fce06c6720dc32d",
+          "commandEnums": []
+        },
+        {
+          "method": "start",
+          "descriptor": "()V",
+          "codeOffset": 4878848,
+          "instructionSha256": "0a9b0146b4e1c9fb7f869075bd9b0db28acbd54e97ab211b0a3c5143468691ac",
+          "commandEnums": [
+            "v1, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->ResetAndSetMode Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;"
+          ]
+        },
+        {
+          "method": "start",
+          "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+          "codeOffset": 4878996,
+          "instructionSha256": "3cae0e6eb63d2ef907728b20dedfdae2b8bdfa9e69b44e3a3df541a7da2dbbe4",
+          "commandEnums": [
+            "v1, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->ResetAndSetMode Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;"
+          ]
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalPushBatteryInfo;",
+      "methods": [
+        {
+          "method": "<clinit>",
+          "descriptor": "()V",
+          "codeOffset": 4879180,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 4879200,
+          "instructionSha256": "20b19993098dcc58f25a499e08c6c24946fc39bc2fcc929f0911519d944f68f9",
+          "commandEnums": []
+        },
+        {
+          "method": "getInstance",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalPushBatteryInfo;",
+          "codeOffset": 4879224,
+          "instructionSha256": "d6d0a55057e598c8965a5a0787ef94dd397e055794bb46222a829081242e5eb9",
+          "commandEnums": []
+        },
+        {
+          "method": "doPack",
+          "descriptor": "()V",
+          "codeOffset": 4879304,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "getCapacityPercentage",
+          "descriptor": "()I",
+          "codeOffset": 4879324,
+          "instructionSha256": "42683793d10fbae99443ab1233f0a2e4eb20c97b4c807f353bbe4090a25802c7",
+          "commandEnums": []
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalResetUserParams;",
+      "methods": [
+        {
+          "method": "<clinit>",
+          "descriptor": "()V",
+          "codeOffset": 4879376,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 4879396,
+          "instructionSha256": "20b19993098dcc58f25a499e08c6c24946fc39bc2fcc929f0911519d944f68f9",
+          "commandEnums": []
+        },
+        {
+          "method": "getInstance",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalResetUserParams;",
+          "codeOffset": 4879420,
+          "instructionSha256": "f740160db1199cdfbd5ec2f0b6c03680f79d8cbd4faf0113625d9f2c4356b580",
+          "commandEnums": []
+        },
+        {
+          "method": "doPack",
+          "descriptor": "()V",
+          "codeOffset": 4879500,
+          "instructionSha256": "afe2ec38b99bacfc5a330715f95c3537134af9b7cc6d157df51fb1532dd37b62",
+          "commandEnums": []
+        },
+        {
+          "method": "start",
+          "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+          "codeOffset": 4879668,
+          "instructionSha256": "bd59add540e28c1d97e9c1ea389b9a233574d479f92a11dddfd116386f669bde",
+          "commandEnums": [
+            "v1, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->ResetUserParams Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;"
+          ]
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalRollFinetune;",
+      "methods": [
+        {
+          "method": "<clinit>",
+          "descriptor": "()V",
+          "codeOffset": 4879816,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 4879836,
+          "instructionSha256": "910ffc2a1a2baf3e994933a197506f996ab52eb80dfa7c34f1dbb6416fae178c",
+          "commandEnums": []
+        },
+        {
+          "method": "getInstance",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalRollFinetune;",
+          "codeOffset": 4879892,
+          "instructionSha256": "3af51c8f0cfd44160b1e505bdb552d448e1422d82a5940612cbcd1e4c19abbe4",
+          "commandEnums": []
+        },
+        {
+          "method": "doPack",
+          "descriptor": "()V",
+          "codeOffset": 4879972,
+          "instructionSha256": "0405b11c43a7874f6db3679ffaa8f5908f32e8095d3741fa764fd7e472347872",
+          "commandEnums": []
+        },
+        {
+          "method": "setFineTuneAxis",
+          "descriptor": "(Ldji/midware/data/model/P3/DataGimbalRollFinetune$FineTuneAxis;)Ldji/midware/data/model/P3/DataGimbalRollFinetune;",
+          "codeOffset": 4880032,
+          "instructionSha256": "672ab1034ee9ff968af7986755a9f2adcde7da21558c4b7f40b74941dbbdd8c4",
+          "commandEnums": []
+        },
+        {
+          "method": "setFineTuneValue",
+          "descriptor": "(B)Ldji/midware/data/model/P3/DataGimbalRollFinetune;",
+          "codeOffset": 4880064,
+          "instructionSha256": "efbf7411a07f412aa33b775a6770758b7cde8aa2d9e03fb7f3bd7b91b3a0697d",
+          "commandEnums": []
+        },
+        {
+          "method": "setRepeatTimes",
+          "descriptor": "(I)V",
+          "codeOffset": 4880088,
+          "instructionSha256": "2b11d1559f7fd2214677f3829c3ef746263b3dbe72a005466512484dd40651e3",
+          "commandEnums": []
+        },
+        {
+          "method": "setTimeOut",
+          "descriptor": "(I)V",
+          "codeOffset": 4880112,
+          "instructionSha256": "91d745c6c2b2df61e6d3819ef5f9aa1a9fc35670454f7ad242d591522e5f3419",
+          "commandEnums": []
+        },
+        {
+          "method": "start",
+          "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+          "codeOffset": 4880136,
+          "instructionSha256": "6331847efd476a229fc28ea0affe22edeafa3222e61f1fe0209747a72fa67a94",
+          "commandEnums": [
+            "v2, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->RollFinetune Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;"
+          ]
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalRoninGetUserParams;",
+      "methods": [
+        {
+          "method": "<clinit>",
+          "descriptor": "()V",
+          "codeOffset": 4880316,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 4880336,
+          "instructionSha256": "0ca903ff6a4f78f10cb081ff2c4f530ffd50cf96c3f3f83b45a4e51a8c42d833",
+          "commandEnums": []
+        },
+        {
+          "method": "getInstance",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalRoninGetUserParams;",
+          "codeOffset": 4880368,
+          "instructionSha256": "feff6f4a04fe7c2edd271b9a03738cd6e27b8bef2a1441dc1c16d9515406c014",
+          "commandEnums": []
+        },
+        {
+          "method": "doPack",
+          "descriptor": "()V",
+          "codeOffset": 4880448,
+          "instructionSha256": "8cf292a188d14b80db6b6ef615d21dd3bda0fc804d94422c5d8d0a8915d77721",
+          "commandEnums": []
+        },
+        {
+          "method": "post",
+          "descriptor": "()V",
+          "codeOffset": 4880524,
+          "instructionSha256": "b916a95bed2ac1ab80c5d73a345f37b9330a05af143db4ed9543127f101f4601",
+          "commandEnums": []
+        },
+        {
+          "method": "setInfos",
+          "descriptor": "([Ljava/lang/String;)Ldji/midware/data/model/P3/DataGimbalRoninGetUserParams;",
+          "codeOffset": 4880564,
+          "instructionSha256": "4929f74365cd619fedce78a7f536f47da9a46fd0b6c9ee3ef374d5afc9225490",
+          "commandEnums": []
+        },
+        {
+          "method": "setRecData",
+          "descriptor": "([B)V",
+          "codeOffset": 4880588,
+          "instructionSha256": "f2111cf3fd4e597b30e54aeccd1a821df03102e7131522d16336fb4242a88e6d",
+          "commandEnums": []
+        },
+        {
+          "method": "start",
+          "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+          "codeOffset": 4880736,
+          "instructionSha256": "c065c654b18a325b53ebb88f3ba8c5a839f18a2966725a64b4301448316bc008",
+          "commandEnums": [
+            "v1, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->RoninGetParams Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;"
+          ]
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalRoninSetUserParams;",
+      "methods": [
+        {
+          "method": "<clinit>",
+          "descriptor": "()V",
+          "codeOffset": 4880884,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 4880904,
+          "instructionSha256": "31294d7703534fbce3495c3ba322e694f1342b6865b25c6cd7f123e348c10aa4",
+          "commandEnums": []
+        },
+        {
+          "method": "getInstance",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalRoninSetUserParams;",
+          "codeOffset": 4880944,
+          "instructionSha256": "ad723e85446fa27b120d8dde704ce4cd6681fc457500719a77127cf2c472e3a1",
+          "commandEnums": []
+        },
+        {
+          "method": "doPack",
+          "descriptor": "()V",
+          "codeOffset": 4881024,
+          "instructionSha256": "da31240bed1970189ae1ff44d1973d9db53c0faa850602dabe1e72fc70301c61",
+          "commandEnums": []
+        },
+        {
+          "method": "setIndexs",
+          "descriptor": "([Ljava/lang/String;)Ldji/midware/data/model/P3/DataGimbalRoninSetUserParams;",
+          "codeOffset": 4881712,
+          "instructionSha256": "f9cc8b68d6cb87c576b79a64a12c706b80b02b819433a8dabd35a560823cd74a",
+          "commandEnums": []
+        },
+        {
+          "method": "setInfo",
+          "descriptor": "(Ljava/lang/String;)Ldji/midware/data/model/P3/DataGimbalRoninSetUserParams;",
+          "codeOffset": 4881736,
+          "instructionSha256": "a6a121f8dbd829cf26e5131faaca8030a9908f9eb42ed05c94415fda380dbb79",
+          "commandEnums": []
+        },
+        {
+          "method": "setInfo",
+          "descriptor": "(Ljava/lang/String; Ljava/lang/Number;)Ldji/midware/data/model/P3/DataGimbalRoninSetUserParams;",
+          "codeOffset": 4881776,
+          "instructionSha256": "291909e9c03c4c08464326bd39d3cf9ecd427b6a997eadf43a7970d69cbae038",
+          "commandEnums": []
+        },
+        {
+          "method": "setRecData",
+          "descriptor": "([B)V",
+          "codeOffset": 4881812,
+          "instructionSha256": "e124d5046e3e3e2d3d96c92715948869cb26906c2e536896ab5422b970b91c52",
+          "commandEnums": []
+        },
+        {
+          "method": "setTimeOut",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalRoninSetUserParams;",
+          "codeOffset": 4881856,
+          "instructionSha256": "d2892f352cabd3c7df909a83cf042750576988dbb54a6e2db5bdd038ae5b1dd2",
+          "commandEnums": []
+        },
+        {
+          "method": "setValues",
+          "descriptor": "([Ljava/lang/Number;)Ldji/midware/data/model/P3/DataGimbalRoninSetUserParams;",
+          "codeOffset": 4881880,
+          "instructionSha256": "1b773919ad92307facf61a77af2c23352d284c4b9cbf9dbd9eb7eea76de7bd9f",
+          "commandEnums": []
+        },
+        {
+          "method": "start",
+          "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+          "codeOffset": 4881904,
+          "instructionSha256": "ef7def3c63b86b09a9bff3515290e1e926bb11adc7c86325a0e373267e0e82c0",
+          "commandEnums": [
+            "v1, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->RoninSetParams Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;"
+          ]
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSaveUserParams;",
+      "methods": [
+        {
+          "method": "<clinit>",
+          "descriptor": "()V",
+          "codeOffset": 4882064,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 4882084,
+          "instructionSha256": "20b19993098dcc58f25a499e08c6c24946fc39bc2fcc929f0911519d944f68f9",
+          "commandEnums": []
+        },
+        {
+          "method": "getInstance",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalSaveUserParams;",
+          "codeOffset": 4882108,
+          "instructionSha256": "18bc934a490780e90c9d0fc008144f9d67a4ae24292033aac37d907c7e235e64",
+          "commandEnums": []
+        },
+        {
+          "method": "doPack",
+          "descriptor": "()V",
+          "codeOffset": 4882188,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "start",
+          "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+          "codeOffset": 4882208,
+          "instructionSha256": "4bdc21c5c11b5c113b6c183ded3397e5b0e6c5992f43966cb5b9d96c16858568",
+          "commandEnums": [
+            "v1, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->SaveUserParams Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;"
+          ]
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetAngle;",
+      "methods": [
+        {
+          "method": "<clinit>",
+          "descriptor": "()V",
+          "codeOffset": 4882356,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 4882376,
+          "instructionSha256": "074654f5a6c058a25ad241313c4a542c0029928b556f4972bba87af80a919cda",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "(Ldji/midware/data/config/P3/DeviceType; I)V",
+          "codeOffset": 4882428,
+          "instructionSha256": "1bb5775d503857d4f1f5b48e90a6076a2aeb827a3c40ce7356d68abaad4d1abc",
+          "commandEnums": []
+        },
+        {
+          "method": "getInstance",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalSetAngle;",
+          "codeOffset": 4882484,
+          "instructionSha256": "ee73ae5dcf1c660b93c0843975780c7eb9f51e9809017dc7c700baa2209e60b7",
+          "commandEnums": []
+        },
+        {
+          "method": "doPack",
+          "descriptor": "()V",
+          "codeOffset": 4882564,
+          "instructionSha256": "ed6eed6cd19d67c33ec6f3bbe51280899514d32f6a394752b22dbcef077eca6b",
+          "commandEnums": []
+        },
+        {
+          "method": "setAngleRef",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetAngle;",
+          "codeOffset": 4882752,
+          "instructionSha256": "1464f3238cffbf65876aa23bef7e78a85d59d38f3b1007f4d524edcfd5ea1b2d",
+          "commandEnums": []
+        },
+        {
+          "method": "setErrorValue",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetAngle;",
+          "codeOffset": 4882776,
+          "instructionSha256": "dee26c3cc21348faedfa3ed2ef6886c9782c9d37598a34dee32cd31212d75e44",
+          "commandEnums": []
+        },
+        {
+          "method": "setPitchAngle",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetAngle;",
+          "codeOffset": 4882800,
+          "instructionSha256": "f313e1ba3dbfaa776647122cfbd91e11f78396fc40f4819313e9d0cfa2c30161",
+          "commandEnums": []
+        },
+        {
+          "method": "setRollAngle",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetAngle;",
+          "codeOffset": 4882824,
+          "instructionSha256": "4ba7aa3b1a8e796fadb19bb7521c05e21343ff80145bc8cb1d4243dc5f554178",
+          "commandEnums": []
+        },
+        {
+          "method": "setTimeout",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetAngle;",
+          "codeOffset": 4882848,
+          "instructionSha256": "f709ad46af7ee347d52a7dea99912eb7a5d99958e8f414dcfa54f5d39d438bf0",
+          "commandEnums": []
+        },
+        {
+          "method": "setYawAngle",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetAngle;",
+          "codeOffset": 4882872,
+          "instructionSha256": "0273248d8ce55301c3394083f96b89441e7827f618b95005589a905a3c81ef78",
+          "commandEnums": []
+        },
+        {
+          "method": "start",
+          "descriptor": "(I I Ldji/midware/interfaces/DJIDataCallBack;)V",
+          "codeOffset": 4882896,
+          "instructionSha256": "aa7fdf2eeaa9ea321cef9c8164b1ebd3f6b2a5d64d5d729fbe08373d554de97b",
+          "commandEnums": [
+            "v1, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->SetAngle Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;"
+          ]
+        },
+        {
+          "method": "start",
+          "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+          "codeOffset": 4883052,
+          "instructionSha256": "21a71c2a98d85b4f297efbf2aeca7415f397bb5600b573a01af8c30387fe2e13",
+          "commandEnums": [
+            "v1, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->SetAngle Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;"
+          ]
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "methods": [
+        {
+          "method": "<clinit>",
+          "descriptor": "()V",
+          "codeOffset": 4883208,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 4883228,
+          "instructionSha256": "ff8a993515c2b48606366b31f9440beecf552effc02776680b57c7169ea0c087",
+          "commandEnums": []
+        },
+        {
+          "method": "getInstance",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "codeOffset": 4883268,
+          "instructionSha256": "20f671e7778e353097a717615f3a3e7e03dc324e0331000b222288c8aad39eea",
+          "commandEnums": []
+        },
+        {
+          "method": "addRoadPosition",
+          "descriptor": "(I S S S)Z",
+          "codeOffset": 4883348,
+          "instructionSha256": "299d175612f10e0a87fd6045e5bcab94659ef9fdc47c06758f3cdb0d88c968dc",
+          "commandEnums": []
+        },
+        {
+          "method": "clearPoint",
+          "descriptor": "()V",
+          "codeOffset": 4883476,
+          "instructionSha256": "d3c73fafcb95fc2dd6fd83dbd06a2a3d133741f5ba458fbd027a404a6382d411",
+          "commandEnums": []
+        },
+        {
+          "method": "doPack",
+          "descriptor": "()V",
+          "codeOffset": 4883556,
+          "instructionSha256": "7dd2ca56ce1d7d2ea70954adf120e7255067d4971af88fe81d1c3c50aa19af3f",
+          "commandEnums": []
+        },
+        {
+          "method": "setControlExternalDevice",
+          "descriptor": "(Z)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "codeOffset": 4883804,
+          "instructionSha256": "be7da48253f891fc511ad9d689b1aba96e93f8100845735824a936c516c56e24",
+          "commandEnums": []
+        },
+        {
+          "method": "setISPreview",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "codeOffset": 4883840,
+          "instructionSha256": "e9d385c759c396889daf655e8a99b5281703c9b04f2b2a8ef32aa286c8480648",
+          "commandEnums": []
+        },
+        {
+          "method": "setIsTripod",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "codeOffset": 4883880,
+          "instructionSha256": "53049c1becd6ac655d0ac82df4f51c7b5d5a2e6838bf5b53f6782cb4984e5ae9",
+          "commandEnums": []
+        },
+        {
+          "method": "setMode",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "codeOffset": 4883920,
+          "instructionSha256": "142b33f79bfca19028611775de1ed119cf62110c93cc56a9d6a51d0cf4fec014",
+          "commandEnums": []
+        },
+        {
+          "method": "setStartOrStop",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "codeOffset": 4883956,
+          "instructionSha256": "baad1a1fbabe9ea29c72e2fad7534649ea29ef61a89599ef753514d83054133a",
+          "commandEnums": []
+        },
+        {
+          "method": "start",
+          "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+          "codeOffset": 4883996,
+          "instructionSha256": "1fa91f36cb1511a5be887c8cff7ccd97843d443dc4027638619559f9d6bcb883",
+          "commandEnums": [
+            "v1, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->SetDelayTimelapseParams Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;"
+          ]
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetHandheldStickControlEnabled;",
+      "methods": [
+        {
+          "method": "<clinit>",
+          "descriptor": "()V",
+          "codeOffset": 4884144,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 4884164,
+          "instructionSha256": "39168681df57fd2a39a5155e19083ec136bd43029a74e6b4d49ff69d9c42a89a",
+          "commandEnums": []
+        },
+        {
+          "method": "getInstance",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalSetHandheldStickControlEnabled;",
+          "codeOffset": 4884196,
+          "instructionSha256": "6fdf37ee9d2fe48257225c3cee6bcd52fc580c7e6a7cfc58e5be16bd27a22eca",
+          "commandEnums": []
+        },
+        {
+          "method": "doPack",
+          "descriptor": "()V",
+          "codeOffset": 4884276,
+          "instructionSha256": "946c5a1770b9a63276634f1c683ca869c29f12c57eb6f0b1ae45687e00c6a7b6",
+          "commandEnums": []
+        },
+        {
+          "method": "setHandheldStickControlEnabled",
+          "descriptor": "(Z)Ldji/midware/data/model/P3/DataGimbalSetHandheldStickControlEnabled;",
+          "codeOffset": 4884320,
+          "instructionSha256": "ea5e9fa3e39aea431e48aa7f52ddf6c05d0588a055a7cf0ce508cd6c57c547b8",
+          "commandEnums": []
+        },
+        {
+          "method": "start",
+          "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+          "codeOffset": 4884344,
+          "instructionSha256": "d9d41f37cdb37a128f22a9d4675dd1e9d3a7b7a64b0f567df69879bb6f15f2dd",
+          "commandEnums": [
+            "v1, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->SetHandheldStickControlEnabled Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;"
+          ]
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetHandleParams;",
+      "methods": [
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 4884492,
+          "instructionSha256": "0f3409db5f01113f3f75fac1560dd20cd1b2007c445c6b96c91a2abebc03f060",
+          "commandEnums": []
+        },
+        {
+          "method": "reset",
+          "descriptor": "()V",
+          "codeOffset": 4884552,
+          "instructionSha256": "465c4d6015b68f4e4a9d98b88527e96da4597221fe871f75fc3ea64462e69f72",
+          "commandEnums": []
+        },
+        {
+          "method": "doPack",
+          "descriptor": "()V",
+          "codeOffset": 4884600,
+          "instructionSha256": "8cd71264a5e5ebb76c552695e4a081b221b1209f1f8a1c9d39e676cd64e1bb49",
+          "commandEnums": []
+        },
+        {
+          "method": "setCellphoneSensorDisable",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetHandleParams;",
+          "codeOffset": 4884764,
+          "instructionSha256": "c326292917bb872b47ade7cfff3f09b73c642ffd2687e211daebca09809cfe20",
+          "commandEnums": []
+        },
+        {
+          "method": "setDualChannelEnable",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetHandleParams;",
+          "codeOffset": 4884788,
+          "instructionSha256": "91abf569100d7891c266f1cb2548577e3b7a71ee8094987dfd5124ddb3f2882c",
+          "commandEnums": []
+        },
+        {
+          "method": "setPanDirection",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetHandleParams;",
+          "codeOffset": 4884812,
+          "instructionSha256": "0247b50c00a3e26da8917e9556acfe157ba66bcd894129926064ea9dde84e2cb",
+          "commandEnums": []
+        },
+        {
+          "method": "setPitchFree",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetHandleParams;",
+          "codeOffset": 4884836,
+          "instructionSha256": "ea6329adfec2cf057818a6152fd87f7e1ad2197b5c15e4a761ab768e994c89b5",
+          "commandEnums": []
+        },
+        {
+          "method": "setProfile",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetHandleParams;",
+          "codeOffset": 4884860,
+          "instructionSha256": "7a9e44bda438106c608fa7d58ea9ab75297193616da4bf997b6cd6c179f815d5",
+          "commandEnums": []
+        },
+        {
+          "method": "setRotationFocusEnable",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetHandleParams;",
+          "codeOffset": 4884884,
+          "instructionSha256": "0fb46446b27dc8e14141fdb4edece901038822aa77b97b158aa39abe82633e9c",
+          "commandEnums": []
+        },
+        {
+          "method": "setTiltDirection",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetHandleParams;",
+          "codeOffset": 4884908,
+          "instructionSha256": "c12c257d7131f9a16758b250d9ff42b31d9e6f466fb96a7b07dc81c68961beb5",
+          "commandEnums": []
+        },
+        {
+          "method": "setZoom2Speed",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetHandleParams;",
+          "codeOffset": 4884932,
+          "instructionSha256": "1bc8beb9d4a87aba787f8a7b268a6c99e1c74e6508d8191b3a4767e7697858df",
+          "commandEnums": []
+        },
+        {
+          "method": "start",
+          "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+          "codeOffset": 4884956,
+          "instructionSha256": "1759183fa921e945dd29f3b56239630b328b39bc3ffc5ca28692751efc1d6af7",
+          "commandEnums": [
+            "v1, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->SetHandleParams Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;"
+          ]
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;",
+      "methods": [
+        {
+          "method": "<clinit>",
+          "descriptor": "()V",
+          "codeOffset": 4885104,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 4885124,
+          "instructionSha256": "20b19993098dcc58f25a499e08c6c24946fc39bc2fcc929f0911519d944f68f9",
+          "commandEnums": []
+        },
+        {
+          "method": "getInstance",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;",
+          "codeOffset": 4885148,
+          "instructionSha256": "4effe80e9ffc402c486fbde15385333c939b2df4e25a5db592fc15c12fe2c8a4",
+          "commandEnums": []
+        },
+        {
+          "method": "doPack",
+          "descriptor": "()V",
+          "codeOffset": 4885228,
+          "instructionSha256": "a2b584c3fb0cce3fafbb84473f212192b5f864673abc9e1d6046387f63e717c6",
+          "commandEnums": []
+        },
+        {
+          "method": "setExposureTime",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;",
+          "codeOffset": 4885456,
+          "instructionSha256": "517066c3f1aeadca67ff23c89e2774b3647c69c3c37d2e5c52b35966688be31e",
+          "commandEnums": []
+        },
+        {
+          "method": "setPictures",
+          "descriptor": "(I I)Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;",
+          "codeOffset": 4885480,
+          "instructionSha256": "327b776a320fc4b05a0804755ebca7a265cc4bd776a76fcebf2687683c9058ce",
+          "commandEnums": []
+        },
+        {
+          "method": "setRange",
+          "descriptor": "(I I I I)Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;",
+          "codeOffset": 4885508,
+          "instructionSha256": "c342babb383a10474b9759650093352f7b4acd3a8791b505e8ed26f0e814bd24",
+          "commandEnums": []
+        },
+        {
+          "method": "setStopStartOrPreview",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;",
+          "codeOffset": 4885544,
+          "instructionSha256": "c580408a61b43edddade6730e7fdf537105a1a2a3556d9710171a0ab60b9c051",
+          "commandEnums": []
+        },
+        {
+          "method": "start",
+          "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+          "codeOffset": 4885568,
+          "instructionSha256": "55b0eeb14ba4ac96762eacacb0138576ce5cccee4e348dde553d987790864c86",
+          "commandEnums": [
+            "v1, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->SetPanorama Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;"
+          ]
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "methods": [
+        {
+          "method": "<clinit>",
+          "descriptor": "()V",
+          "codeOffset": 4885728,
+          "instructionSha256": "0bb5b2d74a26cd1b9962d65e79c0f063964ed1a7a3e4ed66364e63440b9980ea",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 4885760,
+          "instructionSha256": "752bd8ac0174163313e65f4030a5f0645978a42417d8dac638055194d05e4cfa",
+          "commandEnums": []
+        },
+        {
+          "method": "getControlState",
+          "descriptor": "()I",
+          "codeOffset": 4885808,
+          "instructionSha256": "06fe29f6fb1e0a0014b8f9d9074244ea138c6ee1a1eddfe4b1aa1d34fc217254",
+          "commandEnums": []
+        },
+        {
+          "method": "getInstance",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+          "codeOffset": 4885840,
+          "instructionSha256": "6acbf510e3307069bc36cf57d43e6c39a3a88ccb7c2f1ae2381bf658012d5766",
+          "commandEnums": []
+        },
+        {
+          "method": "getIntValue",
+          "descriptor": "(Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus$DataType;)I",
+          "codeOffset": 4885864,
+          "instructionSha256": "fe1c5d859974576fe078a968574c82e0037c886624bd9d6058289fc7db3a66b0",
+          "commandEnums": []
+        },
+        {
+          "method": "doPack",
+          "descriptor": "()V",
+          "codeOffset": 4885988,
+          "instructionSha256": "5063d17e210eaf969709d13b266e6fe23ba73264f44c48a96e05a79a9341633b",
+          "commandEnums": []
+        },
+        {
+          "method": "getChannel1",
+          "descriptor": "()I",
+          "codeOffset": 4886048,
+          "instructionSha256": "3d3ed5ae712b58e3e1d1eb7122711ecdf2cea7e429f3479c2daf6a16cadf84e0",
+          "commandEnums": []
+        },
+        {
+          "method": "getChannel2",
+          "descriptor": "()I",
+          "codeOffset": 4886080,
+          "instructionSha256": "539e752cf967b635ea227d8f68a646c9151a923bd71ffb384934371e067a2336",
+          "commandEnums": []
+        },
+        {
+          "method": "getChannel3",
+          "descriptor": "()I",
+          "codeOffset": 4886112,
+          "instructionSha256": "523f68d7ba553b65d113a3e9b0da4efba3881961ef646a9833b214cfe446b6df",
+          "commandEnums": []
+        },
+        {
+          "method": "getChannel4",
+          "descriptor": "()I",
+          "codeOffset": 4886144,
+          "instructionSha256": "888a169774658e5ab72ba855d083372287b9e944a424f9ad1c1bca1feaa5cdd8",
+          "commandEnums": []
+        },
+        {
+          "method": "getChannel5",
+          "descriptor": "()I",
+          "codeOffset": 4886176,
+          "instructionSha256": "64731d538a4c41343f5369b3654547687665e46e7af2da5da870c34a451aa229",
+          "commandEnums": []
+        },
+        {
+          "method": "getChannel6",
+          "descriptor": "()I",
+          "codeOffset": 4886208,
+          "instructionSha256": "5c07a9d392049220300732e0422dcf04f950f3354e33287f734b9dc96077e298",
+          "commandEnums": []
+        },
+        {
+          "method": "getData",
+          "descriptor": "([B Ljava/lang/Class;)Ljava/lang/Number;",
+          "codeOffset": 4886240,
+          "instructionSha256": "cf5208dd8f83d3f5768e32b2e6b6d844cf5df80791fd9d017702a0e6620867a0",
+          "commandEnums": []
+        },
+        {
+          "method": "getDataByType",
+          "descriptor": "(Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus$DataType;)[B",
+          "codeOffset": 4886448,
+          "instructionSha256": "5c5ac7ecbecaf47e068d40df386070cd8e0b5fc5aef41cd1a9de9e97c9a199cf",
+          "commandEnums": []
+        },
+        {
+          "method": "getGimbalControlStateBad",
+          "descriptor": "()Z",
+          "codeOffset": 4886496,
+          "instructionSha256": "0001fb22d50f43096c611277c04890859876b41652ed351f643ec4d12cc8e4f1",
+          "commandEnums": []
+        },
+        {
+          "method": "getGpsEastAcceSpeed",
+          "descriptor": "()F",
+          "codeOffset": 4886540,
+          "instructionSha256": "a45276e757aa29da17bfa0e9085f0fae92fb74a164f21abf7a40d4e63609e510",
+          "commandEnums": []
+        },
+        {
+          "method": "getGpsEastSpeed",
+          "descriptor": "()F",
+          "codeOffset": 4886580,
+          "instructionSha256": "e3df6668c30b5a3745d53dc771d93bc6ba89020266628a7b19248ae7835ec4a5",
+          "commandEnums": []
+        },
+        {
+          "method": "getGpsLat",
+          "descriptor": "()D",
+          "codeOffset": 4886620,
+          "instructionSha256": "732776b63930dcfe4817e9108f866cf4f769350da92a053ceee949004b2daf5b",
+          "commandEnums": []
+        },
+        {
+          "method": "getGpsLng",
+          "descriptor": "()D",
+          "codeOffset": 4886660,
+          "instructionSha256": "09a9be0e91c104d78cdc55e6383c8cb78b8d3888ee45ba72460f710f36e314a5",
+          "commandEnums": []
+        },
+        {
+          "method": "getGpsNorthAcceSpeed",
+          "descriptor": "()F",
+          "codeOffset": 4886700,
+          "instructionSha256": "160b205e20709be067fd62555bce7dc8e442b223ae585b595aa63a0e90d9fb67",
+          "commandEnums": []
+        },
+        {
+          "method": "getGpsNorthSpeed",
+          "descriptor": "()F",
+          "codeOffset": 4886740,
+          "instructionSha256": "6a341bf09f9053c7f7c5fa50ccf5e3b7af718fec91306f9a194443c4ff46eb28",
+          "commandEnums": []
+        },
+        {
+          "method": "getGpsNum",
+          "descriptor": "()I",
+          "codeOffset": 4886780,
+          "instructionSha256": "a6b1c959742c1c444f3f34d8af7f0e319137e2c1b9a786468dba164a73da3e29",
+          "commandEnums": []
+        },
+        {
+          "method": "getHandDeviceAngle",
+          "descriptor": "()I",
+          "codeOffset": 4886812,
+          "instructionSha256": "02cc832c19af1f34b312c97730ca41437e2e0ec6b9784e3f676fa03a34bd5d44",
+          "commandEnums": []
+        },
+        {
+          "method": "getPAcceOut",
+          "descriptor": "()F",
+          "codeOffset": 4886844,
+          "instructionSha256": "4441bf97d174b9c161826b7fa3de2771150d2e0684d3e077b16bf3354afcb79e",
+          "commandEnums": []
+        },
+        {
+          "method": "getPActualPose",
+          "descriptor": "()F",
+          "codeOffset": 4886884,
+          "instructionSha256": "69bf30046fd3cd58efa93c03da3a788b8ae85d9dfca85cdf2b296912a326f976",
+          "commandEnums": []
+        },
+        {
+          "method": "getPGyroBias",
+          "descriptor": "()F",
+          "codeOffset": 4886924,
+          "instructionSha256": "09eb077bd10712b2de760cc47a41d7b8bb53b81dee4233aed8e59571b76d5c02",
+          "commandEnums": []
+        },
+        {
+          "method": "getPGyroOut",
+          "descriptor": "()F",
+          "codeOffset": 4886964,
+          "instructionSha256": "4b38bc7104dd63421fbcd77c606d029ba8bea68b83d2fd853545af5cceb596df",
+          "commandEnums": []
+        },
+        {
+          "method": "getPMotorAngle",
+          "descriptor": "()F",
+          "codeOffset": 4887004,
+          "instructionSha256": "17d75b4807d7b91e57804cbc53de98cf05fe643499d64095212d4431343fa6fa",
+          "commandEnums": []
+        },
+        {
+          "method": "getPMotorCurrent",
+          "descriptor": "()V",
+          "codeOffset": 4887044,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "getPMotorPower",
+          "descriptor": "()I",
+          "codeOffset": 4887064,
+          "instructionSha256": "95e2743fcfb38f01ccba80e734e65395756633f4457dc49fa49a2f3afee8bbf3",
+          "commandEnums": []
+        },
+        {
+          "method": "getPMotorTemp",
+          "descriptor": "()I",
+          "codeOffset": 4887096,
+          "instructionSha256": "0bb7cd6807fa95713f93844a3a5ddbe3d4648eb0f8ecaa6e2a659877bd8946cd",
+          "commandEnums": []
+        },
+        {
+          "method": "getPPoseBias",
+          "descriptor": "()F",
+          "codeOffset": 4887128,
+          "instructionSha256": "78869aea6ffc1c9764ed47018bb570ebc5c0ec6008b4f18ec5eed266e4292b09",
+          "commandEnums": []
+        },
+        {
+          "method": "getPTargetPos",
+          "descriptor": "()F",
+          "codeOffset": 4887168,
+          "instructionSha256": "14d74f0afbd08c8f8b299e49394fc9fdf4d531c99571bef9b743f0533a59ae00",
+          "commandEnums": []
+        },
+        {
+          "method": "getRAcceOut",
+          "descriptor": "()F",
+          "codeOffset": 4887208,
+          "instructionSha256": "27327b8f6158c9cf2b25bd0f1bf581966a60885aee77fcda3bcca95da64afe8f",
+          "commandEnums": []
+        },
+        {
+          "method": "getRActualPose",
+          "descriptor": "()F",
+          "codeOffset": 4887248,
+          "instructionSha256": "26994ae2e8459af9fa824fdf2d0c8954652536f1cfd0f1ed983c71d9434f1163",
+          "commandEnums": []
+        },
+        {
+          "method": "getRGyroBias",
+          "descriptor": "()F",
+          "codeOffset": 4887288,
+          "instructionSha256": "671f4bb8b47b1ec970a8c773f0a829be23da57a3257bb7f24256dc69e9ce7e11",
+          "commandEnums": []
+        },
+        {
+          "method": "getRGyroOut",
+          "descriptor": "()F",
+          "codeOffset": 4887328,
+          "instructionSha256": "b6a47cbb034150ebc3560b103a1dd13b0a9785083024ef658c1cd11e21522541",
+          "commandEnums": []
+        },
+        {
+          "method": "getRMotorAngle",
+          "descriptor": "()F",
+          "codeOffset": 4887368,
+          "instructionSha256": "15a7fd2414273c383bee6af54e3f709091a3ac8ebeec046405af0c2458fdf974",
+          "commandEnums": []
+        },
+        {
+          "method": "getRMotorCurrent",
+          "descriptor": "()V",
+          "codeOffset": 4887408,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "getRMotorPower",
+          "descriptor": "()I",
+          "codeOffset": 4887428,
+          "instructionSha256": "8599dcaddb4f35a8e44ef69d781b63121c75addc547e0e2dc53ee600ee8f82ef",
+          "commandEnums": []
+        },
+        {
+          "method": "getRMotorTemp",
+          "descriptor": "()I",
+          "codeOffset": 4887460,
+          "instructionSha256": "12c789cef11c6142d85f4ca13319304f052efce2595b5c4db257993663588bed",
+          "commandEnums": []
+        },
+        {
+          "method": "getRPoseBias",
+          "descriptor": "()F",
+          "codeOffset": 4887492,
+          "instructionSha256": "c2571789f7f62a6894ee1393aac194c2e267eca2c707e88112ca02be5f9e43ec",
+          "commandEnums": []
+        },
+        {
+          "method": "getRTargetPos",
+          "descriptor": "()F",
+          "codeOffset": 4887532,
+          "instructionSha256": "bb2497bd1797784d803ff1778c3eef0cc9827a0a61a36964060fb8845571d72f",
+          "commandEnums": []
+        },
+        {
+          "method": "getYAcceOut",
+          "descriptor": "()F",
+          "codeOffset": 4887572,
+          "instructionSha256": "9309da34317d4d97a5951138cbb9f11559bea4c1abd5357dd6b0ec1eb0fff924",
+          "commandEnums": []
+        },
+        {
+          "method": "getYActualPose",
+          "descriptor": "()F",
+          "codeOffset": 4887612,
+          "instructionSha256": "49f60149039a80a46845b4be7ee43243f16c869ab553b60b9158e1f088ef202a",
+          "commandEnums": []
+        },
+        {
+          "method": "getYGyroBias",
+          "descriptor": "()F",
+          "codeOffset": 4887652,
+          "instructionSha256": "25dc410c0e45d60c0b62761521de527feba117004845b4375438934e0329f84f",
+          "commandEnums": []
+        },
+        {
+          "method": "getYGyroOut",
+          "descriptor": "()F",
+          "codeOffset": 4887692,
+          "instructionSha256": "111955e6612904aadd55b5c56a91a27aa64dd723d57ae22a138c68cf9771676b",
+          "commandEnums": []
+        },
+        {
+          "method": "getYMotorAngle",
+          "descriptor": "()F",
+          "codeOffset": 4887732,
+          "instructionSha256": "0319ddb5ba1dccd8e6793d70dada6abf0528dcc34254bfb451325723e6c580d4",
+          "commandEnums": []
+        },
+        {
+          "method": "getYMotorPower",
+          "descriptor": "()I",
+          "codeOffset": 4887772,
+          "instructionSha256": "a2a4b1ea9c10ce52bb848581bd08a9c70c09f70f79508d8b7e499c61ccaf6a20",
+          "commandEnums": []
+        },
+        {
+          "method": "getYMotorTemp",
+          "descriptor": "()I",
+          "codeOffset": 4887804,
+          "instructionSha256": "c47a5c08651e10005680c754fbf58cb6e0d416ebef16cdfecf15e24d93a6ce42",
+          "commandEnums": []
+        },
+        {
+          "method": "getYMototBattery",
+          "descriptor": "()V",
+          "codeOffset": 4887836,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "getYPoseBias",
+          "descriptor": "()F",
+          "codeOffset": 4887856,
+          "instructionSha256": "651530e6d248f324b9ac1c592550321c0adebd8f52e917aeee9df6bdb8cac14f",
+          "commandEnums": []
+        },
+        {
+          "method": "getYTargetPos",
+          "descriptor": "()F",
+          "codeOffset": 4887896,
+          "instructionSha256": "d4aa0bbbe07ba128c1fefbcf73cfd25f51d8620bd5a2199539a4449066e29034",
+          "commandEnums": []
+        },
+        {
+          "method": "setPushRecData",
+          "descriptor": "([B)V",
+          "codeOffset": 4887936,
+          "instructionSha256": "31d5dee2fea1abff48fd260173ea12d567e265d762326a6dddc1df77f4356f9e",
+          "commandEnums": []
+        },
+        {
+          "method": "setRequsetType",
+          "descriptor": "(Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus$RequestType;)V",
+          "codeOffset": 4888028,
+          "instructionSha256": "f7dba4cc6d34a204665bee0e1b5d3b19a1e9b157d2c72343f899e4717e8ae978",
+          "commandEnums": []
+        },
+        {
+          "method": "start",
+          "descriptor": "()V",
+          "codeOffset": 4888052,
+          "instructionSha256": "760129931b0739573502affaba892b4c2c2fd1bdb6a1b646c642259c29a08a57",
+          "commandEnums": [
+            "v1, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->SetPushPeripheralStatus Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;"
+          ]
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "methods": [
+        {
+          "method": "<clinit>",
+          "descriptor": "()V",
+          "codeOffset": 4888200,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 4888220,
+          "instructionSha256": "c0153f04cf2cb661034260a793ce645457e8eaabb62dd85a2b651c342576fa18",
+          "commandEnums": []
+        },
+        {
+          "method": "getInstance",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "codeOffset": 4888260,
+          "instructionSha256": "9975bd52ff99f4a67cd31b7ca6d671375c7035be3e5c7d270b3a0fd669f72bf6",
+          "commandEnums": []
+        },
+        {
+          "method": "addRoadPoint",
+          "descriptor": "(F F F F F)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "codeOffset": 4888340,
+          "instructionSha256": "6f7423f633c1e12d60ab52c81589c3036379b1f0c6ee3ef1ce41a45dcc541af4",
+          "commandEnums": []
+        },
+        {
+          "method": "clearPoint",
+          "descriptor": "()V",
+          "codeOffset": 4888412,
+          "instructionSha256": "1c60d36476ad9588f2186cd2f31c8dd5daef3a2d01b8ee9dff1509b2f6093f93",
+          "commandEnums": []
+        },
+        {
+          "method": "doPack",
+          "descriptor": "()V",
+          "codeOffset": 4888492,
+          "instructionSha256": "3728a7cf70591cca73a1b0f9ae5d879198300a8b309edc7f310a016ae662af39",
+          "commandEnums": []
+        },
+        {
+          "method": "setIsTripod",
+          "descriptor": "(Z)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "codeOffset": 4888884,
+          "instructionSha256": "b87c862f70e5438779389e34eba73cb18ddd368775739dd44c741e75c177ef2e",
+          "commandEnums": []
+        },
+        {
+          "method": "setRecordOrPreview",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "codeOffset": 4888908,
+          "instructionSha256": "44cb369bbe0055785ca0feadc10ae9fc399494c348230b8c1396b194a409ac94",
+          "commandEnums": []
+        },
+        {
+          "method": "setStartOrStop",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "codeOffset": 4888932,
+          "instructionSha256": "0f0c4e0940b979a783ef9bfe3788f5a568d403a9677ec8bcb1ceca48f0a681ab",
+          "commandEnums": []
+        },
+        {
+          "method": "start",
+          "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+          "codeOffset": 4888956,
+          "instructionSha256": "38dc780840f5501106c5197629226b8c0735faff86fec22457dda9c112a72c90",
+          "commandEnums": [
+            "v1, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->SetTrack Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;"
+          ]
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetTutorialStep;",
+      "methods": [
+        {
+          "method": "<clinit>",
+          "descriptor": "()V",
+          "codeOffset": 4889116,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 4889136,
+          "instructionSha256": "20b19993098dcc58f25a499e08c6c24946fc39bc2fcc929f0911519d944f68f9",
+          "commandEnums": []
+        },
+        {
+          "method": "getInstance",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalSetTutorialStep;",
+          "codeOffset": 4889160,
+          "instructionSha256": "e63348c9405043e89a037596f4646a76e08bc361b1fa39a67a1fab7584f08749",
+          "commandEnums": []
+        },
+        {
+          "method": "doPack",
+          "descriptor": "()V",
+          "codeOffset": 4889240,
+          "instructionSha256": "8f3e69a998a8a8bd53284abe4b2dab0781022eed9e910dcca75cec0f162a5636",
+          "commandEnums": []
+        },
+        {
+          "method": "setCurStep",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetTutorialStep;",
+          "codeOffset": 4889284,
+          "instructionSha256": "4f248fc850dc0447eaad9b5e9f08cf37b76d311a9d2339bd9d7705e7d16eb4e9",
+          "commandEnums": []
+        },
+        {
+          "method": "start",
+          "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+          "codeOffset": 4889308,
+          "instructionSha256": "766d313217c9b75f865b735fcf2f8cfd027d98d1ac89889d24f751a2496b26d9",
+          "commandEnums": [
+            "v1, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->SetTutorialStep Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;"
+          ]
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetUserParams;",
+      "methods": [
+        {
+          "method": "<clinit>",
+          "descriptor": "()V",
+          "codeOffset": 4889456,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 4889476,
+          "instructionSha256": "eeb730b9f893848a50d441f68efa1b19823476b41b2415467db71f3051f99edd",
+          "commandEnums": []
+        },
+        {
+          "method": "getInstance",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalSetUserParams;",
+          "codeOffset": 4889520,
+          "instructionSha256": "aab9675c830e4da997161837f8ecb4b6c1f32b5ed7ccc4459b84ad437d0252e3",
+          "commandEnums": []
+        },
+        {
+          "method": "doPack",
+          "descriptor": "()V",
+          "codeOffset": 4889600,
+          "instructionSha256": "ba8c45bc2b6c1b459b6c9ef30bc3998e379289abf6b78bf036a8160933225136",
+          "commandEnums": []
+        },
+        {
+          "method": "setIndexs",
+          "descriptor": "([Ljava/lang/String;)Ldji/midware/data/model/P3/DataGimbalSetUserParams;",
+          "codeOffset": 4890440,
+          "instructionSha256": "140991c40dde5113193fa5f328f64e8f34563b53b6d1c297ca5adfc3106b4e28",
+          "commandEnums": []
+        },
+        {
+          "method": "setInfo",
+          "descriptor": "(Ljava/lang/String;)Ldji/midware/data/model/P3/DataGimbalSetUserParams;",
+          "codeOffset": 4890464,
+          "instructionSha256": "8deae7d3902160baa7da0cd6764c3e1a66892ff24998c6dcc5d026d623223c6b",
+          "commandEnums": []
+        },
+        {
+          "method": "setInfo",
+          "descriptor": "(Ljava/lang/String; Ljava/lang/Number;)Ldji/midware/data/model/P3/DataGimbalSetUserParams;",
+          "codeOffset": 4890504,
+          "instructionSha256": "27d79cc0dea0721e557841658c13f4831621fd67f08467fb0cc47b452896a1fa",
+          "commandEnums": []
+        },
+        {
+          "method": "setRecData",
+          "descriptor": "([B)V",
+          "codeOffset": 4890540,
+          "instructionSha256": "49ca87acf7c381784b7de37abe1b4e4c56a66e9c6de4d76a746152e9c5eaa44d",
+          "commandEnums": []
+        },
+        {
+          "method": "setRepeatTimes",
+          "descriptor": "(I)V",
+          "codeOffset": 4890628,
+          "instructionSha256": "49a2ad9270b71da8359cf88c4ea7341a3c08ae21a41ad2db97a477b8621805b2",
+          "commandEnums": []
+        },
+        {
+          "method": "setStrValueInfo",
+          "descriptor": "(Ljava/lang/String; Ljava/lang/String;)Ldji/midware/data/model/P3/DataGimbalSetUserParams;",
+          "codeOffset": 4890652,
+          "instructionSha256": "9f48d1da962ca1be05647a466e318bba2376c14c5a3058ccf534c1504410c0c4",
+          "commandEnums": []
+        },
+        {
+          "method": "setTimeOut",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetUserParams;",
+          "codeOffset": 4890688,
+          "instructionSha256": "410afc94ea8a5127191205f6a2ce5089e0251f11057ee578ac3c1be1fdc6d9f3",
+          "commandEnums": []
+        },
+        {
+          "method": "setValues",
+          "descriptor": "([Ljava/lang/Number;)Ldji/midware/data/model/P3/DataGimbalSetUserParams;",
+          "codeOffset": 4890712,
+          "instructionSha256": "40f29ec2bfb8934cc372990bdb107a4b0051b1c3a37d4b301e84c2cce6875d47",
+          "commandEnums": []
+        },
+        {
+          "method": "start",
+          "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+          "codeOffset": 4890736,
+          "instructionSha256": "e1411ba3ca5c21358d3f3ba6d730990c707694f18ce1366c824aa3ae7fbf408c",
+          "commandEnums": [
+            "v1, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->SetUserParams Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;"
+          ]
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSpeedControl;",
+      "methods": [
+        {
+          "method": "<clinit>",
+          "descriptor": "()V",
+          "codeOffset": 4890908,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 4890928,
+          "instructionSha256": "20b19993098dcc58f25a499e08c6c24946fc39bc2fcc929f0911519d944f68f9",
+          "commandEnums": []
+        },
+        {
+          "method": "getInstance",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalSpeedControl;",
+          "codeOffset": 4890952,
+          "instructionSha256": "7b15d81ba1f107365f54d599c24b6977e90fed5919424c9b9653e822cd651344",
+          "commandEnums": []
+        },
+        {
+          "method": "doPack",
+          "descriptor": "()V",
+          "codeOffset": 4891032,
+          "instructionSha256": "d9d526aab23b4f35ab8bb669aa30afca8b22c735c736b81231bd2db735c95637",
+          "commandEnums": []
+        },
+        {
+          "method": "setMultiControl",
+          "descriptor": "(Z)Ldji/midware/data/model/P3/DataGimbalSpeedControl;",
+          "codeOffset": 4891184,
+          "instructionSha256": "dfc6c785492efb9f408d8d801ad1a3efe5dd895287463c3236f3bbe809d6f411",
+          "commandEnums": []
+        },
+        {
+          "method": "setPermission",
+          "descriptor": "(Z)Ldji/midware/data/model/P3/DataGimbalSpeedControl;",
+          "codeOffset": 4891208,
+          "instructionSha256": "71965c307f38e882149d501721b0fa15a9b928ff2a91bed03ac9f7567b12630f",
+          "commandEnums": []
+        },
+        {
+          "method": "setPitch",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSpeedControl;",
+          "codeOffset": 4891232,
+          "instructionSha256": "5ee990c2d4b9f2ee35fdf50e2e8cde73946b7f2a50acda56f33c36fa4d641680",
+          "commandEnums": []
+        },
+        {
+          "method": "setRoll",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSpeedControl;",
+          "codeOffset": 4891256,
+          "instructionSha256": "12f688ee030ad49c9f0eed45e02124baea060db85b8a5dca666b40e27849ee2c",
+          "commandEnums": []
+        },
+        {
+          "method": "setYaw",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSpeedControl;",
+          "codeOffset": 4891280,
+          "instructionSha256": "b83808bdd7727f40757de9a6a0a85abd6c56eea8b67ee737efa65787d03bdc56",
+          "commandEnums": []
+        },
+        {
+          "method": "start",
+          "descriptor": "()V",
+          "codeOffset": 4891304,
+          "instructionSha256": "987f628de06824d468635150d59dfc41c3739bec82b9f8a4ca4d45704b482bc7",
+          "commandEnums": [
+            "v1, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->SpeedControl Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;"
+          ]
+        },
+        {
+          "method": "start",
+          "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+          "codeOffset": 4891452,
+          "instructionSha256": "4df0ed6736889382b0552add0f51d8948481332aa8da745dec55b1866bc23801",
+          "commandEnums": [
+            "v1, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->SpeedControl Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;"
+          ]
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSubscribeParams;",
+      "methods": [
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 4891600,
+          "instructionSha256": "3ef92bf48e0054af8083d78f1e7ef438d9eabcbd8a1ca88fbecd1a1f4fb9d6d3",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "(Ldji/midware/data/model/P3/DataGimbalSubscribeParams-IA;)V",
+          "codeOffset": 4891640,
+          "instructionSha256": "2a07f82dd9bfc64e9d1cf770301f0eb2984aa2076bbaf685ed0aef8a551023a3",
+          "commandEnums": []
+        },
+        {
+          "method": "getInstance",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalSubscribeParams;",
+          "codeOffset": 4891664,
+          "instructionSha256": "ec7ffcf600cec2e6895b5c36b8df075550aa37774f9069cfe56f020e9a3c0f6e",
+          "commandEnums": []
+        },
+        {
+          "method": "mergeList",
+          "descriptor": "(Ljava/util/List;)[B",
+          "codeOffset": 4891688,
+          "instructionSha256": "df6f267d61c069a0a89aa6a85604e64118c02c6ac0851c8219cdaaacab69962e",
+          "commandEnums": []
+        },
+        {
+          "method": "doPack",
+          "descriptor": "()V",
+          "codeOffset": 4891824,
+          "instructionSha256": "cb0d3b6137f9daadc481ce5155a3f720617266c3ef93df0a4006b63118c56535",
+          "commandEnums": []
+        },
+        {
+          "method": "hasChannelSubscribed",
+          "descriptor": "()Z",
+          "codeOffset": 4892116,
+          "instructionSha256": "9ff6155e57245a961efd704ca33ff23609d733ff7d1a5813067fdabfdc272ecc",
+          "commandEnums": []
+        },
+        {
+          "method": "isCmdChannelSubscribed",
+          "descriptor": "(Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType; I)Z",
+          "codeOffset": 4892288,
+          "instructionSha256": "2ace2751d76346801a540092d797daaf7fe57d4e1e50b94f8d67442cd859b411",
+          "commandEnums": []
+        },
+        {
+          "method": "isCmdSubscribed",
+          "descriptor": "(Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;)Z",
+          "codeOffset": 4892396,
+          "instructionSha256": "da5df8929abed2a8bfa800fa29cac94edc3a0c0ec62aaf413ed9788eb4ac7179",
+          "commandEnums": []
+        },
+        {
+          "method": "start",
+          "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+          "codeOffset": 4892496,
+          "instructionSha256": "64b850c3891ca5cb54e967a0b1f86d79cb27c0d9f3c5f7148c62a9eb52f3aba4",
+          "commandEnums": [
+            "v0, Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->SubscribeGimbalParams Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;"
+          ]
+        },
+        {
+          "method": "subscribeCmdChannel",
+          "descriptor": "(Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType; I)V",
+          "codeOffset": 4892700,
+          "instructionSha256": "8bcbbb4472e55a650818cfad60382d3cffb4bed64c33e78f175f24df250553ea",
+          "commandEnums": []
+        },
+        {
+          "method": "unsubscribeCmdChannel",
+          "descriptor": "(Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType; I)V",
+          "codeOffset": 4892928,
+          "instructionSha256": "d73753ce26784965e2aa423583afe0784180e3a0010ac9b83a5027333d04a553",
+          "commandEnums": []
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/packages/P3/RecvPack;",
+      "methods": [
+        {
+          "method": "<clinit>",
+          "descriptor": "()V",
+          "codeOffset": 5030972,
+          "instructionSha256": "14b1d4c322f5f6483b3ef076218167e69cb993a331e30e9c25cfd4bc92d9a821",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "([B)V",
+          "codeOffset": 5031004,
+          "instructionSha256": "dea4546467d6d965f7b3366f3fefc809aac78709885157a0a1bbc46ea9b564ec",
+          "commandEnums": []
+        },
+        {
+          "method": "getInt",
+          "descriptor": "(I)I",
+          "codeOffset": 5031040,
+          "instructionSha256": "7db7a002a5e93614a00229f8b5270a1ea578099b69767d21d9509f838969576d",
+          "commandEnums": []
+        },
+        {
+          "method": "isNeedCcode",
+          "descriptor": "()V",
+          "codeOffset": 5031076,
+          "instructionSha256": "56ebd2bfd536331c7470349c7c7d1be7085b613231fa02ac8f815e32c574a83e",
+          "commandEnums": []
+        },
+        {
+          "method": "obtain",
+          "descriptor": "([B)Ldji/midware/data/packages/P3/RecvPack;",
+          "codeOffset": 5031304,
+          "instructionSha256": "9fb6d73e80c2e31eec310596e1326e96d805514cf842f300e004594a94c5dd02",
+          "commandEnums": []
+        },
+        {
+          "method": "resetData",
+          "descriptor": "()V",
+          "codeOffset": 5031332,
+          "instructionSha256": "95d15cda13dc08e2cd96998d991eef69e2453b99efc9109649ee74b157a508ab",
+          "commandEnums": []
+        },
+        {
+          "method": "setBuffer",
+          "descriptor": "([B)V",
+          "codeOffset": 5031432,
+          "instructionSha256": "f3a4d52a3ef8cf1d939cb1b1e00d6b7f2fd8f65fe1a8b37f1916b2e340c342c2",
+          "commandEnums": []
+        },
+        {
+          "method": "recycle",
+          "descriptor": "()V",
+          "codeOffset": 5031768,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "toString",
+          "descriptor": "()Ljava/lang/String;",
+          "codeOffset": 5031788,
+          "instructionSha256": "76a822ba54f0893b2f5a6a1cc5bda60c3b7fe1f7af4d24f0684b2d02aba84986",
+          "commandEnums": []
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/packages/P3/SendPack;",
+      "methods": [
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 5031824,
+          "instructionSha256": "a7c199ec907e3fcd1e589bcf87b97490f65ee685f7ec69e5c0b24fc43d53b747",
+          "commandEnums": []
+        },
+        {
+          "method": "doPack",
+          "descriptor": "()V",
+          "codeOffset": 5031864,
+          "instructionSha256": "0f4b7e3cd180df4776166ce8cf055778ff0dc39eee3a00a8a14ba6fcff4a2996",
+          "commandEnums": []
+        },
+        {
+          "method": "reCrc",
+          "descriptor": "()V",
+          "codeOffset": 5032256,
+          "instructionSha256": "51f3a58fc3d73415acd6678157abb5b01644d8de7e5867b7d7138446ee8e0dad",
+          "commandEnums": []
+        },
+        {
+          "method": "toString",
+          "descriptor": "()Ljava/lang/String;",
+          "codeOffset": 5032344,
+          "instructionSha256": "2ae4918adb4a71b4b2f38006f5b80d706f46b3430157786921a052f50406f3b5",
+          "commandEnums": []
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalActiveStatus;",
+      "methods": [
+        {
+          "method": "<clinit>",
+          "descriptor": "()V",
+          "codeOffset": 5913500,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 5913520,
+          "instructionSha256": "99b22fd12b7aa617b07e1600208cf579adae9c54e692460f1496745fe55a1791",
+          "commandEnums": []
+        },
+        {
+          "method": "getInstance",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalActiveStatus;",
+          "codeOffset": 5913544,
+          "instructionSha256": "371403842af6f0f1ce0265bc1e13e6576faca429e1183fddd447180dab8ea603",
+          "commandEnums": []
+        },
+        {
+          "method": "start",
+          "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+          "codeOffset": 5913632,
+          "instructionSha256": "2a19b49ae295a73940a02681f04bfc9139478bf73590103d76d1e144b43541f7",
+          "commandEnums": []
+        }
+      ]
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushUserParams;",
+      "methods": [
+        {
+          "method": "<init>",
+          "descriptor": "()V",
+          "codeOffset": 5913780,
+          "instructionSha256": "ac8641c7d4d2ce03f38c513a4fbcc6ec85285e12c2f73039ea9359a8209bd837",
+          "commandEnums": []
+        },
+        {
+          "method": "getInstance",
+          "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetPushUserParams;",
+          "codeOffset": 5913804,
+          "instructionSha256": "c6dd2c568d5d2657949af245f28e5aa379d336d657ffe2f673bef2897b5e0d0a",
+          "commandEnums": []
+        },
+        {
+          "method": "doPack",
+          "descriptor": "()V",
+          "codeOffset": 5913896,
+          "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+          "commandEnums": []
+        },
+        {
+          "method": "getPitchAccel",
+          "descriptor": "()I",
+          "codeOffset": 5913916,
+          "instructionSha256": "40f52acd21f8baa599e64bb40a351760435076def725231112f160051cee6d95",
+          "commandEnums": []
+        },
+        {
+          "method": "getPitchDeadband",
+          "descriptor": "()I",
+          "codeOffset": 5913972,
+          "instructionSha256": "f3e654cca66eb297818027edb1749b687bacd23c9349187319514d0a46cf926c",
+          "commandEnums": []
+        },
+        {
+          "method": "getPitchSmoothTrack",
+          "descriptor": "()I",
+          "codeOffset": 5914028,
+          "instructionSha256": "26fd5ae8beb70c26ea27a13e98362e33521d00319606e427346297dcf7a1e620",
+          "commandEnums": []
+        },
+        {
+          "method": "getPitchSpeed",
+          "descriptor": "()I",
+          "codeOffset": 5914084,
+          "instructionSha256": "4e611e47efb079bc0d32615d3bc3d1c1d817af0d2763d339cdcb7a86af05b5d4",
+          "commandEnums": []
+        },
+        {
+          "method": "getPresetID",
+          "descriptor": "([I)I",
+          "codeOffset": 5914140,
+          "instructionSha256": "31b8104cabdd07d9128d30a0743c25a33eac21df32e1440c4a713e590421cf7e",
+          "commandEnums": []
+        },
+        {
+          "method": "getRollAccel",
+          "descriptor": "()I",
+          "codeOffset": 5914188,
+          "instructionSha256": "a12c50d250447dcc32b745b7fa79d97161b5b38518edc0f975067ae6fa479f30",
+          "commandEnums": []
+        },
+        {
+          "method": "getRollDeadband",
+          "descriptor": "()I",
+          "codeOffset": 5914244,
+          "instructionSha256": "ab41437accad8cf96917d947e992aa25e05bf7e6aecae1b1c08d1daf33c55686",
+          "commandEnums": []
+        },
+        {
+          "method": "getRollSmoothTrack",
+          "descriptor": "()I",
+          "codeOffset": 5914300,
+          "instructionSha256": "f657b4c658fdf6eda659166c22ed6b25cd87879125fb34a959ae7dd107ea9bf3",
+          "commandEnums": []
+        },
+        {
+          "method": "getRollSpeed",
+          "descriptor": "()I",
+          "codeOffset": 5914356,
+          "instructionSha256": "2749c4e489a13618530043f2d2809525f7879ef8f3cc68d67ebd92d7559ae4cd",
+          "commandEnums": []
+        },
+        {
+          "method": "getStickPitchSmooth",
+          "descriptor": "()I",
+          "codeOffset": 5914412,
+          "instructionSha256": "c3ec92a65c4d451cfabea6fcbe6fb99f1959d233eba8f5b7a910605f9e2f6e5b",
+          "commandEnums": []
+        },
+        {
+          "method": "getStickPitchSpeed",
+          "descriptor": "()I",
+          "codeOffset": 5914468,
+          "instructionSha256": "b5377c6886cb00b8c367e1cefec354ba98ba77bba14f6f20904c8d5e6d19370a",
+          "commandEnums": []
+        },
+        {
+          "method": "getStickYawSmooth",
+          "descriptor": "()I",
+          "codeOffset": 5914524,
+          "instructionSha256": "12dbe002b12ebdd6e123beb66914b70fb403c0f4df93375ac43f950b4653e7bb",
+          "commandEnums": []
+        },
+        {
+          "method": "getStickYawSpeed",
+          "descriptor": "()I",
+          "codeOffset": 5914580,
+          "instructionSha256": "ff4e3acead17c8797de744f357682476b34708a8bdaa7202bf70dd232dc8d8d4",
+          "commandEnums": []
+        },
+        {
+          "method": "getYawAccel",
+          "descriptor": "()I",
+          "codeOffset": 5914636,
+          "instructionSha256": "c6d62cfc9ec27e2e304c0d0f200e98f6f87c3f80fe8b6a6abc8d46e4b07b6e15",
+          "commandEnums": []
+        },
+        {
+          "method": "getYawDeadband",
+          "descriptor": "()I",
+          "codeOffset": 5914692,
+          "instructionSha256": "682a87c5b7c91e83fcc765472b53a6fdba55b2850d170f86fc2619026c492352",
+          "commandEnums": []
+        },
+        {
+          "method": "getYawSmoothTrack",
+          "descriptor": "()I",
+          "codeOffset": 5914748,
+          "instructionSha256": "6371b50d04d5c2227a85537ee8b139068e5f942c4125c116c45dd9f678369891",
+          "commandEnums": []
+        },
+        {
+          "method": "getYawSpeed",
+          "descriptor": "()I",
+          "codeOffset": 5914804,
+          "instructionSha256": "6c22a381f13041da81199cbf8de1aa8f5bd6e47f9fc967826ac9723f2e17f2be",
+          "commandEnums": []
+        }
+      ]
+    }
+  ]
+}

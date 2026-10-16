@@ -2,6 +2,14 @@
 #import "RSDeviceProtocol.h"
 // Subclass collaboration contract. Applications include RSGimbal.h only.
 @interface RSBleDevice ()
+@property(nonatomic, copy) NSString *appProfile;
+@property(nonatomic, copy) RSAppCompletion appCompletion;
+@property(nonatomic, strong) NSArray *appParameters;
+@property(nonatomic) uint8_t appCommandId;
+@property(nonatomic) NSUInteger appToken;
+- (void)finishApp:(NSDictionary *)result error:(NSError *)error;
+- (void)failApp:(NSError *)error;
+- (void)beginStopKeepingApp:(void (^)(void))after message:(NSString *)message;
 @property(nonatomic) BOOL awaitingDeviceQuery;
 @property(nonatomic) NSTimeInterval deviceQueryDeadline;
 @property(nonatomic) uint16_t deviceQuerySequence;

@@ -32,6 +32,8 @@ class ExperimentalDevice:
         if self.owner.activeOperation or self.pending:
             raise _error('RS4MINI_BUSY', 'Cannot change research profile during an operation or query')
         self._profile, self._status = profile, {}
+        if hasattr(self.owner, "appCommands"):
+            self.owner.appCommands._profile = None
 
     use_profile = useProfile
 
@@ -66,6 +68,9 @@ class ExperimentalDevice:
         return await self._query_command(kind, commands[kind], timeoutMs)
 
     async def _query_command(self, kind, command, timeoutMs=3000):
+        return await self._query_payload_command(kind, command, b'', timeoutMs)
+
+    async def _query_payload_command(self, kind, command, payload, timeoutMs=3000, *, external_operation=None, epoch=None):
         _duration(timeoutMs, 'timeoutMs', False)
         self.owner._require_connected()
         if len(self.pending) >= 64:
@@ -73,12 +78,19 @@ class ExperimentalDevice:
         sequence = self.owner._next_sequence()
         response = asyncio.get_running_loop().create_future()
         operation = dict(cancel=asyncio.Event(), error=_error('RS4MINI_OPERATION_CANCELLED', 'Query finished'))
+        bridge = None
+        if external_operation:
+            async def propagate_cancel():
+                await external_operation['cancel'].wait()
+                operation['error'] = external_operation['error'] or _error('RS4MINI_OPERATION_CANCELLED', 'Operation cancelled')
+                operation['cancel'].set()
+            bridge = asyncio.create_task(propagate_cancel())
         entry = dict(future=response, operation=operation, client=self.owner.client, command=command)
         self.pending[sequence] = entry
         command_set, command_id = command
 
         async def work():
-            await self.owner._enqueue(frame(sequence, command_set, command_id, flags=0x40), operation=operation)
+            await self.owner._enqueue(frame(sequence, command_set, command_id, payload, flags=0x40), operation=operation, epoch=epoch)
             self.owner._check(operation)
             return await response
         task = asyncio.create_task(work())
@@ -94,6 +106,9 @@ class ExperimentalDevice:
                 cancel_error=lambda: operation['error'], timeout_error=_error('RS4MINI_RESPONSE_TIMEOUT', kind + ' query had no correlated response'))
         finally:
             self.pending.pop(sequence, None)
+            if bridge:
+                bridge.cancel()
+                await asyncio.gather(bridge, return_exceptions=True)
             operation['cancel'].set()
             if not response.done():
                 response.cancel()

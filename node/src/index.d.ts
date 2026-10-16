@@ -1,8 +1,9 @@
 export * from "./types.js";
-import type { AxisValues, ByteBuffer, Velocity, RS4MiniOptions, ConnectOptions, VelocityDegOptions, MoveForOptions, TelemetryReadOptions, RawAngles, AttitudeReading, JointAnglesReading, OrientationQuaternion, OrientationConvention, OrientationResult, GimbalTelemetry, DumlMessage, MoveToOptions, MoveToResult, AutoReconnectOptions, ReconnectState, VelocityKeyframe, TrajectoryOptions, TrajectoryResult, TrajectoryProgress, Waypoint, PositionSettings, HomePosition, ResearchProfile, ResearchWriteResult, ResearchStatusBase, ResearchStatus, ExperimentalGimbal } from "./types.js";
+import type { AxisValues, ByteBuffer, Velocity, RS4MiniOptions, ConnectOptions, VelocityDegOptions, MoveForOptions, TelemetryReadOptions, RawAngles, AttitudeReading, JointAnglesReading, OrientationQuaternion, OrientationConvention, OrientationResult, GimbalTelemetry, DumlMessage, MoveToOptions, MoveToResult, AutoReconnectOptions, ReconnectState, VelocityKeyframe, TrajectoryOptions, TrajectoryResult, TrajectoryProgress, Waypoint, PositionSettings, HomePosition, ResearchProfile, ResearchWriteResult, ResearchStatusBase, ResearchStatus, ExperimentalGimbal, AppCommands } from "./types.js";
 
 export class RS4Mini {
   constructor(options?: RS4MiniOptions);
+  readonly appCommands: AppCommands;
   readonly connected: boolean;
   nameIncludes: string;
   rateHz: number;
@@ -11,7 +12,7 @@ export class RS4Mini {
   readonly velocity: Velocity;
   closed: boolean;
   readonly moveToActive: boolean;
-  readonly activeOperation: "setVelocity" | "moveFor" | "moveTo" | "recenter" | "runTrajectory" | "moveThrough" | "experimentalAbsolute" | "experimentalRate" | "experimentalSleep" | "stop" | null;
+  readonly activeOperation: "setFollowSensitivity" | "setVelocity" | "moveFor" | "moveTo" | "recenter" | "runTrajectory" | "moveThrough" | "experimentalAbsolute" | "experimentalRate" | "experimentalSleep" | "stop" | null;
   readonly latestTelemetry: GimbalTelemetry | null;
   readonly decoder: DumlStreamDecoder;
   readonly reconnectState: ReconnectState;

@@ -1,3 +1,4 @@
+import { AppCommands } from './app-commands.js';
 // Device access only. No dependency on controller, trajectories or position algorithms.
 import { recenterFrame, velocityFrame } from './protocol.js';
 import { DumlStreamDecoder, decodeGimbalTelemetry } from './telemetry.js';
@@ -30,6 +31,7 @@ export class BleDevice {
     this.reconnectPolicy = null; this.reconnectTask = null; this.reconnectController = null;
     this._reconnectState = { state: 'disabled', attempt: 0 }; this.onReconnect = null;
     this.experimental = new ExperimentalDevice(this); this.onExperimentalStatus = null;
+    this.appCommands = new AppCommands(this);
   }
 
   get connected() { return !!this.session?.ready && this.peripheral?.state === 'connected'; }

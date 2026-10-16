@@ -18,6 +18,7 @@ export class ExperimentalDevice {
     researchProfile(profile);
     if (this.owner.activeOperation || this.pending.size) throw failure('RS4MINI_BUSY', 'Cannot change research profile during an operation or query');
     this._profile = profile; this._status = {};
+    if (this.owner.appCommands) this.owner.appCommands._profile = null;
   }
   _requireProfile(rs3Only = false) {
     researchProfile(this._profile);
@@ -41,17 +42,30 @@ export class ExperimentalDevice {
     if (!Object.hasOwn(commands, kind)) throw new TypeError('query kind must be version, position, controlStatus or type');
     return this._queryCommand(kind, commands[kind], timeoutMs);
   }
-  async _queryCommand(kind, [set, id], timeoutMs = 3000) {
-    duration(timeoutMs, 'timeoutMs', false); this.owner._requireConnected();
+  async _queryCommand(kind, command, timeoutMs = 3000) {
+    return this._queryPayloadCommand(kind, command, undefined, timeoutMs);
+  }
+  async _queryPayloadCommand(kind, [set, id], payload, timeoutMs = 3000, { signal, epoch } = {}) {
+    duration(timeoutMs, 'timeoutMs', false); this.owner._requireConnected(); check(signal);
     if (this.pending.size >= 64) throw failure('RS4MINI_BUSY', 'Too many pending queries');
     const sequence = this.owner._nextSequence(), session = this.owner.session, response = deferred(), controller = new AbortController();
+    const parents = [session.controller.signal, signal].filter(Boolean), listeners = [];
+    for (const parent of parents) {
+      const abort = () => controller.abort(parent.reason);
+      if (parent.aborted) abort();
+      else { parent.addEventListener('abort', abort, { once: true }); listeners.push([parent, abort]); }
+    }
     this.pending.set(sequence, { session, set, id, resolve: response.resolve });
     try {
       return await bounded(async () => {
-        await this.owner._enqueue(frame(sequence, set, id, undefined, 0x40), { signal: controller.signal });
+        await this.owner._enqueue(frame(sequence, set, id, payload, 0x40), { signal: controller.signal, epoch });
         return response.promise;
-      }, timeoutMs, { signal: session.controller.signal, error: failure('RS4MINI_RESPONSE_TIMEOUT', `${kind} query had no correlated response`) });
-    } finally { this.pending.delete(sequence); controller.abort(failure('RS4MINI_OPERATION_CANCELLED', 'Query finished')); }
+      }, timeoutMs, { signal: controller.signal, error: failure('RS4MINI_RESPONSE_TIMEOUT', `${kind} query had no correlated response`) });
+    } finally {
+      this.pending.delete(sequence);
+      for (const [parent, abort] of listeners) parent.removeEventListener('abort', abort);
+      controller.abort(failure('RS4MINI_OPERATION_CANCELLED', 'Query finished'));
+    }
   }
   async setSleep(options = {}) {
     optionsOnly(options, ['asleep']); const profile = this._requireProfile();

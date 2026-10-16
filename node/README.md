@@ -1,4 +1,4 @@
-# RS4 Mini Node.js SDK 0.7.2
+# RS4 Mini Node.js SDK 0.7.3
 
 通过 Noble 直接连接 DJI RS 4 Mini，支持三轴速度、约 1 Hz 的姿态与关节反馈，以及低速关节位置闭环。完整参数、错误码和并发规则见 [API.md](API.md)。
 
@@ -91,3 +91,6 @@ gimbal.onError = error => console.error(error);
 本版将设备访问与高级运动分为两个模块。应用继续使用原有 `RS4Mini`（原生为 `RSGimbal`）一个入口，
 基础操作也通过它访问设备 SDK；不新建第二条连接。底层命令尚未全部解析/验收，在此之前不新增高级功能。
 模块映射和限制见 [架构边界](../docs/ARCHITECTURE.md)，命令证据见 [设备命令审计](../docs/SDK_COMMANDS.md)。
+
+
+0.7.3 新增同一对象的 `appCommands` 参数设备接口，显式来源配置、接口与本机未验收边界见 [API.md](API.md)。全底层命令仍未完成，高级新增暂停。

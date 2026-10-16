@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { execFileSync } from 'node:child_process';
 import { RS4Mini, velocityFrame } from '../rs4mini.js';
-import { frame } from '../../node/src/protocol.js';
+import { frame, crc16 } from '../../node/src/protocol.js';
 import { DumlStreamDecoder } from '../../node/src/telemetry.js';
 import { gate, until } from '../../node/test/fakes.js';
 
@@ -107,6 +107,13 @@ test('protocol, telemetry and controller import without Node Buffer or Node modu
     const packet = protocol.frame(1, 4, 5, payload);
     const decoder = new DumlStreamDecoder(); assert.equal(decoder.push(packet.subarray(0, 20)).length, 0);
     assert.equal(decodeGimbalTelemetry(decoder.push(packet.subarray(20))[0]).jointAngles.yaw, 12.34);
+    const app = await import('./node/src/app-protocol.js');
+    assert.equal(app.parameterRequest([{ index: 150, size: 1 }])[0], 150);
+    const reply = app.parameterReply({ sender: 4, receiver: 2, commandSet: 4, commandId: 16,
+      flags: 128, raw: new Uint8Array(), payload: new Uint8Array([0,150,9,255]) }, [{index:150,size:1}]);
+    assert.equal(reply.parameters[0].rawHex, 'ff');
+    assert.equal(reply.parameters[0].headerByte, 9);
+    assert(reply.message.payload instanceof Uint8Array);
     assert.equal(typeof RS4Mini, 'function');
   `], { cwd: new URL('../../', import.meta.url), stdio: 'pipe' });
 });
@@ -126,4 +133,22 @@ test('Web blur cancels a shared velocity trajectory and sends only neutrals afte
   await until(() => device.frames().length > 0); window.dispatchEvent(new Event('blur')); await rejected;
   assert.equal(gimbal.activeOperation, null); assert.equal(gimbal.trajectoryProgress, null);
   for (const item of device.frames().slice(-3)) assert.equal(item.payload.readInt16LE(4), 1024);
+});
+
+
+test('Web current-App parameter SDK shares GATT connection and stops pending config on blur', async t => {
+  const { gimbal, device, window } = setup(); t.after(() => gimbal.close()); await gimbal.connect();
+  gimbal.appCommands.useProfile('ronin-2.2.2');
+  const read = gimbal.appCommands.getFollowSensitivity();
+  await until(() => device.frames().some(f => f.commandId === 0x10));
+  const request = device.frames().find(f => f.commandId === 0x10);
+  assert.equal(request.payload.toString('hex'), '96');
+  const response = frame(request.sequence,4,0x10,new Uint8Array([0,150,1,1]),0x80);
+  response[4]=4; response[5]=2; new DataView(response.buffer,response.byteOffset).setUint16(response.length-2,crc16(response.subarray(0,-2)),true);
+  device.rx.notify(response); assert.equal((await read).mode,1);
+  const write = gimbal.appCommands.setFollowSensitivity({ mode:0 });
+  const cancelled = assert.rejects(write,{ code:'RS4MINI_OPERATION_CANCELLED' });
+  await until(() => device.frames().some(f => f.commandId === 0x0f));
+  window.dispatchEvent(new Event('blur')); await cancelled;
+  assert.equal(gimbal.experimental.pending.size,0); assert.equal(gimbal.activeOperation,null);
 });

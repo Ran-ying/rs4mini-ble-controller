@@ -86,5 +86,15 @@ if manifest.get('codeRestorationResearch'):
     assert restored['appCodeExecuted'] is False
     assert restored['wholeProtocolRecovered'] is False
     assert restored['parameterNamesSafeToInferFromWireIndex'] is False
+if manifest.get('commandMethodAudit'):
+    audit = json.loads((root / manifest['commandMethodAudit']).read_text())
+    assert audit['appCodeExecuted'] is False and audit['targetDeviceVerified'] is False
+    assert audit['inventoryComplete'] is False
+    assert audit['classCount'] == len(audit['classes']) == 55
+    assert audit['methodCount'] == sum(len(c['methods']) for c in audit['classes']) == 631
+    assert audit['derivedSha256'] == restored['derivedSha256']
+    for cls in audit['classes']:
+        for method in cls['methods']:
+            assert re.fullmatch('[0-9a-f]{64}', method['instructionSha256'])
 print('Layer boundaries passed: device modules do not depend on motion; upper layers do not encode/write packets.')
 print('Protocol inventory: %d entries; inventoryComplete=false; further advanced development is gated.' % len(manifest['commands']))

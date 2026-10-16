@@ -195,3 +195,26 @@ export interface ExperimentalGimbal {
   /** Experimental native rates, in degrees/sec in the RS 3 research convention. */
   rateFor(options: AxisValues & { durationMs: number }): Promise<ResearchWriteResult>;
 }
+
+
+/** Current-App source profile; opt-in does not assert device compatibility. */
+export interface AppParameterContext { index: number; size: 1 | 2 | 4 | 8; }
+export interface AppCommandReply {
+  profile: "ronin-2.2.2";
+  statusCode: 0;
+  acknowledged: true;
+  deviceVerified: false;
+  physicalCompletionVerified: false;
+  bodyHex: string;
+  message: DumlMessage;
+}
+export interface AppParameterReply extends AppCommandReply {
+  parameters: Array<AppParameterContext & { headerByte: number; rawHex: string }>;
+}
+export interface AppCommands {
+  readonly profile: "ronin-2.2.2" | null;
+  useProfile(profile: "ronin-2.2.2"): void;
+  readParameters(options: { parameters: AppParameterContext[]; timeoutMs?: number }): Promise<AppParameterReply>;
+  getFollowSensitivity(options?: { timeoutMs?: number }): Promise<AppParameterReply & { rawValue: number; mode: 0 | 1 | null }>;
+  setFollowSensitivity(options: { mode: 0 | 1; timeoutMs?: number }): Promise<AppCommandReply & { requestedMode: 0 | 1 }>;
+}

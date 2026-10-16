@@ -24,3 +24,10 @@ NSDictionary *RSDecodeResearchStatus(NSDictionary *message, NSString *profile);
 - (void)discardPending;
 - (void)reset;
 @end
+
+// Current-App parameter codecs; source-proven, hardware unverified.
+NSArray<NSDictionary *> *RSAppParameterContext(NSArray *parameters);
+NSData *RSAppParameterRequestFrame(uint16_t sequence, NSArray *parameters);
+NSData *RSAppSensitivityFrame(uint16_t sequence, NSNumber *mode);
+NSError *RSAppError(NSString *code, NSString *message, NSNumber *statusCode);
+NSDictionary *RSDecodeAppReply(NSDictionary *message, uint8_t command, NSArray *parameters, NSError **error);

@@ -8,9 +8,9 @@ verification status changes.
 ## Objective and user decisions
 
 - Provide an unofficial, direct BLE controller for **DJI RS 4 Mini**, initially on macOS.
-- **Node.js is the authoritative implementation**; current package version is `0.7.2`.
+- **Node.js is the authoritative implementation**; current package version is `0.7.3`.
 - The user subsequently requested completion of all existing ports. Python is now
-  `0.7.2`, Web shares the JS core, and the native panel is `0.3.2`. Describe the
+  `0.7.3`, Web shares the JS core, and the native panel is `0.3.3`. Describe the
   documented feature differences; do not claim identical APIs or hardware proof.
 - After that delivery, the user requested the remaining **non-camera** capabilities
   under the same autonomous/offline conditions. Expansion work is in progress;
@@ -274,3 +274,20 @@ ronin_app_payloads.py is offline-only, not imported by SDK/UI. Do not apply lega
 signed-index parsing to index150. Keep all-complete/advanced gates false, and do
 not use hardware while the user is away. Other banks/metadata remain outside
 this restoration tool's scope. No APK/JNI/app code was executed.
+
+
+## Current runtime: 0.7.3 / native 0.3.3 build6
+
+The recovered HG724 sensitivity chain is SDK code under explicit ronin-2.2.2
+profile, mutually exclusive with legacy experimental profiles. App entry remains
+RS4Mini/RSGimbal. Read04:10 uses explicit unsigned index/size context; headerByte
+remains raw. Sensitivity write04:0F allows only index150/size1/value0or1, owns
+the slot, stops first and waits for correlated ACK. No arbitrary writes/replay.
+Ccode.OK=0; ACK is not physical completion. Node/Python queries may coexist with
+motion; native queries own the slot and stop first. See docs/APP_COMMANDS.md.
+Node76, Web13, Python3.8/3.12 each55, native54+68+3, research32 checks passed;
+new tests are fake only. No hardware or live UI used. ronin_command_audit.py
+fixes55classes/631method hashes (including Ccode11methods), without full vendor
+instructions. Other restored command fields/model paths and SDK interfaces
+remain unfinished. Both gates stay false; add no advanced features. Historical
+0.7.2/no SDK sending text above is superseded for this specific batch.

@@ -6,6 +6,19 @@ static void Require(BOOL value, NSString *message) { assertions++; if (!value) {
 static NSString *Hex(NSData *data) { NSMutableString *hex = [NSMutableString string]; for (NSUInteger i = 0; i < data.length; i++) [hex appendFormat:@"%02x", ((const uint8_t *)data.bytes)[i]]; return hex; }
 int main(void) {
     @autoreleasepool {
+        NSArray *appContext = @[@{@"index": @150, @"size": @1}, @{@"index": @150, @"size": @8}];
+        NSDictionary *appRequest = [[RSFrameDecoder new] push:RSAppParameterRequestFrame(7, appContext)].firstObject;
+        Require([Hex(appRequest[@"payload"]) isEqualToString:@"9696"] && [appRequest[@"flags"] intValue] == 0x40, @"App request preserves duplicate unsigned indexes");
+        Require(RSAppParameterRequestFrame(1, @[@{@"index": @YES, @"size": @1}]) == nil && RSAppSensitivityFrame(1, @2) == nil && RSAppSensitivityFrame(1, @YES) == nil, @"App inputs reject booleans and unsupported modes");
+        Require([Hex([[RSFrameDecoder new] push:RSAppSensitivityFrame(1, @1)].firstObject[@"payload"]) isEqualToString:@"960101"], @"App source setter vector");
+        const uint8_t appBytes[] = {0,150,9,1,150,8,255,255,255,255,255,255,255,255};
+        NSDictionary *appMessage = @{@"sender": @4, @"receiver": @2, @"commandSet": @4, @"commandId": @16, @"flags": @128, @"payload": [NSData dataWithBytes:appBytes length:sizeof(appBytes)]};
+        NSError *appError = nil; NSDictionary *appDecoded = RSDecodeAppReply(appMessage, 16, appContext, &appError);
+        Require(appDecoded != nil && appError == nil && [appDecoded[@"parameters"][0][@"headerByte"] intValue] == 9 && [appDecoded[@"parameters"][1][@"rawHex"] isEqualToString:@"ffffffffffffffff"], @"App context decoder keeps header raw and 64-bit precision");
+        NSMutableDictionary *badApp = [appMessage mutableCopy]; badApp[@"payload"] = [NSData dataWithBytes:appBytes length:sizeof(appBytes)-1];
+        Require(RSDecodeAppReply(badApp, 16, appContext, &appError) == nil && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_PROTOCOL_ERROR"], @"App truncated data rejects");
+        const uint8_t rejection[] = {7}; badApp[@"payload"] = [NSData dataWithBytes:rejection length:1];
+        Require(RSDecodeAppReply(badApp,16,appContext,&appError) == nil && [appError.userInfo[@"statusCode"] intValue] == 7, @"App nonzero device status rejects before business decoding");
         NSData *stop = RSVelocityFrame(0x100, 0, 0, 0);
         Require([Hex(stop) isEqualToString:@"551604fc020400010004010004000400040000027705"], @"golden stop vector");
         Require(RSVelocityFrame(1, NAN, 0, 0) == nil, @"reject NaN");

@@ -168,3 +168,8 @@ HG724 类型枚举值 103 仅为 App 事实，不是已解码线上字段或本�
 HG724 跟随灵敏度 setter、参数管理器读取 gimbal_param_infos 的路径及参数写入打包已可读：命名参数 cmd_follow_mode_sensitivity 为 index150/size1，04:0F 源码载荷为 960100 或 960101。
 当前复位命令确认是 mode+布尔 reset，而非旧 SDK 按轴枚举。本轮只添加恢复与离线核对工具，未新增 SDK/UI 发送或解码接口，也没有操作硬件；整个协议和本机验收仍未完成。
 复现、指纹、适用范围与剩余缺口见 [CODE_RESTORATION.md](../tools/research/CODE_RESTORATION.md)。此前“setter/加载仅见保护桩”的记录属于旧 metadata-only 阶段。
+
+
+## 0.7.3 当前 App 参数事务
+
+显式来源 SDK 的04:0F/04:10返回码与高索引解码、外部宽度上下文及来源边界见 [APP_COMMANDS.md](APP_COMMANDS.md)。Ccode.OK=0；返回码与业务索引分离，第二头字节不解释为宽度。不是新硬件证据。

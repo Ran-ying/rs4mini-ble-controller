@@ -445,3 +445,26 @@ Old40-caller evidence remains a historical scan, not full semantic completion.
 No model/UI/physical effect or low-bit/PF/PTF/FPV proof; no hardware/live UI or
 advanced additions. Node113/Web14/Python91 each/native79+107+3/research49,
 types/boundaries/builds passed; both complete gates false.
+
+
+## Numeric source research (runtime stays0.7.9/native0.3.9)
+
+ronin_numeric_params_trace.py pins APK/SDK/UI banks and42 method fingerprints.
+18 ordinary numeric records: Follow speed indicesPitch3/Roll12/Yaw2; accel15/
+16/14; deadZone5/13/4, allINT16U,size2, ranges1..100 exceptdeadZone0..100.
+RC speed42/43/41 INT16U,size2,0..100; deadZone27/40/26 INT08U,size1,0..100;
+smoothing9/39/8 INT16U,size2,0..30. Effective method inheritance, cache-key
+mapping, SettingParamCmd string constructors, common0F codec and default10
+model confirmed. A missing explicit getter in enum constructors is NOT32;
+mPushClazz defaultsDataGimbalGetUserParams. U8/U16 mapcase4/5 tointValue and
+BytesUtil.getBytes(int), low two bytes little-endian, width from metadata.
+Inherited Follow Pitch/Yaw methods checkisCustomAdvancedSettingProfile; source
+range is not active-preset proof. No new numeric SDK interfaces yet.
+Distinct standalone UI create smoothPitch77/Roll76/Yaw78 and maxSpeed80/79/81
+aretype0,size2; App puts input_source/index72/size1/value2 first, then chosen
+value in one0F request. Do not substitute as ordinary RC fields or auto-select
+input source/model branch. Source combination is not firmware requirement or
+physical effect proof. See tools/research/NUMERIC_PARAMS.md and protocol/
+research/ronin-numeric-params-evidence.json. Research53 inbothPython environments
+and actual pinned-source reproduction pass. No hardware/live UI/App execution
+or sending/advanced additions; both completion gates false.

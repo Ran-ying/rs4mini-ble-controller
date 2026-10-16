@@ -109,3 +109,8 @@ HG724继承的启动路径为普通用户参数04:0F，balance_test/index37/size
 ## 多段代码恢复续报
 
 严格恢复固定APK6段49,542条原code_item，原business05哈希保持一致；2段仍缺可靠元数据，未恢复。新增40个模式键UI调用方指纹，可继续核对两位字段打包与型号分支。研究48项在Python3.8/3.12通过，实际独立目录复现一致；无SDK发送扩大、硬件/UI或厂商代码执行。运行时仍0.7.8/0.3.8，全协议/高级门槛false。见 [CODE_BANKS.md](../tools/research/CODE_BANKS.md)。
+
+
+## 数值参数与输入源分支续报
+
+18项普通跟随/RC数值已核对有效继承、命名映射、缺省读取模型及INT08U/INT16U两条单项/数组打包分支；另6项独立配置在App与输入源2同包写入，不能按名称相似自动替换。42方法指纹实际固定APK复现一致；研究53项在Python3.8/3.12通过，无新增SDK发送或硬件/UI操作。运行时仍0.7.9/0.3.9，全协议和高级门槛false。见 [NUMERIC_PARAMS.md](../tools/research/NUMERIC_PARAMS.md)。

@@ -6,6 +6,10 @@
 用户已要求将源码与相关信息提交至 GitHub。本记录随源码版本保存，提交和远端状态以 Git 历史为准；
 这不是 npm 发布或 GitHub 二进制 Release。
 
+## 最新研究：数值参数与输入源分支
+
+已核对18项普通跟随/RC数值记录、有效继承/枚举命令映射、缺省DataGimbalGetUserParams模型和1/2字节小端编码。另6个独立配置字段在App分支中与input_source=2同包写入，不能当普通RC字段别名。见 [NUMERIC_PARAMS.md](../tools/research/NUMERIC_PARAMS.md)。本批是静态证据和复现工具，42方法指纹、两个Python环境研究各53项通过，尚未新增这些SDK接口或发送。运行时仍0.7.9/0.3.9，无硬件/UI操作，两项完成门槛仍false。
+
 ## 当前进度：0.7.9 跟随/摇杆按轴档位
 
 四端get/setFollowSettings、get/setRcSettings封装六组命名参数：跟随速度/加速度/死区，摇杆速度/死区/平滑。SDK与UI两段核对轴位和custom/low/middle/high枚举；写入以新鲜读取保留其他轴和低两位，一次所有权与总截止时间贯穿读取/ACK。见 [APP_FOLLOW_MODES.md](APP_FOLLOW_MODES.md)。无硬件/UI或高级新增，PF/PTF/FPV完整预设、custom数值等仍待补齐。Node113/Web14/Python各91/native79+107+3/research49，类型/边界/构建通过，全命令与高级门槛仍false。下方为历史记录。

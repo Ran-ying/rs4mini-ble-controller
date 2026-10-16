@@ -1,0 +1,755 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "sdkDerivedSha256": "4fdbd74a05df63d72a0feb1c907d9395426ec3cdb5d6aeb45e3836d856d66654",
+  "uiDerivedSha256": "bb50b39865520f55e97116ae1903bda3545b01c2fb7e2aba67a979dc264a9854",
+  "appCodeExecuted": false,
+  "targetDeviceVerified": false,
+  "wholeProtocolRecovered": false,
+  "sourceRangesAreNotMechanicalSafetyLimits": true,
+  "inheritance": [
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG724Abstraction;",
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG702Abstraction;",
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninBaseAbstraction;",
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction;",
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalX3Abstraction;",
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAircraftAbstraction;",
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;"
+  ],
+  "inheritanceOnlyDoesNotProveFirmwareSupport": true,
+  "parameters": [
+    {
+      "name": "pitch_speed",
+      "index": 3,
+      "size": 2,
+      "typeID": 1,
+      "minValue": 1,
+      "maxValue": 100,
+      "domain": "follow",
+      "parameter": "speed",
+      "axis": "pitch",
+      "baseCommand": "SMOOTH_TRACK_SPEED_PITCH",
+      "resolvedGetter": "Ldji/midware/data/model/P3/DataGimbalGetUserParams;",
+      "sourceSetter": "setSmoothTrackSpeedOnPitch",
+      "sourceSetterOwner": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAircraftAbstraction;",
+      "writeCommand": "04:0F"
+    },
+    {
+      "name": "roll_speed",
+      "index": 12,
+      "size": 2,
+      "typeID": 1,
+      "minValue": 1,
+      "maxValue": 100,
+      "domain": "follow",
+      "parameter": "speed",
+      "axis": "roll",
+      "baseCommand": "SMOOTH_TRACK_SPEED_ROLL",
+      "resolvedGetter": "Ldji/midware/data/model/P3/DataGimbalGetUserParams;",
+      "sourceSetter": "setSmoothTrackSpeedRoll",
+      "sourceSetterOwner": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "writeCommand": "04:0F"
+    },
+    {
+      "name": "yaw_speed",
+      "index": 2,
+      "size": 2,
+      "typeID": 1,
+      "minValue": 1,
+      "maxValue": 100,
+      "domain": "follow",
+      "parameter": "speed",
+      "axis": "yaw",
+      "baseCommand": "SMOOTH_TRACK_SPEED_YAW",
+      "resolvedGetter": "Ldji/midware/data/model/P3/DataGimbalGetUserParams;",
+      "sourceSetter": "setSmoothTrackSpeedOnYaw",
+      "sourceSetterOwner": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAircraftAbstraction;",
+      "writeCommand": "04:0F"
+    },
+    {
+      "name": "pitch_accel",
+      "index": 15,
+      "size": 2,
+      "typeID": 1,
+      "minValue": 1,
+      "maxValue": 100,
+      "domain": "follow",
+      "parameter": "acceleration",
+      "axis": "pitch",
+      "baseCommand": "SMOOTH_TRACK_ACCELERATION_PITCH",
+      "resolvedGetter": "Ldji/midware/data/model/P3/DataGimbalGetUserParams;",
+      "sourceSetter": "setSmoothTrackAccelerationOnPitch",
+      "sourceSetterOwner": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAircraftAbstraction;",
+      "writeCommand": "04:0F"
+    },
+    {
+      "name": "roll_accel",
+      "index": 16,
+      "size": 2,
+      "typeID": 1,
+      "minValue": 1,
+      "maxValue": 100,
+      "domain": "follow",
+      "parameter": "acceleration",
+      "axis": "roll",
+      "baseCommand": "SMOOTH_TRACK_ACCELERATION_ROLL",
+      "resolvedGetter": "Ldji/midware/data/model/P3/DataGimbalGetUserParams;",
+      "sourceSetter": "setSmoothTrackAccelRoll",
+      "sourceSetterOwner": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "writeCommand": "04:0F"
+    },
+    {
+      "name": "yaw_accel",
+      "index": 14,
+      "size": 2,
+      "typeID": 1,
+      "minValue": 1,
+      "maxValue": 100,
+      "domain": "follow",
+      "parameter": "acceleration",
+      "axis": "yaw",
+      "baseCommand": "SMOOTH_TRACK_ACCELERATION_YAW",
+      "resolvedGetter": "Ldji/midware/data/model/P3/DataGimbalGetUserParams;",
+      "sourceSetter": "setSmoothTrackAccelerationOnYaw",
+      "sourceSetterOwner": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAircraftAbstraction;",
+      "writeCommand": "04:0F"
+    },
+    {
+      "name": "pitch_deadband",
+      "index": 5,
+      "size": 2,
+      "typeID": 1,
+      "minValue": 0,
+      "maxValue": 100,
+      "domain": "follow",
+      "parameter": "deadZone",
+      "axis": "pitch",
+      "baseCommand": "SMOOTH_TRACK_DEADBAND_PITCH",
+      "resolvedGetter": "Ldji/midware/data/model/P3/DataGimbalGetUserParams;",
+      "sourceSetter": "setSmoothTrackDeadbandOnPitch",
+      "sourceSetterOwner": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAircraftAbstraction;",
+      "writeCommand": "04:0F"
+    },
+    {
+      "name": "roll_deadband",
+      "index": 13,
+      "size": 2,
+      "typeID": 1,
+      "minValue": 0,
+      "maxValue": 100,
+      "domain": "follow",
+      "parameter": "deadZone",
+      "axis": "roll",
+      "baseCommand": "SMOOTH_TRACK_DEADBAND_ROLL",
+      "resolvedGetter": "Ldji/midware/data/model/P3/DataGimbalGetUserParams;",
+      "sourceSetter": "setSmoothTrackDeadbandRoll",
+      "sourceSetterOwner": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "writeCommand": "04:0F"
+    },
+    {
+      "name": "yaw_deadband",
+      "index": 4,
+      "size": 2,
+      "typeID": 1,
+      "minValue": 0,
+      "maxValue": 100,
+      "domain": "follow",
+      "parameter": "deadZone",
+      "axis": "yaw",
+      "baseCommand": "SMOOTH_TRACK_DEADBAND_YAW",
+      "resolvedGetter": "Ldji/midware/data/model/P3/DataGimbalGetUserParams;",
+      "sourceSetter": "setSmoothTrackDeadbandOnYaw",
+      "sourceSetterOwner": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAircraftAbstraction;",
+      "writeCommand": "04:0F"
+    },
+    {
+      "name": "pitch_max_speed",
+      "index": 42,
+      "size": 2,
+      "typeID": 1,
+      "minValue": 0,
+      "maxValue": 100,
+      "domain": "rc",
+      "parameter": "speed",
+      "axis": "pitch",
+      "baseCommand": "CONTROLLER_MAX_SPEED_PITCH",
+      "resolvedGetter": "Ldji/midware/data/model/P3/DataGimbalGetUserParams;",
+      "sourceSetter": "setControllerMaxSpeedOnPitch",
+      "sourceSetterOwner": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "writeCommand": "04:0F"
+    },
+    {
+      "name": "roll_max_speed",
+      "index": 43,
+      "size": 2,
+      "typeID": 1,
+      "minValue": 0,
+      "maxValue": 100,
+      "domain": "rc",
+      "parameter": "speed",
+      "axis": "roll",
+      "baseCommand": "CONTROLLER_MAX_SPEED_ROLL",
+      "resolvedGetter": "Ldji/midware/data/model/P3/DataGimbalGetUserParams;",
+      "sourceSetter": "setControllerMaxSpeedOnRoll",
+      "sourceSetterOwner": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "writeCommand": "04:0F"
+    },
+    {
+      "name": "yaw_max_speed",
+      "index": 41,
+      "size": 2,
+      "typeID": 1,
+      "minValue": 0,
+      "maxValue": 100,
+      "domain": "rc",
+      "parameter": "speed",
+      "axis": "yaw",
+      "baseCommand": "CONTROLLER_MAX_SPEED_YAW",
+      "resolvedGetter": "Ldji/midware/data/model/P3/DataGimbalGetUserParams;",
+      "sourceSetter": "setControllerMaxSpeedOnYaw",
+      "sourceSetterOwner": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "writeCommand": "04:0F"
+    },
+    {
+      "name": "pitch_dead_zone",
+      "index": 27,
+      "size": 1,
+      "typeID": 0,
+      "minValue": 0,
+      "maxValue": 100,
+      "domain": "rc",
+      "parameter": "deadZone",
+      "axis": "pitch",
+      "baseCommand": "CONTROLLER_DEADBAND_PITCH",
+      "resolvedGetter": "Ldji/midware/data/model/P3/DataGimbalGetUserParams;",
+      "sourceSetter": "setControllerDeadbandOnPitch",
+      "sourceSetterOwner": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "writeCommand": "04:0F"
+    },
+    {
+      "name": "roll_control_dead_band",
+      "index": 40,
+      "size": 1,
+      "typeID": 0,
+      "minValue": 0,
+      "maxValue": 100,
+      "domain": "rc",
+      "parameter": "deadZone",
+      "axis": "roll",
+      "baseCommand": "CONTROLLER_DEADBAND_ROLL",
+      "resolvedGetter": "Ldji/midware/data/model/P3/DataGimbalGetUserParams;",
+      "sourceSetter": "setControllerDeadbandOnRoll",
+      "sourceSetterOwner": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "writeCommand": "04:0F"
+    },
+    {
+      "name": "yaw_dead_zone",
+      "index": 26,
+      "size": 1,
+      "typeID": 0,
+      "minValue": 0,
+      "maxValue": 100,
+      "domain": "rc",
+      "parameter": "deadZone",
+      "axis": "yaw",
+      "baseCommand": "CONTROLLER_DEADBAND_YAW",
+      "resolvedGetter": "Ldji/midware/data/model/P3/DataGimbalGetUserParams;",
+      "sourceSetter": "setControllerDeadbandOnYaw",
+      "sourceSetterOwner": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "writeCommand": "04:0F"
+    },
+    {
+      "name": "pitch_time_expo",
+      "index": 9,
+      "size": 2,
+      "typeID": 1,
+      "minValue": 0,
+      "maxValue": 30,
+      "domain": "rc",
+      "parameter": "smoothing",
+      "axis": "pitch",
+      "baseCommand": "CONTROLLER_SMOOTHING_PITCH",
+      "resolvedGetter": "Ldji/midware/data/model/P3/DataGimbalGetUserParams;",
+      "sourceSetter": "setControllerSmoothingOnPitch",
+      "sourceSetterOwner": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "writeCommand": "04:0F"
+    },
+    {
+      "name": "roll_control_smoothing",
+      "index": 39,
+      "size": 2,
+      "typeID": 1,
+      "minValue": 0,
+      "maxValue": 30,
+      "domain": "rc",
+      "parameter": "smoothing",
+      "axis": "roll",
+      "baseCommand": "CONTROLLER_SMOOTHING_ROLL",
+      "resolvedGetter": "Ldji/midware/data/model/P3/DataGimbalGetUserParams;",
+      "sourceSetter": "setControllerSmoothingOnRoll",
+      "sourceSetterOwner": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "writeCommand": "04:0F"
+    },
+    {
+      "name": "yaw_time_expo",
+      "index": 8,
+      "size": 2,
+      "typeID": 1,
+      "minValue": 0,
+      "maxValue": 30,
+      "domain": "rc",
+      "parameter": "smoothing",
+      "axis": "yaw",
+      "baseCommand": "CONTROLLER_SMOOTHING_YAW",
+      "resolvedGetter": "Ldji/midware/data/model/P3/DataGimbalGetUserParams;",
+      "sourceSetter": "setControllerSmoothingOnYaw",
+      "sourceSetterOwner": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "writeCommand": "04:0F"
+    }
+  ],
+  "unsignedTypes": [
+    {
+      "name": "INT08U",
+      "ordinal": 0,
+      "value": 0
+    },
+    {
+      "name": "INT16U",
+      "ordinal": 1,
+      "value": 1
+    }
+  ],
+  "packingTargets": [
+    {
+      "switchOffset": 198,
+      "case": 4,
+      "target": 294
+    },
+    {
+      "switchOffset": 198,
+      "case": 5,
+      "target": 294
+    },
+    {
+      "switchOffset": 486,
+      "case": 4,
+      "target": 582
+    },
+    {
+      "switchOffset": 486,
+      "case": 5,
+      "target": 582
+    }
+  ],
+  "methods": [
+    {
+      "bank": "sdk",
+      "className": "Ldji/midware/ronin2/Ronin2GimbalParamsManager$BaseCommand;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3728816,
+      "instructionSha256": "38bb193999c192890ce98dda452e438e6f5a880db1faf8ab5587320f113b1682"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction$SettingParamCmd;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3943056,
+      "instructionSha256": "e76d744380ca5abe87f808607ae5fc5574f239085290dbc44249211d67660250"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "initCommandCapabilityMap",
+      "descriptor": "()V",
+      "codeOffset": 6506076,
+      "instructionSha256": "c5e702b014d76da9a03518da2f2713bc0168b21224665a1b2c6405af888c6341"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/midware/ronin2/Ronin2GimbalParamsManager$BaseCommand;",
+      "method": "<init>",
+      "descriptor": "(Ljava/lang/String; I Ljava/lang/String;)V",
+      "codeOffset": 3731808,
+      "instructionSha256": "dff18940db1f41e1e4487d31d13d343cdba04213ada27b87c1de0dfa5aba9101"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAircraftAbstraction;",
+      "method": "setSmoothTrackSpeedOnPitch",
+      "descriptor": "(I Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6024872,
+      "instructionSha256": "bccc13dbb52e6357bbd5d45af7a84bf254fa796c5faf92516163d0823f1f24af"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "setSmoothTrackSpeedRoll",
+      "descriptor": "(I Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6521808,
+      "instructionSha256": "77c80877cf8cb8d9a719418fe44ac01e89aec144ffd3cf8492e0ce188fd5bd46"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAircraftAbstraction;",
+      "method": "setSmoothTrackSpeedOnYaw",
+      "descriptor": "(I Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6024928,
+      "instructionSha256": "f8144a7c1f4a982bb896388626f33d75ef1b275f7d031b974e6de3b227764669"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAircraftAbstraction;",
+      "method": "setSmoothTrackAccelerationOnPitch",
+      "descriptor": "(I Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6024648,
+      "instructionSha256": "2bc76bcc691afa6142f65e75ef646dcc40d27e016dd97f0280ebb66ac6bfa171"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "setSmoothTrackAccelRoll",
+      "descriptor": "(I Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6521736,
+      "instructionSha256": "4888dc8ab431cad478327fd1849b8de192f25690f8141dcb818360eda60bc622"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAircraftAbstraction;",
+      "method": "setSmoothTrackAccelerationOnYaw",
+      "descriptor": "(I Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6024704,
+      "instructionSha256": "6b9249aa483c5093747fbe6cb242332137b883a7c14dea35c76519a5774d26e6"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAircraftAbstraction;",
+      "method": "setSmoothTrackDeadbandOnPitch",
+      "descriptor": "(I Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6024760,
+      "instructionSha256": "9238b415d334f379153b1c06b4d3fcdacf8224387178c9727947e8fc716be25e"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "setSmoothTrackDeadbandRoll",
+      "descriptor": "(I Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6521772,
+      "instructionSha256": "3617f9aff97a2512ec924946676b9141466f20d5e017df711e27a0777ffd8897"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAircraftAbstraction;",
+      "method": "setSmoothTrackDeadbandOnYaw",
+      "descriptor": "(I Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6024816,
+      "instructionSha256": "f0e6aef2511c6145cae6e5853f0f366f5aa1445a1c64fb93e9b19581768fa572"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "setControllerMaxSpeedOnPitch",
+      "descriptor": "(I Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6518572,
+      "instructionSha256": "54c2c7c185312f8d42553b18b0aa8a259ffd165e85773461e01faecd85c769d7"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "setControllerMaxSpeedOnRoll",
+      "descriptor": "(I Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6518628,
+      "instructionSha256": "a8c78fedde7bd8636695d5a9b43e90d9491dd1b191b695ac3058b2b7831f7f7b"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "setControllerMaxSpeedOnYaw",
+      "descriptor": "(I Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6518684,
+      "instructionSha256": "4234057e4d3c40551a80d45664c5c8ea52ade6df2e8408d430dfd4fbadadd0fe"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "setControllerDeadbandOnPitch",
+      "descriptor": "(I Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6518404,
+      "instructionSha256": "b8dad868bb4b503ef8b01b026cdb46a8a21f2f0657d6dad0179da78ec27f11b2"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "setControllerDeadbandOnRoll",
+      "descriptor": "(I Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6518460,
+      "instructionSha256": "d74f635750d16ff427fee15a9cc5aa08aa152ae35ca7727f3d6f3240b0e45666"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "setControllerDeadbandOnYaw",
+      "descriptor": "(I Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6518516,
+      "instructionSha256": "b38fe5a8d30c94176174c864c7ce5d1c4a5d896d6b8086bf6d278dc1572914db"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "setControllerSmoothingOnPitch",
+      "descriptor": "(I Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6518740,
+      "instructionSha256": "4431a3a486d3cce0106c7d1ecc96c9f3da6d4044bfd1c7bacd1e94703ab2adda"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "setControllerSmoothingOnRoll",
+      "descriptor": "(I Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6518796,
+      "instructionSha256": "edde1beed1f577e138b72df12de4d42ccab7dd3beda4f56961f124d18aaf815b"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "setControllerSmoothingOnYaw",
+      "descriptor": "(I Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6518852,
+      "instructionSha256": "c4d86c62d93d094bb9877ec375feb2b3e7c3e496e60a7207e789c46a5da41323"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "setParam",
+      "descriptor": "(I Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction$SettingParamCmd; Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 5250460,
+      "instructionSha256": "c38665250d0e2836b55443809b1635af7ea2339e87b88b23929a2f6ab5ee8a62"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "isCustomAdvancedSettingProfile",
+      "descriptor": "()Z",
+      "codeOffset": 5247356,
+      "instructionSha256": "2161fd9b5b2b04bd8e3adb1c87c7b0ee863399767769b2ad95714cb2bc831f12"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction$SettingParamCmd;",
+      "method": "getCmdString",
+      "descriptor": "()Ljava/lang/String;",
+      "codeOffset": 3943712,
+      "instructionSha256": "6b5fe091dff5de51bfe3de67bd3f53f4e1dc034c43bb3b4cab61910f6aa8d163"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "setRonin2CommonUserParam",
+      "descriptor": "(I Ljava/lang/String; Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6507964,
+      "instructionSha256": "d44a62c6d5af2b2b1c888381d67d2a526858649139274bcc167abca1fac71030"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/midware/data/model/P3/DataFlycGetParamInfo$TypeId;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3434760,
+      "instructionSha256": "b1fd6dc80b14240d11dcb6c6a640635af110255688920f41cf827b0b90123440"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetUserParams$1;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3471656,
+      "instructionSha256": "8b76ff4922ca3bedfcdf25ac9a6b9cba06b492cd386271dd259a98581b3f9726"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetUserParams;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 4889600,
+      "instructionSha256": "ba8c45bc2b6c1b459b6c9ef30bc3998e379289abf6b78bf036a8160933225136"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/midware/util/BytesUtil;",
+      "method": "getBytes",
+      "descriptor": "(I)[B",
+      "codeOffset": 3781968,
+      "instructionSha256": "dee6fdaa9e54d69b6b960831c94bf0957da7b40415706fd2f8f6a2edef556af7"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetUserParams;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4890736,
+      "instructionSha256": "e1411ba3ca5c21358d3f3ba6d730990c707694f18ce1366c824aa3ae7fbf408c"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetUserParams;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 4877720,
+      "instructionSha256": "96edd046f7fa5d089883685ccdcf11944dd4157d323938454f4eca72c7d2526e"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetUserParams;",
+      "method": "setRecData",
+      "descriptor": "([B)V",
+      "codeOffset": 4877976,
+      "instructionSha256": "032cc430cae225d02d205f296fc70bf562f5cd40f7ce59bb148010c0b5bcb4ac"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetUserParams;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4878372,
+      "instructionSha256": "0d05970822b30bcaaee5034188f3f6e774c78bb52a037af03f12c0d0ca1d7586"
+    },
+    {
+      "bank": "ui",
+      "className": "Lcom/dji/ronin/viewModel/CreateVideoViewModel;",
+      "method": "performParamSet",
+      "descriptor": "(Ldji/midware/ronin2/Ronin2GimbalParamsManager$BaseCommand; I)V",
+      "codeOffset": 4016544,
+      "instructionSha256": "9ab475c0423cdd13fa0426a25fa2e706f3c295299a1dab49aece7d07c27a1233"
+    },
+    {
+      "bank": "ui",
+      "className": "Lcom/dji/ronin/viewModel/CreateVideoViewModel;",
+      "method": "supportProfileStandalone",
+      "descriptor": "()Z",
+      "codeOffset": 4016660,
+      "instructionSha256": "ce557fc60f524f3452407656cac797214241d2cbfb927daa10b968ee580dcfa6"
+    },
+    {
+      "bank": "ui",
+      "className": "Lcom/dji/ronin/viewModel/CreateVideoViewModel;",
+      "method": "performPitchSmoothSet",
+      "descriptor": "(I)V",
+      "codeOffset": 4019348,
+      "instructionSha256": "0eea73c59000afe48d913bd8dd6da0650b6b28aa8c267e0168ae7e7a4b04cc0e"
+    },
+    {
+      "bank": "ui",
+      "className": "Lcom/dji/ronin/viewModel/CreateVideoViewModel;",
+      "method": "performPitchSpeedSet",
+      "descriptor": "(I)V",
+      "codeOffset": 4019412,
+      "instructionSha256": "89bf0d69215b73e38dd913ad3e5f1e4ad2dcf446929a8a2b3cd4f9b970c23f13"
+    },
+    {
+      "bank": "ui",
+      "className": "Lcom/dji/ronin/viewModel/CreateVideoViewModel;",
+      "method": "performRollSmoothSet",
+      "descriptor": "(I)V",
+      "codeOffset": 4019476,
+      "instructionSha256": "e42ea1a94d5d42dd29c62b85bc8e0bdcc7b48948ed7277fce6350e2e85481d74"
+    },
+    {
+      "bank": "ui",
+      "className": "Lcom/dji/ronin/viewModel/CreateVideoViewModel;",
+      "method": "performRollSpeedSet",
+      "descriptor": "(I)V",
+      "codeOffset": 4019540,
+      "instructionSha256": "a4beda57f6502e0747f40781836218b4fbe4de693a2a4ad4f40bd0bc15217ddd"
+    },
+    {
+      "bank": "ui",
+      "className": "Lcom/dji/ronin/viewModel/CreateVideoViewModel;",
+      "method": "performYawSmoothSet",
+      "descriptor": "(I)V",
+      "codeOffset": 4019604,
+      "instructionSha256": "842764c37e55dd7824fbe8db535cf5e23e46b0d058e10e0591d1980fd4003bd5"
+    },
+    {
+      "bank": "ui",
+      "className": "Lcom/dji/ronin/viewModel/CreateVideoViewModel;",
+      "method": "performYawSpeedSet",
+      "descriptor": "(I)V",
+      "codeOffset": 4019668,
+      "instructionSha256": "3e7fef10b0c59ab7d2508473b3749f5d46eec92c7251cdeda1d606219068a5cd"
+    }
+  ],
+  "distinctCreatePath": {
+    "parameters": [
+      {
+        "name": "gimbal_create_smooth_pitch",
+        "index": 77,
+        "size": 2,
+        "typeID": 0,
+        "minValue": 0,
+        "maxValue": 30
+      },
+      {
+        "name": "gimbal_create_smooth_roll",
+        "index": 76,
+        "size": 2,
+        "typeID": 0,
+        "minValue": 0,
+        "maxValue": 30
+      },
+      {
+        "name": "gimbal_create_smooth_yaw",
+        "index": 78,
+        "size": 2,
+        "typeID": 0,
+        "minValue": 0,
+        "maxValue": 30
+      },
+      {
+        "name": "gimbal_create_max_speed_pitch",
+        "index": 80,
+        "size": 2,
+        "typeID": 0,
+        "minValue": 0,
+        "maxValue": 100
+      },
+      {
+        "name": "gimbal_create_max_speed_roll",
+        "index": 79,
+        "size": 2,
+        "typeID": 0,
+        "minValue": 0,
+        "maxValue": 100
+      },
+      {
+        "name": "gimbal_create_max_speed_yaw",
+        "index": 81,
+        "size": 2,
+        "typeID": 0,
+        "minValue": 0,
+        "maxValue": 100
+      }
+    ],
+    "inputSource": {
+      "name": "gimbal_input_source",
+      "index": 72,
+      "size": 1,
+      "typeID": 0,
+      "minValue": 0,
+      "maxValue": 3
+    },
+    "inputValue": 2,
+    "sourceCombinesInputAndValueInOneRequest": true,
+    "automaticSelectionNotAllowed": true
+  },
+  "sourceFacts": {
+    "readCommand": "04:10",
+    "writeCommand": "04:0F",
+    "defaultGetterIsCommonUserParams": true,
+    "littleEndianLowBytes": true,
+    "inheritedFollowPitchYawHaveCustomAdvancedSettingProfileCheck": true,
+    "sourceBoundsDoNotProveActivePreset": true,
+    "researchToolProvidesSdkInterface": false
+  }
+}

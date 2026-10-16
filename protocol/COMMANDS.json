@@ -258,7 +258,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "app-code-path",
       "implementation": [],
-      "remaining": "灵敏度、自定义跟随轴和六组跟随/RC参数按轴档位已封装；不等于PF/PTF/FPV完整预设，各轴custom数值、其他手柄字段、低两位及型号UI/本机接受/效果仍待验收",
+      "remaining": "灵敏度、自定义跟随轴和六组跟随/RC参数按轴档位已封装；不等于PF/PTF/FPV完整预设，各轴custom数值、其他手柄字段、低两位及型号UI/本机接受/效果仍待验收；18项普通数值已核对源码/类型/宽度及有效继承，SDK尚待封装；独立配置另有6字段且App与输入源2同包写入，不自动选路",
       "modelResearchEvidence": "protocol/research/ronin-hg724-evidence.json",
       "restoredAppEvidence": "protocol/research/ronin-code-restoration-evidence.json"
     },
@@ -741,5 +741,6 @@
   "systemCalibrationResearch": "protocol/research/ronin-system-calibration-evidence.json",
   "codeBankResearch": "protocol/research/ronin-code-banks-evidence.json",
   "controlModeCallerResearch": "protocol/research/ronin-control-mode-callers.json",
-  "followModeResearch": "protocol/research/ronin-follow-modes-evidence.json"
+  "followModeResearch": "protocol/research/ronin-follow-modes-evidence.json",
+  "numericParameterResearch": "protocol/research/ronin-numeric-params-evidence.json"
 }

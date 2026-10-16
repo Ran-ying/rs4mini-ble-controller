@@ -161,5 +161,16 @@ if manifest.get('followModeResearch'):
     assert modes['sourceFacts']['axisShifts'] == {'pitch':2,'roll':4,'yaw':6}
     assert modes['sourceFacts']['lowTwoBitsSemanticsVerified'] is False
     assert modes['sourceFacts']['pfPtfFpvPresetsVerified'] is False
+if manifest.get('numericParameterResearch'):
+    numeric = json.loads((root / manifest['numericParameterResearch']).read_text())
+    assert numeric['sdkDerivedSha256'] == restored['derivedSha256']
+    assert numeric['uiDerivedSha256'] == banks['banks'][3]['derivedSha256']
+    assert numeric['appCodeExecuted'] is False and numeric['targetDeviceVerified'] is False and numeric['wholeProtocolRecovered'] is False
+    assert len(numeric['parameters']) == 18 and len(numeric['methods']) == 42
+    assert numeric['sourceFacts']['defaultGetterIsCommonUserParams'] is True
+    assert numeric['sourceFacts']['researchToolProvidesSdkInterface'] is False
+    assert [r['value'] for r in numeric['unsignedTypes']] == [0,1]
+    assert numeric['distinctCreatePath']['inputSource']['index'] == 72 and numeric['distinctCreatePath']['inputValue'] == 2
+    assert numeric['distinctCreatePath']['sourceCombinesInputAndValueInOneRequest'] is True
 print('Layer boundaries passed: device modules do not depend on motion; upper layers do not encode/write packets.')
 print('Protocol inventory: %d entries; inventoryComplete=false; further advanced development is gated.' % len(manifest['commands']))

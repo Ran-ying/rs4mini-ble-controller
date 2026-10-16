@@ -144,3 +144,6 @@ python3 -m http.server 8000 --bind 127.0.0.1
 多段恢复续报：已严格恢复6段49,542条code_item，原business05哈希不变；另外2段未恢复，模式UI语义仍需核对。见 [CODE_BANKS.md](tools/research/CODE_BANKS.md)。运行时保持0.7.8/0.3.8，无新增发送或硬件操作。
 
 0.7.9新增六组跟随/摇杆按轴档位读改写，保留其他轴与未解释低两位，见 [APP_FOLLOW_MODES.md](docs/APP_FOLLOW_MODES.md)。尚无实机验收，不是PF/PTF/FPV预设。
+
+
+数值参数静态续报：[普通18项与独立配置分支](tools/research/NUMERIC_PARAMS.md)。已核对有效继承、缺省读取模型及1/2字节编码，独立配置由App与输入源2同包写入。本批尚未新增这些SDK接口，运行时保持0.7.9/0.3.9。

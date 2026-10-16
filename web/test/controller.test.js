@@ -124,6 +124,8 @@ test('protocol, telemetry and controller import without Node Buffer or Node modu
     const balance = await import('./node/src/app-balance.js');
     assert.deepEqual([...balance.balanceStartPayload()], [37,1,64]);
     assert.equal(balance.balanceFields(0).axisResults.yaw.result, null);
+    const packedModes = await import('./node/src/app-settings.js');
+    assert.deepEqual([...packedModes.settingsWrite('followSpeed',{yaw:'custom'},255).payload], [65,1,63]);
     const motor = await import('./node/src/app-motor.js');
     assert.equal(motor.motorWrite({axis:'roll',parameter:'stiffness',value:50}).payload[0], 1);
     assert.equal(typeof RS4Mini, 'function');

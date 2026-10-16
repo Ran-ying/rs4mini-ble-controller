@@ -352,9 +352,26 @@ int main(void) {
         [decoder reset]; frames=[decoder push:peripheral.writes]; NSUInteger systemWrites=0;
         for (NSDictionary *f in frames) if ([f[@"commandId"] intValue]==0x0f) { systemWrites++; Require([f[@"payload"] isEqualToData:[NSData dataWithBytes:(uint8_t[]){36,1,1} length:3]],@"system calibration cancellation never writes zero abort"); }
         Require(appCallbacks==23 && systemWrites==1 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_OPERATION_CANCELLED"],@"system cancellation clears host transaction without replay");
+        [peripheral.writes setLength:0];[gimbal setFollowSettings:@"speed" settings:@{@"yaw":@1} timeoutMs:1000 completion:appDone];PumpCallbacks();
+        Require(appCallbacks==24 && peripheral.writes.length==0 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_INVALID_ARGUMENT"],@"invalid packed mode rejects before stopping");
+        NSMutableString *modePatch=[NSMutableString stringWithString:@"custom"];[gimbal setFollowSettings:@"speed" settings:@{@"yaw":modePatch} timeoutMs:1000 completion:appDone];[modePatch setString:@"high"];ThreeTicks(gimbal);
+        [decoder reset];frames=[decoder push:peripheral.writes];
+        Require(gimbal.busy && [frames.lastObject[@"commandId"] intValue]==0x10 && [frames.lastObject[@"payload"] isEqualToData:[NSData dataWithBytes:(uint8_t[]){65} length:1]],@"mode setting first reads current shared register");
+        appSequence=[[gimbal valueForKey:@"deviceQuerySequence"] unsignedShortValue];double modeDeadline=[[gimbal valueForKey:@"deviceQueryDeadline"] doubleValue];
+        notify.value=AppResponse(appSequence,0x10,[NSData dataWithBytes:(uint8_t[]){0,65,9,255} length:4],4);[gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil];
+        uint16_t modeSequence=[[gimbal valueForKey:@"deviceQuerySequence"] unsignedShortValue];[decoder reset];frames=[decoder push:peripheral.writes];
+        Require(gimbal.busy && modeSequence!=appSequence && [[gimbal valueForKey:@"deviceQueryDeadline"] doubleValue]==modeDeadline && [frames.lastObject[@"payload"] isEqualToData:[NSData dataWithBytes:(uint8_t[]){65,1,63} length:3]],@"mode read modify write preserves low bits and shares deadline/owner");
+        notify.value=AppResponse(modeSequence,0x0f,ok,4);[gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil];PumpCallbacks();
+        Require(appCallbacks==25 && !gimbal.busy && [appResult[@"requestedRawValue"] intValue]==63 && ![appResult[@"physicalCompletionVerified"] boolValue],@"mode write finishes only after correlated ACK");
+        [gimbal getRcSettings:@"smoothing" timeoutMs:1000 completion:appDone];ThreeTicks(gimbal);appSequence=[[gimbal valueForKey:@"deviceQuerySequence"] unsignedShortValue];
+        notify.value=AppResponse(appSequence,0x10,[NSData dataWithBytes:(uint8_t[]){0,69,1,0x9b} length:4],4);[gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil];PumpCallbacks();
+        Require(appCallbacks==26 && [appResult[@"settings"][@"pitch"] isEqualToString:@"middle"] && [appResult[@"unknownBits"] intValue]==3,@"RC mode getter uses same axis schema with named index69");
+        [peripheral.writes setLength:0];[gimbal setRcSettings:@"deadZone" settings:@{@"roll":@"low"} timeoutMs:1000 completion:appDone];ThreeTicks(gimbal);[gimbal stop];ThreeTicks(gimbal);PumpCallbacks();
+        [decoder reset];frames=[decoder push:peripheral.writes];BOOL modeWritten=NO;for(NSDictionary *f in frames)if([f[@"commandId"] intValue]==0x0f)modeWritten=YES;
+        Require(appCallbacks==27 && !modeWritten && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_OPERATION_CANCELLED"],@"cancel before mode read reply prevents write");
         [gimbal getFollowSensitivityWithTimeoutMs:1000 completion:appDone]; ThreeTicks(gimbal);
         [gimbal centralManager:(id)central didDisconnectPeripheral:(id)peripheral error:nil]; PumpCallbacks();
-        Require(appCallbacks == 24 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_DISCONNECTED"], @"native disconnect rejects pending App query");
+        Require(appCallbacks == 28 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_DISCONNECTED"], @"native disconnect rejects pending App query");
         [gimbal disconnect]; ThreeTicks(gimbal);
         printf("Native fake-device lifecycle checks: %lu passed (no Bluetooth manager created)\n", (unsigned long)assertions);
     }

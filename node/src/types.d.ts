@@ -242,7 +242,15 @@ export interface AppBalanceState {
   axisFieldsValid:boolean;
 }
 export interface AppSystemCalibrationState {rawValue:number; state:'DEFAULT'|'START'|'FAIL'|'SUCCESS'|null;}
+export type AppAxisMode = 'custom'|'low'|'middle'|'high';
+export interface AppAxisModes {pitch:AppAxisMode;roll:AppAxisMode;yaw:AppAxisMode;}
+export type FollowParameter = 'speed'|'acceleration'|'deadZone';
+export type RcParameter = 'speed'|'deadZone'|'smoothing';
 export interface AppCommands {
+  getFollowSettings(options:{parameter:FollowParameter;timeoutMs?:number}):Promise<AppSettingsReading<AppAxisModes>>;
+  setFollowSettings(options:SettingsUpdate<AppAxisModes> & {parameter:FollowParameter}):Promise<AppSettingsWriteResult<AppAxisModes>>;
+  getRcSettings(options:{parameter:RcParameter;timeoutMs?:number}):Promise<AppSettingsReading<AppAxisModes>>;
+  setRcSettings(options:SettingsUpdate<AppAxisModes> & {parameter:RcParameter}):Promise<AppSettingsWriteResult<AppAxisModes>>;
   getAutoCalibrationStatus(options?: {timeoutMs?:number}):Promise<AppParameterReply & {systemCalibration:AppSystemCalibrationState}>;
   sendAutoCalibrationRequest(options?: {timeoutMs?:number}):Promise<AppCommandReply & {requestedValue:1}>;
   getBalanceTestStatus(options?: {timeoutMs?:number}):Promise<AppParameterReply & {balance:AppBalanceState}>;

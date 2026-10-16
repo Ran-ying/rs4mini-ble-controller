@@ -151,5 +151,15 @@ if manifest.get('controlModeCallerResearch'):
     assert callers['wholeProtocolRecovered'] is False and callers['fieldSemanticsFullyAudited'] is False
     assert callers['derivedSha256'] == banks['banks'][3]['derivedSha256']
     assert len(callers['methods']) == 40
+if manifest.get('followModeResearch'):
+    modes = json.loads((root / manifest['followModeResearch']).read_text())
+    assert modes['sdkDerivedSha256'] == restored['derivedSha256']
+    assert modes['uiDerivedSha256'] == banks['banks'][3]['derivedSha256']
+    assert modes['appCodeExecuted'] is False and modes['targetDeviceVerified'] is False and modes['wholeProtocolRecovered'] is False
+    assert len(modes['parameters']) == 6 and len(modes['methods']) == 18
+    assert [r['value'] for r in modes['modeEnums']] == [0,1,2,3]
+    assert modes['sourceFacts']['axisShifts'] == {'pitch':2,'roll':4,'yaw':6}
+    assert modes['sourceFacts']['lowTwoBitsSemanticsVerified'] is False
+    assert modes['sourceFacts']['pfPtfFpvPresetsVerified'] is False
 print('Layer boundaries passed: device modules do not depend on motion; upper layers do not encode/write packets.')
 print('Protocol inventory: %d entries; inventoryComplete=false; further advanced development is gated.' % len(manifest['commands']))

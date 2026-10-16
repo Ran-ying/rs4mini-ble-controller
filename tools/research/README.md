@@ -62,3 +62,5 @@ NOP/常量/返回模式只标记为保护桩候选，不把返回零解释成协
 
 
 多段恢复续报：已严格恢复6段49,542条code_item，原business05哈希不变；另外2段未恢复，模式UI语义仍需核对。见 [CODE_BANKS.md](CODE_BANKS.md)。运行时保持0.7.8/0.3.8，无新增发送或硬件操作。
+
+跟随/RC档位的SDK与UI跨段复现工具为ronin_follow_modes_trace.py，六条命名记录、轴移位、枚举与18方法指纹；说明见 [APP_FOLLOW_MODES.md](../../docs/APP_FOLLOW_MODES.md)。

@@ -6,7 +6,7 @@ import time
 import copy
 from .protocol import frame
 from .app_calibration import auto_tune_payload, calibration_reply, calibration_notification
-from .app_settings import SCHEMAS, settings_patch, decode_settings, settings_write
+from .app_settings import mode_kind, SCHEMAS, settings_patch, decode_settings, settings_write
 from .app_protocol import app_profile, parameter_context, parameter_request, sensitivity_payload, app_reply, parameter_reply
 from .experimental_device import _duration
 from .errors import RS4MiniError
@@ -142,6 +142,26 @@ class AppCommands:
         result = await self.readParameters(parameters=[dict(index=SCHEMAS[kind]['index'], size=1)], timeoutMs=timeoutMs)
         return decode_settings(result, kind)
 
+    async def getFollowSettings(self, *, parameter, timeoutMs=3000):
+        return await self._get_settings(mode_kind('follow',parameter),timeoutMs)
+
+    get_follow_settings=getFollowSettings
+
+    async def setFollowSettings(self, *, parameter, timeoutMs=3000, **fields):
+        return await self._set_settings(mode_kind('follow',parameter),fields,timeoutMs)
+
+    set_follow_settings=setFollowSettings
+
+    async def getRcSettings(self, *, parameter, timeoutMs=3000):
+        return await self._get_settings(mode_kind('rc',parameter),timeoutMs)
+
+    get_rc_settings=getRcSettings
+
+    async def setRcSettings(self, *, parameter, timeoutMs=3000, **fields):
+        return await self._set_settings(mode_kind('rc',parameter),fields,timeoutMs)
+
+    set_rc_settings=setRcSettings
+
     async def getCustomFollowSettings(self, *, timeoutMs=3000):
         return await self._get_settings('customFollow', timeoutMs)
 
@@ -166,7 +186,7 @@ class AppCommands:
         self._require_profile()
         patch = settings_patch(kind, fields)
         _duration(timeoutMs, 'timeoutMs', False)
-        name = 'setMotorSettings' if kind == 'motor' else 'setCustomFollowSettings'
+        name = 'setMotorSettings' if kind == 'motor' else 'setCustomFollowSettings' if kind=='customFollow' else 'setFollowSettings' if kind.startswith('follow') else 'setRcSettings'
         async def body(operation):
             await self.owner._halt()
             self.owner._check(operation)

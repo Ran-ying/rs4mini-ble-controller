@@ -55,6 +55,12 @@ int main(void) {
         Require([systemCalibrationFrame[@"commandId"] intValue]==0x0f && [Hex(systemCalibrationFrame[@"payload"]) isEqualToString:@"240101"],@"system calibration starts through index36 common namespace");
         Require([RSAppSystemCalibrationFields(0)[@"state"] isEqualToString:@"DEFAULT"] && [RSAppSystemCalibrationFields(1)[@"state"] isEqualToString:@"START"] && [RSAppSystemCalibrationFields(2)[@"state"] isEqualToString:@"FAIL"] && [RSAppSystemCalibrationFields(3)[@"state"] isEqualToString:@"SUCCESS"],@"system calibration reply enum is not restricted to write range");
         Require(RSAppSystemCalibrationFields(255)[@"state"]==NSNull.null && [RSAppSystemCalibrationFields(255)[@"rawValue"] intValue]==255,@"unknown system calibration stays raw instead of indexing enum out of bounds");
+        Require([RSAppSettingsSchema(RSAppModeKind(@"follow",@"acceleration"))[@"index"] intValue]==71 && [RSAppSettingsSchema(RSAppModeKind(@"rc",@"smoothing"))[@"index"] intValue]==69 && !RSAppModeKind(@"follow",@"PF"),@"mode groups use named source records not PF presets");
+        NSDictionary *modeFrame=[[RSFrameDecoder new] push:RSAppSettingsFrame(1,@"followSpeed",@{@"yaw":@"custom"},@255)].firstObject;
+        Require([Hex(modeFrame[@"payload"]) isEqualToString:@"41013f"],@"mode update preserves other axes and opaque low bits");
+        NSDictionary *modeReply=RSDecodeAppSettings(@{@"parameters":@[@{@"rawHex":@"9b"}]},@"rcSpeed");
+        Require([modeReply[@"settings"][@"pitch"] isEqualToString:@"middle"] && [modeReply[@"settings"][@"roll"] isEqualToString:@"low"] && [modeReply[@"settings"][@"yaw"] isEqualToString:@"middle"] && [modeReply[@"unknownBits"] intValue]==3,@"packed axis shifts and source enum decode");
+        Require(!RSAppSettingsPatch(@"followSpeed",@{@"yaw":@1}) && !RSAppSettingsPatch(@"followSpeed",@{@"pan":@"low"}) && !RSAppSettingsPatch(@"followSpeed",@{}),@"mode patch rejects numeric value unknown axis and empty update");
         NSData *stop = RSVelocityFrame(0x100, 0, 0, 0);
         Require([Hex(stop) isEqualToString:@"551604fc020400010004010004000400040000027705"], @"golden stop vector");
         Require(RSVelocityFrame(1, NAN, 0, 0) == nil, @"reject NaN");

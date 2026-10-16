@@ -128,7 +128,7 @@
         "node/src/app-settings.js",
         "python/rs4mini_sdk/app_settings.py"
       ],
-      "remaining": "显式当前 App 配置已封装 HG724 灵敏度 index150/size1/值0或1 写入及状态 ACK；未提供任意参数写入，旧休眠仍为其他型号；本机效果未验收；0.7.4增加继承源码中的自定义跟随/电机位字段读取与保留其余位的读写事务，非PF/PTF预设，无本机证据；0.7.7新增balance_test/index37启动64及状态/三轴结果读取，零字段保留未知，ACK和主机取消不代表固件完成或停止，尚无实机验收；0.7.8新增继承的system_calc/index36固定启动1与状态0..3读取，不等于已确认水平校准，物理完成/中止未实机验收",
+      "remaining": "当前App配置封装灵敏度、两组位设置、平衡/系统校准请求、六组按轴档位读改写及ACK；非任意参数写入。PF/PTF、其余字段、持久化与本机效果未验收，旧休眠仍为其他型号来源",
       "officialAppAliases": [
         "SetUserParams"
       ],
@@ -258,7 +258,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "app-code-path",
       "implementation": [],
-      "remaining": "灵敏度0/1及继承源码的自定义跟随启用/三轴位已封装；不等于PF/PTF/FPV预设，型号支持和本机效果待验收；多段恢复后已定位40个模式键UI引用方法与打包位字段线索，轴/枚举/型号路径尚待完整核对，未开放六组模式写入",
+      "remaining": "灵敏度、自定义跟随轴和六组跟随/RC参数按轴档位已封装；不等于PF/PTF/FPV完整预设，各轴custom数值、其他手柄字段、低两位及型号UI/本机接受/效果仍待验收",
       "modelResearchEvidence": "protocol/research/ronin-hg724-evidence.json",
       "restoredAppEvidence": "protocol/research/ronin-code-restoration-evidence.json"
     },
@@ -347,7 +347,7 @@
         "node/src/app-settings.js",
         "python/rs4mini_sdk/app_settings.py"
       ],
-      "remaining": "显式当前 App 配置按请求 index/size 读取，返回码与无符号索引分离，第二头字节保留原始量；不自动推断参数名/类型，本机读数未验收；0.7.4增加继承源码中的自定义跟随/电机位字段读取与保留其余位的读写事务，非PF/PTF预设，无本机证据；0.7.7新增balance_test/index37启动64及状态/三轴结果读取，零字段保留未知，ACK和主机取消不代表固件完成或停止，尚无实机验收；0.7.8新增继承的system_calc/index36固定启动1与状态0..3读取，不等于已确认水平校准，物理完成/中止未实机验收",
+      "remaining": "当前App配置按请求index/size读取，返回码、无符号索引和原始头字节分离；命名设置/状态/六组按轴档位已解码，未按索引推断其他字段，本机读数和更多参数仍待验收",
       "officialAppAliases": [
         "GetUserParams"
       ],
@@ -740,5 +740,6 @@
   "balanceResearch": "protocol/research/ronin-balance-evidence.json",
   "systemCalibrationResearch": "protocol/research/ronin-system-calibration-evidence.json",
   "codeBankResearch": "protocol/research/ronin-code-banks-evidence.json",
-  "controlModeCallerResearch": "protocol/research/ronin-control-mode-callers.json"
+  "controlModeCallerResearch": "protocol/research/ronin-control-mode-callers.json",
+  "followModeResearch": "protocol/research/ronin-follow-modes-evidence.json"
 }

@@ -223,3 +223,8 @@ Node90、Web14、Python3.8/3.12各68、原生65+83+3、研究37；类型、模�
 ## 多段代码恢复续报
 
 严格恢复固定APK6段49,542条原code_item，原business05哈希保持一致；2段仍缺可靠元数据，未恢复。新增40个模式键UI调用方指纹，可继续核对两位字段打包与型号分支。研究48项在Python3.8/3.12通过，实际独立目录复现一致；无SDK发送扩大、硬件/UI或厂商代码执行。运行时仍0.7.8/0.3.8，全协议/高级门槛false。见 [CODE_BANKS.md](../tools/research/CODE_BANKS.md)。
+
+
+## 0.7.9 跟随/RC按轴档位
+
+六组参数档位已同步四端，Pitch/Roll/Yaw字段为bits2..3/4..5/6..7，custom/low/middle/high为0/1/2/3；先读后改写，保留其他轴和未知低两位，共用操作槽和总截止时间。Node113/Web14/Python各91/native79+107+3/research49，类型/边界/构建通过；无硬件/UI/高级新增，PF/PTF和custom数值未因此完成。详见 [APP_FOLLOW_MODES.md](APP_FOLLOW_MODES.md)。

@@ -1,0 +1,253 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "sdkDerivedSha256": "4fdbd74a05df63d72a0feb1c907d9395426ec3cdb5d6aeb45e3836d856d66654",
+  "uiDerivedSha256": "bb50b39865520f55e97116ae1903bda3545b01c2fb7e2aba67a979dc264a9854",
+  "appCodeExecuted": false,
+  "targetDeviceVerified": false,
+  "wholeProtocolRecovered": false,
+  "inheritanceOnlyDoesNotProveFirmwareSupport": true,
+  "parameters": [
+    {
+      "name": "ronin_follow_speed_mode",
+      "index": 65,
+      "size": 1,
+      "typeID": 0,
+      "minValue": 0,
+      "maxValue": 255,
+      "key": "FOLLOW_SPEED_MODE",
+      "setter": "setFollowSpeedMode"
+    },
+    {
+      "name": "ronin_follow_dead_zone_mode",
+      "index": 66,
+      "size": 1,
+      "typeID": 0,
+      "minValue": 0,
+      "maxValue": 255,
+      "key": "FOLLOW_DEAD_ZONE_MODE",
+      "setter": "setFollowDeadZoneMode"
+    },
+    {
+      "name": "ronin_follow_acce_mode",
+      "index": 71,
+      "size": 1,
+      "typeID": 0,
+      "minValue": 0,
+      "maxValue": 255,
+      "key": "FOLLOW_ACCE_MODE",
+      "setter": "setFollowAcceMode"
+    },
+    {
+      "name": "ronin_rc_speed_mode",
+      "index": 67,
+      "size": 1,
+      "typeID": 0,
+      "minValue": 0,
+      "maxValue": 255,
+      "key": "RC_SPEED_MODE",
+      "setter": "setRcSpeedMode"
+    },
+    {
+      "name": "ronin_rc_dead_zone_mode",
+      "index": 68,
+      "size": 1,
+      "typeID": 0,
+      "minValue": 0,
+      "maxValue": 255,
+      "key": "RC_DEAD_ZONE_MODE",
+      "setter": "setRcDeadZoneMode"
+    },
+    {
+      "name": "ronin_rc_smooth_mode",
+      "index": 69,
+      "size": 1,
+      "typeID": 0,
+      "minValue": 0,
+      "maxValue": 255,
+      "key": "RC_SMOOTH_MODE",
+      "setter": "setRcSmoothMode"
+    }
+  ],
+  "modeEnums": [
+    {
+      "name": "Custom",
+      "ordinal": 0,
+      "value": 0
+    },
+    {
+      "name": "Low",
+      "ordinal": 1,
+      "value": 1
+    },
+    {
+      "name": "Middle",
+      "ordinal": 2,
+      "value": 2
+    },
+    {
+      "name": "High",
+      "ordinal": 3,
+      "value": 3
+    }
+  ],
+  "methods": [
+    {
+      "bank": "sdk",
+      "className": "Ldji/midware/ronin2/Ronin2GimbalParamsManager$BaseCommand;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3728816,
+      "instructionSha256": "38bb193999c192890ce98dda452e438e6f5a880db1faf8ab5587320f113b1682"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "setFollowSpeedMode",
+      "descriptor": "(I Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6519316,
+      "instructionSha256": "c0c29578b87ad2293947f9774c771324fd4174d556a20da92e764012a9f0b103"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "setFollowDeadZoneMode",
+      "descriptor": "(I Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6519280,
+      "instructionSha256": "a467b05a6d9a41ab67c2b3c40fd598d769275d5db1c655021d0b3e25c9807f7b"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "setFollowAcceMode",
+      "descriptor": "(I Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6519244,
+      "instructionSha256": "e2743a3bdf00eae0533642e2110681e1798ba8076721c7dd71fabb09bdd6f602"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "setRcSpeedMode",
+      "descriptor": "(I Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6520460,
+      "instructionSha256": "27e66d6b5345c923d9c4f9e233c1c5c325b427d426334af9916b9e6802748872"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "setRcDeadZoneMode",
+      "descriptor": "(I Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6520388,
+      "instructionSha256": "f9b273f9f11f1a4e7b0a77f6d1f66a232b1cb0ff06c58be508fa653a6a799321"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "setRcSmoothMode",
+      "descriptor": "(I Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6520424,
+      "instructionSha256": "1645e77cfc3494c5913d99006fa287d9396f7cb3984b45083b6c32b3460d6370"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "setRonin2CommonUserParam",
+      "descriptor": "(I Ljava/lang/String; Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6507964,
+      "instructionSha256": "d44a62c6d5af2b2b1c888381d67d2a526858649139274bcc167abca1fac71030"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "onEvent3BackgroundThread",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalGetUserParams;)V",
+      "codeOffset": 6509328,
+      "instructionSha256": "a134a94955e57310e7515f7923b5ae2317f0648d56ca2221153f4e9d57b24fa1"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/common/gimbal/DJIGimbalRCControlType;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3012776,
+      "instructionSha256": "8d47c83f7e6f3cd925fd47519113d2e1bf108a2b9b12f2c8b9cdba1d508c76b3"
+    },
+    {
+      "bank": "ui",
+      "className": "Lcom/dji/ronin/ui/configuration/dialog/ConfigSelectSeekbarDialog;",
+      "method": "updateView",
+      "descriptor": "()V",
+      "codeOffset": 4727828,
+      "instructionSha256": "bdf15c1abc68f97ff4260e5daa59fe46587d9dd6fd0d718152af5612186a85ae"
+    },
+    {
+      "bank": "ui",
+      "className": "Lcom/dji/ronin/ui/configuration/dialog/ConfigSelectSeekbarDialog$2;",
+      "method": "onItemChange",
+      "descriptor": "(Landroid/view/View; I)V",
+      "codeOffset": 3904136,
+      "instructionSha256": "8a640aff032b239d4040949fb09406af0a721ca6d008959fdeb7c2b7c029e335"
+    },
+    {
+      "bank": "ui",
+      "className": "Lcom/dji/ronin/ui/configuration/dialog/ConfigSelectSeekbarDialog$RCControlTypeBinding;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 2469160,
+      "instructionSha256": "166b446ad4162b94d521a54bbd7576cc2d7a06564f6ee3c3bcdd0ca62e4316e8"
+    },
+    {
+      "bank": "ui",
+      "className": "Lcom/dji/ronin/ui/configuration/dialog/ConfigSelectSeekbarDialog$RCSpeedTypeBinding;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 2469676,
+      "instructionSha256": "9a0bfabc5a245b44e42b738c07ad92606600e9a44929790f4a6e3a4b7475759d"
+    },
+    {
+      "bank": "ui",
+      "className": "Lcom/dji/ronin/ui/configuration/control/ConfigControlMovementView;",
+      "method": "initView",
+      "descriptor": "()V",
+      "codeOffset": 2461580,
+      "instructionSha256": "0e3ef92068fa6a463f161952f442f801b44ccd755525bca85928770ac04fc7e7"
+    },
+    {
+      "bank": "ui",
+      "className": "Lcom/dji/ronin/ui/configuration/smoothtrack/ConfigSmoothTrackPanView;",
+      "method": "onClick",
+      "descriptor": "(Landroid/view/View;)V",
+      "codeOffset": 2496088,
+      "instructionSha256": "a77f99fe86fac49c059f967da4f9116e5b037ee6ce90893b80ac5da6e8fa5530"
+    },
+    {
+      "bank": "ui",
+      "className": "Lcom/dji/ronin/ui/configuration/smoothtrack/ConfigSmoothTrackTiltView;",
+      "method": "onClick",
+      "descriptor": "(Landroid/view/View;)V",
+      "codeOffset": 2501104,
+      "instructionSha256": "5f0be57c249ee24e31de7b1e76cbeffaca5fc9ed69fe91803c170c0e90f82aa9"
+    },
+    {
+      "bank": "ui",
+      "className": "Lcom/dji/ronin/ui/configuration/smoothtrack/ConfigSmoothTrackRollView;",
+      "method": "onClick",
+      "descriptor": "(Landroid/view/View;)V",
+      "codeOffset": 2498632,
+      "instructionSha256": "4cef8454a9f28385dbc71da5ceb9e62ae4a1c3aa476d343acdd2eb74ee7f2e92"
+    }
+  ],
+  "sourceFacts": {
+    "writeCommand": "04:0F",
+    "readCommand": "04:10",
+    "axisShifts": {
+      "pitch": 2,
+      "roll": 4,
+      "yaw": 6
+    },
+    "axisMask": 252,
+    "lowTwoBitsSemanticsVerified": false,
+    "pfPtfFpvPresetsVerified": false,
+    "physicalUnitsVerified": false
+  }
+}

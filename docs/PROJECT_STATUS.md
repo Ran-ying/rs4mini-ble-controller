@@ -1,10 +1,14 @@
 # 项目状态与接手入口
 
-更新日期：2026-10-16。当前源码检查点为 Node/Python/Web **0.7.8**、macOS 原生面板 **0.3.8**。
+更新日期：2026-10-16。当前源码检查点为 Node/Python/Web **0.7.9**、macOS 原生面板 **0.3.9**。
 
 **当前 App 参数事务已进入四端设备 SDK；全部非相机 BLE 能力整体目标尚未完成。**
 用户已要求将源码与相关信息提交至 GitHub。本记录随源码版本保存，提交和远端状态以 Git 历史为准；
 这不是 npm 发布或 GitHub 二进制 Release。
+
+## 当前进度：0.7.9 跟随/摇杆按轴档位
+
+四端get/setFollowSettings、get/setRcSettings封装六组命名参数：跟随速度/加速度/死区，摇杆速度/死区/平滑。SDK与UI两段核对轴位和custom/low/middle/high枚举；写入以新鲜读取保留其他轴和低两位，一次所有权与总截止时间贯穿读取/ACK。见 [APP_FOLLOW_MODES.md](APP_FOLLOW_MODES.md)。无硬件/UI或高级新增，PF/PTF/FPV完整预设、custom数值等仍待补齐。Node113/Web14/Python各91/native79+107+3/research49，类型/边界/构建通过，全命令与高级门槛仍false。下方为历史记录。
 
 ## 最新研究：多段代码恢复与模式调用方
 

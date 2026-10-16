@@ -50,3 +50,5 @@ PYTHONPATH=work/research/analysis-libs work/python312/bin/python tools/research/
 工具先校验固定APK哈希；UI检查额外校验固定恢复段哈希。两个独立输出目录实际复现各段摘要一致。标准库测试补充不同段名字隔离、不支持名字拒绝、错误APK/UI视图在可选分析前拒绝，原有长度/异常表/重叠检查继续回归。两种Python环境研究测试各48项通过。
 
 所有输出仅用于离线研究，不能作为可运行APK或设备兼容证据。用户离家期间没有扫描、连接、移动稳定器或启动实时UI；全协议与高级开发门槛保持false。
+
+后续0.7.9已完成六组参数的按轴档位读改写，SDK与UI跨段证据另见 [APP_FOLLOW_MODES.md](../../docs/APP_FOLLOW_MODES.md)。40方法扫描仍是历史覆盖记录，不表示所有相关字段/型号路径已完成。

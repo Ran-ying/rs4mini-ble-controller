@@ -54,3 +54,5 @@ NSDictionary *RSDecodeAppBalanceReply(NSDictionary *reply);
 NSData *RSAppSystemCalibrationStartFrame(uint16_t sequence);
 NSDictionary *RSAppSystemCalibrationFields(uint8_t rawValue);
 NSDictionary *RSDecodeAppSystemCalibrationReply(NSDictionary *reply);
+
+NSString *RSAppModeKind(NSString *domain, NSString *parameter);

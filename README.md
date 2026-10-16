@@ -1,6 +1,6 @@
 # rs4mini-ble-controller
 
-通过电脑 BLE 直接控制 DJI RS 4 Mini 的非官方项目。Node.js **0.7.8** 为主实现；Python/Web **0.7.8**、macOS 原生面板 **0.3.8** 提供三轴速度、姿态/机械关节反馈、低速定位、轨迹与路点、保存位置返回和显式自动重连。相机控制和视觉跟踪不属于当前范围。
+通过电脑 BLE 直接控制 DJI RS 4 Mini 的非官方项目。Node.js **0.7.9** 为主实现；Python/Web **0.7.9**、macOS 原生面板 **0.3.9** 提供三轴速度、姿态/机械关节反馈、低速定位、轨迹与路点、保存位置返回和显式自动重连。相机控制和视觉跟踪不属于当前范围。
 
 **当前状态：底层 SDK 已增加当前 App 参数事务、调参请求与状态封装；全部非相机 BLE 能力仍未完成。**
 完成项、验证证据与后续接手入口统一保存在 [项目状态](docs/PROJECT_STATUS.md)。
@@ -142,3 +142,5 @@ python3 -m http.server 8000 --bind 127.0.0.1
 
 
 多段恢复续报：已严格恢复6段49,542条code_item，原business05哈希不变；另外2段未恢复，模式UI语义仍需核对。见 [CODE_BANKS.md](tools/research/CODE_BANKS.md)。运行时保持0.7.8/0.3.8，无新增发送或硬件操作。
+
+0.7.9新增六组跟随/摇杆按轴档位读改写，保留其他轴与未解释低两位，见 [APP_FOLLOW_MODES.md](docs/APP_FOLLOW_MODES.md)。尚无实机验收，不是PF/PTF/FPV预设。

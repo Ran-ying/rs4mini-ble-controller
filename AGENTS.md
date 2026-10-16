@@ -8,9 +8,9 @@ verification status changes.
 ## Objective and user decisions
 
 - Provide an unofficial, direct BLE controller for **DJI RS 4 Mini**, initially on macOS.
-- **Node.js is the authoritative implementation**; current package version is `0.7.8`.
+- **Node.js is the authoritative implementation**; current package version is `0.7.9`.
 - The user subsequently requested completion of all existing ports. Python is now
-  `0.7.8`, Web shares the JS core, and the native panel is `0.3.8`. Describe the
+  `0.7.9`, Web shares the JS core, and the native panel is `0.3.9`. Describe the
   documented feature differences; do not claim identical APIs or hardware proof.
 - After that delivery, the user requested the remaining **non-camera** capabilities
   under the same autonomous/offline conditions. Expansion work is in progress;
@@ -426,3 +426,22 @@ CODE_BANKS.md, protocol/research/ronin-code-banks-evidence.json and ronin-contro
 mode-callers.json. Research48 tests pass inPython3.8/3.12; real pinnedAPK restores
 reproduce across directories. No SDK/UI sending/hardware or advanced additions.
 Both completion gates remain false. Prior only-bank5 limitations are historical.
+
+
+## Current runtime0.7.9/native0.3.9 build12
+
+Four ports get/setFollowSettings and get/setRcSettings add six named parameter
+mode groups: Follow speed65/acceleration71/deadZone66; RC speed67/deadZone68/
+smoothing69, all common0F/10,INT08U,size1. Cross-bank SDK/UI audit18 method
+fingerprints validates Pitch shift2,Roll4,Yaw6 and Custom0/Low1/Middle2/High3.
+Public modes custom/low/middle/high, no raw byte/numeric/axis pan or PF presets.
+Read returns all axes/raw/unknownBits. Write validates/copies named patch, fresh
+reads then modifies selected two-bit fields, preserves other axes and opaque
+bits0..1, owns one slot and monotonic deadline through ACK. No replay/rollback
+or firmware atomicity guarantee. Native mutable strings copied too. Custom
+selects existing custom values, does not write those numeric parameters.
+See docs/APP_FOLLOW_MODES.md and protocol/research/ronin-follow-modes-evidence.json.
+Old40-caller evidence remains a historical scan, not full semantic completion.
+No model/UI/physical effect or low-bit/PF/PTF/FPV proof; no hardware/live UI or
+advanced additions. Node113/Web14/Python91 each/native79+107+3/research49,
+types/boundaries/builds passed; both complete gates false.

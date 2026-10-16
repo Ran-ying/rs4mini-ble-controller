@@ -469,6 +469,22 @@ static BOOL Matches(NSString *name) {
         if (completion) completion(error ? nil : RSDecodeAppSettings(reply, kind), error);
     }];
 }
+- (void)getFollowSettings:(NSString *)parameter timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
+    NSString *kind=RSAppModeKind(@"follow",parameter);
+    if (!kind) { if (completion) dispatch_async(dispatch_get_main_queue(), ^{ completion(nil,RSAppError(@"RS4MINI_INVALID_ARGUMENT",@"Unknown named follow/RC parameter",nil)); });return; }
+    [self getAppSettings:kind timeoutMs:timeoutMs completion:completion];
+}
+- (void)setFollowSettings:(NSString *)parameter settings:(NSDictionary *)settings timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
+    [self setAppSettings:RSAppModeKind(@"follow",parameter) settings:settings timeoutMs:timeoutMs completion:completion];
+}
+- (void)getRcSettings:(NSString *)parameter timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
+    NSString *kind=RSAppModeKind(@"rc",parameter);
+    if (!kind) { if (completion) dispatch_async(dispatch_get_main_queue(), ^{ completion(nil,RSAppError(@"RS4MINI_INVALID_ARGUMENT",@"Unknown named follow/RC parameter",nil)); });return; }
+    [self getAppSettings:kind timeoutMs:timeoutMs completion:completion];
+}
+- (void)setRcSettings:(NSString *)parameter settings:(NSDictionary *)settings timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
+    [self setAppSettings:RSAppModeKind(@"rc",parameter) settings:settings timeoutMs:timeoutMs completion:completion];
+}
 - (void)getCustomFollowSettingsWithTimeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
     [self getAppSettings:@"customFollow" timeoutMs:timeoutMs completion:completion];
 }
@@ -478,7 +494,7 @@ static BOOL Matches(NSString *name) {
 - (void)setAppSettings:(NSString *)kind settings:(NSDictionary *)settings timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
     NSDictionary *patch = RSAppSettingsPatch(kind, settings);
     if (!patch) {
-        if (completion) dispatch_async(dispatch_get_main_queue(), ^{ completion(nil, RSAppError(@"RS4MINI_INVALID_ARGUMENT", @"Settings require named boolean fields", nil)); }); return;
+        if (completion) dispatch_async(dispatch_get_main_queue(), ^{ completion(nil, RSAppError(@"RS4MINI_INVALID_ARGUMENT", @"Settings require valid named fields", nil)); }); return;
     }
     NSArray *context = @[@{@"index": RSAppSettingsSchema(kind)[@"index"], @"size": @1}];
     [self startAppCommand:0x10 parameters:context mode:nil settingsKind:kind settingsPatch:patch timeoutMs:timeoutMs completion:completion];

@@ -1,4 +1,4 @@
-# 当前 App 来源的设备参数 SDK（0.7.8 / 原生 0.3.8）
+# 当前 App 来源的设备参数 SDK（0.7.9 / 原生 0.3.9）
 
 应用继续只创建 `RS4Mini`（原生 `RSGimbal`）。`appCommands` 是该对象的设备 SDK 子接口，复用已有连接、序号、队列、响应关联和操作协调器；没有另开蓝牙连接。高级组合能力没有增加。新接口尚未对设备发送或验收。
 
@@ -85,3 +85,8 @@ PYTHONPATH=work/research/analysis-libs work/python312/bin/python tools/research/
 ## 0.7.8 system_calc自动校准
 
 四端新增独立的普通0F/10/index36固定启动1和状态读取，与6A/6E自动调参分开。读取状态2/3不受写入范围0..1限制，未知值保留raw/null；ACK/报告不代表本次物理完成，取消不保证固件中止，无虚构写零停止。Node108/Web14/Python各86/native75+101+3/research45，类型/边界/构建通过。尚无水平校准身份或本机验收，未操作硬件/UI或新增高级任务。详见 [APP_SYSTEM_CALIBRATION.md](APP_SYSTEM_CALIBRATION.md)。
+
+
+## 0.7.9 跟随/RC按轴档位
+
+六组参数档位已同步四端，Pitch/Roll/Yaw字段为bits2..3/4..5/6..7，custom/low/middle/high为0/1/2/3；先读后改写，保留其他轴和未知低两位，共用操作槽和总截止时间。Node113/Web14/Python各91/native79+107+3/research49，类型/边界/构建通过；无硬件/UI/高级新增，PF/PTF和custom数值未因此完成。详见 [APP_FOLLOW_MODES.md](APP_FOLLOW_MODES.md)。

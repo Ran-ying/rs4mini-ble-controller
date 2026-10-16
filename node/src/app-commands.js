@@ -5,7 +5,7 @@ import { appProfile, parameterContext, parameterRequest, sensitivityPayload, app
 import { motorSelection, motorWrite, motorReply } from './app-motor.js';
 import { frame } from './protocol.js';
 import { autoTunePayload, calibrationReply, calibrationNotification } from './app-calibration.js';
-import { settingsSchema, settingsPatch, decodeSettings, settingsWrite } from './app-settings.js';
+import { modeKind, settingsSchema, settingsPatch, decodeSettings, settingsWrite } from './app-settings.js';
 import { failure, check, now } from './async.js';
 function optionsOnly(options, keys) {
   if (!options || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(key => !keys.includes(key))) throw new TypeError('invalid App command options');
@@ -100,6 +100,22 @@ export class AppCommands {
         acknowledged: false, deviceVerified: false, physicalCompletionVerified: false };
     }, false);
   }
+  async getFollowSettings(options = {}) {
+    optionsOnly(options,['parameter','timeoutMs']); const {parameter,...rest}=options;
+    return this._getSettings(modeKind('follow',parameter),rest);
+  }
+  async setFollowSettings(options = {}) {
+    optionsOnly(options,['parameter','pitch','roll','yaw','timeoutMs']); const {parameter,...rest}=options;
+    return this._setSettings(modeKind('follow',parameter),rest);
+  }
+  async getRcSettings(options = {}) {
+    optionsOnly(options,['parameter','timeoutMs']); const {parameter,...rest}=options;
+    return this._getSettings(modeKind('rc',parameter),rest);
+  }
+  async setRcSettings(options = {}) {
+    optionsOnly(options,['parameter','pitch','roll','yaw','timeoutMs']); const {parameter,...rest}=options;
+    return this._setSettings(modeKind('rc',parameter),rest);
+  }
   getCustomFollowSettings(options = {}) { return this._getSettings('customFollow', options); }
   getMotorSettings(options = {}) { return this._getSettings('motor', options); }
   setCustomFollowSettings(options = {}) { return this._setSettings('customFollow', options); }
@@ -114,7 +130,7 @@ export class AppCommands {
     optionsOnly(options, [...Object.keys(schema.fields), 'timeoutMs']); this._requireProfile();
     const { timeoutMs = 3000, ...fields } = options, patch = settingsPatch(kind, fields);
     if (!Number.isFinite(timeoutMs) || timeoutMs <= 0 || timeoutMs > 60000) throw new RangeError('timeoutMs must be >0..60000');
-    const name = kind === 'motor' ? 'setMotorSettings' : 'setCustomFollowSettings';
+    const name = kind === 'motor' ? 'setMotorSettings' : kind === 'customFollow' ? 'setCustomFollowSettings' : kind.startsWith('follow') ? 'setFollowSettings' : 'setRcSettings';
     return this.owner._run(name, async operation => {
       await this.owner._stop(); check(operation.controller.signal);
       const deadline = now() + timeoutMs;

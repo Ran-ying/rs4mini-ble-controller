@@ -228,7 +228,14 @@ NSDictionary *RSDecodeAppReply(NSDictionary *message, uint8_t command, NSArray *
     return [result copy];
 }
 
+NSString *RSAppModeKind(NSString *domain, NSString *parameter) {
+    if (![domain isKindOfClass:NSString.class] || ![parameter isKindOfClass:NSString.class]) return nil;
+    return @{@"follow":@{@"speed":@"followSpeed",@"acceleration":@"followAcceleration",@"deadZone":@"followDeadZone"},@"rc":@{@"speed":@"rcSpeed",@"deadZone":@"rcDeadZone",@"smoothing":@"rcSmoothing"}}[domain][parameter];
+}
 NSDictionary *RSAppSettingsSchema(NSString *kind) {
+    if (![kind isKindOfClass:NSString.class]) return nil;
+    NSNumber *index=@{@"followSpeed":@65,@"followAcceleration":@71,@"followDeadZone":@66,@"rcSpeed":@67,@"rcDeadZone":@68,@"rcSmoothing":@69}[kind];
+    if (index) return @{@"index":index,@"max":@255,@"mask":@252,@"modes":@YES,@"fields":@{@"pitch":@2,@"roll":@4,@"yaw":@6}};
     if ([kind isEqualToString:@"customFollow"]) return @{@"index": @132, @"max": @15, @"mask": @15, @"fields": @{@"enabled": @1, @"pitch": @2, @"roll": @4, @"yaw": @8}};
     if ([kind isEqualToString:@"motor"]) return @{@"index": @35, @"max": @255, @"mask": @113, @"fields": @{@"enabled": @1, @"forbidSelfie": @16, @"forbidVertical": @32, @"roll360": @64}};
     return nil;
@@ -239,8 +246,11 @@ NSDictionary *RSAppSettingsPatch(NSString *kind, NSDictionary *patch) {
     NSMutableDictionary *result = [NSMutableDictionary dictionary];
     for (id key in patch) {
         id value = patch[key];
-        if (![key isKindOfClass:NSString.class] || !schema[@"fields"][key] || ![value isKindOfClass:NSNumber.class] || CFGetTypeID((__bridge CFTypeRef)value) != CFBooleanGetTypeID()) return nil;
-        result[key] = value;
+        if (![key isKindOfClass:NSString.class] || !schema[@"fields"][key]) return nil;
+        if ([schema[@"modes"] boolValue]) {
+            if (![@[@"custom",@"low",@"middle",@"high"] containsObject:value]) return nil;
+        } else if (![value isKindOfClass:NSNumber.class] || CFGetTypeID((__bridge CFTypeRef)value)!=CFBooleanGetTypeID()) return nil;
+        result[key] = [value copy];
     }
     return [result copy];
 }
@@ -249,6 +259,9 @@ NSDictionary *RSDecodeAppSettings(NSDictionary *reply, NSString *kind) {
     unsigned int raw = 0; [[NSScanner scannerWithString:reply[@"parameters"][0][@"rawHex"]] scanHexInt:&raw];
     NSMutableDictionary *settings = [NSMutableDictionary dictionary];
     for (NSString *key in schema[@"fields"]) {
+        if ([schema[@"modes"] boolValue]) {
+            settings[key]=@[@"custom",@"low",@"middle",@"high"][(raw>>[schema[@"fields"][key] intValue])&3];continue;
+        }
         BOOL enabled = (raw & [schema[@"fields"][key] intValue]) != 0;
         settings[key] = @([kind isEqualToString:@"motor"] && [key isEqualToString:@"enabled"] ? !enabled : enabled);
     }
@@ -260,6 +273,10 @@ NSData *RSAppSettingsFrame(uint16_t sequence, NSString *kind, NSDictionary *patc
     if (!patch || !Numeric(currentValue) || floor(currentValue.doubleValue) != currentValue.doubleValue || currentValue.doubleValue < 0 || currentValue.doubleValue > [schema[@"max"] intValue]) return nil;
     int value = currentValue.intValue;
     for (NSString *key in patch) {
+        if ([schema[@"modes"] boolValue]) {
+            int shift=[schema[@"fields"][key] intValue],mode=(int)[@[@"custom",@"low",@"middle",@"high"] indexOfObject:patch[key]];
+            value=(value & (255^(3<<shift))) | (mode<<shift);continue;
+        }
         int bit = [schema[@"fields"][key] intValue]; BOOL enabled = [patch[key] boolValue];
         if ([kind isEqualToString:@"motor"] && [key isEqualToString:@"enabled"]) enabled = !enabled;
         value = enabled ? value | bit : value & (255 ^ bit);

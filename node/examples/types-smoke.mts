@@ -61,6 +61,13 @@ void balanceResult;
   await gimbal.appCommands.sendAutoCalibrationRequest({start:false});
   void systemState;
 
+  await gimbal.appCommands.setFollowSettings({parameter:'speed',yaw:'low'});
+  await gimbal.appCommands.getRcSettings({parameter:'smoothing'});
+  // @ts-expect-error axis update is required
+  await gimbal.appCommands.setRcSettings({parameter:'speed'});
+  // @ts-expect-error no raw values or guessed modes
+  await gimbal.appCommands.setFollowSettings({parameter:'speed',yaw:1});
+
 }
 
 const bytes = velocityFrame(1, { pan: 0.1 });

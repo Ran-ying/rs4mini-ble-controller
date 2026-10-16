@@ -202,11 +202,12 @@
         "python/rs4mini_sdk/protocol.py",
         "macos/RSControlCore.m"
       ],
-      "remaining": "只确认 FE01/flags40 三轴回中；其余位/模式/单轴语义未知",
+      "remaining": "只确认 FE01/flags40 本机三轴回中；旧 MSDK 的 YAW_CENTER=1 与本机效果不一致，旧轴枚举不能作为本机单轴回中；候选载荷仅做离线核对",
       "officialAppAliases": [
         "ResetAndSetMode"
       ],
-      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
+      "offlineResearchEvidence": "protocol/research/msdk-4.18-evidence.json"
     },
     {
       "key": "04:66",
@@ -459,11 +460,12 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "remaining": "官方旧 MSDK 保留参数索引请求与依赖请求上下文/外部宽度的响应尾部逻辑；返回码可能在包层剥离。尚缺有效运行实现、参数表型号分支与本机样本，仅离线候选工具",
       "officialAppAliases": [
         "RoninGetParams"
       ],
-      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
+      "offlineResearchEvidence": "protocol/research/msdk-4.18-evidence.json"
     },
     {
       "key": "04:33",
@@ -485,11 +487,12 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "remaining": "旧 MSDK 的不可达字节码尾部给出 8 字节手柄参数候选布局；本机字段含义/范围及模式分支未知，不开放写入",
       "officialAppAliases": [
         "SetHandleParams"
       ],
-      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
+      "offlineResearchEvidence": "protocol/research/msdk-4.18-evidence.json"
     },
     {
       "key": "04:36",
@@ -498,11 +501,12 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "枚举编号已确认；负载与 RS 4 Mini 型号分支未恢复，不开放发送",
+      "remaining": "旧 MSDK 的不可达字节码尾部给出若干响应业务体偏移；需要区分包层返回码，不是本机验证。仅离线原始值解析，无新增查询",
       "officialAppAliases": [
         "GetHandleParams"
       ],
-      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
+      "offlineResearchEvidence": "protocol/research/msdk-4.18-evidence.json"
     },
     {
       "key": "04:37",
@@ -663,5 +667,9 @@
   ],
   "researchEvidence": [
     "protocol/research/ronin-2.2.2-evidence.json"
+  ],
+  "offlineResearchTools": [
+    "tools/research/msdk_static.py",
+    "tools/research/msdk_payloads.py"
   ]
 }

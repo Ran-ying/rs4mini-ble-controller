@@ -1,0 +1,389 @@
+{
+  "schemaVersion": 1,
+  "source": "https://repo.maven.apache.org/maven2/com/dji/dji-sdk-provided/4.18/dji-sdk-provided-4.18.jar",
+  "officialCoordinatesSource": "https://github.com/dji-sdk/Mobile-SDK-Android/blob/master/README.md",
+  "jarSha256": "f253d8ef033423132d35c28d5c0da0aade2e660d18f1994c56dec630e3f48f20",
+  "mavenSha1": "907999976ba655d462c7bd6c6c7f784006ced5d9",
+  "targetDeviceVerified": false,
+  "rs4MiniModelBranchRecovered": false,
+  "executableImplementationRecovered": false,
+  "sourceKind": "compile-only provided JAR with unreachable method tails",
+  "classes": [
+    {
+      "name": "dji/midware/data/model/P3/DataGimbalNewResetAndSetMode",
+      "classSha256": "dfcaae073168313d2e2b7c62b27a6f4a9d0f1e75a000ec445d568e10aabc5a24",
+      "methods": [
+        {
+          "name": "<init>",
+          "descriptor": "()V",
+          "codeSha256": "bb83678ccb68ac03e4696819f0cfba47dd7e25495ad73f5f6e5e7cf60bce8d50",
+          "codeBytes": 20,
+          "entryReturnPrefixHex": "b1"
+        },
+        {
+          "name": "doPack",
+          "descriptor": "()V",
+          "codeSha256": "c1ac48c3288816b309e7d2e2970cb2d4c89849aae5e1b380165d35ed9bba81f9",
+          "codeBytes": 47,
+          "entryReturnPrefixHex": "b1"
+        },
+        {
+          "name": "start",
+          "descriptor": "(Ldji/midware/interfaces/dgh;)V",
+          "codeSha256": "d8a15a56c303a8cb08cb810fb795c4fb84df8346d06a0f95f5e0cb2bac725b64",
+          "codeBytes": 85,
+          "entryReturnPrefixHex": "b1"
+        }
+      ]
+    },
+    {
+      "name": "dji/midware/data/model/P3/DataGimbalNewResetAndSetMode$ReturnCenterCmd",
+      "classSha256": "830703e109403afbb55c5b16e27dd6cce04a21a785a2c84e4f22ab1e96509fb9",
+      "methods": [
+        {
+          "name": "<init>",
+          "descriptor": "(Ljava/lang/String;II)V",
+          "codeSha256": "7c333105f35ed06e884ec244582c455366789714cf2a3109c3c93384ce029bf2",
+          "codeBytes": 13,
+          "entryReturnPrefixHex": "b1"
+        },
+        {
+          "name": "<clinit>",
+          "descriptor": "()V",
+          "codeSha256": "0a9163ac3861fadfb833bd034ec69e2dd413f1c5f22f6af5fd885315cb0d742d",
+          "codeBytes": 153,
+          "entryReturnPrefixHex": null
+        }
+      ],
+      "enumEntries": [
+        {
+          "name": "YAW_CENTER",
+          "ordinal": 0,
+          "value": 1
+        },
+        {
+          "name": "PITCH_YAW_CENTER",
+          "ordinal": 1,
+          "value": 3
+        },
+        {
+          "name": "PITCH_CENTER",
+          "ordinal": 2,
+          "value": 4
+        },
+        {
+          "name": "PITCH_UP_OR_DOWN_WITH_YAW_CENTER",
+          "ordinal": 3,
+          "value": 11
+        },
+        {
+          "name": "PITCH_UP_OR_DOWN",
+          "ordinal": 4,
+          "value": 12
+        },
+        {
+          "name": "INVALID",
+          "ordinal": 5,
+          "value": 255
+        }
+      ]
+    },
+    {
+      "name": "dji/midware/data/model/P3/DataGimbalControl$MODE",
+      "classSha256": "e1387d3d17b53f45032f0ae10ddd23a40847a78983f37414a7af2c0ad60f82fd",
+      "methods": [
+        {
+          "name": "<init>",
+          "descriptor": "(Ljava/lang/String;II)V",
+          "codeSha256": "bcd146c9d4d1868e5b4038039f94a2e7989401c79617a8997ab75db6dcdb0f37",
+          "codeBytes": 13,
+          "entryReturnPrefixHex": "b1"
+        },
+        {
+          "name": "<clinit>",
+          "descriptor": "()V",
+          "codeSha256": "e5c55aad8fa8017738fdaf24613ff8243acddba37efd8c397c943155d3127f65",
+          "codeBytes": 101,
+          "entryReturnPrefixHex": null
+        }
+      ],
+      "enumEntries": [
+        {
+          "name": "YawNoFollow",
+          "ordinal": 0,
+          "value": 0
+        },
+        {
+          "name": "FPV",
+          "ordinal": 1,
+          "value": 1
+        },
+        {
+          "name": "YawFollow",
+          "ordinal": 2,
+          "value": 2
+        },
+        {
+          "name": "OTHER",
+          "ordinal": 3,
+          "value": 254
+        }
+      ]
+    },
+    {
+      "name": "dji/midware/data/model/P3/DataGimbalRoninGetUserParams",
+      "classSha256": "e1bc891d99eacae4498d0dd995ca1af83dd6c17b592d2f0eed2ae90f31db2bd5",
+      "methods": [
+        {
+          "name": "<init>",
+          "descriptor": "()V",
+          "codeSha256": "01d4ed981eb1625fb385b201a5a8064e0a0e63fe49c9cdf7a6ae3bbcc852a66f",
+          "codeBytes": 11,
+          "entryReturnPrefixHex": "b1"
+        },
+        {
+          "name": "setRecData",
+          "descriptor": "([B)V",
+          "codeSha256": "a9a0fda1dac82b45bf603c98b4f17ddadbcbd33c045c2d374551e804398f2ea1",
+          "codeBytes": 96,
+          "entryReturnPrefixHex": "b1"
+        },
+        {
+          "name": "doPack",
+          "descriptor": "()V",
+          "codeSha256": "a8b05bb51311959205af3fda2fe5bddbc1b61bc3a56b0d08a35ebf3dabc871af",
+          "codeBytes": 50,
+          "entryReturnPrefixHex": "b1"
+        },
+        {
+          "name": "start",
+          "descriptor": "(Ldji/midware/interfaces/dgh;)V",
+          "codeSha256": "bdb094b6ad79a54d8fbe2ceef2405797a7b2d0ecfbe469f700080d515fd6ae51",
+          "codeBytes": 81,
+          "entryReturnPrefixHex": "b1"
+        }
+      ]
+    },
+    {
+      "name": "dji/midware/data/model/P3/DataGimbalGetHandleParams",
+      "classSha256": "9470e49f2bb6ef46013d8827f55375d6138925c20be60ba9b5277357dca66e66",
+      "methods": [
+        {
+          "name": "getDualChannelEnable",
+          "descriptor": "()I",
+          "codeSha256": "cd1287a6fc8dc355cf9b42977c7ac814850224c8f65613e4aca3625e2f865189",
+          "codeBytes": 17,
+          "entryReturnPrefixHex": "03ac"
+        },
+        {
+          "name": "getTiltDirection",
+          "descriptor": "()I",
+          "codeSha256": "a92ffc0765a5624b26e03e4a497f87d7125f02238530011d8a3c5d25cc12e2c8",
+          "codeBytes": 17,
+          "entryReturnPrefixHex": "03ac"
+        },
+        {
+          "name": "getPanDirection",
+          "descriptor": "()I",
+          "codeSha256": "8bcd81d1e0956caa839aabecf581adaffdc60994f6c58efbf27760dbe839c434",
+          "codeBytes": 17,
+          "entryReturnPrefixHex": "03ac"
+        },
+        {
+          "name": "getProfile",
+          "descriptor": "()I",
+          "codeSha256": "2cd90569e6d3f39da752dea89946dcaa74991292ceda6588f8fd0a29f51f0da5",
+          "codeBytes": 17,
+          "entryReturnPrefixHex": "03ac"
+        },
+        {
+          "name": "getPitchFree",
+          "descriptor": "()I",
+          "codeSha256": "4a036b280d5a76c815a4c3e5bdcf9fac28f191b35c53f77a5ca8e5010f39f919",
+          "codeBytes": 17,
+          "entryReturnPrefixHex": "03ac"
+        },
+        {
+          "name": "getZoom2SpeedEnable",
+          "descriptor": "()Z",
+          "codeSha256": "def41fbf5f8258e8602075856151e30d21f00f0a8b63c33bf9e9814091303b0f",
+          "codeBytes": 28,
+          "entryReturnPrefixHex": "03ac"
+        },
+        {
+          "name": "getRotationFocusEnable",
+          "descriptor": "()Z",
+          "codeSha256": "3db2628e928b0a3858bfb31be975cb1312cb13f437b4e3e674e8aed91c54e588",
+          "codeBytes": 29,
+          "entryReturnPrefixHex": "03ac"
+        },
+        {
+          "name": "getCellphoneSensorDisable",
+          "descriptor": "()Z",
+          "codeSha256": "829ed21a54a9233233f338a9f15f73a63ee94934e54f57d10035cc588957bf22",
+          "codeBytes": 29,
+          "entryReturnPrefixHex": "03ac"
+        },
+        {
+          "name": "doPack",
+          "descriptor": "()V",
+          "codeSha256": "c9e2518282dd8e7a001d906ff29664a4fe0a5c9b10a32482ea688e9a686367e7",
+          "codeBytes": 2,
+          "entryReturnPrefixHex": "b1"
+        },
+        {
+          "name": "start",
+          "descriptor": "(Ldji/midware/interfaces/dgh;)V",
+          "codeSha256": "0b9bab4db7cbdc2557f48472939ddff2955586fc8822f72fdb42846a4e1c91b2",
+          "codeBytes": 81,
+          "entryReturnPrefixHex": "b1"
+        }
+      ]
+    },
+    {
+      "name": "dji/midware/data/model/P3/DataGimbalSetHandleParams",
+      "classSha256": "e4f0be0a25ffd6615d93cd12757c819f32a5f48617d3a86d7b09b91d9aec09e8",
+      "methods": [
+        {
+          "name": "<init>",
+          "descriptor": "()V",
+          "codeSha256": "ab3ef4e813c4edb4f46ab98d632c01dc596f6b3061b3f023ef68901b1cc0a731",
+          "codeBytes": 59,
+          "entryReturnPrefixHex": "b1"
+        },
+        {
+          "name": "doPack",
+          "descriptor": "()V",
+          "codeSha256": "a2b673d751a4b15942009a3c7d2ed917c4ff9f19e04f073038da56b2dc27631f",
+          "codeBytes": 90,
+          "entryReturnPrefixHex": "b1"
+        },
+        {
+          "name": "start",
+          "descriptor": "(Ldji/midware/interfaces/dgh;)V",
+          "codeSha256": "b983f4054054bc9fe79858fa4270d3bf59f057aeb4dceed37c31e8db5966aaa7",
+          "codeBytes": 81,
+          "entryReturnPrefixHex": "b1"
+        }
+      ]
+    },
+    {
+      "name": "dji/midware/data/packages/P3/gfd",
+      "classSha256": "876926e4fc1e8c395189e5c9fdce3d42ec62756f0fc910d41662b2b7c09f584e",
+      "methods": [
+        {
+          "name": "<init>",
+          "descriptor": "([B)V",
+          "codeSha256": "f5bd9cfade7417229b4c6acb02cd60c804be5c4f0296e937ff3ac86d3ee3c257",
+          "codeBytes": 16,
+          "entryReturnPrefixHex": "b1"
+        },
+        {
+          "name": "fdd",
+          "descriptor": "([B)V",
+          "codeSha256": "6e92d9ea6143d7c1eb5021f6662af974f60e23c19bd597c4008358388f00d9e5",
+          "codeBytes": 245,
+          "entryReturnPrefixHex": "b1"
+        },
+        {
+          "name": "nhf",
+          "descriptor": "()V",
+          "codeSha256": "2b528e26515b76f4612d3314d888cded2a837a04c4062331e33b197b6b81128c",
+          "codeBytes": 137,
+          "entryReturnPrefixHex": "b1"
+        }
+      ]
+    },
+    {
+      "name": "dji/midware/data/config/P3/CmdIdGimbal$CmdIdType",
+      "classSha256": "252c5750d3cfa9b805fda659e3f535fb3ad14bb9e075effe2cb38dde03969a57",
+      "methods": [
+        {
+          "name": "<init>",
+          "descriptor": "(Ljava/lang/String;II)V",
+          "codeSha256": "1bff9409e9de7d89e9c1d7e0363d1fd21a1d21bdd5f7843876835d0f8fa2fe12",
+          "codeBytes": 18,
+          "entryReturnPrefixHex": "b1"
+        },
+        {
+          "name": "<init>",
+          "descriptor": "(Ljava/lang/String;IIZLjava/lang/Class;)V",
+          "codeSha256": "4d494e22ba4e004dd5855173ecfcc3cb57474378d23a7b142b615c09ff7bf81a",
+          "codeBytes": 39,
+          "entryReturnPrefixHex": "b1"
+        },
+        {
+          "name": "<clinit>",
+          "descriptor": "()V",
+          "codeSha256": "711ff5ac392c4cdbd0d02e406173859db39ca088a8da0cfe1b38cdd2526899fd",
+          "codeBytes": 1079,
+          "entryReturnPrefixHex": null
+        }
+      ]
+    },
+    {
+      "name": "dji/midware/data/manager/P3/DataBase",
+      "classSha256": "392499c2fbeebc3cadb75697e19cb559a49feca9a6422e38f2abc876072d447a",
+      "methods": [
+        {
+          "name": "setRecData",
+          "descriptor": "([B)V",
+          "codeSha256": "be11bc268fa126fafe329d02fdb7db1d75bc992c2f51900dc443391cd6ebcd6d",
+          "codeBytes": 7,
+          "entryReturnPrefixHex": "b1"
+        }
+      ]
+    }
+  ],
+  "manuallyReviewedCandidateLayouts": [
+    {
+      "command": "04:4C",
+      "sourceClass": "DataGimbalNewResetAndSetMode",
+      "bytes": 2,
+      "fields": [
+        "mode.value() cast to byte",
+        "center enum value cast to byte unless INVALID; default zero"
+      ],
+      "methodEntryPrefix": "return",
+      "deviceSemanticsConflict": "legacy YAW_CENTER=1; target historical FE01 resets all axes; no single-axis inference"
+    },
+    {
+      "command": "04:32",
+      "sourceClass": "DataGimbalRoninGetUserParams",
+      "request": "one byte per externally resolved parameter index in request order",
+      "responseBusinessBody": "index byte, skipped header byte, raw value sized by external metadata; repeated in request context order",
+      "wireStatusPrefix": "must be separated before business decoding; receive parser has conditional Ccode stripping",
+      "parameterNameMappingVerified": false
+    },
+    {
+      "command": "04:35/36",
+      "sourceClasses": [
+        "DataGimbalSetHandleParams",
+        "DataGimbalGetHandleParams"
+      ],
+      "candidateBodyBytes": 8,
+      "nonCameraRawOffsets": {
+        "dualChannel": 0,
+        "tiltDirection": 1,
+        "panDirection": 2,
+        "profile": 3,
+        "pitchFree": 4
+      },
+      "remainingBytes": "5..7 deliberately uninterpreted by offline codec; no camera work",
+      "wireStatusPrefix": "business decoder offsets, not raw BLE frame offsets"
+    }
+  ],
+  "runtimeAarInspection": {
+    "source": "https://repo.maven.apache.org/maven2/com/dji/dji-sdk/4.18/dji-sdk-4.18.aar",
+    "sha256": "6ec0b866057aba2b874bcbfabe7f3c991d00081b6093de88b9317412cd881897",
+    "size": 59037696,
+    "dataGimbalNamedClassesInEmbeddedJars": 0,
+    "corroboratesExecutableImplementation": false
+  },
+  "limitations": [
+    "Unreachable tails are static candidates, not execution evidence.",
+    "No RS 4 Mini model branch or device compatibility is established.",
+    "No parameter names, valid values, enum semantics or safe writes inferred for the target.",
+    "No APK/JAR/native code executed and no hardware used."
+  ]
+}

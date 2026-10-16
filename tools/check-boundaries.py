@@ -61,5 +61,15 @@ for row in manifest['commands']:
         assert evidence['parameterNamesSafeToInferFromWireIndex'] is False
         for item in evidence['enumEntries']:
             assert item['wireValue'] == (0 <= item['value'] <= 255)
+# Offline bytecode-tail hypotheses must not silently become device support.
+for row in manifest['commands']:
+    if row.get('offlineResearchEvidence'):
+        offline = json.loads((root / row['offlineResearchEvidence']).read_text())
+        assert offline['targetDeviceVerified'] is False
+        assert offline['rs4MiniModelBranchRecovered'] is False
+        assert offline['executableImplementationRecovered'] is False
+for source in manifest.get('offlineResearchTools', []):
+    assert (root / source).is_file(), source
+    assert source.startswith('tools/research/'), source
 print('Layer boundaries passed: device modules do not depend on motion; upper layers do not encode/write packets.')
 print('Protocol inventory: %d entries; inventoryComplete=false; further advanced development is gated.' % len(manifest['commands']))

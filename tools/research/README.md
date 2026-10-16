@@ -29,3 +29,8 @@ NOP/常量/返回模式只标记为保护桩候选，不把返回零解释成协
 
 复核用 [DEX 格式](https://source.android.com/docs/core/runtime/dex-format) 和
 [Dalvik 指令格式](https://source.android.com/docs/core/runtime/dalvik-bytecode)。SDK 参数候选解析的独立来源见 `docs/PROTOCOL.md`（从仓库根目录读取）。
+
+## 官方 MSDK 交叉研究
+
+[MSDK_V4.md](MSDK_V4.md) 记录官方 provided JAR 的只读提取方法、回中/参数/手柄候选布局和跨型号差异。
+`msdk_static.py` 与 `msdk_payloads.py` 只用于离线研究；没有新增 SDK 发送能力或高级功能。

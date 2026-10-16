@@ -225,3 +225,20 @@ not installed/executed, and no device was scanned or connected.
 - A repository upload does not authorize npm publishing or a binary release.
 - Keep Node package versions and lockfile root metadata consistent. Record
   behavior changes in `node/CHANGELOG.md` and update public API docs and types.
+
+
+## Follow-up static research (runtime stays 0.7.2 / native 0.3.2)
+
+The pinned official MSDK provided 4.18 JAR has early-return prefixes followed by
+unreachable candidate bytecode tails. `tools/research/msdk_static.py` reads them
+without execution or patching; `msdk_payloads.py` contains offline hypotheses only,
+never imported by SDK/UI. Evidence: `protocol/research/msdk-4.18-evidence.json`.
+Old YAW_CENTER=1 conflicts with target FE01 all-axis behavior. The current Ronin
+same-name class uses a boolean reset field rather than the old center enum.
+Never expose those old enum numbers as target single-axis/mode support. Response
+business offsets may follow command-specific Ccode stripping in the packet layer;
+do not equate them with raw BLE offsets. 04:32 parsing needs external request/size
+context. Handle field offsets are legacy candidates with unknown target values.
+No new SDK commands, query allowlist, advanced feature or device evidence resulted.
+See `tools/research/MSDK_V4.md`. JAR/AAR/class files and complete disassembly remain
+ignored, not source deliverables; source release versions were not bumped.

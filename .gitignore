@@ -23,3 +23,6 @@ work/
 # External APKs and derived research bytecode are never source deliverables.
 *.apk
 *.dex
+*.jar
+*.aar
+*.class

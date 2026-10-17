@@ -55,7 +55,7 @@ for row in manifest['commands']:
     if row['targetEvidence'] == 'official-app-enum':
         assert row['requestCodec'] in {'unknown', 'not-exposed'} and not row['implementation'], row['key']
     if row['targetEvidence'] == 'app-generic-code':
-        assert row['key'] in {'04:24','04:57'} and row['requestCodec'] == 'not-applicable' and row['responseCodec'] == 'candidate-structured'
+        assert row['key'] in {'04:24','04:57','04:27','04:33'} and row['requestCodec'] == 'not-applicable' and row['responseCodec'] == 'candidate-structured'
         assert manifest['userPushSdk']['modelSpecificPathVerified'] is False and manifest['userPushSdk']['targetDeviceVerified'] is False
     if row.get('officialAppEvidence'):
         evidence_path = root / row['officialAppEvidence']
@@ -463,3 +463,22 @@ if manifest.get('stickResearch'):
     assert manifest['handheldStickSdk']['sendEnabled'] is False
     for key in ('targetDeviceVerified','modelLayoutVerified','axisMappingVerified'):assert manifest['handheldStickSdk'][key] is False
     for path in manifest['handheldStickSdk']['files']:assert (root/path).is_file()
+
+if manifest.get('sourceStatusResearch'):
+    source_status=json.loads((root/manifest['sourceStatusResearch']).read_text())
+    assert source_status['appCodeExecuted'] is False and source_status['targetDeviceVerified'] is False
+    assert source_status['wholeProtocolRecovered'] is False and source_status['targetLayoutVerified'] is False
+    assert source_status['sourceComposite']['includesYaw'] is False and source_status['batterySourceDoesNotClamp'] is True
+    assert len(source_status['abnormalFields']) == 21 and len(source_status['methods']) == 36
+    assert manifest['sourceStatusSdk']['automaticControlEnabled'] is False
+    for key in ('targetDeviceVerified','modelLayoutVerified'):assert manifest['sourceStatusSdk'][key] is False
+    for path in manifest['sourceStatusSdk']['files']:assert (root/path).is_file()
+    expected_fields=[[f['sourceGetter'],f['offset'],f['shift'],f['mask'],f['boolean']] for f in source_status['abnormalFields']]
+    js_catalog=re.search(r'const fields=(.*);', (root/'node/src/app-source-status.js').read_text()).group(1)
+    assert json.loads(js_catalog) == expected_fields
+    py_catalog=ast.literal_eval(re.search(r'FIELDS=(.*)', (root/'python/rs4mini_sdk/app_source_status.py').read_text()).group(1))
+    assert [list(row) for row in py_catalog] == expected_fields
+
+    native_status=(root/'macos/RSControlCore.m').read_text().split('NSDictionary *RSDecodeAppSourceStatusNotification(',1)[1]
+    native_fields=re.findall(r'@\[@"([^"\n]+)",@(\d+),@(\d+),@(\d+),@(YES|NO)\]',native_status)
+    assert [[name,int(offset),int(shift),int(mask),boolean=='YES'] for name,offset,shift,mask,boolean in native_fields] == expected_fields

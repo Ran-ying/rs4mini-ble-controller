@@ -654,3 +654,16 @@ NSDictionary *RSDecodeAppHandheldStickNotification(NSDictionary *message) {
     const uint8_t *b=body.bytes;uint16_t word=(uint16_t)(b[4]|((uint16_t)b[5]<<8));
     return @{@"kind":@"handheldStick",@"profile":@"ronin-2.2.2",@"timestamp":@(NSDate.date.timeIntervalSince1970*1000),@"sourceStickX":@((int16_t)(b[0]|((uint16_t)b[1]<<8))),@"sourceStickY":@((int16_t)(b[2]|((uint16_t)b[3]<<8))),@"rawStateWord":@(word),@"unknownStateBits":@(word&0xfffc),@"sourceTriggerPressed":@((word&1)!=0),@"sourceStickControlEnabled":@((word&2)!=0),@"bodyHex":[Hex(body) copy],@"deviceVerified":@NO,@"modelLayoutVerified":@NO,@"axisMappingVerified":@NO,@"physicalCompletionVerified":@NO};
 }
+
+NSDictionary *RSDecodeAppSourceStatusNotification(NSDictionary *message) {
+    int command=[message[@"commandId"] intValue];
+    if ([message[@"sender"] intValue]!=4 || [message[@"receiver"] intValue]!=2 || [message[@"commandSet"] intValue]!=4 || (command!=0x27 && command!=0x33) || !Numeric(message[@"flags"]) || [message[@"flags"] doubleValue]!=floor([message[@"flags"] doubleValue]) || [message[@"flags"] doubleValue]<0 || [message[@"flags"] doubleValue]>255 || ([message[@"flags"] intValue]&0x87)) return nil;
+    NSData *body=message[@"payload"];BOOL abnormal=command==0x27;if(![body isKindOfClass:NSData.class] || body.length<(abnormal?5:1))return nil;
+    const uint8_t *b=body.bytes;
+    NSMutableDictionary *result=[@{@"kind":abnormal?@"abnormal":@"battery",@"profile":@"ronin-2.2.2",@"timestamp":@(NSDate.date.timeIntervalSince1970*1000),@"bodyHex":[Hex(body) copy],@"deviceVerified":@NO,@"modelLayoutVerified":@NO,@"physicalCompletionVerified":@NO} mutableCopy];
+    if(!abnormal){result[@"rawCapacityValue"]=@(b[0]);result[@"sourceGetter"]=@"getCapacityPercentage";return [result copy];}
+    NSArray *fields=@[@[@"getFanDirection",@2,@1,@1,@NO],@[@"getGimbalDirectionWhenVertical",@2,@5,@1,@NO],@[@"getGimbalGravity",@3,@1,@3,@NO],@[@"getSleepMode",@4,@0,@1,@NO],@[@"getVerticalDirection",@2,@2,@1,@NO],@[@"isErrorRecentOrSelfie",@1,@6,@1,@YES],@[@"isErrorRecentWhenStartUp",@1,@3,@1,@YES],@[@"isInFlashlight",@2,@3,@1,@YES],@[@"isJointLockAfterStartup",@1,@0,@1,@YES],@[@"isJointLockWhenStartup",@1,@1,@1,@YES],@[@"isMotorProtected",@1,@2,@1,@YES],@[@"isPanoReady",@1,@7,@1,@YES],@[@"isPhoneOutGimbal",@3,@0,@1,@YES],@[@"isPitchLimitedInTracking",@3,@6,@1,@YES],@[@"isPitchLocked",@0,@1,@1,@YES],@[@"isPortrait",@2,@4,@1,@YES],@[@"isRollLocked",@0,@0,@1,@YES],@[@"isUpgrading",@1,@4,@1,@YES],@[@"isYawLimit",@1,@5,@1,@YES],@[@"isYawLimitedInTracking",@3,@5,@1,@YES],@[@"isYawLocked",@0,@2,@1,@YES]];
+    NSMutableDictionary *values=[NSMutableDictionary dictionary];
+    for(NSArray *field in fields){unsigned value=(b[[field[1] unsignedIntegerValue]]>>[field[2] unsignedIntValue])&[field[3] unsignedIntValue];values[field[0]]=[field[4] boolValue]?@(value!=0):@(value);}
+    values[@"isGimbalLocked"]=@([values[@"isRollLocked"] boolValue] || [values[@"isPitchLocked"] boolValue]);result[@"sourceValues"]=[values copy];return [result copy];
+}

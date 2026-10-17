@@ -240,7 +240,15 @@ export interface AppHandheldStickStatus {
   sourceTriggerPressed:boolean;sourceStickControlEnabled:boolean;bodyHex:string;
   deviceVerified:false;modelLayoutVerified:false;axisMappingVerified:false;physicalCompletionVerified:false;
 }
-export type AppStatus = AppCalibrationStatus | AppUserParameterStatus | AppHandheldStickStatus;
+export interface AppAbnormalStatus {
+  kind:'abnormal';profile:'ronin-2.2.2';timestamp:number;sourceValues:Record<string,boolean|number>;bodyHex:string;
+  deviceVerified:false;modelLayoutVerified:false;physicalCompletionVerified:false;
+}
+export interface AppBatteryStatus {
+  kind:'battery';profile:'ronin-2.2.2';timestamp:number;rawCapacityValue:number;sourceGetter:'getCapacityPercentage';bodyHex:string;
+  deviceVerified:false;modelLayoutVerified:false;physicalCompletionVerified:false;
+}
+export type AppStatus = AppCalibrationStatus | AppUserParameterStatus | AppHandheldStickStatus | AppAbnormalStatus | AppBatteryStatus;
 export interface AppAutoTuneSent {
   profile: "ronin-2.2.2"; sent: true; requestedStart: boolean;
   acknowledgementRequested: false; acknowledged: false;
@@ -279,6 +287,8 @@ export interface AppCommands {
   sendHandleSettingRequest(options:{setting:'dualChannelMode'|'tiltDirection'|'panDirection';value:0|1;timeoutMs?:number}):Promise<AppCommandReply & {setting:'dualChannelMode'|'tiltDirection'|'panDirection';requestedValue:0|1;unspecifiedByteSemanticsVerified:false;readbackVerified:false;persistenceVerified:false}>;
   sendFineTuneRequest(options:{axis:'pitch'|'roll';adjustmentDegrees:number;timeoutMs?:number}):Promise<AppCommandReply & {axis:'pitch'|'roll';requestedAdjustmentDegrees:number;encodedTenths:number;nominalAdjustmentDegrees:number;stabilizationStateVerified:false}>;
   getHandleSettings(options?:{timeoutMs?:number}):Promise<AppCommandReply & {modelLayoutVerified:false;values:Array<{sourceGetter:string;offset:number;size:1;rawValue:number;sourceBit0:boolean|null}>}>;
+  readonly abnormalStatus:AppAbnormalStatus|null;
+  readonly batteryStatus:AppBatteryStatus|null;
   readonly handheldStickStatus:AppHandheldStickStatus|null;
   readonly userParameterStatus:AppUserParameterStatus|null;
   getStandaloneTuning(options?:{axis?:MotorTuningAxis;parameter?:StandaloneParameter;timeoutMs?:number}):Promise<AppTuningReading & {inputSourceRaw:number}>;

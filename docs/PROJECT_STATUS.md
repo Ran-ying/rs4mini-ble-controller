@@ -373,3 +373,15 @@ HG724继承基础resetGimbal先调用此等待，后按平台选择DataSpecialCo
 固定六段实际复现23方法/2类外直接调用方法。研究工具Python3.8/3.12各144项（新增8）；统一离线Node184/Web15/Python3.8与3.12各162、原生135核心+170假设备+3独立SDK、类型/边界/构建通过。安装后的Node tarball184及类型消费、wheel162回归通过，Python导入路径核对为隔离wheel目标。
 
 新增signed端点、独立状态位/未知高位/尾字节、短帧/ACK/加密/错端点拒绝、source gating、快照与观察者异常隔离、profile/断线清空、无58/订阅发送、通知不完成待处理参数请求、Web无Buffer验证。打包Node77文件、wheel29运行时模块、原生0.3.20/build23核对；未开启实机或实时UI，仍不能宣称完整协议或HG724手柄验证。
+
+
+## 0.7.21异常/电量被动候选 / 原生0.3.21 build24
+
+显式App来源下四端04:27/33独立abnormalStatus/batteryStatus（Python snake别名、原生app前缀）及kind事件。27有21直接getter+Roll/Pitch OR复合，不含Yaw，5字节完整已知布局；33保留原始0..255容量和尾字节，不夹取255、不并入0D02。复制/不可变快照、来源/断线清空，不影响反馈/其他缓存、所有权或待处理查询，无订阅/请求/自动控制/高级新增。36方法/2直接调用仅见MobileHandheld异常消费，无HG724布局或实机证据；型号/设备/物理标志false。见docs/APP_SOURCE_STATUS.md和tools/research/ABNORMAL_BATTERY.md，全命令门槛false。
+
+
+## 0.7.21源状态候选验证（2026-10-17）
+
+固定六段实际复现36方法/2类外直接调用方法，21字段目录逐项对比Node/Python/原生与源码证据一致。研究工具Python3.8/3.12各152（新增8）；统一离线Node190/Web16/Python两环境各168、原生139核心+172假设备+3独立SDK及类型/边界/构建通过。安装后Node190+类型消费、wheel168通过，Python路径核对为隔离wheel目标。
+
+新增Yaw-only不算复合锁、gravity两位保留、sleep偏移4、battery255/未知尾字节、短帧/ACK/加密/错端点拒绝、来源/缓存复制及观察者异常隔离、断线/来源切换清空、无请求/订阅发送、通知不完成待处理查询、Web无Buffer检查。包内Node79文件、wheel30模块、原生0.3.21/build24核对，未运行实机或实时UI，不新增高级控制，全命令门槛false。

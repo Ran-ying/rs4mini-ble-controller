@@ -5,6 +5,8 @@ typedef void (^TelemetryHandler)(NSDictionary *sample);
 typedef void (^RSAppCompletion)(NSDictionary *result, NSError *error);
 // Device layer: independent of RSGimbal and composed motion.
 @interface RSBleDevice : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>
+@property(nonatomic, readonly, copy) NSDictionary *appAbnormalStatus;
+@property(nonatomic, readonly, copy) NSDictionary *appBatteryStatus;
 @property(nonatomic, readonly, copy) NSDictionary *appHandheldStickStatus;
 @property(nonatomic, readonly) BOOL ready;
 @property(nonatomic, readonly) BOOL connecting;

@@ -1,3 +1,4 @@
+from .app_source_status import source_status_notification
 from .app_handheld_stick import handheld_stick_notification
 from .app_profile_values import profile_value_selection,profile_value_write,profile_value_reply
 from .app_smooth_track import smooth_track_selection,smooth_track_write,smooth_track_reply
@@ -27,7 +28,13 @@ class AppCommands:
         self._calibration_status = None
         self._user_parameter_status = None
         self._handheld_stick_status = None
+        self._abnormal_status = None
+        self._battery_status = None
 
+    abnormalStatus = property(lambda self: copy.deepcopy(self._abnormal_status))
+    abnormal_status = abnormalStatus
+    batteryStatus = property(lambda self: copy.deepcopy(self._battery_status))
+    battery_status = batteryStatus
     handheldStickStatus = property(lambda self: copy.deepcopy(self._handheld_stick_status))
     handheld_stick_status = handheldStickStatus
     userParameterStatus = property(lambda self: copy.deepcopy(self._user_parameter_status))
@@ -40,10 +47,17 @@ class AppCommands:
         self._calibration_status = None
         self._user_parameter_status = None
         self._handheld_stick_status = None
+        self._abnormal_status = None
+        self._battery_status = None
 
     def _message(self, message):
         if not self._profile:
             return
+        source=source_status_notification(message)
+        if source:
+            if source['kind']=='abnormal':self._abnormal_status=source
+            else:self._battery_status=source
+            self.owner._emit('onAppStatus',copy.deepcopy(source))
         stick=handheld_stick_notification(message)
         if stick:
             self._handheld_stick_status=stick

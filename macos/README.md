@@ -1,4 +1,4 @@
-# RS 4 Mini Control 0.3.20
+# RS 4 Mini Control 0.3.21
 
 Objective-C / AppKit / CoreBluetooth 原生面板，提供三轴按住速度控制、停止、三轴回中、姿态/机械关节反馈和低速关节目标定位，不依赖 Node 或 Python。
 
@@ -103,3 +103,6 @@ open "macos/RS 4 Mini Control.app"
 
 
 0.7.20新增[手柄状态被动候选](../docs/APP_HANDHELD_STICK.md)，仅显式App来源、无58发送/订阅，真实57布局、单位与轴映射等待本机验收；未新增高级功能。
+
+
+0.7.21新增[异常与电量被动候选](../docs/APP_SOURCE_STATUS.md)，显式App来源、原始位/255保留，不触发请求或自动控制；本机布局与通知仍未验收。

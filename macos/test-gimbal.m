@@ -494,6 +494,15 @@ int main(void) {
         }
         [peripheral.writes setLength:0];
         [gimbal sendFactorySettingsResetRequest:@{@"sourcePlatform":@"HG724"} timeoutMs:1000 completion:appDone]; ThreeTicks(gimbal);
+        NSUInteger sourceWrites=peripheral.writes.length;__block NSUInteger sourceEvents=0;
+        gimbal.appStatusHandler=^(NSDictionary *status){if([@[@"abnormal",@"battery"] containsObject:status[@"kind"]]){sourceEvents++;@throw [NSException exceptionWithName:@"sourceObserver" reason:nil userInfo:nil];}};
+        notify.value=AppNotification(5,0x27,[NSData dataWithBytes:(uint8_t[]){4,255,62,103,1,170} length:6]);[gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil];
+        notify.value=AppNotification(5,0x33,[NSData dataWithBytes:(uint8_t[]){255,99} length:2]);[gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil];PumpCallbacks();
+        Require(gimbal.busy && appCallbacks==66 && sourceEvents==2 && ![gimbal.appAbnormalStatus[@"sourceValues"][@"isGimbalLocked"] boolValue] && [gimbal.appBatteryStatus[@"rawCapacityValue"] intValue]==255 && peripheral.writes.length==sourceWrites,@"passive source status candidates never complete query or send despite observer errors");
+        NSDictionary *abnormalBefore=gimbal.appAbnormalStatus,*batteryBefore=gimbal.appBatteryStatus;
+        notify.value=AppNotification(5,0x27,[NSMutableData dataWithLength:4]);[gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil];
+        notify.value=AppResponse(5,0x33,[NSMutableData dataWithLength:1],4);[gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil];
+        Require([gimbal.appAbnormalStatus isEqual:abnormalBefore] && [gimbal.appBatteryStatus isEqual:batteryBefore] && sourceEvents==2,@"invalid source notifications preserve independent prior snapshots");
         NSUInteger stickWrites=peripheral.writes.length;__block NSUInteger stickEvents=0;
         gimbal.appStatusHandler=^(NSDictionary *status){if([status[@"kind"] isEqualToString:@"handheldStick"]){stickEvents++;@throw [NSException exceptionWithName:@"observer" reason:nil userInfo:nil];}};
         NSData *stickPayload=[NSData dataWithBytes:(uint8_t[]){0,128,255,127,3,128,170} length:7];
@@ -507,7 +516,7 @@ int main(void) {
         Require(gimbal.busy && gimbal.appUserParameterStatus && appCallbacks==66,@"passive report does not release or complete an outstanding parameter query");
         [gimbal centralManager:(id)central didDisconnectPeripheral:(id)peripheral error:nil]; PumpCallbacks();
         Require(appCallbacks == 67 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_DISCONNECTED"], @"native disconnect rejects pending App query");
-        Require(!gimbal.appUserParameterStatus && !gimbal.appHandheldStickStatus,@"native disconnect clears cached fixed and stick reports");
+        Require(!gimbal.appUserParameterStatus && !gimbal.appHandheldStickStatus && !gimbal.appAbnormalStatus && !gimbal.appBatteryStatus,@"native disconnect clears cached fixed and stick reports");
         [decoder reset];frames=[decoder push:peripheral.writes];resetWrites=0;for(NSDictionary *f in frames)if([f[@"commandId"] intValue]==0x13)resetWrites++;Require(resetWrites==1,@"native reset disconnect never repeats request");
         [gimbal disconnect]; ThreeTicks(gimbal);
         printf("Native fake-device lifecycle checks: %lu passed (no Bluetooth manager created)\n", (unsigned long)assertions);

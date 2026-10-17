@@ -96,3 +96,5 @@ NSData *RSAppProfileValueWriteFrame(uint16_t sequence,NSArray *context,NSNumber 
 NSDictionary *RSDecodeAppProfileValueReply(NSDictionary *message,NSString *kind,NSError **error);
 
 NSDictionary *RSDecodeAppHandheldStickNotification(NSDictionary *message);
+
+NSDictionary *RSDecodeAppSourceStatusNotification(NSDictionary *message);

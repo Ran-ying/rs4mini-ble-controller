@@ -107,6 +107,9 @@ test('protocol, telemetry and controller import without Node Buffer or Node modu
     const packet = protocol.frame(1, 4, 5, payload);
     const decoder = new DumlStreamDecoder(); assert.equal(decoder.push(packet.subarray(0, 20)).length, 0);
     assert.equal(decodeGimbalTelemetry(decoder.push(packet.subarray(20))[0]).jointAngles.yaw, 12.34);
+    const {sourceStatusNotification} = await import('./node/src/app-source-status.js');
+    const source=sourceStatusNotification({sender:4,receiver:2,commandSet:4,commandId:39,flags:0,payload:new Uint8Array([4,255,62,103,1])});
+    assert.equal(source.sourceValues.isYawLocked,true);assert.equal(source.sourceValues.isGimbalLocked,false);assert.equal(source.sourceValues.getGimbalGravity,3);
     const {handheldStickNotification} = await import('./node/src/app-handheld-stick.js');
     const stick=handheldStickNotification({sender:4,receiver:2,commandSet:4,commandId:87,flags:0,payload:new Uint8Array([0,128,255,127,3,128])});
     assert.equal(stick.sourceStickX,-32768);assert.equal(stick.unknownStateBits,32768);assert.equal(stick.bodyHex,'0080ff7f0380');
@@ -206,4 +209,10 @@ test('Web source stick candidate uses shared SDK cache and sends no control requ
   incoming();assert.equal(gimbal.appCommands.handheldStickStatus,null);gimbal.appCommands.useProfile('ronin-2.2.2');incoming();
   assert.equal(gimbal.appCommands.handheldStickStatus.sourceStickX,-1);assert.equal(gimbal.appCommands.handheldStickStatus.sourceStickY,-32768);assert.equal(gimbal.appCommands.handheldStickStatus.sourceStickControlEnabled,true);assert.equal(device.tx.writes.length,0);assert.equal(gimbal.latestTelemetry,null);
   await gimbal.disconnect();assert.equal(gimbal.appCommands.handheldStickStatus,null);
+});
+
+test('Web source abnormal and battery candidates stay separate without commands',async t=>{
+ const {gimbal,device}=setup();t.after(()=>gimbal.close());await gimbal.connect();gimbal.appCommands.useProfile('ronin-2.2.2');
+ const incoming=(command,body)=>{const data=frame(1,4,command,new Uint8Array(body),0);data[4]=4;data[5]=2;new DataView(data.buffer,data.byteOffset,data.byteLength).setUint16(data.length-2,crc16(data.subarray(0,-2)),true);device.rx.notify(data);};
+ incoming(39,[4,255,62,103,1,99]);incoming(51,[255,99]);assert.equal(gimbal.appCommands.abnormalStatus.sourceValues.isGimbalLocked,false);assert.equal(gimbal.appCommands.batteryStatus.rawCapacityValue,255);assert.equal(device.tx.writes.length,0);assert.equal(gimbal.latestTelemetry,null);assert.equal(gimbal.appCommands.handheldStickStatus,null);await gimbal.disconnect();assert.equal(gimbal.appCommands.abnormalStatus,null);assert.equal(gimbal.appCommands.batteryStatus,null);
 });

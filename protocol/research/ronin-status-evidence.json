@@ -1,0 +1,520 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "bankSha256": {
+    "0": "76002e76e02e1306ad197c4af127975d573999de174e5a9e44cc6f840196f621",
+    "2": "de69497b77de530d0d559646dc6d3fb24569e2ba8ba9502216f3d6c9fd6f3bf8",
+    "3": "bb50b39865520f55e97116ae1903bda3545b01c2fb7e2aba67a979dc264a9854",
+    "4": "2d3ff70fb84eb02ac75949ca6e7d5cc849a7f9ef55029fd168890c6dbccb1d12",
+    "5": "4fdbd74a05df63d72a0feb1c907d9395426ec3cdb5d6aeb45e3836d856d66654",
+    "6": "057f13084cf969ffadcfa2150d1b3ae3ed8a7822c95fb54158781764c9156e2f"
+  },
+  "appCodeExecuted": false,
+  "targetDeviceVerified": false,
+  "wholeProtocolRecovered": false,
+  "researchToolProvidesSdkInterface": false,
+  "abnormalFields": [
+    {
+      "sourceGetter": "getFanDirection",
+      "offset": 2,
+      "size": 1,
+      "shift": 1,
+      "mask": 1,
+      "boolean": false
+    },
+    {
+      "sourceGetter": "getGimbalDirectionWhenVertical",
+      "offset": 2,
+      "size": 1,
+      "shift": 5,
+      "mask": 1,
+      "boolean": false
+    },
+    {
+      "sourceGetter": "getGimbalGravity",
+      "offset": 3,
+      "size": 1,
+      "shift": 1,
+      "mask": 3,
+      "boolean": false
+    },
+    {
+      "sourceGetter": "getSleepMode",
+      "offset": 4,
+      "size": 1,
+      "shift": 0,
+      "mask": 1,
+      "boolean": false
+    },
+    {
+      "sourceGetter": "getVerticalDirection",
+      "offset": 2,
+      "size": 1,
+      "shift": 2,
+      "mask": 1,
+      "boolean": false
+    },
+    {
+      "sourceGetter": "isErrorRecentOrSelfie",
+      "offset": 1,
+      "size": 1,
+      "shift": 6,
+      "mask": 1,
+      "boolean": true
+    },
+    {
+      "sourceGetter": "isErrorRecentWhenStartUp",
+      "offset": 1,
+      "size": 1,
+      "shift": 3,
+      "mask": 1,
+      "boolean": true
+    },
+    {
+      "sourceGetter": "isInFlashlight",
+      "offset": 2,
+      "size": 1,
+      "shift": 3,
+      "mask": 1,
+      "boolean": true
+    },
+    {
+      "sourceGetter": "isJointLockAfterStartup",
+      "offset": 1,
+      "size": 1,
+      "shift": 0,
+      "mask": 1,
+      "boolean": true
+    },
+    {
+      "sourceGetter": "isJointLockWhenStartup",
+      "offset": 1,
+      "size": 1,
+      "shift": 1,
+      "mask": 1,
+      "boolean": true
+    },
+    {
+      "sourceGetter": "isMotorProtected",
+      "offset": 1,
+      "size": 1,
+      "shift": 2,
+      "mask": 1,
+      "boolean": true
+    },
+    {
+      "sourceGetter": "isPanoReady",
+      "offset": 1,
+      "size": 1,
+      "shift": 7,
+      "mask": 1,
+      "boolean": true
+    },
+    {
+      "sourceGetter": "isPhoneOutGimbal",
+      "offset": 3,
+      "size": 1,
+      "shift": 0,
+      "mask": 1,
+      "boolean": true
+    },
+    {
+      "sourceGetter": "isPitchLimitedInTracking",
+      "offset": 3,
+      "size": 1,
+      "shift": 6,
+      "mask": 1,
+      "boolean": true
+    },
+    {
+      "sourceGetter": "isPitchLocked",
+      "offset": 0,
+      "size": 1,
+      "shift": 1,
+      "mask": 1,
+      "boolean": true
+    },
+    {
+      "sourceGetter": "isPortrait",
+      "offset": 2,
+      "size": 1,
+      "shift": 4,
+      "mask": 1,
+      "boolean": true
+    },
+    {
+      "sourceGetter": "isRollLocked",
+      "offset": 0,
+      "size": 1,
+      "shift": 0,
+      "mask": 1,
+      "boolean": true
+    },
+    {
+      "sourceGetter": "isUpgrading",
+      "offset": 1,
+      "size": 1,
+      "shift": 4,
+      "mask": 1,
+      "boolean": true
+    },
+    {
+      "sourceGetter": "isYawLimit",
+      "offset": 1,
+      "size": 1,
+      "shift": 5,
+      "mask": 1,
+      "boolean": true
+    },
+    {
+      "sourceGetter": "isYawLimitedInTracking",
+      "offset": 3,
+      "size": 1,
+      "shift": 5,
+      "mask": 1,
+      "boolean": true
+    },
+    {
+      "sourceGetter": "isYawLocked",
+      "offset": 0,
+      "size": 1,
+      "shift": 2,
+      "mask": 1,
+      "boolean": true
+    }
+  ],
+  "abnormalMinimumBodyBytes": 5,
+  "sourceComposite": {
+    "isGimbalLocked": "isRollLocked or isPitchLocked",
+    "includesYaw": false
+  },
+  "batteryField": {
+    "offset": 0,
+    "size": 1,
+    "shift": 0,
+    "mask": 255,
+    "boolean": false
+  },
+  "sourceIntegerIsUnsignedByte": true,
+  "batterySourceDoesNotClamp": true,
+  "rawRequestBodyFramingEstablished": true,
+  "targetLayoutVerified": false,
+  "commandEnumArguments": {
+    "GetPushAbnormalStatus": [
+      "GetPushAbnormalStatus",
+      17,
+      39,
+      0,
+      "Ldji/midware/data/model/P3/DataGimbalGetPushAbnormalStatus;"
+    ],
+    "RobinPushBattery": [
+      "RobinPushBattery",
+      24,
+      51,
+      0,
+      "Ldji/midware/data/model/P3/DataGimbalPushBatteryInfo;"
+    ]
+  },
+  "externalCallers": [
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalMobileHandheldAbstraction;",
+      "method": "onEvent3BackgroundThread",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalGetPushAbnormalStatus;)V",
+      "references": [
+        {
+          "sourceClass": "Ldji/midware/data/model/P3/DataGimbalGetPushAbnormalStatus;",
+          "method": "isPhoneOutGimbal"
+        },
+        {
+          "sourceClass": "Ldji/midware/data/model/P3/DataGimbalGetPushAbnormalStatus;",
+          "method": "getGimbalGravity"
+        },
+        {
+          "sourceClass": "Ldji/midware/data/model/P3/DataGimbalGetPushAbnormalStatus;",
+          "method": "isMotorProtected"
+        }
+      ]
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalMobileHandheldAbstraction;",
+      "method": "syncPushDataFromMidware",
+      "descriptor": "()V",
+      "references": [
+        {
+          "sourceClass": "Ldji/midware/data/model/P3/DataGimbalGetPushAbnormalStatus;",
+          "method": "getInstance"
+        },
+        {
+          "sourceClass": "Ldji/midware/data/model/P3/DataGimbalGetPushAbnormalStatus;",
+          "method": "isGetted"
+        },
+        {
+          "sourceClass": "Ldji/midware/data/model/P3/DataGimbalGetPushAbnormalStatus;",
+          "method": "getInstance"
+        }
+      ]
+    }
+  ],
+  "methods": [
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushAbnormalStatus;",
+      "method": "getFanDirection",
+      "descriptor": "()I",
+      "codeOffset": 4865296,
+      "instructionSha256": "eb61b24d07624be20acd8b749886ffb0aadb013107e1a5c2caf59099e7e7350f"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushAbnormalStatus;",
+      "method": "getGimbalDirectionWhenVertical",
+      "descriptor": "()I",
+      "codeOffset": 4865352,
+      "instructionSha256": "16b4f3aa28d2c1b23bf7fd40d3e996035ed63c95dad9dcf4aeff52ae318b3ca5"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushAbnormalStatus;",
+      "method": "getGimbalGravity",
+      "descriptor": "()I",
+      "codeOffset": 4865412,
+      "instructionSha256": "5b16ac272ad5b89f5a5a28dc5f6da8f254351c58100c4d0ccbf1548713b7485d"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushAbnormalStatus;",
+      "method": "getSleepMode",
+      "descriptor": "()I",
+      "codeOffset": 4865468,
+      "instructionSha256": "f1199fef3688ad98c4742d7e22ff877b2677f6eda694866c089fc89648a21f5a"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushAbnormalStatus;",
+      "method": "getVerticalDirection",
+      "descriptor": "()I",
+      "codeOffset": 4865524,
+      "instructionSha256": "cfe23cd1cd08f177626b18fcfcd1e439c75a5b08560c3e10541a4c469c310b2f"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushAbnormalStatus;",
+      "method": "isErrorRecentOrSelfie",
+      "descriptor": "()Z",
+      "codeOffset": 4865580,
+      "instructionSha256": "edd4e2cb8278ef613d259ce5bb4733d5f368b2d7d0e61647a0e593415fe4724f"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushAbnormalStatus;",
+      "method": "isErrorRecentWhenStartUp",
+      "descriptor": "()Z",
+      "codeOffset": 4865644,
+      "instructionSha256": "3805c4db0324e7a5b38bc98bf06981b6f33ea5b8322cf7cecf4936393bfc35c1"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushAbnormalStatus;",
+      "method": "isInFlashlight",
+      "descriptor": "()Z",
+      "codeOffset": 4865760,
+      "instructionSha256": "8dd3e40860aa6dc6e157316ed4fa42001e105b71537eee732ce9dfc29d05d202"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushAbnormalStatus;",
+      "method": "isJointLockAfterStartup",
+      "descriptor": "()Z",
+      "codeOffset": 4865824,
+      "instructionSha256": "8c5cef73806fdd03f59f88780954d4d65eef33c038758731f04acf0ef7dd0c6c"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushAbnormalStatus;",
+      "method": "isJointLockWhenStartup",
+      "descriptor": "()Z",
+      "codeOffset": 4865884,
+      "instructionSha256": "bbda78a43afb262d19ed0b212e6277f5dc30a21acbdfbc440d794bdb1e3898ea"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushAbnormalStatus;",
+      "method": "isMotorProtected",
+      "descriptor": "()Z",
+      "codeOffset": 4865944,
+      "instructionSha256": "ad78f351233873c4859c372294bde6f1e4aaceccc596d8219774d399aea1e77e"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushAbnormalStatus;",
+      "method": "isPanoReady",
+      "descriptor": "()Z",
+      "codeOffset": 4866008,
+      "instructionSha256": "f9df252be1389915d3e527c5252e7e83c20912eefb20290350af0ff8f4e43e60"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushAbnormalStatus;",
+      "method": "isPhoneOutGimbal",
+      "descriptor": "()Z",
+      "codeOffset": 4866072,
+      "instructionSha256": "da2951e3f8d853dfee74befb5d048a2834c6c09de0b2d028cf08a6ff356f2fd4"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushAbnormalStatus;",
+      "method": "isPitchLimitedInTracking",
+      "descriptor": "()Z",
+      "codeOffset": 4866132,
+      "instructionSha256": "869b3974eb9e6cdc974f30d03789f804116371e276758f2f14049fb2bdc2f8fc"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushAbnormalStatus;",
+      "method": "isPitchLocked",
+      "descriptor": "()Z",
+      "codeOffset": 4866196,
+      "instructionSha256": "2c0784cc507bb726c67c5569e23a59f3d0880b6d341589d15599cb7c3fa7129d"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushAbnormalStatus;",
+      "method": "isPortrait",
+      "descriptor": "()Z",
+      "codeOffset": 4866256,
+      "instructionSha256": "ec53f4e69594571078dae456c561ec8603f91d42c248681eca7a0d3b9cef3716"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushAbnormalStatus;",
+      "method": "isRollLocked",
+      "descriptor": "()Z",
+      "codeOffset": 4866320,
+      "instructionSha256": "be9d2d8b836fd6e92f9721b1e070c36a23c803300b528226b3a41098bf916129"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushAbnormalStatus;",
+      "method": "isUpgrading",
+      "descriptor": "()Z",
+      "codeOffset": 4866380,
+      "instructionSha256": "b8b27ce7636ec998d1e7a91cf55ffcf5d0a1fc65d107665f47aed1e96bfea7fd"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushAbnormalStatus;",
+      "method": "isYawLimit",
+      "descriptor": "()Z",
+      "codeOffset": 4866444,
+      "instructionSha256": "6422bd4ff7e730707516a1f1ee2352018dcf2b27229b76a4d528c37d3a9d7406"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushAbnormalStatus;",
+      "method": "isYawLimitedInTracking",
+      "descriptor": "()Z",
+      "codeOffset": 4866508,
+      "instructionSha256": "ccad9bbeec821238cab79a9ddd968573441cbd989e2f236968e5d706608ea2bc"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushAbnormalStatus;",
+      "method": "isYawLocked",
+      "descriptor": "()Z",
+      "codeOffset": 4866572,
+      "instructionSha256": "2d5b5e703a4d10da4db9158a21736d18240902c5a268dcacf880bc7cf82c7c52"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushAbnormalStatus;",
+      "method": "isGimbalLocked",
+      "descriptor": "()Z",
+      "codeOffset": 4865708,
+      "instructionSha256": "3e5edd94319d310a4ad76378d37ca8d34242eb0b84f3d37b3e4d764261bf6539"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalPushBatteryInfo;",
+      "method": "getCapacityPercentage",
+      "descriptor": "()I",
+      "codeOffset": 4879324,
+      "instructionSha256": "42683793d10fbae99443ab1233f0a2e4eb20c97b4c807f353bbe4090a25802c7"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushAbnormalStatus;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "codeOffset": 4865172,
+      "instructionSha256": "20b19993098dcc58f25a499e08c6c24946fc39bc2fcc929f0911519d944f68f9"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushAbnormalStatus;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 4865276,
+      "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalPushBatteryInfo;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "codeOffset": 4879200,
+      "instructionSha256": "20b19993098dcc58f25a499e08c6c24946fc39bc2fcc929f0911519d944f68f9"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalPushBatteryInfo;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 4879304,
+      "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "setPushRecPack",
+      "descriptor": "(Ldji/midware/data/packages/P3/Pack;)V",
+      "codeOffset": 3352564,
+      "instructionSha256": "80f0bb9c5884940e7c2600d2e6f22c5287da3c37061590ec9049cce5b53d03ee"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "setPushRecData",
+      "descriptor": "([B)V",
+      "codeOffset": 3352480,
+      "instructionSha256": "23cb6a1baab1f2b12f4ae5da131785e6792d83970eb43826c9d8e1b6462faf23"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "setRecData",
+      "descriptor": "([B)V",
+      "codeOffset": 3352748,
+      "instructionSha256": "a6675a47286fe5b2725b26418463a503442cf7fbb89df865e1303c316ccc4b64"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "get",
+      "descriptor": "(I I Ljava/lang/Class; [I)Ljava/lang/Number;",
+      "codeOffset": 3350128,
+      "instructionSha256": "b18000d48ddc01efccdeacf01cb7ee48c15db0e93e62710fdd4bdccb5bcd0be7"
+    },
+    {
+      "className": "Ldji/midware/util/BytesUtil;",
+      "method": "getInt",
+      "descriptor": "([B)I",
+      "codeOffset": 3782728,
+      "instructionSha256": "c83e6d064884807cec2be0dbd3235f71dd62fcd952eb0b2b88bfc373d0b761e2"
+    },
+    {
+      "className": "Ldji/midware/util/BytesUtil;",
+      "method": "fillBytes",
+      "descriptor": "([B I)[B",
+      "codeOffset": 3781048,
+      "instructionSha256": "2934058aafe6cc8ef7566e3dce18a91f6e31a840de78cb3b73bfee17c61d3b83"
+    },
+    {
+      "className": "Ldji/midware/util/BytesUtil;",
+      "method": "arrayComb",
+      "descriptor": "([B [B)[B",
+      "codeOffset": 3780116,
+      "instructionSha256": "6f79140660c5809f87ebb044cecc6fe4cc6a5c5492c524527d5fecf7db15a28f"
+    },
+    {
+      "className": "Ldji/midware/data/packages/P3/RecvPack;",
+      "method": "setBuffer",
+      "descriptor": "([B)V",
+      "codeOffset": 5031432,
+      "instructionSha256": "f3a4d52a3ef8cf1d939cb1b1e00d6b7f2fd8f65fe1a8b37f1916b2e340c342c2"
+    },
+    {
+      "className": "Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 4652020,
+      "instructionSha256": "89d7e5d4c317f54eb541d186eff2e608a50e62f9387974ef9c74a54543aa6609"
+    }
+  ],
+  "remaining": [
+    "Model-specific bit meaning, current target notifications and firmware compatibility remain unverified.",
+    "Do not turn candidate lock/sleep/upgrading/pano flags into automatic motion or completion decisions.",
+    "Keep04:33 source battery distinct from0D:02 other-model battery and preserve255.",
+    "Banks1/7, residual stubs and dynamic paths remain outside scan."
+  ]
+}

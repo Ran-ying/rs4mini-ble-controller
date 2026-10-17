@@ -1,0 +1,268 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "bankSha256": {
+    "3": "bb50b39865520f55e97116ae1903bda3545b01c2fb7e2aba67a979dc264a9854",
+    "5": "4fdbd74a05df63d72a0feb1c907d9395426ec3cdb5d6aeb45e3836d856d66654"
+  },
+  "appCodeExecuted": false,
+  "targetDeviceVerified": false,
+  "wholeProtocolRecovered": false,
+  "researchToolProvidesSdkInterface": false,
+  "liveUiExecuted": false,
+  "fullModelWorkflowVerified": false,
+  "scope": "Conditional product-cache source classification and selected menu/resource/navigation declarations; no Android execution",
+  "hg724PlatformSwitchCase": 9,
+  "hg724HandleBranch": {
+    "switchByteOffset": 16,
+    "case": 9,
+    "targetByteOffset": 26,
+    "value": 1
+  },
+  "hg724ModelBranch": {
+    "switchByteOffset": 20,
+    "case": 9,
+    "targetByteOffset": 218,
+    "value": "Ldji/common/product/Model;->HG724 Ldji/common/product/Model;"
+  },
+  "handheldHelperReadsCacheKey": "IsHandleDevice",
+  "componentArgumentIgnoredByHandheldHelper": true,
+  "helpHg724Case": 9,
+  "helpRouteIsShutterCableNotProgram": true,
+  "helperHasShutterCheck": true,
+  "selectedClickDirectlyCallsShutterHelper": false,
+  "fullShutterGateReachabilityVerified": false,
+  "layouts": [
+    {
+      "viewName": "CreateRoninNew",
+      "ordinal": 20,
+      "viewId": 2131362579,
+      "layoutId": 2131558892,
+      "path": "res/j9.xml",
+      "sha256": "5ebf32cd5f0d16ee96ec246620b01185639db2a23fedb07ee8c4aa8f3015d181",
+      "rootClass": "com.dji.ronin.base.UIStageView",
+      "jumpIds": [
+        "@7F0A075D",
+        "@7F0A0755",
+        "@7F0A0758",
+        "@7F0A0759",
+        "@7F0A075B",
+        "@7F0A0756"
+      ]
+    },
+    {
+      "viewName": "CreatePanoRonins",
+      "ordinal": 22,
+      "viewId": 2131363672,
+      "layoutId": 2131558875,
+      "path": "res/sm.xml",
+      "sha256": "5a5355f06fdea1eb729af883c77d6eea2de1a9968a97dfddea39f6dfd79d9676",
+      "rootClass": "com.dji.ronin.ui.create.panorama.CreatePanoramaView",
+      "jumpIds": []
+    },
+    {
+      "viewName": "CreateTrackRonins",
+      "ordinal": 23,
+      "viewId": 2131363675,
+      "layoutId": 2131558880,
+      "path": "res/Kr.xml",
+      "sha256": "441d58bd03b0f7a0e4841438448b50bd7b30116046126ab807d5bcf2ba85f8eb",
+      "rootClass": "com.dji.ronin.ui.create.track.CreateTrackView",
+      "jumpIds": []
+    },
+    {
+      "viewName": "CreatePathDelayRonins",
+      "ordinal": 24,
+      "viewId": 2131363673,
+      "layoutId": 2131558876,
+      "path": "res/Nt.xml",
+      "sha256": "df0779350949e0d0b6a093319572f5ecf2522b02c9a466c570cb73d0289eb081",
+      "rootClass": "com.dji.ronin.ui.create.tapgo.CreatePathDelayView",
+      "jumpIds": []
+    }
+  ],
+  "methods": [
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/product/DJIProductAbstraction$2;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3946496,
+      "instructionSha256": "8c5d523a6b1344f00c48ce6047725fc7eac956c041f4a2944e7bea75c95d1a8e"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/product/DJIProductAbstraction;",
+      "method": "isHandle",
+      "descriptor": "(Ldji/midware/component/DJIComponentManager$PlatformType; Ldji/midware/component/DJIComponentManager$MonitorComponentType;)Z",
+      "codeOffset": 5274332,
+      "instructionSha256": "23fabf6cff473ff389e2d96e2f1eb8ba2fccf67634f791a1ac6176fe280b335c"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/product/DJIProductAbstraction;",
+      "method": "getModel",
+      "descriptor": "(Ldji/midware/component/DJIComponentManager$PlatformType; Ldji/midware/component/DJIComponentManager$MonitorComponentType;)Ldji/common/product/Model;",
+      "codeOffset": 5273488,
+      "instructionSha256": "3bbb3ef29df2efe23da653adb1c0c2c6f38c0856c4e3ffc6f676bf96cf6054d0"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/product/DJIProductAbstraction;",
+      "method": "updateProduct",
+      "descriptor": "()V",
+      "codeOffset": 5275200,
+      "instructionSha256": "7b7a0dc6e5c4257d58148967f0b21885625c9f1aebaa966be42f89b6b53a6539"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/util/CommonUtils;",
+      "method": "isHandheldDevice",
+      "descriptor": "(Ldji/midware/component/DJIComponentManager$GimbalComponentType;)Z",
+      "codeOffset": 2778580,
+      "instructionSha256": "42d69f4e329fabb011a3911aafe91f658b95bc04b3174011a57822ace3ac0904"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/home/UIViewManager;",
+      "method": "showMainView",
+      "descriptor": "()V",
+      "codeOffset": 2273580,
+      "instructionSha256": "7bbe585e9fc4f75dcc37544f0d1164a264daefb9095e5af64ddb61fa1c1bad13"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/home/UIViewManager;",
+      "method": "showView",
+      "descriptor": "(Lcom/dji/ronin/home/UIViewManager$ViewIndex;)V",
+      "codeOffset": 2273800,
+      "instructionSha256": "1e31fc07ff1a8416b7d3582a0ebc0121bfc192ceeee669a33cc09126874be1fc"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/home/UIViewManager;",
+      "method": "showView",
+      "descriptor": "(I I I)V",
+      "codeOffset": 2271820,
+      "instructionSha256": "be5b091a12e856fc88afbd2a6dc16eb4efa0e112adf513c3a170e94064768d70"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/widget/RoninJumpTextView;",
+      "method": "init",
+      "descriptor": "(Landroid/content/Context; Landroid/util/AttributeSet;)V",
+      "codeOffset": 4021348,
+      "instructionSha256": "4caab1071dbc84372cfad39054b8656bb2549fac63aa4f5623b19455cfdbb319"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/widget/RoninJumpTextView;",
+      "method": "onClick",
+      "descriptor": "(Landroid/view/View;)V",
+      "codeOffset": 4022120,
+      "instructionSha256": "87e6dea3a9f931ee241da41136474432b371d140b9a49bd23b60d6d090899cb0"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/widget/RoninJumpTextView;",
+      "method": "checkCreateIsWorking",
+      "descriptor": "()Z",
+      "codeOffset": 4020816,
+      "instructionSha256": "59d250d35daff635348102e122e11bf3a8b25a70f389896cb2f0d662f294b70d"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/widget/RoninJumpTextView;",
+      "method": "checkIsValuableForCreate",
+      "descriptor": "()Z",
+      "codeOffset": 4021200,
+      "instructionSha256": "a1083458aa3c981dbe687c3fc733d0f75d273892c475bfe97813687dab4bd65c"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/widget/RoninJumpTextView;",
+      "method": "isCreateModeView",
+      "descriptor": "(Lcom/dji/ronin/home/UIViewManager$ViewIndex;)Z",
+      "codeOffset": 4021480,
+      "instructionSha256": "06aec48b74333c1e14cf9f8510a36e4f8fd362331a38690732da6486421d0a48"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/widget/RoninJumpTextView;",
+      "method": "showSubView",
+      "descriptor": "()V",
+      "codeOffset": 4021736,
+      "instructionSha256": "502d044985d421594ca4e0eb53375ac29ffae5cb9619d04ab5b246b07adf3817"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/widget/RoninJumpTextView;",
+      "method": "showNext",
+      "descriptor": "(Lcom/dji/ronin/home/UIViewManager$ViewIndex;)V",
+      "codeOffset": 4022388,
+      "instructionSha256": "cc669b73639123fc6b3369ec739b815b10878796f3d5d24f36ba794463c91cf5"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/home/UIViewManager$ViewIndex;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 2269088,
+      "instructionSha256": "eb5390273acde8b8052cda90fe1e2950435b901f64804a524808baf394bfe37a"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/home/UIViewManager$ViewIndex;",
+      "method": "<init>",
+      "descriptor": "(Ljava/lang/String; I I I I)V",
+      "codeOffset": 2271160,
+      "instructionSha256": "36de4d02d7993d533acbfa57e5837d982fa2557ec29fbe9e55020573f5fb86ac"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/home/UIViewManager$ViewIndex;",
+      "method": "findByViewId",
+      "descriptor": "(I)Lcom/dji/ronin/home/UIViewManager$ViewIndex;",
+      "codeOffset": 2271276,
+      "instructionSha256": "c181c7383ed8781be71ef4eaaf81d3847bcca6b6da7b1d8366192cd5b927cf41"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/home/UIViewManager$ViewIndex;",
+      "method": "getViewId",
+      "descriptor": "()I",
+      "codeOffset": 2271452,
+      "instructionSha256": "6011686c434b0046fb15920650bef2d45d9be1830c520b328cd421960cd707d7"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/CreateMainJumpEntryView$1;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 2511216,
+      "instructionSha256": "a73a15a968d1ba1a4e5f83957de121c5c00e7b50e1eb10fecda44e443fb56b44"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/CreateMainJumpEntryView;",
+      "method": "getProductParamForCableCapabilityUrl",
+      "descriptor": "()Ljava/lang/String;",
+      "codeOffset": 3913872,
+      "instructionSha256": "c5a12077bfc4d180e657f842873a4f84acbf946907922faf0ab1c0943c2d09a7"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/CreateMainJumpEntryView;",
+      "method": "lambda$initView$1",
+      "descriptor": "(Landroid/view/View;)V",
+      "codeOffset": 3914276,
+      "instructionSha256": "479b115d79f458ad28ed4f99e00a7f15acf62cd6c4e6c9545e79cf5a223d672d"
+    }
+  ],
+  "remaining": [
+    "Actual platform/monitor discovery and cache freshness are unverified.",
+    "showMainView MainRoninNew is not itself proof that its create menu is mounted for a live target.",
+    "Resource ids/classes and generic navigation do not prove all click guards or callback registration paths.",
+    "Program byte routing/units, camera separation, firmware acceptance/cancellation and hardware effects still require audit."
+  ]
+}

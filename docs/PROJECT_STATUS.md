@@ -429,3 +429,13 @@ Rotate/ResetGimbal两条基础Action注解及12框架/动作方法指纹已核�
 ## 动作程序通用源验证（2026-10-18）
 
 固定六段两次实际提取的106方法指纹/60直接调用方法一致，最终版补核三种整数小端转换及TimeLaps枚举。新增29项独立十六进制、负半数/窄化、点数边界、时长覆盖/空体拒绝、独立/复合状态掩码差异、未知/重复记录、截断/有符号长度与哈希预检；研究工具Python3.8/3.12各215通过。统一离线Node190/Web16/Python168/原生139+172+3、类型/边界/构建通过，进程终态0。运行时/安装包不变，没有SDK发送、相机/高级新增或硬件/liveUI/厂商执行，48条已知清单和两个完整性门槛仍未完成。
+
+
+## 程序入口与产品缓存条件审计（运行时不变）
+
+固定bank03/05的22方法/4真实AXML布局：PlatformType HG724 switch case9的isHandle返回1、getModel返回HG724，updateProduct写IsHandleDevice，UI helper读取缓存且忽略组件参数。CreateRoninNew菜单含三程序jump id，分别绑定Panorama/Track/PathDelay真实根类；实际主页面挂载/缓存仍待验证。附近HG724帮助分支是快门线帮助，不当程序证据。checkIsValuableForCreate虽有快门检查，但所选onClick不直接调用它，不虚构入口保护或宣称全局无保护。见tools/research/PROGRAM_ENTRY.md及protocol/research/ronin-program-entry-evidence.json。没有SDK发送、相机/高级新增或厂商执行/硬件/liveUI，全命令门槛false。
+
+
+## 程序入口审计验证（2026-10-18）
+
+实际两次提取22方法指纹/4布局AXML哈希及所选HG724分支，证据JSON逐字节一致。新增12项寄存器/重复/精确返回/未知父字段/跳转拒绝、XML控件和哈希预检；研究工具Python3.8/3.12各227通过。统一离线Node190/Web16/Python168/原生139+172+3、类型/边界/构建通过，进程终态0。运行时/安装包不变，无新增发送、相机/高级功能、硬件/liveUI或厂商执行，全命令及高级门槛false。

@@ -529,3 +529,13 @@ if manifest.get('programResearch'):
     assert programs['externalStatus']['requestTypes']=={'StartContinuePush':0,'StopContinuePush':1,'RequestSinglePush':2}
     assert programs['externalStatus']['sourceFirstByteSuccessValues']==[0,1]
     assert programs['externalStatus']['timelapseStatusMask']==7
+
+if manifest.get('programEntryResearch'):
+    entry=json.loads((root/manifest['programEntryResearch']).read_text())
+    for flag in ('appCodeExecuted','targetDeviceVerified','wholeProtocolRecovered','researchToolProvidesSdkInterface','liveUiExecuted','fullModelWorkflowVerified','fullShutterGateReachabilityVerified'):
+        assert entry[flag] is False
+    assert len(entry['methods'])==22 and len(entry['layouts'])==4
+    assert entry['hg724PlatformSwitchCase']==9 and entry['hg724HandleBranch']['value']==1
+    assert entry['helpRouteIsShutterCableNotProgram'] is True
+    assert entry['selectedClickDirectlyCallsShutterHelper'] is False
+    assert entry['componentArgumentIgnoredByHandheldHelper'] is True

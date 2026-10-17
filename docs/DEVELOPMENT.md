@@ -215,3 +215,6 @@ Node/Web、Python 与原生已分别拆分；完整模块映射见 `ARCHITECTURE
 
 
 [固件动作程序通用源审计](../tools/research/PROGRAMS.md)核对62/25/37/63请求与38/64/6B状态差异；仅静态业务体证据，尚无HG724完整路径或SDK新增发送，全命令门槛false。
+
+
+[程序菜单与HG724条件分类](../tools/research/PROGRAM_ENTRY.md)补齐产品缓存/布局声明链，区分快门线帮助与检查函数可达性；尚未证明完整型号工作流，不新增发送或高级功能。

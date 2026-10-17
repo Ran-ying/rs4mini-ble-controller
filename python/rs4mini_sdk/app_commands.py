@@ -1,4 +1,5 @@
 """Current-App device commands share the existing connection/queue/pending map."""
+from .app_handle import handle_reply
 from .app_user_parameters import user_parameter_notification
 from .app_standalone import standalone_selection,standalone_write,standalone_context,standalone_reply
 from .app_tuning import tuning_selection,tuning_write,tuning_reply
@@ -56,6 +57,13 @@ class AppCommands:
 
     def _require_profile(self):
         app_profile(self._profile)
+
+    async def getHandleSettings(self, *, timeoutMs=3000):
+        self._require_profile()
+        message=await self.owner.experimental._query_payload_command('App handle query',(4,0x36),b'',timeoutMs)
+        return handle_reply(message)
+
+    get_handle_settings=getHandleSettings
 
     async def readParameters(self, *, parameters, timeoutMs=3000):
         self._require_profile()

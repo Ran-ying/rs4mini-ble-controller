@@ -160,6 +160,11 @@ int main(void) {
         Require([byName[@"getYawSpeed"][@"rawValue"] intValue]==4660 && [byName[@"getRollAccel"][@"rawValue"] intValue]==65535 && [byName[@"getRollSmoothTrack"][@"rawValue"] intValue]==255,@"user fixed layout preserves unsigned two-byte and raw enabled values");
         Require(!RSDecodeAppUserParameterNotification(parameterMessage(0x24,userBody,0x80)) && !RSDecodeAppUserParameterNotification(parameterMessage(0x24,userBody,1)) && !RSDecodeAppUserParameterNotification(parameterMessage(0x24,[NSMutableData dataWithLength:73],0)),@"fixed layout rejects ACK encrypted and short payload without zero fill");
         userBytes[9]=0;Require([byName[@"getYawSpeed"][@"rawHex"] isEqualToString:@"3412"] && [userStatus[@"bodyHex"] length]==156 && ![userStatus[@"modelLayoutVerified"] boolValue],@"fixed snapshot owns immutable strings and retains all unknown bytes");
+        [decoder reset];NSDictionary *handleQuery=[decoder push:RSAppHandleQueryFrame(9)].firstObject;
+        Require([handleQuery[@"commandId"] intValue]==0x36 && [handleQuery[@"payload"] length]==0 && [handleQuery[@"flags"] intValue]==0x40,@"handle query empty body and ACK envelope");
+        NSDictionary *handle=RSDecodeAppHandleReply(parameterMessage(0x36,[NSData dataWithBytes:(uint8_t[]){0,7,1,0,255,3,2,3,254,99} length:10],0x80),&error);
+        Require([handle[@"values"] count]==8 && [handle[@"values"][0][@"rawValue"] intValue]==7 && [handle[@"values"][3][@"rawValue"] intValue]==255 && ![handle[@"values"][5][@"sourceBit0"] boolValue] && [handle[@"values"][6][@"sourceBit0"] boolValue],@"handle raw values and bit0 remain separate from return status");
+        Require(!RSDecodeAppHandleReply(parameterMessage(0x36,[NSMutableData dataWithLength:8],0x80),&error),@"short handle body rejected rather than padded");
         printf("Native protocol, reassembly, stop queue and motion-core checks: %lu passed\n", (unsigned long)assertions);
     }
     return 0;

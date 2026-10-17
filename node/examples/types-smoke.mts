@@ -147,6 +147,8 @@ async function sourceSettingsTypes(gimbal: RS4Mini) {
 
 async function calibrationTypes(gimbal: RS4Mini) {
   gimbal.onAppStatus = status => { if(status.kind==='calibration') {const raw:number|null=status.rawState;console.log(raw);} else {const raw:number=status.preset.rawValue;console.log(raw);} };
+  const handle=await gimbal.appCommands.getHandleSettings();
+  const handleRaw:number=handle.values[0].rawValue;void handleRaw;
   const parameters=gimbal.appCommands.userParameterStatus;void parameters;
   const sent = await gimbal.appCommands.sendAutoTuneRequest({start: false});
   const noAck: false = sent.acknowledged;

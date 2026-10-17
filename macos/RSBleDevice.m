@@ -391,6 +391,7 @@ static BOOL Matches(NSString *name) {
             }
             return RSAppSensitivityFrame(sequence, mode);
         case 0x6a: return RSAppAutoTuneFrame(sequence, mode);
+        case 0x36: return context || mode ? nil : RSAppHandleQueryFrame(sequence);
         case 0x6e: return RSAppCalibrationQueryFrame(sequence);
         case 0x31: return RSAppMotorWriteFrame(sequence,context,mode);
         case 0x32: return RSAppMotorReadFrame(sequence,context);
@@ -417,6 +418,12 @@ static BOOL Matches(NSString *name) {
     [self startAppCommand:0x0f parameters:@[@{@"index":@37,@"size":@1}] mode:nil settingsKind:nil settingsPatch:nil timeoutMs:timeoutMs completion:^(NSDictionary *reply,NSError *error) {
         NSMutableDictionary *result=[reply mutableCopy]; if (result) result[@"requestedValue"]=@64;
         if (completion) completion(result?[result copy]:nil,error);
+    }];
+}
+- (void)getHandleSettingsWithTimeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
+    [self startAppCommand:0x36 parameters:nil mode:nil settingsKind:nil settingsPatch:nil timeoutMs:timeoutMs completion:^(NSDictionary *reply,NSError *error) {
+        if(error){if(completion)completion(nil,error);return;}NSError *decodeError=nil;
+        NSDictionary *result=RSDecodeAppHandleReply(reply[@"message"],&decodeError);if(completion)completion(result,decodeError);
     }];
 }
 - (void)getStandaloneTuning:(NSDictionary *)filters timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {

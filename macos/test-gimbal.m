@@ -406,11 +406,15 @@ int main(void) {
         notify.value=AppNotification(3,0x24,[NSMutableData dataWithLength:73]);[gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil];PumpCallbacks();
         Require([gimbal.appUserParameterStatus[@"preset"][@"rawValue"] intValue]==1 && ![gimbal.appUserParameterStatus[@"activePresetVerified"] boolValue],@"short fixed report does not replace cached state or verify active preset");
         Require([gimbal useAppProfile:@"ronin-2.2.2"] && !gimbal.appUserParameterStatus,@"native profile reselection clears fixed report");
+        [peripheral.writes setLength:0];[gimbal getHandleSettingsWithTimeoutMs:1000 completion:appDone];ThreeTicks(gimbal);[decoder reset];frames=[decoder push:peripheral.writes];
+        Require(gimbal.busy && [frames.lastObject[@"commandId"] intValue]==0x36 && [frames.lastObject[@"payload"] length]==0,@"native handle query uses existing owner and empty source body");
+        appSequence=[[gimbal valueForKey:@"deviceQuerySequence"] unsignedShortValue];notify.value=AppResponse(appSequence,0x36,[NSData dataWithBytes:(uint8_t[]){0,7,1,0,255,3,2,3,254,99} length:10],4);[gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil];PumpCallbacks();
+        Require(appCallbacks==36 && !gimbal.busy && [appResult[@"values"] count]==8 && [appResult[@"values"][3][@"rawValue"] intValue]==255 && !gimbal.appUserParameterStatus,@"handle ACK decoded without populating fixed-push cache");
         [gimbal getFollowSensitivityWithTimeoutMs:1000 completion:appDone]; ThreeTicks(gimbal);
         notify.value=AppNotification(5,0x24,fixedBody);[gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil];PumpCallbacks();
-        Require(gimbal.busy && gimbal.appUserParameterStatus && appCallbacks==35,@"passive report does not release or complete an outstanding parameter query");
+        Require(gimbal.busy && gimbal.appUserParameterStatus && appCallbacks==36,@"passive report does not release or complete an outstanding parameter query");
         [gimbal centralManager:(id)central didDisconnectPeripheral:(id)peripheral error:nil]; PumpCallbacks();
-        Require(appCallbacks == 36 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_DISCONNECTED"], @"native disconnect rejects pending App query");
+        Require(appCallbacks == 37 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_DISCONNECTED"], @"native disconnect rejects pending App query");
         Require(!gimbal.appUserParameterStatus,@"native disconnect clears cached fixed report");
         [gimbal disconnect]; ThreeTicks(gimbal);
         printf("Native fake-device lifecycle checks: %lu passed (no Bluetooth manager created)\n", (unsigned long)assertions);

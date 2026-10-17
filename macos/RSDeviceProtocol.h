@@ -68,3 +68,6 @@ NSData *RSAppStandaloneWriteFrame(uint16_t sequence, NSArray *context, NSNumber 
 NSDictionary *RSDecodeAppStandaloneReply(NSDictionary *message, NSArray *selection, NSError **error);
 
 NSDictionary *RSDecodeAppUserParameterNotification(NSDictionary *message);
+
+NSData *RSAppHandleQueryFrame(uint16_t sequence);
+NSDictionary *RSDecodeAppHandleReply(NSDictionary *message,NSError **error);

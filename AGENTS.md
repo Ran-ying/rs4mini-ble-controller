@@ -8,9 +8,9 @@ verification status changes.
 ## Objective and user decisions
 
 - Provide an unofficial, direct BLE controller for **DJI RS 4 Mini**, initially on macOS.
-- **Node.js is the authoritative implementation**; current package version is `0.7.12`.
+- **Node.js is the authoritative implementation**; current package version is `0.7.13`.
 - The user subsequently requested completion of all existing ports. Python is now
-  `0.7.12`, Web shares the JS core, and the native panel is `0.3.12`. Describe the
+  `0.7.13`, Web shares the JS core, and the native panel is `0.3.13`. Describe the
   documented feature differences; do not claim identical APIs or hardware proof.
 - After that delivery, the user requested the remaining **non-camera** capabilities
   under the same autonomous/offline conditions. Expansion work is in progress;
@@ -581,3 +581,38 @@ catalogs match17source records. No sends/hardware/liveUI/vendor execution or
 advanced additions. Both completeness gatesfalse.
 
 0.7.12 offline: Node131/Web14, Python3.8/3.12 each108, native91+124+3, research71 in bothPython environments. Installed Node131/Python108, types/boundaries/build pass. Pinned17-getter/20-method JSON independently reproduced. No hardware/liveUI/vendor execution.
+
+
+## Fine/handle/reset source audit (runtime stays0.7.12/native0.3.12)
+
+ronin_controls_trace.py fixes42 methods in pinnedSDK/UI source. Fine04:07 body
+low signed delta byte+axiscmd: ROLL0/PITCH2/YAW4, notordinals. Effective inherited
+Pitch/Roll source actions accept-2..2F, float32×10 truncate; no provenYaw action,
+Roll needPauseStabilization gate/physical effect still unknown. Handle36 empty
+query has8 business bytes; raw first5, last3 getters bit0. Handheld-named methods
+are inHG724 chain; don't assumehardware support or conflateprofilebyte3 with
+UserProfile/table_choice. Set35 source8-byte layout defaultsFF all8 fields;
+doPack resets onlyfirst6, last2retain objectstate. FF firmware semantics NOT
+proven, no camera/phone control added. Reset13 PlatformType.HG724 branches to
+010001 (PC target verified), notemptyotherpath orGimbalType103. Scope/persistence
+unverified. Save11 sourceempty body; no external direct method caller inbanks
+05/03, notfullAppscan or target unsupportedproof. Helpers offlinebodyonly, noDUML/
+SDK/UI imports or sends. See tools/research/FINE_HANDLE_RESET.md and
+protocol/research/ronin-controls-evidence.json. SDK/ACK/hardware work remains;
+both completeness gatesfalse, no advanced features or hardware/vendor execution.
+
+
+## Current runtime0.7.13/native0.3.13 build16: handle read only
+
+getHandleSettings (Python get_handle_settings; native getHandleSettingsWithTimeoutMs)
+queries04:36 emptybody with correlatedACK underexplicitronin-2.2.2. Eight business
+bytes afterstatus required; rawfirst5 and bit0 booleanslast3 allretain rawValue,
+extra body bytes remain. No profile/table_choice/04:24 aliases, no camera/phone
+controls, 35write/save/reset/fine API. Result notpassivecache; device/modelLayout/
+physical flagsfalse. Source inheritedHandheld methods audited, nothardwareproof.
+Node/Python existing limitedqueryconcurrency; nativeowns slot/stopsfirst. No retry,
+disconnect retains3neutralcleanup. See docs/APP_HANDLE_SETTINGS.md. Catalogs in
+Node/Python/nativecheckedagainst8records from42-method controls evidence. Both
+completegatesfalse, no hardware/liveUI/vendor execution oradvancedaddition.
+
+0.7.13 validation: Node135/Web14, Python3.8/3.12 each112, native94+126+3, research77 in bothPython environments. Installed Node135/Python112, types/boundaries/build pass. Pinned42-method JSON independently reproduced. No hardware/liveUI/vendor execution, wholeprotocol remainsincomplete.

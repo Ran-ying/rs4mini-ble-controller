@@ -1,0 +1,532 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "derivedSha256": "4fdbd74a05df63d72a0feb1c907d9395426ec3cdb5d6aeb45e3836d856d66654",
+  "uiDerivedSha256": "bb50b39865520f55e97116ae1903bda3545b01c2fb7e2aba67a979dc264a9854",
+  "appCodeExecuted": false,
+  "targetDeviceVerified": false,
+  "wholeProtocolRecovered": false,
+  "researchToolProvidesSdkInterface": false,
+  "hg724Inheritance": [
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG724Abstraction;",
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG702Abstraction;",
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninBaseAbstraction;",
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction;",
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalX3Abstraction;",
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAircraftAbstraction;",
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;"
+  ],
+  "effectiveMethods": [
+    {
+      "method": "fineTuneGimbalPitchInDegrees",
+      "owner": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback; F)V"
+    },
+    {
+      "method": "fineTuneGimbalRollInDegrees",
+      "owner": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback; F)V"
+    },
+    {
+      "method": "loadFactorySettings",
+      "owner": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V"
+    },
+    {
+      "method": "getGimbalControllerMode",
+      "owner": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction;",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V"
+    },
+    {
+      "method": "setGimbalControllerMode",
+      "owner": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction;",
+      "descriptor": "(Ldji/common/handheldcontroller/ControllerMode; Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V"
+    },
+    {
+      "method": "getPitchOrRollInverseControlEnabled",
+      "owner": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction;",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V"
+    },
+    {
+      "method": "getYawInverseControlEnabled",
+      "owner": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction;",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V"
+    },
+    {
+      "method": "setPitchOrRollInverseControlEnabled",
+      "owner": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction;",
+      "descriptor": "(Z Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V"
+    },
+    {
+      "method": "setYawInverseControlEnabled",
+      "owner": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction;",
+      "descriptor": "(Z Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V"
+    }
+  ],
+  "fineTune": {
+    "command": "04:07",
+    "axisWireValues": {
+      "ROLL": 0,
+      "PITCH": 2,
+      "YAW": 4
+    },
+    "sourceCallableAxes": [
+      "pitch",
+      "roll"
+    ],
+    "sourceDeltaDegrees": [
+      -2,
+      2
+    ],
+    "conversion": "float32 multiply10, truncate-to-int, low signed byte; not an absolute target",
+    "pauseStabilizationGateNotFirmwareVerified": true
+  },
+  "handle": {
+    "readCommand": "04:36",
+    "writeCommand": "04:35",
+    "readBodyHex": "",
+    "fields": [
+      {
+        "sourceGetter": "getDualChannelEnable",
+        "offset": 0,
+        "size": 1,
+        "sourceBit0Boolean": false
+      },
+      {
+        "sourceGetter": "getTiltDirection",
+        "offset": 1,
+        "size": 1,
+        "sourceBit0Boolean": false
+      },
+      {
+        "sourceGetter": "getPanDirection",
+        "offset": 2,
+        "size": 1,
+        "sourceBit0Boolean": false
+      },
+      {
+        "sourceGetter": "getProfile",
+        "offset": 3,
+        "size": 1,
+        "sourceBit0Boolean": false
+      },
+      {
+        "sourceGetter": "getPitchFree",
+        "offset": 4,
+        "size": 1,
+        "sourceBit0Boolean": false
+      },
+      {
+        "sourceGetter": "getZoom2SpeedEnable",
+        "offset": 5,
+        "size": 1,
+        "sourceBit0Boolean": true
+      },
+      {
+        "sourceGetter": "getRotationFocusEnable",
+        "offset": 6,
+        "size": 1,
+        "sourceBit0Boolean": true
+      },
+      {
+        "sourceGetter": "getCellphoneSensorDisable",
+        "offset": 7,
+        "size": 1,
+        "sourceBit0Boolean": true
+      }
+    ],
+    "writeFieldOrder": [
+      "mJoystickDualChannelEnable",
+      "mTiltDirection",
+      "mPanDirection",
+      "mProfile",
+      "mPitchFree",
+      "mZoom2Speed",
+      "mRotationFocusEnable",
+      "mCellphoneSensorDisable"
+    ],
+    "constructorByteDefaults": [
+      255,
+      255,
+      255,
+      255,
+      255,
+      255,
+      255,
+      255
+    ],
+    "afterPackResetFields": [
+      "mJoystickDualChannelEnable",
+      "mTiltDirection",
+      "mPanDirection",
+      "mProfile",
+      "mPitchFree",
+      "mZoom2Speed"
+    ],
+    "afterPackRetainedFields": [
+      "mRotationFocusEnable",
+      "mCellphoneSensorDisable"
+    ],
+    "unspecifiedByteFirmwareSemanticsVerified": false
+  },
+  "parameterReset": {
+    "command": "04:13",
+    "sourceCondition": "PlatformType.HG724 (not GimbalComponentType ordinal)",
+    "sourceBodyHex": "010001",
+    "targetResetScopeVerified": false
+  },
+  "parameterSave": {
+    "command": "04:11",
+    "sourceBodyHex": "",
+    "directCallerScanBanks": [
+      "business05",
+      "business03"
+    ],
+    "directCallers": [],
+    "targetModelCallPathEstablished": false
+  },
+  "offlineVectors": {
+    "pitchNegative": "f402",
+    "rollPositive": "0c00",
+    "panDirectionPatch": "ffff01ffffffffff"
+  },
+  "methods": [
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "fineTuneGimbalPitchInDegrees",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback; F)V",
+      "codeOffset": 5245516,
+      "instructionSha256": "799d67c1d1f45dbd15d730cb03446bee65c4bd77cec8280fe56c77b4b1af31c8"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "fineTuneGimbalRollInDegrees",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback; F)V",
+      "codeOffset": 5245628,
+      "instructionSha256": "02aef7ea37bbed4dc6ad05d704fdea58dd6e6a54e044ac6aa777c8ca20504842"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "loadFactorySettings",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 5247528,
+      "instructionSha256": "e9080111a7fd0bb4fce6a8af42a34c1d8debce5250f259bd788640f08d005301"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction;",
+      "method": "getGimbalControllerMode",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6385404,
+      "instructionSha256": "447275b61bacdc3808adfc1c4f4ba84410f380e2bf2cc904cbe3f385487feecd"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction;",
+      "method": "setGimbalControllerMode",
+      "descriptor": "(Ldji/common/handheldcontroller/ControllerMode; Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6386380,
+      "instructionSha256": "fd6afa54a4f02bd21c54edc4d97d60634e11ea72f26fd640f9272eec306bebba"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction;",
+      "method": "getPitchOrRollInverseControlEnabled",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6385536,
+      "instructionSha256": "0b9bf4a3b6e2eb7eb19903ecd673b5fbef67853416b4203100359ad7bc73fd7d"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction;",
+      "method": "getYawInverseControlEnabled",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6385808,
+      "instructionSha256": "2664dd441df8f9f3e44d3fa2614ff31e621d4bb60282ea65cc4d2a47cfd3f328"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction;",
+      "method": "setPitchOrRollInverseControlEnabled",
+      "descriptor": "(Z Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6386496,
+      "instructionSha256": "80bf251a21ac981b6142d4d9e57ade31aec5fbacace43780fad981eba50142e8"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction;",
+      "method": "setYawInverseControlEnabled",
+      "descriptor": "(Z Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6386632,
+      "instructionSha256": "13a47ad9204804dbc8c7d5f6d06e378dc093cc8920cd7fe3bb84a2135090ba8a"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 4652020,
+      "instructionSha256": "89d7e5d4c317f54eb541d186eff2e608a50e62f9387974ef9c74a54543aa6609"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/midware/data/model/P3/DataGimbalRollFinetune$FineTuneAxis;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3468324,
+      "instructionSha256": "57c8b5d5da039c4bf591a75b20ca1a3851dcea290a67437c021e459fe18ebd64"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/midware/data/model/P3/DataGimbalRollFinetune;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 4879972,
+      "instructionSha256": "0405b11c43a7874f6db3679ffaa8f5908f32e8095d3741fa764fd7e472347872"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/midware/data/model/P3/DataGimbalRollFinetune;",
+      "method": "setFineTuneAxis",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalRollFinetune$FineTuneAxis;)Ldji/midware/data/model/P3/DataGimbalRollFinetune;",
+      "codeOffset": 4880032,
+      "instructionSha256": "672ab1034ee9ff968af7986755a9f2adcde7da21558c4b7f40b74941dbbdd8c4"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/midware/data/model/P3/DataGimbalRollFinetune;",
+      "method": "setFineTuneValue",
+      "descriptor": "(B)Ldji/midware/data/model/P3/DataGimbalRollFinetune;",
+      "codeOffset": 4880064,
+      "instructionSha256": "efbf7411a07f412aa33b775a6770758b7cde8aa2d9e03fb7f3bd7b91b3a0697d"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetHandleParams;",
+      "method": "getDualChannelEnable",
+      "descriptor": "()I",
+      "codeOffset": 4864624,
+      "instructionSha256": "1ce95cd025aa10d91b5ec3a25bd38894dcc4682e49c90b7deadb1b9991de845a"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetHandleParams;",
+      "method": "getTiltDirection",
+      "descriptor": "()I",
+      "codeOffset": 4864892,
+      "instructionSha256": "27c141d93ab3b64c2f7c220c127a946a6b0f087aac259242ba7b22a5e69c8d4b"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetHandleParams;",
+      "method": "getPanDirection",
+      "descriptor": "()I",
+      "codeOffset": 4864676,
+      "instructionSha256": "5036c6f59b7e478919fb5686b81395fec707298a2c9e1f4f6c47b40cab29a580"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetHandleParams;",
+      "method": "getProfile",
+      "descriptor": "()I",
+      "codeOffset": 4864780,
+      "instructionSha256": "ced899487e063e891c0fa7ca078fa070850cc0de510040ce4cc07f1f8c8feefa"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetHandleParams;",
+      "method": "getPitchFree",
+      "descriptor": "()I",
+      "codeOffset": 4864728,
+      "instructionSha256": "d52907f3c163792cd26ad9a3f06f40aef30da468209ee6c8c727fe0912de609a"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetHandleParams;",
+      "method": "getZoom2SpeedEnable",
+      "descriptor": "()Z",
+      "codeOffset": 4864944,
+      "instructionSha256": "8b902b52fcd0270e7bcd132dd555269a95a1d6d54f6d1f4048773b6f88193d14"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetHandleParams;",
+      "method": "getRotationFocusEnable",
+      "descriptor": "()Z",
+      "codeOffset": 4864832,
+      "instructionSha256": "293be58c502d1eed2a6671281297cdb42636418b74f2ca38de8dddad00dc562f"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetHandleParams;",
+      "method": "getCellphoneSensorDisable",
+      "descriptor": "()Z",
+      "codeOffset": 4864564,
+      "instructionSha256": "e93cff3daf63569009604322842d675194727fd8153b76df12436437f1c09e25"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetHandleParams;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 4864544,
+      "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetHandleParams;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 4884600,
+      "instructionSha256": "8cd71264a5e5ebb76c552695e4a081b221b1209f1f8a1c9d39e676cd64e1bb49"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetHandleParams;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "codeOffset": 4884492,
+      "instructionSha256": "0f3409db5f01113f3f75fac1560dd20cd1b2007c445c6b96c91a2abebc03f060"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetHandleParams;",
+      "method": "reset",
+      "descriptor": "()V",
+      "codeOffset": 4884552,
+      "instructionSha256": "465c4d6015b68f4e4a9d98b88527e96da4597221fe871f75fc3ea64462e69f72"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetHandleParams;",
+      "method": "setDualChannelEnable",
+      "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetHandleParams;",
+      "codeOffset": 4884788,
+      "instructionSha256": "91abf569100d7891c266f1cb2548577e3b7a71ee8094987dfd5124ddb3f2882c"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetHandleParams;",
+      "method": "setTiltDirection",
+      "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetHandleParams;",
+      "codeOffset": 4884908,
+      "instructionSha256": "c12c257d7131f9a16758b250d9ff42b31d9e6f466fb96a7b07dc81c68961beb5"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetHandleParams;",
+      "method": "setPanDirection",
+      "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetHandleParams;",
+      "codeOffset": 4884812,
+      "instructionSha256": "0247b50c00a3e26da8917e9556acfe157ba66bcd894129926064ea9dde84e2cb"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetHandleParams;",
+      "method": "setProfile",
+      "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetHandleParams;",
+      "codeOffset": 4884860,
+      "instructionSha256": "7a9e44bda438106c608fa7d58ea9ab75297193616da4bf997b6cd6c179f815d5"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetHandleParams;",
+      "method": "setPitchFree",
+      "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetHandleParams;",
+      "codeOffset": 4884836,
+      "instructionSha256": "ea6329adfec2cf057818a6152fd87f7e1ad2197b5c15e4a761ab768e994c89b5"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetHandleParams;",
+      "method": "setZoom2Speed",
+      "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetHandleParams;",
+      "codeOffset": 4884932,
+      "instructionSha256": "1bc8beb9d4a87aba787f8a7b268a6c99e1c74e6508d8191b3a4767e7697858df"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetHandleParams;",
+      "method": "setRotationFocusEnable",
+      "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetHandleParams;",
+      "codeOffset": 4884884,
+      "instructionSha256": "0fb46446b27dc8e14141fdb4edece901038822aa77b97b158aa39abe82633e9c"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetHandleParams;",
+      "method": "setCellphoneSensorDisable",
+      "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetHandleParams;",
+      "codeOffset": 4884764,
+      "instructionSha256": "c326292917bb872b47ade7cfff3f09b73c642ffd2687e211daebca09809cfe20"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/common/handheldcontroller/ControllerMode;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3023136,
+      "instructionSha256": "4f1a7e9eb1a2798c879ac18c422df52268c639ab8a21065ed112088eb8a24132"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/midware/data/model/P3/DataGimbalRollFinetune;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4880136,
+      "instructionSha256": "6331847efd476a229fc28ea0affe22edeafa3222e61f1fe0209747a72fa67a94"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetHandleParams;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4865004,
+      "instructionSha256": "59d84f9e8a6620d8cb3f8df85bf7e4a9883fc390a57741a799d97b97ff14686f"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetHandleParams;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4884956,
+      "instructionSha256": "1759183fa921e945dd29f3b56239630b328b39bc3ffc5ca28692751efc1d6af7"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/midware/data/model/P3/DataGimbalResetUserParams;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4879668,
+      "instructionSha256": "bd59add540e28c1d97e9c1ea389b9a233574d479f92a11dddfd116386f669bde"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/midware/data/model/P3/DataGimbalSaveUserParams;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4882208,
+      "instructionSha256": "4bdc21c5c11b5c113b6c183ded3397e5b0e6c5992f43966cb5b9d96c16858568"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/midware/data/model/P3/DataGimbalResetUserParams;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 4879500,
+      "instructionSha256": "afe2ec38b99bacfc5a330715f95c3537134af9b7cc6d157df51fb1532dd37b62"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/midware/data/model/P3/DataGimbalSaveUserParams;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 4882188,
+      "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674"
+    }
+  ]
+}

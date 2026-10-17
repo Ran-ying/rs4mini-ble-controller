@@ -1,3 +1,4 @@
+import { handleReply } from './app-handle.js';
 import { userParameterNotification } from './app-user-parameters.js';
 import { standaloneSelection, standaloneWrite, standaloneContext, standaloneReply } from './app-standalone.js';
 import { tuningSelection, tuningWrite, tuningReply } from './app-tuning.js';
@@ -33,6 +34,11 @@ export class AppCommands {
     this._profile = profile; this._reset();
   }
   _requireProfile() { appProfile(this._profile); }
+  async getHandleSettings(options={}) {
+    optionsOnly(options,['timeoutMs']);this._requireProfile();
+    const message=await this.owner.experimental._queryPayloadCommand('App handle query',[4,0x36],new Uint8Array(0),options.timeoutMs??3000);
+    return handleReply(message);
+  }
   async readParameters(options = {}) {
     optionsOnly(options, ['parameters', 'timeoutMs']); this._requireProfile();
     const parameters = parameterContext(options.parameters);

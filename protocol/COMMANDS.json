@@ -298,7 +298,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送",
+      "remaining": "当前App静态核对微调两字节体、真实轴值Roll0/Pitch2/Yaw4、继承的Pitch/Roll增量方法与float32×10截断；Yaw调用和暂停稳定前置状态未验收，尚未封装SDK/实机验证",
       "officialAppAliases": [
         "RollFinetune"
       ],
@@ -366,7 +366,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送",
+      "remaining": "源保存类请求体为空、需要ACK；在固定bank05和bank03未找到直接调用者，不能据此宣称HG724保存接口或持久化支持，未开放发送",
       "officialAppAliases": [
         "SaveUserParams"
       ],
@@ -392,7 +392,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送",
+      "remaining": "PlatformType.HG724条件实际跳入010001三字节重置路径，继承loadFactorySettings；不是其他分支空体。实际重置范围/持久化/型号平台读值及SDK/实机仍未验收，未开放发送",
       "officialAppAliases": [
         "ResetUserParams"
       ],
@@ -534,7 +534,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送",
+      "remaining": "源8字节字段顺序及FF构造默认值已核对；打包后只重置前6字段，后2保留。只有部分非相机SDK调用链已确认继承，FF固件语义/完整字段/实机/SDK封装未完成",
       "officialAppAliases": [
         "SetHandleParams"
       ],
@@ -544,11 +544,15 @@
     {
       "key": "04:36",
       "name": "官方 App 枚举：GetHandleParams",
-      "requestCodec": "unknown",
-      "responseCodec": "unknown",
-      "targetEvidence": "official-app-enum",
-      "implementation": [],
-      "remaining": "当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送",
+      "requestCodec": "implemented",
+      "responseCodec": "candidate-structured",
+      "targetEvidence": "app-code-path",
+      "implementation": [
+        "node/src/app-handle.js",
+        "python/rs4mini_sdk/app_handle.py",
+        "macos/RSBleDevice.m"
+      ],
+      "remaining": "0.7.13显式App来源封装空体手柄查询、关联ACK与8个业务getter原值/bit0解码，额外字节保留；继承链有源证据，但本机布局/实际效果及与其他profile的关系未验收。不增加04:35写入或相机控制",
       "officialAppAliases": [
         "GetHandleParams"
       ],
@@ -796,5 +800,19 @@
       "docs/APP_USER_PARAMETERS.md"
     ],
     "modelSpecificPathVerified": false
+  },
+  "controlsResearch": "protocol/research/ronin-controls-evidence.json",
+  "handleReadSdk": {
+    "implemented": true,
+    "source": "protocol/research/ronin-controls-evidence.json",
+    "fieldCount": 8,
+    "targetDeviceVerified": false,
+    "modelLayoutVerified": false,
+    "files": [
+      "node/src/app-handle.js",
+      "python/rs4mini_sdk/app_handle.py",
+      "macos/RSControlCore.m",
+      "docs/APP_HANDLE_SETTINGS.md"
+    ]
   }
 }

@@ -120,3 +120,6 @@ HG724继承的启动路径为普通用户参数04:0F，balance_test/index37/size
 
 
 后续订阅审计确认04:12为CENTER/id7无ACK、最高频道号+位图及本地引用计数刷新；本地停发不能当远端取消。未加密请求型04:24的源payload偏移2已追通，但不代表本机活动预设或04:10参数订阅。见 [SUBSCRIPTIONS.md](../tools/research/SUBSCRIPTIONS.md)。本批不新增SDK发送/解码接口，运行时与全命令门槛不变。
+
+
+后续微调/手柄/重置审计固定42方法：微调轴值0/2/4，手柄8字节与FF默认/只重置6项，HG724平台重置010001。保存空体类在两段未见直接调用者，不代表全App否定。详见 [FINE_HANDLE_RESET.md](../tools/research/FINE_HANDLE_RESET.md)。本批未新增SDK发送或实机证据，运行时不变，全命令门槛false。

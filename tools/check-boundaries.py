@@ -265,5 +265,30 @@ if manifest.get('userPushSdk',{}).get('implemented'):
     native = (root / 'macos/RSControlCore.m').read_text().split('NSDictionary *RSDecodeAppUserParameterNotification(',1)[1]
     native_fields = json.loads(re.search(r'NSArray \*fields=(@\[.*?\]);',native,re.S).group(1).replace('@',''))
     assert js_fields == [list(r) for r in py_fields] == native_fields == expected
+if manifest.get('controlsResearch'):
+    controls = json.loads((root / manifest['controlsResearch']).read_text())
+    assert controls['apkSha256'] == numeric['apkSha256'] and controls['derivedSha256'] == restored['derivedSha256'] and controls['uiDerivedSha256'] == numeric['uiDerivedSha256']
+    assert controls['appCodeExecuted'] is False and controls['targetDeviceVerified'] is False and controls['wholeProtocolRecovered'] is False and controls['researchToolProvidesSdkInterface'] is False
+    assert len(controls['methods']) == 42
+    assert controls['fineTune']['axisWireValues'] == dict(ROLL=0,PITCH=2,YAW=4) and controls['fineTune']['sourceCallableAxes'] == ['pitch','roll']
+    handle = controls['handle']
+    assert [r['offset'] for r in handle['fields']] == list(range(8)) and all(r['size']==1 for r in handle['fields'])
+    assert [r['sourceBit0Boolean'] for r in handle['fields']] == [False]*5+[True]*3
+    assert handle['constructorByteDefaults'] == [255]*8 and handle['afterPackResetFields'] == handle['writeFieldOrder'][:6]
+    assert handle['afterPackRetainedFields'] == handle['writeFieldOrder'][6:] and handle['unspecifiedByteFirmwareSemanticsVerified'] is False
+    assert controls['parameterReset']['sourceBodyHex'] == '010001' and controls['parameterReset']['targetResetScopeVerified'] is False
+    assert controls['parameterSave']['directCallerScanBanks'] == ['business05','business03'] and controls['parameterSave']['directCallers'] == [] and controls['parameterSave']['targetModelCallPathEstablished'] is False
+    assert controls['offlineVectors'] == dict(pitchNegative='f402',rollPositive='0c00',panDirectionPatch='ffff01ffffffffff')
+if manifest.get('handleReadSdk',{}).get('implemented'):
+    sdk = manifest['handleReadSdk']
+    assert sdk['source'] == manifest['controlsResearch'] and sdk['fieldCount'] == 8 and sdk['targetDeviceVerified'] is False and sdk['modelLayoutVerified'] is False
+    for filename in sdk['files']:assert (root / filename).is_file()
+    expected = [[r['sourceGetter'],r['offset'],r['sourceBit0Boolean']] for r in controls['handle']['fields']]
+    js = json.loads(re.search(r'const fields=(\[.*?\]);',(root / 'node/src/app-handle.js').read_text(),re.S).group(1))
+    tree = ast.parse((root / 'python/rs4mini_sdk/app_handle.py').read_text())
+    py = ast.literal_eval(next(n.value for n in tree.body if isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and t.id=='FIELDS' for t in n.targets)))
+    native = (root / 'macos/RSControlCore.m').read_text().split('NSDictionary *RSDecodeAppHandleReply(',1)[1]
+    literal = re.search(r'NSArray \*fields=(@\[.*?\]);',native,re.S).group(1).replace('@YES','true').replace('@NO','false').replace('@','')
+    assert js == [list(r) for r in py] == json.loads(literal) == expected
 print('Layer boundaries passed: device modules do not depend on motion; upper layers do not encode/write packets.')
 print('Protocol inventory: %d entries; inventoryComplete=false; further advanced development is gated.' % len(manifest['commands']))

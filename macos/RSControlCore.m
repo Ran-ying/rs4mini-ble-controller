@@ -532,3 +532,12 @@ NSDictionary *RSDecodeAppUserParameterNotification(NSDictionary *message) {
     NSNumber *raw=@(p[2]);NSString *name=@{@0:@"CUSTOM_1",@1:@"CUSTOM_2",@3:@"FAST",@4:@"MEDIUM",@5:@"SLOW"}[raw];
     return @{@"kind":@"userParameters",@"profile":@"ronin-2.2.2",@"timestamp":@(NSDate.date.timeIntervalSince1970*1000),@"values":[values copy],@"preset":@{@"rawValue":raw,@"sourceEnum":name ?: NSNull.null},@"bodyHex":[Hex(body) copy],@"deviceVerified":@NO,@"modelLayoutVerified":@NO,@"activePresetVerified":@NO,@"physicalCompletionVerified":@NO};
 }
+
+NSData *RSAppHandleQueryFrame(uint16_t sequence) {return CommandFrame(sequence,4,0x36,NSData.data,0x40);}
+NSDictionary *RSDecodeAppHandleReply(NSDictionary *message,NSError **error) {
+    NSDictionary *reply=RSDecodeAppReply(message,0x36,nil,error);if(!reply)return nil;
+    NSData *payload=message[@"payload"];if(payload.length<9){if(error)*error=RSAppError(@"RS4MINI_PROTOCOL_ERROR",@"Handle body requires eight source bytes",nil);return nil;}
+    NSArray *fields=@[@[@"getDualChannelEnable",@0,@NO],@[@"getTiltDirection",@1,@NO],@[@"getPanDirection",@2,@NO],@[@"getProfile",@3,@NO],@[@"getPitchFree",@4,@NO],@[@"getZoom2SpeedEnable",@5,@YES],@[@"getRotationFocusEnable",@6,@YES],@[@"getCellphoneSensorDisable",@7,@YES]];const uint8_t *body=((const uint8_t *)payload.bytes)+1;NSMutableArray *values=[NSMutableArray array];
+    for(NSArray *row in fields){NSUInteger offset=[row[1] unsignedIntegerValue];[values addObject:@{@"sourceGetter":row[0],@"offset":row[1],@"size":@1,@"rawValue":@(body[offset]),@"sourceBit0":[row[2] boolValue]?@((body[offset]&1)!=0):NSNull.null}];}
+    NSMutableDictionary *result=[reply mutableCopy];result[@"values"]=[values copy];result[@"modelLayoutVerified"]=@NO;return [result copy];
+}

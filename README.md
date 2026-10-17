@@ -204,3 +204,6 @@ python3 -m http.server 8000 --bind 127.0.0.1
 
 
 [HG724支持键规则研究](tools/research/KEY_SUPPORT.md)区分声明支持谓词、缓存动作注册与原生BLE命令；保留多匹配歧义，不据键数量声明协议完整或新增发送。
+
+
+[HG724初始化与动作声明分派](tools/research/REGISTRATION.md)补齐继承目录及两个动作的静态声明链，仍非运行时注册或本机验收；不改变SDK发送与高级门槛。

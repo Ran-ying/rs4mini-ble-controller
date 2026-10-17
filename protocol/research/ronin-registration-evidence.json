@@ -1,0 +1,338 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "sdkSha256": "4fdbd74a05df63d72a0feb1c907d9395426ec3cdb5d6aeb45e3836d856d66654",
+  "appCodeExecuted": false,
+  "javaReflectionExecuted": false,
+  "targetDeviceVerified": false,
+  "wholeProtocolRecovered": false,
+  "researchToolProvidesSdkInterface": false,
+  "scope": "Inherited annotated catalog fields, HG724 initializer declarations and only Rotate/ResetGimbal action dispatch evidence; no Android reflection execution or complete runtime registry",
+  "catalogClassChain": [
+    "Ldji/sdksharedlib/keycatalog/GimbalKeys;",
+    "Ldji/sdksharedlib/keycatalog/DJISDKCacheKeys;"
+  ],
+  "inheritedFields": [
+    {
+      "declaringClass": "Ldji/sdksharedlib/keycatalog/DJISDKCacheKeys;",
+      "fieldName": "CONNECTION",
+      "literalKeyName": "Connection",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Boolean;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": 0,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "declaringClass": "Ldji/sdksharedlib/keycatalog/DJISDKCacheKeys;",
+      "fieldName": "FIRMWARE_VERSION",
+      "literalKeyName": "FirmwareVersion",
+      "entries": [
+        {
+          "accessType": 1,
+          "includedAbstractions": [],
+          "excludedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninMXAbstraction;"
+          ],
+          "type": "Ljava/lang/String;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": 0,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "declaringClass": "Ldji/sdksharedlib/keycatalog/DJISDKCacheKeys;",
+      "fieldName": "SERIAL_NUMBER",
+      "literalKeyName": "SerialNumber",
+      "entries": [
+        {
+          "accessType": 1,
+          "includedAbstractions": [],
+          "excludedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/battery/NonSmartA3BatteryAbstraction;"
+          ],
+          "type": "Ljava/lang/String;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": 0,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    }
+  ],
+  "catalogLiteralCollisions": {},
+  "annotatedCatalogFieldCount": 226,
+  "initDeclarations": [
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG724Abstraction;",
+      "superInvokes": [
+        "v0, v1, v2, v3, v4, Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG702Abstraction;->init(Ljava/lang/String; I Ldji/sdksharedlib/store/DJISDKCacheStoreLayer; Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$OnValueChangeListener;)V"
+      ]
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "superInvokes": [
+        "v2, v3, v4, v5, v6, Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninBaseAbstraction;->init(Ljava/lang/String; I Ldji/sdksharedlib/store/DJISDKCacheStoreLayer; Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$OnValueChangeListener;)V"
+      ]
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninBaseAbstraction;",
+      "superInvokes": [
+        "v0, v1, v2, v3, v4, Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction;->init(Ljava/lang/String; I Ldji/sdksharedlib/store/DJISDKCacheStoreLayer; Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$OnValueChangeListener;)V"
+      ]
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "superInvokes": [
+        "v0, v1, v2, v3, v4, Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction;->init(Ljava/lang/String; I Ldji/sdksharedlib/store/DJISDKCacheStoreLayer; Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$OnValueChangeListener;)V"
+      ]
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction;",
+      "superInvokes": []
+    }
+  ],
+  "nearestComponentInitializer": {
+    "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninBaseAbstraction;",
+    "method": "initializeComponentCharacteristics",
+    "descriptor": "()V",
+    "accessFlags": 4
+  },
+  "componentInitializerDeclarations": [
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninBaseAbstraction;",
+      "superInvokes": [
+        "v0, Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction;->initializeComponentCharacteristics()V"
+      ]
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction;",
+      "superInvokes": [
+        "v0, Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalX3Abstraction;->initializeComponentCharacteristics()V"
+      ]
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalX3Abstraction;",
+      "superInvokes": [
+        "v0, Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAircraftAbstraction;->initializeComponentCharacteristics()V"
+      ]
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "superInvokes": []
+    }
+  ],
+  "selectedActionDeclarations": [
+    {
+      "action": "ResetGimbal",
+      "declaringClass": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "resetGimbal",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "nearestTargetDeclaration": {
+        "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+        "method": "resetGimbal",
+        "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+        "accessFlags": 1
+      }
+    },
+    {
+      "action": "Rotate",
+      "declaringClass": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "rotate",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback; Ldji/common/gimbal/Rotation;)V",
+      "nearestTargetDeclaration": {
+        "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+        "method": "rotate",
+        "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback; Ldji/common/gimbal/Rotation;)V",
+        "accessFlags": 1
+      }
+    }
+  ],
+  "methods": [
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG724Abstraction;",
+      "method": "init",
+      "descriptor": "(Ljava/lang/String; I Ldji/sdksharedlib/store/DJISDKCacheStoreLayer; Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$OnValueChangeListener;)V",
+      "codeOffset": 6541920,
+      "instructionSha256": "cd5fee3a3211949590a6dbd54b29974719c811f5c6e0856a92bf59a939a29272"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "init",
+      "descriptor": "(Ljava/lang/String; I Ldji/sdksharedlib/store/DJISDKCacheStoreLayer; Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$OnValueChangeListener;)V",
+      "codeOffset": 6508948,
+      "instructionSha256": "ff029b7e38be058a6748a5242d884b0e0cb5982733666ded30b4f35e1d8f4327"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninBaseAbstraction;",
+      "method": "init",
+      "descriptor": "(Ljava/lang/String; I Ldji/sdksharedlib/store/DJISDKCacheStoreLayer; Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$OnValueChangeListener;)V",
+      "codeOffset": 6472036,
+      "instructionSha256": "21475671212d0528d38c0950a08c238f4239663b7137335525c258bad5fc16c9"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "init",
+      "descriptor": "(Ljava/lang/String; I Ldji/sdksharedlib/store/DJISDKCacheStoreLayer; Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$OnValueChangeListener;)V",
+      "codeOffset": 5246876,
+      "instructionSha256": "216a9d5a86e448f2d2fb6de0bc9d9d06b1d44f58bdcf19183269966a965a9c6a"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction;",
+      "method": "init",
+      "descriptor": "(Ljava/lang/String; I Ldji/sdksharedlib/store/DJISDKCacheStoreLayer; Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$OnValueChangeListener;)V",
+      "codeOffset": 3930108,
+      "instructionSha256": "836120aeaafe2cbc7971c5413875b4b9f8c408f3861ad0093d6c14a60bf0dfe9"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction;",
+      "method": "initializeAllCharacteristics",
+      "descriptor": "()V",
+      "codeOffset": 3930272,
+      "instructionSha256": "d92b64e0f0a6c376ba0c9a08412a7beb265ac7b97cdc35120e9e27dc75d90098"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction;",
+      "method": "initializeCommonCharacteristics",
+      "descriptor": "()V",
+      "codeOffset": 3927620,
+      "instructionSha256": "e7ead360daf730afd24aea02a4196a9b36d255f2e9cc6312200cf10f618a205e"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninBaseAbstraction;",
+      "method": "initializeComponentCharacteristics",
+      "descriptor": "()V",
+      "codeOffset": 6472492,
+      "instructionSha256": "0e009bc63a153f159391ae39b55f69af08c81b53847a73a749bdb8c7219c37ee"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction;",
+      "method": "initializeComponentCharacteristics",
+      "descriptor": "()V",
+      "codeOffset": 6386128,
+      "instructionSha256": "590f1d34b7482480612c29b1e70af39f1646d5af6c9feba6d0f1de79889fe4b7"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalX3Abstraction;",
+      "method": "initializeComponentCharacteristics",
+      "descriptor": "()V",
+      "codeOffset": 6301804,
+      "instructionSha256": "388d7493eabeb43d6b7894a12cd215de8d8e940550ac3eafbae97a03d1f0590a"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "initializeComponentCharacteristics",
+      "descriptor": "()V",
+      "codeOffset": 5247320,
+      "instructionSha256": "4ae4cc23131fefa6c077903ea374e5c3e8f85c42d4a4db5c60ec428ed9115817"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction;",
+      "method": "createMethodMap",
+      "descriptor": "()V",
+      "codeOffset": 3928832,
+      "instructionSha256": "c753af9a9f76675fa0efcec2e32a843330b36480148db4be603b420afe8715a1"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction;",
+      "method": "getMethodsFromSuperClass",
+      "descriptor": "(Ljava/lang/Class;)Ljava/util/List;",
+      "codeOffset": 3927352,
+      "instructionSha256": "c9afe7b54e793b32ff8acf9ed22b462ebc6ac2cbbb747b4ce48ad203b78f26cd"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction;",
+      "method": "performAction",
+      "descriptor": "(Ldji/sdksharedlib/keycatalog/DJISDKCacheKey; Ldji/sdksharedlib/listener/DJIActionCallback; [Ljava/lang/Object;)V",
+      "codeOffset": 3930676,
+      "instructionSha256": "7a61f0a9e8eef957d68151105c1bf3fcfec3d85aa930e58398c344f13378bf73"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction;",
+      "method": "prepend",
+      "descriptor": "([Ljava/lang/Object; Ljava/lang/Object;)[Ljava/lang/Object;",
+      "codeOffset": 3927816,
+      "instructionSha256": "becc3d5b551e01074e220f33483be2398c80c6fecf44379876d0ab0deabb2f6d"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction;",
+      "method": "handleActionCustom",
+      "descriptor": "(Ldji/sdksharedlib/keycatalog/DJISDKCacheKey; Ldji/sdksharedlib/listener/DJIActionCallback; [Ljava/lang/Object;)Z",
+      "codeOffset": 3927560,
+      "instructionSha256": "b8a55239285ea3674a43b1690af38ed2e75dd9b5d83dceac7977a439b33748a5"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction;",
+      "method": "addActionMethod",
+      "descriptor": "(Ljava/lang/String; Ljava/lang/reflect/Method;)V",
+      "codeOffset": 3926728,
+      "instructionSha256": "b09836b359303d30d10881d18595f1474f669fc758d7a4ef2b37545bc3ff14c6"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "resetGimbal",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 5248312,
+      "instructionSha256": "d1ac41a9ea3547c0754484c33b932cb963ddef8ea4bdf98c4ab4599d5209622a"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "rotate",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback; Ldji/common/gimbal/Rotation;)V",
+      "codeOffset": 5248528,
+      "instructionSha256": "5416211661f4c1434aa1f6790b05bb912736d8c02b88626074d8e59667a37bc4"
+    }
+  ],
+  "sourceActionGuards": [
+    "non-subcomponent key",
+    "nonempty parameter key",
+    "characteristicsMap contains key",
+    "actionMethodMap contains key",
+    "isParamTypeCorrect(arguments)"
+  ],
+  "sourceActionInvocation": "prepend DefaultActionInnerCallback then Method.invoke(this, arguments); source execution not performed",
+  "runtimeMethodMapOrderVerified": false,
+  "actualHg724InstantiationVerified": false,
+  "fullRegistryVerified": false,
+  "remaining": [
+    "Caller instantiation/index and live Android cache initialization are not verified.",
+    "getMethods order and all other annotation collisions/overrides remain unaudited; addActionMethod may mutate maps.",
+    "Selected action method resolution is not proof of packet route, device acceptance, stopping or physical completion."
+  ]
+}

@@ -158,7 +158,8 @@
       "angleResearch": "protocol/research/ronin-angles-evidence.json",
       "angleContextResearch": "protocol/research/ronin-angle-context.json",
       "stabilizationDependencyResearch": "protocol/research/ronin-stabilization-evidence.json",
-      "keySupportResearch": "protocol/research/ronin-key-support-evidence.json"
+      "keySupportResearch": "protocol/research/ronin-key-support-evidence.json",
+      "registrationResearch": "protocol/research/ronin-registration-evidence.json"
     },
     {
       "key": "04:1C",
@@ -228,7 +229,8 @@
       "restoredAppEvidence": "protocol/research/ronin-code-restoration-evidence.json",
       "stabilizationDependencyResearch": "protocol/research/ronin-stabilization-evidence.json",
       "resetRouteResearch": "protocol/research/ronin-reset-routes.json",
-      "keySupportResearch": "protocol/research/ronin-key-support-evidence.json"
+      "keySupportResearch": "protocol/research/ronin-key-support-evidence.json",
+      "registrationResearch": "protocol/research/ronin-registration-evidence.json"
     },
     {
       "key": "04:66",
@@ -790,7 +792,8 @@
     "tools/research/ronin_stick_trace.py",
     "tools/research/ronin_status_trace.py",
     "tools/research/ronin_tutorial_trace.py",
-    "tools/research/ronin_key_support.py"
+    "tools/research/ronin_key_support.py",
+    "tools/research/ronin_registration_trace.py"
   ],
   "modelIdentityResearch": "protocol/research/ronin-hg724-evidence.json",
   "codeRestorationResearch": "protocol/research/ronin-code-restoration-evidence.json",
@@ -988,5 +991,6 @@
     ]
   },
   "tutorialResearch": "protocol/research/ronin-tutorial-evidence.json",
-  "keySupportResearch": "protocol/research/ronin-key-support-evidence.json"
+  "keySupportResearch": "protocol/research/ronin-key-support-evidence.json",
+  "registrationResearch": "protocol/research/ronin-registration-evidence.json"
 }

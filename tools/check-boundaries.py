@@ -504,3 +504,14 @@ if manifest.get('keySupportResearch'):
     assert keys['sourceRules']['mostSpecificClassPriorityVerified'] is False
     assert keys['abstractionGroupReferences'] == []
     assert {a['action'] for a in keys['selectedActionAnnotations']} == {'Rotate','ResetGimbal'}
+
+if manifest.get('registrationResearch'):
+    registration=json.loads((root/manifest['registrationResearch']).read_text())
+    for flag in ('appCodeExecuted','javaReflectionExecuted','targetDeviceVerified','wholeProtocolRecovered','researchToolProvidesSdkInterface','runtimeMethodMapOrderVerified','actualHg724InstantiationVerified','fullRegistryVerified'):
+        assert registration[flag] is False
+    assert registration['annotatedCatalogFieldCount']==226 and len(registration['methods'])==19
+    assert {f['fieldName'] for f in registration['inheritedFields']}=={'CONNECTION','FIRMWARE_VERSION','SERIAL_NUMBER'}
+    assert registration['catalogLiteralCollisions']=={}
+    assert len(registration['selectedActionDeclarations'])==2
+    assert {a['action'] for a in registration['selectedActionDeclarations']}=={'Rotate','ResetGimbal'}
+    assert all(a['nearestTargetDeclaration']['className']==a['declaringClass'] for a in registration['selectedActionDeclarations'])

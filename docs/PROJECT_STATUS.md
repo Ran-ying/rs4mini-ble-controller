@@ -407,3 +407,13 @@ Rotate/ResetGimbal两条基础Action注解及12框架/动作方法指纹已核�
 ## 支持键审计离线验证（2026-10-18）
 
 固定APK/bank05实际复现223声明字段、12方法指纹和两条Action注解，重复提取JSON逐字节一致。新增14项规则/注解/哈希预检，研究工具Python3.8/3.12各175通过；统一离线Node190/Web16/Python168/原生139+172+3、类型/边界/构建通过，检查进程已结束且日志到达最后probe --help。运行时安装包仍0.7.21/0.3.21，不新增SDK发送/高级功能，无硬件/liveUI/厂商执行，全部命令门槛false。
+
+
+## HG724初始化与两动作声明分派（运行时仍0.7.21/0.3.21）
+
+固定bank05新增19方法指纹，父目录Connection/FirmwareVersion/SerialNumber三注解字段补入共226项，字符串键无重复；不是226条BLE命令。HG724 init经父类到HW初始化，component最近声明RoninBase，super链到Gimbal的GimbalKeys/getClass注册；Rotate/ResetGimbal精确签名最近声明均在基础Gimbal，无子类覆盖声明。performAction核对两Map/参数后prepend回调并Method.invoke，研究工具未执行反射。运行时实例/index、方法Map顺序/动态替换、完整参数/回调和实机仍未验证。见tools/research/REGISTRATION.md及protocol/research/ronin-registration-evidence.json；不新增SDK发送/高级功能，无硬件/liveUI/厂商执行，全命令门槛false。
+
+
+## 初始化与动作声明审计验证（2026-10-18）
+
+固定APK/bank05实际两次提取226注解字段/3继承字段/19方法指纹，JSON逐字节一致。新增11项精确签名、最近声明、循环/重复拒绝、字符串键碰撞和哈希预检，研究工具Python3.8/3.12各186通过。统一离线Node190/Web16/Python168/原生139+172+3、类型/边界/构建通过，命令进程终态0。没有运行时接口/安装包升级、SDK发送或高级新增，无硬件/liveUI/厂商执行，全命令仍未完成。

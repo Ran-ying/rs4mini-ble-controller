@@ -385,3 +385,13 @@ HG724继承基础resetGimbal先调用此等待，后按平台选择DataSpecialCo
 固定六段实际复现36方法/2类外直接调用方法，21字段目录逐项对比Node/Python/原生与源码证据一致。研究工具Python3.8/3.12各152（新增8）；统一离线Node190/Web16/Python两环境各168、原生139核心+172假设备+3独立SDK及类型/边界/构建通过。安装后Node190+类型消费、wheel168通过，Python路径核对为隔离wheel目标。
 
 新增Yaw-only不算复合锁、gravity两位保留、sleep偏移4、battery255/未知尾字节、短帧/ACK/加密/错端点拒绝、来源/缓存复制及观察者异常隔离、断线/来源切换清空、无请求/订阅发送、通知不完成待处理查询、Web无Buffer检查。包内Node79文件、wheel30模块、原生0.3.21/build24核对，未运行实机或实时UI，不新增高级控制，全命令门槛false。
+
+
+## 教程状态与步骤源审计（运行时仍0.7.21/0.3.21）
+
+固定六段28方法，教程类无外部直接invoke；2B源体至少5字节，byte0步骤、offset1 signed32 LE状态，9个int0/1 getter对应bit0..8，未知23位/尾字节保留。枚举0..10，未知find回退STEP_FINISH，不能抹掉原值或作为设备完成。getStepStatus的(enumValue-2)&31使步骤0/1选择bit30/31，不推定业务用途。2C int-to-byte的一字节/ACK仅离线核对，无HG724入口/效果/恢复证明，不开放SDK发送。见tools/research/TUTORIAL.md与protocol/research/ronin-tutorial-evidence.json。没有运行时/高级新增、硬件/liveUI/厂商执行，全命令门槛false。
+
+
+## 教程源审计验证（2026-10-17）
+
+固定六段实际复现28方法/0外部直接调用。研究工具Python3.8/3.12各161项（新增9），覆盖未知回退与原值分离、signed/unsigned32视图、bit30/31回绕、9个正常步骤位、Java int低字节及哈希预检。统一离线Node190/Web16/Python168/原生139+172+3、类型/边界/构建通过。运行时与安装包仍0.7.21/0.3.21，不增加教程SDK或高级功能，不操作硬件或执行厂商代码，全命令仍未完成。

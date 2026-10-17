@@ -1,0 +1,280 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "bankSha256": {
+    "0": "76002e76e02e1306ad197c4af127975d573999de174e5a9e44cc6f840196f621",
+    "2": "de69497b77de530d0d559646dc6d3fb24569e2ba8ba9502216f3d6c9fd6f3bf8",
+    "3": "bb50b39865520f55e97116ae1903bda3545b01c2fb7e2aba67a979dc264a9854",
+    "4": "2d3ff70fb84eb02ac75949ca6e7d5cc849a7f9ef55029fd168890c6dbccb1d12",
+    "5": "4fdbd74a05df63d72a0feb1c907d9395426ec3cdb5d6aeb45e3836d856d66654",
+    "6": "057f13084cf969ffadcfa2150d1b3ae3ed8a7822c95fb54158781764c9156e2f"
+  },
+  "appCodeExecuted": false,
+  "targetDeviceVerified": false,
+  "wholeProtocolRecovered": false,
+  "researchToolProvidesSdkInterface": false,
+  "minimumBodyBytes": 5,
+  "currentStepOffset": 0,
+  "completionWordOffset": 1,
+  "completionWordBytes": 4,
+  "completionWordSignedInSource": true,
+  "flagShifts": {
+    "getIsUnlock": 0,
+    "getIsUpright": 1,
+    "getIsFollowFinish": 2,
+    "getIsStickFinish": 3,
+    "getIsLockDirectionFinish": 4,
+    "getIsRecentFinish": 5,
+    "getIsSelfieFinish": 6,
+    "getIsHandlePushFinish": 7,
+    "getIsAppControlFinish": 8
+  },
+  "sourceEnums": {
+    "STEP_FINISH": 0,
+    "STEP_START": 1,
+    "STEP_UNLOCK_GIMBAL": 2,
+    "STEP_HOLD_GIMBAL_UPRIGHT": 3,
+    "STEP_FOLLOW": 4,
+    "STEP_STICK": 5,
+    "STEP_LOCK_DIRECTION": 6,
+    "STEP_RECENTER": 7,
+    "STEP_SELFIE": 8,
+    "STEP_PUSH": 9,
+    "STEP_APP_CONTROL": 10
+  },
+  "sourceUnknownEnumFallback": "STEP_FINISH",
+  "unknownStepIsCompletionVerified": false,
+  "sourceDynamicStepShift": "(enumValue - 2) & 31",
+  "sourceFinishAndStartSelectBits": [
+    30,
+    31
+  ],
+  "knownCompletionMask": 511,
+  "sourceSend": {
+    "command": "04:2C",
+    "payloadBytes": 1,
+    "javaIntNarrowedToByte": true,
+    "ackRequested": true,
+    "hg724CallPathEstablished": false,
+    "sendEnabledInSdk": false
+  },
+  "commandEnumArguments": {
+    "GetPushTutorialStatus": [
+      "GetPushTutorialStatus",
+      18,
+      43,
+      0,
+      "Ldji/midware/data/model/P3/DataGimbalGetPushTutorialStatus;"
+    ],
+    "SetTutorialStep": [
+      "SetTutorialStep",
+      19,
+      44
+    ]
+  },
+  "externalCallers": [],
+  "methods": [
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushTutorialStatus$TutorialStatus;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3466232,
+      "instructionSha256": "65ff0724a2ac95692c8408da2a26ba0bb85c569589b63e5fb90fafc151c8cdcd"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushTutorialStatus$TutorialStatus;",
+      "method": "find",
+      "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalGetPushTutorialStatus$TutorialStatus;",
+      "codeOffset": 3466540,
+      "instructionSha256": "9a2fc0f0b2958f0d433a5e3a5f6b3726dbc7e920695b8ede0acb618817f7c4ec"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushTutorialStatus$TutorialStatus;",
+      "method": "_equals",
+      "descriptor": "(I)Z",
+      "codeOffset": 3466696,
+      "instructionSha256": "ee57acbe3e4feb71085a8ccd65ed874ea57f619849e6815c86e819862a14b688"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushTutorialStatus$TutorialStatus;",
+      "method": "value",
+      "descriptor": "()I",
+      "codeOffset": 3466728,
+      "instructionSha256": "00aacb62d9d8ca542f1cff03a0fa693dd4b3bac93486b206764eb58854572237"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushTutorialStatus;",
+      "method": "getCurStep",
+      "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetPushTutorialStatus$TutorialStatus;",
+      "codeOffset": 4875988,
+      "instructionSha256": "7429e31590cae17b839efaa1074befc8af482d1c6638efb9d518fcde1825d466"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushTutorialStatus;",
+      "method": "getIsUnlock",
+      "descriptor": "()I",
+      "codeOffset": 4876464,
+      "instructionSha256": "16b20467547c459d3a61493feb2de6f1516fb8e6f9c5e71bc1c64d29e05edde5"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushTutorialStatus;",
+      "method": "getIsUpright",
+      "descriptor": "()I",
+      "codeOffset": 4876520,
+      "instructionSha256": "300f8bb89fe9235486d86c0b9fedafb68afec5d0fad93585b995ed616d71befe"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushTutorialStatus;",
+      "method": "getIsFollowFinish",
+      "descriptor": "()I",
+      "codeOffset": 4876108,
+      "instructionSha256": "da973b3c2fd84c5b966695c1e4c009bb7bffdb43e475b89f0adb78dd345ecff4"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushTutorialStatus;",
+      "method": "getIsStickFinish",
+      "descriptor": "()I",
+      "codeOffset": 4876404,
+      "instructionSha256": "131bfd146cee33e56c6b2bd932f35929442abd39f22bb6b8811b7f2aee213aa2"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushTutorialStatus;",
+      "method": "getIsLockDirectionFinish",
+      "descriptor": "()I",
+      "codeOffset": 4876228,
+      "instructionSha256": "53807b3b1ed897cfba90a6cd8f24284fa79caa5330691904e3994dd23b26db39"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushTutorialStatus;",
+      "method": "getIsRecentFinish",
+      "descriptor": "()I",
+      "codeOffset": 4876284,
+      "instructionSha256": "90592f27efd0cf305a203df0b2e5b8d524983b0b1da877e1e72bf1cefd4d1424"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushTutorialStatus;",
+      "method": "getIsSelfieFinish",
+      "descriptor": "()I",
+      "codeOffset": 4876344,
+      "instructionSha256": "058ed127288ca32b9c6447ee9b508a23e38bd355ea9393e79e83d01abb533a32"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushTutorialStatus;",
+      "method": "getIsHandlePushFinish",
+      "descriptor": "()I",
+      "codeOffset": 4876168,
+      "instructionSha256": "b2bdb57bece77dbfdd5dcc69c0181cb84d243f8fac188add6ae4e711440b827e"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushTutorialStatus;",
+      "method": "getIsAppControlFinish",
+      "descriptor": "()I",
+      "codeOffset": 4876048,
+      "instructionSha256": "61c4240eb4efbec6f124a3a87df040b6971c39fc30345a77611e86cb6e4268c5"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushTutorialStatus;",
+      "method": "getStepStatus",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalGetPushTutorialStatus$TutorialStatus;)Z",
+      "codeOffset": 4876576,
+      "instructionSha256": "6d2abce769f5c74bb7350b0843461b97d4199e652e1f30009d61fccf7a1ebba3"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushTutorialStatus;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "codeOffset": 4875864,
+      "instructionSha256": "20b19993098dcc58f25a499e08c6c24946fc39bc2fcc929f0911519d944f68f9"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushTutorialStatus;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 4875968,
+      "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetTutorialStep;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "codeOffset": 4889136,
+      "instructionSha256": "20b19993098dcc58f25a499e08c6c24946fc39bc2fcc929f0911519d944f68f9"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetTutorialStep;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 4889240,
+      "instructionSha256": "8f3e69a998a8a8bd53284abe4b2dab0781022eed9e910dcca75cec0f162a5636"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetTutorialStep;",
+      "method": "setCurStep",
+      "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetTutorialStep;",
+      "codeOffset": 4889284,
+      "instructionSha256": "4f248fc850dc0447eaad9b5e9f08cf37b76d311a9d2339bd9d7705e7d16eb4e9"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetTutorialStep;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4889308,
+      "instructionSha256": "766d313217c9b75f865b735fcf2f8cfd027d98d1ac89889d24f751a2496b26d9"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "setPushRecPack",
+      "descriptor": "(Ldji/midware/data/packages/P3/Pack;)V",
+      "codeOffset": 3352564,
+      "instructionSha256": "80f0bb9c5884940e7c2600d2e6f22c5287da3c37061590ec9049cce5b53d03ee"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "setPushRecData",
+      "descriptor": "([B)V",
+      "codeOffset": 3352480,
+      "instructionSha256": "23cb6a1baab1f2b12f4ae5da131785e6792d83970eb43826c9d8e1b6462faf23"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "setRecData",
+      "descriptor": "([B)V",
+      "codeOffset": 3352748,
+      "instructionSha256": "a6675a47286fe5b2725b26418463a503442cf7fbb89df865e1303c316ccc4b64"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "get",
+      "descriptor": "(I I Ljava/lang/Class; [I)Ljava/lang/Number;",
+      "codeOffset": 3350128,
+      "instructionSha256": "b18000d48ddc01efccdeacf01cb7ee48c15db0e93e62710fdd4bdccb5bcd0be7"
+    },
+    {
+      "className": "Ldji/midware/util/BytesUtil;",
+      "method": "getInt",
+      "descriptor": "([B)I",
+      "codeOffset": 3782728,
+      "instructionSha256": "c83e6d064884807cec2be0dbd3235f71dd62fcd952eb0b2b88bfc373d0b761e2"
+    },
+    {
+      "className": "Ldji/midware/data/packages/P3/RecvPack;",
+      "method": "setBuffer",
+      "descriptor": "([B)V",
+      "codeOffset": 5031432,
+      "instructionSha256": "f3a4d52a3ef8cf1d939cb1b1e00d6b7f2fd8f65fe1a8b37f1916b2e340c342c2"
+    },
+    {
+      "className": "Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 4652020,
+      "instructionSha256": "89d7e5d4c317f54eb541d186eff2e608a50e62f9387974ef9c74a54543aa6609"
+    }
+  ],
+  "remaining": [
+    "Tutorial flags are not gimbal motion completion or a program-cancellation acknowledgement.",
+    "Preserve unknown raw step rather than replacing it with STEP_FINISH in SDK.",
+    "No target model layout, actual notifications or send2C effects established.",
+    "Banks1/7, residual stubs and dynamic paths remain outside scan."
+  ]
+}

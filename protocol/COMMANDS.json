@@ -471,11 +471,12 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "命令枚举已确认；六段引用审计提供候选位置，不等于该命令实现方法/请求体或HG724调用已确认，字段与型号路径仍待逐项审计，未开放发送",
+      "remaining": "源5字节布局、9个状态位及枚举已离线核对；未知步骤源回退FINISH且0/1动态位移回绕，不能作为运动完成。六段无外部直接调用，无HG724布局/通知证据，未加入SDK",
       "officialAppAliases": [
         "GetPushTutorialStatus"
       ],
-      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
+      "tutorialResearch": "protocol/research/ronin-tutorial-evidence.json"
     },
     {
       "key": "04:2C",
@@ -484,11 +485,12 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "命令枚举已确认；六段引用审计提供候选位置，不等于该命令实现方法/请求体或HG724调用已确认，字段与型号路径仍待逐项审计，未开放发送",
+      "remaining": "通用Java int窄化成一字节及ACK请求已离线核对；六段无外部直接调用，无HG724入口/作用/恢复证据，SDK不开放发送",
       "officialAppAliases": [
         "SetTutorialStep"
       ],
-      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
+      "tutorialResearch": "protocol/research/ronin-tutorial-evidence.json"
     },
     {
       "key": "04:31",
@@ -784,7 +786,8 @@
     "tools/research/ronin_stabilization_trace.py",
     "tools/research/ronin_reset_routes.py",
     "tools/research/ronin_stick_trace.py",
-    "tools/research/ronin_status_trace.py"
+    "tools/research/ronin_status_trace.py",
+    "tools/research/ronin_tutorial_trace.py"
   ],
   "modelIdentityResearch": "protocol/research/ronin-hg724-evidence.json",
   "codeRestorationResearch": "protocol/research/ronin-code-restoration-evidence.json",
@@ -980,5 +983,6 @@
       "macos/RSControlCore.m",
       "docs/APP_SOURCE_STATUS.md"
     ]
-  }
+  },
+  "tutorialResearch": "protocol/research/ronin-tutorial-evidence.json"
 }

@@ -482,3 +482,13 @@ if manifest.get('sourceStatusResearch'):
     native_status=(root/'macos/RSControlCore.m').read_text().split('NSDictionary *RSDecodeAppSourceStatusNotification(',1)[1]
     native_fields=re.findall(r'@\[@"([^"\n]+)",@(\d+),@(\d+),@(\d+),@(YES|NO)\]',native_status)
     assert [[name,int(offset),int(shift),int(mask),boolean=='YES'] for name,offset,shift,mask,boolean in native_fields] == expected_fields
+
+if manifest.get('tutorialResearch'):
+    tutorial=json.loads((root/manifest['tutorialResearch']).read_text())
+    assert tutorial['appCodeExecuted'] is False and tutorial['targetDeviceVerified'] is False
+    assert tutorial['wholeProtocolRecovered'] is False and tutorial['researchToolProvidesSdkInterface'] is False
+    assert tutorial['unknownStepIsCompletionVerified'] is False
+    assert tutorial['sourceUnknownEnumFallback'] == 'STEP_FINISH'
+    assert tutorial['sourceFinishAndStartSelectBits'] == [30,31]
+    assert tutorial['sourceSend']['sendEnabledInSdk'] is False
+    assert len(tutorial['methods']) == 28 and tutorial['externalCallers'] == []

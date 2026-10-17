@@ -171,6 +171,12 @@ int main(void) {
         Require([fineFrame[@"commandId"] intValue]==7 && [Hex(fineFrame[@"payload"]) isEqualToString:@"f402"],@"fine two-byte request matches source signed value/axis order");
         Require([RSAppFineTuneSpec(@{@"axis":@"roll",@"adjustmentDegrees":@(1.999999999)})[@"encodedTenths"] intValue]==20,@"fine float32 input conversion precedes scaling");
         Require(!RSAppFineTuneSpec(@{@"axis":@"yaw",@"adjustmentDegrees":@1}) && !RSAppFineTuneSpec(@{@"axis":@"roll",@"adjustmentDegrees":@YES}) && !RSAppFineTuneFrame(3,@[@{@"index":@4,@"size":@1}],@1),@"fine rejects unprovenYaw action boolean and raw axis4");
+        for(NSArray *row in @[@[@"dualChannelMode",@0,@"00ffffffffffffff"],@[@"tiltDirection",@1,@"ff01ffffffffffff"],@[@"panDirection",@1,@"ffff01ffffffffff"]]) {
+            NSDictionary *spec=RSAppHandleWriteSpec(@{@"setting":row[0],@"value":row[1]});[decoder reset];NSDictionary *f=[decoder push:RSAppHandleWriteFrame(9,@[@{@"index":spec[@"offset"],@"size":@1}],spec[@"requestedValue"])].firstObject;
+            Require([f[@"commandId"] intValue]==0x35 && [f[@"flags"] intValue]==0x40 && [Hex(f[@"payload"]) isEqualToString:row[2]],@"handle single-field source frame with fresh FF defaults");
+        }
+        Require(!RSAppHandleWriteSpec(@{@"setting":@"panDirection",@"value":@YES}) && !RSAppHandleWriteSpec(@{@"setting":@"profile",@"value":@1}) && !RSAppHandleWriteSpec(@{@"setting":@"panDirection",@"value":@255}) && !RSAppHandleWriteSpec(@{@"setting":@"panDirection",@"value":@1,@"index":@2}),@"handle rejects booleans unknown keys fields and FF as explicit value");
+        Require(!RSAppHandleWriteFrame(9,@[@{@"index":@3,@"size":@1}],@1) && !RSAppHandleWriteFrame(9,@[@{@"index":@0,@"size":@2}],@1) && !RSAppHandleWriteFrame(9,@[@{@"index":@0,@"size":@1}],@YES),@"handle frame has private exact field/value allowlist");
         printf("Native protocol, reassembly, stop queue and motion-core checks: %lu passed\n", (unsigned long)assertions);
     }
     return 0;

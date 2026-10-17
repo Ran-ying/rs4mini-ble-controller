@@ -1,6 +1,6 @@
 # rs4mini-ble-controller
 
-通过电脑 BLE 直接控制 DJI RS 4 Mini 的非官方项目。Node.js **0.7.14** 为主实现；Python/Web **0.7.14**、macOS 原生面板 **0.3.14** 提供三轴速度、姿态/机械关节反馈、低速定位、轨迹与路点、保存位置返回和显式自动重连。相机控制和视觉跟踪不属于当前范围。
+通过电脑 BLE 直接控制 DJI RS 4 Mini 的非官方项目。Node.js **0.7.15** 为主实现；Python/Web **0.7.15**、macOS 原生面板 **0.3.15** 提供三轴速度、姿态/机械关节反馈、低速定位、轨迹与路点、保存位置返回和显式自动重连。相机控制和视觉跟踪不属于当前范围。
 
 **当前状态：底层 SDK 已增加当前 App 参数事务、调参请求与状态封装；全部非相机 BLE 能力仍未完成。**
 完成项、验证证据与后续接手入口统一保存在 [项目状态](docs/PROJECT_STATUS.md)。
@@ -13,7 +13,7 @@
 
 0.7.12新增[固定用户参数被动解码](docs/APP_USER_PARAMETERS.md)，17项源码字段与独立缓存，不发送订阅，不代表本机活动预设确认。
 
-最新[微调、手柄与重置研究](tools/research/FINE_HANDLE_RESET.md)核对42方法与型号继承，区分真实轴值、FF对象默认及HG724重置载荷，尚未开放相应发送接口。
+最新[微调、手柄与重置研究](tools/research/FINE_HANDLE_RESET.md)核对66方法与型号继承，区分真实轴值、FF对象默认、手柄缓存回退及HG724重置载荷；SDK进度见下文。
 
 0.7.13新增[手柄参数只读查询](docs/APP_HANDLE_SETTINGS.md)，保留8个源字段原值与额外字节，不增加设置写入。
 
@@ -163,3 +163,5 @@ python3 -m http.server 8000 --bind 127.0.0.1
 数值参数静态续报：[普通18项与独立配置分支](tools/research/NUMERIC_PARAMS.md)。已核对有效继承、缺省读取模型及1/2字节编码，独立配置由App与输入源2同包写入。本批尚未新增这些SDK接口，运行时保持0.7.9/0.3.9。
 
 0.7.10新增18项普通跟随/摇杆数值读写，保留未知无符号读值并明确活动预设未验证，见 [APP_NUMERIC_TUNING.md](docs/APP_NUMERIC_TUNING.md)。
+
+手柄单字段请求见 [APP_HANDLE_WRITE.md](docs/APP_HANDLE_WRITE.md)，实际设备/FF语义尚未验收。

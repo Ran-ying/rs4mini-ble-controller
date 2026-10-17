@@ -1,12 +1,16 @@
 # 项目状态与接手入口
 
-更新日期：2026-10-17。当前源码检查点为 Node/Python/Web **0.7.14**、macOS 原生面板 **0.3.14**。
+更新日期：2026-10-17。当前源码检查点为 Node/Python/Web **0.7.15**、macOS 原生面板 **0.3.15**。
 
 **当前 App 参数事务已进入四端设备 SDK；全部非相机 BLE 能力整体目标尚未完成。**
 用户已要求将源码与相关信息提交至 GitHub。本记录随源码版本保存，提交和远端状态以 Git 历史为准；
 这不是 npm 发布或 GitHub 二进制 Release。
 
-## 当前进度：0.7.14 Pitch/Roll微调请求
+## 当前进度：0.7.15 手柄单字段请求
+
+四端新增sendHandleSettingRequest，限三个命名字段及0/1，其他字节源默认FF；源66方法审计与目录比对，NACK不转缓存成功，无自动回读/保存/回滚。FF与实际效果/持久化未验收，见 [APP_HANDLE_WRITE.md](APP_HANDLE_WRITE.md)。下方为历史进度，全部命令门槛仍false。
+
+## 历史进度：0.7.14 Pitch/Roll微调请求
 
 四端sendFineTuneRequest及别名/原生等价方法封装04:07源参数与轴2/0，独占到ACK，复制参数、可取消/超时且不重放/回滚。49方法审计补齐暂停标志来源和回调，实际角度/累加/暂停/持久化未验收，不自动发送视觉稳定命令。见 [APP_FINE_TUNE.md](APP_FINE_TUNE.md)。未操作硬件/UI或新增高级任务，全部命令与两项门槛仍未完成。
 
@@ -195,3 +199,15 @@ Node141/Web14、Python3.8/3.12各119、原生98核心+130假设备+3独立SDK、
 对应写入成功回调仅报告null，不解码回读。失败回调没有直接上报原Ccode，而按ControllerMode/PitchInvertedControlEnabled/YawInvertedControlEnabled键调用DJISDKCache.getValue；这不是已证实的直接BLE读取。缓存取值回调Class.cast后使用if-ne比较对象引用，非Object.equals；非空结果中相同引用可回报成功，否则RESULT_FAILED；结果对象为空时直接返回、没有完成回调，取值失败则传递错误。不能复制为“写入失败也成功”，也不能据此声称固件写入接受或持久化。
 
 读取ControllerMode的上层回调用values()[raw]数组下标，不是find(raw)；方向回调仅raw==1为true，不是bit0（raw3不等于true）。SDK现有getHandleSettings继续保留原值，不照搬源代码对异常值的数组风险，也不重解释既有结果。新增3项审计测试覆盖单字段新对象、禁止singleton/多字段/未构造、引用比较与错误分支变更。没有新增SDK发送、厂商代码执行或硬件操作；手柄写入SDK及本机验收仍待完成，两个完整性门槛false。
+
+
+## 0.7.15手柄单字段请求 / 原生0.3.15 build18
+
+四端设备SDK的sendHandleSettingRequest（Python snake别名）显式App来源下仅接受dualChannelMode/tiltDirection/panDirection单字段及整数0/1，8字节35体未指定字节为源默认FF。新对象/独立体，不全量读改写、不新增相机字段。参数停止前验证/快照，复用连接/队列/操作所有权至关联ACK；取消/超时无重放或回滚，NACK直接失败、不缓存兜底成功、不自动回读。结果unspecifiedByteSemanticsVerified/readbackVerified/persistenceVerified及既有设备/物理标志均false。FF实际含义、模式/方向效果、持久化待本机验收。见docs/APP_HANDLE_WRITE.md；没有高级新增或硬件操作，全部命令门槛仍false。
+
+
+## 0.7.15手柄单字段写入验证（2026-10-17）
+
+统一离线检查Node147/Web14、Python3.8/3.12各125、原生103核心+135假设备+3独立SDK通过；研究工具两个环境各80，类型/边界/构建通过。Node tarball隔离安装后147、Python wheel隔离安装后125通过。新增三个命名字段精确FF默认载荷、独立体、输入快照、非法参数/排除字段、互斥、关联ACK、NACK不缓存兜底、请求前后取消/超时无重放及Web无Buffer编码覆盖。三端命名字段目录与66方法审计逐项比对。
+
+安装包验证发现旧轨迹成功测试依赖60ms真实调度窗口，忙碌主机可能提前结束只发一帧导致误报。Node/Python成功测试改用局部可控时钟，每个完整两段帧推进20ms，精确检查0/20/40ms三帧插值与三帧停止；运行时不变，既有超时/取消测试保留。统一和安装回归修正后均通过。没有扫描、连接、移动设备、实时UI或厂商代码执行，FF真实效果、持久化等待本机验收，全部命令门槛false。

@@ -1,6 +1,6 @@
 """Current-App device commands share the existing connection/queue/pending map."""
 from .app_fine_tune import fine_tune_spec
-from .app_handle import handle_reply
+from .app_handle import handle_reply,handle_write_spec
 from .app_user_parameters import user_parameter_notification
 from .app_standalone import standalone_selection,standalone_write,standalone_context,standalone_reply
 from .app_tuning import tuning_selection,tuning_write,tuning_reply
@@ -69,6 +69,15 @@ class AppCommands:
         return await self.owner._run('sendFineTuneRequest',body,False)
 
     send_fine_tune_request=sendFineTuneRequest
+
+    async def sendHandleSettingRequest(self,*,setting,value,timeoutMs=3000):
+        self._require_profile();spec=handle_write_spec(setting,value);_duration(timeoutMs,'timeoutMs',False)
+        async def work(operation):
+            await self.owner._halt();self.owner._check(operation)
+            message=await self.owner.experimental._query_payload_command('App handle setting',(4,0x35),spec['payload'],timeoutMs,external_operation=operation,epoch=self.owner._epoch)
+            return dict(app_reply(message,0x35),**{k:v for k,v in spec.items() if k!='payload'},unspecifiedByteSemanticsVerified=False,readbackVerified=False,persistenceVerified=False)
+        return await self.owner._run('sendHandleSettingRequest',work,False)
+    send_handle_setting_request=sendHandleSettingRequest
 
     async def getHandleSettings(self, *, timeoutMs=3000):
         self._require_profile()

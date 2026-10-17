@@ -8,9 +8,9 @@ verification status changes.
 ## Objective and user decisions
 
 - Provide an unofficial, direct BLE controller for **DJI RS 4 Mini**, initially on macOS.
-- **Node.js is the authoritative implementation**; current package version is `0.7.14`.
+- **Node.js is the authoritative implementation**; current package version is `0.7.15`.
 - The user subsequently requested completion of all existing ports. Python is now
-  `0.7.14`, Web shares the JS core, and the native panel is `0.3.14`. Describe the
+  `0.7.15`, Web shares the JS core, and the native panel is `0.3.15`. Describe the
   documented feature differences; do not claim identical APIs or hardware proof.
 - After that delivery, the user requested the remaining **non-camera** capabilities
   under the same autonomous/offline conditions. Expansion work is in progress;
@@ -654,3 +654,15 @@ Node141/Web14、Python3.8/3.12各119、原生98核心+130假设备+3独立SDK、
 ## 2026-10-17 手柄调用/缓存回退静态研究
 
 运行时0.7.14/原生0.3.14不变。66方法固定APK审计独立复现与JSON逐字节一致；研究工具Python3.8/3.12各80。统一离线检查Node141/Web14/Python119/原生98+130+3及类型/边界/构建通过。新增测试确认单字段新对象与引用比较，拒绝单例、多字段、缺构造和比较/错误分支变更。没有SDK发送扩展、硬件/liveUI/厂商代码执行；全部命令仍未完成。
+
+
+## 0.7.15手柄单字段请求 / 原生0.3.15 build18
+
+四端设备SDK的sendHandleSettingRequest（Python snake别名）显式App来源下仅接受dualChannelMode/tiltDirection/panDirection单字段及整数0/1，8字节35体未指定字节为源默认FF。新对象/独立体，不全量读改写、不新增相机字段。参数停止前验证/快照，复用连接/队列/操作所有权至关联ACK；取消/超时无重放或回滚，NACK直接失败、不缓存兜底成功、不自动回读。结果unspecifiedByteSemanticsVerified/readbackVerified/persistenceVerified及既有设备/物理标志均false。FF实际含义、模式/方向效果、持久化待本机验收。见docs/APP_HANDLE_WRITE.md；没有高级新增或硬件操作，全部命令门槛仍false。
+
+
+## 0.7.15手柄单字段写入验证（2026-10-17）
+
+统一离线检查Node147/Web14、Python3.8/3.12各125、原生103核心+135假设备+3独立SDK通过；研究工具两个环境各80，类型/边界/构建通过。Node tarball隔离安装后147、Python wheel隔离安装后125通过。新增三个命名字段精确FF默认载荷、独立体、输入快照、非法参数/排除字段、互斥、关联ACK、NACK不缓存兜底、请求前后取消/超时无重放及Web无Buffer编码覆盖。三端命名字段目录与66方法审计逐项比对。
+
+安装包验证发现旧轨迹成功测试依赖60ms真实调度窗口，忙碌主机可能提前结束只发一帧导致误报。Node/Python成功测试改用局部可控时钟，每个完整两段帧推进20ms，精确检查0/20/40ms三帧插值与三帧停止；运行时不变，既有超时/取消测试保留。统一和安装回归修正后均通过。没有扫描、连接、移动设备、实时UI或厂商代码执行，FF真实效果、持久化等待本机验收，全部命令门槛false。

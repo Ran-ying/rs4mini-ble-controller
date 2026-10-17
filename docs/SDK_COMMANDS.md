@@ -1,6 +1,6 @@
 # 设备 SDK 命令审计与高级开发前置条件
 
-2026-10-17，0.7.14 / 原生 0.3.14。**尚不能确认 RS 4 Mini 全部非相机 BLE 命令都已枚举、解析并封装。**
+2026-10-17，0.7.15 / 原生 0.3.15。**尚不能确认 RS 4 Mini 全部非相机 BLE 命令都已枚举、解析并封装。**
 机器清单是 [protocol/COMMANDS.json](../protocol/COMMANDS.json)，目前记录 48 个命令或缺口条目；
 它不是厂商完整命令表，不能以“所有已知代码已封装”代替“所有设备命令已知”。
 
@@ -52,7 +52,7 @@
 | `04:31` | 命名电机参数写入 | `implemented` / `partial` | `app-code-path` | 显式当前App配置封装十二个命名电机字段的单项写入/ACK与按上下文读取，和0F/10空间分开；源范围不是机械安全保证，实际生效/持久化/型号UI支持未实机验收；未开放任意参数写入 |
 | `04:32` | 命名电机参数读取 | `implemented` / `partial` | `app-code-path` | 显式当前App配置封装十二个命名电机字段的单项写入/ACK与按上下文读取，和0F/10空间分开；源范围不是机械安全保证，实际生效/持久化/型号UI支持未实机验收；未开放任意参数写入 |
 | `04:33` | 官方 App 枚举：RobinPushBattery | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
-| `04:35` | 官方 App 枚举：SetHandleParams | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
+| `04:35` | 手柄单字段设置请求 | `implemented` / `partial` | `app-code-path` | 0.7.15显式App来源下三个命名字段0/1，未指定字节源默认FF；NACK直接失败，无缓存兜底/回读/保存/重放，FF含义及实际效果/持久化待本机验收 |
 | `04:36` | 手柄参数只读查询 | `implemented` / `candidate-structured` | `app-code-path` | 0.7.13空体/关联ACK，8个业务字段原值与bit0、尾字节保留；源继承路径不代表本机布局/效果或预设关系确认 |
 | `04:37` | 官方 App 枚举：SetTimelapseParams | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
 | `04:38` | 官方 App 枚举：GetPushTimelapseStatus | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
@@ -150,3 +150,8 @@ HG724继承的启动路径为普通用户参数04:0F，balance_test/index37/size
 
 
 0.7.14的sendFineTuneRequest是设备04:07源请求封装，Pitch/Roll的float32参数编码、ACK与主机取消分别处理；不计作高级组合或实际角度完成。暂停稳定/本机效果及其余命令仍未验收。见 [APP_FINE_TUNE.md](APP_FINE_TUNE.md)。
+
+
+## 0.7.15手柄单字段请求 / 原生0.3.15 build18
+
+四端设备SDK的sendHandleSettingRequest（Python snake别名）显式App来源下仅接受dualChannelMode/tiltDirection/panDirection单字段及整数0/1，8字节35体未指定字节为源默认FF。新对象/独立体，不全量读改写、不新增相机字段。参数停止前验证/快照，复用连接/队列/操作所有权至关联ACK；取消/超时无重放或回滚，NACK直接失败、不缓存兜底成功、不自动回读。结果unspecifiedByteSemanticsVerified/readbackVerified/persistenceVerified及既有设备/物理标志均false。FF实际含义、模式/方向效果、持久化待本机验收。见docs/APP_HANDLE_WRITE.md；没有高级新增或硬件操作，全部命令门槛仍false。

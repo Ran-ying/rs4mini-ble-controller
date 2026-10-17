@@ -1,5 +1,5 @@
 import { fineTuneSpec } from './app-fine-tune.js';
-import { handleReply } from './app-handle.js';
+import { handleReply, handleWriteSpec } from './app-handle.js';
 import { userParameterNotification } from './app-user-parameters.js';
 import { standaloneSelection, standaloneWrite, standaloneContext, standaloneReply } from './app-standalone.js';
 import { tuningSelection, tuningWrite, tuningReply } from './app-tuning.js';
@@ -43,6 +43,16 @@ export class AppCommands {
       await this.owner._stop();check(operation.controller.signal);
       const message=await this.owner.experimental._queryPayloadCommand('App fine tune',[4,7],spec.payload,timeoutMs,{signal:operation.controller.signal,epoch:this.owner.motionEpoch});
       const {payload,...requested}=spec;return {...appReply(message,7),...requested,stabilizationStateVerified:false};
+    },false);
+  }
+  async sendHandleSettingRequest(options={}) {
+    optionsOnly(options,['setting','value','timeoutMs']);this._requireProfile();
+    const spec=handleWriteSpec(options),timeoutMs=options.timeoutMs??3000;
+    if(!Number.isFinite(timeoutMs)||timeoutMs<=0||timeoutMs>60000)throw new RangeError('timeoutMs must be >0..60000');
+    return this.owner._run('sendHandleSettingRequest',async operation=>{
+      await this.owner._stop();check(operation.controller.signal);
+      const message=await this.owner.experimental._queryPayloadCommand('App handle setting',[4,0x35],spec.payload,timeoutMs,{signal:operation.controller.signal,epoch:this.owner.motionEpoch});
+      const {payload,...requested}=spec;return {...appReply(message,0x35),...requested,unspecifiedByteSemanticsVerified:false,readbackVerified:false,persistenceVerified:false};
     },false);
   }
   async getHandleSettings(options={}) {

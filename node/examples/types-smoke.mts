@@ -173,3 +173,12 @@ async function motorTuningTypes(gimbal: RS4Mini) {
   await gimbal.appCommands.setMotorTuning({axis:'yaw',parameter:'speed',value:50});
   return raw;
 }
+
+async function handleWriteTypes(gimbal: RS4Mini) {
+void gimbal.appCommands.sendHandleSettingRequest({setting:'panDirection',value:1});
+// @ts-expect-error excluded raw value
+void gimbal.appCommands.sendHandleSettingRequest({setting:'panDirection',value:255});
+// @ts-expect-error excluded camera setting
+void gimbal.appCommands.sendHandleSettingRequest({setting:'zoom2Speed',value:1});
+
+}

@@ -74,3 +74,6 @@ NSDictionary *RSDecodeAppHandleReply(NSDictionary *message,NSError **error);
 
 NSDictionary *RSAppFineTuneSpec(NSDictionary *spec);
 NSData *RSAppFineTuneFrame(uint16_t sequence,NSArray *context,NSNumber *tenths);
+
+NSDictionary *RSAppHandleWriteSpec(NSDictionary *spec);
+NSData *RSAppHandleWriteFrame(uint16_t sequence,NSArray *context,NSNumber *value);

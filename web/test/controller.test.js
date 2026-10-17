@@ -129,6 +129,7 @@ test('protocol, telemetry and controller import without Node Buffer or Node modu
     const fine = await import('./node/src/app-fine-tune.js');
     assert.deepEqual([...fine.fineTuneSpec({axis:'pitch',adjustmentDegrees:-1.29}).payload],[244,2]);
     const handle = await import('./node/src/app-handle.js');
+    assert.deepEqual([...handle.handleWriteSpec({setting:'panDirection',value:1}).payload],[255,255,1,255,255,255,255,255]);
     assert.equal(handle.handleReply({sender:4,receiver:2,commandSet:4,commandId:54,flags:128,payload:new Uint8Array([0,7,1,0,255,3,2,3,254])}).values[3].rawValue,255);
     const userParams = await import('./node/src/app-user-parameters.js');
     const fixed=new Uint8Array(74);fixed[9]=0x34;fixed[10]=0x12;

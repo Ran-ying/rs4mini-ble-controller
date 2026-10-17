@@ -392,6 +392,7 @@ static BOOL Matches(NSString *name) {
             return RSAppSensitivityFrame(sequence, mode);
         case 0x6a: return RSAppAutoTuneFrame(sequence, mode);
         case 7: return RSAppFineTuneFrame(sequence,context,mode);
+        case 0x35: return RSAppHandleWriteFrame(sequence,context,mode);
         case 0x36: return context || mode ? nil : RSAppHandleQueryFrame(sequence);
         case 0x6e: return RSAppCalibrationQueryFrame(sequence);
         case 0x31: return RSAppMotorWriteFrame(sequence,context,mode);
@@ -426,6 +427,14 @@ static BOOL Matches(NSString *name) {
     if(!request){if(completion)dispatch_async(dispatch_get_main_queue(), ^{completion(nil,RSAppError(@"RS4MINI_INVALID_ARGUMENT",@"Fine tune requires pitch/roll and finite adjustmentDegrees -2..2",nil));});return;}
     [self startAppCommand:7 parameters:@[@{@"index":request[@"axisWire"],@"size":@1}] mode:request[@"encodedTenths"] settingsKind:nil settingsPatch:nil timeoutMs:timeoutMs completion:^(NSDictionary *reply,NSError *error) {
         NSMutableDictionary *result=[reply mutableCopy];if(result){NSMutableDictionary *metadata=[request mutableCopy];[metadata removeObjectForKey:@"axisWire"];[result addEntriesFromDictionary:metadata];result[@"stabilizationStateVerified"]=@NO;}
+        if(completion)completion(result?[result copy]:nil,error);
+    }];
+}
+- (void)sendHandleSettingRequest:(NSDictionary *)spec timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
+    NSDictionary *request=RSAppHandleWriteSpec(spec);
+    if(!request){if(completion)dispatch_async(dispatch_get_main_queue(), ^{completion(nil,RSAppError(@"RS4MINI_INVALID_ARGUMENT",@"Named handle setting and integer value0/1 required",nil));});return;}
+    [self startAppCommand:0x35 parameters:@[@{@"index":request[@"offset"],@"size":@1}] mode:request[@"requestedValue"] settingsKind:nil settingsPatch:nil timeoutMs:timeoutMs completion:^(NSDictionary *reply,NSError *error) {
+        NSMutableDictionary *result=[reply mutableCopy];if(result){result[@"setting"]=request[@"setting"];result[@"requestedValue"]=request[@"requestedValue"];result[@"unspecifiedByteSemanticsVerified"]=@NO;result[@"readbackVerified"]=@NO;result[@"persistenceVerified"]=@NO;}
         if(completion)completion(result?[result copy]:nil,error);
     }];
 }

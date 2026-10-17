@@ -20,16 +20,22 @@ test('velocity keyframes validate, copy and interpolate all axes', () => {
 });
 test('trajectory emits evolving velocities, owns motion and finishes with three neutrals', async t => {
   const { gimbal, peripheral } = await connected(t, { rateHz: 100 });
-  const motion = gimbal.runTrajectory(trajectory);
-  await until(() => peripheral.frames().length > 0);
-  await assert.rejects(gimbal.setVelocity({ pan: 1 }), { code: 'RS4MINI_BUSY' });
-  const snapshot = gimbal.trajectoryProgress; if (snapshot) snapshot.sentFrames = 99;
-  const result = await motion;
-  assert(result.sentFrames >= 2); assert(result.elapsedMs >= 60);
-  const frames = peripheral.frames(); assert.equal(frames.length, result.sentFrames + 3);
-  assert(frames[0].payload.readInt16LE(4) > 1024);
-  assert(frames.at(-4).payload.readInt16LE(0) < 1024);
-  assert(frames.slice(-3).every(neutral)); assert.equal(gimbal.trajectoryProgress, null);
+  const descriptor = Object.getOwnPropertyDescriptor(globalThis, 'performance'); let clock = 0, chunks = 0;
+  const write = peripheral.tx.writeAsync.bind(peripheral.tx);
+  // One virtual 20ms step per complete two-chunk velocity frame, independent of host scheduling.
+  peripheral.tx.writeAsync = async (...args) => { await write(...args); if (++chunks % 2 === 0) clock += 20; };
+  try {
+    Object.defineProperty(globalThis, 'performance', { value: { now: () => clock }, configurable: true });
+    const motion = gimbal.runTrajectory(trajectory);
+    await until(() => peripheral.frames().length > 0);
+    await assert.rejects(gimbal.setVelocity({ pan: 1 }), { code: 'RS4MINI_BUSY' });
+    const snapshot = gimbal.trajectoryProgress; if (snapshot) snapshot.sentFrames = 99;
+    const result = await motion;
+    assert.equal(result.sentFrames, 3); assert.equal(result.elapsedMs, 60);
+    const frames = peripheral.frames(); assert.equal(frames.length, 6);
+    assert.deepEqual(frames.slice(0,3).map(f=>[f.payload.readInt16LE(4),f.payload.readInt16LE(0)]),[[1090,1024],[1068,1002],[1046,980]]);
+    assert(frames.slice(-3).every(neutral)); assert.equal(gimbal.trajectoryProgress, null);assert.equal(gimbal.activeOperation,null);
+  } finally { Object.defineProperty(globalThis, 'performance', descriptor); }
 });
 test('trajectory stop cancels immediately, discards schedule and releases ownership', async t => {
   const { gimbal, peripheral } = await connected(t);

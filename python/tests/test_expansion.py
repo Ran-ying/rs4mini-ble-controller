@@ -48,14 +48,25 @@ class ExpansionTests(unittest.IsolatedAsyncioTestCase):
 
     async def test_trajectory_writes_and_neutral_completion(self):
         self.gimbal.rateHz = 100
-        result = await self.gimbal.run_trajectory([dict(timeMs=0, pan=.1), dict(timeMs=60, tilt=-.1)])
-        self.assertGreaterEqual(result['sentFrames'], 2)
+        clock, chunks = 0.0, 0
+        original = self.client.write_gatt_char
+        async def write(*args, **kwargs):
+            nonlocal clock, chunks
+            await original(*args, **kwargs)
+            chunks += 1
+            if chunks % 2 == 0: clock += .020
+        self.client.write_gatt_char = write
+        with patch('rs4mini_sdk.expansion.time', SimpleNamespace(monotonic=lambda: clock)):
+            result = await self.gimbal.run_trajectory([dict(timeMs=0, pan=.1), dict(timeMs=60, tilt=-.1)])
+        self.assertEqual(result['sentFrames'], 3)
+        self.assertEqual(result['elapsedMs'], 60)
         frames = self.client.frames()
-        self.assertEqual(len(frames), result['sentFrames'] + 3)
-        self.assertLess(struct.unpack_from('<h', frames[-4]['payload'], 0)[0], 1024)
+        self.assertEqual(len(frames), 6)
+        self.assertEqual([(struct.unpack_from('<h', f['payload'], 4)[0], struct.unpack_from('<h', f['payload'], 0)[0]) for f in frames[:3]], [(1090,1024),(1068,1002),(1046,980)])
         for item in frames[-3:]:
             self.assertEqual(struct.unpack_from('<hhh', item['payload']), (1024, 1024, 1024))
         self.assertIsNone(self.gimbal.trajectory_progress)
+        self.assertIsNone(self.gimbal.activeOperation)
 
     async def test_trajectory_cancellation_and_ownership(self):
         task = asyncio.create_task(self.gimbal.runTrajectory([dict(timeMs=0, pan=.1), dict(timeMs=10000, pan=.1)]))

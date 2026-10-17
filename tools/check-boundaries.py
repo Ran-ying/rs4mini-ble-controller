@@ -308,5 +308,17 @@ if manifest.get('fineTuneSdk',{}).get('implemented'):
     native=(root/'macos/RSControlCore.m').read_text().split('NSDictionary *RSAppFineTuneSpec(',1)[1]
     objc=json.loads(re.search(r'NSDictionary \*axes=(@\{.*?\});',native).group(1).replace('@',''))
     assert js==py==objc==expected
+if manifest.get('handleWriteSdk',{}).get('implemented'):
+    sdk=manifest['handleWriteSdk']
+    assert sdk['targetDeviceVerified'] is False and sdk['unspecifiedByteSemanticsVerified'] is False and sdk['readbackVerified'] is False and sdk['persistenceVerified'] is False
+    assert sdk['source']==manifest['controlsResearch'] and sdk['allowedValues']==[0,1]
+    for filename in sdk['files']:assert (root/filename).is_file()
+    expected={a['field']:a['offset'] for a in controls['handle']['sourceActions']}
+    js=json.loads(re.search(r'const settings=(\{.*?\});',(root/'node/src/app-handle.js').read_text()).group(1))
+    tree=ast.parse((root/'python/rs4mini_sdk/app_handle.py').read_text())
+    py=ast.literal_eval(next(n.value for n in tree.body if isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and t.id=='SETTINGS' for t in n.targets)))
+    native=(root/'macos/RSControlCore.m').read_text().split('NSDictionary *RSAppHandleWriteSpec(',1)[1]
+    objc=json.loads(re.search(r'NSDictionary \*settings=(@\{.*?\});',native).group(1).replace('@',''))
+    assert js==py==objc==expected
 print('Layer boundaries passed: device modules do not depend on motion; upper layers do not encode/write packets.')
 print('Protocol inventory: %d entries; inventoryComplete=false; further advanced development is gated.' % len(manifest['commands']))

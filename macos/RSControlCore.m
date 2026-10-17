@@ -554,3 +554,16 @@ NSData *RSAppFineTuneFrame(uint16_t sequence,NSArray *context,NSNumber *tenths) 
     double value=tenths.doubleValue;if(floor(value)!=value||value < -20||value > 20)return nil;
     uint8_t payload[]={(uint8_t)tenths.intValue,[context[0][@"index"] unsignedCharValue]};return CommandFrame(sequence,4,7,[NSData dataWithBytes:payload length:2],0x40);
 }
+
+NSDictionary *RSAppHandleWriteSpec(NSDictionary *spec) {
+    if(![spec isKindOfClass:NSDictionary.class]||spec.count!=2||!Numeric(spec[@"value"]))return nil;
+    NSDictionary *settings=@{@"dualChannelMode":@0,@"tiltDirection":@1,@"panDirection":@2};
+    NSNumber *offset=[spec[@"setting"] isKindOfClass:NSString.class]?settings[spec[@"setting"]]:nil;
+    double value=[spec[@"value"] doubleValue];if(!offset||(value!=0&&value!=1))return nil;
+    return @{@"setting":@[@"dualChannelMode",@"tiltDirection",@"panDirection"][offset.unsignedIntegerValue],@"offset":offset,@"requestedValue":@(value==1?1:0)};
+}
+NSData *RSAppHandleWriteFrame(uint16_t sequence,NSArray *context,NSNumber *value) {
+    context=RSAppParameterContext(context);if(context.count!=1||![context[0][@"size"] isEqual:@1]||![@[@0,@1,@2] containsObject:context[0][@"index"]]||!Numeric(value)||(value.doubleValue!=0&&value.doubleValue!=1))return nil;
+    uint8_t payload[8];memset(payload,255,8);payload[[context[0][@"index"] unsignedIntegerValue]]=value.unsignedCharValue;
+    return CommandFrame(sequence,4,0x35,[NSData dataWithBytes:payload length:8],0x40);
+}

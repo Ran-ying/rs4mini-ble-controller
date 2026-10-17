@@ -292,7 +292,8 @@
       "remaining": "七个通用程序/状态类、106方法指纹、60类外直接调用已审计；已区分三种路点/计数和源ACK/订阅，HG724路径、完整单位/范围、程序关联及执行/取消/通知仍待审计封装",
       "programResearch": "protocol/research/ronin-program-evidence.json",
       "programEntryResearch": "protocol/research/ronin-program-entry-evidence.json",
-      "trackWorkflowResearch": "protocol/research/ronin-track-workflow-evidence.json"
+      "trackWorkflowResearch": "protocol/research/ronin-track-workflow-evidence.json",
+      "programReceiveResearch": "protocol/research/ronin-program-receive-evidence.json"
     },
     {
       "key": "unknown:device-management",
@@ -453,7 +454,8 @@
       ],
       "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
       "programResearch": "protocol/research/ronin-program-evidence.json",
-      "programEntryResearch": "protocol/research/ronin-program-entry-evidence.json"
+      "programEntryResearch": "protocol/research/ronin-program-entry-evidence.json",
+      "programReceiveResearch": "protocol/research/ronin-program-receive-evidence.json"
     },
     {
       "key": "04:27",
@@ -613,7 +615,8 @@
         "SetTimelapseParams"
       ],
       "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
-      "programResearch": "protocol/research/ronin-program-evidence.json"
+      "programResearch": "protocol/research/ronin-program-evidence.json",
+      "programReceiveResearch": "protocol/research/ronin-program-receive-evidence.json"
     },
     {
       "key": "04:38",
@@ -627,7 +630,8 @@
         "GetPushTimelapseStatus"
       ],
       "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
-      "programResearch": "protocol/research/ronin-program-evidence.json"
+      "programResearch": "protocol/research/ronin-program-evidence.json",
+      "programReceiveResearch": "protocol/research/ronin-program-receive-evidence.json"
     },
     {
       "key": "04:40",
@@ -677,7 +681,8 @@
       "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
       "programResearch": "protocol/research/ronin-program-evidence.json",
       "programEntryResearch": "protocol/research/ronin-program-entry-evidence.json",
-      "trackWorkflowResearch": "protocol/research/ronin-track-workflow-evidence.json"
+      "trackWorkflowResearch": "protocol/research/ronin-track-workflow-evidence.json",
+      "programReceiveResearch": "protocol/research/ronin-program-receive-evidence.json"
     },
     {
       "key": "04:63",
@@ -692,7 +697,8 @@
       ],
       "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
       "programResearch": "protocol/research/ronin-program-evidence.json",
-      "programEntryResearch": "protocol/research/ronin-program-entry-evidence.json"
+      "programEntryResearch": "protocol/research/ronin-program-entry-evidence.json",
+      "programReceiveResearch": "protocol/research/ronin-program-receive-evidence.json"
     },
     {
       "key": "04:64",
@@ -706,7 +712,8 @@
         "GetPushPanorama"
       ],
       "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
-      "programResearch": "protocol/research/ronin-program-evidence.json"
+      "programResearch": "protocol/research/ronin-program-evidence.json",
+      "programReceiveResearch": "protocol/research/ronin-program-receive-evidence.json"
     },
     {
       "key": "04:6B",
@@ -721,7 +728,8 @@
       ],
       "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
       "programResearch": "protocol/research/ronin-program-evidence.json",
-      "trackWorkflowResearch": "protocol/research/ronin-track-workflow-evidence.json"
+      "trackWorkflowResearch": "protocol/research/ronin-track-workflow-evidence.json",
+      "programReceiveResearch": "protocol/research/ronin-program-receive-evidence.json"
     },
     {
       "key": "04:6E",
@@ -811,7 +819,8 @@
     "tools/research/ronin_registration_trace.py",
     "tools/research/ronin_program_trace.py",
     "tools/research/ronin_program_entry.py",
-    "tools/research/ronin_track_workflow.py"
+    "tools/research/ronin_track_workflow.py",
+    "tools/research/ronin_program_receive.py"
   ],
   "modelIdentityResearch": "protocol/research/ronin-hg724-evidence.json",
   "codeRestorationResearch": "protocol/research/ronin-code-restoration-evidence.json",
@@ -1013,5 +1022,6 @@
   "registrationResearch": "protocol/research/ronin-registration-evidence.json",
   "programResearch": "protocol/research/ronin-program-evidence.json",
   "programEntryResearch": "protocol/research/ronin-program-entry-evidence.json",
-  "trackWorkflowResearch": "protocol/research/ronin-track-workflow-evidence.json"
+  "trackWorkflowResearch": "protocol/research/ronin-track-workflow-evidence.json",
+  "programReceiveResearch": "protocol/research/ronin-program-receive-evidence.json"
 }

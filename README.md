@@ -216,3 +216,6 @@ python3 -m http.server 8000 --bind 127.0.0.1
 
 
 [主页面挂载与轨迹UI工作流](tools/research/TRACK_WORKFLOW.md)补齐静态挂载链，区分ACK后的界面状态、重订阅和物理停止；仍未开放程序SDK或高级功能。
+
+
+[程序基础接收路径](tools/research/PROGRAM_RECEIVE.md)区分ACK返回码与业务首字节、6B双路分派及扩展命令表边界；仅静态研究，不新增SDK发送或高级功能。

@@ -550,3 +550,15 @@ if manifest.get('trackWorkflowResearch'):
     assert track['watchdogMs']==3000 and track['sourceTimedUiUnlockMs']==1200
     for flag in ('uiStateIsPhysicalCompletionVerified','subscriptionStopIsProgramStop','statusHandlerDirectlyChecksCommandId','statusHandlerDirectlyChecksSuccess','statusHandlerDirectlyChecksSequence','completeCameraIsolationVerified'):
         assert track[flag] is False
+
+if manifest.get('programReceiveResearch'):
+    receive=json.loads((root/manifest['programReceiveResearch']).read_text())
+    for flag in ('appCodeExecuted','targetDeviceVerified','wholeProtocolRecovered','researchToolProvidesSdkInterface','javaReflectionExecuted','actualCmdSetExtensionSelectionVerified'):
+        assert receive[flag] is False
+    assert len(receive['methods'])==37 and len(receive['baseProgramPolicies'])==7
+    assert receive['payloadMapping']['ackBusinessOffsetInRawPayload']==1
+    assert receive['payloadMapping']['requestBusinessOffsetInRawPayload']==0
+    assert receive['mixed6B']['processorAndPushPathsEligible'] is True
+    assert receive['eventOrder']['baseMayPostBeforeDerivedFieldsParsed'] is True
+    assert receive['extensionLookup']['namespaceMatchesInSixRestoredBanks']==[]
+    assert receive['extensionLookup']['dynamicExtensionAbsenceProven'] is False

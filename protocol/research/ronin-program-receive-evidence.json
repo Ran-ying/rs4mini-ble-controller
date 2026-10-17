@@ -1,0 +1,399 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "bankSha256": {
+    "0": "76002e76e02e1306ad197c4af127975d573999de174e5a9e44cc6f840196f621",
+    "2": "de69497b77de530d0d559646dc6d3fb24569e2ba8ba9502216f3d6c9fd6f3bf8",
+    "3": "bb50b39865520f55e97116ae1903bda3545b01c2fb7e2aba67a979dc264a9854",
+    "4": "2d3ff70fb84eb02ac75949ca6e7d5cc849a7f9ef55029fd168890c6dbccb1d12",
+    "5": "4fdbd74a05df63d72a0feb1c907d9395426ec3cdb5d6aeb45e3836d856d66654",
+    "6": "057f13084cf969ffadcfa2150d1b3ae3ed8a7822c95fb54158781764c9156e2f"
+  },
+  "appCodeExecuted": false,
+  "targetDeviceVerified": false,
+  "wholeProtocolRecovered": false,
+  "researchToolProvidesSdkInterface": false,
+  "javaReflectionExecuted": false,
+  "actualCmdSetExtensionSelectionVerified": false,
+  "scope": "Conditional base Gimbal command table, RecvPack payload extraction and selected mixed receive dispatch; not target traffic or all extension classes",
+  "banks": [
+    {
+      "bank": 0,
+      "classCount": 7119
+    },
+    {
+      "bank": 2,
+      "classCount": 2110
+    },
+    {
+      "bank": 3,
+      "classCount": 6683
+    },
+    {
+      "bank": 4,
+      "classCount": 6696
+    },
+    {
+      "bank": 5,
+      "classCount": 8571
+    },
+    {
+      "bank": 6,
+      "classCount": 7647
+    }
+  ],
+  "baseProgramPolicies": [
+    {
+      "name": "SetDelayTimelapseParams",
+      "commandId": 37,
+      "isBlock": true,
+      "isMix": false,
+      "modelClass": null
+    },
+    {
+      "name": "SetTimelapseParams",
+      "commandId": 55,
+      "isBlock": true,
+      "isMix": false,
+      "modelClass": null
+    },
+    {
+      "name": "GetPushTimelapseStatus",
+      "commandId": 56,
+      "isBlock": false,
+      "isMix": false,
+      "modelClass": "Ldji/midware/data/model/P3/DataGimbalGetPushTimelapseStatus;"
+    },
+    {
+      "name": "SetTrack",
+      "commandId": 98,
+      "isBlock": true,
+      "isMix": false,
+      "modelClass": null
+    },
+    {
+      "name": "SetPanorama",
+      "commandId": 99,
+      "isBlock": true,
+      "isMix": false,
+      "modelClass": null
+    },
+    {
+      "name": "GetPushPanorama",
+      "commandId": 100,
+      "isBlock": false,
+      "isMix": false,
+      "modelClass": "Ldji/midware/data/model/P3/DataGimbalGetPushPanoramaStatus;"
+    },
+    {
+      "name": "GetPushTrackAndTimelapse",
+      "commandId": 107,
+      "isBlock": false,
+      "isMix": true,
+      "modelClass": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalStatus;"
+    }
+  ],
+  "methods": [
+    {
+      "className": "Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 4652020,
+      "instructionSha256": "89d7e5d4c317f54eb541d186eff2e608a50e62f9387974ef9c74a54543aa6609"
+    },
+    {
+      "className": "Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+      "method": "isNeedCcode",
+      "descriptor": "()Z",
+      "codeOffset": 4653768,
+      "instructionSha256": "cdbefba08f513c5881e2d27c6f2904e1312e1949ce93078fcc2f20c11153eebe"
+    },
+    {
+      "className": "Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+      "method": "<init>",
+      "descriptor": "(Ljava/lang/String; I I)V",
+      "codeOffset": 4653352,
+      "instructionSha256": "1184096218063b65ae6d4ff211c39addd7b116b497237dca47112186677a37f8"
+    },
+    {
+      "className": "Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+      "method": "<init>",
+      "descriptor": "(Ljava/lang/String; I I Z Ljava/lang/Class;)V",
+      "codeOffset": 4653392,
+      "instructionSha256": "c11f4dd857657d0a36d78937c4f73c8c4bb4dbb2da0c9fa41b7ad3d16d1a8833"
+    },
+    {
+      "className": "Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+      "method": "<init>",
+      "descriptor": "(Ljava/lang/String; I I Z Z Ljava/lang/Class;)V",
+      "codeOffset": 4653448,
+      "instructionSha256": "2c0f3af622479a731043a447d72ce978c24c750b014e727ac5cd307d1a854df0"
+    },
+    {
+      "className": "Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+      "method": "isBlock",
+      "descriptor": "()Z",
+      "codeOffset": 4653720,
+      "instructionSha256": "40825be4be0be8ad0b16d6f7b2ebede1a70854ed92089707694c2eedfd115ae1"
+    },
+    {
+      "className": "Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+      "method": "isMix",
+      "descriptor": "()Z",
+      "codeOffset": 4653744,
+      "instructionSha256": "556425a9390940a0409945465ef35bd0c9d9ad04de78a69c41c1bfab6a5fc021"
+    },
+    {
+      "className": "Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+      "method": "getDataBase",
+      "descriptor": "()Ldji/midware/data/manager/P3/DataBase;",
+      "codeOffset": 4653672,
+      "instructionSha256": "ed36ac790283331ab1a88b46e346619e19464523a9ce9daa6bb5fa3dc64e3ae2"
+    },
+    {
+      "className": "Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+      "method": "getDataModel",
+      "descriptor": "()Ljava/lang/Class;",
+      "codeOffset": 4653696,
+      "instructionSha256": "4b79651bc34dfd33c6ae201f11167908e23550efbece5846f505053a0b016583"
+    },
+    {
+      "className": "Ldji/midware/data/config/P3/CmdIdGimbal;",
+      "method": "getCurCmdIdValues",
+      "descriptor": "()[Ldji/midware/interfaces/CmdIdInterface;",
+      "codeOffset": 4653836,
+      "instructionSha256": "3f2ab619cd952526de946529d927aab47f87bad28d95362727d859f745173b6d"
+    },
+    {
+      "className": "Ldji/midware/data/config/P3/DJICmdSetBase;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "codeOffset": 3322964,
+      "instructionSha256": "519b2c6064a523bb35ca52cdb1549202d341d6b7a2a993deca23f0bf5dc7b703"
+    },
+    {
+      "className": "Ldji/midware/data/config/P3/DJICmdSetBase;",
+      "method": "isBlock",
+      "descriptor": "(I)Z",
+      "codeOffset": 3323152,
+      "instructionSha256": "7fa158265b7011ea6066e085324a63d9382ca15b58e22c1cb84b58b86340d8e5"
+    },
+    {
+      "className": "Ldji/midware/data/config/P3/DJICmdSetBase;",
+      "method": "isMix",
+      "descriptor": "(I)Z",
+      "codeOffset": 3323204,
+      "instructionSha256": "c1bf5a0e385567bf0aeb934289c8f506a1c8bac6621cc9bb42b1d110e9313f53"
+    },
+    {
+      "className": "Ldji/midware/data/config/P3/DJICmdSetBase;",
+      "method": "isNeedCcode",
+      "descriptor": "(I)Z",
+      "codeOffset": 3323256,
+      "instructionSha256": "6051e59b0f01d28a35ef2d5e906a7e0f03ddef6848acc9c5ec51f5e35e268f6a"
+    },
+    {
+      "className": "Ldji/midware/data/config/P3/DJICmdSetBase;",
+      "method": "getDataBase",
+      "descriptor": "(I)Ldji/midware/data/manager/P3/DataBase;",
+      "codeOffset": 3323048,
+      "instructionSha256": "c494fdc95c78a88a5151c2f97f5089bdf9718672332c40ac3b7c95b2de1be9d2"
+    },
+    {
+      "className": "Ldji/midware/data/config/P3/DJICmdSetBase;",
+      "method": "getDataModel",
+      "descriptor": "(I)Ljava/lang/Class;",
+      "codeOffset": 3323100,
+      "instructionSha256": "43ae541f66bc1408825d6e12bb55fecf9d3af9004ee98b49b8a0076ef277a63c"
+    },
+    {
+      "className": "Ldji/midware/data/packages/P3/RecvPack;",
+      "method": "getInt",
+      "descriptor": "(I)I",
+      "codeOffset": 5031040,
+      "instructionSha256": "7db7a002a5e93614a00229f8b5270a1ea578099b69767d21d9509f838969576d"
+    },
+    {
+      "className": "Ldji/midware/util/BytesUtil;",
+      "method": "getInt",
+      "descriptor": "(B)S",
+      "codeOffset": 3782920,
+      "instructionSha256": "0aa020d698a6e88f3b7fe14dd738204c12a154b9e1d2e7061d8d79db16fcdb24"
+    },
+    {
+      "className": "Ldji/midware/data/packages/P3/RecvPack;",
+      "method": "setBuffer",
+      "descriptor": "([B)V",
+      "codeOffset": 5031432,
+      "instructionSha256": "f3a4d52a3ef8cf1d939cb1b1e00d6b7f2fd8f65fe1a8b37f1916b2e340c342c2"
+    },
+    {
+      "className": "Ldji/midware/data/packages/P3/RecvPack;",
+      "method": "isNeedCcode",
+      "descriptor": "()V",
+      "codeOffset": 5031076,
+      "instructionSha256": "56ebd2bfd536331c7470349c7c7d1be7085b613231fa02ac8f815e32c574a83e"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DJIPackManagerBase;",
+      "method": "setMsg",
+      "descriptor": "(Ldji/midware/data/packages/P3/RecvPack;)V",
+      "codeOffset": 3339548,
+      "instructionSha256": "d537ebbfbf8d725bbe8be61b59d80296d91d061667e121d653c77c1fd5100e64"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DJIPackManagerBase;",
+      "method": "isBlePing",
+      "descriptor": "(Ldji/midware/data/packages/P3/RecvPack;)Z",
+      "codeOffset": 3338672,
+      "instructionSha256": "a849ab82dd9436b6a43e8aac70173709f103bd0cf629e73f56d56003875619c6"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "setPushRecPack",
+      "descriptor": "(Ldji/midware/data/packages/P3/Pack;)V",
+      "codeOffset": 3352564,
+      "instructionSha256": "80f0bb9c5884940e7c2600d2e6f22c5287da3c37061590ec9049cce5b53d03ee"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "setPushRecData",
+      "descriptor": "([B)V",
+      "codeOffset": 3352480,
+      "instructionSha256": "23cb6a1baab1f2b12f4ae5da131785e6792d83970eb43826c9d8e1b6462faf23"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "setRecData",
+      "descriptor": "([B)V",
+      "codeOffset": 3352748,
+      "instructionSha256": "a6675a47286fe5b2725b26418463a503442cf7fbb89df865e1303c316ccc4b64"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "isChanged",
+      "descriptor": "([B)Z",
+      "codeOffset": 3351112,
+      "instructionSha256": "cc9eeb9f9b0e0372f3878aeaf3ea679ae7e724bc5a1d92d8cd6f474406a3a6d7"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "post",
+      "descriptor": "()V",
+      "codeOffset": 3351644,
+      "instructionSha256": "81cc431f526de1f7b70c5bc1a656ee2de78409afc08335786fe99b6e0de0bda1"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalStatus;",
+      "method": "setPushRecData",
+      "descriptor": "([B)V",
+      "codeOffset": 4871232,
+      "instructionSha256": "98b064a1102be6fc376574fe26402870506819d6a8f7813eb9fabdfa35450ffc"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalStatus;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 4870780,
+      "instructionSha256": "27d3c0d2cbb2642d1380283df31aa87e7cd4fa7571be0190d1088d493d7104e4"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalStatus;",
+      "method": "isSuccess",
+      "descriptor": "()Z",
+      "codeOffset": 4871184,
+      "instructionSha256": "dbcfa69cb6876821d6a79450197f4f1141b949727838131996dc709d502d910f"
+    },
+    {
+      "className": "Ldji/midware/data/config/P3/CmdSet;",
+      "method": "<init>",
+      "descriptor": "(Ljava/lang/String; I I Ldji/midware/data/config/P3/DJICmdSetBase;)V",
+      "codeOffset": 3322540,
+      "instructionSha256": "b4a57def88fb246be2a66fa53fd6f4f1018bca711d0c6af5a528b56f5ad3a953"
+    },
+    {
+      "className": "Ldji/midware/data/config/P3/CmdSet;",
+      "method": "getExtraCmdSetInterface",
+      "descriptor": "(Ldji/midware/data/config/P3/DJICmdSetBase;)Ldji/midware/data/config/P3/DJICmdSetBase;",
+      "codeOffset": 3322628,
+      "instructionSha256": "f582f30de77ee962ff4e3d977c9401087819be858b9e75fc22b78204ee42b412"
+    },
+    {
+      "className": "Ldji/midware/data/config/P3/CmdSet;",
+      "method": "cmdIdClass",
+      "descriptor": "()Ldji/midware/data/config/P3/DJICmdSetBase;",
+      "codeOffset": 3322916,
+      "instructionSha256": "192071aee274aa7c34a27145892e91c59ddbc1f12e4560fa04c569d5a1edc11c"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushPanoramaStatus;",
+      "method": "isChanged",
+      "descriptor": "([B)Z",
+      "codeOffset": 4872960,
+      "instructionSha256": "3863fab8420441745638f5e4e7cd5033081f84a64e08bf4ffeff32f5e1b9812e"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushPanoramaStatus;",
+      "method": "start",
+      "descriptor": "()V",
+      "codeOffset": 4872992,
+      "instructionSha256": "ff4c673452a0b829d5f78adcae9c38dcfecad56be9fb382659148ee1fbe080fb"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushTimelapseStatus;",
+      "method": "isChanged",
+      "descriptor": "([B)Z",
+      "codeOffset": 4875664,
+      "instructionSha256": "1cdd983622c21daabba2194c167eff3c404b9217718ac7a0e822717ed978d32a"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushTimelapseStatus;",
+      "method": "start",
+      "descriptor": "()V",
+      "codeOffset": 4875696,
+      "instructionSha256": "721f036af57bf2c2f9438c28bce3510a4ce0fdfa81322be58e1b62938c2e8ebb"
+    }
+  ],
+  "payloadMapping": {
+    "sourceBasePathEstablished": true,
+    "rawFramePayloadOffset": 11,
+    "ackFlagBit": 7,
+    "encryptedFlagMask": 7,
+    "baseProgramNeedsCcode": true,
+    "ackBusinessOffsetInRawPayload": 1,
+    "requestBusinessOffsetInRawPayload": 0,
+    "sourceOnlyAssignsDataWhenNonempty": true,
+    "sourceParserIsNotFullFrameValidation": true
+  },
+  "mixed6B": {
+    "baseBlock": false,
+    "baseMix": true,
+    "processorAndPushPathsEligible": true,
+    "processorCorrelationInternalsVerified": false,
+    "pushLookupOrReflectionCanFail": true,
+    "returnCodeIsNotBusinessSuccessByte": true,
+    "requestBodyFirstByteNotStripped": true
+  },
+  "eventOrder": {
+    "derivedCallsBaseBeforeParsing": true,
+    "baseMayPostBeforeDerivedFieldsParsed": true,
+    "actualSubscriberTimingVerified": false,
+    "basePostRequiresChangedWantPushRegisteredAndServiceAlive": true,
+    "sourceStoresPayloadReferencePerSenderId": true
+  },
+  "extensionLookup": {
+    "className": "Lcom/dji/midware/extension/config/CmdIdGimbalExtra;",
+    "namespaceMatchesInSixRestoredBanks": [],
+    "unrestoredBanks": [
+      1,
+      7
+    ],
+    "dynamicExtensionAbsenceProven": false
+  },
+  "remaining": [
+    "CmdSet constructor can choose a reflection-loaded Extra implementation; six-bank absence is not whole-App absence.",
+    "DataBaseProcessor matching/callbacks, encryption/decryption and full outer frame validation remain separately scoped.",
+    "Do not turn ACK ccode=0, business success=1, shared events or base post order into target motion completion.",
+    "No SDK receive mapping or send allowlist was changed; actual RS4Mini frames and physical effects unverified."
+  ]
+}

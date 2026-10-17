@@ -41,10 +41,27 @@ test('trajectory stop cancels immediately, discards schedule and releases owners
 });
 test('trajectory slow writes fail with overrun instead of bursting stale frames', async t => {
   const { gimbal, peripheral } = await connected(t);
+  const descriptor = Object.getOwnPropertyDescriptor(globalThis, 'performance'); let clock = 0;
   const write = peripheral.tx.writeAsync.bind(peripheral.tx);
-  peripheral.tx.writeAsync = async (...args) => { await sleep(12); return write(...args); };
-  await assert.rejects(gimbal.runTrajectory(trajectory, { maxLagMs: 5 }), { code: 'RS4MINI_TRAJECTORY_OVERRUN' });
-  assert.equal(peripheral.frames().length, 4); assert(peripheral.frames().slice(1).every(neutral));
+  // Advance only while the fake transport writes, never because the host is busy.
+  peripheral.tx.writeAsync = async (...args) => { clock += 12; return write(...args); };
+  try {
+    Object.defineProperty(globalThis, 'performance', { value: { now: () => clock }, configurable: true });
+    await assert.rejects(gimbal.runTrajectory(trajectory, { maxLagMs: 5 }), { code: 'RS4MINI_TRAJECTORY_OVERRUN' });
+    assert.equal(peripheral.frames().length, 4); assert(!neutral(peripheral.frames()[0]));
+    assert(peripheral.frames().slice(1).every(neutral));
+  } finally { Object.defineProperty(globalThis, 'performance', descriptor); }
+});
+test('trajectory scheduler overrun before first write sends only three neutral frames', async t => {
+  const { gimbal, peripheral } = await connected(t);
+  const descriptor = Object.getOwnPropertyDescriptor(globalThis, 'performance'); let reads = 0;
+  try {
+    // startedAt and the first delay see zero; the first scheduler check sees lag.
+    Object.defineProperty(globalThis, 'performance', { value: { now: () => ++reads <= 2 ? 0 : 10 }, configurable: true });
+    await assert.rejects(gimbal.runTrajectory(trajectory, { maxLagMs: 5 }), { code: 'RS4MINI_TRAJECTORY_OVERRUN' });
+    assert.equal(peripheral.frames().length, 3); assert(peripheral.frames().every(neutral));
+    assert.equal(gimbal.activeOperation, null); assert.equal(gimbal.trajectoryProgress, null);
+  } finally { Object.defineProperty(globalThis, 'performance', descriptor); }
 });
 test('waypoints keep one motion owner across arrivals and cancellable dwell', async t => {
   const { gimbal, peripheral } = await connected(t);

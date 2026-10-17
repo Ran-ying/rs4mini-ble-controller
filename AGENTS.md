@@ -485,7 +485,20 @@ Create fields/input_source72 pair remain separate and unexposed. See docs/
 APP_NUMERIC_TUNING.md. Native context-based0F allowlist only expands to these18
 exact index/width/range records; no arbitrary parameter writes. Boundary checker
 parses JS/Python/native catalog literals offline and compares all18 to pinned
-source records. Node119/Web14/Python97 each/native83+113+3/research53,
+source records. Node120/Web14/Python97 each/native83+113+3/research53,
 types/boundaries/builds passed. No hardware/live UI/advanced additions; both
 completion gates remain false. Historical numeric research no-SDK text above
 is superseded only for these18 ordinary fields, not independent create profiles.
+
+
+## 0.7.10 CI timing regression fix
+
+Initial e14762a CI38954592024 failed an existing trajectory slow-write test,
+not numeric SDK: macOS runner lagged before first frame so correctly emitted
+only3 cleanup neutrals, while test wrongly required4 frames. Use local fake
+performance clock in that test to advance only on fake writes; add independent
+pre-first-frame scheduler overrun case. Exact1 motion+3 neutral versus0+3,
+no replay and cleared ownership/progress are retained. Runtime unchanged,
+Node120 (was119). Test clock restored in finally; no hardware used. Prior
+approval log download was deferred by approval-review usage quota; normal
+review retry succeeded, credentials were never printed or saved to source.

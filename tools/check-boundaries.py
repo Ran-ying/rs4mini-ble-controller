@@ -406,3 +406,14 @@ if manifest.get('commandReferenceResearch'):
     assert onoff['payloadRecovered'] is False and onoff['hg724CallPathEstablished'] is False
 print('Layer boundaries passed: device modules do not depend on motion; upper layers do not encode/write packets.')
 print('Protocol inventory: %d entries; inventoryComplete=false; further advanced development is gated.' % len(manifest['commands']))
+
+if manifest.get('angleResearch'):
+    angles=json.loads((root/manifest['angleResearch']).read_text())
+    assert angles['appCodeExecuted'] is False and angles['targetDeviceVerified'] is False
+    assert angles['wholeProtocolRecovered'] is False and angles['researchToolProvidesSdkInterface'] is False
+    assert angles['angle14']['sourceReportsSuccessWithoutWaitingForAck'] is True
+    assert angles['angle14']['capabilityInitializationAudited'] is False
+    assert angles['angle0a']['hg724CallPathEstablished'] is False
+    assert angles['angle0a']['negativeSearchProvesUnsupported'] is False
+    assert len(angles['methods']) == 48
+    assert not any('angles_trace' in (root/p).read_text() for p in ('node/src/device.js','python/rs4mini_sdk/device.py','macos/RSBleDevice.m'))

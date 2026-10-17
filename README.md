@@ -179,3 +179,6 @@ python3 -m http.server 8000 --bind 127.0.0.1
 0.7.19新增[配置0与工作模式62命名读写](docs/APP_PROFILE_VALUES.md)，未知原值保留，未确认活动预设/完整跟随模式或本机效果。
 
 新增[六段命令引用矩阵与0D边界](tools/research/COMMAND_REFERENCES.md)，区分枚举名、实现候选与型号/硬件证据，不新增试探发送。
+
+
+最新[原生角度控制研究](tools/research/ANGLES.md)已区分04:0A两种布局与HG724继承rotate的04:14路径；能力/地址/暂停及物理完成仍待核对，未新增当前App角度发送接口。

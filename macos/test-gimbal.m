@@ -83,6 +83,11 @@ static NSData *AppResponse(uint16_t sequence, uint8_t command, NSData *payload, 
     for (NSUInteger i=0;i<data.length-2;i++) { crc ^= p[i]; for (int b=0;b<8;b++) crc = crc & 1 ? (crc >> 1) ^ 0x8408 : crc >> 1; }
     p[data.length-2] = crc & 255; p[data.length-1] = crc >> 8; return data;
 }
+static NSData *AppNotification(uint16_t sequence,uint8_t command,NSData *payload) {
+    NSMutableData *data=[AppResponse(sequence,command,payload,4) mutableCopy];uint8_t *p=data.mutableBytes;p[8]=0;uint16_t crc=0x3692;
+    for(NSUInteger i=0;i<data.length-2;i++){crc^=p[i];for(int b=0;b<8;b++)crc=crc&1?(crc>>1)^0x8408:crc>>1;}
+    p[data.length-2]=crc&255;p[data.length-1]=crc>>8;return data;
+}
 static void PumpCallbacks(void) { [[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.003]]; }
 int main(void) {
     @autoreleasepool {
@@ -395,9 +400,18 @@ int main(void) {
         Require(appCallbacks==34 && [appResult[@"inputSourceRaw"] intValue]==1 && [appResult[@"values"][0][@"rawValue"] intValue]==65535 && ![appResult[@"activePresetVerified"] boolValue],@"standalone read keeps actual source even when not2");
         [peripheral.writes setLength:0];[gimbal setStandaloneTuning:@{@"inputSource":@2,@"axis":@"yaw",@"parameter":@"speed",@"value":@0} timeoutMs:1000 completion:appDone];ThreeTicks(gimbal);[gimbal stop];ThreeTicks(gimbal);PumpCallbacks();[decoder reset];frames=[decoder push:peripheral.writes];NSUInteger standaloneWrites=0;for(NSDictionary *f in frames)if([f[@"commandId"] intValue]==0x0f)standaloneWrites++;
         Require(appCallbacks==35 && standaloneWrites==1 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_OPERATION_CANCELLED"],@"standalone cancel never replays or restores input source");
+        [peripheral.writes setLength:0];NSMutableData *fixedBody=[NSMutableData dataWithLength:78];((uint8_t *)fixedBody.mutableBytes)[2]=1;((uint8_t *)fixedBody.mutableBytes)[9]=0x34;((uint8_t *)fixedBody.mutableBytes)[10]=0x12;
+        notify.value=AppNotification(2,0x24,fixedBody);[gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil];PumpCallbacks();
+        Require([gimbal.appUserParameterStatus[@"values"] count]==17 && [gimbal.appUserParameterStatus[@"preset"][@"sourceEnum"] isEqualToString:@"CUSTOM_2"] && peripheral.writes.length==0,@"native fixed report uses same connection without request or subscription");
+        notify.value=AppNotification(3,0x24,[NSMutableData dataWithLength:73]);[gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil];PumpCallbacks();
+        Require([gimbal.appUserParameterStatus[@"preset"][@"rawValue"] intValue]==1 && ![gimbal.appUserParameterStatus[@"activePresetVerified"] boolValue],@"short fixed report does not replace cached state or verify active preset");
+        Require([gimbal useAppProfile:@"ronin-2.2.2"] && !gimbal.appUserParameterStatus,@"native profile reselection clears fixed report");
         [gimbal getFollowSensitivityWithTimeoutMs:1000 completion:appDone]; ThreeTicks(gimbal);
+        notify.value=AppNotification(5,0x24,fixedBody);[gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil];PumpCallbacks();
+        Require(gimbal.busy && gimbal.appUserParameterStatus && appCallbacks==35,@"passive report does not release or complete an outstanding parameter query");
         [gimbal centralManager:(id)central didDisconnectPeripheral:(id)peripheral error:nil]; PumpCallbacks();
         Require(appCallbacks == 36 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_DISCONNECTED"], @"native disconnect rejects pending App query");
+        Require(!gimbal.appUserParameterStatus,@"native disconnect clears cached fixed report");
         [gimbal disconnect]; ThreeTicks(gimbal);
         printf("Native fake-device lifecycle checks: %lu passed (no Bluetooth manager created)\n", (unsigned long)assertions);
     }

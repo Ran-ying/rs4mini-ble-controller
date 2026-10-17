@@ -8,9 +8,9 @@ verification status changes.
 ## Objective and user decisions
 
 - Provide an unofficial, direct BLE controller for **DJI RS 4 Mini**, initially on macOS.
-- **Node.js is the authoritative implementation**; current package version is `0.7.11`.
+- **Node.js is the authoritative implementation**; current package version is `0.7.12`.
 - The user subsequently requested completion of all existing ports. Python is now
-  `0.7.11`, Web shares the JS core, and the native panel is `0.3.11`. Describe the
+  `0.7.12`, Web shares the JS core, and the native panel is `0.3.12`. Describe the
   documented feature differences; do not claim identical APIs or hardware proof.
 - After that delivery, the user requested the remaining **non-camera** capabilities
   under the same autonomous/offline conditions. Expansion work is in progress;
@@ -561,3 +561,23 @@ Offline helper builds single group body only, neverDUML/transport; noSDK/UI
 imports, hardware, vendor execution or advanced features. Both gatesfalse.
 
 Subscription research:67 tests in bothPython environments, pinned34-method output reproduced exactly. Unified Node126/Web14/Python103/native87+119+3/types/boundaries/build passed. Earlier approval-review quota failure executed nothing; normal reviewed retry succeeded, no bypass. Runtime/install packages unchanged.
+
+
+## Current runtime:0.7.12 / native0.3.12 build15
+
+AppCommands.userParameterStatus (Pythonuser_parameter_status; native
+appUserParameterStatus) passively caches complete source-layout04:24 only under
+explicitronin-2.2.2. sender4→2, requesttype, unencrypted, minimum74bytes; no
+zero-fill/ACK/other-endpoint interpretation or automatic subscription. All17
+source getters1/2byte unsignedLE preserved with rawHex/bodyHex; enum preset2
+remains unknown, notM3/PF/PTF/table_choice. Device/modelLayout/activePreset/
+physicalCompletion flagsfalse. Source is generic model, nottarget-confirmed.
+onAppStatus is now kind-discriminated calibration|userParameters; TS consumers
+must narrowkind. Independent copied/immutable cache, observer isolation, reset
+on profile/disconnect, no motion/telemetry ownership change. Allports use same
+existing entry/connection. See docs/APP_USER_PARAMETERS.md. user_push_trace
+fixes20methods including fillBytes→arrayComb zeroextension and IntLE; allthree
+catalogs match17source records. No sends/hardware/liveUI/vendor execution or
+advanced additions. Both completeness gatesfalse.
+
+0.7.12 offline: Node131/Web14, Python3.8/3.12 each108, native91+124+3, research71 in bothPython environments. Installed Node131/Python108, types/boundaries/build pass. Pinned17-getter/20-method JSON independently reproduced. No hardware/liveUI/vendor execution.

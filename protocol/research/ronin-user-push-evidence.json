@@ -1,0 +1,246 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "derivedSha256": "4fdbd74a05df63d72a0feb1c907d9395426ec3cdb5d6aeb45e3836d856d66654",
+  "appCodeExecuted": false,
+  "targetDeviceVerified": false,
+  "wholeProtocolRecovered": false,
+  "sourceClass": "Ldji/midware/data/model/P3/DataGimbalGetPushUserParams;",
+  "command": "04:24",
+  "sourceFramingEvidence": "protocol/research/ronin-subscription-evidence.json",
+  "sourceMinimumBytes": 74,
+  "requestTypeRequired": true,
+  "encryptionAllowed": false,
+  "fields": [
+    {
+      "sourceGetter": "getPitchAccel",
+      "offset": 59,
+      "size": 2
+    },
+    {
+      "sourceGetter": "getPitchDeadband",
+      "offset": 21,
+      "size": 2
+    },
+    {
+      "sourceGetter": "getPitchSmoothTrack",
+      "offset": 70,
+      "size": 1
+    },
+    {
+      "sourceGetter": "getPitchSpeed",
+      "offset": 13,
+      "size": 2
+    },
+    {
+      "sourceGetter": "getPresetID",
+      "offset": 2,
+      "size": 1
+    },
+    {
+      "sourceGetter": "getRollAccel",
+      "offset": 63,
+      "size": 2
+    },
+    {
+      "sourceGetter": "getRollDeadband",
+      "offset": 51,
+      "size": 2
+    },
+    {
+      "sourceGetter": "getRollSmoothTrack",
+      "offset": 73,
+      "size": 1
+    },
+    {
+      "sourceGetter": "getRollSpeed",
+      "offset": 47,
+      "size": 2
+    },
+    {
+      "sourceGetter": "getStickPitchSmooth",
+      "offset": 37,
+      "size": 2
+    },
+    {
+      "sourceGetter": "getStickPitchSpeed",
+      "offset": 29,
+      "size": 2
+    },
+    {
+      "sourceGetter": "getStickYawSmooth",
+      "offset": 33,
+      "size": 2
+    },
+    {
+      "sourceGetter": "getStickYawSpeed",
+      "offset": 25,
+      "size": 2
+    },
+    {
+      "sourceGetter": "getYawAccel",
+      "offset": 55,
+      "size": 2
+    },
+    {
+      "sourceGetter": "getYawDeadband",
+      "offset": 17,
+      "size": 2
+    },
+    {
+      "sourceGetter": "getYawSmoothTrack",
+      "offset": 67,
+      "size": 1
+    },
+    {
+      "sourceGetter": "getYawSpeed",
+      "offset": 9,
+      "size": 2
+    }
+  ],
+  "methods": [
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushUserParams;",
+      "method": "getPitchAccel",
+      "descriptor": "()I",
+      "codeOffset": 5913916,
+      "instructionSha256": "40f52acd21f8baa599e64bb40a351760435076def725231112f160051cee6d95"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushUserParams;",
+      "method": "getPitchDeadband",
+      "descriptor": "()I",
+      "codeOffset": 5913972,
+      "instructionSha256": "f3e654cca66eb297818027edb1749b687bacd23c9349187319514d0a46cf926c"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushUserParams;",
+      "method": "getPitchSmoothTrack",
+      "descriptor": "()I",
+      "codeOffset": 5914028,
+      "instructionSha256": "26fd5ae8beb70c26ea27a13e98362e33521d00319606e427346297dcf7a1e620"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushUserParams;",
+      "method": "getPitchSpeed",
+      "descriptor": "()I",
+      "codeOffset": 5914084,
+      "instructionSha256": "4e611e47efb079bc0d32615d3bc3d1c1d817af0d2763d339cdcb7a86af05b5d4"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushUserParams;",
+      "method": "getPresetID",
+      "descriptor": "([I)I",
+      "codeOffset": 5914140,
+      "instructionSha256": "31b8104cabdd07d9128d30a0743c25a33eac21df32e1440c4a713e590421cf7e"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushUserParams;",
+      "method": "getRollAccel",
+      "descriptor": "()I",
+      "codeOffset": 5914188,
+      "instructionSha256": "a12c50d250447dcc32b745b7fa79d97161b5b38518edc0f975067ae6fa479f30"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushUserParams;",
+      "method": "getRollDeadband",
+      "descriptor": "()I",
+      "codeOffset": 5914244,
+      "instructionSha256": "ab41437accad8cf96917d947e992aa25e05bf7e6aecae1b1c08d1daf33c55686"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushUserParams;",
+      "method": "getRollSmoothTrack",
+      "descriptor": "()I",
+      "codeOffset": 5914300,
+      "instructionSha256": "f657b4c658fdf6eda659166c22ed6b25cd87879125fb34a959ae7dd107ea9bf3"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushUserParams;",
+      "method": "getRollSpeed",
+      "descriptor": "()I",
+      "codeOffset": 5914356,
+      "instructionSha256": "2749c4e489a13618530043f2d2809525f7879ef8f3cc68d67ebd92d7559ae4cd"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushUserParams;",
+      "method": "getStickPitchSmooth",
+      "descriptor": "()I",
+      "codeOffset": 5914412,
+      "instructionSha256": "c3ec92a65c4d451cfabea6fcbe6fb99f1959d233eba8f5b7a910605f9e2f6e5b"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushUserParams;",
+      "method": "getStickPitchSpeed",
+      "descriptor": "()I",
+      "codeOffset": 5914468,
+      "instructionSha256": "b5377c6886cb00b8c367e1cefec354ba98ba77bba14f6f20904c8d5e6d19370a"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushUserParams;",
+      "method": "getStickYawSmooth",
+      "descriptor": "()I",
+      "codeOffset": 5914524,
+      "instructionSha256": "12dbe002b12ebdd6e123beb66914b70fb403c0f4df93375ac43f950b4653e7bb"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushUserParams;",
+      "method": "getStickYawSpeed",
+      "descriptor": "()I",
+      "codeOffset": 5914580,
+      "instructionSha256": "ff4e3acead17c8797de744f357682476b34708a8bdaa7202bf70dd232dc8d8d4"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushUserParams;",
+      "method": "getYawAccel",
+      "descriptor": "()I",
+      "codeOffset": 5914636,
+      "instructionSha256": "c6d62cfc9ec27e2e304c0d0f200e98f6f87c3f80fe8b6a6abc8d46e4b07b6e15"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushUserParams;",
+      "method": "getYawDeadband",
+      "descriptor": "()I",
+      "codeOffset": 5914692,
+      "instructionSha256": "682a87c5b7c91e83fcc765472b53a6fdba55b2850d170f86fc2619026c492352"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushUserParams;",
+      "method": "getYawSmoothTrack",
+      "descriptor": "()I",
+      "codeOffset": 5914748,
+      "instructionSha256": "6371b50d04d5c2227a85537ee8b139068e5f942c4125c116c45dd9f678369891"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushUserParams;",
+      "method": "getYawSpeed",
+      "descriptor": "()I",
+      "codeOffset": 5914804,
+      "instructionSha256": "6c22a381f13041da81199cbf8de1aa8f5bd6e47f9fc967826ac9723f2e17f2be"
+    },
+    {
+      "className": "Ldji/midware/util/BytesUtil;",
+      "method": "getInt",
+      "descriptor": "([B)I",
+      "codeOffset": 3782728,
+      "instructionSha256": "c83e6d064884807cec2be0dbd3235f71dd62fcd952eb0b2b88bfc373d0b761e2"
+    },
+    {
+      "className": "Ldji/midware/util/BytesUtil;",
+      "method": "fillBytes",
+      "descriptor": "([B I)[B",
+      "codeOffset": 3781048,
+      "instructionSha256": "2934058aafe6cc8ef7566e3dce18a91f6e31a840de78cb3b73bfee17c61d3b83"
+    },
+    {
+      "className": "Ldji/midware/util/BytesUtil;",
+      "method": "arrayComb",
+      "descriptor": "([B [B)[B",
+      "codeOffset": 3780116,
+      "instructionSha256": "6f79140660c5809f87ebb044cecc6fe4cc6a5c5492c524527d5fecf7db15a28f"
+    }
+  ],
+  "semantics": "Raw unsigned 1/2 byte little-endian integers; source getter names, no units, range or enabled-bit inference.",
+  "unknownBytesRetained": true,
+  "partialPayloadZeroFillAllowed": false
+}

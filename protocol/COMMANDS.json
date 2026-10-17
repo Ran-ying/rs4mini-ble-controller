@@ -401,11 +401,15 @@
     {
       "key": "04:24",
       "name": "官方 App 枚举：GetPushUserParams",
-      "requestCodec": "unknown",
-      "responseCodec": "unknown",
-      "targetEvidence": "official-app-enum",
-      "implementation": [],
-      "remaining": "当前App未加密请求型推送经RecvPack/DataBase到getPresetID的载荷偏移2/宽度1已静态核对；不同于04:10参数订阅响应。SDK尚未接入解码，不能提升为本机活动预设或照搬ACK偏移",
+      "requestCodec": "not-applicable",
+      "responseCodec": "candidate-structured",
+      "targetEvidence": "app-generic-code",
+      "implementation": [
+        "node/src/app-user-parameters.js",
+        "python/rs4mini_sdk/app_user_parameters.py",
+        "macos/RSControlCore.m"
+      ],
+      "remaining": "0.7.12在显式App来源配置下被动解码未加密请求型固定布局17个getter，保留原始整数/未知字节；不少于74字节，不触发订阅。未知布局字段、型号/实机推送、活动预设、订阅和实际效果仍未验收，不与04:10的table_choice或ACK上下文混用",
       "officialAppAliases": [
         "GetPushUserParams"
       ],
@@ -777,5 +781,20 @@
     ]
   },
   "profilesResearch": "protocol/research/ronin-profiles-evidence.json",
-  "subscriptionResearch": "protocol/research/ronin-subscription-evidence.json"
+  "subscriptionResearch": "protocol/research/ronin-subscription-evidence.json",
+  "userPushResearch": "protocol/research/ronin-user-push-evidence.json",
+  "userPushSdk": {
+    "implemented": true,
+    "fieldCount": 17,
+    "minimumPayloadBytes": 74,
+    "targetDeviceVerified": false,
+    "activePresetVerified": false,
+    "files": [
+      "node/src/app-user-parameters.js",
+      "python/rs4mini_sdk/app_user_parameters.py",
+      "macos/RSControlCore.m",
+      "docs/APP_USER_PARAMETERS.md"
+    ],
+    "modelSpecificPathVerified": false
+  }
 }

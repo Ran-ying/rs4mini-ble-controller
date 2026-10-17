@@ -521,3 +521,14 @@ NSDictionary *RSDecodeAppStandaloneReply(NSDictionary *message, NSArray *selecti
     }
     NSMutableDictionary *result=[reply mutableCopy];result[@"inputSourceRaw"]=@(input);result[@"activePresetVerified"]=@NO;result[@"values"]=[values copy];return [result copy];
 }
+
+NSDictionary *RSDecodeAppUserParameterNotification(NSDictionary *message) {
+    if ([message[@"sender"] intValue]!=4 || [message[@"receiver"] intValue]!=2 || [message[@"commandSet"] intValue]!=4 || [message[@"commandId"] intValue]!=0x24 || !Numeric(message[@"flags"]) || [message[@"flags"] doubleValue]!=floor([message[@"flags"] doubleValue]) || [message[@"flags"] doubleValue]<0 || [message[@"flags"] doubleValue]>255 || ([message[@"flags"] intValue]&0x87)) return nil;
+    NSData *body=message[@"payload"];if (![body isKindOfClass:NSData.class] || body.length<74) return nil;
+    NSArray *fields=@[@[@"getPitchAccel",@59,@2],@[@"getPitchDeadband",@21,@2],@[@"getPitchSmoothTrack",@70,@1],@[@"getPitchSpeed",@13,@2],@[@"getPresetID",@2,@1],@[@"getRollAccel",@63,@2],@[@"getRollDeadband",@51,@2],@[@"getRollSmoothTrack",@73,@1],@[@"getRollSpeed",@47,@2],@[@"getStickPitchSmooth",@37,@2],@[@"getStickPitchSpeed",@29,@2],@[@"getStickYawSmooth",@33,@2],@[@"getStickYawSpeed",@25,@2],@[@"getYawAccel",@55,@2],@[@"getYawDeadband",@17,@2],@[@"getYawSmoothTrack",@67,@1],@[@"getYawSpeed",@9,@2]];
+    const uint8_t *p=body.bytes;NSMutableArray *values=[NSMutableArray array];
+    for (NSArray *row in fields) {NSUInteger offset=[row[1] unsignedIntegerValue],size=[row[2] unsignedIntegerValue];unsigned raw=p[offset]+(size==2?256*p[offset+1]:0);
+        [values addObject:@{@"sourceGetter":row[0],@"offset":row[1],@"size":row[2],@"rawValue":@(raw),@"rawHex":[Hex([body subdataWithRange:NSMakeRange(offset,size)]) copy]}];}
+    NSNumber *raw=@(p[2]);NSString *name=@{@0:@"CUSTOM_1",@1:@"CUSTOM_2",@3:@"FAST",@4:@"MEDIUM",@5:@"SLOW"}[raw];
+    return @{@"kind":@"userParameters",@"profile":@"ronin-2.2.2",@"timestamp":@(NSDate.date.timeIntervalSince1970*1000),@"values":[values copy],@"preset":@{@"rawValue":raw,@"sourceEnum":name ?: NSNull.null},@"bodyHex":[Hex(body) copy],@"deviceVerified":@NO,@"modelLayoutVerified":@NO,@"activePresetVerified":@NO,@"physicalCompletionVerified":@NO};
+}

@@ -1,10 +1,10 @@
 export * from "./types.js";
-import type { AxisValues, ByteBuffer, Velocity, RS4MiniOptions, ConnectOptions, VelocityDegOptions, MoveForOptions, TelemetryReadOptions, RawAngles, AttitudeReading, JointAnglesReading, OrientationQuaternion, OrientationConvention, OrientationResult, GimbalTelemetry, DumlMessage, MoveToOptions, MoveToResult, AutoReconnectOptions, ReconnectState, VelocityKeyframe, TrajectoryOptions, TrajectoryResult, TrajectoryProgress, Waypoint, PositionSettings, HomePosition, ResearchProfile, ResearchWriteResult, ResearchStatusBase, ResearchStatus, ExperimentalGimbal, AppCommands, AppCalibrationStatus } from "./types.js";
+import type { AxisValues, ByteBuffer, Velocity, RS4MiniOptions, ConnectOptions, VelocityDegOptions, MoveForOptions, TelemetryReadOptions, RawAngles, AttitudeReading, JointAnglesReading, OrientationQuaternion, OrientationConvention, OrientationResult, GimbalTelemetry, DumlMessage, MoveToOptions, MoveToResult, AutoReconnectOptions, ReconnectState, VelocityKeyframe, TrajectoryOptions, TrajectoryResult, TrajectoryProgress, Waypoint, PositionSettings, HomePosition, ResearchProfile, ResearchWriteResult, ResearchStatusBase, ResearchStatus, ExperimentalGimbal, AppCommands, AppStatus } from "./types.js";
 
 export class RS4Mini {
   constructor(options?: RS4MiniOptions);
   readonly appCommands: AppCommands;
-  onAppStatus: ((status: AppCalibrationStatus) => void | Promise<void>) | null;
+  onAppStatus: ((status: AppStatus) => void | Promise<void>) | null;
   readonly connected: boolean;
   nameIncludes: string;
   rateHz: number;

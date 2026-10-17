@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.7.12
+
+- 四端新增显式App来源下04:24固定用户参数被动解码、userParameterStatus独立缓存与17项源码原值，保留未知字节和枚举，不自动订阅。
+- 仅接受完整已知布局、未加密请求型及限定端点；拒绝短消息补零和ACK上下文复用。
+- onAppStatus增加userParameters分支，TypeScript按kind区分原有calibration事件；重选配置/断线清缓存，观察者修改或失败不污染状态。
+- 20方法源码审计及三端17字段逐项比对；本机布局、活动预设与全部命令仍未完成。
+
 ## 0.7.11
 
 - 四端新增get/setStandaloneTuning与Python别名：六个独立配置数值，调用方必须显式选择输入源2，与数值同包写入0F并独占至ACK。

@@ -153,6 +153,13 @@ int main(void) {
         Require(!RSAppStandaloneWriteFrame(5,standaloneContext,@YES) && !RSAppStandaloneWriteSpec(@{@"inputSource":@3,@"axis":@"pitch",@"parameter":@"speed",@"value":@100}), @"standalone refuses boolean values and other sources");
         NSDictionary *standaloneReply=RSDecodeAppStandaloneReply(parameterMessage(0x10,[NSData dataWithBytes:(uint8_t[]){0,72,9,255,80,9,0x34,0x12} length:8],0x80),RSAppStandaloneSelection(@{@"axis":@"pitch",@"parameter":@"speed"}),&error);
         Require([standaloneReply[@"inputSourceRaw"] intValue]==255 && [standaloneReply[@"values"][0][@"rawValue"] intValue]==4660 && ![standaloneReply[@"values"][0][@"withinSourceRange"] boolValue] && ![standaloneReply[@"activePresetVerified"] boolValue], @"standalone preserves unknown source and unsigned little endian value");
+        NSMutableData *userBody=[NSMutableData dataWithLength:78];uint8_t *userBytes=userBody.mutableBytes;userBytes[0]=99;userBytes[2]=2;userBytes[9]=0x34;userBytes[10]=0x12;userBytes[63]=255;userBytes[64]=255;userBytes[73]=255;
+        NSDictionary *userStatus=RSDecodeAppUserParameterNotification(parameterMessage(0x24,userBody,0));
+        Require([userStatus[@"values"] count]==17 && [userStatus[@"preset"][@"rawValue"] intValue]==2 && userStatus[@"preset"][@"sourceEnum"]==NSNull.null,@"fixed user layout has17 source getters and preserves unknown preset2");
+        NSMutableDictionary *byName=[NSMutableDictionary dictionary];for(NSDictionary *row in userStatus[@"values"])byName[row[@"sourceGetter"]]=row;
+        Require([byName[@"getYawSpeed"][@"rawValue"] intValue]==4660 && [byName[@"getRollAccel"][@"rawValue"] intValue]==65535 && [byName[@"getRollSmoothTrack"][@"rawValue"] intValue]==255,@"user fixed layout preserves unsigned two-byte and raw enabled values");
+        Require(!RSDecodeAppUserParameterNotification(parameterMessage(0x24,userBody,0x80)) && !RSDecodeAppUserParameterNotification(parameterMessage(0x24,userBody,1)) && !RSDecodeAppUserParameterNotification(parameterMessage(0x24,[NSMutableData dataWithLength:73],0)),@"fixed layout rejects ACK encrypted and short payload without zero fill");
+        userBytes[9]=0;Require([byName[@"getYawSpeed"][@"rawHex"] isEqualToString:@"3412"] && [userStatus[@"bodyHex"] length]==156 && ![userStatus[@"modelLayoutVerified"] boolValue],@"fixed snapshot owns immutable strings and retains all unknown bytes");
         printf("Native protocol, reassembly, stop queue and motion-core checks: %lu passed\n", (unsigned long)assertions);
     }
     return 0;

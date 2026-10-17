@@ -1,4 +1,5 @@
 """Current-App device commands share the existing connection/queue/pending map."""
+from .app_user_parameters import user_parameter_notification
 from .app_standalone import standalone_selection,standalone_write,standalone_context,standalone_reply
 from .app_tuning import tuning_selection,tuning_write,tuning_reply
 from .app_motor import motor_selection, motor_write, motor_reply
@@ -18,17 +19,25 @@ class AppCommands:
     def __init__(self, owner):
         self.owner, self._profile = owner, None
         self._calibration_status = None
+        self._user_parameter_status = None
 
+    userParameterStatus = property(lambda self: copy.deepcopy(self._user_parameter_status))
+    user_parameter_status = userParameterStatus
     profile = property(lambda self: self._profile)
     calibrationStatus = property(lambda self: copy.deepcopy(self._calibration_status))
     calibration_status = calibrationStatus
 
     def _reset(self):
         self._calibration_status = None
+        self._user_parameter_status = None
 
     def _message(self, message):
         if not self._profile:
             return
+        parameters=user_parameter_notification(message)
+        if parameters:
+            self._user_parameter_status=parameters
+            self.owner._emit('onAppStatus',copy.deepcopy(parameters))
         status = calibration_notification(message)
         if status:
             self._calibration_status = status

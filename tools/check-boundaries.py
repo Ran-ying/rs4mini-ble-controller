@@ -54,6 +54,9 @@ for row in manifest['commands']:
 for row in manifest['commands']:
     if row['targetEvidence'] == 'official-app-enum':
         assert row['requestCodec'] in {'unknown', 'not-exposed'} and not row['implementation'], row['key']
+    if row['targetEvidence'] == 'app-generic-code':
+        assert row['key'] == '04:24' and row['requestCodec'] == 'not-applicable' and row['responseCodec'] == 'candidate-structured'
+        assert manifest['userPushSdk']['modelSpecificPathVerified'] is False and manifest['userPushSdk']['targetDeviceVerified'] is False
     if row.get('officialAppEvidence'):
         evidence_path = root / row['officialAppEvidence']
         evidence = json.loads(evidence_path.read_text())
@@ -245,5 +248,22 @@ if manifest.get('subscriptionResearch'):
     assert preset['requestTypeRequired'] is True and preset['encryptionAllowed'] is False and preset['targetDeviceVerified'] is False and preset['activePresetVerified'] is False
     assert [(r['name'],r['value']) for r in subscription['sourceMovementEnums']] == [(r['name'],r['value']) for r in profiles['movementProfileSourceEnums']]
     assert [r['bodyHex'] for r in subscription['offlineBodyVectors']] == ['100001','320001','24090502','']
+if manifest.get('userPushSdk',{}).get('implemented'):
+    push = json.loads((root / manifest['userPushResearch']).read_text())
+    assert push['apkSha256'] == numeric['apkSha256'] and push['derivedSha256'] == restored['derivedSha256']
+    assert push['appCodeExecuted'] is False and push['targetDeviceVerified'] is False and push['wholeProtocolRecovered'] is False
+    assert len(push['fields']) == 17 and len(push['methods']) == 20 and push['sourceMinimumBytes'] == 74
+    assert push['partialPayloadZeroFillAllowed'] is False and push['requestTypeRequired'] is True and push['encryptionAllowed'] is False
+    assert push['sourceFramingEvidence'] == manifest['subscriptionResearch']
+    sdk = manifest['userPushSdk']
+    assert sdk['fieldCount'] == 17 and sdk['minimumPayloadBytes'] == 74 and sdk['targetDeviceVerified'] is False and sdk['activePresetVerified'] is False
+    for filename in sdk['files']:assert (root / filename).is_file()
+    expected = [[r['sourceGetter'],r['offset'],r['size']] for r in push['fields']]
+    js_fields = json.loads(re.search(r'const fields=(\[.*?\]);',(root / 'node/src/app-user-parameters.js').read_text(),re.S).group(1))
+    tree = ast.parse((root / 'python/rs4mini_sdk/app_user_parameters.py').read_text())
+    py_fields = ast.literal_eval(next(n.value for n in tree.body if isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and t.id=='FIELDS' for t in n.targets)))
+    native = (root / 'macos/RSControlCore.m').read_text().split('NSDictionary *RSDecodeAppUserParameterNotification(',1)[1]
+    native_fields = json.loads(re.search(r'NSArray \*fields=(@\[.*?\]);',native,re.S).group(1).replace('@',''))
+    assert js_fields == [list(r) for r in py_fields] == native_fields == expected
 print('Layer boundaries passed: device modules do not depend on motion; upper layers do not encode/write packets.')
 print('Protocol inventory: %d entries; inventoryComplete=false; further advanced development is gated.' % len(manifest['commands']))

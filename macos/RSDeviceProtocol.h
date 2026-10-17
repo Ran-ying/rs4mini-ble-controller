@@ -66,3 +66,5 @@ NSArray<NSDictionary *> *RSAppStandaloneSelection(NSDictionary *filters);
 NSDictionary *RSAppStandaloneWriteSpec(NSDictionary *spec);
 NSData *RSAppStandaloneWriteFrame(uint16_t sequence, NSArray *context, NSNumber *value);
 NSDictionary *RSDecodeAppStandaloneReply(NSDictionary *message, NSArray *selection, NSError **error);
+
+NSDictionary *RSDecodeAppUserParameterNotification(NSDictionary *message);

@@ -5,6 +5,7 @@
 @property(nonatomic, copy) NSString *appProfile;
 @property(nonatomic, copy) RSAppCompletion appCompletion;
 @property(nonatomic, copy) NSDictionary *appCalibrationStatus;
+@property(nonatomic, copy) NSDictionary *appUserParameterStatus;
 @property(nonatomic) BOOL appNoAckPending;
 @property(nonatomic, copy) NSNumber *appRequestedStart;
 @property(nonatomic, strong) NSArray *appParameters;

@@ -31,7 +31,7 @@ static BOOL Matches(NSString *name) {
 
 - (void)resetLink:(NSString *)message {
     [self finishApp:nil error:RSAppError(@"RS4MINI_DISCONNECTED", message ?: @"Disconnected", nil)];
-    self.awaitingDeviceQuery = NO; self.appCalibrationStatus = nil;
+    self.awaitingDeviceQuery = NO; self.appCalibrationStatus = nil; self.appUserParameterStatus = nil;
     BOOL recover = self.autoReconnectEnabled && (self.ready || self.retrying) && !self.disconnecting;
     [self.central stopScan]; [self.connectionTimer invalidate]; self.connectionTimer = nil;
     [self.tickTimer invalidate]; self.tickTimer = nil; [self cancelComposedMotion];
@@ -189,6 +189,10 @@ static BOOL Matches(NSString *name) {
             [self status:@"已收到 degree-info 原始响应，不代表反馈频率提高"];
         }
         if (self.appProfile) {
+            NSDictionary *parameters=RSDecodeAppUserParameterNotification(message);
+            if(parameters) {self.appUserParameterStatus=parameters;
+                @try {if(self.appStatusHandler)self.appStatusHandler(parameters);}
+                @catch(NSException *exception){NSLog(@"App status observer exception: %@",exception.name);}}
             NSDictionary *appStatus = RSDecodeAppCalibrationNotification(message);
             if (appStatus) {
                 self.appCalibrationStatus = appStatus;
@@ -343,7 +347,7 @@ static BOOL Matches(NSString *name) {
     }
     if ([kind isEqualToString:@"sleep"] && (!job[@"asleep"] || CFGetTypeID((__bridge CFTypeRef)job[@"asleep"]) != CFBooleanGetTypeID())) { [self status:@"asleep 必须为布尔值"]; return nil; }
     if (![kind isEqualToString:@"observe"] && ![self researchFrame:job sequence:0]) { [self status:@"实验角度、速率或查询种类无效"]; return nil; }
-    self.appProfile = nil; self.appCalibrationStatus = nil;
+    self.appProfile = nil; self.appCalibrationStatus = nil; self.appUserParameterStatus = nil;
     return [job copy];
 }
 
@@ -359,7 +363,7 @@ static BOOL Matches(NSString *name) {
 }
 - (BOOL)useAppProfile:(NSString *)profile {
     if (![profile isEqualToString:@"ronin-2.2.2"] || self.busy) { [self status:@"必须在空闲时明确选择 ronin-2.2.2 协议来源"]; return NO; }
-    self.researchProfile = nil; self.researchStatus = nil; self.appProfile = [profile copy]; self.appCalibrationStatus = nil; return YES;
+    self.researchProfile = nil; self.researchStatus = nil; self.appProfile = [profile copy]; self.appCalibrationStatus = nil; self.appUserParameterStatus = nil; return YES;
 }
 - (void)finishApp:(NSDictionary *)result error:(NSError *)error {
     RSAppCompletion completion = self.appCompletion;

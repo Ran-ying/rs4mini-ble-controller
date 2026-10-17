@@ -228,6 +228,13 @@ export interface AppCalibrationStatus extends AppCalibrationRecords {
   kind: "calibration"; profile: "ronin-2.2.2"; timestamp: number;
   deviceVerified: false; physicalCompletionVerified: false;
 }
+export interface AppUserParameterStatus {
+  kind:'userParameters'; profile:'ronin-2.2.2'; timestamp:number;
+  values:Array<{sourceGetter:string;offset:number;size:1|2;rawValue:number;rawHex:string}>;
+  preset:{rawValue:number;sourceEnum:'CUSTOM_1'|'CUSTOM_2'|'FAST'|'MEDIUM'|'SLOW'|null};bodyHex:string;
+  deviceVerified:false;modelLayoutVerified:false;activePresetVerified:false;physicalCompletionVerified:false;
+}
+export type AppStatus = AppCalibrationStatus | AppUserParameterStatus;
 export interface AppAutoTuneSent {
   profile: "ronin-2.2.2"; sent: true; requestedStart: boolean;
   acknowledgementRequested: false; acknowledged: false;
@@ -252,6 +259,7 @@ export interface AppTuningReading extends AppParameterReply {
 }
 export type StandaloneParameter='speed'|'smoothing';
 export interface AppCommands {
+  readonly userParameterStatus:AppUserParameterStatus|null;
   getStandaloneTuning(options?:{axis?:MotorTuningAxis;parameter?:StandaloneParameter;timeoutMs?:number}):Promise<AppTuningReading & {inputSourceRaw:number}>;
   setStandaloneTuning(options:{inputSource:2;axis:MotorTuningAxis;parameter:StandaloneParameter;value:number;timeoutMs?:number}):Promise<AppCommandReply & {axis:MotorTuningAxis;parameter:StandaloneParameter;requestedValue:number;requestedInputSource:2;activePresetVerified:false}>;
   getFollowTuning(options?:{axis?:MotorTuningAxis;parameter?:FollowParameter;timeoutMs?:number}):Promise<AppTuningReading>;

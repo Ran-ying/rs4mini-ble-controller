@@ -30,6 +30,7 @@ typedef void (^RSAppCompletion)(NSDictionary *result, NSError *error);
 - (void)setCustomFollowSettings:(NSDictionary *)settings timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion;
 - (void)setMotorSettings:(NSDictionary *)settings timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion;
 @property(nonatomic, readonly, copy) NSDictionary *appCalibrationStatus;
+@property(nonatomic, readonly, copy) NSDictionary *appUserParameterStatus;
 @property(nonatomic, copy) TelemetryHandler appStatusHandler;
 - (void)queryCalibrationStatusWithTimeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion;
 - (void)sendAutoTuneRequest:(NSNumber *)start completion:(RSAppCompletion)completion;

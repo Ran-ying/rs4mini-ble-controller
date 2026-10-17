@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "sdkDerivedSha256": "4fdbd74a05df63d72a0feb1c907d9395426ec3cdb5d6aeb45e3836d856d66654",
+  "uiDerivedSha256": "bb50b39865520f55e97116ae1903bda3545b01c2fb7e2aba67a979dc264a9854",
+  "appCodeExecuted": false,
+  "targetDeviceVerified": false,
+  "wholeProtocolRecovered": false,
+  "conditionalAppModelBranchLinked": true,
+  "modelPredicate": "CacheHelper.getProduct(ModelName) equals Model.HG724; not a BLE field or observed target value",
+  "sourceFacts": {
+    "writeCommand": "04:0F",
+    "readCommand": "04:10",
+    "inputSourceIndex": 72,
+    "inputSourceValue": 2,
+    "inputSourceWidth": 1,
+    "sourceAndValueShareOneRequest": true,
+    "callerMustChooseInputSourceExplicitly": true,
+    "readDoesNotSelectInputSource": true
+  },
+  "parameters": [
+    {
+      "name": "gimbal_create_smooth_pitch",
+      "index": 77,
+      "size": 2,
+      "typeID": 0,
+      "minValue": 0,
+      "maxValue": 30
+    },
+    {
+      "name": "gimbal_create_smooth_roll",
+      "index": 76,
+      "size": 2,
+      "typeID": 0,
+      "minValue": 0,
+      "maxValue": 30
+    },
+    {
+      "name": "gimbal_create_smooth_yaw",
+      "index": 78,
+      "size": 2,
+      "typeID": 0,
+      "minValue": 0,
+      "maxValue": 30
+    },
+    {
+      "name": "gimbal_create_max_speed_pitch",
+      "index": 80,
+      "size": 2,
+      "typeID": 0,
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "name": "gimbal_create_max_speed_roll",
+      "index": 79,
+      "size": 2,
+      "typeID": 0,
+      "minValue": 0,
+      "maxValue": 100
+    },
+    {
+      "name": "gimbal_create_max_speed_yaw",
+      "index": 81,
+      "size": 2,
+      "typeID": 0,
+      "minValue": 0,
+      "maxValue": 100
+    }
+  ],
+  "inputSource": {
+    "name": "gimbal_input_source",
+    "index": 72,
+    "size": 1,
+    "typeID": 0,
+    "minValue": 0,
+    "maxValue": 3
+  },
+  "prerequisiteEvidence": "protocol/research/ronin-numeric-params-evidence.json",
+  "modelMethods": [
+    {
+      "className": "Lcom/dji/ronin/viewModel/CreateVideoViewModel;",
+      "method": "supportProfileStandalone",
+      "descriptor": "()Z",
+      "codeOffset": 4016660,
+      "instructionSha256": "ce557fc60f524f3452407656cac797214241d2cbfb927daa10b968ee580dcfa6"
+    },
+    {
+      "className": "Lcom/dji/ronin/util/CommonUtils;",
+      "method": "isLightDevice",
+      "descriptor": "(Ldji/midware/component/DJIComponentManager$GimbalComponentType;)Z",
+      "codeOffset": 2778620,
+      "instructionSha256": "0d6e6806a218b6da9be06c1632b8d00b73983dea7bca16fe1c821132c48bff33"
+    },
+    {
+      "className": "Lcom/dji/ronin/util/CommonUtils;",
+      "method": "supportSince2ndGenDevice",
+      "descriptor": "()Z",
+      "codeOffset": 2779804,
+      "instructionSha256": "c9eccdce19c89130f55de5d25a8a3092a8569e78361af5cbd327e7a838dadc5f"
+    },
+    {
+      "className": "Lcom/dji/ronin/util/CommonUtils;",
+      "method": "is4thGenDevice",
+      "descriptor": "()Z",
+      "codeOffset": 2777644,
+      "instructionSha256": "f6bbb0eac2946cb8f26b1cb7c9117370b6145389bd3c9a51448b3c71a736951e"
+    },
+    {
+      "className": "Lcom/dji/ronin/util/CommonUtils;",
+      "method": "isHG724",
+      "descriptor": "()Z",
+      "codeOffset": 2778552,
+      "instructionSha256": "c8f728b1af593975311d989eeb8d2f579326632727ec251c31b2e55776f4aef4"
+    },
+    {
+      "className": "Lcom/dji/upgrade/util/CommonUtils;",
+      "method": "isHG724",
+      "descriptor": "()Z",
+      "codeOffset": 3022596,
+      "instructionSha256": "413319914fa9b4e2cf5712030aaf14c2f7f4cf296e49848e794fb959e9c11c6e"
+    }
+  ]
+}

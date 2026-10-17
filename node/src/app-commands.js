@@ -1,3 +1,4 @@
+import { standaloneSelection, standaloneWrite, standaloneContext, standaloneReply } from './app-standalone.js';
 import { tuningSelection, tuningWrite, tuningReply } from './app-tuning.js';
 import { systemCalibrationPayload, systemCalibrationReply } from './app-system-calibration.js';
 import { balanceStartPayload, balanceReply } from './app-balance.js';
@@ -66,6 +67,23 @@ export class AppCommands {
       await this.owner._stop(); check(operation.controller.signal);
       const response=await this.owner.experimental._queryPayloadCommand('App balance start',[4,0x0f],balanceStartPayload(),timeoutMs,{signal:operation.controller.signal,epoch:this.owner.motionEpoch});
       return {...appReply(response,0x0f),requestedValue:64};
+    },false);
+  }
+  async getStandaloneTuning(options={}) {
+    optionsOnly(options,['axis','parameter','timeoutMs']);this._requireProfile();
+    const {timeoutMs=3000,...filters}=options,selection=standaloneSelection(filters);
+    const response=await this.owner.experimental._queryPayloadCommand('App standalone query',[4,0x10],parameterRequest(standaloneContext(selection)),timeoutMs);
+    return standaloneReply(response,selection);
+  }
+  async setStandaloneTuning(options={}) {
+    optionsOnly(options,['inputSource','axis','parameter','value','timeoutMs']);this._requireProfile();
+    const spec=standaloneWrite(options),timeoutMs=options.timeoutMs ?? 3000;
+    if (!Number.isFinite(timeoutMs) || timeoutMs<=0 || timeoutMs>60000) throw new RangeError('timeoutMs must be >0..60000');
+    return this.owner._run('setStandaloneTuning',async operation=>{
+      await this.owner._stop();check(operation.controller.signal);
+      const response=await this.owner.experimental._queryPayloadCommand('App standalone source/value write',[4,0x0f],spec.payload,timeoutMs,{signal:operation.controller.signal,epoch:this.owner.motionEpoch});
+      const {payload,...requested}=spec;
+      return {...appReply(response,0x0f),...requested,activePresetVerified:false};
     },false);
   }
   getFollowTuning(options = {}) { return this._getTuning('follow',options); }

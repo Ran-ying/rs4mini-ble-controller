@@ -1,6 +1,6 @@
 # 设备 SDK 命令审计与高级开发前置条件
 
-2026-10-16，0.7.10 / 原生 0.3.10。**尚不能确认 RS 4 Mini 全部非相机 BLE 命令都已枚举、解析并封装。**
+2026-10-17，0.7.11 / 原生 0.3.11。**尚不能确认 RS 4 Mini 全部非相机 BLE 命令都已枚举、解析并封装。**
 机器清单是 [protocol/COMMANDS.json](../protocol/COMMANDS.json)，目前记录 48 个命令或缺口条目；
 它不是厂商完整命令表，不能以“所有已知代码已封装”代替“所有设备命令已知”。
 
@@ -32,7 +32,7 @@
 | `04:4C` | 重置/模式命令中的三轴回中 | `partial` / `unknown` | `hardware` | 当前 App 的原代码备份确认两字节 mode+布尔reset；本机仍只确认 FE01 三轴回中，无按轴选择位，旧 MSDK 轴枚举不可套用；其他模式/响应待本机证据 |
 | `04:66` | 状态 TLV 候选通知 | `not-applicable` / `partial` | `other-model` | 保留 TLV 原始量，不假设本机 tag 语义 |
 | `0D:02` | 电量候选通知 | `not-applicable` / `partial` | `other-model` | 百分比仅为其他 Mini 研究格式，本机未证实 |
-| `unknown:follow-mode` | 跟随模式与手柄参数 | `unknown` / `unknown` | `app-code-path` | 灵敏度、自定义跟随轴、六组按轴档位及18项普通跟随/RC数值已封装；PF/PTF/FPV完整预设、活动custom预设验证、独立配置输入源组合、低两位及型号/本机效果仍待完成 |
+| `unknown:follow-mode` | 跟随模式与手柄参数 | `unknown` / `unknown` | `app-code-path` | 灵敏度、自定义跟随轴、六组按轴档位及18项普通跟随/RC数值已封装；PF/PTF/FPV完整预设、活动custom预设验证、独立配置真实效果、低两位及型号/本机效果仍待完成 |
 | `unknown:motor-calibration` | 电机参数/自动整定/水平校准 | `unknown` / `unknown` | `none` | 自动调参请求/状态、十二个电机数值、平衡测试及system_calc自动校准请求/状态已封装；system_calc与水平校准的型号/UI身份仍未确认；其他字段、实机接受/效果/持久化和固件中止仍待完成 |
 | `unknown:firmware-program` | 固件动作程序 | `unknown` / `unknown` | `none` | 通用程序代码已恢复；型号路径、完整字段、执行/取消/通知语义仍待逐项审计与封装 |
 | `unknown:device-management` | 激活/绑定/恢复设置/固件管理的 BLE 覆盖 | `unknown` / `unknown` | `none` | 是否通过本 BLE 链路提供及其协议尚未枚举；连接成功不证明设备管理命令已全覆盖 |
@@ -128,3 +128,6 @@ HG724继承的启动路径为普通用户参数04:0F，balance_test/index37/size
 数值静态研究已区分普通18字段和独立配置输入源同包路径；源码证据不等于SDK或型号验收。见 [NUMERIC_PARAMS.md](../tools/research/NUMERIC_PARAMS.md)。
 
 0.7.10封装18项普通数值并以源码证据逐项检查三端目录，见 [APP_NUMERIC_TUNING.md](APP_NUMERIC_TUNING.md)。活动预设和本机效果未验收，不计作全部命令完成。
+
+
+0.7.11增加独立配置的六项命名数值与显式输入源2同包事务，04:0F写/04:10按外部宽度读；读取不切源，未知源和值保留。源码条件关联至Model.HG724，尚无设备验证。见 [APP_STANDALONE_TUNING.md](APP_STANDALONE_TUNING.md)。这不完成PF/PTF/FPV预设、固件原生程序或全部命令，完整性和高级新增门槛仍false。

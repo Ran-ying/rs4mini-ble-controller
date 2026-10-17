@@ -145,6 +145,14 @@ int main(void) {
         for (NSData *bad in @[[NSData data], [NSData dataWithBytes:(uint8_t[]){0,18} length:2], [NSData dataWithBytes:(uint8_t[]){0,18,0} length:3], [NSData dataWithBytes:(uint8_t[]){0,18,3,1,2,3} length:6], [NSData dataWithBytes:(uint8_t[]){0,18,2,1} length:4]])
             Require(!RSDecodeResearchStatus(parameterMessage(0x10, bad, 0x80), @"rs3"), @"malformed parameter payload rejected");
         Require(!RSDecodeResearchStatus(parameterMessage(0x10, [NSData dataWithBytes:(uint8_t[]){0,18,1,0} length:4], 0x40), @"rs3"), @"parameter response requires response bit");
+        NSArray *standaloneRows=RSAppStandaloneSelection(nil);
+        Require(standaloneRows.count==6 && !RSAppStandaloneSelection(@{@"axis":@"pan"}) && !RSAppStandaloneWriteSpec(@{@"axis":@"pitch",@"parameter":@"speed",@"value":@100}), @"standalone named catalog requires explicit source");
+        NSArray *standaloneContext=@[@{@"index":@72,@"size":@1},@{@"index":@80,@"size":@2}];
+        [decoder reset];NSDictionary *standaloneFrame=[decoder push:RSAppStandaloneWriteFrame(5,standaloneContext,@100)].firstObject;
+        Require([Hex(standaloneFrame[@"payload"]) isEqualToString:@"48010250026400"] && !RSAppStandaloneWriteFrame(5,@[@{@"index":@72,@"size":@1},@{@"index":@3,@"size":@2}],@100), @"standalone allows only paired source2 and audited value in one packet");
+        Require(!RSAppStandaloneWriteFrame(5,standaloneContext,@YES) && !RSAppStandaloneWriteSpec(@{@"inputSource":@3,@"axis":@"pitch",@"parameter":@"speed",@"value":@100}), @"standalone refuses boolean values and other sources");
+        NSDictionary *standaloneReply=RSDecodeAppStandaloneReply(parameterMessage(0x10,[NSData dataWithBytes:(uint8_t[]){0,72,9,255,80,9,0x34,0x12} length:8],0x80),RSAppStandaloneSelection(@{@"axis":@"pitch",@"parameter":@"speed"}),&error);
+        Require([standaloneReply[@"inputSourceRaw"] intValue]==255 && [standaloneReply[@"values"][0][@"rawValue"] intValue]==4660 && ![standaloneReply[@"values"][0][@"withinSourceRange"] boolValue] && ![standaloneReply[@"activePresetVerified"] boolValue], @"standalone preserves unknown source and unsigned little endian value");
         printf("Native protocol, reassembly, stop queue and motion-core checks: %lu passed\n", (unsigned long)assertions);
     }
     return 0;

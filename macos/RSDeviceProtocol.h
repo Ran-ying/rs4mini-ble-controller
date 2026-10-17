@@ -61,3 +61,8 @@ NSArray<NSDictionary *> *RSAppTuningSelection(NSString *domain, NSDictionary *fi
 NSDictionary *RSAppTuningWriteSpec(NSString *domain, NSDictionary *spec);
 NSData *RSAppTuningWriteFrame(uint16_t sequence, NSArray *context, NSNumber *value);
 NSDictionary *RSDecodeAppTuningReply(NSDictionary *message, NSArray *selection, NSError **error);
+
+NSArray<NSDictionary *> *RSAppStandaloneSelection(NSDictionary *filters);
+NSDictionary *RSAppStandaloneWriteSpec(NSDictionary *spec);
+NSData *RSAppStandaloneWriteFrame(uint16_t sequence, NSArray *context, NSNumber *value);
+NSDictionary *RSDecodeAppStandaloneReply(NSDictionary *message, NSArray *selection, NSError **error);

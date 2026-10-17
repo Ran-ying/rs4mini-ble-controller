@@ -1,10 +1,14 @@
 # 项目状态与接手入口
 
-更新日期：2026-10-16。当前源码检查点为 Node/Python/Web **0.7.10**、macOS 原生面板 **0.3.10**。
+更新日期：2026-10-17。当前源码检查点为 Node/Python/Web **0.7.11**、macOS 原生面板 **0.3.11**。
 
 **当前 App 参数事务已进入四端设备 SDK；全部非相机 BLE 能力整体目标尚未完成。**
 用户已要求将源码与相关信息提交至 GitHub。本记录随源码版本保存，提交和远端状态以 Git 历史为准；
 这不是 npm 发布或 GitHub 二进制 Release。
+
+## 当前进度：0.7.11 独立配置输入源SDK
+
+四端新增get/setStandaloneTuning，六项数值与输入源2同一0F请求，要求调用方显式输入源；10读取保留实际inputSourceRaw与异常数值，不自动切预设或源。型号条件分支已静态关联到产品Model.HG724，不是实机读数。完整契约见 [APP_STANDALONE_TUNING.md](APP_STANDALONE_TUNING.md)。Node126/Web14/Python两环境各103/native87+119+3/research两环境各54，类型/边界/构建及安装包回归通过。未操作硬件/UI、未新增高级任务；全部命令与实机验收仍未完成。下方为历史记录。
 
 ## 当前进度：0.7.10 普通数值SDK
 

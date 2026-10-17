@@ -473,3 +473,51 @@ NSDictionary *RSDecodeAppTuningReply(NSDictionary *message, NSArray *selection, 
     }
     NSMutableDictionary *result=[reply mutableCopy];result[@"values"]=[values copy];result[@"activePresetVerified"]=@NO;return [result copy];
 }
+
+NSArray<NSDictionary *> *RSAppStandaloneSelection(NSDictionary *filters) {
+    if (filters && ![filters isKindOfClass:NSDictionary.class]) return nil;
+    for (id key in filters) if (![@[@"axis",@"parameter"] containsObject:key]) return nil;
+    NSArray *axes=@[@"pitch",@"roll",@"yaw"];
+    NSArray *groups=@[@[@"speed",@[@80,@79,@81],@0,@100],@[@"smoothing",@[@77,@76,@78],@0,@30]];
+    if (filters[@"axis"] && ![axes containsObject:filters[@"axis"]]) return nil;
+    BOOL found=filters[@"parameter"]==nil;NSMutableArray *result=[NSMutableArray array];
+    for (NSArray *group in groups) {
+        if (filters[@"parameter"] && ![filters[@"parameter"] isEqual:group[0]]) continue;found=YES;
+        for (NSUInteger i=0;i<3;i++) {
+            if (filters[@"axis"] && ![filters[@"axis"] isEqual:axes[i]]) continue;
+            [result addObject:@{@"axis":axes[i],@"parameter":group[0],@"index":group[1][i],@"size":@2,@"min":group[2],@"max":group[3]}];
+        }
+    }
+    return found?[result copy]:nil;
+}
+NSDictionary *RSAppStandaloneWriteSpec(NSDictionary *spec) {
+    if (![spec isKindOfClass:NSDictionary.class] || spec.count!=4 || !Numeric(spec[@"inputSource"]) || [spec[@"inputSource"] doubleValue]!=2 || !spec[@"axis"] || !spec[@"parameter"] || !Numeric(spec[@"value"])) return nil;
+    NSArray *selected=RSAppStandaloneSelection(@{@"axis":spec[@"axis"],@"parameter":spec[@"parameter"]});if (selected.count!=1) return nil;
+    NSDictionary *row=selected[0];double value=[spec[@"value"] doubleValue];
+    if (floor(value)!=value || value<[row[@"min"] intValue] || value>[row[@"max"] intValue]) return nil;
+    NSMutableDictionary *result=[row mutableCopy];result[@"value"]=@(value);result[@"inputSource"]=@2;return [result copy];
+}
+NSData *RSAppStandaloneWriteFrame(uint16_t sequence, NSArray *context, NSNumber *value) {
+    context=RSAppParameterContext(context);
+    if (context.count!=2 || ![context[0][@"index"] isEqual:@72] || ![context[0][@"size"] isEqual:@1]) return nil;
+    for (NSDictionary *row in RSAppStandaloneSelection(nil)) {
+        if (![row[@"index"] isEqual:context[1][@"index"]] || ![context[1][@"size"] isEqual:@2]) continue;
+        if (!RSAppStandaloneWriteSpec(@{@"inputSource":@2,@"axis":row[@"axis"],@"parameter":row[@"parameter"],@"value":value ?: NSNull.null})) return nil;
+        uint8_t body[]={72,1,2,[row[@"index"] unsignedCharValue],2,value.unsignedIntValue&255,(value.unsignedIntValue>>8)&255};
+        return CommandFrame(sequence,4,0x0f,[NSData dataWithBytes:body length:7],0x40);
+    }
+    return nil;
+}
+NSDictionary *RSDecodeAppStandaloneReply(NSDictionary *message, NSArray *selection, NSError **error) {
+    NSMutableArray *context=[NSMutableArray arrayWithObject:@{@"index":@72,@"size":@1}];
+    for(NSDictionary *row in selection)[context addObject:@{@"index":row[@"index"],@"size":@2}];
+    NSDictionary *reply=RSDecodeAppReply(message,0x10,context,error);if(!reply)return nil;
+    unsigned input=0;[[NSScanner scannerWithString:reply[@"parameters"][0][@"rawHex"]] scanHexInt:&input];
+    NSMutableArray *values=[NSMutableArray array];
+    for(NSUInteger i=0;i<selection.count;i++) {
+        NSDictionary *row=selection[i],*record=reply[@"parameters"][i+1];unsigned encoded=0;
+        [[NSScanner scannerWithString:record[@"rawHex"]] scanHexInt:&encoded];unsigned raw=((encoded&255)<<8)|(encoded>>8);
+        NSMutableDictionary *item=[record mutableCopy];[item addEntriesFromDictionary:@{@"axis":row[@"axis"],@"parameter":row[@"parameter"],@"rawValue":@(raw),@"withinSourceRange":@(raw>=[row[@"min"] unsignedIntValue] && raw<=[row[@"max"] unsignedIntValue])}];[values addObject:[item copy]];
+    }
+    NSMutableDictionary *result=[reply mutableCopy];result[@"inputSourceRaw"]=@(input);result[@"activePresetVerified"]=@NO;result[@"values"]=[values copy];return [result copy];
+}

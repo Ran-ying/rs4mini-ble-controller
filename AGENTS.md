@@ -8,9 +8,9 @@ verification status changes.
 ## Objective and user decisions
 
 - Provide an unofficial, direct BLE controller for **DJI RS 4 Mini**, initially on macOS.
-- **Node.js is the authoritative implementation**; current package version is `0.7.10`.
+- **Node.js is the authoritative implementation**; current package version is `0.7.11`.
 - The user subsequently requested completion of all existing ports. Python is now
-  `0.7.10`, Web shares the JS core, and the native panel is `0.3.10`. Describe the
+  `0.7.11`, Web shares the JS core, and the native panel is `0.3.11`. Describe the
   documented feature differences; do not claim identical APIs or hardware proof.
 - After that delivery, the user requested the remaining **non-camera** capabilities
   under the same autonomous/offline conditions. Expansion work is in progress;
@@ -502,3 +502,23 @@ no replay and cleared ownership/progress are retained. Runtime unchanged,
 Node120 (was119). Test clock restored in finally; no hardware used. Prior
 approval log download was deferred by approval-review usage quota; normal
 review retry succeeded, credentials were never printed or saved to source.
+
+
+## Current runtime: 0.7.11 / native 0.3.11 build14
+
+get/setStandaloneTuning (Python snake_case aliases) use the existing AppCommands
+SDK facade. Six source-named create speed/smoothing fields are size2; callers
+must explicitly pass inputSource2, and 72/size1/value2 shares ONE 0F request with
+the selected numeric value. No generic batch write, implicit source selection,
+source-only API, replay, rollback, or advanced tasks. Reads10 include72 first,
+retain inputSourceRaw even when not2 and unsigned unknown values; no source
+switch/atomic-profile guarantee. activePresetVerified/deviceVerified/physical
+completion remain false. Node/Python queries retain existing concurrency;
+native query owns slot and stops first. See docs/APP_STANDALONE_TUNING.md.
+ronin_standalone_trace.py reuses numeric42-method audit and fingerprints six
+conditional model methods from supportProfileStandalone to product Model.HG724.
+App model predicate is not live target evidence or a BLE field. Fixed hashes
+and all three six-record catalogs are checked. No APK code execution, hardware
+or live UI. Both completeness gates remain false; no new advanced development.
+
+0.7.11 offline checks: Node126/Web14, Python3.8/3.12 each103, native87+119+3, research54 in bothPython environments. Installed tarball126/wheel103, types/boundaries/build pass. Fixed APK static JSON reproduced byte-for-byte. No hardware/liveUI/vendor execution.

@@ -57,3 +57,6 @@ PYTHONPATH=work/research/analysis-libs work/python312/bin/python tools/research/
 标准库研究测试在Python3.8/3.12各53项通过，固定APK复现一致。没有SDK发送扩大、扫描、连接、运动、实时UI或App代码执行。型号/预设条件、数值SDK接口、本机效果/持久化、输入源选择等仍待完成；全协议和高级门槛保持false。
 
 后续0.7.10已封装18项普通数值SDK，当前范围与活动预设未验证边界见 [APP_NUMERIC_TUNING.md](../../docs/APP_NUMERIC_TUNING.md)。独立配置输入源组合仍未封装；本工具本身不提供SDK或发送能力。
+
+
+后续0.7.11已封装六项独立配置与显式输入源2同包写入，见 [APP_STANDALONE_TUNING.md](../../docs/APP_STANDALONE_TUNING.md)。新ronin_standalone_trace.py复核本证据并追加六个条件型号方法指纹，关联App产品Model.HG724，不是本机BLE身份/效果验证。此前“独立配置未封装”为历史进度。

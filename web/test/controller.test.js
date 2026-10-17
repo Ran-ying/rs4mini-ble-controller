@@ -126,6 +126,8 @@ test('protocol, telemetry and controller import without Node Buffer or Node modu
     assert.equal(balance.balanceFields(0).axisResults.yaw.result, null);
     const packedModes = await import('./node/src/app-settings.js');
     assert.deepEqual([...packedModes.settingsWrite('followSpeed',{yaw:'custom'},255).payload], [65,1,63]);
+    const standalone = await import('./node/src/app-standalone.js');
+    assert.deepEqual([...standalone.standaloneWrite({inputSource:2,axis:'pitch',parameter:'speed',value:100}).payload],[72,1,2,80,2,100,0]);
     const numeric = await import('./node/src/app-tuning.js');
     assert.deepEqual([...numeric.tuningWrite('follow',{axis:'pitch',parameter:'speed',value:100}).payload], [3,2,100,0]);
     const motor = await import('./node/src/app-motor.js');

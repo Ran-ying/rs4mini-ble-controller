@@ -1,4 +1,5 @@
 """Current-App device commands share the existing connection/queue/pending map."""
+from .app_standalone import standalone_selection,standalone_write,standalone_context,standalone_reply
 from .app_tuning import tuning_selection,tuning_write,tuning_reply
 from .app_motor import motor_selection, motor_write, motor_reply
 from .app_system_calibration import system_calibration_reply
@@ -96,6 +97,27 @@ class AppCommands:
         return await self.owner._run('sendBalanceTestRequest',body,False)
 
     send_balance_test_request=sendBalanceTestRequest
+
+    async def getStandaloneTuning(self, *, axis=None, parameter=None, timeoutMs=3000):
+        self._require_profile()
+        selection=standalone_selection(axis,parameter)
+        response=await self.owner.experimental._query_payload_command('App standalone query',(4,0x10),parameter_request(standalone_context(selection)),timeoutMs)
+        return standalone_reply(response,selection)
+
+    get_standalone_tuning=getStandaloneTuning
+
+    async def setStandaloneTuning(self, *, inputSource, axis, parameter, value, timeoutMs=3000):
+        self._require_profile()
+        payload=standalone_write(inputSource,axis,parameter,value)
+        _duration(timeoutMs,'timeoutMs',False)
+        async def body(operation):
+            await self.owner._halt()
+            self.owner._check(operation)
+            response=await self.owner.experimental._query_payload_command('App standalone source/value write',(4,0x0f),payload,timeoutMs,external_operation=operation,epoch=self.owner._epoch)
+            return dict(app_reply(response,0x0f),axis=axis,parameter=parameter,requestedValue=value,requestedInputSource=2,activePresetVerified=False)
+        return await self.owner._run('setStandaloneTuning',body,False)
+
+    set_standalone_tuning=setStandaloneTuning
 
     async def getFollowTuning(self, *, axis=None, parameter=None, timeoutMs=3000):
         return await self._get_tuning('follow',axis,parameter,timeoutMs)

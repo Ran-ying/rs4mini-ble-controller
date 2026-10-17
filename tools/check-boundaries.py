@@ -190,5 +190,31 @@ if manifest.get('numericParameterSdk',{}).get('implemented'):
     native_literal = re.search(r'NSArray \*groups=(@\{.*?\})\[domain\];',native,re.S).group(1)
     native_groups = json.loads(native_literal.replace('@',''))
     assert normalize(py_groups) == normalize(js_groups) == normalize(native_groups) == expected
+if manifest.get('standaloneSdk',{}).get('implemented'):
+    standalone = json.loads((root / manifest['standaloneResearch']).read_text())
+    sdk = manifest['standaloneSdk']
+    assert standalone['apkSha256'] == numeric['apkSha256']
+    assert standalone['sdkDerivedSha256'] == numeric['sdkDerivedSha256'] and standalone['uiDerivedSha256'] == numeric['uiDerivedSha256']
+    assert standalone['appCodeExecuted'] is False and standalone['targetDeviceVerified'] is False and standalone['wholeProtocolRecovered'] is False
+    assert standalone['conditionalAppModelBranchLinked'] is True and len(standalone['modelMethods']) == 6
+    assert standalone['parameters'] == numeric['distinctCreatePath']['parameters']
+    assert standalone['inputSource'] == numeric['distinctCreatePath']['inputSource']
+    facts = standalone['sourceFacts']
+    assert (facts['inputSourceIndex'],facts['inputSourceWidth'],facts['inputSourceValue']) == (72,1,2)
+    assert facts['sourceAndValueShareOneRequest'] and facts['callerMustChooseInputSourceExplicitly'] and facts['readDoesNotSelectInputSource']
+    assert sdk['namedParameterCount'] == 6 and sdk['explicitInputSource'] == 2 and sdk['sourceAndValueShareOneRequest'] is True and sdk['targetDeviceVerified'] is False
+    for filename in sdk['files']:assert (root / filename).is_file()
+    expected = {}
+    for row in standalone['parameters']:
+        parameter = 'smoothing' if row['name'].startswith('gimbal_create_smooth_') else 'speed'
+        expected[(parameter,row['name'].rsplit('_',1)[1])] = (row['index'],row['size'],row['minValue'],row['maxValue'])
+    def standalone_normalize(groups):
+        return {(parameter,axis):(indices[i],2,minimum,maximum) for parameter,indices,minimum,maximum in groups for i,axis in enumerate(('pitch','roll','yaw'))}
+    tree = ast.parse((root / 'python/rs4mini_sdk/app_standalone.py').read_text())
+    py_groups = ast.literal_eval(next(n.value for n in tree.body if isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and t.id=='GROUPS' for t in n.targets)))
+    js_groups = ast.literal_eval(re.search(r'const groups=(\[.*?\]);',(root / 'node/src/app-standalone.js').read_text(),re.S).group(1))
+    native = (root / 'macos/RSControlCore.m').read_text().split('NSArray<NSDictionary *> *RSAppStandaloneSelection(',1)[1]
+    native_groups = json.loads(re.search(r'NSArray \*groups=(@\[.*?\]);',native,re.S).group(1).replace('@',''))
+    assert standalone_normalize(py_groups) == standalone_normalize(js_groups) == standalone_normalize(native_groups) == expected
 print('Layer boundaries passed: device modules do not depend on motion; upper layers do not encode/write packets.')
 print('Protocol inventory: %d entries; inventoryComplete=false; further advanced development is gated.' % len(manifest['commands']))

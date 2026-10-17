@@ -37,6 +37,8 @@ typedef void (^RSAppCompletion)(NSDictionary *result, NSError *error);
 - (void)sendAutoCalibrationRequestWithTimeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion;
 - (void)getBalanceTestStatusWithTimeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion;
 - (void)sendBalanceTestRequestWithTimeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion;
+- (void)getStandaloneTuning:(NSDictionary *)filters timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion;
+- (void)setStandaloneTuning:(NSDictionary *)spec timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion;
 - (void)getFollowTuning:(NSDictionary *)filters timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion;
 - (void)setFollowTuning:(NSDictionary *)spec timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion;
 - (void)getRcTuning:(NSDictionary *)filters timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion;

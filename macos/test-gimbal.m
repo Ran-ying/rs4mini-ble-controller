@@ -383,9 +383,21 @@ int main(void) {
         [peripheral.writes setLength:0];[gimbal setRcTuning:@{@"axis":@"roll",@"parameter":@"deadZone",@"value":@0} timeoutMs:1000 completion:appDone];ThreeTicks(gimbal);[gimbal stop];ThreeTicks(gimbal);PumpCallbacks();
         [decoder reset];frames=[decoder push:peripheral.writes];NSUInteger numericWrites=0;for(NSDictionary *f in frames)if([f[@"commandId"] intValue]==0x0f)numericWrites++;
         Require(appCallbacks==31 && numericWrites==1 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_OPERATION_CANCELLED"],@"numeric cancellation clears pending ACK without replay");
+        [peripheral.writes setLength:0];[gimbal setStandaloneTuning:@{@"axis":@"pitch",@"parameter":@"speed",@"value":@100} timeoutMs:1000 completion:appDone];PumpCallbacks();
+        Require(appCallbacks==32 && peripheral.writes.length==0 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_INVALID_ARGUMENT"],@"standalone missing explicit source rejects before frames");
+        NSMutableDictionary *standaloneSpec=[@{@"inputSource":@2,@"axis":@"pitch",@"parameter":@"speed",@"value":@100} mutableCopy];[gimbal setStandaloneTuning:standaloneSpec timeoutMs:1000 completion:appDone];standaloneSpec[@"value"]=@5;ThreeTicks(gimbal);[decoder reset];frames=[decoder push:peripheral.writes];
+        Require(gimbal.busy && [frames.lastObject[@"commandId"] intValue]==0x0f && [frames.lastObject[@"payload"] isEqualToData:[NSData dataWithBytes:(uint8_t[]){72,1,2,80,2,100,0} length:7]],@"standalone snapshots input and sends paired source/value packet");
+        appSequence=[[gimbal valueForKey:@"deviceQuerySequence"] unsignedShortValue];notify.value=AppResponse(appSequence,0x0f,ok,4);[gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil];PumpCallbacks();
+        Require(appCallbacks==33 && !gimbal.busy && [appResult[@"requestedInputSource"] intValue]==2 && [appResult[@"requestedValue"] intValue]==100 && ![appResult[@"physicalCompletionVerified"] boolValue],@"standalone ACK ends host ownership without physical claim");
+        [peripheral.writes setLength:0];[gimbal getStandaloneTuning:@{@"axis":@"roll",@"parameter":@"smoothing"} timeoutMs:1000 completion:appDone];ThreeTicks(gimbal);[decoder reset];frames=[decoder push:peripheral.writes];
+        Require([frames.lastObject[@"commandId"] intValue]==0x10 && [frames.lastObject[@"payload"] isEqualToData:[NSData dataWithBytes:(uint8_t[]){72,76} length:2]],@"standalone getter reads source and named value without changing source");
+        appSequence=[[gimbal valueForKey:@"deviceQuerySequence"] unsignedShortValue];notify.value=AppResponse(appSequence,0x10,[NSData dataWithBytes:(uint8_t[]){0,72,9,1,76,9,255,255} length:8],4);[gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil];PumpCallbacks();
+        Require(appCallbacks==34 && [appResult[@"inputSourceRaw"] intValue]==1 && [appResult[@"values"][0][@"rawValue"] intValue]==65535 && ![appResult[@"activePresetVerified"] boolValue],@"standalone read keeps actual source even when not2");
+        [peripheral.writes setLength:0];[gimbal setStandaloneTuning:@{@"inputSource":@2,@"axis":@"yaw",@"parameter":@"speed",@"value":@0} timeoutMs:1000 completion:appDone];ThreeTicks(gimbal);[gimbal stop];ThreeTicks(gimbal);PumpCallbacks();[decoder reset];frames=[decoder push:peripheral.writes];NSUInteger standaloneWrites=0;for(NSDictionary *f in frames)if([f[@"commandId"] intValue]==0x0f)standaloneWrites++;
+        Require(appCallbacks==35 && standaloneWrites==1 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_OPERATION_CANCELLED"],@"standalone cancel never replays or restores input source");
         [gimbal getFollowSensitivityWithTimeoutMs:1000 completion:appDone]; ThreeTicks(gimbal);
         [gimbal centralManager:(id)central didDisconnectPeripheral:(id)peripheral error:nil]; PumpCallbacks();
-        Require(appCallbacks == 32 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_DISCONNECTED"], @"native disconnect rejects pending App query");
+        Require(appCallbacks == 36 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_DISCONNECTED"], @"native disconnect rejects pending App query");
         [gimbal disconnect]; ThreeTicks(gimbal);
         printf("Native fake-device lifecycle checks: %lu passed (no Bluetooth manager created)\n", (unsigned long)assertions);
     }

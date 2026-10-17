@@ -75,6 +75,12 @@ void balanceResult;
   // @ts-expect-error standalone create fields are not ordinary tuning selectors
   await gimbal.appCommands.getRcTuning({parameter:'gimbal_create_max_speed_yaw'});
 
+  await gimbal.appCommands.setStandaloneTuning({inputSource:2,axis:'pitch',parameter:'smoothing',value:20});
+  const standalone = await gimbal.appCommands.getStandaloneTuning();
+  const inputSourceRaw:number=standalone.inputSourceRaw;void inputSourceRaw;
+  // @ts-expect-error explicit input source is required because the request changes it
+  await gimbal.appCommands.setStandaloneTuning({axis:'pitch',parameter:'speed',value:20});
+
 }
 
 const bytes = velocityFrame(1, { pan: 0.1 });

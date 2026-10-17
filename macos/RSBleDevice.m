@@ -379,7 +379,7 @@ static BOOL Matches(NSString *name) {
         case 0x10: return RSAppParameterRequestFrame(sequence, context);
         case 0x0f:
             if (context) {
-                if (mode) return RSAppTuningWriteFrame(sequence,context,mode);
+                if (mode) return context.count==2 ? RSAppStandaloneWriteFrame(sequence,context,mode) : RSAppTuningWriteFrame(sequence,context,mode);
                 if (context.count!=1 || [context[0][@"size"] intValue]!=1) return nil;
                 if ([context[0][@"index"] intValue]==37) return RSAppBalanceStartFrame(sequence);
                 if ([context[0][@"index"] intValue]==36) return RSAppSystemCalibrationStartFrame(sequence);
@@ -413,6 +413,23 @@ static BOOL Matches(NSString *name) {
     [self startAppCommand:0x0f parameters:@[@{@"index":@37,@"size":@1}] mode:nil settingsKind:nil settingsPatch:nil timeoutMs:timeoutMs completion:^(NSDictionary *reply,NSError *error) {
         NSMutableDictionary *result=[reply mutableCopy]; if (result) result[@"requestedValue"]=@64;
         if (completion) completion(result?[result copy]:nil,error);
+    }];
+}
+- (void)getStandaloneTuning:(NSDictionary *)filters timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
+    NSArray *selection=RSAppStandaloneSelection(filters);
+    if(!selection){if(completion)dispatch_async(dispatch_get_main_queue(), ^{completion(nil,RSAppError(@"RS4MINI_INVALID_ARGUMENT",@"Invalid standalone selection",nil));});return;}
+    NSMutableArray *context=[NSMutableArray arrayWithObject:@{@"index":@72,@"size":@1}];for(NSDictionary *row in selection)[context addObject:@{@"index":row[@"index"],@"size":@2}];
+    [self startAppCommand:0x10 parameters:context mode:nil settingsKind:nil settingsPatch:nil timeoutMs:timeoutMs completion:^(NSDictionary *reply,NSError *error) {
+        if(error){if(completion)completion(nil,error);return;}NSError *decodeError=nil;
+        NSDictionary *result=RSDecodeAppStandaloneReply(reply[@"message"],selection,&decodeError);if(completion)completion(result,decodeError);
+    }];
+}
+- (void)setStandaloneTuning:(NSDictionary *)spec timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
+    NSDictionary *row=RSAppStandaloneWriteSpec(spec);
+    if(!row){if(completion)dispatch_async(dispatch_get_main_queue(), ^{completion(nil,RSAppError(@"RS4MINI_INVALID_ARGUMENT",@"Standalone write requires explicit inputSource2 and a named value",nil));});return;}
+    [self startAppCommand:0x0f parameters:@[@{@"index":@72,@"size":@1},@{@"index":row[@"index"],@"size":@2}] mode:row[@"value"] settingsKind:nil settingsPatch:nil timeoutMs:timeoutMs completion:^(NSDictionary *reply,NSError *error) {
+        NSMutableDictionary *result=[reply mutableCopy];if(result)[result addEntriesFromDictionary:@{@"axis":row[@"axis"],@"parameter":row[@"parameter"],@"requestedValue":row[@"value"],@"requestedInputSource":@2,@"activePresetVerified":@NO}];
+        if(completion)completion(result?[result copy]:nil,error);
     }];
 }
 - (void)getFollowTuning:(NSDictionary *)filters timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {

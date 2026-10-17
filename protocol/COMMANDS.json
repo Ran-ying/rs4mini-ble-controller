@@ -732,16 +732,21 @@
     },
     {
       "key": "04:57",
-      "name": "官方 App 枚举：GetPushHandheldStickState",
-      "requestCodec": "unknown",
-      "responseCodec": "unknown",
-      "targetEvidence": "official-app-enum",
-      "implementation": [],
-      "remaining": "命令枚举已确认；六段引用审计提供候选位置，不等于该命令实现方法/请求体或HG724调用已确认，字段与型号路径仍待逐项审计，未开放发送",
+      "name": "源手柄状态被动候选",
+      "requestCodec": "not-applicable",
+      "responseCodec": "candidate-structured",
+      "targetEvidence": "app-generic-code",
+      "implementation": [
+        "node/src/app-handheld-stick.js",
+        "python/rs4mini_sdk/app_handheld_stick.py",
+        "macos/RSControlCore.m"
+      ],
+      "remaining": "显式App来源下被动解码signed X/Y、源状态位和未知原始字节；仅MobileHandheldController来源，HG724布局、单位/中心/轴映射及本机效果未验收",
       "officialAppAliases": [
         "GetPushHandheldStickState"
       ],
-      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
+      "stickResearch": "protocol/research/ronin-stick-evidence.json"
     },
     {
       "key": "04:58",
@@ -750,11 +755,12 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "命令枚举已确认；六段引用审计提供候选位置，不等于该命令实现方法/请求体或HG724调用已确认，字段与型号路径仍待逐项审计，未开放发送",
+      "remaining": "通用一字节布尔体/ACK路径已核对，六段调用仅MobileHandheldController且方法名有歧义；无HG724调用/接受/恢复/持久化证据，不开放SDK发送",
       "officialAppAliases": [
         "SetHandheldStickControlEnabled"
       ],
-      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
+      "stickResearch": "protocol/research/ronin-stick-evidence.json"
     }
   ],
   "researchEvidence": [
@@ -770,7 +776,8 @@
     "tools/research/ronin_angles_trace.py",
     "tools/research/ronin_angle_context.py",
     "tools/research/ronin_stabilization_trace.py",
-    "tools/research/ronin_reset_routes.py"
+    "tools/research/ronin_reset_routes.py",
+    "tools/research/ronin_stick_trace.py"
   ],
   "modelIdentityResearch": "protocol/research/ronin-hg724-evidence.json",
   "codeRestorationResearch": "protocol/research/ronin-code-restoration-evidence.json",
@@ -939,5 +946,19 @@
   "angleResearch": "protocol/research/ronin-angles-evidence.json",
   "angleContextResearch": "protocol/research/ronin-angle-context.json",
   "stabilizationDependencyResearch": "protocol/research/ronin-stabilization-evidence.json",
-  "resetRouteResearch": "protocol/research/ronin-reset-routes.json"
+  "resetRouteResearch": "protocol/research/ronin-reset-routes.json",
+  "stickResearch": "protocol/research/ronin-stick-evidence.json",
+  "handheldStickSdk": {
+    "implemented": true,
+    "targetDeviceVerified": false,
+    "modelLayoutVerified": false,
+    "axisMappingVerified": false,
+    "sendEnabled": false,
+    "files": [
+      "node/src/app-handheld-stick.js",
+      "python/rs4mini_sdk/app_handheld_stick.py",
+      "macos/RSControlCore.m",
+      "docs/APP_HANDHELD_STICK.md"
+    ]
+  }
 }

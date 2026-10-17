@@ -1,4 +1,4 @@
-# RS4 Mini Node.js SDK 0.7.6
+# RS4 Mini Node.js SDK 0.7.20
 
 通过 Noble 直接连接 DJI RS 4 Mini，支持三轴速度、约 1 Hz 的姿态与关节反馈，以及低速关节位置闭环。完整参数、错误码和并发规则见 [API.md](API.md)。
 

@@ -32,7 +32,7 @@ gimbal.onAppStatus = status => {
 const snapshot = gimbal.appCommands.userParameterStatus; // null或最近快照
 ```
 
-onAppStatus现为calibration/userParameters的区分联合，TypeScript调用方按kind收窄。原生复用appStatusHandler，kind相同。查询属性不会等待新帧；timestamp是主机接收时间，旧缓存不是实时确认。通知与getter复制/不可变快照不受外部修改影响，观察者异常沿原有错误隔离处理。
+onAppStatus含calibration/userParameters分支；0.7.20另增handheldStick，仍为按kind收窄的区分联合，TypeScript调用方按kind收窄。原生复用appStatusHandler，kind相同。查询属性不会等待新帧；timestamp是主机接收时间，旧缓存不是实时确认。通知与getter复制/不可变快照不受外部修改影响，观察者异常沿原有错误隔离处理。
 
 重选协议来源、切换旧研究配置或断开连接会清空缓存。只更新独立用户参数快照，不替换姿态、机械关节或校准状态，不释放或创建运动所有权。deviceVerified、modelLayoutVerified、activePresetVerified与physicalCompletionVerified均false。
 

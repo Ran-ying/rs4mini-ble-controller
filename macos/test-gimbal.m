@@ -494,11 +494,20 @@ int main(void) {
         }
         [peripheral.writes setLength:0];
         [gimbal sendFactorySettingsResetRequest:@{@"sourcePlatform":@"HG724"} timeoutMs:1000 completion:appDone]; ThreeTicks(gimbal);
+        NSUInteger stickWrites=peripheral.writes.length;__block NSUInteger stickEvents=0;
+        gimbal.appStatusHandler=^(NSDictionary *status){if([status[@"kind"] isEqualToString:@"handheldStick"]){stickEvents++;@throw [NSException exceptionWithName:@"observer" reason:nil userInfo:nil];}};
+        NSData *stickPayload=[NSData dataWithBytes:(uint8_t[]){0,128,255,127,3,128,170} length:7];
+        notify.value=AppNotification(5,0x57,stickPayload);[gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil];PumpCallbacks();
+        Require(gimbal.busy && appCallbacks==66 && stickEvents==1 && [gimbal.appHandheldStickStatus[@"sourceStickX"] intValue]==-32768 && peripheral.writes.length==stickWrites,@"passive stick status preserves pending query ownership and never transmits despite observer exception");
+        NSDictionary *stickBefore=gimbal.appHandheldStickStatus;
+        notify.value=AppResponse(5,0x57,[NSMutableData dataWithLength:6],4);[gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil];
+        notify.value=AppNotification(5,0x57,[NSMutableData dataWithLength:5]);[gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil];
+        Require([gimbal.appHandheldStickStatus isEqual:stickBefore] && stickEvents==1,@"ACK and short stick source reports leave prior cache intact");
         notify.value=AppNotification(5,0x24,fixedBody);[gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil];PumpCallbacks();
         Require(gimbal.busy && gimbal.appUserParameterStatus && appCallbacks==66,@"passive report does not release or complete an outstanding parameter query");
         [gimbal centralManager:(id)central didDisconnectPeripheral:(id)peripheral error:nil]; PumpCallbacks();
         Require(appCallbacks == 67 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_DISCONNECTED"], @"native disconnect rejects pending App query");
-        Require(!gimbal.appUserParameterStatus,@"native disconnect clears cached fixed report");
+        Require(!gimbal.appUserParameterStatus && !gimbal.appHandheldStickStatus,@"native disconnect clears cached fixed and stick reports");
         [decoder reset];frames=[decoder push:peripheral.writes];resetWrites=0;for(NSDictionary *f in frames)if([f[@"commandId"] intValue]==0x13)resetWrites++;Require(resetWrites==1,@"native reset disconnect never repeats request");
         [gimbal disconnect]; ThreeTicks(gimbal);
         printf("Native fake-device lifecycle checks: %lu passed (no Bluetooth manager created)\n", (unsigned long)assertions);

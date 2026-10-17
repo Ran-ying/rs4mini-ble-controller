@@ -55,7 +55,7 @@ for row in manifest['commands']:
     if row['targetEvidence'] == 'official-app-enum':
         assert row['requestCodec'] in {'unknown', 'not-exposed'} and not row['implementation'], row['key']
     if row['targetEvidence'] == 'app-generic-code':
-        assert row['key'] == '04:24' and row['requestCodec'] == 'not-applicable' and row['responseCodec'] == 'candidate-structured'
+        assert row['key'] in {'04:24','04:57'} and row['requestCodec'] == 'not-applicable' and row['responseCodec'] == 'candidate-structured'
         assert manifest['userPushSdk']['modelSpecificPathVerified'] is False and manifest['userPushSdk']['targetDeviceVerified'] is False
     if row.get('officialAppEvidence'):
         evidence_path = root / row['officialAppEvidence']
@@ -452,3 +452,14 @@ if manifest.get('resetRouteResearch'):
     assert reset_routes['targetClaims']['recenterImplementationChanged'] is False
     assert len(reset_routes['directUiRecenterPaths']) == 3
     assert len(reset_routes['methods']) == 27 and len(reset_routes['externalResetClassCallers']) == 8
+
+if manifest.get('stickResearch'):
+    stick=json.loads((root/manifest['stickResearch']).read_text())
+    assert stick['appCodeExecuted'] is False and stick['targetDeviceVerified'] is False
+    assert stick['wholeProtocolRecovered'] is False and stick['targetLayoutVerified'] is False
+    assert stick['sourceSend']['sendEnabledInSdk'] is False
+    assert stick['minimumBodyBytes'] == 6 and stick['signedLittleEndian'] is True
+    assert len(stick['methods']) == 23 and len(stick['externalCallers']) == 2
+    assert manifest['handheldStickSdk']['sendEnabled'] is False
+    for key in ('targetDeviceVerified','modelLayoutVerified','axisMappingVerified'):assert manifest['handheldStickSdk'][key] is False
+    for path in manifest['handheldStickSdk']['files']:assert (root/path).is_file()

@@ -94,3 +94,5 @@ NSArray *RSAppProfileValueContext(NSString *kind);
 NSDictionary *RSAppProfileValueSpec(NSString *kind,NSDictionary *spec);
 NSData *RSAppProfileValueWriteFrame(uint16_t sequence,NSArray *context,NSNumber *value);
 NSDictionary *RSDecodeAppProfileValueReply(NSDictionary *message,NSString *kind,NSError **error);
+
+NSDictionary *RSDecodeAppHandheldStickNotification(NSDictionary *message);

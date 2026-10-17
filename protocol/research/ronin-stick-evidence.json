@@ -1,0 +1,267 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "bankSha256": {
+    "0": "76002e76e02e1306ad197c4af127975d573999de174e5a9e44cc6f840196f621",
+    "2": "de69497b77de530d0d559646dc6d3fb24569e2ba8ba9502216f3d6c9fd6f3bf8",
+    "3": "bb50b39865520f55e97116ae1903bda3545b01c2fb7e2aba67a979dc264a9854",
+    "4": "2d3ff70fb84eb02ac75949ca6e7d5cc849a7f9ef55029fd168890c6dbccb1d12",
+    "5": "4fdbd74a05df63d72a0feb1c907d9395426ec3cdb5d6aeb45e3836d856d66654",
+    "6": "057f13084cf969ffadcfa2150d1b3ae3ed8a7822c95fb54158781764c9156e2f"
+  },
+  "appCodeExecuted": false,
+  "targetDeviceVerified": false,
+  "wholeProtocolRecovered": false,
+  "researchToolProvidesSdkInterface": false,
+  "fields": [
+    {
+      "sourceGetter": "getStickX",
+      "offset": 0,
+      "size": 2,
+      "signedShort": true
+    },
+    {
+      "sourceGetter": "getStickY",
+      "offset": 2,
+      "size": 2,
+      "signedShort": true
+    },
+    {
+      "sourceGetter": "isTriggerPressed",
+      "offset": 4,
+      "size": 2,
+      "signedShort": true
+    },
+    {
+      "sourceGetter": "isStickGimbalControlEnabled",
+      "offset": 4,
+      "size": 2,
+      "signedShort": true
+    }
+  ],
+  "minimumBodyBytes": 6,
+  "signedLittleEndian": true,
+  "triggerMask": 1,
+  "controlEnabledMask": 2,
+  "unknownStateMask": 65532,
+  "rawRequestBodyFramingEstablished": true,
+  "targetLayoutVerified": false,
+  "commandEnumArguments": {
+    "GetPushHandheldStickState": [
+      "GetPushHandheldStickState",
+      39,
+      87,
+      0,
+      "Ldji/midware/data/model/P3/DataGimbalGetPushHandheldStickState;"
+    ],
+    "SetHandheldStickControlEnabled": [
+      "SetHandheldStickControlEnabled",
+      40,
+      88
+    ]
+  },
+  "sourceSend": {
+    "command": "04:58",
+    "bodyFalseHex": "00",
+    "bodyTrueHex": "01",
+    "ackRequested": true,
+    "hg724CallPathEstablished": false,
+    "sendEnabledInSdk": false
+  },
+  "externalCallers": [
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/handheldcontroller/MobileHandheldControllerAbstraction;",
+      "method": "onEvent3BackgroundThread",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalGetPushHandheldStickState;)V",
+      "targetMethods": [
+        "getStickX",
+        "getStickY",
+        "isStickGimbalControlEnabled",
+        "isTriggerPressed"
+      ]
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/handheldcontroller/MobileHandheldControllerAbstraction;",
+      "method": "setIsInternalAndExternalMicroPhonesEnabled",
+      "descriptor": "(Z Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "targetMethods": [
+        "getInstance",
+        "setHandheldStickControlEnabled",
+        "start"
+      ]
+    }
+  ],
+  "sourceSetterMethodName": "setIsInternalAndExternalMicroPhonesEnabled",
+  "setterNameDoesNotEstablishMicrophoneSemantics": true,
+  "remaining": [
+    "MobileHandheldController caller is not an HG724 model binding.",
+    "Passive source interpretation only; no target live state, units, center or axis mapping established.",
+    "Do not send58, subscribe or infer microphone control from mismatched source method name.",
+    "Banks1/7, residual stubs and dynamic paths remain outside scan."
+  ],
+  "methods": [
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushHandheldStickState;",
+      "method": "getStickX",
+      "descriptor": "()I",
+      "codeOffset": 4872212,
+      "instructionSha256": "581ed052a5ab192c90b06c2ab632c248609c601cc38e3d006d5a9f20a9dbe8a2"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushHandheldStickState;",
+      "method": "getStickY",
+      "descriptor": "()I",
+      "codeOffset": 4872264,
+      "instructionSha256": "89c03644fbb7b5e42ca18f6daf576339d7274da63468ba2bb5b5ba03daf6f560"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushHandheldStickState;",
+      "method": "isTriggerPressed",
+      "descriptor": "()Z",
+      "codeOffset": 4872380,
+      "instructionSha256": "a21214cae53cdd3a570877c56efe6a30c3f4159da3eebae46ea91287de525859"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushHandheldStickState;",
+      "method": "isStickGimbalControlEnabled",
+      "descriptor": "()Z",
+      "codeOffset": 4872316,
+      "instructionSha256": "8571cc80c9bab834e934241d84e5c140b7610f6b8d7e8ca53e921b47c2ef973b"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushHandheldStickState;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "codeOffset": 4872088,
+      "instructionSha256": "20b19993098dcc58f25a499e08c6c24946fc39bc2fcc929f0911519d944f68f9"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushHandheldStickState;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 4872192,
+      "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushHandheldStickState;",
+      "method": "getInstance",
+      "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetPushHandheldStickState;",
+      "codeOffset": 4872112,
+      "instructionSha256": "61621b2a1e6d200c3753faf5cae4e00fc8531d8b016529d2ab735c4a9ba917f8"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetHandheldStickControlEnabled;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "codeOffset": 4884164,
+      "instructionSha256": "39168681df57fd2a39a5155e19083ec136bd43029a74e6b4d49ff69d9c42a89a"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetHandheldStickControlEnabled;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 4884276,
+      "instructionSha256": "946c5a1770b9a63276634f1c683ca869c29f12c57eb6f0b1ae45687e00c6a7b6"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetHandheldStickControlEnabled;",
+      "method": "getInstance",
+      "descriptor": "()Ldji/midware/data/model/P3/DataGimbalSetHandheldStickControlEnabled;",
+      "codeOffset": 4884196,
+      "instructionSha256": "6fdf37ee9d2fe48257225c3cee6bcd52fc580c7e6a7cfc58e5be16bd27a22eca"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetHandheldStickControlEnabled;",
+      "method": "setHandheldStickControlEnabled",
+      "descriptor": "(Z)Ldji/midware/data/model/P3/DataGimbalSetHandheldStickControlEnabled;",
+      "codeOffset": 4884320,
+      "instructionSha256": "ea5e9fa3e39aea431e48aa7f52ddf6c05d0588a055a7cf0ce508cd6c57c547b8"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetHandheldStickControlEnabled;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4884344,
+      "instructionSha256": "d9d41f37cdb37a128f22a9d4675dd1e9d3a7b7a64b0f567df69879bb6f15f2dd"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/handheldcontroller/MobileHandheldControllerAbstraction;",
+      "method": "onEvent3BackgroundThread",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalGetPushHandheldStickState;)V",
+      "codeOffset": 6302528,
+      "instructionSha256": "1ae06b361f1a3a90d9317b07ab7f2a3d738d7ed8b6542eece40564b4241fc0e7"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/handheldcontroller/MobileHandheldControllerAbstraction;",
+      "method": "setIsInternalAndExternalMicroPhonesEnabled",
+      "descriptor": "(Z Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6303356,
+      "instructionSha256": "bc394baf8c3ccfe2f91290d9538e7972937b91f87a06bd4c59ff3801b536be21"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/handheldcontroller/MobileHandheldControllerAbstraction$3;",
+      "method": "onSuccess",
+      "descriptor": "(Ljava/lang/Object;)V",
+      "codeOffset": 5259244,
+      "instructionSha256": "18f6f12a095b3d25ce485948de0c0c95791d25a3434d96f620f2de8dcbc54b02"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/handheldcontroller/MobileHandheldControllerAbstraction$3;",
+      "method": "onFailure",
+      "descriptor": "(Ldji/midware/data/config/P3/Ccode;)V",
+      "codeOffset": 5259216,
+      "instructionSha256": "c7920edcbbab30076031b9026983af51c902e1b639d5a2b67ab04a635a35d11e"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "get",
+      "descriptor": "(I I Ljava/lang/Class; [I)Ljava/lang/Number;",
+      "codeOffset": 3350128,
+      "instructionSha256": "b18000d48ddc01efccdeacf01cb7ee48c15db0e93e62710fdd4bdccb5bcd0be7"
+    },
+    {
+      "className": "Ldji/midware/util/BytesUtil;",
+      "method": "getShort",
+      "descriptor": "([B)S",
+      "codeOffset": 3783152,
+      "instructionSha256": "2ea5713ce80826bf91c80b560b4f40eecf85b2506d55d3ef3225387cd1b9ef78"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "setPushRecPack",
+      "descriptor": "(Ldji/midware/data/packages/P3/Pack;)V",
+      "codeOffset": 3352564,
+      "instructionSha256": "80f0bb9c5884940e7c2600d2e6f22c5287da3c37061590ec9049cce5b53d03ee"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "setPushRecData",
+      "descriptor": "([B)V",
+      "codeOffset": 3352480,
+      "instructionSha256": "23cb6a1baab1f2b12f4ae5da131785e6792d83970eb43826c9d8e1b6462faf23"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "setRecData",
+      "descriptor": "([B)V",
+      "codeOffset": 3352748,
+      "instructionSha256": "a6675a47286fe5b2725b26418463a503442cf7fbb89df865e1303c316ccc4b64"
+    },
+    {
+      "className": "Ldji/midware/data/packages/P3/RecvPack;",
+      "method": "setBuffer",
+      "descriptor": "([B)V",
+      "codeOffset": 5031432,
+      "instructionSha256": "f3a4d52a3ef8cf1d939cb1b1e00d6b7f2fd8f65fe1a8b37f1916b2e340c342c2"
+    },
+    {
+      "className": "Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 4652020,
+      "instructionSha256": "89d7e5d4c317f54eb541d186eff2e608a50e62f9387974ef9c74a54543aa6609"
+    }
+  ]
+}

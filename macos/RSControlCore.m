@@ -647,3 +647,10 @@ NSDictionary *RSDecodeAppProfileValueReply(NSDictionary *message,NSString *kind,
     if([kind isEqual:@"userProfile"])result[@"sourceUiName"]=raw<3?@[@"M1",@"M2",@"M3"][raw]:NSNull.null;
     else result[@"sourceMode"]=raw<4?@[@"Free",@"Flower",@"Fpv",@"Center"][raw]:NSNull.null;return [result copy];
 }
+
+NSDictionary *RSDecodeAppHandheldStickNotification(NSDictionary *message) {
+    if ([message[@"sender"] intValue]!=4 || [message[@"receiver"] intValue]!=2 || [message[@"commandSet"] intValue]!=4 || [message[@"commandId"] intValue]!=0x57 || !Numeric(message[@"flags"]) || [message[@"flags"] doubleValue]!=floor([message[@"flags"] doubleValue]) || [message[@"flags"] doubleValue]<0 || [message[@"flags"] doubleValue]>255 || ([message[@"flags"] intValue]&0x87)) return nil;
+    NSData *body=message[@"payload"];if(![body isKindOfClass:NSData.class] || body.length<6)return nil;
+    const uint8_t *b=body.bytes;uint16_t word=(uint16_t)(b[4]|((uint16_t)b[5]<<8));
+    return @{@"kind":@"handheldStick",@"profile":@"ronin-2.2.2",@"timestamp":@(NSDate.date.timeIntervalSince1970*1000),@"sourceStickX":@((int16_t)(b[0]|((uint16_t)b[1]<<8))),@"sourceStickY":@((int16_t)(b[2]|((uint16_t)b[3]<<8))),@"rawStateWord":@(word),@"unknownStateBits":@(word&0xfffc),@"sourceTriggerPressed":@((word&1)!=0),@"sourceStickControlEnabled":@((word&2)!=0),@"bodyHex":[Hex(body) copy],@"deviceVerified":@NO,@"modelLayoutVerified":@NO,@"axisMappingVerified":@NO,@"physicalCompletionVerified":@NO};
+}

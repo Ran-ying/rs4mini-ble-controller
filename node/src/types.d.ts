@@ -234,7 +234,13 @@ export interface AppUserParameterStatus {
   preset:{rawValue:number;sourceEnum:'CUSTOM_1'|'CUSTOM_2'|'FAST'|'MEDIUM'|'SLOW'|null};bodyHex:string;
   deviceVerified:false;modelLayoutVerified:false;activePresetVerified:false;physicalCompletionVerified:false;
 }
-export type AppStatus = AppCalibrationStatus | AppUserParameterStatus;
+export interface AppHandheldStickStatus {
+  kind:'handheldStick';profile:'ronin-2.2.2';timestamp:number;
+  sourceStickX:number;sourceStickY:number;rawStateWord:number;unknownStateBits:number;
+  sourceTriggerPressed:boolean;sourceStickControlEnabled:boolean;bodyHex:string;
+  deviceVerified:false;modelLayoutVerified:false;axisMappingVerified:false;physicalCompletionVerified:false;
+}
+export type AppStatus = AppCalibrationStatus | AppUserParameterStatus | AppHandheldStickStatus;
 export interface AppAutoTuneSent {
   profile: "ronin-2.2.2"; sent: true; requestedStart: boolean;
   acknowledgementRequested: false; acknowledged: false;
@@ -273,6 +279,7 @@ export interface AppCommands {
   sendHandleSettingRequest(options:{setting:'dualChannelMode'|'tiltDirection'|'panDirection';value:0|1;timeoutMs?:number}):Promise<AppCommandReply & {setting:'dualChannelMode'|'tiltDirection'|'panDirection';requestedValue:0|1;unspecifiedByteSemanticsVerified:false;readbackVerified:false;persistenceVerified:false}>;
   sendFineTuneRequest(options:{axis:'pitch'|'roll';adjustmentDegrees:number;timeoutMs?:number}):Promise<AppCommandReply & {axis:'pitch'|'roll';requestedAdjustmentDegrees:number;encodedTenths:number;nominalAdjustmentDegrees:number;stabilizationStateVerified:false}>;
   getHandleSettings(options?:{timeoutMs?:number}):Promise<AppCommandReply & {modelLayoutVerified:false;values:Array<{sourceGetter:string;offset:number;size:1;rawValue:number;sourceBit0:boolean|null}>}>;
+  readonly handheldStickStatus:AppHandheldStickStatus|null;
   readonly userParameterStatus:AppUserParameterStatus|null;
   getStandaloneTuning(options?:{axis?:MotorTuningAxis;parameter?:StandaloneParameter;timeoutMs?:number}):Promise<AppTuningReading & {inputSourceRaw:number}>;
   setStandaloneTuning(options:{inputSource:2;axis:MotorTuningAxis;parameter:StandaloneParameter;value:number;timeoutMs?:number}):Promise<AppCommandReply & {axis:MotorTuningAxis;parameter:StandaloneParameter;requestedValue:number;requestedInputSource:2;activePresetVerified:false}>;

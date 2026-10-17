@@ -1,3 +1,4 @@
+from .app_handheld_stick import handheld_stick_notification
 from .app_profile_values import profile_value_selection,profile_value_write,profile_value_reply
 from .app_smooth_track import smooth_track_selection,smooth_track_write,smooth_track_reply
 from .app_axis_mode import axis_mode_write,axis_mode_reply
@@ -25,7 +26,10 @@ class AppCommands:
         self.owner, self._profile = owner, None
         self._calibration_status = None
         self._user_parameter_status = None
+        self._handheld_stick_status = None
 
+    handheldStickStatus = property(lambda self: copy.deepcopy(self._handheld_stick_status))
+    handheld_stick_status = handheldStickStatus
     userParameterStatus = property(lambda self: copy.deepcopy(self._user_parameter_status))
     user_parameter_status = userParameterStatus
     profile = property(lambda self: self._profile)
@@ -35,10 +39,15 @@ class AppCommands:
     def _reset(self):
         self._calibration_status = None
         self._user_parameter_status = None
+        self._handheld_stick_status = None
 
     def _message(self, message):
         if not self._profile:
             return
+        stick=handheld_stick_notification(message)
+        if stick:
+            self._handheld_stick_status=stick
+            self.owner._emit('onAppStatus',copy.deepcopy(stick))
         parameters=user_parameter_notification(message)
         if parameters:
             self._user_parameter_status=parameters

@@ -1,3 +1,4 @@
+import {handheldStickNotification} from './app-handheld-stick.js';
 import {profileValueSelection,profileValueWrite,profileValueReply} from './app-profile-values.js';
 import {smoothTrackSelection,smoothTrackWrite,smoothTrackReply} from './app-smooth-track.js';
 import {axisModeWrite,axisModeReply} from './app-axis-mode.js';
@@ -19,13 +20,16 @@ function optionsOnly(options, keys) {
   if (!options || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(key => !keys.includes(key))) throw new TypeError('invalid App command options');
 }
 export class AppCommands {
-  constructor(owner) { this.owner = owner; this._profile = null; this._calibrationStatus = null; this._userParameterStatus = null; }
+  constructor(owner) { this.owner = owner; this._profile = null; this._calibrationStatus = null; this._userParameterStatus = null; this._handheldStickStatus = null; }
+  get handheldStickStatus() { return structuredClone(this._handheldStickStatus); }
   get userParameterStatus() { return structuredClone(this._userParameterStatus); }
   get profile() { return this._profile; }
   get calibrationStatus() { return structuredClone(this._calibrationStatus); }
-  _reset() { this._calibrationStatus = null; this._userParameterStatus = null; }
+  _reset() { this._calibrationStatus = null; this._userParameterStatus = null; this._handheldStickStatus = null; }
   _message(message) {
     if (!this._profile) return;
+    const stick=handheldStickNotification(message);
+    if(stick) {this._handheldStickStatus=stick;this.owner._emit('onAppStatus',structuredClone(stick));}
     const parameters=userParameterNotification(message);
     if(parameters) {this._userParameterStatus=parameters;this.owner._emit('onAppStatus',structuredClone(parameters));}
     const status = calibrationNotification(message);

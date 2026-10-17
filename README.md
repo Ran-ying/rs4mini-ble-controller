@@ -1,6 +1,6 @@
 # rs4mini-ble-controller
 
-通过电脑 BLE 直接控制 DJI RS 4 Mini 的非官方项目。Node.js **0.7.19** 为主实现；Python/Web **0.7.19**、macOS 原生面板 **0.3.19** 提供三轴速度、姿态/机械关节反馈、低速定位、轨迹与路点、保存位置返回和显式自动重连。相机控制和视觉跟踪不属于当前范围。
+通过电脑 BLE 直接控制 DJI RS 4 Mini 的非官方项目。Node.js **0.7.20** 为主实现；Python/Web **0.7.20**、macOS 原生面板 **0.3.20** 提供三轴速度、姿态/机械关节反馈、低速定位、轨迹与路点、保存位置返回和显式自动重连。相机控制和视觉跟踪不属于当前范围。
 
 **当前状态：底层 SDK 已增加当前 App 参数事务、调参请求与状态封装；全部非相机 BLE 能力仍未完成。**
 完成项、验证证据与后续接手入口统一保存在 [项目状态](docs/PROJECT_STATUS.md)。
@@ -79,7 +79,7 @@ RS4MINI_POSITION_AXIS=tilt RS4MINI_POSITION_DELTA=3 npm run example:position
 
 ## 各端状态
 
-| 功能 | Node 0.7.6 | Python 0.7.6 | Web 0.7.6 | macOS 面板 0.3.6 |
+| 功能 | Node 0.7.20 | Python 0.7.20 | Web 0.7.20 | macOS 面板 0.3.20 |
 |---|---|---|---|---|
 | 三轴速度 / 停止 / 三轴回中 | 有 | 有 | 有 | 有 |
 | 反馈解析与 CRC 重组 | 有 | 有 | 共享 Node 核心 | 有 |
@@ -93,6 +93,7 @@ RS4MINI_POSITION_AXIS=tilt RS4MINI_POSITION_DELTA=3 npm run example:position
 | 插值速度轨迹 / 关节路点与停留 | 有 | 有 | SDK + JSON 页面入口 | API + JSON 文件载入 |
 | 保存位置与选轴返回 | 有 | 有 | 有 | 有 |
 | 显式顺序四元数数学转换 | 有 | 有 | 有 | 有 |
+| 显式App来源的手柄状态候选 | 被动SDK快照 | 被动SDK快照 | 共享JS快照 | 被动SDK快照 |
 | 独立实验协议配置 | 有 | 有 | 有 | 有，查询独占操作槽 |
 
 各端新代码均有离线验证；新运动行为尚待统一实机验证。历史 Node 单轴定位与 0.5.0 的连接采样证据见 [验证记录](docs/VALIDATION.md)，不能代替新版本的物理运动测试。
@@ -191,3 +192,6 @@ python3 -m http.server 8000 --bind 127.0.0.1
 
 
 [回中平台分支与App入口研究](tools/research/RESET_ROUTES.md)已区分通用SpecialControl流程和三处直接FE01源分支；现有实测回中保持不变，未开放其他模式或混合控制发送。
+
+
+0.7.20新增[手柄状态被动候选](docs/APP_HANDHELD_STICK.md)，仅显式App来源、无58发送/订阅，真实57布局、单位与轴映射等待本机验收；未新增高级功能。

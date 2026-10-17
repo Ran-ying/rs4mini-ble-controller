@@ -107,6 +107,9 @@ test('protocol, telemetry and controller import without Node Buffer or Node modu
     const packet = protocol.frame(1, 4, 5, payload);
     const decoder = new DumlStreamDecoder(); assert.equal(decoder.push(packet.subarray(0, 20)).length, 0);
     assert.equal(decodeGimbalTelemetry(decoder.push(packet.subarray(20))[0]).jointAngles.yaw, 12.34);
+    const {handheldStickNotification} = await import('./node/src/app-handheld-stick.js');
+    const stick=handheldStickNotification({sender:4,receiver:2,commandSet:4,commandId:87,flags:0,payload:new Uint8Array([0,128,255,127,3,128])});
+    assert.equal(stick.sourceStickX,-32768);assert.equal(stick.unknownStateBits,32768);assert.equal(stick.bodyHex,'0080ff7f0380');
     const app = await import('./node/src/app-protocol.js');
     assert.equal(app.parameterRequest([{ index: 150, size: 1 }])[0], 150);
     const reply = app.parameterReply({ sender: 4, receiver: 2, commandSet: 4, commandId: 16,
@@ -195,4 +198,12 @@ test('Web blur cancels an auto-tune preamble before any firmware request', async
   await started.promise; window.dispatchEvent(new Event('blur')); blocked.resolve(); await rejected;
   assert.equal(device.frames().filter(f=>f.commandId===0x6a).length,0);
   assert.equal(gimbal.activeOperation,null);
+});
+
+test('Web source stick candidate uses shared SDK cache and sends no control request',async t=>{
+  const {gimbal,device}=setup();t.after(()=>gimbal.close());await gimbal.connect();
+  const incoming=()=>{const data=frame(1,4,87,new Uint8Array([255,255,0,128,2,128,99]),0);data[4]=4;data[5]=2;new DataView(data.buffer,data.byteOffset,data.byteLength).setUint16(data.length-2,crc16(data.subarray(0,-2)),true);device.rx.notify(data);};
+  incoming();assert.equal(gimbal.appCommands.handheldStickStatus,null);gimbal.appCommands.useProfile('ronin-2.2.2');incoming();
+  assert.equal(gimbal.appCommands.handheldStickStatus.sourceStickX,-1);assert.equal(gimbal.appCommands.handheldStickStatus.sourceStickY,-32768);assert.equal(gimbal.appCommands.handheldStickStatus.sourceStickControlEnabled,true);assert.equal(device.tx.writes.length,0);assert.equal(gimbal.latestTelemetry,null);
+  await gimbal.disconnect();assert.equal(gimbal.appCommands.handheldStickStatus,null);
 });

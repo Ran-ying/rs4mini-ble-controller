@@ -8,9 +8,9 @@ verification status changes.
 ## Objective and user decisions
 
 - Provide an unofficial, direct BLE controller for **DJI RS 4 Mini**, initially on macOS.
-- **Node.js is the authoritative implementation**; current package version is `0.7.19`.
+- **Node.js is the authoritative implementation**; current package version is `0.7.20`.
 - The user subsequently requested completion of all existing ports. Python is now
-  `0.7.19`, Web shares the JS core, and the native panel is `0.3.19`. Describe the
+  `0.7.20`, Web shares the JS core, and the native panel is `0.3.20`. Describe the
   documented feature differences; do not claim identical APIs or hardware proof.
 - After that delivery, the user requested the remaining **non-camera** capabilities
   under the same autonomous/offline conditions. Expansion work is in progress;
@@ -800,3 +800,15 @@ HG724继承基础resetGimbal先调用此等待，后按平台选择DataSpecialCo
 ## 回中分支与App入口验证（2026-10-17）
 
 固定六段实际扫描27方法指纹/8类外直接调用方法，三个UI入口OTHER+reset true及连接/电机缓存检查已核对。新增9项检查，研究工具Python3.8/3.12各136通过；统一离线Node178/Web14/Python156/原生131+168+3、类型/边界/构建通过。运行时与安装包不变，现有FE01不替换，无硬件/厂商执行或高级新增，全命令门槛false。
+
+
+## 0.7.20手柄状态被动候选 / 原生0.3.20 build23
+
+显式ronin-2.2.2下四端handheldStickStatus/appHandheldStickStatus（Python snake别名）仅被动解码04:57：signed LE int16 X/Y、rawStateWord及bit0扳机/bit1控制、未知位/尾字节保留；不归一化或推断中心/轴映射。独立缓存、复制/不可变快照与onAppStatus kind=handheldStick，profile/断线清空，不发查询/订阅/58，不影响反馈/所有权或完成待处理请求，型号/设备/轴映射/物理标志false。23方法/2直接调用审计只见MobileHandheldController，58布尔体与ACK仅离线核对，方法名不能用来推定麦克风功能或HG724支持。无硬件/liveUI/厂商执行或高级新增，全命令未完成。见docs/APP_HANDHELD_STICK.md与tools/research/HANDHELD_STICK.md。
+
+
+## 0.7.20手柄被动候选验证（2026-10-17）
+
+固定六段实际复现23方法/2类外直接调用方法。研究工具Python3.8/3.12各144项（新增8）；统一离线Node184/Web15/Python3.8与3.12各162、原生135核心+170假设备+3独立SDK、类型/边界/构建通过。安装后的Node tarball184及类型消费、wheel162回归通过，Python导入路径核对为隔离wheel目标。
+
+新增signed端点、独立状态位/未知高位/尾字节、短帧/ACK/加密/错端点拒绝、source gating、快照与观察者异常隔离、profile/断线清空、无58/订阅发送、通知不完成待处理参数请求、Web无Buffer验证。打包Node77文件、wheel29运行时模块、原生0.3.20/build23核对；未开启实机或实时UI，仍不能宣称完整协议或HG724手柄验证。

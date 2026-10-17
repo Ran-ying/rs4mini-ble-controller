@@ -146,7 +146,7 @@ async function sourceSettingsTypes(gimbal: RS4Mini) {
 }
 
 async function calibrationTypes(gimbal: RS4Mini) {
-  gimbal.onAppStatus = status => { if(status.kind==='calibration') {const raw:number|null=status.rawState;console.log(raw);} else {const raw:number=status.preset.rawValue;console.log(raw);} };
+  gimbal.onAppStatus = status => { if(status.kind==='calibration') {const raw:number|null=status.rawState;console.log(raw);} else if(status.kind==='userParameters') {const raw:number=status.preset.rawValue;console.log(raw);} else {const x:number=status.sourceStickX;const snapshot=gimbal.appCommands.handheldStickStatus;console.log(x,snapshot);} };
   const fine=await gimbal.appCommands.sendFineTuneRequest({axis:'pitch',adjustmentDegrees:-.1});
   const tenths:number=fine.encodedTenths;void tenths;
   // @ts-expect-error yaw source action is not established

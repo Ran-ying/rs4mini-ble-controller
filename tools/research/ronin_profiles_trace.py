@@ -31,6 +31,19 @@ def preset_read_context(operations):
     raise ValueError('missing preset getter')
 
 
+def relative_target(pc,branch_text):
+    """DEX branch displacement and PC are code units, not byte offsets."""
+    match=re.search(r', ([+-])([0-9a-fA-F]+)h$',branch_text)
+    if type(pc) is not int or pc<0 or not match:raise ValueError('unresolved branch displacement')
+    return pc+(1 if match[1]=='+' else -1)*int(match[2],16)
+
+
+def axis_mode_value(name):
+    values={'ThreeAxis':0,'TwoAxis':1,'Roll360':2,'ThreeDRoll360':3}
+    if type(name) is not str or name not in values:raise ValueError('explicit source axis enum required')
+    return values[name]<<3
+
+
 def trace(apk,sdk_path,ui_path):
     if hashlib.sha256(apk.read_bytes()).hexdigest()!=APK_SHA256:raise ValueError('APK hash mismatch')
     sdk_raw=sdk_path.read_bytes();ui_raw=ui_path.read_bytes()
@@ -98,6 +111,52 @@ def trace(apk,sdk_path,ui_path):
     require(take(ui,switch,'is4thGenDeviceIndex'),'Model;->HG724 ')
     for name,token in [('isUseNewProfileDevice','->is4thGenDevice()Z'),('is4thGenDevice','->isHG724()Z'),('isHG724','Lcom/dji/upgrade/util/CommonUtils;->isHG724()Z')]:require(take(ui,utils,name),token)
     model=take(ui,'Lcom/dji/upgrade/util/CommonUtils;','isHG724');require(model,'ModelName');require(model,'Model;->HG724 ')
+    mode_parameters=[]
+    for key,index,name,maximum in [('SMOOTH_TRACK_ENABLED_YAW',17,'yaw_smooth_track',1),('SMOOTH_TRACK_ENABLED_PITCH',18,'pitch_smooth_track',1),('SMOOTH_TRACK_ENABLED_ROLL',19,'roll_smooth_track',1),('FLOWER_SPECIAL_CMD',34,'flower_special_cmd',255)]:
+        entry=keys[key];record=unique_record(records,entry['name'])
+        if entry['name']!=name or (record['index'],record['size'],record['typeID'],record['minValue'],record['maxValue'])!=(index,1,0,0,maximum):raise ValueError('new mode parameter changed')
+        if entry['getter']!='Ldji/midware/data/model/P3/DataGimbalGetUserParams;':raise ValueError('new mode getter changed')
+        mode_parameters.append(dict(record,baseCommand=key))
+    axis_owner='Ldji/common/gimbal/DJIGimbalRonin2AxisMode;'
+    axis_enums=[enum_entry(ops(take(sdk,axis_owner,'<clinit>')),axis_owner,name) for name in ('ThreeAxis','TwoAxis','Roll360','ThreeDRoll360')]
+    if [r['value'] for r in axis_enums]!=[0,1,2,3]:raise ValueError('axis enums changed')
+    axis_set=take(sdk,ronin,'setGimbalAxisMode');require(axis_set,'->FLOWER_SPECIAL_CMD ')
+    if ('shl-int/lit8','v2, v2, 3') not in ops(axis_set):raise ValueError('axis mode shift changed')
+    require(axis_set,'->setRonin2CommonUserParam(')
+    if next(o for o in chain if any(m.get_name()=='setGimbalAxisMode' for m in sdk[o].get_methods()))!=ronin:raise ValueError('axis setter override changed')
+    custom_set=take(sdk,ronin,'setCustomFollowModeEnabled');require(custom_set,'->CUSTOM_FOLLOW_SETTING ')
+    if ('or-int/lit8','v2, v0, 1') not in ops(custom_set) or ('and-int/lit8','v2, v0, -2') not in ops(custom_set):raise ValueError('custom bit RMW changed')
+    ui_axis=take(ui,view,'setGimbalAxisMode')
+    for token in ('->ThreeDRoll360 ','->ThreeAxis ','CacheHelper;->setValue('):require(ui_axis,token)
+    require(take(ui,view,'exitCustomModeForHG720'),'->isHG720(')
+    if ops(take(ui,view,'setIsCustomMode'))!=[('iput-boolean','v1, v0, '+view+'->mIsCustomMode Z'),('return-void','')]:raise ValueError('UI custom flag now has device side effects')
+    require(take(ui,view,'updateAxisModeShow'),'->setVisibility(')
+    branch_points=[];pc=0
+    for instruction in choice.get_instructions():
+        op,text=instruction.get_name(),instruction.get_output()
+        if op.startswith('if-') or op.startswith('goto'):
+            # Goto has no register prefix; normalize only for displacement parsing.
+            target=relative_target(pc,text if ',' in text else 'goto, '+text)
+            branch_points.append(dict(pc=pc,operation=op,target=target))
+        pc+=instruction.get_length()//2
+    if dict(pc=0x34,operation='if-ne',target=0x48) not in branch_points or dict(pc=0x47,operation='goto',target=0x6c) not in branch_points:raise ValueError('new list index2 no longer bypasses smooth setter')
+    new_ops=ops(new_mode)
+    for op,text in [('if-nez','v10, +01ch'),('if-ne','v10, v5, +005h'),('if-eq','v10, v5, +00ah')]:
+        if (op,text) not in new_ops:raise ValueError('new mode index0/1 control flow changed')
+    if [text for op,text in new_ops if op=='aput-object' and ', v1,' in text]!=['v6, v1, v4','v6, v1, v5','v6, v1, v7']:raise ValueError('FPV source values not uniform')
+    if ('const/4','v5, 1') not in new_ops or not any('v5, Ljava/lang/Integer;->valueOf(I)' in text for _,text in new_ops):raise ValueError('FPV source integer one changed')
+    for suffix,names in [('10',('onSuccess','onFailure','lambda$onFailure$0')),('13',('onSuccess','onFails'))]:
+        for name in names:
+            callback=take(ui,view[:-1]+'$'+suffix+';',name)
+            if any('DataGimbalSetUserParams;->' in text or 'CacheHelper;->set' in text for _,text in ops(callback)):raise ValueError('mode callback now chains parameter writes')
+    custom_view='Lcom/dji/ronin/ui/configuration/ConfigGimbalModeSetView;'
+    display=take(ui,custom_view,'setAxisStatus')
+    calls=[text for op,text in ops(display) if op.startswith('invoke-')]
+    if len(calls)!=6 or any('Landroid/widget/ImageView;->setVisibility(I)V' not in text for text in calls):raise ValueError('custom axis display now has other side effects')
+    clicked=take(ui,custom_view,'setClicked')
+    allowed=('Ljava/lang/StringBuilder;->','ConfigLog;->logWriteD(')
+    if any(not any(token in text for token in allowed) for op,text in ops(clicked) if op.startswith('invoke-')):raise ValueError('custom clicked flag now calls another component')
+    require(clicked,'->mIsClicked Z')
     # Record localized UI labels as facts, not invented enum translations.
     labels=[]
     for resource_id in (2131952876,2131952878,2131952880,2131952882):
@@ -114,7 +173,7 @@ def trace(apk,sdk_path,ui_path):
         arrays.append(dict(resourceId=hex(rid),defaultLanguageValues=values))
     return dict(schemaVersion=1,apkSha256=APK_SHA256,sdkDerivedSha256=DERIVED_SHA256,uiDerivedSha256=UI_BANK_SHA256,
                 appCodeExecuted=False,targetDeviceVerified=False,wholeProtocolRecovered=False,researchToolProvidesSdkInterface=False,
-                parameters=selected,hg724Inheritance=chain,userProfileUiValues=[0,1,2],userProfileUiNames=['M1','M2','M3'],
+                parameters=selected,modeParameters=mode_parameters,axisModeSourceEnums=axis_enums,axisModeSourceValues={r['name']:axis_mode_value(r['name']) for r in axis_enums},newModeFlow=dict(fpvSmoothValues=[1,1,1],customFollowFlagReadModifyWrite=True,index2BypassesSmoothSetter=True,uiCustomFlagIsLocalOnly=True,customAxisDisplayLocalOnly=True,callbacksChainParameterWrites=False,atomicTransactionVerified=False,wireOrderVerified=False,firmwareRollbackVerified=False,axisModeIsNotMotorControlBit=True),hg724Inheritance=chain,userProfileUiValues=[0,1,2],userProfileUiNames=['M1','M2','M3'],
                 workModeSourceEnums=work,movementProfileSourceEnums=presets,presetGetter=business,uiLabels=labels,uiModeArrays=arrays,
                 sourceFacts=dict(userProfileIsNotMovementPreset=True,workModeIsNotPfPtfEnum=True,
                                  hg724ConditionalNewProfileBranch=True,newBranchCallsSetTrackModeHG711=True,

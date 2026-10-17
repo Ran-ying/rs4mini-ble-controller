@@ -27,6 +27,88 @@
       "baseCommand": "GIMBAL_WORK_MODE"
     }
   ],
+  "modeParameters": [
+    {
+      "name": "yaw_smooth_track",
+      "index": 17,
+      "size": 1,
+      "typeID": 0,
+      "minValue": 0,
+      "maxValue": 1,
+      "baseCommand": "SMOOTH_TRACK_ENABLED_YAW"
+    },
+    {
+      "name": "pitch_smooth_track",
+      "index": 18,
+      "size": 1,
+      "typeID": 0,
+      "minValue": 0,
+      "maxValue": 1,
+      "baseCommand": "SMOOTH_TRACK_ENABLED_PITCH"
+    },
+    {
+      "name": "roll_smooth_track",
+      "index": 19,
+      "size": 1,
+      "typeID": 0,
+      "minValue": 0,
+      "maxValue": 1,
+      "baseCommand": "SMOOTH_TRACK_ENABLED_ROLL"
+    },
+    {
+      "name": "flower_special_cmd",
+      "index": 34,
+      "size": 1,
+      "typeID": 0,
+      "minValue": 0,
+      "maxValue": 255,
+      "baseCommand": "FLOWER_SPECIAL_CMD"
+    }
+  ],
+  "axisModeSourceEnums": [
+    {
+      "name": "ThreeAxis",
+      "ordinal": 0,
+      "value": 0
+    },
+    {
+      "name": "TwoAxis",
+      "ordinal": 1,
+      "value": 1
+    },
+    {
+      "name": "Roll360",
+      "ordinal": 2,
+      "value": 2
+    },
+    {
+      "name": "ThreeDRoll360",
+      "ordinal": 3,
+      "value": 3
+    }
+  ],
+  "axisModeSourceValues": {
+    "ThreeAxis": 0,
+    "TwoAxis": 8,
+    "Roll360": 16,
+    "ThreeDRoll360": 24
+  },
+  "newModeFlow": {
+    "fpvSmoothValues": [
+      1,
+      1,
+      1
+    ],
+    "customFollowFlagReadModifyWrite": true,
+    "index2BypassesSmoothSetter": true,
+    "uiCustomFlagIsLocalOnly": true,
+    "customAxisDisplayLocalOnly": true,
+    "callbacksChainParameterWrites": false,
+    "atomicTransactionVerified": false,
+    "wireOrderVerified": false,
+    "firmwareRollbackVerified": false,
+    "axisModeIsNotMotorControlBit": true
+  },
   "hg724Inheritance": [
     "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG724Abstraction;",
     "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG702Abstraction;",
@@ -407,6 +489,118 @@
       "descriptor": "()Z",
       "codeOffset": 3022596,
       "instructionSha256": "413319914fa9b4e2cf5712030aaf14c2f7f4cf296e49848e794fb959e9c11c6e"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/common/gimbal/DJIGimbalRonin2AxisMode;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3013088,
+      "instructionSha256": "a92dd7ec20f236ca3b21613d0ba38512fd002a4ba1db96b60527726665c7ad2a"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "setGimbalAxisMode",
+      "descriptor": "(Ldji/common/gimbal/DJIGimbalRonin2AxisMode; Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6519556,
+      "instructionSha256": "4f1b4d5bfe526b6616d71c870f202eba99b9243587f685f5394dc1fa18a32178"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "setCustomFollowModeEnabled",
+      "descriptor": "(Z Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6518908,
+      "instructionSha256": "e3e6680a56287fe18b5eb682f8329cd27ff2eff632577a9d3944dc6da8187ce8"
+    },
+    {
+      "bank": "ui",
+      "className": "Lcom/dji/ronin/ui/configuration/ConfigUserProfileView;",
+      "method": "setGimbalAxisMode",
+      "descriptor": "(Z)V",
+      "codeOffset": 2447788,
+      "instructionSha256": "200e2db325bdb470a0019ee6726633e6a01f07f54cbbb008e874d1dbc757073b"
+    },
+    {
+      "bank": "ui",
+      "className": "Lcom/dji/ronin/ui/configuration/ConfigUserProfileView;",
+      "method": "exitCustomModeForHG720",
+      "descriptor": "(I)V",
+      "codeOffset": 2445000,
+      "instructionSha256": "d5c1ab1900950b0b444e1dd015b61f2a024b1481747cd7d761d217a09cd34eb5"
+    },
+    {
+      "bank": "ui",
+      "className": "Lcom/dji/ronin/ui/configuration/ConfigUserProfileView;",
+      "method": "setIsCustomMode",
+      "descriptor": "(Z)V",
+      "codeOffset": 2447852,
+      "instructionSha256": "4d5e5b0c17250726cdaba397aa6dd660482e0083386a474f08dcbd0069f62e43"
+    },
+    {
+      "bank": "ui",
+      "className": "Lcom/dji/ronin/ui/configuration/ConfigUserProfileView;",
+      "method": "updateAxisModeShow",
+      "descriptor": "(Z)Z",
+      "codeOffset": 2449420,
+      "instructionSha256": "f5b926ed38c829644e170596a0aec3848810a48708ea78fe0d190d5a42873bf6"
+    },
+    {
+      "bank": "ui",
+      "className": "Lcom/dji/ronin/ui/configuration/ConfigUserProfileView$10;",
+      "method": "onSuccess",
+      "descriptor": "(Ljava/lang/Object;)V",
+      "codeOffset": 2442544,
+      "instructionSha256": "8b915a76ad6e51661c0c56f9eb2de8161d70e0f92b15c26a15d626dbd5a61b2e"
+    },
+    {
+      "bank": "ui",
+      "className": "Lcom/dji/ronin/ui/configuration/ConfigUserProfileView$10;",
+      "method": "onFailure",
+      "descriptor": "(Ldji/midware/data/config/P3/Ccode;)V",
+      "codeOffset": 2442468,
+      "instructionSha256": "f8359d3243a61ce10b5baf2172711102bf2319a5acb81330265dafa4857517be"
+    },
+    {
+      "bank": "ui",
+      "className": "Lcom/dji/ronin/ui/configuration/ConfigUserProfileView$10;",
+      "method": "lambda$onFailure$0",
+      "descriptor": "()V",
+      "codeOffset": 2442416,
+      "instructionSha256": "609769fc98f378e349d6b00a8c7f68b4f4caf33efbd0bcebaa951e32793321fc"
+    },
+    {
+      "bank": "ui",
+      "className": "Lcom/dji/ronin/ui/configuration/ConfigUserProfileView$13;",
+      "method": "onSuccess",
+      "descriptor": "()V",
+      "codeOffset": 2443116,
+      "instructionSha256": "bf03676779c30e150228531fbdb3290205403b3f20a6f3daf9760c0f76b025a4"
+    },
+    {
+      "bank": "ui",
+      "className": "Lcom/dji/ronin/ui/configuration/ConfigUserProfileView$13;",
+      "method": "onFails",
+      "descriptor": "(Ldji/common/error/DJIError;)V",
+      "codeOffset": 2443024,
+      "instructionSha256": "f87135dac24d8b1ab9554f78c64fe60f1aeea79a5c909733fae18e0673a4d31d"
+    },
+    {
+      "bank": "ui",
+      "className": "Lcom/dji/ronin/ui/configuration/ConfigGimbalModeSetView;",
+      "method": "setAxisStatus",
+      "descriptor": "(Z Z Z)V",
+      "codeOffset": 2417056,
+      "instructionSha256": "3edd059bb3f3efcf5cc8475b7357fdb1bd41d76166f7760d0d78dd8e6947fee5"
+    },
+    {
+      "bank": "ui",
+      "className": "Lcom/dji/ronin/ui/configuration/ConfigGimbalModeSetView;",
+      "method": "setClicked",
+      "descriptor": "(Z)V",
+      "codeOffset": 2417160,
+      "instructionSha256": "ed01ce411e67d6e6d304e5463a559bef3f71b29d35eda6ecc02f79d633493150"
     }
   ]
 }

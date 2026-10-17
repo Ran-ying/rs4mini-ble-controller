@@ -239,3 +239,17 @@ Node141/Web14、Python3.8/3.12各119、原生98核心+130假设备+3独立SDK、
 ## 2026-10-17保存命令六段扫描验证
 
 研究工具Python3.8/3.12各85项通过（新增5项分类/哈希预检）；全部六段固定输入实际扫描独立复现与证据JSON一致，序列化键顺序统一后逐字节一致。统一离线Node154/Web14/Python132/原生106+141+3、类型/边界/构建通过。BANKS源码固定哈希与既有银行证据逐项核对，4个引用方法无外部直接调用者，不等于未支持或全App审计完成。运行时仍0.7.16/0.3.16，不新增SDK发送、硬件/厂商执行或高级功能，两个完整性门槛false。
+
+
+## HG724新模式实际参数与调用顺序审计（运行时仍0.7.16/0.3.16）
+
+ronin_profiles_trace.py现40方法。新列表index2在UI入口清除IsCustomFollowMode后调用GimbalAxisMode ThreeDRoll360，直接跳过setTrackModeHG711；不能直接把index2传该内部函数。SDK继承轴模式setter用FLOWER_SPECIAL_CMD/index34/size1，枚举value<<3，ThreeAxis/TwoAxis/Roll360/ThreeDRoll360→0/8/16/24。UI实际选择仅ThreeAxis与ThreeDRoll360；与index35电机roll360位64不同，不能互换。
+
+FPV(index0)在必要时请求退出360到轴模式0，关闭index132自定义bit0，随后同一普通参数请求把Yaw/Pitch/Roll SmoothTrack Enabled分别index17/18/19、size1置1。Custom(index1)必要时同样退出360，再开启132 bit0，界面轴选择来自既有custom轴缓存，不自动覆盖三轴。源setIsCustomMode只是UI字段赋值，无BLE请求。模式选择仍受源UserProfile2的UI条件限制，不能自动激活预设。
+
+CacheHelper设置调用没有串联确认，UI回调成功更新延时显示标志、失败日志/Toast；没有后续参数写入或固件补偿。源函数调用顺序不是线上包序/ACK串行证明，多请求不等于原子切换。没有新增模式SDK/发送/高级任务或硬件/厂商执行；真正完成切换、部分失败/取消/恢复与本机生效仍待实现/验收。详见tools/research/PROFILES.md与protocol/research/ronin-profiles-evidence.json。
+
+
+## 2026-10-17 HG724新模式链验证
+
+40方法固定APK/SDK/UI审计独立复现与证据JSON逐字节一致，研究工具Python3.8/3.12各88项（新增3项分支单位/轴枚举移位边界）。统一离线Node154/Web14/Python132/原生106+141+3、类型/边界/构建通过。原生模式参数17/18/19/34、枚举0/8/16/24、index2跳转绕过普通轴开关、自定义控件无设备副作用及回调无链式参数写入已核对。没有新增SDK发送/高级任务、操作硬件或执行厂商代码，运行时与安装包保持0.7.16/0.3.16，完整模式切换及全命令验收仍未完成。

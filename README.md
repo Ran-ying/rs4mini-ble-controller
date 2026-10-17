@@ -169,3 +169,5 @@ python3 -m http.server 8000 --bind 127.0.0.1
 0.7.16新增[HG724恢复设置请求](docs/APP_FACTORY_RESET.md)，仅源分支与ACK封装，恢复范围和本机实际效果未验收。
 
 新增[保存命令六段引用审计](tools/research/SAVE_CALLERS.md)，扩大检索范围，仍缺HG724业务调用证据，未新增保存接口。
+
+新模式调用链已追至[参数17/18/19与轴模式34](tools/research/PROFILES.md)，与现有132/35位设置分开；完整切换事务和本机效果尚未验收。

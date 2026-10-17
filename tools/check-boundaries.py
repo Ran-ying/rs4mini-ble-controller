@@ -224,7 +224,7 @@ if manifest.get('profilesResearch'):
     assert profiles['apkSha256'] == numeric['apkSha256']
     assert profiles['sdkDerivedSha256'] == numeric['sdkDerivedSha256'] and profiles['uiDerivedSha256'] == numeric['uiDerivedSha256']
     assert profiles['appCodeExecuted'] is False and profiles['targetDeviceVerified'] is False and profiles['wholeProtocolRecovered'] is False and profiles['researchToolProvidesSdkInterface'] is False
-    assert len(profiles['methods']) == 26
+    assert len(profiles['methods']) == 40
     assert [(r['baseCommand'],r['name'],r['index'],r['size']) for r in profiles['parameters']] == [('USER_PROFILE','table_choice',0,1),('GIMBAL_WORK_MODE','ronin_gimbal_work_mode',62,1)]
     assert profiles['userProfileUiValues'] == [0,1,2] and profiles['userProfileUiNames'] == ['M1','M2','M3']
     assert [r['value'] for r in profiles['movementProfileSourceEnums']] == [0,1,3,4,5,255]
@@ -232,6 +232,12 @@ if manifest.get('profilesResearch'):
     assert profiles['presetGetter'] == dict(businessOffset=2,width=1,rawBleOffsetVerified=False)
     assert profiles['sourceFacts']['hg724SelectedModelUsesNewUiList'] and profiles['sourceFacts']['newProfileSelectorRequiresUserProfile2']
     assert profiles['uiModeArrays'][1]['defaultLanguageValues'] == ['FPV','Custom','3D Roll 360']
+    assert [(r['baseCommand'],r['index'],r['size'],r['minValue'],r['maxValue']) for r in profiles['modeParameters']]==[('SMOOTH_TRACK_ENABLED_YAW',17,1,0,1),('SMOOTH_TRACK_ENABLED_PITCH',18,1,0,1),('SMOOTH_TRACK_ENABLED_ROLL',19,1,0,1),('FLOWER_SPECIAL_CMD',34,1,0,255)]
+    assert profiles['axisModeSourceValues']==dict(ThreeAxis=0,TwoAxis=8,Roll360=16,ThreeDRoll360=24)
+    flow=profiles['newModeFlow']
+    assert flow['fpvSmoothValues']==[1,1,1] and flow['index2BypassesSmoothSetter'] and flow['uiCustomFlagIsLocalOnly'] and flow['axisModeIsNotMotorControlBit'] and flow['customAxisDisplayLocalOnly']
+    for key in ['callbacksChainParameterWrites','atomicTransactionVerified','wireOrderVerified','firmwareRollbackVerified']:assert flow[key] is False
+
 if manifest.get('subscriptionResearch'):
     subscription = json.loads((root / manifest['subscriptionResearch']).read_text())
     assert subscription['apkSha256'] == numeric['apkSha256'] and subscription['derivedSha256'] == restored['derivedSha256']

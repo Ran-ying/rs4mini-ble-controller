@@ -177,3 +177,5 @@ python3 -m http.server 8000 --bind 127.0.0.1
 0.7.18新增[普通跟随轴17/18/19读写](docs/APP_SMOOTH_TRACK.md)，未指定字段省略、异常值保留，完整模式/实机效果未验收。
 
 0.7.19新增[配置0与工作模式62命名读写](docs/APP_PROFILE_VALUES.md)，未知原值保留，未确认活动预设/完整跟随模式或本机效果。
+
+新增[六段命令引用矩阵与0D边界](tools/research/COMMAND_REFERENCES.md)，区分枚举名、实现候选与型号/硬件证据，不新增试探发送。

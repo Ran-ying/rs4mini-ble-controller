@@ -390,5 +390,19 @@ if manifest.get('profileValueSdk',{}).get('implemented'):
     modes={r['name']:r['value'] for r in profiles['workModeSourceEnums']}
     objc_modes=(root/'macos/RSControlCore.m').read_text().split('NSDictionary *RSAppProfileValueSpec(',1)[1]
     assert json.loads(re.search(r'const workModes=(\{.*?\});',js).group(1))==py['WORK_MODES']==json.loads(re.search(r'NSDictionary \*modes=(@\{.*?\});',objc_modes).group(1).replace('@',''))==modes
+if manifest.get('commandReferenceResearch'):
+    refs=json.loads((root/manifest['commandReferenceResearch']).read_text())
+    assert refs['apkSha256']==controls['apkSha256'] and refs['gimbalCommandSet']==4
+    for key in ['appCodeExecuted','targetDeviceVerified','wholeProtocolRecovered','wholeAppRecovered','allScannedBodiesRecovered','indirectDispatchResolved','literalResolutionComplete','literalCandidatesProveSend','researchToolProvidesSdkInterface']:assert refs[key] is False
+    assert refs['scannedBanks']==[0,2,3,4,5,6] and refs['unrestoredBanks']==[1,7]
+    assert {b['segment']:b['derivedSha256'] for b in refs['banks']}=={b['segment']:b['derivedSha256'] for b in banks['banks'] if b.get('restored')}
+    original=json.loads((root/'protocol/research/ronin-2.2.2-evidence.json').read_text())
+    assert {(c['name'],c['ordinal'],c['commandId']) for c in refs['commands']}=={(c['name'],c['ordinal'],c['value']) for c in original['enumEntries'] if c['scope']=='non-camera-candidate'}
+    assert len(refs['commands'])==40 and len({c['commandId'] for c in refs['commands']})==39 and len(refs['methods'])==50
+    for c in refs['commands']:
+        assert all(0<=i<len(refs['methods']) and any(x['name']==c['name'] and x['kind']=='external-enum-reference' for x in refs['methods'][i]['enumReferences']) for i in c['externalReferenceMethodIndexes'])
+    onoff=refs['onOff'];assert onoff['commandId']==13 and onoff['enumOrdinal']==5 and onoff['hasExplicitClassArgument'] is False
+    for key in ['hypothesizedClassDefinitionBanks','externalEnumMethodIndexes','literalCandidateMethodIndexes']:assert onoff[key]==[]
+    assert onoff['payloadRecovered'] is False and onoff['hg724CallPathEstablished'] is False
 print('Layer boundaries passed: device modules do not depend on motion; upper layers do not encode/write packets.')
 print('Protocol inventory: %d entries; inventoryComplete=false; further advanced development is gated.' % len(manifest['commands']))

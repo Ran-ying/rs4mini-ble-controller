@@ -1,0 +1,1956 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "appCodeExecuted": false,
+  "targetDeviceVerified": false,
+  "wholeProtocolRecovered": false,
+  "wholeAppRecovered": false,
+  "allScannedBodiesRecovered": false,
+  "indirectDispatchResolved": false,
+  "literalResolutionComplete": false,
+  "literalCandidatesProveSend": false,
+  "researchToolProvidesSdkInterface": false,
+  "scannedBanks": [
+    0,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "unrestoredBanks": [
+    1,
+    7
+  ],
+  "excludedNames": [
+    "FocusControl",
+    "NotiFyCameraId",
+    "Other"
+  ],
+  "gimbalCommandSet": 4,
+  "enumSourceMethods": [
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 4652020,
+      "instructionSha256": "89d7e5d4c317f54eb541d186eff2e608a50e62f9387974ef9c74a54543aa6609"
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/config/P3/CmdSet;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3321636,
+      "instructionSha256": "f312d32c7f7b1bdfbcd66b311c3758d0e773ee4880c34b413de5e350af47d732"
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+      "method": "<init>",
+      "descriptor": "(Ljava/lang/String; I I)V",
+      "codeOffset": 4653352,
+      "instructionSha256": "1184096218063b65ae6d4ff211c39addd7b116b497237dca47112186677a37f8"
+    }
+  ],
+  "commands": [
+    {
+      "name": "Control",
+      "ordinal": 0,
+      "commandId": 1,
+      "constructorDescriptor": "(Ljava/lang/String; I I)V",
+      "hasExplicitClassArgument": false,
+      "externalReferenceMethodIndexes": [
+        19,
+        20
+      ]
+    },
+    {
+      "name": "GetPushParams",
+      "ordinal": 1,
+      "commandId": 5,
+      "constructorDescriptor": "(Ljava/lang/String; I I Z Ljava/lang/Class;)V",
+      "hasExplicitClassArgument": true,
+      "externalReferenceMethodIndexes": []
+    },
+    {
+      "name": "RollFinetune",
+      "ordinal": 2,
+      "commandId": 7,
+      "constructorDescriptor": "(Ljava/lang/String; I I)V",
+      "hasExplicitClassArgument": false,
+      "externalReferenceMethodIndexes": [
+        32
+      ]
+    },
+    {
+      "name": "AutoCalibration",
+      "ordinal": 3,
+      "commandId": 8,
+      "constructorDescriptor": "(Ljava/lang/String; I I Z Z Ljava/lang/Class;)V",
+      "hasExplicitClassArgument": true,
+      "externalReferenceMethodIndexes": [
+        16
+      ]
+    },
+    {
+      "name": "SetAngle",
+      "ordinal": 4,
+      "commandId": 10,
+      "constructorDescriptor": "(Ljava/lang/String; I I)V",
+      "hasExplicitClassArgument": false,
+      "externalReferenceMethodIndexes": [
+        36,
+        37
+      ]
+    },
+    {
+      "name": "SetOnOrOff",
+      "ordinal": 5,
+      "commandId": 13,
+      "constructorDescriptor": "(Ljava/lang/String; I I)V",
+      "hasExplicitClassArgument": false,
+      "externalReferenceMethodIndexes": []
+    },
+    {
+      "name": "SpeedControl",
+      "ordinal": 6,
+      "commandId": 12,
+      "constructorDescriptor": "(Ljava/lang/String; I I)V",
+      "hasExplicitClassArgument": false,
+      "externalReferenceMethodIndexes": [
+        46,
+        47
+      ]
+    },
+    {
+      "name": "AngleControl",
+      "ordinal": 7,
+      "commandId": 10,
+      "constructorDescriptor": "(Ljava/lang/String; I I)V",
+      "hasExplicitClassArgument": false,
+      "externalReferenceMethodIndexes": [
+        14,
+        15
+      ]
+    },
+    {
+      "name": "SetUserParams",
+      "ordinal": 8,
+      "commandId": 15,
+      "constructorDescriptor": "(Ljava/lang/String; I I)V",
+      "hasExplicitClassArgument": false,
+      "externalReferenceMethodIndexes": [
+        45
+      ]
+    },
+    {
+      "name": "GetUserParams",
+      "ordinal": 9,
+      "commandId": 16,
+      "constructorDescriptor": "(Ljava/lang/String; I I Z Z Ljava/lang/Class;)V",
+      "hasExplicitClassArgument": true,
+      "externalReferenceMethodIndexes": [
+        9,
+        28
+      ]
+    },
+    {
+      "name": "SaveUserParams",
+      "ordinal": 10,
+      "commandId": 17,
+      "constructorDescriptor": "(Ljava/lang/String; I I)V",
+      "hasExplicitClassArgument": false,
+      "externalReferenceMethodIndexes": [
+        35
+      ]
+    },
+    {
+      "name": "SubscribeGimbalParams",
+      "ordinal": 11,
+      "commandId": 18,
+      "constructorDescriptor": "(Ljava/lang/String; I I Z Ljava/lang/Class;)V",
+      "hasExplicitClassArgument": true,
+      "externalReferenceMethodIndexes": [
+        7,
+        48
+      ]
+    },
+    {
+      "name": "ResetUserParams",
+      "ordinal": 12,
+      "commandId": 19,
+      "constructorDescriptor": "(Ljava/lang/String; I I)V",
+      "hasExplicitClassArgument": false,
+      "externalReferenceMethodIndexes": [
+        31
+      ]
+    },
+    {
+      "name": "AbsAngleControl",
+      "ordinal": 13,
+      "commandId": 20,
+      "constructorDescriptor": "(Ljava/lang/String; I I)V",
+      "hasExplicitClassArgument": false,
+      "externalReferenceMethodIndexes": [
+        12,
+        13
+      ]
+    },
+    {
+      "name": "GetPushType",
+      "ordinal": 14,
+      "commandId": 28,
+      "constructorDescriptor": "(Ljava/lang/String; I I Z Ljava/lang/Class;)V",
+      "hasExplicitClassArgument": true,
+      "externalReferenceMethodIndexes": []
+    },
+    {
+      "name": "GetPushUserParams",
+      "ordinal": 15,
+      "commandId": 36,
+      "constructorDescriptor": "(Ljava/lang/String; I I Z Ljava/lang/Class;)V",
+      "hasExplicitClassArgument": true,
+      "externalReferenceMethodIndexes": []
+    },
+    {
+      "name": "SetDelayTimelapseParams",
+      "ordinal": 16,
+      "commandId": 37,
+      "constructorDescriptor": "(Ljava/lang/String; I I)V",
+      "hasExplicitClassArgument": false,
+      "externalReferenceMethodIndexes": [
+        38
+      ]
+    },
+    {
+      "name": "GetPushAbnormalStatus",
+      "ordinal": 17,
+      "commandId": 39,
+      "constructorDescriptor": "(Ljava/lang/String; I I Z Ljava/lang/Class;)V",
+      "hasExplicitClassArgument": true,
+      "externalReferenceMethodIndexes": []
+    },
+    {
+      "name": "GetPushTutorialStatus",
+      "ordinal": 18,
+      "commandId": 43,
+      "constructorDescriptor": "(Ljava/lang/String; I I Z Ljava/lang/Class;)V",
+      "hasExplicitClassArgument": true,
+      "externalReferenceMethodIndexes": []
+    },
+    {
+      "name": "SetTutorialStep",
+      "ordinal": 19,
+      "commandId": 44,
+      "constructorDescriptor": "(Ljava/lang/String; I I)V",
+      "hasExplicitClassArgument": false,
+      "externalReferenceMethodIndexes": [
+        44
+      ]
+    },
+    {
+      "name": "GetPushSensorCalibrationStatus",
+      "ordinal": 21,
+      "commandId": 48,
+      "constructorDescriptor": "(Ljava/lang/String; I I Z Ljava/lang/Class;)V",
+      "hasExplicitClassArgument": true,
+      "externalReferenceMethodIndexes": []
+    },
+    {
+      "name": "RoninSetParams",
+      "ordinal": 22,
+      "commandId": 49,
+      "constructorDescriptor": "(Ljava/lang/String; I I)V",
+      "hasExplicitClassArgument": false,
+      "externalReferenceMethodIndexes": [
+        34
+      ]
+    },
+    {
+      "name": "RoninGetParams",
+      "ordinal": 23,
+      "commandId": 50,
+      "constructorDescriptor": "(Ljava/lang/String; I I Z Z Ljava/lang/Class;)V",
+      "hasExplicitClassArgument": true,
+      "externalReferenceMethodIndexes": [
+        9,
+        33
+      ]
+    },
+    {
+      "name": "RobinPushBattery",
+      "ordinal": 24,
+      "commandId": 51,
+      "constructorDescriptor": "(Ljava/lang/String; I I Z Ljava/lang/Class;)V",
+      "hasExplicitClassArgument": true,
+      "externalReferenceMethodIndexes": []
+    },
+    {
+      "name": "SetHandleParams",
+      "ordinal": 25,
+      "commandId": 53,
+      "constructorDescriptor": "(Ljava/lang/String; I I)V",
+      "hasExplicitClassArgument": false,
+      "externalReferenceMethodIndexes": [
+        40
+      ]
+    },
+    {
+      "name": "GetHandleParams",
+      "ordinal": 26,
+      "commandId": 54,
+      "constructorDescriptor": "(Ljava/lang/String; I I)V",
+      "hasExplicitClassArgument": false,
+      "externalReferenceMethodIndexes": [
+        21
+      ]
+    },
+    {
+      "name": "SetTimelapseParams",
+      "ordinal": 27,
+      "commandId": 55,
+      "constructorDescriptor": "(Ljava/lang/String; I I)V",
+      "hasExplicitClassArgument": false,
+      "externalReferenceMethodIndexes": [
+        0,
+        24,
+        49
+      ]
+    },
+    {
+      "name": "GetPushTimelapseStatus",
+      "ordinal": 28,
+      "commandId": 56,
+      "constructorDescriptor": "(Ljava/lang/String; I I Z Ljava/lang/Class;)V",
+      "hasExplicitClassArgument": true,
+      "externalReferenceMethodIndexes": [
+        27
+      ]
+    },
+    {
+      "name": "BalanceAdjust",
+      "ordinal": 29,
+      "commandId": 64,
+      "constructorDescriptor": "(Ljava/lang/String; I I Z Z Ljava/lang/Class;)V",
+      "hasExplicitClassArgument": true,
+      "externalReferenceMethodIndexes": [
+        17
+      ]
+    },
+    {
+      "name": "SetCalibration",
+      "ordinal": 30,
+      "commandId": 106,
+      "constructorDescriptor": "(Ljava/lang/String; I I)V",
+      "hasExplicitClassArgument": false,
+      "externalReferenceMethodIndexes": [
+        18
+      ]
+    },
+    {
+      "name": "SetTrack",
+      "ordinal": 31,
+      "commandId": 98,
+      "constructorDescriptor": "(Ljava/lang/String; I I)V",
+      "hasExplicitClassArgument": false,
+      "externalReferenceMethodIndexes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        24,
+        43
+      ]
+    },
+    {
+      "name": "SetPanorama",
+      "ordinal": 32,
+      "commandId": 99,
+      "constructorDescriptor": "(Ljava/lang/String; I I)V",
+      "hasExplicitClassArgument": false,
+      "externalReferenceMethodIndexes": [
+        0,
+        24,
+        41
+      ]
+    },
+    {
+      "name": "GetPushPanorama",
+      "ordinal": 33,
+      "commandId": 100,
+      "constructorDescriptor": "(Ljava/lang/String; I I Z Ljava/lang/Class;)V",
+      "hasExplicitClassArgument": true,
+      "externalReferenceMethodIndexes": [
+        26
+      ]
+    },
+    {
+      "name": "GetPushTrackAndTimelapse",
+      "ordinal": 34,
+      "commandId": 107,
+      "constructorDescriptor": "(Ljava/lang/String; I I Z Z Ljava/lang/Class;)V",
+      "hasExplicitClassArgument": true,
+      "externalReferenceMethodIndexes": [
+        25
+      ]
+    },
+    {
+      "name": "GetPushCalibration",
+      "ordinal": 35,
+      "commandId": 110,
+      "constructorDescriptor": "(Ljava/lang/String; I I Z Z Ljava/lang/Class;)V",
+      "hasExplicitClassArgument": true,
+      "externalReferenceMethodIndexes": [
+        22
+      ]
+    },
+    {
+      "name": "SetPushPeripheralStatus",
+      "ordinal": 37,
+      "commandId": 102,
+      "constructorDescriptor": "(Ljava/lang/String; I I Z Ljava/lang/Class;)V",
+      "hasExplicitClassArgument": true,
+      "externalReferenceMethodIndexes": [
+        8,
+        42
+      ]
+    },
+    {
+      "name": "GetPushExternalDeviceData",
+      "ordinal": 38,
+      "commandId": 105,
+      "constructorDescriptor": "(Ljava/lang/String; I I Z Z Ljava/lang/Class;)V",
+      "hasExplicitClassArgument": true,
+      "externalReferenceMethodIndexes": [
+        23
+      ]
+    },
+    {
+      "name": "GetPushHandheldStickState",
+      "ordinal": 39,
+      "commandId": 87,
+      "constructorDescriptor": "(Ljava/lang/String; I I Z Ljava/lang/Class;)V",
+      "hasExplicitClassArgument": true,
+      "externalReferenceMethodIndexes": []
+    },
+    {
+      "name": "SetHandheldStickControlEnabled",
+      "ordinal": 40,
+      "commandId": 88,
+      "constructorDescriptor": "(Ljava/lang/String; I I)V",
+      "hasExplicitClassArgument": false,
+      "externalReferenceMethodIndexes": [
+        39
+      ]
+    },
+    {
+      "name": "ResetAndSetMode",
+      "ordinal": 41,
+      "commandId": 76,
+      "constructorDescriptor": "(Ljava/lang/String; I I)V",
+      "hasExplicitClassArgument": false,
+      "externalReferenceMethodIndexes": [
+        29,
+        30
+      ]
+    }
+  ],
+  "banks": [
+    {
+      "segment": 0,
+      "derivedSha256": "76002e76e02e1306ad197c4af127975d573999de174e5a9e44cc6f840196f621",
+      "methodWithCodeCount": 50517,
+      "instructionCount": 682926
+    },
+    {
+      "segment": 2,
+      "derivedSha256": "de69497b77de530d0d559646dc6d3fb24569e2ba8ba9502216f3d6c9fd6f3bf8",
+      "methodWithCodeCount": 15446,
+      "instructionCount": 249001
+    },
+    {
+      "segment": 3,
+      "derivedSha256": "bb50b39865520f55e97116ae1903bda3545b01c2fb7e2aba67a979dc264a9854",
+      "methodWithCodeCount": 36349,
+      "instructionCount": 559947
+    },
+    {
+      "segment": 4,
+      "derivedSha256": "2d3ff70fb84eb02ac75949ca6e7d5cc849a7f9ef55029fd168890c6dbccb1d12",
+      "methodWithCodeCount": 53246,
+      "instructionCount": 587995
+    },
+    {
+      "segment": 5,
+      "derivedSha256": "4fdbd74a05df63d72a0feb1c907d9395426ec3cdb5d6aeb45e3836d856d66654",
+      "methodWithCodeCount": 53173,
+      "instructionCount": 677878
+    },
+    {
+      "segment": 6,
+      "derivedSha256": "057f13084cf969ffadcfa2150d1b3ae3ed8a7822c95fb54158781764c9156e2f",
+      "methodWithCodeCount": 45737,
+      "instructionCount": 705675
+    }
+  ],
+  "methods": [
+    {
+      "segment": 3,
+      "className": "Lcom/dji/ronin/util/RoninDeviceTaskChecker$2;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 2782656,
+      "instructionSha256": "d558b95f478ead9e9caeef17f7b1bbca826e92351950280b44c9dff0482ae596",
+      "enumReferences": [
+        {
+          "name": "SetTrack",
+          "instructionIndex": 5,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetTimelapseParams",
+          "instructionIndex": 11,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetPanorama",
+          "instructionIndex": 17,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 3,
+      "className": "Lcom/dji/ronin/ui/create/ronin2/CreateKeyPointView;",
+      "method": "checkGimbalStateStart",
+      "descriptor": "()V",
+      "codeOffset": 4741044,
+      "instructionSha256": "48e2ae0d7daa3f33c84f9f667a69706a360558f0c8fadc90f09fcc96129b0729",
+      "enumReferences": [
+        {
+          "name": "SetTrack",
+          "instructionIndex": 2,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 3,
+      "className": "Lcom/dji/ronin/ui/create/ronin2/CreateKeyPointView;",
+      "method": "checkGimbalStateStop",
+      "descriptor": "()V",
+      "codeOffset": 4741112,
+      "instructionSha256": "cfbd3b5e3d2b48867c58afae0459f9c84a9cf811466f5d52b40b69a84cb61bd0",
+      "enumReferences": [
+        {
+          "name": "SetTrack",
+          "instructionIndex": 2,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 3,
+      "className": "Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;",
+      "method": "checkGimbalStateStart",
+      "descriptor": "()V",
+      "codeOffset": 4980136,
+      "instructionSha256": "63b1c2b88e46d483395b748b27952710cb0e03da786a2bfb5da9d0c3c9153a84",
+      "enumReferences": [
+        {
+          "name": "SetTrack",
+          "instructionIndex": 2,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 3,
+      "className": "Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;",
+      "method": "checkGimbalStateStop",
+      "descriptor": "()V",
+      "codeOffset": 4980204,
+      "instructionSha256": "a3ee52d8f7b84697ec1a61109e5d5ab851a13d0f5ba7cbe9eb866c4d5f843a04",
+      "enumReferences": [
+        {
+          "name": "SetTrack",
+          "instructionIndex": 2,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 3,
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "checkGimbalStateStart",
+      "descriptor": "()V",
+      "codeOffset": 5003860,
+      "instructionSha256": "da234f0f5fd3e853d61405c043255799fec82c22c4122cea50e8f8417265c278",
+      "enumReferences": [
+        {
+          "name": "SetTrack",
+          "instructionIndex": 2,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 3,
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "checkGimbalStateStop",
+      "descriptor": "()V",
+      "codeOffset": 5003928,
+      "instructionSha256": "6731a1c5fe071c28b881b891d9c39ec543d620256903b29d0f844fa733b8a309",
+      "enumReferences": [
+        {
+          "name": "SetTrack",
+          "instructionIndex": 2,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/manager/P3/BlockUtils;",
+      "method": "isNeedShieldPack",
+      "descriptor": "(Ldji/midware/data/packages/P3/SendPack;)Z",
+      "codeOffset": 3333996,
+      "instructionSha256": "7e57a2b90b86669b7ada06b158820128460eea8d74ead007fdc7719913da0139",
+      "enumReferences": [
+        {
+          "name": "SubscribeGimbalParams",
+          "instructionIndex": 30,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/common/gimbal/Ronin2SubscribeIMPL;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "codeOffset": 4477776,
+      "instructionSha256": "55e9e64e2be16daa7356c2b2bbdce8c6059ca5c23b42e4fb871aec1e69619a2a",
+      "enumReferences": [
+        {
+          "name": "SetPushPeripheralStatus",
+          "instructionIndex": 343,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetPushPeripheralStatus",
+          "instructionIndex": 350,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetPushPeripheralStatus",
+          "instructionIndex": 357,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetPushPeripheralStatus",
+          "instructionIndex": 364,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetPushPeripheralStatus",
+          "instructionIndex": 371,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetPushPeripheralStatus",
+          "instructionIndex": 378,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetPushPeripheralStatus",
+          "instructionIndex": 385,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetPushPeripheralStatus",
+          "instructionIndex": 392,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetPushPeripheralStatus",
+          "instructionIndex": 399,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetPushPeripheralStatus",
+          "instructionIndex": 406,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetPushPeripheralStatus",
+          "instructionIndex": 413,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetPushPeripheralStatus",
+          "instructionIndex": 420,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetPushPeripheralStatus",
+          "instructionIndex": 427,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetPushPeripheralStatus",
+          "instructionIndex": 434,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetPushPeripheralStatus",
+          "instructionIndex": 441,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetPushPeripheralStatus",
+          "instructionIndex": 448,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetPushPeripheralStatus",
+          "instructionIndex": 455,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetPushPeripheralStatus",
+          "instructionIndex": 462,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetPushPeripheralStatus",
+          "instructionIndex": 469,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetPushPeripheralStatus",
+          "instructionIndex": 476,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetPushPeripheralStatus",
+          "instructionIndex": 483,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetPushPeripheralStatus",
+          "instructionIndex": 490,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetPushPeripheralStatus",
+          "instructionIndex": 497,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetPushPeripheralStatus",
+          "instructionIndex": 504,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetPushPeripheralStatus",
+          "instructionIndex": 511,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetPushPeripheralStatus",
+          "instructionIndex": 518,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetPushPeripheralStatus",
+          "instructionIndex": 525,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetPushPeripheralStatus",
+          "instructionIndex": 532,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetPushPeripheralStatus",
+          "instructionIndex": 539,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetPushPeripheralStatus",
+          "instructionIndex": 546,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetPushPeripheralStatus",
+          "instructionIndex": 553,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetPushPeripheralStatus",
+          "instructionIndex": 560,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetPushPeripheralStatus",
+          "instructionIndex": 567,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetPushPeripheralStatus",
+          "instructionIndex": 574,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetPushPeripheralStatus",
+          "instructionIndex": 581,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetPushPeripheralStatus",
+          "instructionIndex": 588,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetPushPeripheralStatus",
+          "instructionIndex": 595,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetPushPeripheralStatus",
+          "instructionIndex": 602,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetPushPeripheralStatus",
+          "instructionIndex": 609,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetPushPeripheralStatus",
+          "instructionIndex": 616,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetPushPeripheralStatus",
+          "instructionIndex": 623,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetPushPeripheralStatus",
+          "instructionIndex": 633,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/common/gimbal/Ronin2SubscribeIMPL;",
+      "method": "put",
+      "descriptor": "(Ljava/lang/String; Ldji/midware/ronin2/Ronin2GimbalParamsManager$BaseCommand;)V",
+      "codeOffset": 4481444,
+      "instructionSha256": "bcac0f6c8d2bcecd7606694979caf0c39ea80978fa167a6f8b03ca046e6295a4",
+      "enumReferences": [
+        {
+          "name": "GetUserParams",
+          "instructionIndex": 6,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "RoninGetParams",
+          "instructionIndex": 10,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+      "method": "$values",
+      "descriptor": "()[Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+      "codeOffset": 4651820,
+      "instructionSha256": "baab9b742889abcd0c7f9e1e30f763657f24807e61a65807c17bd891cb7fc98d",
+      "enumReferences": [
+        {
+          "name": "Control",
+          "instructionIndex": 0,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "GetPushParams",
+          "instructionIndex": 1,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "RollFinetune",
+          "instructionIndex": 2,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "AutoCalibration",
+          "instructionIndex": 3,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "SetAngle",
+          "instructionIndex": 4,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "SetOnOrOff",
+          "instructionIndex": 5,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "SpeedControl",
+          "instructionIndex": 6,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "AngleControl",
+          "instructionIndex": 7,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "SetUserParams",
+          "instructionIndex": 8,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "GetUserParams",
+          "instructionIndex": 9,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "SaveUserParams",
+          "instructionIndex": 10,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "SubscribeGimbalParams",
+          "instructionIndex": 11,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "ResetUserParams",
+          "instructionIndex": 12,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "AbsAngleControl",
+          "instructionIndex": 13,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "GetPushType",
+          "instructionIndex": 14,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "GetPushUserParams",
+          "instructionIndex": 15,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "SetDelayTimelapseParams",
+          "instructionIndex": 16,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "GetPushAbnormalStatus",
+          "instructionIndex": 17,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "GetPushTutorialStatus",
+          "instructionIndex": 18,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "SetTutorialStep",
+          "instructionIndex": 19,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "GetPushSensorCalibrationStatus",
+          "instructionIndex": 21,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "RoninSetParams",
+          "instructionIndex": 22,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "RoninGetParams",
+          "instructionIndex": 23,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "RobinPushBattery",
+          "instructionIndex": 24,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "SetHandleParams",
+          "instructionIndex": 25,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "GetHandleParams",
+          "instructionIndex": 26,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "SetTimelapseParams",
+          "instructionIndex": 27,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "GetPushTimelapseStatus",
+          "instructionIndex": 28,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "BalanceAdjust",
+          "instructionIndex": 29,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "SetCalibration",
+          "instructionIndex": 30,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "SetTrack",
+          "instructionIndex": 31,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "SetPanorama",
+          "instructionIndex": 32,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "GetPushPanorama",
+          "instructionIndex": 33,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "GetPushTrackAndTimelapse",
+          "instructionIndex": 34,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "GetPushCalibration",
+          "instructionIndex": 35,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "SetPushPeripheralStatus",
+          "instructionIndex": 37,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "GetPushExternalDeviceData",
+          "instructionIndex": 38,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "GetPushHandheldStickState",
+          "instructionIndex": 39,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "SetHandheldStickControlEnabled",
+          "instructionIndex": 40,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "ResetAndSetMode",
+          "instructionIndex": 41,
+          "kind": "enum-self-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 4652020,
+      "instructionSha256": "89d7e5d4c317f54eb541d186eff2e608a50e62f9387974ef9c74a54543aa6609",
+      "enumReferences": [
+        {
+          "name": "Control",
+          "instructionIndex": 5,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "GetPushParams",
+          "instructionIndex": 13,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "RollFinetune",
+          "instructionIndex": 19,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "AutoCalibration",
+          "instructionIndex": 27,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "SetAngle",
+          "instructionIndex": 33,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "SetOnOrOff",
+          "instructionIndex": 39,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "SpeedControl",
+          "instructionIndex": 45,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "AngleControl",
+          "instructionIndex": 49,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "SetUserParams",
+          "instructionIndex": 55,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "GetUserParams",
+          "instructionIndex": 64,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "SaveUserParams",
+          "instructionIndex": 69,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "SubscribeGimbalParams",
+          "instructionIndex": 76,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "ResetUserParams",
+          "instructionIndex": 81,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "AbsAngleControl",
+          "instructionIndex": 86,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "GetPushType",
+          "instructionIndex": 94,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "GetPushUserParams",
+          "instructionIndex": 102,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "SetDelayTimelapseParams",
+          "instructionIndex": 108,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "GetPushAbnormalStatus",
+          "instructionIndex": 116,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "GetPushTutorialStatus",
+          "instructionIndex": 124,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "SetTutorialStep",
+          "instructionIndex": 129,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "GetPushSensorCalibrationStatus",
+          "instructionIndex": 146,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "RoninSetParams",
+          "instructionIndex": 152,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "RoninGetParams",
+          "instructionIndex": 161,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "RobinPushBattery",
+          "instructionIndex": 169,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "SetHandleParams",
+          "instructionIndex": 175,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "GetHandleParams",
+          "instructionIndex": 181,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "SetTimelapseParams",
+          "instructionIndex": 187,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "GetPushTimelapseStatus",
+          "instructionIndex": 195,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "BalanceAdjust",
+          "instructionIndex": 204,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "SetCalibration",
+          "instructionIndex": 210,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "SetTrack",
+          "instructionIndex": 216,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "SetPanorama",
+          "instructionIndex": 222,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "GetPushPanorama",
+          "instructionIndex": 230,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "GetPushTrackAndTimelapse",
+          "instructionIndex": 238,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "GetPushCalibration",
+          "instructionIndex": 247,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "SetPushPeripheralStatus",
+          "instructionIndex": 261,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "GetPushExternalDeviceData",
+          "instructionIndex": 270,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "GetPushHandheldStickState",
+          "instructionIndex": 278,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "SetHandheldStickControlEnabled",
+          "instructionIndex": 284,
+          "kind": "enum-self-reference"
+        },
+        {
+          "name": "ResetAndSetMode",
+          "instructionIndex": 290,
+          "kind": "enum-self-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalAbsAngleControl;",
+      "method": "start",
+      "descriptor": "()V",
+      "codeOffset": 4855068,
+      "instructionSha256": "dac019d109783821a8f37b3b0109868cd8d7e14cdfc22228c8d926aa0da0aa50",
+      "enumReferences": [
+        {
+          "name": "AbsAngleControl",
+          "instructionIndex": 26,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalAbsAngleControl;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4855216,
+      "instructionSha256": "2e997035732e591844e6d74bbc759e02e33e3986f14417edf7d69c2c383c3316",
+      "enumReferences": [
+        {
+          "name": "AbsAngleControl",
+          "instructionIndex": 26,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalAngleControl;",
+      "method": "start",
+      "descriptor": "()V",
+      "codeOffset": 4856052,
+      "instructionSha256": "7dff3ec0718f0d959005eb9f411576b8a2d65375256913e308547020121736bd",
+      "enumReferences": [
+        {
+          "name": "AngleControl",
+          "instructionIndex": 26,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalAngleControl;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4856200,
+      "instructionSha256": "77d54347103ad78ab4ab410b482066ca82613a3241023a381710f9fbfc9c3d4d",
+      "enumReferences": [
+        {
+          "name": "AngleControl",
+          "instructionIndex": 26,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4856748,
+      "instructionSha256": "27687e2efcbeaf5e0101b03ffcdbee547f9862a5a1a8b18f1536c0a07660c42f",
+      "enumReferences": [
+        {
+          "name": "AutoCalibration",
+          "instructionIndex": 26,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalBalanceAdjust;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4857116,
+      "instructionSha256": "6b4a2bd4f0d111caae6f2943adb9b9193c3f5444631361daf81eb444a4eb2c1e",
+      "enumReferences": [
+        {
+          "name": "BalanceAdjust",
+          "instructionIndex": 28,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalCalibrate;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4857388,
+      "instructionSha256": "cebcebc9cfee78976adaaac8882267f7a9c00dea73f6a8698039457d2febd4ea",
+      "enumReferences": [
+        {
+          "name": "SetCalibration",
+          "instructionIndex": 26,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalControl;",
+      "method": "start",
+      "descriptor": "()V",
+      "codeOffset": 4858512,
+      "instructionSha256": "299d4f8915cdb33329b0e64499b8e44163b50cf8e89a4185e441a339e8819631",
+      "enumReferences": [
+        {
+          "name": "Control",
+          "instructionIndex": 26,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalControl;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4858660,
+      "instructionSha256": "93fb97d733f3ed776059b3e5d99ca251407381778faddf7de2cb9e5f1bd84b80",
+      "enumReferences": [
+        {
+          "name": "Control",
+          "instructionIndex": 28,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetHandleParams;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4865004,
+      "instructionSha256": "59d84f9e8a6620d8cb3f8df85bf7e4a9883fc390a57741a799d97b97ff14686f",
+      "enumReferences": [
+        {
+          "name": "GetHandleParams",
+          "instructionIndex": 26,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushCalibrationStatus;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4867272,
+      "instructionSha256": "b4be22621c35d542566321b098cee8f0bf2b61a55dfade9045e08fb87d8d9146",
+      "enumReferences": [
+        {
+          "name": "GetPushCalibration",
+          "instructionIndex": 26,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4870536,
+      "instructionSha256": "bdbee2d3cbb106ba67e118f59ecac33da297a53f1921d0ae7c779edf54152a94",
+      "enumReferences": [
+        {
+          "name": "GetPushExternalDeviceData",
+          "instructionIndex": 26,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalStatus;",
+      "method": "setPushRecData",
+      "descriptor": "([B)V",
+      "codeOffset": 4871232,
+      "instructionSha256": "98b064a1102be6fc376574fe26402870506819d6a8f7813eb9fabdfa35450ffc",
+      "enumReferences": [
+        {
+          "name": "SetTrack",
+          "instructionIndex": 20,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetTrack",
+          "instructionIndex": 63,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetTimelapseParams",
+          "instructionIndex": 66,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetTimelapseParams",
+          "instructionIndex": 122,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetPanorama",
+          "instructionIndex": 125,
+          "kind": "external-enum-reference"
+        },
+        {
+          "name": "SetPanorama",
+          "instructionIndex": 160,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalStatus;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4871908,
+      "instructionSha256": "12f21fc6140ffa79540b3e12103a2a9c4915b41c1f44920d09c50b115a9ca8cd",
+      "enumReferences": [
+        {
+          "name": "GetPushTrackAndTimelapse",
+          "instructionIndex": 26,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushPanoramaStatus;",
+      "method": "start",
+      "descriptor": "()V",
+      "codeOffset": 4872992,
+      "instructionSha256": "ff4c673452a0b829d5f78adcae9c38dcfecad56be9fb382659148ee1fbe080fb",
+      "enumReferences": [
+        {
+          "name": "GetPushPanorama",
+          "instructionIndex": 26,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushTimelapseStatus;",
+      "method": "start",
+      "descriptor": "()V",
+      "codeOffset": 4875696,
+      "instructionSha256": "721f036af57bf2c2f9438c28bce3510a4ce0fdfa81322be58e1b62938c2e8ebb",
+      "enumReferences": [
+        {
+          "name": "GetPushTimelapseStatus",
+          "instructionIndex": 26,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetUserParams;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4878372,
+      "instructionSha256": "0d05970822b30bcaaee5034188f3f6e774c78bb52a037af03f12c0d0ca1d7586",
+      "enumReferences": [
+        {
+          "name": "GetUserParams",
+          "instructionIndex": 26,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalNewResetAndSetMode;",
+      "method": "start",
+      "descriptor": "()V",
+      "codeOffset": 4878848,
+      "instructionSha256": "0a9b0146b4e1c9fb7f869075bd9b0db28acbd54e97ab211b0a3c5143468691ac",
+      "enumReferences": [
+        {
+          "name": "ResetAndSetMode",
+          "instructionIndex": 26,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalNewResetAndSetMode;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4878996,
+      "instructionSha256": "3cae0e6eb63d2ef907728b20dedfdae2b8bdfa9e69b44e3a3df541a7da2dbbe4",
+      "enumReferences": [
+        {
+          "name": "ResetAndSetMode",
+          "instructionIndex": 33,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalResetUserParams;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4879668,
+      "instructionSha256": "bd59add540e28c1d97e9c1ea389b9a233574d479f92a11dddfd116386f669bde",
+      "enumReferences": [
+        {
+          "name": "ResetUserParams",
+          "instructionIndex": 26,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalRollFinetune;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4880136,
+      "instructionSha256": "6331847efd476a229fc28ea0affe22edeafa3222e61f1fe0209747a72fa67a94",
+      "enumReferences": [
+        {
+          "name": "RollFinetune",
+          "instructionIndex": 28,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalRoninGetUserParams;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4880736,
+      "instructionSha256": "c065c654b18a325b53ebb88f3ba8c5a839f18a2966725a64b4301448316bc008",
+      "enumReferences": [
+        {
+          "name": "RoninGetParams",
+          "instructionIndex": 26,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalRoninSetUserParams;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4881904,
+      "instructionSha256": "ef7def3c63b86b09a9bff3515290e1e926bb11adc7c86325a0e373267e0e82c0",
+      "enumReferences": [
+        {
+          "name": "RoninSetParams",
+          "instructionIndex": 26,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSaveUserParams;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4882208,
+      "instructionSha256": "4bdc21c5c11b5c113b6c183ded3397e5b0e6c5992f43966cb5b9d96c16858568",
+      "enumReferences": [
+        {
+          "name": "SaveUserParams",
+          "instructionIndex": 26,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetAngle;",
+      "method": "start",
+      "descriptor": "(I I Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4882896,
+      "instructionSha256": "aa7fdf2eeaa9ea321cef9c8164b1ebd3f6b2a5d64d5d729fbe08373d554de97b",
+      "enumReferences": [
+        {
+          "name": "SetAngle",
+          "instructionIndex": 26,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetAngle;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4883052,
+      "instructionSha256": "21a71c2a98d85b4f297efbf2aeca7415f397bb5600b573a01af8c30387fe2e13",
+      "enumReferences": [
+        {
+          "name": "SetAngle",
+          "instructionIndex": 28,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4883996,
+      "instructionSha256": "1fa91f36cb1511a5be887c8cff7ccd97843d443dc4027638619559f9d6bcb883",
+      "enumReferences": [
+        {
+          "name": "SetDelayTimelapseParams",
+          "instructionIndex": 26,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetHandheldStickControlEnabled;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4884344,
+      "instructionSha256": "d9d41f37cdb37a128f22a9d4675dd1e9d3a7b7a64b0f567df69879bb6f15f2dd",
+      "enumReferences": [
+        {
+          "name": "SetHandheldStickControlEnabled",
+          "instructionIndex": 26,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetHandleParams;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4884956,
+      "instructionSha256": "1759183fa921e945dd29f3b56239630b328b39bc3ffc5ca28692751efc1d6af7",
+      "enumReferences": [
+        {
+          "name": "SetHandleParams",
+          "instructionIndex": 26,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4885568,
+      "instructionSha256": "55b0eeb14ba4ac96762eacacb0138576ce5cccee4e348dde553d987790864c86",
+      "enumReferences": [
+        {
+          "name": "SetPanorama",
+          "instructionIndex": 26,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "start",
+      "descriptor": "()V",
+      "codeOffset": 4888052,
+      "instructionSha256": "760129931b0739573502affaba892b4c2c2fd1bdb6a1b646c642259c29a08a57",
+      "enumReferences": [
+        {
+          "name": "SetPushPeripheralStatus",
+          "instructionIndex": 26,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4888956,
+      "instructionSha256": "38dc780840f5501106c5197629226b8c0735faff86fec22457dda9c112a72c90",
+      "enumReferences": [
+        {
+          "name": "SetTrack",
+          "instructionIndex": 26,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetTutorialStep;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4889308,
+      "instructionSha256": "766d313217c9b75f865b735fcf2f8cfd027d98d1ac89889d24f751a2496b26d9",
+      "enumReferences": [
+        {
+          "name": "SetTutorialStep",
+          "instructionIndex": 26,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetUserParams;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4890736,
+      "instructionSha256": "e1411ba3ca5c21358d3f3ba6d730990c707694f18ce1366c824aa3ae7fbf408c",
+      "enumReferences": [
+        {
+          "name": "SetUserParams",
+          "instructionIndex": 26,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSpeedControl;",
+      "method": "start",
+      "descriptor": "()V",
+      "codeOffset": 4891304,
+      "instructionSha256": "987f628de06824d468635150d59dfc41c3739bec82b9f8a4ca4d45704b482bc7",
+      "enumReferences": [
+        {
+          "name": "SpeedControl",
+          "instructionIndex": 26,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSpeedControl;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4891452,
+      "instructionSha256": "4df0ed6736889382b0552add0f51d8948481332aa8da745dec55b1866bc23801",
+      "enumReferences": [
+        {
+          "name": "SpeedControl",
+          "instructionIndex": 26,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSubscribeParams;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4892496,
+      "instructionSha256": "64b850c3891ca5cb54e967a0b1f86d79cb27c0d9f3c5f7148c62a9eb52f3aba4",
+      "enumReferences": [
+        {
+          "name": "SubscribeGimbalParams",
+          "instructionIndex": 37,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4961488,
+      "instructionSha256": "8f5b36f4f59fcd406d0e729483dd35038aa35f2c44f1c8d47446754b3205d9d4",
+      "enumReferences": [
+        {
+          "name": "SetTimelapseParams",
+          "instructionIndex": 26,
+          "kind": "external-enum-reference"
+        }
+      ],
+      "literalPacketCandidates": []
+    }
+  ],
+  "onOff": {
+    "commandId": 13,
+    "enumOrdinal": 5,
+    "constructorDescriptor": "(Ljava/lang/String; I I)V",
+    "hasExplicitClassArgument": false,
+    "hypothesizedClassName": "Ldji/midware/data/model/P3/DataGimbalSetOnOrOff;",
+    "hypothesizedClassDefinitionBanks": [],
+    "externalEnumMethodIndexes": [],
+    "literalCandidateMethodIndexes": [],
+    "payloadRecovered": false,
+    "hg724CallPathEstablished": false
+  },
+  "limits": [
+    "Only static field references to 40 non-camera enum entries are inventoried; enum use is not execution proof.",
+    "Literal SendPack candidates use linear syntax with branch resets, not complete CFG/exception/alias/dataflow analysis.",
+    "Missing banks1/7, protected bodies, reflection/dynamic/native paths and firmware-only commands remain unresolved.",
+    "No guessed class name or constructor class argument is treated as an outgoing implementation mapping."
+  ]
+}

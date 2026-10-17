@@ -7,6 +7,8 @@
 
 0.7.11增加[独立配置输入源与数值SDK](docs/APP_STANDALONE_TUNING.md)：六项参数、显式输入源2同包写入，读取保留实际输入源。尚无实机验收。
 
+最新[预设与模式研究](tools/research/PROFILES.md)区分配置、运动预设和工作模式，确认HG724条件新列表不能套用旧PF/PTF编号；尚未据此新增接口。
+
 ## 安装与离线验证
 
 需要 Node.js 18+。macOS 原生构建还需要 Xcode Command Line Tools。

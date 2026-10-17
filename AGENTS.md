@@ -522,3 +522,21 @@ and all three six-record catalogs are checked. No APK code execution, hardware
 or live UI. Both completeness gates remain false; no new advanced development.
 
 0.7.11 offline checks: Node126/Web14, Python3.8/3.12 each103, native87+119+3, research54 in bothPython environments. Installed tarball126/wheel103, types/boundaries/build pass. Fixed APK static JSON reproduced byte-for-byte. No hardware/liveUI/vendor execution.
+
+
+## Further profile/mode research (runtime stays 0.7.11 / native0.3.11)
+
+ronin_profiles_trace.py fixes26 SDK/UI method fingerprints and named records:
+USER_PROFILE/table_choice0/size1 resource0..5 (UI M1/M2/M3 writes0/1/2),
+GIMBAL_WORK_MODE/ronin_gimbal_work_mode62/size1 resource0..128 with source
+Free0/Flower1/Fpv2/Center3. Neither is automatically PF/PTF/FPV or the generic
+MovementSettingsProfile enum (CUSTOM1=0,CUSTOM2=1,FAST3,MEDIUM4,SLOW5,UNKNOWN255).
+HG724 condition selects new setTrackModeHG711 and new UI list FPV/Custom/3D
+Roll360; legacy list has PTF/PF additionally, do not reuse its positions.
+New selector disabled unlessUserProfile2. No automatic source/profile activation.
+getPresetID is businessoffset2/width1, rawBLE offset NOT established; do not
+flipactivePresetVerified or decode it into telemetry. See tools/research/PROFILES.md
+and protocol/research/ronin-profiles-evidence.json. No added runtime SDK sending,
+hardware/UI/vendor execution, or advanced features; both completeness gatesfalse.
+
+Profile research checks:58 tests in bothPython environments, pinned APK/two-bank26-method output reproduced exactly. Unified check Node126/Web14/Python103/native87+119+3/types/boundaries/build pass. Runtime/packages unchanged.

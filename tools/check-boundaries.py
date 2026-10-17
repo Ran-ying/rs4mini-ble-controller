@@ -216,5 +216,18 @@ if manifest.get('standaloneSdk',{}).get('implemented'):
     native = (root / 'macos/RSControlCore.m').read_text().split('NSArray<NSDictionary *> *RSAppStandaloneSelection(',1)[1]
     native_groups = json.loads(re.search(r'NSArray \*groups=(@\[.*?\]);',native,re.S).group(1).replace('@',''))
     assert standalone_normalize(py_groups) == standalone_normalize(js_groups) == standalone_normalize(native_groups) == expected
+if manifest.get('profilesResearch'):
+    profiles = json.loads((root / manifest['profilesResearch']).read_text())
+    assert profiles['apkSha256'] == numeric['apkSha256']
+    assert profiles['sdkDerivedSha256'] == numeric['sdkDerivedSha256'] and profiles['uiDerivedSha256'] == numeric['uiDerivedSha256']
+    assert profiles['appCodeExecuted'] is False and profiles['targetDeviceVerified'] is False and profiles['wholeProtocolRecovered'] is False and profiles['researchToolProvidesSdkInterface'] is False
+    assert len(profiles['methods']) == 26
+    assert [(r['baseCommand'],r['name'],r['index'],r['size']) for r in profiles['parameters']] == [('USER_PROFILE','table_choice',0,1),('GIMBAL_WORK_MODE','ronin_gimbal_work_mode',62,1)]
+    assert profiles['userProfileUiValues'] == [0,1,2] and profiles['userProfileUiNames'] == ['M1','M2','M3']
+    assert [r['value'] for r in profiles['movementProfileSourceEnums']] == [0,1,3,4,5,255]
+    assert [r['name'] for r in profiles['workModeSourceEnums']] == ['Free','Flower','Fpv','Center']
+    assert profiles['presetGetter'] == dict(businessOffset=2,width=1,rawBleOffsetVerified=False)
+    assert profiles['sourceFacts']['hg724SelectedModelUsesNewUiList'] and profiles['sourceFacts']['newProfileSelectorRequiresUserProfile2']
+    assert profiles['uiModeArrays'][1]['defaultLanguageValues'] == ['FPV','Custom','3D Roll 360']
 print('Layer boundaries passed: device modules do not depend on motion; upper layers do not encode/write packets.')
 print('Protocol inventory: %d entries; inventoryComplete=false; further advanced development is gated.' % len(manifest['commands']))

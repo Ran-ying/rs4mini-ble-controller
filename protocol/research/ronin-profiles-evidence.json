@@ -1,0 +1,412 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "sdkDerivedSha256": "4fdbd74a05df63d72a0feb1c907d9395426ec3cdb5d6aeb45e3836d856d66654",
+  "uiDerivedSha256": "bb50b39865520f55e97116ae1903bda3545b01c2fb7e2aba67a979dc264a9854",
+  "appCodeExecuted": false,
+  "targetDeviceVerified": false,
+  "wholeProtocolRecovered": false,
+  "researchToolProvidesSdkInterface": false,
+  "parameters": [
+    {
+      "name": "table_choice",
+      "index": 0,
+      "size": 1,
+      "typeID": 0,
+      "minValue": 0,
+      "maxValue": 5,
+      "baseCommand": "USER_PROFILE"
+    },
+    {
+      "name": "ronin_gimbal_work_mode",
+      "index": 62,
+      "size": 1,
+      "typeID": 0,
+      "minValue": 0,
+      "maxValue": 128,
+      "baseCommand": "GIMBAL_WORK_MODE"
+    }
+  ],
+  "hg724Inheritance": [
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG724Abstraction;",
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG702Abstraction;",
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninBaseAbstraction;",
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction;",
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalX3Abstraction;",
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAircraftAbstraction;",
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;"
+  ],
+  "userProfileUiValues": [
+    0,
+    1,
+    2
+  ],
+  "userProfileUiNames": [
+    "M1",
+    "M2",
+    "M3"
+  ],
+  "workModeSourceEnums": [
+    {
+      "name": "Free",
+      "ordinal": 0,
+      "value": 0
+    },
+    {
+      "name": "Flower",
+      "ordinal": 1,
+      "value": 1
+    },
+    {
+      "name": "Fpv",
+      "ordinal": 2,
+      "value": 2
+    },
+    {
+      "name": "Center",
+      "ordinal": 3,
+      "value": 3
+    }
+  ],
+  "movementProfileSourceEnums": [
+    {
+      "name": "CUSTOM_1",
+      "ordinal": 0,
+      "value": 0
+    },
+    {
+      "name": "CUSTOM_2",
+      "ordinal": 1,
+      "value": 1
+    },
+    {
+      "name": "FAST",
+      "ordinal": 2,
+      "value": 3
+    },
+    {
+      "name": "MEDIUM",
+      "ordinal": 3,
+      "value": 4
+    },
+    {
+      "name": "SLOW",
+      "ordinal": 4,
+      "value": 5
+    },
+    {
+      "name": "UNKNOWN",
+      "ordinal": 5,
+      "value": 255
+    }
+  ],
+  "presetGetter": {
+    "businessOffset": 2,
+    "width": 1,
+    "rawBleOffsetVerified": false
+  },
+  "uiLabels": [
+    {
+      "resourceId": "0x7f1304ec",
+      "values": [
+        "Benutzerdefiniert",
+        "Custom",
+        "Personalizado",
+        "Personalizzato",
+        "Personnalisé",
+        "Персонализированный",
+        "กำหนดเอง",
+        "カスタマイズ済",
+        "自定义",
+        "自定義",
+        "맞춤 설정"
+      ]
+    },
+    {
+      "resourceId": "0x7f1304ee",
+      "values": [
+        "Folgt mit Schwenken",
+        "Pan follow",
+        "Segui rotazione",
+        "Seguimiento de paneo",
+        "Suivre (pano)",
+        "Панорам. при сопров.",
+        "ติดตามแกนหันซ้าย-ขวา",
+        "パン フォロー",
+        "平移跟随",
+        "平移跟隨",
+        "팬 팔로우"
+      ]
+    },
+    {
+      "resourceId": "0x7f1304f0",
+      "values": [
+        "Folgt mit Neigen & Schwenken",
+        "Pan & Tilt follow",
+        "Segui rotazione e inclinazione",
+        "Seguimiento de paneo e inclinación",
+        "Suivre (Pano et inclinaison)",
+        "Панор./накл. сопров.",
+        "ติดตามแกนหันซ้าย-ขวาและก้ม-เงย",
+        "パン & チルト フォロー",
+        "双轴跟随",
+        "雙軸跟隨",
+        "팬 & 틸트 팔로우"
+      ]
+    },
+    {
+      "resourceId": "0x7f1304f2",
+      "values": [
+        "FPV",
+        "全域跟随",
+        "全域跟隨"
+      ]
+    }
+  ],
+  "uiModeArrays": [
+    {
+      "resourceId": "0x7f030002",
+      "defaultLanguageValues": [
+        "Pan & Tilt follow",
+        "Pan follow",
+        "FPV",
+        "Custom",
+        "3D Roll 360"
+      ]
+    },
+    {
+      "resourceId": "0x7f030003",
+      "defaultLanguageValues": [
+        "FPV",
+        "Custom",
+        "3D Roll 360"
+      ]
+    }
+  ],
+  "sourceFacts": {
+    "userProfileIsNotMovementPreset": true,
+    "workModeIsNotPfPtfEnum": true,
+    "hg724ConditionalNewProfileBranch": true,
+    "newBranchCallsSetTrackModeHG711": true,
+    "hg724SelectedModelUsesNewUiList": true,
+    "newProfileSelectorRequiresUserProfile2": true,
+    "legacyThreeAxisMaskPathNotAutomaticallyHg724": true,
+    "sourceCodeDoesNotProveFirmwareSupport": true
+  },
+  "remaining": [
+    "Audit parameter push subscription and raw packet framing before applying getPresetID offset2.",
+    "Audit full mode prerequisites, all source fields and action/cancellation semantics before SDK mode encapsulation.",
+    "SDK interfaces and physical acceptance/effects/persistence remain unverified for these new profile findings."
+  ],
+  "methods": [
+    {
+      "bank": "sdk",
+      "className": "Ldji/midware/ronin2/Ronin2GimbalParamsManager$BaseCommand;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3728816,
+      "instructionSha256": "38bb193999c192890ce98dda452e438e6f5a880db1faf8ab5587320f113b1682"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "setUserProfile",
+      "descriptor": "(I Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6521964,
+      "instructionSha256": "d8dbe04e1d157000db6bd11e392853f7030b88b03fa14fb30eae75633e66554c"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "setGimbalWorkMode",
+      "descriptor": "(Ldji/common/gimbal/DJIGimbalRonin2WorkMode; Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6519648,
+      "instructionSha256": "a12b8e68e84361185e2c6c291793a53b442ce4825037fcad9f2b47d21a845673"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "setRonin2CommonUserParam",
+      "descriptor": "(I Ljava/lang/String; Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6507964,
+      "instructionSha256": "d44a62c6d5af2b2b1c888381d67d2a526858649139274bcc167abca1fac71030"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "onEvent3BackgroundThread",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalGetUserParams;)V",
+      "codeOffset": 6509328,
+      "instructionSha256": "a134a94955e57310e7515f7923b5ae2317f0648d56ca2221153f4e9d57b24fa1"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/common/gimbal/DJIGimbalRonin2WorkMode;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3013376,
+      "instructionSha256": "a0e5853d54cac59c8c62e763d46327b727c5426765b4069b7a65630d46630eb5"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/common/gimbal/MovementSettingsProfile;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3018140,
+      "instructionSha256": "cb4125994af379a7307700ba3d21d341a2f6d00d7b13d553f8eaaac8444d9e86"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushUserParams;",
+      "method": "getPresetID",
+      "descriptor": "([I)I",
+      "codeOffset": 5914140,
+      "instructionSha256": "31b8104cabdd07d9128d30a0743c25a33eac21df32e1440c4a713e590421cf7e"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "isCustomAdvancedSettingProfile",
+      "descriptor": "()Z",
+      "codeOffset": 5247356,
+      "instructionSha256": "2161fd9b5b2b04bd8e3adb1c87c7b0ee863399767769b2ad95714cb2bc831f12"
+    },
+    {
+      "bank": "ui",
+      "className": "Lcom/dji/ronin/ui/configuration/ConfigUserProfileView;",
+      "method": "setUserProfileMode",
+      "descriptor": "(I)V",
+      "codeOffset": 2449340,
+      "instructionSha256": "fdc55cc86c3bca965fdc61e2f761324efddd94a699a6825429398b2ff80655c9"
+    },
+    {
+      "bank": "ui",
+      "className": "Lcom/dji/ronin/ui/configuration/ConfigUserProfileView;",
+      "method": "updateUserProfile",
+      "descriptor": "()V",
+      "codeOffset": 2452036,
+      "instructionSha256": "8c78335a3bf5a2d306b2c706a3aaf2de02c987dee4ac9fa915c32da702f452e7"
+    },
+    {
+      "bank": "ui",
+      "className": "Lcom/dji/ronin/ui/configuration/ConfigUserProfileView;",
+      "method": "onClick",
+      "descriptor": "(Landroid/view/View;)V",
+      "codeOffset": 2452812,
+      "instructionSha256": "955c6de6c6c24a7889e2347dbb6de1345e5f9fbb2a2b01f8f0bbf66d00ecc3cc"
+    },
+    {
+      "bank": "ui",
+      "className": "Lcom/dji/ronin/ui/configuration/ConfigUserProfileView;",
+      "method": "lambda$initView$0",
+      "descriptor": "(Landroid/widget/AdapterView; Landroid/view/View; I J)V",
+      "codeOffset": 2446532,
+      "instructionSha256": "a8bdf86ddac1628b8f156996b059fb528e765ba50a0db424a9a635ba153bd90d"
+    },
+    {
+      "bank": "ui",
+      "className": "Lcom/dji/ronin/ui/configuration/ConfigUserProfileView;",
+      "method": "setTrackModeHG711",
+      "descriptor": "(I)V",
+      "codeOffset": 2448944,
+      "instructionSha256": "0df94cafd281ec4ed9536c1674ef89eaf35751917c3cc14aadbb92e0701186ad"
+    },
+    {
+      "bank": "ui",
+      "className": "Lcom/dji/ronin/ui/configuration/ConfigUserProfileView;",
+      "method": "setNewUserProfileCustomMode",
+      "descriptor": "()V",
+      "codeOffset": 2447876,
+      "instructionSha256": "2bfe7cbd4120c29e543902450b9e1ba20f53aeffbb54f6bfd26886a4168b7a4d"
+    },
+    {
+      "bank": "ui",
+      "className": "Lcom/dji/ronin/ui/configuration/ConfigUserProfileView;",
+      "method": "updateTrackModeShow",
+      "descriptor": "(Z Z Z)V",
+      "codeOffset": 2450628,
+      "instructionSha256": "8a1e71e2b8c8b26fa0c9c45598e5bfef6d7ad2272c11bf01e90c8842bcb31ca3"
+    },
+    {
+      "bank": "ui",
+      "className": "Lcom/dji/ronin/ui/configuration/ConfigUserProfileView;",
+      "method": "updateView",
+      "descriptor": "()V",
+      "codeOffset": 2452216,
+      "instructionSha256": "77e3dcf54bd6ef0988555536457dbc4d603279c26b2973056f64e5357b4589fc"
+    },
+    {
+      "bank": "ui",
+      "className": "Lcom/dji/ronin/ui/configuration/ConfigUserProfileView;",
+      "method": "updateTrackModeViewHG711",
+      "descriptor": "()V",
+      "codeOffset": 2451412,
+      "instructionSha256": "41379bf342cbe25f0cad6b498f46f3a634f0d3e060012d13ebbdb23b9a0c136c"
+    },
+    {
+      "bank": "ui",
+      "className": "Lcom/dji/ronin/ui/configuration/ConfigUserProfileView;",
+      "method": "setTrackMode",
+      "descriptor": "(I)V",
+      "codeOffset": 2448572,
+      "instructionSha256": "104c5eacf77ae504e58dac51186700ae80ec39bca87e792e5b7a86d2f66b3c6e"
+    },
+    {
+      "bank": "ui",
+      "className": "Lcom/dji/ronin/ui/configuration/ConfigUserProfileView;",
+      "method": "initView",
+      "descriptor": "()V",
+      "codeOffset": 2445376,
+      "instructionSha256": "15ad47dd122c0bbd6d721bb056acb68678e74c33773eba04f0e429e7168eecd4"
+    },
+    {
+      "bank": "ui",
+      "className": "Lcom/dji/ronin/ui/entry/DeviceSwitchTextView;",
+      "method": "isUseNewProfileDeviceIndex",
+      "descriptor": "()Z",
+      "codeOffset": 2652936,
+      "instructionSha256": "9912a5534a19107ceaaa29365c548b94f714df9b37f3cb38256f3b0144ec309b"
+    },
+    {
+      "bank": "ui",
+      "className": "Lcom/dji/ronin/ui/entry/DeviceSwitchTextView;",
+      "method": "is4thGenDeviceIndex",
+      "descriptor": "()Z",
+      "codeOffset": 2652252,
+      "instructionSha256": "63e025e500e146b550ac9a2c4c3bdec1ecdae986ce984f02ccf77f314686d914"
+    },
+    {
+      "bank": "ui",
+      "className": "Lcom/dji/ronin/util/CommonUtils;",
+      "method": "isUseNewProfileDevice",
+      "descriptor": "()Z",
+      "codeOffset": 2779572,
+      "instructionSha256": "6e14de0af984fee527168f08de587c285ad5aae274aef3d81122d24d12277ae3"
+    },
+    {
+      "bank": "ui",
+      "className": "Lcom/dji/ronin/util/CommonUtils;",
+      "method": "is4thGenDevice",
+      "descriptor": "()Z",
+      "codeOffset": 2777644,
+      "instructionSha256": "f6bbb0eac2946cb8f26b1cb7c9117370b6145389bd3c9a51448b3c71a736951e"
+    },
+    {
+      "bank": "ui",
+      "className": "Lcom/dji/ronin/util/CommonUtils;",
+      "method": "isHG724",
+      "descriptor": "()Z",
+      "codeOffset": 2778552,
+      "instructionSha256": "c8f728b1af593975311d989eeb8d2f579326632727ec251c31b2e55776f4aef4"
+    },
+    {
+      "bank": "ui",
+      "className": "Lcom/dji/upgrade/util/CommonUtils;",
+      "method": "isHG724",
+      "descriptor": "()Z",
+      "codeOffset": 3022596,
+      "instructionSha256": "413319914fa9b4e2cf5712030aaf14c2f7f4cf296e49848e794fb959e9c11c6e"
+    }
+  ]
+}

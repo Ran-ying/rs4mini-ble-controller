@@ -260,7 +260,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "app-code-path",
       "implementation": [],
-      "remaining": "灵敏度、自定义跟随轴、六组按轴档位及18项普通跟随/RC数值已封装；PF/PTF/FPV完整预设、活动custom预设验证、独立配置真实生效、低两位及型号/本机效果仍待完成",
+      "remaining": "灵敏度、自定义跟随轴、六组按轴档位及18项普通跟随/RC数值已封装；PF/PTF/FPV完整预设、活动custom预设验证、独立配置真实生效、低两位及型号/本机效果仍待完成；新静态审计区分table_choice配置、运动预设与工作模式，HG724条件新列表不是旧PF/PTF编号，尚未据此新增SDK模式接口",
       "modelResearchEvidence": "protocol/research/ronin-hg724-evidence.json",
       "restoredAppEvidence": "protocol/research/ronin-code-restoration-evidence.json"
     },
@@ -775,5 +775,6 @@
       "macos/RSControlCore.m",
       "docs/APP_STANDALONE_TUNING.md"
     ]
-  }
+  },
+  "profilesResearch": "protocol/research/ronin-profiles-evidence.json"
 }

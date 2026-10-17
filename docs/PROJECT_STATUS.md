@@ -6,6 +6,10 @@
 用户已要求将源码与相关信息提交至 GitHub。本记录随源码版本保存，提交和远端状态以 Git 历史为准；
 这不是 npm 发布或 GitHub 二进制 Release。
 
+## 最新研究：预设与模式的不同路径
+
+新增26个方法指纹，核对table_choice/index0、工作模式index62、独立的MovementSettingsProfile及getPresetID业务读取上下文。HG724条件分支与设备选择列表均走新模式路径，列表只有FPV/Custom/3D Roll 360，不能移用旧PTF/PF编号；新路径模式下拉还受UserProfile=2条件约束。见 [PROFILES.md](../tools/research/PROFILES.md)。研究58项在两个Python环境通过，固定APK实际复现一致；统一离线检查通过。本批未新增SDK/UI接口或硬件证据，运行时版本和完整性门槛不变。
+
 ## 当前进度：0.7.11 独立配置输入源SDK
 
 四端新增get/setStandaloneTuning，六项数值与输入源2同一0F请求，要求调用方显式输入源；10读取保留实际inputSourceRaw与异常数值，不自动切预设或源。型号条件分支已静态关联到产品Model.HG724，不是实机读数。完整契约见 [APP_STANDALONE_TUNING.md](APP_STANDALONE_TUNING.md)。Node126/Web14/Python两环境各103/native87+119+3/research两环境各54，类型/边界/构建及安装包回归通过。未操作硬件/UI、未新增高级任务；全部命令与实机验收仍未完成。下方为历史记录。

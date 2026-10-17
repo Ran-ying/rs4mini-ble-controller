@@ -541,3 +541,16 @@ NSDictionary *RSDecodeAppHandleReply(NSDictionary *message,NSError **error) {
     for(NSArray *row in fields){NSUInteger offset=[row[1] unsignedIntegerValue];[values addObject:@{@"sourceGetter":row[0],@"offset":row[1],@"size":@1,@"rawValue":@(body[offset]),@"sourceBit0":[row[2] boolValue]?@((body[offset]&1)!=0):NSNull.null}];}
     NSMutableDictionary *result=[reply mutableCopy];result[@"values"]=[values copy];result[@"modelLayoutVerified"]=@NO;return [result copy];
 }
+
+NSDictionary *RSAppFineTuneSpec(NSDictionary *spec) {
+    if(![spec isKindOfClass:NSDictionary.class]||spec.count!=2||!Numeric(spec[@"adjustmentDegrees"]))return nil;
+    NSDictionary *axes=@{@"roll":@0,@"pitch":@2};NSNumber *wire=[spec[@"axis"] isKindOfClass:NSString.class]?axes[spec[@"axis"]]:nil;if(!wire)return nil;
+    double requested=[spec[@"adjustmentDegrees"] doubleValue];if(requested < -2||requested > 2)return nil;
+    float value=(float)requested;float scaled=(float)(value*10.0f);int encoded=(int)scaled;
+    return @{@"axis":[wire intValue]==0?@"roll":@"pitch",@"axisWire":wire,@"requestedAdjustmentDegrees":@(requested),@"encodedTenths":@(encoded),@"nominalAdjustmentDegrees":@(encoded/10.0)};
+}
+NSData *RSAppFineTuneFrame(uint16_t sequence,NSArray *context,NSNumber *tenths) {
+    context=RSAppParameterContext(context);if(context.count!=1||![context[0][@"size"] isEqual:@1]||![@[@0,@2] containsObject:context[0][@"index"]]||!Numeric(tenths))return nil;
+    double value=tenths.doubleValue;if(floor(value)!=value||value < -20||value > 20)return nil;
+    uint8_t payload[]={(uint8_t)tenths.intValue,[context[0][@"index"] unsignedCharValue]};return CommandFrame(sequence,4,7,[NSData dataWithBytes:payload length:2],0x40);
+}

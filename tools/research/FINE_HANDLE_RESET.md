@@ -1,12 +1,12 @@
 # 微调、手柄与用户参数保存/重置的静态审计
 
-2026-10-17，SDK0.7.13 / 原生0.3.13。本文工具固定42方法指纹、字段和继承，自身不提供SDK或传输。四端SDK仅接入手柄只读查询，其他动作尚未封装；未执行厂商代码或操作硬件。来源为固定Ronin 2.2.2/7096 APK与恢复bank05；保存调用者另核对bank03。
+2026-10-17，SDK0.7.14 / 原生0.3.14。本文工具固定49方法指纹、字段和继承，自身不提供SDK或传输。四端SDK接入手柄只读查询与Pitch/Roll微调请求，其他动作尚未封装；未执行厂商代码或操作硬件。来源为固定Ronin 2.2.2/7096 APK与恢复bank05；保存调用者另核对bank03。
 
 ## 微调04:07
 
 DataGimbalRollFinetune的两字节体为signed value低字节、轴cmdValue。源码轴值ROLL=0、PITCH=2、YAW=4；Pitch/Yaw的枚举ordinal1/2不能用于线上轴值。HG724继承解析到DJIGimbalAbstraction的fineTuneGimbalPitchInDegrees/fineTuneGimbalRollInDegrees；尚未定位相同方式的Yaw微调调用，不声明Yaw不支持。
 
-源码输入范围比较为-2..2度增量，经float32乘10、float-to-int向零截断，再取字节；不是原生绝对角，也不与moveTo混用。离线例：Pitch -1.29→f402，Roll +1.29→0c00；近边界须保留float32步骤，不能换成四舍五入。Roll另检查needPauseStabilization，物理暂停/前置状态、单位实际效果与本机接收仍未验收。离线工具拒绝非法输入，不复制源方法在报告非法参数后可能继续打包的控制流。
+源码微调参数范围比较为-2..2度，经float32乘10、float-to-int向零截断，再取字节；不作为实际移动量/累计偏差或moveTo关节目标。离线例：Pitch -1.29→f402，Roll +1.29→0c00；近边界须保留float32步骤，不能换成四舍五入。Roll另检查needPauseStabilization，物理暂停/前置状态、单位实际效果与本机接收仍未验收。离线工具拒绝非法输入，不复制源方法在报告非法参数后可能继续打包的控制流。
 
 ## 手柄04:35/36
 
@@ -47,3 +47,6 @@ PYTHONPATH=work/research/analysis-libs work/python312/bin/python tools/research/
 
 0.7.13已接入四端手柄只读查询，见 [APP_HANDLE_SETTINGS.md](../../docs/APP_HANDLE_SETTINGS.md)。其余动作继续完成SDK、错误/超时/取消/互斥与编码测试，再在用户返回后的受控会话核对实际固件、效果、恢复范围与持久化。全部命令和本机验收仍未完成，两个完整性门槛保持false。
 
+
+
+0.7.14微调请求契约与暂停标志/回调审计见 [APP_FINE_TUNE.md](../../docs/APP_FINE_TUNE.md)，工具现固定49方法，真实效果仍未验收。

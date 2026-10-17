@@ -1,6 +1,8 @@
 import asyncio
 import struct
 import unittest
+from types import SimpleNamespace
+from unittest.mock import patch
 import test_controller as fixtures
 from rs4mini_sdk import orientation_from_components
 from rs4mini_sdk.protocol import frame
@@ -69,16 +71,44 @@ class ExpansionTests(unittest.IsolatedAsyncioTestCase):
         await self.gimbal.stop()
 
     async def test_slow_trajectory_write_fails_and_stops(self):
-        self.gimbal.ioTimeoutMs = 100
         original = self.client.write_gatt_char
+        clock = 0.0
         async def slow(*args, **kwargs):
-            await asyncio.sleep(.01)
+            nonlocal clock
+            clock += .012
             await original(*args, **kwargs)
         self.client.write_gatt_char = slow
-        with self.assertRaises(Exception) as error:
-            await self.gimbal.runTrajectory([dict(timeMs=0, pan=.1), dict(timeMs=100, pan=.1)], maxLagMs=5)
+        # Replace only this module's clock reference, never asyncio's time module.
+        with patch('rs4mini_sdk.expansion.time', SimpleNamespace(monotonic=lambda: clock)):
+            with self.assertRaises(Exception) as error:
+                await self.gimbal.runTrajectory([dict(timeMs=0, pan=.1), dict(timeMs=100, pan=.1)], maxLagMs=5)
         self.assertEqual(error.exception.code, 'RS4MINI_TRAJECTORY_OVERRUN')
-        self.assertEqual(len(self.client.frames()), 4)
+        frames = self.client.frames()
+        self.assertEqual(len(frames), 4)
+        self.assertNotEqual(struct.unpack_from('<hhh', frames[0]['payload']), (1024, 1024, 1024))
+        for item in frames[1:]:
+            self.assertEqual(item['commandId'], 1)
+            self.assertEqual(item['payload'].hex(), '000400040004000002')
+        self.assertIsNone(self.gimbal.trajectory_progress)
+        self.assertIsNone(self.gimbal.activeOperation)
+
+    async def test_scheduler_overrun_before_first_write_only_sends_neutrals(self):
+        reads = 0
+        def clock():
+            nonlocal reads
+            reads += 1
+            return 0.0 if reads <= 2 else .010
+        with patch('rs4mini_sdk.expansion.time', SimpleNamespace(monotonic=clock)):
+            with self.assertRaises(Exception) as error:
+                await self.gimbal.runTrajectory([dict(timeMs=0, pan=.1), dict(timeMs=100, pan=.1)], maxLagMs=5)
+        self.assertEqual(error.exception.code, 'RS4MINI_TRAJECTORY_OVERRUN')
+        frames = self.client.frames()
+        self.assertEqual(len(frames), 3)
+        for item in frames:
+            self.assertEqual(item['commandId'], 1)
+            self.assertEqual(item['payload'].hex(), '000400040004000002')
+        self.assertIsNone(self.gimbal.trajectory_progress)
+        self.assertIsNone(self.gimbal.activeOperation)
 
     async def test_waypoints_validate_before_motion_and_cancel_dwell(self):
         with self.assertRaises(ValueError):

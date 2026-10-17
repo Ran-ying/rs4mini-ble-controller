@@ -259,6 +259,7 @@ export interface AppTuningReading extends AppParameterReply {
 }
 export type StandaloneParameter='speed'|'smoothing';
 export interface AppCommands {
+  sendFineTuneRequest(options:{axis:'pitch'|'roll';adjustmentDegrees:number;timeoutMs?:number}):Promise<AppCommandReply & {axis:'pitch'|'roll';requestedAdjustmentDegrees:number;encodedTenths:number;nominalAdjustmentDegrees:number;stabilizationStateVerified:false}>;
   getHandleSettings(options?:{timeoutMs?:number}):Promise<AppCommandReply & {modelLayoutVerified:false;values:Array<{sourceGetter:string;offset:number;size:1;rawValue:number;sourceBit0:boolean|null}>}>;
   readonly userParameterStatus:AppUserParameterStatus|null;
   getStandaloneTuning(options?:{axis?:MotorTuningAxis;parameter?:StandaloneParameter;timeoutMs?:number}):Promise<AppTuningReading & {inputSourceRaw:number}>;

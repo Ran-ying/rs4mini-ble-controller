@@ -71,3 +71,6 @@ NSDictionary *RSDecodeAppUserParameterNotification(NSDictionary *message);
 
 NSData *RSAppHandleQueryFrame(uint16_t sequence);
 NSDictionary *RSDecodeAppHandleReply(NSDictionary *message,NSError **error);
+
+NSDictionary *RSAppFineTuneSpec(NSDictionary *spec);
+NSData *RSAppFineTuneFrame(uint16_t sequence,NSArray *context,NSNumber *tenths);

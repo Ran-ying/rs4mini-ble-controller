@@ -75,12 +75,21 @@
       "pitch",
       "roll"
     ],
-    "sourceDeltaDegrees": [
+    "sourceAdjustmentDegrees": [
       -2,
       2
     ],
-    "conversion": "float32 multiply10, truncate-to-int, low signed byte; not an absolute target",
-    "pauseStabilizationGateNotFirmwareVerified": true
+    "conversion": "float32 multiply10, truncate-to-int, low signed byte; physical effect/cumulative semantics unverified",
+    "targetAdjustmentEffectVerified": false,
+    "callbacksDoNotParseActualAngles": true,
+    "pauseStabilizationGateNotFirmwareVerified": true,
+    "pauseGateSource": {
+      "defaultValue": false,
+      "eventClass": "DataEyeGetPushStabilizationState",
+      "requiresPauseWhen": "turnedOn and notPaused",
+      "fineRollDoesNotAutomaticallyInvokePause": true,
+      "targetStateVerified": false
+    }
   },
   "handle": {
     "readCommand": "04:36",
@@ -303,6 +312,62 @@
       "descriptor": "(B)Ldji/midware/data/model/P3/DataGimbalRollFinetune;",
       "codeOffset": 4880064,
       "instructionSha256": "efbf7411a07f412aa33b775a6770758b7cde8aa2d9e03fb7f3bd7b91b3a0697d"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "codeOffset": 5244808,
+      "instructionSha256": "dbff8ee872b75de0a3a342a631966621161ffd24985d9dab24c040d9a0871878"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "onEvent3BackgroundThread",
+      "descriptor": "(Ldji/midware/data/model/P3/DataEyeGetPushStabilizationState;)V",
+      "codeOffset": 5247596,
+      "instructionSha256": "bc5daa8dd87cf38d04dfafa8e5e44a382d3f347887b8f42d13d91660c2905caf"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "tryToPauseTheStabilizationIfNecessary",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)Z",
+      "codeOffset": 5251836,
+      "instructionSha256": "5e67225f3e718f9bf12eb84359a91339dddc6629e27070b3a7645e12b8820fb4"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction$8;",
+      "method": "onSuccess",
+      "descriptor": "(Ljava/lang/Object;)V",
+      "codeOffset": 5244492,
+      "instructionSha256": "4095df75b3db63443a7c195c9977c8c8cef78715754a09a158b7168b65bee6c6"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction$8;",
+      "method": "onFailure",
+      "descriptor": "(Ldji/midware/data/config/P3/Ccode;)V",
+      "codeOffset": 5244452,
+      "instructionSha256": "812485c158b68c5191be3b0d92dad4ec05c46699f94cc5d503e4464b553d558b"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction$9;",
+      "method": "onSuccess",
+      "descriptor": "(Ljava/lang/Object;)V",
+      "codeOffset": 5244656,
+      "instructionSha256": "b81fa0e8541e09d4d65dc686bd4c36da6b240157c1331b675be63e8a59bef71a"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction$9;",
+      "method": "onFailure",
+      "descriptor": "(Ldji/midware/data/config/P3/Ccode;)V",
+      "codeOffset": 5244616,
+      "instructionSha256": "1f287c7dafed99acf2b0d2bc888d9f8356d8cdea71b264c9e943d818b2e4f582"
     },
     {
       "bank": "sdk",

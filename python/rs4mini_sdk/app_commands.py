@@ -1,4 +1,5 @@
 """Current-App device commands share the existing connection/queue/pending map."""
+from .app_fine_tune import fine_tune_spec
 from .app_handle import handle_reply
 from .app_user_parameters import user_parameter_notification
 from .app_standalone import standalone_selection,standalone_write,standalone_context,standalone_reply
@@ -57,6 +58,17 @@ class AppCommands:
 
     def _require_profile(self):
         app_profile(self._profile)
+
+    async def sendFineTuneRequest(self, *, axis, adjustmentDegrees, timeoutMs=3000):
+        self._require_profile()
+        spec=fine_tune_spec(axis,adjustmentDegrees);_duration(timeoutMs,'timeoutMs',False)
+        async def body(operation):
+            await self.owner._halt();self.owner._check(operation)
+            message=await self.owner.experimental._query_payload_command('App fine tune',(4,7),spec['payload'],timeoutMs,external_operation=operation,epoch=self.owner._epoch)
+            return dict(app_reply(message,7),**{key:value for key,value in spec.items() if key!='payload'},stabilizationStateVerified=False)
+        return await self.owner._run('sendFineTuneRequest',body,False)
+
+    send_fine_tune_request=sendFineTuneRequest
 
     async def getHandleSettings(self, *, timeoutMs=3000):
         self._require_profile()

@@ -147,6 +147,10 @@ async function sourceSettingsTypes(gimbal: RS4Mini) {
 
 async function calibrationTypes(gimbal: RS4Mini) {
   gimbal.onAppStatus = status => { if(status.kind==='calibration') {const raw:number|null=status.rawState;console.log(raw);} else {const raw:number=status.preset.rawValue;console.log(raw);} };
+  const fine=await gimbal.appCommands.sendFineTuneRequest({axis:'pitch',adjustmentDegrees:-.1});
+  const tenths:number=fine.encodedTenths;void tenths;
+  // @ts-expect-error yaw source action is not established
+  await gimbal.appCommands.sendFineTuneRequest({axis:'yaw',adjustmentDegrees:.1});
   const handle=await gimbal.appCommands.getHandleSettings();
   const handleRaw:number=handle.values[0].rawValue;void handleRaw;
   const parameters=gimbal.appCommands.userParameterStatus;void parameters;

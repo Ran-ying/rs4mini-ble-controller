@@ -1,3 +1,4 @@
+import { fineTuneSpec } from './app-fine-tune.js';
 import { handleReply } from './app-handle.js';
 import { userParameterNotification } from './app-user-parameters.js';
 import { standaloneSelection, standaloneWrite, standaloneContext, standaloneReply } from './app-standalone.js';
@@ -34,6 +35,16 @@ export class AppCommands {
     this._profile = profile; this._reset();
   }
   _requireProfile() { appProfile(this._profile); }
+  async sendFineTuneRequest(options={}) {
+    optionsOnly(options,['axis','adjustmentDegrees','timeoutMs']);this._requireProfile();
+    const spec=fineTuneSpec(options),timeoutMs=options.timeoutMs??3000;
+    if(!Number.isFinite(timeoutMs)||timeoutMs<=0||timeoutMs>60000)throw new RangeError('timeoutMs must be >0..60000');
+    return this.owner._run('sendFineTuneRequest',async operation=>{
+      await this.owner._stop();check(operation.controller.signal);
+      const message=await this.owner.experimental._queryPayloadCommand('App fine tune',[4,7],spec.payload,timeoutMs,{signal:operation.controller.signal,epoch:this.owner.motionEpoch});
+      const {payload,...requested}=spec;return {...appReply(message,7),...requested,stabilizationStateVerified:false};
+    },false);
+  }
   async getHandleSettings(options={}) {
     optionsOnly(options,['timeoutMs']);this._requireProfile();
     const message=await this.owner.experimental._queryPayloadCommand('App handle query',[4,0x36],new Uint8Array(0),options.timeoutMs??3000);

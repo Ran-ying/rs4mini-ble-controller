@@ -8,9 +8,9 @@ verification status changes.
 ## Objective and user decisions
 
 - Provide an unofficial, direct BLE controller for **DJI RS 4 Mini**, initially on macOS.
-- **Node.js is the authoritative implementation**; current package version is `0.7.13`.
+- **Node.js is the authoritative implementation**; current package version is `0.7.14`.
 - The user subsequently requested completion of all existing ports. Python is now
-  `0.7.13`, Web shares the JS core, and the native panel is `0.3.13`. Describe the
+  `0.7.14`, Web shares the JS core, and the native panel is `0.3.14`. Describe the
   documented feature differences; do not claim identical APIs or hardware proof.
 - After that delivery, the user requested the remaining **non-camera** capabilities
   under the same autonomous/offline conditions. Expansion work is in progress;
@@ -616,3 +616,27 @@ Node/Python/nativecheckedagainst8records from42-method controls evidence. Both
 completegatesfalse, no hardware/liveUI/vendor execution oradvancedaddition.
 
 0.7.13 validation: Node135/Web14, Python3.8/3.12 each112, native94+126+3, research77 in bothPython environments. Installed Node135/Python112, types/boundaries/build pass. Pinned42-method JSON independently reproduced. No hardware/liveUI/vendor execution, wholeprotocol remainsincomplete.
+
+
+## Current runtime0.7.14/native0.3.14 build17: fine request
+
+sendFineTuneRequest({axis:pitch|roll,adjustmentDegrees:-2..2,timeoutMs}) and Python
+snakealias/native equivalent encode04:07 signedtenths+axis2/0. ExplicitAppprofile,
+finite nonboolean input, float32 input andmultiply10, truncatezero, noYaw action.
+Snapshot beforepre-stop; owned untilcorrelatedACK, cancelled preamble sendsno07,
+post-writecancel/timeout neverreplays/rollsback. ResultrequestedAdjustmentDegrees/
+encodedTenths/nominalAdjustmentDegrees are sourceparameter metadata, NOT actual
+motion/cumulative effect or totalcalibrationoffset. Allphysical/device flagsfalse;
+stabilizationStateVerified=false. needPauseStabilization sourceinitialfalse,
+updated byDataEye turnedOn&&!paused; notneutralstop. No automaticpause/vision
+command or activeangle/cache changes. See docs/APP_FINE_TUNE.md. Controls audit
+now49methods incl3pause and4callback fingerprints; callbacks parse no actual
+angles/completion. Three axis catalogs checked. No hardware/liveUI/vendor code
+execution oradvancedfeatures; remaining35/11/13 etc and wholeprotocol incomplete.
+
+
+## 0.7.14微调请求验证（2026-10-17）
+
+Node141/Web14、Python3.8/3.12各119、原生98核心+130假设备+3独立SDK、研究工具两个环境各77通过。统一离线检查含类型、边界与构建通过；安装后的Node包141/Python wheel119通过。固定49方法审计独立复现与证据JSON逐字节一致。覆盖Pitch/Roll的float32截断、参数快照、互斥、关联ACK、错误响应、取消和超时无重放；实际效果、累加、持久化及暂停稳定状态仍未验收。
+
+第二Python环境暴露旧轨迹测试依赖调度时序：首次写入前超时会正确地只有3帧中位，旧测试要求4帧。现用局部可控时钟分别验证首次写入前0+3帧和写入后1+3帧，保持精确清理与所有权检查，未修改运行时轨迹逻辑。没有扫描、连接、移动设备、实时UI或执行厂商代码；全部命令与高级新增门槛仍false。

@@ -77,6 +77,16 @@ def trace(apk,sdk_path,ui_path):
         m=take(BASE+'DJIGimbalAbstraction;','fineTuneGimbal'+axis+'InDegrees')
         require(m,'1073741824','-1073741824','1092616192','->setFineTuneValue(B)','FineTuneAxis;->'+axis.upper()+' ')
         if not any(op=='float-to-int' for op,_ in ops(m)):raise ValueError('fine delta truncation changed')
+        if axis=='Roll' and any('->tryToPauseTheStabilizationIfNecessary(' in text for _,text in ops(m)):raise ValueError('fine Roll pause invocation changed')
+    pause_ctor=take(BASE+'DJIGimbalAbstraction;','<init>')
+    require(pause_ctor,'v0, 0','->needPauseStabilization Z')
+    pause_event=take(BASE+'DJIGimbalAbstraction;','onEvent3BackgroundThread','(Ldji/midware/data/model/P3/DataEyeGetPushStabilizationState;)V')
+    require(pause_event,'->getStateIsTurnOn()Z','->getStateIsPaused()Z','->needPauseStabilization Z')
+    require(take(BASE+'DJIGimbalAbstraction;','tryToPauseTheStabilizationIfNecessary'),'DataSingleSendAppStateForStabilization;','->setGimbalState(')
+    for callback in ('8','9'):
+        owner=BASE+'DJIGimbalAbstraction$'+callback+';'
+        require(take(owner,'onSuccess'),'->onSuccess(Ljava/lang/Object;)V')
+        require(take(owner,'onFailure'),'->onFails(')
     getter_rows=[]
     for name,expected,boolean in HANDLE_FIELDS:
         offset,bit=handle_getter_context(ops(take(get,name)))
@@ -123,7 +133,7 @@ def trace(apk,sdk_path,ui_path):
                 if m.get_code() and any(save+'->' in text for _,text in ops(m)):
                     record(m,bank);direct_save.append(dict(bank=bank,className=owner,method=m.get_name()))
     return dict(schemaVersion=1,apkSha256=APK_SHA256,derivedSha256=DERIVED_SHA256,uiDerivedSha256=UI_BANK_SHA256,appCodeExecuted=False,targetDeviceVerified=False,wholeProtocolRecovered=False,researchToolProvidesSdkInterface=False,
-                hg724Inheritance=chain,effectiveMethods=resolved,fineTune=dict(command='04:07',axisWireValues=axis_values,sourceCallableAxes=['pitch','roll'],sourceDeltaDegrees=[-2,2],conversion='float32 multiply10, truncate-to-int, low signed byte; not an absolute target',pauseStabilizationGateNotFirmwareVerified=True),
+                hg724Inheritance=chain,effectiveMethods=resolved,fineTune=dict(command='04:07',axisWireValues=axis_values,sourceCallableAxes=['pitch','roll'],sourceAdjustmentDegrees=[-2,2],conversion='float32 multiply10, truncate-to-int, low signed byte; physical effect/cumulative semantics unverified',targetAdjustmentEffectVerified=False,callbacksDoNotParseActualAngles=True,pauseStabilizationGateNotFirmwareVerified=True,pauseGateSource=dict(defaultValue=False,eventClass='DataEyeGetPushStabilizationState',requiresPauseWhen='turnedOn and notPaused',fineRollDoesNotAutomaticallyInvokePause=True,targetStateVerified=False)),
                 handle=dict(readCommand='04:36',writeCommand='04:35',readBodyHex='',fields=getter_rows,writeFieldOrder=fields,constructorByteDefaults=[255]*8,afterPackResetFields=reset_fields,afterPackRetainedFields=fields[6:],unspecifiedByteFirmwareSemanticsVerified=False),
                 parameterReset=dict(command='04:13',sourceCondition='PlatformType.HG724 (not GimbalComponentType ordinal)',sourceBodyHex=hg724_reset_payload('HG724').hex(),targetResetScopeVerified=False),
                 parameterSave=dict(command='04:11',sourceBodyHex='',directCallerScanBanks=['business05','business03'],directCallers=direct_save,targetModelCallPathEstablished=False),

@@ -1,6 +1,6 @@
 # 设备 SDK 命令审计与高级开发前置条件
 
-2026-10-17，0.7.13 / 原生 0.3.13。**尚不能确认 RS 4 Mini 全部非相机 BLE 命令都已枚举、解析并封装。**
+2026-10-17，0.7.14 / 原生 0.3.14。**尚不能确认 RS 4 Mini 全部非相机 BLE 命令都已枚举、解析并封装。**
 机器清单是 [protocol/COMMANDS.json](../protocol/COMMANDS.json)，目前记录 48 个命令或缺口条目；
 它不是厂商完整命令表，不能以“所有已知代码已封装”代替“所有设备命令已知”。
 
@@ -37,7 +37,7 @@
 | `unknown:motor-calibration` | 电机参数/自动整定/水平校准 | `unknown` / `unknown` | `none` | 自动调参请求/状态、十二个电机数值、平衡测试及system_calc自动校准请求/状态已封装；system_calc与水平校准的型号/UI身份仍未确认；其他字段、实机接受/效果/持久化和固件中止仍待完成 |
 | `unknown:firmware-program` | 固件动作程序 | `unknown` / `unknown` | `none` | 通用程序代码已恢复；型号路径、完整字段、执行/取消/通知语义仍待逐项审计与封装 |
 | `unknown:device-management` | 激活/绑定/恢复设置/固件管理的 BLE 覆盖 | `unknown` / `unknown` | `none` | 是否通过本 BLE 链路提供及其协议尚未枚举；连接成功不证明设备管理命令已全覆盖 |
-| `04:07` | 官方 App 枚举：RollFinetune | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
+| `04:07` | Pitch/Roll微调请求 | `implemented` / `partial` | `app-code-path` | 0.7.14源码float32参数/轴值2与0、独占到ACK；实际角度/累加/持久化/暂停状态与本机效果未验收，无Yaw或自动暂停/回滚 |
 | `04:0A` | 官方 App 枚举：SetAngle | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
 | `04:0D` | 官方 App 枚举：SetOnOrOff | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
 | `04:10` | 当前 App 用户参数读取 | `implemented` / `partial` | `app-code-path` | 当前App配置按请求index/size读取，返回码、无符号索引和原始头字节分离；命名设置/状态/六组按轴档位已解码，未按索引推断其他字段，本机读数和更多参数仍待验收；0.7.10新增18项普通命名数值的1/2字节读写和异常原值保留，不自动切预设/输入源，活动预设与实际效果未验收 |
@@ -147,3 +147,6 @@ HG724继承的启动路径为普通用户参数04:0F，balance_test/index37/size
 
 
 0.7.13在显式App来源下增加04:36手柄只读查询和8字段原值/bit0解析，不写35/11/13或填04:24缓存；继承路径有源码证据，实际型号布局/效果未验证。见 [APP_HANDLE_SETTINGS.md](APP_HANDLE_SETTINGS.md)。全命令及高级门槛仍false。
+
+
+0.7.14的sendFineTuneRequest是设备04:07源请求封装，Pitch/Roll的float32参数编码、ACK与主机取消分别处理；不计作高级组合或实际角度完成。暂停稳定/本机效果及其余命令仍未验收。见 [APP_FINE_TUNE.md](APP_FINE_TUNE.md)。

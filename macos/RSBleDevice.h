@@ -17,6 +17,7 @@ typedef void (^RSAppCompletion)(NSDictionary *result, NSError *error);
 - (instancetype)initWithStatus:(StatusHandler)handler central:(CBCentralManager *)central;
 - (void)requestDegreeInfo;
 @property(nonatomic, readonly, copy) NSString *appProfile;
+- (void)sendFineTuneRequest:(NSDictionary *)spec timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion;
 - (void)getHandleSettingsWithTimeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion;
 - (BOOL)useAppProfile:(NSString *)profile;
 - (void)readAppParameters:(NSArray<NSDictionary *> *)parameters timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion;

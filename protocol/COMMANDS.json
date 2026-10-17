@@ -294,11 +294,15 @@
     {
       "key": "04:07",
       "name": "官方 App 枚举：RollFinetune",
-      "requestCodec": "unknown",
-      "responseCodec": "unknown",
-      "targetEvidence": "official-app-enum",
-      "implementation": [],
-      "remaining": "当前App静态核对微调两字节体、真实轴值Roll0/Pitch2/Yaw4、继承的Pitch/Roll增量方法与float32×10截断；Yaw调用和暂停稳定前置状态未验收，尚未封装SDK/实机验证",
+      "requestCodec": "implemented",
+      "responseCodec": "partial",
+      "targetEvidence": "app-code-path",
+      "implementation": [
+        "node/src/app-fine-tune.js",
+        "python/rs4mini_sdk/app_fine_tune.py",
+        "macos/RSBleDevice.m"
+      ],
+      "remaining": "0.7.14显式App配置封装Pitch/Roll微调请求，float32×10截断及轴值2/0，独占到ACK；实际角度/累加/持久化、暂停稳定状态与本机效果未验收，不提供Yaw或自动暂停/回滚",
       "officialAppAliases": [
         "RollFinetune"
       ],
@@ -813,6 +817,25 @@
       "python/rs4mini_sdk/app_handle.py",
       "macos/RSControlCore.m",
       "docs/APP_HANDLE_SETTINGS.md"
+    ]
+  },
+  "fineTuneSdk": {
+    "implemented": true,
+    "axes": [
+      "pitch",
+      "roll"
+    ],
+    "sourceAdjustmentDegrees": [
+      -2,
+      2
+    ],
+    "targetDeviceVerified": false,
+    "stabilizationStateVerified": false,
+    "files": [
+      "node/src/app-fine-tune.js",
+      "python/rs4mini_sdk/app_fine_tune.py",
+      "macos/RSControlCore.m",
+      "docs/APP_FINE_TUNE.md"
     ]
   }
 }

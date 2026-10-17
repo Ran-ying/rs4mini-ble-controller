@@ -165,6 +165,12 @@ int main(void) {
         NSDictionary *handle=RSDecodeAppHandleReply(parameterMessage(0x36,[NSData dataWithBytes:(uint8_t[]){0,7,1,0,255,3,2,3,254,99} length:10],0x80),&error);
         Require([handle[@"values"] count]==8 && [handle[@"values"][0][@"rawValue"] intValue]==7 && [handle[@"values"][3][@"rawValue"] intValue]==255 && ![handle[@"values"][5][@"sourceBit0"] boolValue] && [handle[@"values"][6][@"sourceBit0"] boolValue],@"handle raw values and bit0 remain separate from return status");
         Require(!RSDecodeAppHandleReply(parameterMessage(0x36,[NSMutableData dataWithLength:8],0x80),&error),@"short handle body rejected rather than padded");
+        NSDictionary *fine=RSAppFineTuneSpec(@{@"axis":@"pitch",@"adjustmentDegrees":@(-1.29)});
+        Require([fine[@"encodedTenths"] intValue]==-12 && [fine[@"axisWire"] intValue]==2,@"fine source float32 truncate and Pitch wire2");
+        [decoder reset];NSDictionary *fineFrame=[decoder push:RSAppFineTuneFrame(4,@[@{@"index":@2,@"size":@1}],fine[@"encodedTenths"])].firstObject;
+        Require([fineFrame[@"commandId"] intValue]==7 && [Hex(fineFrame[@"payload"]) isEqualToString:@"f402"],@"fine two-byte request matches source signed value/axis order");
+        Require([RSAppFineTuneSpec(@{@"axis":@"roll",@"adjustmentDegrees":@(1.999999999)})[@"encodedTenths"] intValue]==20,@"fine float32 input conversion precedes scaling");
+        Require(!RSAppFineTuneSpec(@{@"axis":@"yaw",@"adjustmentDegrees":@1}) && !RSAppFineTuneSpec(@{@"axis":@"roll",@"adjustmentDegrees":@YES}) && !RSAppFineTuneFrame(3,@[@{@"index":@4,@"size":@1}],@1),@"fine rejects unprovenYaw action boolean and raw axis4");
         printf("Native protocol, reassembly, stop queue and motion-core checks: %lu passed\n", (unsigned long)assertions);
     }
     return 0;

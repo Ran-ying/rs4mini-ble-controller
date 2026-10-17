@@ -1,0 +1,379 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "sdkSha256": "4fdbd74a05df63d72a0feb1c907d9395426ec3cdb5d6aeb45e3836d856d66654",
+  "appCodeExecuted": false,
+  "targetDeviceVerified": false,
+  "wholeProtocolRecovered": false,
+  "researchToolProvidesSdkInterface": false,
+  "hg724Inheritance": [
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG724Abstraction;",
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG702Abstraction;",
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninBaseAbstraction;",
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction;",
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalX3Abstraction;",
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAircraftAbstraction;",
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;"
+  ],
+  "capabilityDeclarations": [
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "axisUpdates": []
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalX3Abstraction;",
+      "axisUpdates": [
+        {
+          "key": "ADJUST_PITCH",
+          "supported": true,
+          "minimum": -90,
+          "maximum": 30
+        },
+        {
+          "key": "ADJUST_YAW",
+          "supported": true,
+          "minimum": -180,
+          "maximum": 180
+        },
+        {
+          "key": "ADJUST_ROLL",
+          "supported": true,
+          "minimum": -15,
+          "maximum": 15
+        }
+      ]
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction;",
+      "axisUpdates": [
+        {
+          "key": "ADJUST_PITCH",
+          "supported": true,
+          "minimum": -120,
+          "maximum": 30
+        },
+        {
+          "key": "ADJUST_YAW",
+          "supported": true,
+          "minimum": -180,
+          "maximum": 180
+        },
+        {
+          "key": "ADJUST_ROLL",
+          "supported": false,
+          "minimum": 0,
+          "maximum": 0
+        }
+      ]
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninBaseAbstraction;",
+      "axisUpdates": [
+        {
+          "key": "ADJUST_PITCH",
+          "supported": true,
+          "minimum": -135,
+          "maximum": 45
+        },
+        {
+          "key": "ADJUST_YAW",
+          "supported": true,
+          "minimum": -179,
+          "maximum": 179
+        }
+      ]
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "axisUpdates": [
+        {
+          "key": "ADJUST_ROLL",
+          "supported": true,
+          "minimum": -30,
+          "maximum": 30
+        }
+      ]
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG702Abstraction;",
+      "axisUpdates": [
+        {
+          "key": "ADJUST_PITCH",
+          "supported": true,
+          "minimum": -90,
+          "maximum": 90
+        },
+        {
+          "key": "ADJUST_YAW",
+          "supported": true,
+          "minimum": -180,
+          "maximum": 180
+        }
+      ]
+    }
+  ],
+  "effectiveSourceCapabilities": {
+    "ADJUST_PITCH": {
+      "key": "ADJUST_PITCH",
+      "supported": true,
+      "minimum": -90,
+      "maximum": 90,
+      "declaredBy": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG702Abstraction;"
+    },
+    "ADJUST_YAW": {
+      "key": "ADJUST_YAW",
+      "supported": true,
+      "minimum": -180,
+      "maximum": 180,
+      "declaredBy": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG702Abstraction;"
+    },
+    "ADJUST_ROLL": {
+      "key": "ADJUST_ROLL",
+      "supported": true,
+      "minimum": -30,
+      "maximum": 30,
+      "declaredBy": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+    }
+  },
+  "sourcePolicyIsMechanicalSafeRange": false,
+  "dynamicCapabilityChangesExcluded": false,
+  "routing": {
+    "sourceIndexOneMapsToId": 2,
+    "sourceOtherIntIndexesMapToId": 0,
+    "sourceStoredIdOverridesPackUnlessMinusOne": true,
+    "bleAddressVerified": false,
+    "deviceIndexVerified": false,
+    "encryptionPathAudited": false
+  },
+  "pause": {
+    "sourceReceiverType": "SINGLE",
+    "sourceReceiverTypeValue": 17,
+    "sourceReceiverId": 7,
+    "sourceCommandValues": {
+      "AppState": 98,
+      "Stabilization": 96
+    },
+    "sourceCommandSet": "EYE",
+    "noCallbackCommand": "AppState",
+    "callbackCommand": "Stabilization",
+    "overloadsAreDifferentCommands": true,
+    "sourceGimbalStartValue": 1,
+    "sourceDefaultCameraValue": 0,
+    "sourceNoCallbackBodyHex": "0100",
+    "physicalPauseVerified": false,
+    "requiredForDirectBleVerified": false,
+    "resumeProtocolVerified": false,
+    "cameraControlAdded": false
+  },
+  "remaining": [
+    "Verify live device index/address, reference frame and physical acceptance.",
+    "Determine direct-BLE applicability of separate EYE/SINGLE dependency without adding excluded camera APIs.",
+    "Audit acknowledgement errors, firmware completion, cancellation and release before current-App angle SDK."
+  ],
+  "methods": [
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "initGimbalCapability",
+      "descriptor": "()V",
+      "codeOffset": 5246936,
+      "instructionSha256": "6771d8fc9ebb022127fdad68d04d68b1fadab7757ad9e8e556b60d81ef3ee202"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalX3Abstraction;",
+      "method": "initGimbalCapability",
+      "descriptor": "()V",
+      "codeOffset": 6301616,
+      "instructionSha256": "5902a8c369ea50c8c18c9511cc00f100f6cf579bb01d3673c69ca38aa782568e"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction;",
+      "method": "initGimbalCapability",
+      "descriptor": "()V",
+      "codeOffset": 6385852,
+      "instructionSha256": "fe6c3678d89ecfd228d14499e5be88d0a0e41fc8c2b35712b0297eac969b132f"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninBaseAbstraction;",
+      "method": "initGimbalCapability",
+      "descriptor": "()V",
+      "codeOffset": 6472068,
+      "instructionSha256": "45da72165269b4a502104cfc411bef881a18f2dbcef99ce0647f0f09f84886e1"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "initGimbalCapability",
+      "descriptor": "()V",
+      "codeOffset": 6509128,
+      "instructionSha256": "6b9493c1072afcbf0f9629882372c3d6511ea0cf755079ff03e99105ff9d57de"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG702Abstraction;",
+      "method": "initGimbalCapability",
+      "descriptor": "()V",
+      "codeOffset": 6539424,
+      "instructionSha256": "990a640f03488774b515c0ff70617cb026de5bee9ccd7e03a0b4486efa1c94a2"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "addMinMaxToCapability",
+      "descriptor": "(Ldji/common/gimbal/CapabilityKey; Ljava/lang/Number; Ljava/lang/Number;)V",
+      "codeOffset": 5245136,
+      "instructionSha256": "f72c061da0aae0c361c2fd73e67449251ce4299284c1f901da950e0380b2aa4c"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "addIsSupportedToCapability",
+      "descriptor": "(Ldji/common/gimbal/CapabilityKey; Z)V",
+      "codeOffset": 5245020,
+      "instructionSha256": "bd79b83561d490c0210eaf8995ab5750a44a4ba91bae282d53c98b669427fc2b"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "addDefaultToCapability",
+      "descriptor": "(Ldji/common/gimbal/CapabilityKey;)V",
+      "codeOffset": 5244904,
+      "instructionSha256": "de05f702b1754a6f425881441ef50272ecf3d5bb4723bf058ce3b6207c898436"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "init",
+      "descriptor": "(Ljava/lang/String; I Ldji/sdksharedlib/store/DJISDKCacheStoreLayer; Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$OnValueChangeListener;)V",
+      "codeOffset": 5246876,
+      "instructionSha256": "216a9d5a86e448f2d2fb6de0bc9d9d06b1d44f58bdcf19183269966a965a9c6a"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "getReceiverIdByIndex",
+      "descriptor": "()I",
+      "codeOffset": 5246620,
+      "instructionSha256": "8ba90ecf1db263d0bf5ea0a280f56622008fcdb721a022e72b95580e2b9692ad"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "justSendPauseData",
+      "descriptor": "()V",
+      "codeOffset": 5247480,
+      "instructionSha256": "7fd8adc5bcd516fde336f70ec7df2208c117d5421d3155f43a0943f497b7edf5"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "rotate",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback; Ldji/common/gimbal/Rotation;)V",
+      "codeOffset": 5248528,
+      "instructionSha256": "5416211661f4c1434aa1f6790b05bb912736d8c02b88626074d8e59667a37bc4"
+    },
+    {
+      "className": "Ldji/midware/util/DoubleCameraSupportUtil;",
+      "method": "getGimbalIdInProtocol",
+      "descriptor": "(I)I",
+      "codeOffset": 3788548,
+      "instructionSha256": "ce2276998e5bcc59aa75507dce71cb59bb23d509a8aea39c3cfd03dda89fe189"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "setReceiverId",
+      "descriptor": "(I)Ldji/midware/data/manager/P3/DataBase;",
+      "codeOffset": 3352792,
+      "instructionSha256": "19e2e50d2cfb6491d8be8388e604b79b393f12bc24bdbf9b68f19d4dfb8cc851"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/data/packages/P3/SendPack;)V",
+      "codeOffset": 3352840,
+      "instructionSha256": "1f36978d337a64663097cbc208123ed6e03955e27893c798faedb6e0c2ce9e8b"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/data/packages/P3/SendPack; Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 3352896,
+      "instructionSha256": "bfbdf3ebf4e21a9f4718d7a02cd92e7e2120d71d8e5c38966cdeb427ac92284d"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/data/packages/P3/SendPack; Ldji/midware/interfaces/DJIDataCallBack; Z)V",
+      "codeOffset": 3352924,
+      "instructionSha256": "62f99fcaf68339e5f3cd2d975ed2ab75023c8d6cb940c75941a9b03c20e6064d"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "preprocessPack",
+      "descriptor": "(Ldji/midware/data/packages/P3/SendPack;)Ldji/midware/data/packages/P3/SendPack;",
+      "codeOffset": 3349576,
+      "instructionSha256": "d3a10a8f824d42d2606e477d2d8a0e66aaf2671152d50733e44b6d40bc1285b9"
+    },
+    {
+      "className": "Ldji/midware/data/packages/P3/SendPack;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 5031864,
+      "instructionSha256": "0f4b7e3cd180df4776166ce8cf055778ff0dc39eee3a00a8a14ba6fcff4a2996"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalAbsAngleControl;",
+      "method": "start",
+      "descriptor": "()V",
+      "codeOffset": 4855068,
+      "instructionSha256": "dac019d109783821a8f37b3b0109868cd8d7e14cdfc22228c8d926aa0da0aa50"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataSingleSendAppStateForStabilization;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "codeOffset": 4975860,
+      "instructionSha256": "a346cbcd22e3dc715c06ffd17c7f25559d3b93899a96cb3660334079a3da69fc"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataSingleSendAppStateForStabilization;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 4975900,
+      "instructionSha256": "f0c62e343e1f9cf7467358aaf9b661a8b08b6f65a9fc1f06b5f6de84f3028c47"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataSingleSendAppStateForStabilization;",
+      "method": "start",
+      "descriptor": "()V",
+      "codeOffset": 4976040,
+      "instructionSha256": "4203a2ef393c1a3074ae9319ff32052822d188d89044db16751f45bedd7106b0"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataSingleSendAppStateForStabilization;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4976192,
+      "instructionSha256": "54adff96b16d7563d2a44c246b71e054a43e57c64b7fbd5a3caf20301a829538"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataSingleSendAppStateForStabilization$GimbalState;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3510196,
+      "instructionSha256": "7d5c64e44122b0736b0ce40d461c828a7b94b25c701c6ad52233bdd02282194f"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataSingleSendAppStateForStabilization$CameraState;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3509772,
+      "instructionSha256": "3fcf03a310dd09ffdb6f46484befce7c6eee7d7c53b7b0374c0e9c9ab56faa3c"
+    },
+    {
+      "className": "Ldji/midware/data/config/P3/CmdIdEYE$CmdIdType;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 4645160,
+      "instructionSha256": "558220cbc97e4770ee44608d94ca3efafe6d0fa75a144d6e70741a5789ba2256"
+    },
+    {
+      "className": "Ldji/midware/data/config/P3/DeviceType;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3324752,
+      "instructionSha256": "8c5490336a38fb0c07e0694c8038b25b63d5a012034edfcde87a5eb069bfe83b"
+    }
+  ]
+}

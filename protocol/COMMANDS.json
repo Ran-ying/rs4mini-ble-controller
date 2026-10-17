@@ -150,12 +150,13 @@
         "python/rs4mini_sdk/experimental_protocol.py",
         "macos/RSControlCore.m"
       ],
-      "remaining": "当前App继承rotate已定位04:14及8字节体/角度与时间缩放；现有发送仅其他型号实验配置。能力初始化、接收ID/暂停链、参考系、ACK/完成/中止和本机兼容性仍待核对与封装",
+      "remaining": "当前App继承rotate布局/缩放、初始化角度范围和静态接收ID链已核对；既有发送仅其他型号实验配置。动态能力、本机index/地址、EYE依赖适用性/恢复、参考系、ACK/完成/中止与当前App SDK仍待完成",
       "officialAppAliases": [
         "AbsAngleControl"
       ],
       "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
-      "angleResearch": "protocol/research/ronin-angles-evidence.json"
+      "angleResearch": "protocol/research/ronin-angles-evidence.json",
+      "angleContextResearch": "protocol/research/ronin-angle-context.json"
     },
     {
       "key": "04:1C",
@@ -762,7 +763,8 @@
     "tools/research/ronin_code_restore.py",
     "tools/research/ronin_app_payloads.py",
     "tools/research/ronin_code_banks.py",
-    "tools/research/ronin_angles_trace.py"
+    "tools/research/ronin_angles_trace.py",
+    "tools/research/ronin_angle_context.py"
   ],
   "modelIdentityResearch": "protocol/research/ronin-hg724-evidence.json",
   "codeRestorationResearch": "protocol/research/ronin-code-restoration-evidence.json",
@@ -928,5 +930,6 @@
     ]
   },
   "commandReferenceResearch": "protocol/research/ronin-command-references.json",
-  "angleResearch": "protocol/research/ronin-angles-evidence.json"
+  "angleResearch": "protocol/research/ronin-angles-evidence.json",
+  "angleContextResearch": "protocol/research/ronin-angle-context.json"
 }

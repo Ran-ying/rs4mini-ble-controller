@@ -417,3 +417,15 @@ if manifest.get('angleResearch'):
     assert angles['angle0a']['negativeSearchProvesUnsupported'] is False
     assert len(angles['methods']) == 48
     assert not any('angles_trace' in (root/p).read_text() for p in ('node/src/device.js','python/rs4mini_sdk/device.py','macos/RSBleDevice.m'))
+
+if manifest.get('angleContextResearch'):
+    context=json.loads((root/manifest['angleContextResearch']).read_text())
+    assert context['appCodeExecuted'] is False and context['targetDeviceVerified'] is False
+    assert context['wholeProtocolRecovered'] is False and context['researchToolProvidesSdkInterface'] is False
+    assert context['sourcePolicyIsMechanicalSafeRange'] is False
+    assert context['routing']['bleAddressVerified'] is False
+    assert context['pause']['sourceCommandValues'] == {'AppState':98,'Stabilization':96}
+    assert context['pause']['sourceReceiverTypeValue'] == 17
+    assert context['pause']['requiredForDirectBleVerified'] is False and context['pause']['resumeProtocolVerified'] is False
+    assert context['pause']['cameraControlAdded'] is False
+    assert len(context['methods']) == 29

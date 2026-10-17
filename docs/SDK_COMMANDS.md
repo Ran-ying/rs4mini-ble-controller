@@ -26,7 +26,7 @@
 | `04:0B` | 控制状态查询 | `implemented` / `raw` | `other-model` | 响应字段未确认 |
 | `04:0C` | 原生速率候选 | `implemented` / `unknown` | `other-model` | 轴序/单位/释放仅有 RS 3 来源，本机未验证 |
 | `04:0F` | 用户参数写入与旧休眠候选 | `implemented` / `partial` | `app-code-path` | 当前App配置封装灵敏度、两组位设置、平衡/系统校准请求、六组按轴档位读改写及ACK；非任意参数写入。PF/PTF、其余字段、持久化与本机效果未验收，旧休眠仍为其他型号来源；0.7.10新增18项普通命名数值的1/2字节读写和异常原值保留，不自动切预设/输入源，活动预设与实际效果未验收 |
-| `04:14` | 原生绝对角候选 | `implemented` / `unknown` | `other-model` | 当前App继承rotate的8字节体/时间缩放已核对；既有接口仍仅其他型号实验配置，能力/地址/暂停、参考系和完成/中止语义待核对与本机验收 |
+| `04:14` | 原生绝对角候选 | `implemented` / `unknown` | `other-model` | 当前App继承rotate的8字节体/时间缩放已核对；既有接口仍仅其他型号实验配置，初始化能力与静态地址链已核对；动态能力/本机地址/EYE依赖与恢复、参考系和完成/中止语义仍待验收 |
 | `04:1C` | 设备类型查询 | `implemented` / `raw` | `other-model` | 已在 App 可读代码中关联 RS 4 Mini=HG724，类型枚举值 103；线上偏移、返回码及本机响应未确认，仍返回原始消息 |
 | `04:1E` | degree-info 请求 | `implemented` / `raw` | `hardware` | requestDegreeInfo 封装关联原始响应；本机历史 00 不等于完整字段解析或增频确认 |
 | `04:30` | 校准进度候选通知 | `not-applicable` / `partial` | `other-model` | 仅被动解析，不触发校准 |
@@ -184,3 +184,6 @@ HG724继承的启动路径为普通用户参数04:0F，balance_test/index37/size
 
 
 最新[原生角度控制研究](../tools/research/ANGLES.md)已区分04:0A两种布局与HG724继承rotate的04:14路径；能力/地址/暂停及物理完成仍待核对，未新增当前App角度发送接口。
+
+
+后续[角度能力与包上下文研究](../tools/research/ANGLE_CONTEXT.md)核对初始化覆盖、接收ID传递及EYE两个不同重载；本机地址、依赖适用性/恢复与物理完成仍未验收，没有新增发送。

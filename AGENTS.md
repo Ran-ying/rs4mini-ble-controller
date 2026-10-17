@@ -764,3 +764,15 @@ HG724继承链的rotate定义在基础DJIGimbalAbstraction，绝对/相对角分
 ## 原生角度研究离线验证（2026-10-17）
 
 固定六段实际扫描生成48方法指纹；新增10项编码/窄化/哈希预检，研究工具Python3.8/3.12各109通过。统一离线Node178/Web14/Python156/原生131+168+3、类型/边界/构建通过。仅研究工具/证据/文档变化，不重打运行时安装包；无硬件/liveUI/厂商执行或高级新增。
+
+
+## 角度能力覆盖及暂停重载（运行时仍0.7.19/0.3.19）
+
+29方法静态上下文审计确认HG724继承的初始化角度范围Pitch -90..90/Yaw -180..180/Roll -30..30；Handheld Roll=false被Ronin2的min/max true覆盖，非机械安全范围或动态设备读数。getGimbalIdInProtocol仅index==1映射2，其余int映射0；DataBase存储receiverID不等于-1时覆盖SendPack.receiverId，包层加密条件未审全。
+
+justSendPauseData的无回调重载发EYE/AppState=98，SINGLE类型17/ID7，源体0100；另一个回调重载发EYE/Stabilization=96，不能合并或当04:62/04:60。无回调请求不等待业务ACK，direct BLE依赖必要性、恢复与物理效果未验证。证据protocol/research/ronin-angle-context.json及tools/research/ANGLE_CONTEXT.md。未新增SDK发送、硬件/厂商执行/liveUI、相机/视觉或高级功能，全命令门槛false。
+
+
+## 角度上下文验证（2026-10-17）
+
+固定APK/SDK实际复现29方法指纹与初始化范围覆盖。新增9项声明提取/未知写失效/分支拒绝/精确索引/哈希预检，研究工具Python3.8/3.12各118通过。统一离线Node178/Web14/Python156/原生131+168+3、类型/边界/构建通过。运行时安装包不变，无硬件或厂商执行；直接BLE依赖、恢复和物理完成仍待核对。

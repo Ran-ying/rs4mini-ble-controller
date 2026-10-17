@@ -84,3 +84,6 @@ python/.venv/bin/python -m unittest discover -s tools/research -p test_ronin_ang
 下一步：能力初始化与接收地址、暂停/恢复关联、ACK/错误与完成/中止语义，然后完成受控 SDK
 封装及本机验收。现有 moveTo 仍是电脑组合速度+关节反馈，不改用这些候选命令。
 全部命令清单完整性及高级新增门槛继续 false。
+
+
+后续[角度能力与包上下文研究](ANGLE_CONTEXT.md)核对初始化覆盖、接收ID传递及EYE两个不同重载；本机地址、依赖适用性/恢复与物理完成仍未验收，没有新增发送。

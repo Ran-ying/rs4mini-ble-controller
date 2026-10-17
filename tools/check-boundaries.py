@@ -515,3 +515,17 @@ if manifest.get('registrationResearch'):
     assert len(registration['selectedActionDeclarations'])==2
     assert {a['action'] for a in registration['selectedActionDeclarations']}=={'Rotate','ResetGimbal'}
     assert all(a['nearestTargetDeclaration']['className']==a['declaringClass'] for a in registration['selectedActionDeclarations'])
+
+if manifest.get('programResearch'):
+    programs=json.loads((root/manifest['programResearch']).read_text())
+    for flag in ('appCodeExecuted','targetDeviceVerified','wholeProtocolRecovered','researchToolProvidesSdkInterface','targetModelCallPathEstablished','rawBleOffsetsVerified'):
+        assert programs[flag] is False
+    assert len(programs['methods'])==106 and len(programs['externalDirectCallers'])==60
+    assert programs['track']['pointLimit']==10 and programs['track']['stopBodyBytes']==1
+    assert programs['delay']['pointLimit']==6 and programs['roninTimelapse']['pointLimit']==5
+    assert programs['roninTimelapse']['totalDurationOverwritesFirstPointDurationAtOffset']==2
+    assert programs['standaloneStatus']['sourceIsChangedSendsAck'] is True
+    assert programs['standaloneStatus']['automaticAckImplementedInSdk'] is False
+    assert programs['externalStatus']['requestTypes']=={'StartContinuePush':0,'StopContinuePush':1,'RequestSinglePush':2}
+    assert programs['externalStatus']['sourceFirstByteSuccessValues']==[0,1]
+    assert programs['externalStatus']['timelapseStatusMask']==7

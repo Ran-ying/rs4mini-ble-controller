@@ -289,7 +289,8 @@
       "responseCodec": "unknown",
       "targetEvidence": "none",
       "implementation": [],
-      "remaining": "通用程序代码已恢复；型号路径、完整字段、执行/取消/通知语义仍待逐项审计与封装"
+      "remaining": "七个通用程序/状态类、106方法指纹、60类外直接调用已审计；已区分三种路点/计数和源ACK/订阅，HG724路径、完整单位/范围、程序关联及执行/取消/通知仍待审计封装",
+      "programResearch": "protocol/research/ronin-program-evidence.json"
     },
     {
       "key": "unknown:device-management",
@@ -444,11 +445,12 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "命令枚举已确认；六段引用审计提供候选位置，不等于该命令实现方法/请求体或HG724调用已确认，字段与型号路径仍待逐项审计，未开放发送",
+      "remaining": "当前App通用10字节点/最多6点、OR型info及外设位已静态核对；HG724调用、单位/范围、停止/相机隔离和本机效果未完成，未开放SDK发送",
       "officialAppAliases": [
         "SetDelayTimelapseParams"
       ],
-      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
+      "programResearch": "protocol/research/ronin-program-evidence.json"
     },
     {
       "key": "04:27",
@@ -603,11 +605,12 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "命令枚举已确认；六段引用审计提供候选位置，不等于该命令实现方法/请求体或HG724调用已确认，字段与型号路径仍待逐项审计，未开放发送",
+      "remaining": "另一版延时最多5点、mode=1两字节、总时长覆盖首点时长已核对；与25分开，HG724调用/字段单位/完成与停止未验收，未开放SDK发送",
       "officialAppAliases": [
         "SetTimelapseParams"
       ],
-      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
+      "programResearch": "protocol/research/ronin-program-evidence.json"
     },
     {
       "key": "04:38",
@@ -616,11 +619,12 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "命令枚举已确认；六段引用审计提供候选位置，不等于该命令实现方法/请求体或HG724调用已确认，字段与型号路径仍待逐项审计，未开放发送",
+      "remaining": "独立4字节业务状态掩码3及源接收时ACK已核对，与6B掩码7分开；本机路由/通知/物理完成未验收，未接SDK",
       "officialAppAliases": [
         "GetPushTimelapseStatus"
       ],
-      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
+      "programResearch": "protocol/research/ronin-program-evidence.json"
     },
     {
       "key": "04:40",
@@ -663,11 +667,12 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "命令枚举已确认；六段引用审计提供候选位置，不等于该命令实现方法/请求体或HG724调用已确认，字段与型号路径仍待逐项审计，未开放发送",
+      "remaining": "通用最多10点、Math.round/低16位与1字节停止候选及Create UI调用已核对；型号可达性、参考系、相机隔离与停止/完成未验收，未开放SDK发送",
       "officialAppAliases": [
         "SetTrack"
       ],
-      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
+      "programResearch": "protocol/research/ronin-program-evidence.json"
     },
     {
       "key": "04:63",
@@ -676,11 +681,12 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "命令枚举已确认；六段引用审计提供候选位置，不等于该命令实现方法/请求体或HG724调用已确认，字段与型号路径仍待逐项审计，未开放发送",
+      "remaining": "通用10字节混合宽度及Create UI调用已核对，含曝光/拍摄字段；型号、预览隔离和物理取消未验收，未开放SDK发送",
       "officialAppAliases": [
         "SetPanorama"
       ],
-      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
+      "programResearch": "protocol/research/ronin-program-evidence.json"
     },
     {
       "key": "04:64",
@@ -689,11 +695,12 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "命令枚举已确认；六段引用审计提供候选位置，不等于该命令实现方法/请求体或HG724调用已确认，字段与型号路径仍待逐项审计，未开放发送",
+      "remaining": "独立5字节业务状态/计数及源接收时ACK已核对；本机路由/通知/完成未验收，未接SDK",
       "officialAppAliases": [
         "GetPushPanorama"
       ],
-      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
+      "programResearch": "protocol/research/ronin-program-evidence.json"
     },
     {
       "key": "04:6B",
@@ -702,11 +709,12 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "命令枚举已确认；六段引用审计提供候选位置，不等于该命令实现方法/请求体或HG724调用已确认，字段与型号路径仍待逐项审计，未开放发送",
+      "remaining": "通用4字节订阅/停止订阅/单次请求及62/37/63记录源解析已核对，0/1首字节均源success、有符号长度/缓存保留；不是程序停止，型号/原始BLE偏移与通知未验收，未接SDK",
       "officialAppAliases": [
         "GetPushTrackAndTimelapse"
       ],
-      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
+      "programResearch": "protocol/research/ronin-program-evidence.json"
     },
     {
       "key": "04:6E",
@@ -793,7 +801,8 @@
     "tools/research/ronin_status_trace.py",
     "tools/research/ronin_tutorial_trace.py",
     "tools/research/ronin_key_support.py",
-    "tools/research/ronin_registration_trace.py"
+    "tools/research/ronin_registration_trace.py",
+    "tools/research/ronin_program_trace.py"
   ],
   "modelIdentityResearch": "protocol/research/ronin-hg724-evidence.json",
   "codeRestorationResearch": "protocol/research/ronin-code-restoration-evidence.json",
@@ -992,5 +1001,6 @@
   },
   "tutorialResearch": "protocol/research/ronin-tutorial-evidence.json",
   "keySupportResearch": "protocol/research/ronin-key-support-evidence.json",
-  "registrationResearch": "protocol/research/ronin-registration-evidence.json"
+  "registrationResearch": "protocol/research/ronin-registration-evidence.json",
+  "programResearch": "protocol/research/ronin-program-evidence.json"
 }

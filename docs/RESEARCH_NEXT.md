@@ -123,3 +123,6 @@ HG724继承的启动路径为普通用户参数04:0F，balance_test/index37/size
 
 
 后续微调/手柄/重置审计固定42方法：微调轴值0/2/4，手柄8字节与FF默认/只重置6项，HG724平台重置010001。保存空体类在两段未见直接调用者，不代表全App否定。详见 [FINE_HANDLE_RESET.md](../tools/research/FINE_HANDLE_RESET.md)。本批未新增SDK发送或实机证据，运行时不变，全命令门槛false。
+
+
+[固件动作程序通用源审计](../tools/research/PROGRAMS.md)核对62/25/37/63请求与38/64/6B状态差异；仅静态业务体证据，尚无HG724完整路径或SDK新增发送，全命令门槛false。

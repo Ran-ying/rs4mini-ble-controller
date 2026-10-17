@@ -35,7 +35,7 @@
 | `0D:02` | 电量候选通知 | `not-applicable` / `partial` | `other-model` | 百分比仅为其他 Mini 研究格式，本机未证实 |
 | `unknown:follow-mode` | 跟随模式与手柄参数 | `unknown` / `unknown` | `app-code-path` | 灵敏度、自定义跟随轴、六组按轴档位及18项普通跟随/RC数值已封装；PF/PTF/FPV完整预设、活动custom预设验证、独立配置真实效果、低两位及型号/本机效果仍待完成 |
 | `unknown:motor-calibration` | 电机参数/自动整定/水平校准 | `unknown` / `unknown` | `none` | 自动调参请求/状态、十二个电机数值、平衡测试及system_calc自动校准请求/状态已封装；system_calc与水平校准的型号/UI身份仍未确认；其他字段、实机接受/效果/持久化和固件中止仍待完成 |
-| `unknown:firmware-program` | 固件动作程序 | `unknown` / `unknown` | `none` | 通用程序代码已恢复；型号路径、完整字段、执行/取消/通知语义仍待逐项审计与封装 |
+| `unknown:firmware-program` | 固件动作程序 | `unknown` / `unknown` | `none` | 七个通用程序/状态类、106方法指纹、60类外直接调用已审计；已区分三种路点/计数和源ACK/订阅，HG724路径、完整单位/范围、程序关联及执行/取消/通知仍待审计封装 |
 | `unknown:device-management` | 激活/绑定/恢复设置/固件管理的 BLE 覆盖 | `unknown` / `unknown` | `none` | 是否通过本 BLE 链路提供及其协议尚未枚举；连接成功不证明设备管理命令已全覆盖 |
 | `04:07` | Pitch/Roll微调请求 | `implemented` / `partial` | `app-code-path` | 0.7.14源码float32参数/轴值2与0、独占到ACK；实际角度/累加/持久化/暂停状态与本机效果未验收，无Yaw或自动暂停/回滚 |
 | `04:0A` | 官方 App 枚举：SetAngle | `unknown` / `unknown` | `official-app-enum` | 已区分两种10字节源布局，六段类外直接调用仅DT501 UVC，未定位HG724路径；未开放发送 |
@@ -45,7 +45,7 @@
 | `04:12` | 官方 App 枚举：SubscribeGimbalParams | `unknown` / `unknown` | `official-app-enum` | 命令枚举已确认，具体方法/字段与HG724分支仍需逐项证据，不把枚举恢复等同请求体完成；未开放发送 |
 | `04:13` | HG724恢复设置请求 | `implemented` / `partial` | `app-code-path` | 0.7.16显式来源分支010001与关联ACK；不重放/回滚，范围、生效、持久化及断线行为待实机验收 |
 | `04:24` | 当前App通用固定参数通知 | `not-applicable` / `candidate-structured` | `app-generic-code` | 0.7.12被动解码17个源getter，完整已知布局不少于74字节、仅未加密请求型，未知字节/枚举保留；不触发订阅，本机布局/活动预设及更多字段仍未验收 |
-| `04:25` | 官方 App 枚举：SetDelayTimelapseParams | `unknown` / `unknown` | `official-app-enum` | 命令枚举已确认，具体方法/字段与HG724分支仍需逐项证据，不把枚举恢复等同请求体完成；未开放发送 |
+| `04:25` | 官方 App 枚举：SetDelayTimelapseParams | `unknown` / `unknown` | `official-app-enum` | 当前App通用10字节点/最多6点、OR型info及外设位已静态核对；HG724调用、单位/范围、停止/相机隔离和本机效果未完成，未开放SDK发送 |
 | `04:27` | 源异常状态被动候选 | `not-applicable` / `candidate-structured` | `app-generic-code` | 0.7.21显式App来源下21直接字段+Roll/Pitch OR复合，未知字节保留；与旧RS3 sleep候选分开，本机布局/语义未验收，不触发控制 |
 | `04:2B` | 官方 App 枚举：GetPushTutorialStatus | `unknown` / `unknown` | `official-app-enum` | 命令枚举已确认，具体方法/字段与HG724分支仍需逐项证据，不把枚举恢复等同请求体完成；未开放发送 |
 | `04:2C` | 官方 App 枚举：SetTutorialStep | `unknown` / `unknown` | `official-app-enum` | 命令枚举已确认，具体方法/字段与HG724分支仍需逐项证据，不把枚举恢复等同请求体完成；未开放发送 |
@@ -54,14 +54,14 @@
 | `04:33` | 源电量被动候选 | `not-applicable` / `candidate-structured` | `app-generic-code` | 0.7.21显式App来源保留原始容量0..255及尾字节，不夹取或合并0D02；真实通知、本机布局与单位未验收 |
 | `04:35` | 手柄单字段设置请求 | `implemented` / `partial` | `app-code-path` | 0.7.15显式App来源下三个命名字段0/1，未指定字节源默认FF；NACK直接失败，无缓存兜底/回读/保存/重放，FF含义及实际效果/持久化待本机验收 |
 | `04:36` | 手柄参数只读查询 | `implemented` / `candidate-structured` | `app-code-path` | 0.7.13空体/关联ACK，8个业务字段原值与bit0、尾字节保留；源继承路径不代表本机布局/效果或预设关系确认 |
-| `04:37` | 官方 App 枚举：SetTimelapseParams | `unknown` / `unknown` | `official-app-enum` | 命令枚举已确认，具体方法/字段与HG724分支仍需逐项证据，不把枚举恢复等同请求体完成；未开放发送 |
-| `04:38` | 官方 App 枚举：GetPushTimelapseStatus | `unknown` / `unknown` | `official-app-enum` | 命令枚举已确认，具体方法/字段与HG724分支仍需逐项证据，不把枚举恢复等同请求体完成；未开放发送 |
+| `04:37` | 官方 App 枚举：SetTimelapseParams | `unknown` / `unknown` | `official-app-enum` | 另一版延时最多5点、mode=1两字节、总时长覆盖首点时长已核对；与25分开，HG724调用/字段单位/完成与停止未验收，未开放SDK发送 |
+| `04:38` | 官方 App 枚举：GetPushTimelapseStatus | `unknown` / `unknown` | `official-app-enum` | 独立4字节业务状态掩码3及源接收时ACK已核对，与6B掩码7分开；本机路由/通知/物理完成未验收，未接SDK |
 | `04:40` | 官方 App 枚举：BalanceAdjust | `unknown` / `unknown` | `official-app-enum` | 命令枚举已确认，具体方法/字段与HG724分支仍需逐项证据，不把枚举恢复等同请求体完成；未开放发送；HG724继承的startGimbalBalanceTest静态路径不直接调用此命令，而使用0F的命名参数；不能仅凭类名替代 |
 | `04:6A` | HG702/HG724 自动调参请求（无ACK） | `implemented` / `not-applicable` | `app-code-path` | HG724继承HG702覆盖实现，00 01 bool请求且不请求ACK；仅声明本机发送，false请求的物理中止效果、运行中运动互斥和执行完成均未实机验收 |
-| `04:62` | 官方 App 枚举：SetTrack | `unknown` / `unknown` | `official-app-enum` | 命令枚举已确认，具体方法/字段与HG724分支仍需逐项证据，不把枚举恢复等同请求体完成；未开放发送 |
-| `04:63` | 官方 App 枚举：SetPanorama | `unknown` / `unknown` | `official-app-enum` | 命令枚举已确认，具体方法/字段与HG724分支仍需逐项证据，不把枚举恢复等同请求体完成；未开放发送 |
-| `04:64` | 官方 App 枚举：GetPushPanorama | `unknown` / `unknown` | `official-app-enum` | 命令枚举已确认，具体方法/字段与HG724分支仍需逐项证据，不把枚举恢复等同请求体完成；未开放发送 |
-| `04:6B` | 官方 App 枚举：GetPushTrackAndTimelapse | `unknown` / `unknown` | `official-app-enum` | 命令枚举已确认，具体方法/字段与HG724分支仍需逐项证据，不把枚举恢复等同请求体完成；未开放发送 |
+| `04:62` | 官方 App 枚举：SetTrack | `unknown` / `unknown` | `official-app-enum` | 通用最多10点、Math.round/低16位与1字节停止候选及Create UI调用已核对；型号可达性、参考系、相机隔离与停止/完成未验收，未开放SDK发送 |
+| `04:63` | 官方 App 枚举：SetPanorama | `unknown` / `unknown` | `official-app-enum` | 通用10字节混合宽度及Create UI调用已核对，含曝光/拍摄字段；型号、预览隔离和物理取消未验收，未开放SDK发送 |
+| `04:64` | 官方 App 枚举：GetPushPanorama | `unknown` / `unknown` | `official-app-enum` | 独立5字节业务状态/计数及源接收时ACK已核对；本机路由/通知/完成未验收，未接SDK |
+| `04:6B` | 官方 App 枚举：GetPushTrackAndTimelapse | `unknown` / `unknown` | `official-app-enum` | 通用4字节订阅/停止订阅/单次请求及62/37/63记录源解析已核对，0/1首字节均源success、有符号长度/缓存保留；不是程序停止，型号/原始BLE偏移与通知未验收，未接SDK |
 | `04:6E` | 当前 App 校准状态查询/通知 | `implemented` / `partial` | `app-code-path` | 显式当前App配置下空体查询/ACK与被动TLV状态分别解析；未知字段保留，无记录不造零值；无程序ID关联，订阅/停止条件及本机通知待验收 |
 | `04:69` | 官方 App 枚举：GetPushExternalDeviceData | `unknown` / `unknown` | `official-app-enum` | 命令枚举已确认，具体方法/字段与HG724分支仍需逐项证据，不把枚举恢复等同请求体完成；未开放发送 |
 | `04:57` | 源手柄状态被动候选 | `not-applicable` / `candidate-structured` | `app-generic-code` | 0.7.20显式App来源下解码两个signed short与两个源状态位，未知位/尾字节保留；无订阅/发送，本机布局、单位与轴映射未验收 |
@@ -208,3 +208,6 @@ HG724继承的启动路径为普通用户参数04:0F，balance_test/index37/size
 
 
 [HG724初始化与动作声明分派](../tools/research/REGISTRATION.md)补齐继承目录及两个动作的静态声明链，仍非运行时注册或本机验收；不改变SDK发送与高级门槛。
+
+
+[固件动作程序通用源审计](../tools/research/PROGRAMS.md)核对62/25/37/63请求与38/64/6B状态差异；仅静态业务体证据，尚无HG724完整路径或SDK新增发送，全命令门槛false。

@@ -273,3 +273,6 @@ HG724 跟随灵敏度 setter、参数管理器读取 gimbal_param_infos 的路�
 
 
 [HG724初始化与动作声明分派](../tools/research/REGISTRATION.md)补齐继承目录及两个动作的静态声明链，仍非运行时注册或本机验收；不改变SDK发送与高级门槛。
+
+
+[固件动作程序通用源审计](../tools/research/PROGRAMS.md)核对62/25/37/63请求与38/64/6B状态差异；仅静态业务体证据，尚无HG724完整路径或SDK新增发送，全命令门槛false。

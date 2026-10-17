@@ -74,3 +74,6 @@ python/.venv/bin/python -m unittest discover -s tools/research -p test_ronin_sta
 手写函数仅解释单个源业务字节，不构造DUML、不引用SDK、不发送或订阅。
 新增检查覆盖全部256源值、关闭语义、无效输入、code-unit跳转、等待常量/结果反转变更和哈希预检。
 下一步可继续审计reset平台分支、直连入口与其余命令；完整命令和高级新增门槛仍false。
+
+
+[回中平台分支与App入口研究](RESET_ROUTES.md)已区分通用SpecialControl流程和三处直接FE01源分支；现有实测回中保持不变，未开放其他模式或混合控制发送。

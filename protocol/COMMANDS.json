@@ -218,14 +218,15 @@
         "python/rs4mini_sdk/protocol.py",
         "macos/RSControlCore.m"
       ],
-      "remaining": "当前 App 的原代码备份确认两字节 mode+布尔reset；本机仍只确认 FE01 三轴回中，无按轴选择位，旧 MSDK 轴枚举不可套用；其他模式/响应待本机证据",
+      "remaining": "App三处直接回中入口明确OTHER254+布尔true→FE01，与历史本机体一致；通用reset另有平台/产品分支，不能混用。其他模式、实际型号UI可达性、ACK/物理完成/取消仍待验收，无按轴枚举",
       "officialAppAliases": [
         "ResetAndSetMode"
       ],
       "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
       "offlineResearchEvidence": "protocol/research/msdk-4.18-evidence.json",
       "restoredAppEvidence": "protocol/research/ronin-code-restoration-evidence.json",
-      "stabilizationDependencyResearch": "protocol/research/ronin-stabilization-evidence.json"
+      "stabilizationDependencyResearch": "protocol/research/ronin-stabilization-evidence.json",
+      "resetRouteResearch": "protocol/research/ronin-reset-routes.json"
     },
     {
       "key": "04:66",
@@ -768,7 +769,8 @@
     "tools/research/ronin_code_banks.py",
     "tools/research/ronin_angles_trace.py",
     "tools/research/ronin_angle_context.py",
-    "tools/research/ronin_stabilization_trace.py"
+    "tools/research/ronin_stabilization_trace.py",
+    "tools/research/ronin_reset_routes.py"
   ],
   "modelIdentityResearch": "protocol/research/ronin-hg724-evidence.json",
   "codeRestorationResearch": "protocol/research/ronin-code-restoration-evidence.json",
@@ -936,5 +938,6 @@
   "commandReferenceResearch": "protocol/research/ronin-command-references.json",
   "angleResearch": "protocol/research/ronin-angles-evidence.json",
   "angleContextResearch": "protocol/research/ronin-angle-context.json",
-  "stabilizationDependencyResearch": "protocol/research/ronin-stabilization-evidence.json"
+  "stabilizationDependencyResearch": "protocol/research/ronin-stabilization-evidence.json",
+  "resetRouteResearch": "protocol/research/ronin-reset-routes.json"
 }

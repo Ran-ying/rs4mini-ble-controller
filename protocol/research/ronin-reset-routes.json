@@ -1,0 +1,428 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "bankSha256": {
+    "0": "76002e76e02e1306ad197c4af127975d573999de174e5a9e44cc6f840196f621",
+    "2": "de69497b77de530d0d559646dc6d3fb24569e2ba8ba9502216f3d6c9fd6f3bf8",
+    "3": "bb50b39865520f55e97116ae1903bda3545b01c2fb7e2aba67a979dc264a9854",
+    "4": "2d3ff70fb84eb02ac75949ca6e7d5cc849a7f9ef55029fd168890c6dbccb1d12",
+    "5": "4fdbd74a05df63d72a0feb1c907d9395426ec3cdb5d6aeb45e3836d856d66654",
+    "6": "057f13084cf969ffadcfa2150d1b3ae3ed8a7822c95fb54158781764c9156e2f"
+  },
+  "appCodeExecuted": false,
+  "targetDeviceVerified": false,
+  "wholeProtocolRecovered": false,
+  "researchToolProvidesSdkInterface": false,
+  "genericResetBranches": {
+    "pauseFailureReturnsAtCodeUnit": 99,
+    "matchedPlatformPathCodeUnit": 69,
+    "otherPlatformPathCodeUnit": 39,
+    "matchingSourcePlatformNames": [
+      "M200",
+      "M210",
+      "M210RTK"
+    ],
+    "matchingPath": "DataGimbalNewResetAndSetMode",
+    "otherPath": "DataSpecialControl factory",
+    "otherPathReportsSuccessImmediately": true,
+    "hg724NameIsNotMatchedPlatform": true,
+    "livePlatformVerified": false
+  },
+  "factory": {
+    "matchingSourceProductNames": [
+      "Pomato",
+      "Orange2",
+      "M200",
+      "M210",
+      "M210RTK",
+      "Potato"
+    ],
+    "matchingVariant": "Ldji/midware/data/model/P3/DataNewSpecialControl;",
+    "otherVariant": "Ldji/midware/data/model/P3/DataOldSpecialControl;",
+    "liveProductVerified": false,
+    "productTypeIsNotGimbalType": true
+  },
+  "gimbalBody": {
+    "defaultModeName": "OTHER",
+    "defaultModeValue": 254,
+    "resetIsBoolean": true,
+    "defaultModeResetTrueHex": "fe01",
+    "modeSourceEnums": {
+      "YawNoFollow": 0,
+      "FPV": 1,
+      "YawFollow": 2,
+      "OTHER": 254
+    },
+    "otherModesDeviceVerified": false
+  },
+  "specialCommands": {
+    "Control": 1,
+    "NewControl": 3
+  },
+  "oldSpecial": {
+    "bodyBytes": 10,
+    "bodyContainsOtherSubsystemFields": true,
+    "resetLeavesFlycModeFieldUntouched": true,
+    "startLongUsesHandler": true,
+    "receiverRoutingVerified": false
+  },
+  "newSpecial": {
+    "bodyContainsOtherSubsystemFields": true,
+    "completeBodyAudit": false
+  },
+  "targetClaims": {
+    "inheritedMethodIsDirectBleWorkflow": false,
+    "specialControlTargetSupportVerified": false,
+    "recenterImplementationChanged": false,
+    "sourceDefaultMatchesHistoricalFe01Bytes": true,
+    "matchingBytesProveSameWorkflow": false
+  },
+  "directUiRecenterPaths": [
+    {
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "recenterGimbal",
+      "bodyHex": "fe01",
+      "connectionAndMotorChecksPresent": true,
+      "selectedMethodCallsStabilization": false,
+      "hg724UiReachabilityVerified": false
+    },
+    {
+      "className": "Lcom/dji/ronin/widget/RoninBackInTextView$1;",
+      "method": "onClick",
+      "bodyHex": "fe01",
+      "connectionAndMotorChecksPresent": true,
+      "selectedMethodCallsStabilization": false,
+      "hg724UiReachabilityVerified": false
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/configuration/setting/SettingRoninsGeneralView;",
+      "method": "onClick",
+      "bodyHex": "fe01",
+      "connectionAndMotorChecksPresent": true,
+      "selectedMethodCallsStabilization": false,
+      "hg724UiReachabilityVerified": false
+    }
+  ],
+  "externalResetClassCallers": [
+    {
+      "bank": 0,
+      "className": "Lcom/dji/djifpvleftbar/LeftBarShellModel;",
+      "method": "performGimbalRecenter",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "targetMethods": [
+        "<init>",
+        "setGimbalMode",
+        "setReset",
+        "start"
+      ]
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/setting/SettingRoninsGeneralView;",
+      "method": "onClick",
+      "descriptor": "(Landroid/view/View;)V",
+      "targetMethods": [
+        "<init>",
+        "setGimbalMode",
+        "setReset",
+        "start"
+      ]
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "recenterGimbal",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "targetMethods": [
+        "<init>",
+        "setGimbalMode",
+        "setReset",
+        "start"
+      ]
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/widget/RoninBackInTextView$1;",
+      "method": "onClick",
+      "descriptor": "(Landroid/view/View;)V",
+      "targetMethods": [
+        "<init>",
+        "setGimbalMode",
+        "setReset",
+        "start"
+      ]
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/focus/CreateFocusMotorControlView;",
+      "method": "setGimbalRecenter",
+      "descriptor": "()V",
+      "targetMethods": [
+        "<init>",
+        "setGimbalMode",
+        "setReset",
+        "start"
+      ]
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "resetGimbal",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "targetMethods": [
+        "<init>",
+        "setReset",
+        "setReceiverId",
+        "start"
+      ]
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "setGimbalMode",
+      "descriptor": "(Ldji/common/gimbal/GimbalMode; Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "targetMethods": [
+        "<init>",
+        "setGimbalMode",
+        "setReceiverId",
+        "start"
+      ]
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/monitor/DJIDT501Abstraction;",
+      "method": "setUvcCameraGimbalRecenter",
+      "descriptor": "(Ldji/midware/data/model/P3/GimbalControlModeData; Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "targetMethods": [
+        "<init>",
+        "setmReceiverType",
+        "setReceiverId",
+        "setGimbalControl",
+        "start"
+      ]
+    }
+  ],
+  "methods": [
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "resetGimbal",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 5248312,
+      "instructionSha256": "d1ac41a9ea3547c0754484c33b932cb963ddef8ea4bdf98c4ab4599d5209622a"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataSpecialControl;",
+      "method": "getInstance",
+      "descriptor": "()Ldji/midware/data/model/P3/DataSpecialControl;",
+      "codeOffset": 4993212,
+      "instructionSha256": "8cf1df675b70534790f864655781219b83dce6a7d1a3848691544471846e947a"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataSpecialControl;",
+      "method": "useNewControl",
+      "descriptor": "()Z",
+      "codeOffset": 4993304,
+      "instructionSha256": "2c1f8a09619ec4281efc301b587953493df9b95921f91341d3f280e5e5e91649"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataOldSpecialControl;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "codeOffset": 5918060,
+      "instructionSha256": "9a03b9c8bb4a316c54962222df0c119227735bc41f2246374ef8783beb1491e1"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataOldSpecialControl;",
+      "method": "_reset",
+      "descriptor": "()V",
+      "codeOffset": 5918524,
+      "instructionSha256": "60d724762418a356de96fc35c9f4793305959d22c86c71e50d364a5b49c5f15f"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataOldSpecialControl;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 5918596,
+      "instructionSha256": "6347aeaac7343f1fa5018ac2144324c7bae8cdc1a2204dddc9a4ff53afb4b6de"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataOldSpecialControl;",
+      "method": "resetGimbal",
+      "descriptor": "()Ldji/midware/data/model/P3/DataOldSpecialControl;",
+      "codeOffset": 5918996,
+      "instructionSha256": "8ed19f808db0b25b6c1ce2469f5482ae684e543853562e8cf5712facc41517d0"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataOldSpecialControl;",
+      "method": "start",
+      "descriptor": "(J)V",
+      "codeOffset": 5920220,
+      "instructionSha256": "e06714cce47e2c3d6e3dbd9c1777ccb8f084b38588af8b48324f13d64d4bd64a"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataNewSpecialControl;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "codeOffset": 5915172,
+      "instructionSha256": "3b2eb0d08a5a874bf2c62eaa13f6ce66f2adb9494cbbd87544dc3035069306bc"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataNewSpecialControl;",
+      "method": "_reset",
+      "descriptor": "()V",
+      "codeOffset": 5915756,
+      "instructionSha256": "10dd416f7d59da2e917941158830e92f250f8c729dcccc2ddf2c521e234786f1"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataNewSpecialControl;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 5915844,
+      "instructionSha256": "1e14ad798ed3b7ebc11f1ac28e61a0d599ee893ff84e67e1e53149bb61d7223d"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataNewSpecialControl;",
+      "method": "resetGimbal",
+      "descriptor": "()Ldji/midware/data/model/P3/DataNewSpecialControl;",
+      "codeOffset": 5916060,
+      "instructionSha256": "ea2a18ae80b0f3784d4fc64d655b32f3c5e444d063af1b747bd336c4dbc27c39"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataNewSpecialControl;",
+      "method": "start",
+      "descriptor": "(J)V",
+      "codeOffset": 5917708,
+      "instructionSha256": "d67536ebae375b6aa0771e6c0041b3d0f482a716c9cf3cc081267c1b4b838d33"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataOldSpecialControl;",
+      "method": "sendPack",
+      "descriptor": "()V",
+      "codeOffset": 5918268,
+      "instructionSha256": "4523326b126b73bfb249d383c39f8c2ae97057d8ada9eea932ee7f54679313ad"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataNewSpecialControl;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 5917740,
+      "instructionSha256": "f9af2502cfead063bb7a8b93d145f9ce1339192d4730823e64729c8b0add9c75"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataNewSpecialControl;",
+      "method": "doCommonPack",
+      "descriptor": "([B I Z)V",
+      "codeOffset": 5915320,
+      "instructionSha256": "f79d4a4ad0f8fff03e6f0fb9eb5f4f75514227c988db5c24ef3f7fd93eb50f89"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataNewSpecialControl;",
+      "method": "setWorkView",
+      "descriptor": "(Ldji/midware/data/model/P3/DataNewSpecialControl$WorkView;)Ldji/midware/data/model/P3/DataNewSpecialControl;",
+      "codeOffset": 5917656,
+      "instructionSha256": "56d868641e8c03ff54e3d77fb26fe570101e2de54abf7e841ca659939245810d"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalNewResetAndSetMode;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "codeOffset": 4878544,
+      "instructionSha256": "73eef13ecbd0954e066ede1999fdb4ff4f4de50616922a02a069e017c863bfcd"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalNewResetAndSetMode;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 4878592,
+      "instructionSha256": "49e0c420bbab5cc3656c305c6bcd66be7f29d8c5dfea69189808999a87669513"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalNewResetAndSetMode;",
+      "method": "setReset",
+      "descriptor": "(Z)Ldji/midware/data/model/P3/DataGimbalNewResetAndSetMode;",
+      "codeOffset": 4878800,
+      "instructionSha256": "21ea59eefab676c249e8fe64dbfc93051ef997c81e644bf36faca6cd97dd4778"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalNewResetAndSetMode;",
+      "method": "start",
+      "descriptor": "()V",
+      "codeOffset": 4878848,
+      "instructionSha256": "0a9b0146b4e1c9fb7f869075bd9b0db28acbd54e97ab211b0a3c5143468691ac"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalNewResetAndSetMode;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4878996,
+      "instructionSha256": "3cae0e6eb63d2ef907728b20dedfdae2b8bdfa9e69b44e3a3df541a7da2dbbe4"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "recenterGimbal",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 2522708,
+      "instructionSha256": "08f962e5aaa9624462a127f6dbb2a36900ac6f080ca2485ef893bc966453adfc"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/widget/RoninBackInTextView$1;",
+      "method": "onClick",
+      "descriptor": "(Landroid/view/View;)V",
+      "codeOffset": 2791596,
+      "instructionSha256": "49f0ab088c298d9a46b6cca8e31a763bc35475ce0f3f2d0c4de19678666fbd08"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/setting/SettingRoninsGeneralView;",
+      "method": "onClick",
+      "descriptor": "(Landroid/view/View;)V",
+      "codeOffset": 2492124,
+      "instructionSha256": "2c6f2e5a20fa3a35821118ef51d70fbdfb19e0dc940bc9c58ed4545c9d12d773"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalControl$MODE;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3455160,
+      "instructionSha256": "95d88794e272786967738bec0822fc369675ae32abe82c1c555cd8f07f71ae27"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/config/P3/CmdIdSpecial$CmdIdType;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 4665328,
+      "instructionSha256": "c1f7b7e9f9a7de037c5bacda170e0436b1b6c60891e0a700eba3514ff3fa22ac"
+    }
+  ],
+  "remaining": [
+    "Audit actual HG724 App action entry and model/platform/product mapping independently.",
+    "Do not emit mixed camera/flight special bodies or replace verified FE01 based on generic inheritance.",
+    "ACK/physical completion/cancel, persistence and direct-BLE routing remain unverified."
+  ]
+}

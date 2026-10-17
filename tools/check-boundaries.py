@@ -440,3 +440,15 @@ if manifest.get('stabilizationDependencyResearch'):
     assert stabilization['waitFlow']['sourceWaitUsesAngleAck'] is False
     assert stabilization['sourceInterruption']['selectedAwaitExceptionTableAudited'] is True
     assert len(stabilization['methods']) == 16 and len(stabilization['callSites']) == 6
+
+if manifest.get('resetRouteResearch'):
+    reset_routes=json.loads((root/manifest['resetRouteResearch']).read_text())
+    assert reset_routes['appCodeExecuted'] is False and reset_routes['targetDeviceVerified'] is False
+    assert reset_routes['wholeProtocolRecovered'] is False and reset_routes['researchToolProvidesSdkInterface'] is False
+    assert reset_routes['genericResetBranches']['livePlatformVerified'] is False
+    assert reset_routes['factory']['liveProductVerified'] is False
+    assert reset_routes['gimbalBody']['defaultModeResetTrueHex'] == 'fe01'
+    assert reset_routes['targetClaims']['specialControlTargetSupportVerified'] is False
+    assert reset_routes['targetClaims']['recenterImplementationChanged'] is False
+    assert len(reset_routes['directUiRecenterPaths']) == 3
+    assert len(reset_routes['methods']) == 27 and len(reset_routes['externalResetClassCallers']) == 8

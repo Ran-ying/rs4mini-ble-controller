@@ -788,3 +788,15 @@ HG724继承基础resetGimbal先调用此等待，后按平台选择DataSpecialCo
 ## stabilization依赖验证（2026-10-17）
 
 实际六段复现16方法/6直接调用方法，补核PauseReason.find的OTHER回退及await真实异常表。新增9项检查，研究工具Python3.8/3.12各127通过；统一离线Node178/Web14/Python156/原生131+168+3、类型/边界/构建通过。最后补充find指纹后边界检查与两Python研究回归再次通过。运行时/安装包不变，无新增发送、硬件/厂商执行或高级功能。
+
+
+## 回中源平台分支与直接App入口（运行时仍0.7.19/0.3.19）
+
+27方法/8直接调用方法：基础resetGimbal仅PlatformType M200/M210/M210RTK选04:4C类，其余选SpecialControl；后者另按ProductType六种名字选择新旧实现，不能与HG724云台型号混用。SpecialControl业务体混合其他子系统、旧_reset保留mFlycMode且接收地址另有分支，不开放发送。
+
+三处Ronin UI直接构造04:4C类，OTHER254+reset=true→FE01，所选方法不调用通用reset/stabilization辅助。连接/电机缓存条件、控件1000ms间隔已核对，实际HG724 UI挂载/完整可达性未验证；源字节匹配历史FE01不证明整套工作流、其他模式或物理完成。YawNoFollow0/FPV1/YawFollow2不映射PF/PTF/参数62或按轴回中。见tools/research/RESET_ROUTES.md与protocol/research/ronin-reset-routes.json。无SDK发送、相机飞行/高级新增、硬件/liveUI/厂商执行，全部命令门槛false。
+
+
+## 回中分支与App入口验证（2026-10-17）
+
+固定六段实际扫描27方法指纹/8类外直接调用方法，三个UI入口OTHER+reset true及连接/电机缓存检查已核对。新增9项检查，研究工具Python3.8/3.12各136通过；统一离线Node178/Web14/Python156/原生131+168+3、类型/边界/构建通过。运行时与安装包不变，现有FE01不替换，无硬件/厂商执行或高级新增，全命令门槛false。

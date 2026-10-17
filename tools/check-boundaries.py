@@ -269,7 +269,7 @@ if manifest.get('controlsResearch'):
     controls = json.loads((root / manifest['controlsResearch']).read_text())
     assert controls['apkSha256'] == numeric['apkSha256'] and controls['derivedSha256'] == restored['derivedSha256'] and controls['uiDerivedSha256'] == numeric['uiDerivedSha256']
     assert controls['appCodeExecuted'] is False and controls['targetDeviceVerified'] is False and controls['wholeProtocolRecovered'] is False and controls['researchToolProvidesSdkInterface'] is False
-    assert len(controls['methods']) == 66
+    assert len(controls['methods']) == 68
     assert controls['fineTune']['axisWireValues'] == dict(ROLL=0,PITCH=2,YAW=4) and controls['fineTune']['sourceCallableAxes'] == ['pitch','roll']
     handle = controls['handle']
     assert [r['offset'] for r in handle['fields']] == list(range(8)) and all(r['size']==1 for r in handle['fields'])
@@ -320,5 +320,17 @@ if manifest.get('handleWriteSdk',{}).get('implemented'):
     native=(root/'macos/RSControlCore.m').read_text().split('NSDictionary *RSAppHandleWriteSpec(',1)[1]
     objc=json.loads(re.search(r'NSDictionary \*settings=(@\{.*?\});',native).group(1).replace('@',''))
     assert js==py==objc==expected
+if manifest.get('factoryResetSdk',{}).get('implemented'):
+    sdk=manifest['factoryResetSdk'];evidence=controls['parameterReset']
+    assert sdk['sourcePlatform']=='HG724' and sdk['targetDeviceVerified'] is False and sdk['targetResetScopeVerified'] is False and sdk['persistenceVerified'] is False
+    assert evidence['successCallbackForwardsOpaqueObject'] is True and evidence['failureCallbackMapsCcode'] is True and evidence['callbackParsesPhysicalCompletion'] is False
+    for filename in sdk['files']:assert (root/filename).is_file()
+    expected=list(bytes.fromhex(evidence['sourceBodyHex']))
+    js=(root/'node/src/app-protocol.js').read_text().split('export function factoryResetSpec(',1)[1]
+    assert json.loads(re.search(r'payload:bytes\((\[.*?\])\)',js).group(1))==expected
+    py=(root/'python/rs4mini_sdk/app_protocol.py').read_text().split('def factory_reset_spec(',1)[1]
+    assert list(ast.literal_eval(re.search(r'payload=bytes\((\(.*?\))\)',py).group(1)))==expected
+    native=(root/'macos/RSControlCore.m').read_text().split('NSData *RSAppFactoryResetFrame(',1)[1]
+    assert json.loads('['+re.search(r'uint8_t payload\[\]=\{(.*?)\}',native).group(1)+']')==expected
 print('Layer boundaries passed: device modules do not depend on motion; upper layers do not encode/write packets.')
 print('Protocol inventory: %d entries; inventoryComplete=false; further advanced development is gated.' % len(manifest['commands']))

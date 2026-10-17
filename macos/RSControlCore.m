@@ -567,3 +567,12 @@ NSData *RSAppHandleWriteFrame(uint16_t sequence,NSArray *context,NSNumber *value
     uint8_t payload[8];memset(payload,255,8);payload[[context[0][@"index"] unsignedIntegerValue]]=value.unsignedCharValue;
     return CommandFrame(sequence,4,0x35,[NSData dataWithBytes:payload length:8],0x40);
 }
+
+NSDictionary *RSAppFactoryResetSpec(NSDictionary *spec) {
+    if(![spec isKindOfClass:NSDictionary.class]||spec.count!=1||![spec[@"sourcePlatform"] isKindOfClass:NSString.class]||![spec[@"sourcePlatform"] isEqualToString:@"HG724"])return nil;
+    return @{@"requestedSourcePlatform":@"HG724"};
+}
+NSData *RSAppFactoryResetFrame(uint16_t sequence,NSString *sourcePlatform) {
+    if(![sourcePlatform isKindOfClass:NSString.class]||![sourcePlatform isEqualToString:@"HG724"])return nil;
+    uint8_t payload[]={1,0,1};return CommandFrame(sequence,4,0x13,[NSData dataWithBytes:payload length:3],0x40);
+}

@@ -6,7 +6,7 @@ import { tuningSelection, tuningWrite, tuningReply } from './app-tuning.js';
 import { systemCalibrationPayload, systemCalibrationReply } from './app-system-calibration.js';
 import { balanceStartPayload, balanceReply } from './app-balance.js';
 // Device SDK facade: single owner/queue/pending map, no composed motion.
-import { appProfile, parameterContext, parameterRequest, sensitivityPayload, appReply, parameterReply } from './app-protocol.js';
+import { appProfile, parameterContext, parameterRequest, sensitivityPayload, factoryResetSpec, appReply, parameterReply } from './app-protocol.js';
 import { motorSelection, motorWrite, motorReply } from './app-motor.js';
 import { frame } from './protocol.js';
 import { autoTunePayload, calibrationReply, calibrationNotification } from './app-calibration.js';
@@ -43,6 +43,16 @@ export class AppCommands {
       await this.owner._stop();check(operation.controller.signal);
       const message=await this.owner.experimental._queryPayloadCommand('App fine tune',[4,7],spec.payload,timeoutMs,{signal:operation.controller.signal,epoch:this.owner.motionEpoch});
       const {payload,...requested}=spec;return {...appReply(message,7),...requested,stabilizationStateVerified:false};
+    },false);
+  }
+  async sendFactorySettingsResetRequest(options={}) {
+    optionsOnly(options,['sourcePlatform','timeoutMs']);this._requireProfile();
+    const spec=factoryResetSpec(options),timeoutMs=options.timeoutMs??3000;
+    if(!Number.isFinite(timeoutMs)||timeoutMs<=0||timeoutMs>60000)throw new RangeError('timeoutMs must be >0..60000');
+    return this.owner._run('sendFactorySettingsResetRequest',async operation=>{
+      await this.owner._stop();check(operation.controller.signal);
+      const message=await this.owner.experimental._queryPayloadCommand('App factory settings reset',[4,0x13],spec.payload,timeoutMs,{signal:operation.controller.signal,epoch:this.owner.motionEpoch});
+      return {...appReply(message,0x13),requestedSourcePlatform:spec.requestedSourcePlatform,targetResetScopeVerified:false,persistenceVerified:false};
     },false);
   }
   async sendHandleSettingRequest(options={}) {

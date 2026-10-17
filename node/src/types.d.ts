@@ -259,6 +259,7 @@ export interface AppTuningReading extends AppParameterReply {
 }
 export type StandaloneParameter='speed'|'smoothing';
 export interface AppCommands {
+  sendFactorySettingsResetRequest(options:{sourcePlatform:'HG724';timeoutMs?:number}):Promise<AppCommandReply & {requestedSourcePlatform:'HG724';targetResetScopeVerified:false;persistenceVerified:false}>;
   sendHandleSettingRequest(options:{setting:'dualChannelMode'|'tiltDirection'|'panDirection';value:0|1;timeoutMs?:number}):Promise<AppCommandReply & {setting:'dualChannelMode'|'tiltDirection'|'panDirection';requestedValue:0|1;unspecifiedByteSemanticsVerified:false;readbackVerified:false;persistenceVerified:false}>;
   sendFineTuneRequest(options:{axis:'pitch'|'roll';adjustmentDegrees:number;timeoutMs?:number}):Promise<AppCommandReply & {axis:'pitch'|'roll';requestedAdjustmentDegrees:number;encodedTenths:number;nominalAdjustmentDegrees:number;stabilizationStateVerified:false}>;
   getHandleSettings(options?:{timeoutMs?:number}):Promise<AppCommandReply & {modelLayoutVerified:false;values:Array<{sourceGetter:string;offset:number;size:1;rawValue:number;sourceBit0:boolean|null}>}>;

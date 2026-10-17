@@ -177,6 +177,10 @@ int main(void) {
         }
         Require(!RSAppHandleWriteSpec(@{@"setting":@"panDirection",@"value":@YES}) && !RSAppHandleWriteSpec(@{@"setting":@"profile",@"value":@1}) && !RSAppHandleWriteSpec(@{@"setting":@"panDirection",@"value":@255}) && !RSAppHandleWriteSpec(@{@"setting":@"panDirection",@"value":@1,@"index":@2}),@"handle rejects booleans unknown keys fields and FF as explicit value");
         Require(!RSAppHandleWriteFrame(9,@[@{@"index":@3,@"size":@1}],@1) && !RSAppHandleWriteFrame(9,@[@{@"index":@0,@"size":@2}],@1) && !RSAppHandleWriteFrame(9,@[@{@"index":@0,@"size":@1}],@YES),@"handle frame has private exact field/value allowlist");
+        [decoder reset];NSDictionary *resetFrame=[decoder push:RSAppFactoryResetFrame(3,@"HG724")].firstObject;
+        Require([resetFrame[@"commandId"] intValue]==0x13 && [resetFrame[@"flags"] intValue]==0x40 && [Hex(resetFrame[@"payload"]) isEqualToString:@"010001"],@"factory reset source HG724 branch body and ACK envelope");
+        Require(RSAppFactoryResetSpec(@{@"sourcePlatform":@"HG724"}) && !RSAppFactoryResetSpec(@{}) && !RSAppFactoryResetSpec(@{@"sourcePlatform":@103}) && !RSAppFactoryResetSpec(@{@"sourcePlatform":@"HG724",@"payload":@[]}),@"reset requires named source platform not enum ordinal or arbitrary body");
+        Require(!RSAppFactoryResetFrame(3,@"HG702") && !RSAppFactoryResetFrame(3,nil),@"reset codec does not reuse another platform empty branch");
         printf("Native protocol, reassembly, stop queue and motion-core checks: %lu passed\n", (unsigned long)assertions);
     }
     return 0;

@@ -222,7 +222,10 @@
     "command": "04:13",
     "sourceCondition": "PlatformType.HG724 (not GimbalComponentType ordinal)",
     "sourceBodyHex": "010001",
-    "targetResetScopeVerified": false
+    "targetResetScopeVerified": false,
+    "successCallbackForwardsOpaqueObject": true,
+    "failureCallbackMapsCcode": true,
+    "callbackParsesPhysicalCompletion": false
   },
   "parameterSave": {
     "command": "04:11",
@@ -759,6 +762,22 @@
       "descriptor": "()V",
       "codeOffset": 4879500,
       "instructionSha256": "afe2ec38b99bacfc5a330715f95c3537134af9b7cc6d157df51fb1532dd37b62"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction$13;",
+      "method": "onSuccess",
+      "descriptor": "(Ljava/lang/Object;)V",
+      "codeOffset": 5243592,
+      "instructionSha256": "dcef5da2f881ac3c0ffb7cbe18cba2510387462af7d1cf864a548ef60c0449f9"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction$13;",
+      "method": "onFailure",
+      "descriptor": "(Ldji/midware/data/config/P3/Ccode;)V",
+      "codeOffset": 5243556,
+      "instructionSha256": "7937e509117fba6c9719ef22b7d817e0556b5007722f2abac76e73ca102d8fa0"
     },
     {
       "bank": "sdk",

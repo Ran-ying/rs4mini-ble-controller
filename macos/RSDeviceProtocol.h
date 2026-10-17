@@ -77,3 +77,6 @@ NSData *RSAppFineTuneFrame(uint16_t sequence,NSArray *context,NSNumber *tenths);
 
 NSDictionary *RSAppHandleWriteSpec(NSDictionary *spec);
 NSData *RSAppHandleWriteFrame(uint16_t sequence,NSArray *context,NSNumber *value);
+
+NSDictionary *RSAppFactoryResetSpec(NSDictionary *spec);
+NSData *RSAppFactoryResetFrame(uint16_t sequence,NSString *sourcePlatform);

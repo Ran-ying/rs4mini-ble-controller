@@ -62,3 +62,8 @@ def parameter_reply(message, parameters, command_id=0x10):
         raise RS4MiniError('RS4MINI_PROTOCOL_ERROR', 'Unconsumed parameter response bytes')
     result['parameters'] = records
     return result
+
+
+def factory_reset_spec(source_platform):
+    if type(source_platform) is not str or source_platform!='HG724':raise ValueError('Explicit sourcePlatform HG724 required')
+    return dict(payload=bytes((1,0,1)),requestedSourcePlatform='HG724')

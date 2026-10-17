@@ -41,3 +41,8 @@ export function parameterReply(message, parameters, commandId = 0x10) {
   if (offset !== body.length) throw failure('RS4MINI_PROTOCOL_ERROR', 'Unconsumed parameter response bytes');
   return { ...result, parameters: records };
 }
+
+export function factoryResetSpec({sourcePlatform}) {
+  if(sourcePlatform!=='HG724')throw new TypeError('Explicit sourcePlatform HG724 required');
+  return {payload:bytes([1,0,1]),requestedSourcePlatform:'HG724'};
+}

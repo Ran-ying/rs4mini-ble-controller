@@ -12,7 +12,7 @@ import copy
 from .protocol import frame
 from .app_calibration import auto_tune_payload, calibration_reply, calibration_notification
 from .app_settings import mode_kind, SCHEMAS, settings_patch, decode_settings, settings_write
-from .app_protocol import app_profile, parameter_context, parameter_request, sensitivity_payload, app_reply, parameter_reply
+from .app_protocol import app_profile, parameter_context, parameter_request, sensitivity_payload, factory_reset_spec, app_reply, parameter_reply
 from .experimental_device import _duration
 from .errors import RS4MiniError
 
@@ -69,6 +69,15 @@ class AppCommands:
         return await self.owner._run('sendFineTuneRequest',body,False)
 
     send_fine_tune_request=sendFineTuneRequest
+
+    async def sendFactorySettingsResetRequest(self,*,sourcePlatform,timeoutMs=3000):
+        self._require_profile();spec=factory_reset_spec(sourcePlatform);_duration(timeoutMs,'timeoutMs',False)
+        async def work(operation):
+            await self.owner._halt();self.owner._check(operation)
+            message=await self.owner.experimental._query_payload_command('App factory settings reset',(4,0x13),spec['payload'],timeoutMs,external_operation=operation,epoch=self.owner._epoch)
+            return dict(app_reply(message,0x13),requestedSourcePlatform=spec['requestedSourcePlatform'],targetResetScopeVerified=False,persistenceVerified=False)
+        return await self.owner._run('sendFactorySettingsResetRequest',work,False)
+    send_factory_settings_reset_request=sendFactorySettingsResetRequest
 
     async def sendHandleSettingRequest(self,*,setting,value,timeoutMs=3000):
         self._require_profile();spec=handle_write_spec(setting,value);_duration(timeoutMs,'timeoutMs',False)

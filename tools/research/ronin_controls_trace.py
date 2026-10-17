@@ -183,6 +183,12 @@ def trace(apk,sdk_path,ui_path):
     model_index=next(i for i,(_,text) in enumerate(reset_ops) if 'PlatformType;->HG724 ' in text)
     branch_op,branch_text=reset_ops[model_index+1]
     if branch_op!='if-eq' or branch_text!='v0, v1, +010h' or pcs[model_index+1]+16!=pcs[-12]:raise ValueError('HG724 reset branch does not select special payload')
+    reset_callback=BASE+'DJIGimbalAbstraction$13;'
+    callback_interface='Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;'
+    success_ops=ops(take(reset_callback,'onSuccess'))
+    if success_ops!=[('iget-object','v0, v1, '+reset_callback+'->val$callback '+callback_interface),('invoke-interface','v0, v2, '+callback_interface+'->onSuccess(Ljava/lang/Object;)V'),('return-void','')]:raise ValueError('factory reset success no longer forwards opaque object')
+    fail=take(reset_callback,'onFailure');require(fail,'DJIError;->getDJIError(','->onFails(')
+    if len([op for op,_ in ops(fail) if op.startswith('invoke-')])!=2:raise ValueError('reset failure has extra work')
     if ops(take(save,'doPack'))!=[('return-void','')]:raise ValueError('save body changed')
     direct_save=[]
     for bank,classes in [('sdk',sdk),('ui',ui)]:
@@ -194,7 +200,7 @@ def trace(apk,sdk_path,ui_path):
     return dict(schemaVersion=1,apkSha256=APK_SHA256,derivedSha256=DERIVED_SHA256,uiDerivedSha256=UI_BANK_SHA256,appCodeExecuted=False,targetDeviceVerified=False,wholeProtocolRecovered=False,researchToolProvidesSdkInterface=False,
                 hg724Inheritance=chain,effectiveMethods=resolved,fineTune=dict(command='04:07',axisWireValues=axis_values,sourceCallableAxes=['pitch','roll'],sourceAdjustmentDegrees=[-2,2],conversion='float32 multiply10, truncate-to-int, low signed byte; physical effect/cumulative semantics unverified',targetAdjustmentEffectVerified=False,callbacksDoNotParseActualAngles=True,pauseStabilizationGateNotFirmwareVerified=True,pauseGateSource=dict(defaultValue=False,eventClass='DataEyeGetPushStabilizationState',requiresPauseWhen='turnedOn and notPaused',fineRollDoesNotAutomaticallyInvokePause=True,targetStateVerified=False)),
                 handle=dict(readCommand='04:36',writeCommand='04:35',readBodyHex='',fields=getter_rows,writeFieldOrder=fields,constructorByteDefaults=[255]*8,afterPackResetFields=reset_fields,afterPackRetainedFields=fields[6:],unspecifiedByteFirmwareSemanticsVerified=False,sourceActions=actions,writeFailureFallback=dict(api='DJISDKCache.getValue',comparison=comparison,directBleReadProven=False,writeAcceptanceProven=False),writeSuccessParsesReadback=False),
-                parameterReset=dict(command='04:13',sourceCondition='PlatformType.HG724 (not GimbalComponentType ordinal)',sourceBodyHex=hg724_reset_payload('HG724').hex(),targetResetScopeVerified=False),
+                parameterReset=dict(command='04:13',sourceCondition='PlatformType.HG724 (not GimbalComponentType ordinal)',sourceBodyHex=hg724_reset_payload('HG724').hex(),targetResetScopeVerified=False,successCallbackForwardsOpaqueObject=True,failureCallbackMapsCcode=True,callbackParsesPhysicalCompletion=False),
                 parameterSave=dict(command='04:11',sourceBodyHex='',directCallerScanBanks=['business05','business03'],directCallers=direct_save,targetModelCallPathEstablished=False),
                 offlineVectors=dict(pitchNegative= fine_tune_payload('pitch',-1.29).hex(),rollPositive=fine_tune_payload('roll',1.29).hex(),panDirectionPatch=handle_patch_payload(panDirection=1).hex()),methods=list(methods.values()))
 

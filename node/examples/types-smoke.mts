@@ -182,3 +182,11 @@ void gimbal.appCommands.sendHandleSettingRequest({setting:'panDirection',value:2
 void gimbal.appCommands.sendHandleSettingRequest({setting:'zoom2Speed',value:1});
 
 }
+
+async function resetTypes(gimbal: RS4Mini) {
+  await gimbal.appCommands.sendFactorySettingsResetRequest({sourcePlatform:'HG724'});
+  // @ts-expect-error live type enum is not source platform
+  await gimbal.appCommands.sendFactorySettingsResetRequest({sourcePlatform:103});
+  // @ts-expect-error source platform must be explicit
+  await gimbal.appCommands.sendFactorySettingsResetRequest({});
+}

@@ -428,12 +428,24 @@ int main(void) {
         Require(appCallbacks==42 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_DEVICE_ERROR"] && onlyHandleOrStop,@"handle NACK fails without cached-success fallback or readback");
         [peripheral.writes setLength:0];[gimbal sendHandleSettingRequest:@{@"setting":@"dualChannelMode",@"value":@1} timeoutMs:1000 completion:appDone];ThreeTicks(gimbal);[gimbal stop];ThreeTicks(gimbal);PumpCallbacks();[decoder reset];frames=[decoder push:peripheral.writes];NSUInteger handleWrites=0;for(NSDictionary *f in frames)if([f[@"commandId"] intValue]==0x35)handleWrites++;
         Require(appCallbacks==43 && handleWrites==1 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_OPERATION_CANCELLED"],@"handle cancel never replays setting or sends inverse rollback");
-        [gimbal getFollowSensitivityWithTimeoutMs:1000 completion:appDone]; ThreeTicks(gimbal);
+        [peripheral.writes setLength:0];[gimbal sendFactorySettingsResetRequest:@{@"sourcePlatform":@103} timeoutMs:1000 completion:appDone];PumpCallbacks();
+        Require(appCallbacks==44 && peripheral.writes.length==0 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_INVALID_ARGUMENT"],@"reset rejects enum ordinal before writes");
+        NSMutableString *resetPlatform=[@"HG724" mutableCopy];[gimbal sendFactorySettingsResetRequest:@{@"sourcePlatform":resetPlatform} timeoutMs:1000 completion:appDone];[resetPlatform setString:@"HG702"];ThreeTicks(gimbal);[decoder reset];frames=[decoder push:peripheral.writes];
+        Require(gimbal.busy && [frames.lastObject[@"commandId"] intValue]==0x13 && [frames.lastObject[@"payload"] isEqualToData:[NSData dataWithBytes:(uint8_t[]){1,0,1} length:3]],@"reset snapshots source platform and owns until ACK");
+        appSequence=[[gimbal valueForKey:@"deviceQuerySequence"] unsignedShortValue];notify.value=AppResponse(appSequence,0x13,ok,4);[gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil];PumpCallbacks();
+        Require(appCallbacks==45 && !gimbal.busy && [appResult[@"requestedSourcePlatform"] isEqualToString:@"HG724"] && ![appResult[@"targetResetScopeVerified"] boolValue] && ![appResult[@"persistenceVerified"] boolValue] && ![appResult[@"physicalCompletionVerified"] boolValue],@"reset ACK is not reset scope persistence or completion proof");
+        [peripheral.writes setLength:0];[gimbal sendFactorySettingsResetRequest:@{@"sourcePlatform":@"HG724"} timeoutMs:1000 completion:appDone];ThreeTicks(gimbal);appSequence=[[gimbal valueForKey:@"deviceQuerySequence"] unsignedShortValue];notify.value=AppResponse(appSequence,0x13,[NSData dataWithBytes:(uint8_t[]){7} length:1],4);[gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil];ThreeTicks(gimbal);PumpCallbacks();[decoder reset];frames=[decoder push:peripheral.writes];BOOL onlyResetOrStop=YES;for(NSDictionary *f in frames)if(![@[@1,@0x13] containsObject:f[@"commandId"]])onlyResetOrStop=NO;
+        Require(appCallbacks==46 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_DEVICE_ERROR"] && onlyResetOrStop,@"reset NACK never saves queries or retries");
+        [peripheral.writes setLength:0];[gimbal sendFactorySettingsResetRequest:@{@"sourcePlatform":@"HG724"} timeoutMs:1000 completion:appDone];ThreeTicks(gimbal);[gimbal stop];ThreeTicks(gimbal);PumpCallbacks();[decoder reset];frames=[decoder push:peripheral.writes];NSUInteger resetWrites=0;for(NSDictionary *f in frames)if([f[@"commandId"] intValue]==0x13)resetWrites++;
+        Require(appCallbacks==47 && resetWrites==1 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_OPERATION_CANCELLED"],@"reset cancel never repeats or pretends to undo firmware effects");
+        [peripheral.writes setLength:0];
+        [gimbal sendFactorySettingsResetRequest:@{@"sourcePlatform":@"HG724"} timeoutMs:1000 completion:appDone]; ThreeTicks(gimbal);
         notify.value=AppNotification(5,0x24,fixedBody);[gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil];PumpCallbacks();
-        Require(gimbal.busy && gimbal.appUserParameterStatus && appCallbacks==43,@"passive report does not release or complete an outstanding parameter query");
+        Require(gimbal.busy && gimbal.appUserParameterStatus && appCallbacks==47,@"passive report does not release or complete an outstanding parameter query");
         [gimbal centralManager:(id)central didDisconnectPeripheral:(id)peripheral error:nil]; PumpCallbacks();
-        Require(appCallbacks == 44 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_DISCONNECTED"], @"native disconnect rejects pending App query");
+        Require(appCallbacks == 48 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_DISCONNECTED"], @"native disconnect rejects pending App query");
         Require(!gimbal.appUserParameterStatus,@"native disconnect clears cached fixed report");
+        [decoder reset];frames=[decoder push:peripheral.writes];resetWrites=0;for(NSDictionary *f in frames)if([f[@"commandId"] intValue]==0x13)resetWrites++;Require(resetWrites==1,@"native reset disconnect never repeats request");
         [gimbal disconnect]; ThreeTicks(gimbal);
         printf("Native fake-device lifecycle checks: %lu passed (no Bluetooth manager created)\n", (unsigned long)assertions);
     }

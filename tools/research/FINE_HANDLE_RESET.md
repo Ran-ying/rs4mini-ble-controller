@@ -1,6 +1,6 @@
 # 微调、手柄与用户参数保存/重置的静态审计
 
-2026-10-17，SDK0.7.14 / 原生0.3.14。本文工具固定66方法指纹、字段和继承，自身不提供SDK或传输。四端SDK接入手柄只读查询与Pitch/Roll微调请求，其他动作尚未封装；未执行厂商代码或操作硬件。来源为固定Ronin 2.2.2/7096 APK与恢复bank05；保存调用者另核对bank03。
+2026-10-17，SDK0.7.14 / 原生0.3.14。本文工具固定68方法指纹、字段和继承，自身不提供SDK或传输。四端SDK接入手柄只读查询与Pitch/Roll微调请求，其他动作尚未封装；未执行厂商代码或操作硬件。来源为固定Ronin 2.2.2/7096 APK与恢复bank05；保存调用者另核对bank03。
 
 ## 微调04:07
 
@@ -62,3 +62,6 @@ PYTHONPATH=work/research/analysis-libs work/python312/bin/python tools/research/
 
 
 0.7.15新增四端三个命名手柄单字段SDK请求，见[APP_HANDLE_WRITE.md](../../docs/APP_HANDLE_WRITE.md)。此前无SDK写入描述为历史状态；未指定字节FF、实际效果/持久化仍未验收，不扩展其余字段。
+
+
+0.7.16新增四端显式HG724源分支恢复设置请求，见[APP_FACTORY_RESET.md](../../docs/APP_FACTORY_RESET.md)。此前未封装重置的记载为历史，实际恢复范围/持久化/本机效果仍未知，保存接口尚未开放。68方法审计包括13回调。

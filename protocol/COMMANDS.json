@@ -392,11 +392,18 @@
     {
       "key": "04:13",
       "name": "官方 App 枚举：ResetUserParams",
-      "requestCodec": "unknown",
-      "responseCodec": "unknown",
-      "targetEvidence": "official-app-enum",
-      "implementation": [],
-      "remaining": "PlatformType.HG724条件实际跳入010001三字节重置路径，继承loadFactorySettings；不是其他分支空体。实际重置范围/持久化/型号平台读值及SDK/实机仍未验收，未开放发送",
+      "requestCodec": "implemented",
+      "responseCodec": "partial",
+      "targetEvidence": "app-code-path",
+      "implementation": [
+        "node/src/app-protocol.js",
+        "node/src/app-commands.js",
+        "python/rs4mini_sdk/app_protocol.py",
+        "python/rs4mini_sdk/app_commands.py",
+        "macos/RSControlCore.m",
+        "macos/RSBleDevice.m"
+      ],
+      "remaining": "0.7.16显式App来源与sourcePlatform HG724的010001恢复设置请求及关联ACK已封装；不是其他平台空体或类型枚举103。取消/超时/断线不重发，无自动保存/回读/回滚，恢复范围/实际效果/重启或持久化未实机验收。",
       "officialAppAliases": [
         "ResetUserParams"
       ],
@@ -861,6 +868,19 @@
       "python/rs4mini_sdk/app_handle.py",
       "macos/RSControlCore.m",
       "docs/APP_HANDLE_WRITE.md"
+    ]
+  },
+  "factoryResetSdk": {
+    "implemented": true,
+    "sourcePlatform": "HG724",
+    "targetDeviceVerified": false,
+    "targetResetScopeVerified": false,
+    "persistenceVerified": false,
+    "files": [
+      "node/src/app-protocol.js",
+      "python/rs4mini_sdk/app_protocol.py",
+      "macos/RSControlCore.m",
+      "docs/APP_FACTORY_RESET.md"
     ]
   }
 }

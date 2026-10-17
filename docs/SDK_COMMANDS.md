@@ -1,6 +1,6 @@
 # 设备 SDK 命令审计与高级开发前置条件
 
-2026-10-17，0.7.15 / 原生 0.3.15。**尚不能确认 RS 4 Mini 全部非相机 BLE 命令都已枚举、解析并封装。**
+2026-10-17，0.7.16 / 原生 0.3.16。**尚不能确认 RS 4 Mini 全部非相机 BLE 命令都已枚举、解析并封装。**
 机器清单是 [protocol/COMMANDS.json](../protocol/COMMANDS.json)，目前记录 48 个命令或缺口条目；
 它不是厂商完整命令表，不能以“所有已知代码已封装”代替“所有设备命令已知”。
 
@@ -43,7 +43,7 @@
 | `04:10` | 当前 App 用户参数读取 | `implemented` / `partial` | `app-code-path` | 当前App配置按请求index/size读取，返回码、无符号索引和原始头字节分离；命名设置/状态/六组按轴档位已解码，未按索引推断其他字段，本机读数和更多参数仍待验收；0.7.10新增18项普通命名数值的1/2字节读写和异常原值保留，不自动切预设/输入源，活动预设与实际效果未验收 |
 | `04:11` | 官方 App 枚举：SaveUserParams | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
 | `04:12` | 官方 App 枚举：SubscribeGimbalParams | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
-| `04:13` | 官方 App 枚举：ResetUserParams | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
+| `04:13` | HG724恢复设置请求 | `implemented` / `partial` | `app-code-path` | 0.7.16显式来源分支010001与关联ACK；不重放/回滚，范围、生效、持久化及断线行为待实机验收 |
 | `04:24` | 当前App通用固定参数通知 | `not-applicable` / `candidate-structured` | `app-generic-code` | 0.7.12被动解码17个源getter，完整已知布局不少于74字节、仅未加密请求型，未知字节/枚举保留；不触发订阅，本机布局/活动预设及更多字段仍未验收 |
 | `04:25` | 官方 App 枚举：SetDelayTimelapseParams | `unknown` / `unknown` | `official-app-enum` | 当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送 |
 | `04:27` | 官方 App 枚举：GetPushAbnormalStatus | `unknown` / `partial` | `other-model` | 已有 RS 3 窄布局 sleep 候选解析；官方 App 名称为异常状态，完整字段和本机语义仍未知 |
@@ -155,3 +155,8 @@ HG724继承的启动路径为普通用户参数04:0F，balance_test/index37/size
 ## 0.7.15手柄单字段请求 / 原生0.3.15 build18
 
 四端设备SDK的sendHandleSettingRequest（Python snake别名）显式App来源下仅接受dualChannelMode/tiltDirection/panDirection单字段及整数0/1，8字节35体未指定字节为源默认FF。新对象/独立体，不全量读改写、不新增相机字段。参数停止前验证/快照，复用连接/队列/操作所有权至关联ACK；取消/超时无重放或回滚，NACK直接失败、不缓存兜底成功、不自动回读。结果unspecifiedByteSemanticsVerified/readbackVerified/persistenceVerified及既有设备/物理标志均false。FF实际含义、模式/方向效果、持久化待本机验收。见docs/APP_HANDLE_WRITE.md；没有高级新增或硬件操作，全部命令门槛仍false。
+
+
+## 0.7.16恢复设置请求 / 原生0.3.16 build19
+
+四端sendFactorySettingsResetRequest（Python snake别名）需显式App来源和sourcePlatform HG724，固定04:13/010001；不是类型枚举103或其他平台空体。停止前验证/快照，复用连接/队列/操作槽至关联ACK。取消/超时/断线不重发、不自动保存/回读/回滚，重连不重放。ACK不证明恢复范围、持久化、重启或物理完成，相关标志false，不自动清零/改写反馈或参数。恢复范围也未证明仅非相机字段。68方法审计新增成功/失败回调，未解析完成。见docs/APP_FACTORY_RESET.md。没有硬件/liveUI/厂商执行或高级新增；全部命令仍未完成。

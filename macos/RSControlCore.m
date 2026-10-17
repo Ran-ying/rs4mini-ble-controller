@@ -591,3 +591,33 @@ NSDictionary *RSDecodeAppAxisModeReply(NSDictionary *message,NSError **error) {
     unsigned raw=(unsigned)strtoul([reply[@"parameters"][0][@"rawHex"] UTF8String],NULL,16),mode=(raw>>3)&3;
     NSMutableDictionary *result=[reply mutableCopy];result[@"rawValue"]=@(raw);result[@"sourceModeValue"]=@(mode);result[@"sourceMode"]=@[@"ThreeAxis",@"TwoAxis",@"Roll360",@"ThreeDRoll360"][mode];result[@"unknownBits"]=@(raw&231);result[@"modelLayoutVerified"]=@NO;result[@"activePresetVerified"]=@NO;return [result copy];
 }
+
+static NSArray *SmoothContext(NSArray *context) {
+    context=RSAppParameterContext(context);if(context.count<1||context.count>3)return nil;
+    int last=16;for(NSDictionary *row in context){int index=[row[@"index"] intValue];if(index<=last||index>19||![row[@"size"] isEqual:@1])return nil;last=index;}return context;
+}
+NSArray *RSAppSmoothTrackSelection(NSDictionary *filters) {
+    if(![filters isKindOfClass:NSDictionary.class]||filters.count>1||(filters.count==1&&!filters[@"axis"]))return nil;
+    NSDictionary *axes=@{@"yaw":@17,@"pitch":@18,@"roll":@19};id axis=filters[@"axis"];if(axis&&(![axis isKindOfClass:NSString.class]||!axes[axis]))return nil;
+    NSMutableArray *result=[NSMutableArray array];for(NSString *name in @[@"yaw",@"pitch",@"roll"])if(!axis||[axis isEqual:name])[result addObject:@{@"index":axes[name],@"size":@1}];return [result copy];
+}
+NSDictionary *RSAppSmoothTrackSpec(NSDictionary *spec) {
+    if(![spec isKindOfClass:NSDictionary.class]||spec.count!=1||![spec[@"axes"] isKindOfClass:NSDictionary.class])return nil;
+    NSDictionary *patch=spec[@"axes"];if(patch.count<1||patch.count>3)return nil;
+    for(id key in patch){id v=patch[key];if(![@[@"yaw",@"pitch",@"roll"] containsObject:key]||![v isKindOfClass:NSNumber.class]||CFGetTypeID((__bridge CFTypeRef)v)!=CFBooleanGetTypeID())return nil;}
+    NSMutableArray *context=[NSMutableArray array];NSMutableDictionary *requested=[NSMutableDictionary dictionary];unsigned bits=0;NSArray *names=@[@"yaw",@"pitch",@"roll"];
+    for(unsigned i=0;i<3;i++){NSString *name=names[i];if(!patch[name])continue;BOOL enabled=[patch[name] boolValue];requested[name]=@(enabled);[context addObject:@{@"index":@(17+i),@"size":@1}];if(enabled)bits|=1u<<i;}
+    return @{@"context":[context copy],@"requestedAxes":[requested copy],@"bits":@(bits)};
+}
+NSData *RSAppSmoothTrackWriteFrame(uint16_t sequence,NSArray *context,NSNumber *bits) {
+    context=SmoothContext(context);if(!context||!Numeric(bits)||floor(bits.doubleValue)!=bits.doubleValue||bits.doubleValue<0||bits.doubleValue>7)return nil;
+    unsigned mask=0;for(NSDictionary *row in context)mask|=1u<<([row[@"index"] unsignedIntValue]-17);if(bits.unsignedIntValue&~mask)return nil;
+    NSMutableData *payload=[NSMutableData data];for(NSDictionary *row in context){unsigned index=[row[@"index"] unsignedIntValue];uint8_t part[]={(uint8_t)index,1,(bits.unsignedIntValue>>(index-17))&1};[payload appendBytes:part length:3];}
+    return CommandFrame(sequence,4,0x0f,payload,0x40);
+}
+NSDictionary *RSDecodeAppSmoothTrackReply(NSDictionary *message,NSArray *context,NSError **error) {
+    context=SmoothContext(context);if(!context){if(error)*error=RSAppError(@"RS4MINI_INVALID_ARGUMENT",@"Named smooth track context required",nil);return nil;}
+    NSDictionary *reply=RSDecodeAppReply(message,0x10,context,error);if(!reply)return nil;NSMutableArray *values=[NSMutableArray array];
+    for(NSDictionary *record in reply[@"parameters"]){unsigned index=[record[@"index"] unsignedIntValue],raw=(unsigned)strtoul([record[@"rawHex"] UTF8String],NULL,16);NSMutableDictionary *row=[record mutableCopy];row[@"axis"]=@[@"yaw",@"pitch",@"roll"][index-17];row[@"rawValue"]=@(raw);row[@"withinSourceRange"]=@(raw<=1);row[@"sourceEnabled"]=@(raw==1);row[@"enabled"]=raw<=1?@(raw==1):NSNull.null;[values addObject:[row copy]];}
+    NSMutableDictionary *result=[reply mutableCopy];result[@"values"]=[values copy];result[@"modelLayoutVerified"]=@NO;result[@"activePresetVerified"]=@NO;return [result copy];
+}

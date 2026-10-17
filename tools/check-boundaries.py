@@ -361,5 +361,17 @@ if manifest.get('axisModeSdk',{}).get('implemented'):
     native=(root/'macos/RSControlCore.m').read_text().split('NSDictionary *RSAppAxisModeSpec(',1)[1]
     objc=json.loads(re.search(r'NSDictionary \*modes=(@\{.*?\});',native).group(1).replace('@',''))
     assert js==py==objc==expected
+if manifest.get('smoothTrackSdk',{}).get('implemented'):
+    sdk=manifest['smoothTrackSdk']
+    for key in ['targetDeviceVerified','modelLayoutVerified','activePresetVerified','atomicApplicationVerified']:assert sdk[key] is False
+    source=profiles['ordinarySmoothTrack'];assert source['readTransform']=='raw-equals-one' and source['sourceOtherValuesBecomeFalse'] is True and source['appWritesViaParameterArrays'] is True and source['perAxisSdkSetterEstablished'] is False
+    for filename in sdk['files']:assert (root/filename).is_file()
+    expected={r['baseCommand'].rsplit('_',1)[1].lower():r['index'] for r in profiles['modeParameters'] if r['baseCommand'].startswith('SMOOTH_TRACK_ENABLED_')}
+    js=json.loads(re.search(r'const axes=(\{.*?\});',(root/'node/src/app-smooth-track.js').read_text()).group(1))
+    tree=ast.parse((root/'python/rs4mini_sdk/app_smooth_track.py').read_text())
+    py=ast.literal_eval(next(n.value for n in tree.body if isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and t.id=='AXES' for t in n.targets)))
+    native=(root/'macos/RSControlCore.m').read_text().split('NSArray *RSAppSmoothTrackSelection(',1)[1]
+    objc=json.loads(re.search(r'NSDictionary \*axes=(@\{.*?\});',native).group(1).replace('@',''))
+    assert js==py==objc==expected==dict(yaw=17,pitch=18,roll=19)
 print('Layer boundaries passed: device modules do not depend on motion; upper layers do not encode/write packets.')
 print('Protocol inventory: %d entries; inventoryComplete=false; further advanced development is gated.' % len(manifest['commands']))

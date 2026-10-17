@@ -383,6 +383,7 @@ static BOOL Matches(NSString *name) {
         case 0x10: return RSAppParameterRequestFrame(sequence, context);
         case 0x0f:
             if (context) {
+                if (mode && context.count>0 && [context[0][@"index"] intValue]>=17 && [context[0][@"index"] intValue]<=19) return RSAppSmoothTrackWriteFrame(sequence,context,mode);
                 if (mode && context.count==1 && [context[0][@"index"] intValue]==34) return RSAppAxisModeWriteFrame(sequence,context,mode);
                 if (mode) return context.count==2 ? RSAppStandaloneWriteFrame(sequence,context,mode) : RSAppTuningWriteFrame(sequence,context,mode);
                 if (context.count!=1 || [context[0][@"size"] intValue]!=1) return nil;
@@ -429,6 +430,21 @@ static BOOL Matches(NSString *name) {
     if(!request){if(completion)dispatch_async(dispatch_get_main_queue(), ^{completion(nil,RSAppError(@"RS4MINI_INVALID_ARGUMENT",@"Fine tune requires pitch/roll and finite adjustmentDegrees -2..2",nil));});return;}
     [self startAppCommand:7 parameters:@[@{@"index":request[@"axisWire"],@"size":@1}] mode:request[@"encodedTenths"] settingsKind:nil settingsPatch:nil timeoutMs:timeoutMs completion:^(NSDictionary *reply,NSError *error) {
         NSMutableDictionary *result=[reply mutableCopy];if(result){NSMutableDictionary *metadata=[request mutableCopy];[metadata removeObjectForKey:@"axisWire"];[result addEntriesFromDictionary:metadata];result[@"stabilizationStateVerified"]=@NO;}
+        if(completion)completion(result?[result copy]:nil,error);
+    }];
+}
+- (void)getSmoothTrackAxes:(NSDictionary *)filters timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
+    NSArray *context=RSAppSmoothTrackSelection(filters);
+    if(!context){if(completion)dispatch_async(dispatch_get_main_queue(), ^{completion(nil,RSAppError(@"RS4MINI_INVALID_ARGUMENT",@"Named smooth track selection required",nil));});return;}
+    [self readAppParameters:context timeoutMs:timeoutMs completion:^(NSDictionary *reply,NSError *error) {
+        if(error){if(completion)completion(nil,error);return;}NSError *decodeError=nil;NSDictionary *result=RSDecodeAppSmoothTrackReply(reply[@"message"],context,&decodeError);if(completion)completion(result,decodeError);
+    }];
+}
+- (void)sendSmoothTrackAxesRequest:(NSDictionary *)spec timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
+    NSDictionary *request=RSAppSmoothTrackSpec(spec);
+    if(!request){if(completion)dispatch_async(dispatch_get_main_queue(), ^{completion(nil,RSAppError(@"RS4MINI_INVALID_ARGUMENT",@"Named boolean smooth track axes required",nil));});return;}
+    [self startAppCommand:0x0f parameters:request[@"context"] mode:request[@"bits"] settingsKind:nil settingsPatch:nil timeoutMs:timeoutMs completion:^(NSDictionary *reply,NSError *error) {
+        NSMutableDictionary *result=[reply mutableCopy];if(result){result[@"requestedAxes"]=request[@"requestedAxes"];result[@"activePresetVerified"]=@NO;result[@"atomicApplicationVerified"]=@NO;result[@"persistenceVerified"]=@NO;}
         if(completion)completion(result?[result copy]:nil,error);
     }];
 }

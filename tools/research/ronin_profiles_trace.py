@@ -82,6 +82,12 @@ def trace(apk,sdk_path,ui_path):
     event_ops=ops(event);start=next(i for i,(_,text) in enumerate(event_ops) if '->FLOWER_SPECIAL_CMD ' in text)
     if event_ops[start+8:start+12]!=[('const/4','v3, 3'),('shr-int/2addr','v2, v3'),('and-int/2addr','v2, v3'),('aget-object','v11, v11, v2')]:raise ValueError('axis source read shift/mask changed')
 
+    for axis in ('YAW','PITCH','ROLL'):
+        start=next(i for i,(_,text) in enumerate(event_ops) if '->SMOOTH_TRACK_ENABLED_'+axis+' ' in text)
+        if event_ops[start+8:start+13]!=[('if-ne','v11, v1, +004h'),('move','v11, v1'),('goto','+2h'),('move','v11, v0'),('invoke-static','v11, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;')]:raise ValueError('ordinary smooth read comparison changed')
+        for reg,value in [('v0',0),('v1',1)]:
+            writes=[(op,text) for op,text in event_ops[:start] if op.startswith(('const','move','iget','sget','aget','new')) and text.split(',')[0]==reg]
+            if not writes or writes[-1]!=('const/4',reg+', '+str(value)):raise ValueError('smooth boolean constants unresolved')
     modes='Ldji/common/gimbal/DJIGimbalRonin2WorkMode;';movement='Ldji/common/gimbal/MovementSettingsProfile;'
     work_enum=ops(take(sdk,modes,'<clinit>'));movement_enum=ops(take(sdk,movement,'<clinit>'))
     work=[enum_entry(work_enum,modes,n) for n in ('Free','Flower','Fpv','Center')]
@@ -176,7 +182,7 @@ def trace(apk,sdk_path,ui_path):
         arrays.append(dict(resourceId=hex(rid),defaultLanguageValues=values))
     return dict(schemaVersion=1,apkSha256=APK_SHA256,sdkDerivedSha256=DERIVED_SHA256,uiDerivedSha256=UI_BANK_SHA256,
                 appCodeExecuted=False,targetDeviceVerified=False,wholeProtocolRecovered=False,researchToolProvidesSdkInterface=False,
-                parameters=selected,modeParameters=mode_parameters,axisModeSourceEnums=axis_enums,axisModeSourceRead=dict(shift=3,mask=3,packedMask=24),axisModeSourceValues={r['name']:axis_mode_value(r['name']) for r in axis_enums},newModeFlow=dict(fpvSmoothValues=[1,1,1],customFollowFlagReadModifyWrite=True,index2BypassesSmoothSetter=True,uiCustomFlagIsLocalOnly=True,customAxisDisplayLocalOnly=True,callbacksChainParameterWrites=False,atomicTransactionVerified=False,wireOrderVerified=False,firmwareRollbackVerified=False,axisModeIsNotMotorControlBit=True),hg724Inheritance=chain,userProfileUiValues=[0,1,2],userProfileUiNames=['M1','M2','M3'],
+                parameters=selected,modeParameters=mode_parameters,ordinarySmoothTrack=dict(readTransform='raw-equals-one',sourceOtherValuesBecomeFalse=True,appWritesViaParameterArrays=True,perAxisSdkSetterEstablished=False),axisModeSourceEnums=axis_enums,axisModeSourceRead=dict(shift=3,mask=3,packedMask=24),axisModeSourceValues={r['name']:axis_mode_value(r['name']) for r in axis_enums},newModeFlow=dict(fpvSmoothValues=[1,1,1],customFollowFlagReadModifyWrite=True,index2BypassesSmoothSetter=True,uiCustomFlagIsLocalOnly=True,customAxisDisplayLocalOnly=True,callbacksChainParameterWrites=False,atomicTransactionVerified=False,wireOrderVerified=False,firmwareRollbackVerified=False,axisModeIsNotMotorControlBit=True),hg724Inheritance=chain,userProfileUiValues=[0,1,2],userProfileUiNames=['M1','M2','M3'],
                 workModeSourceEnums=work,movementProfileSourceEnums=presets,presetGetter=business,uiLabels=labels,uiModeArrays=arrays,
                 sourceFacts=dict(userProfileIsNotMovementPreset=True,workModeIsNotPfPtfEnum=True,
                                  hg724ConditionalNewProfileBranch=True,newBranchCallsSetTrackModeHG711=True,

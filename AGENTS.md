@@ -8,9 +8,9 @@ verification status changes.
 ## Objective and user decisions
 
 - Provide an unofficial, direct BLE controller for **DJI RS 4 Mini**, initially on macOS.
-- **Node.js is the authoritative implementation**; current package version is `0.7.17`.
+- **Node.js is the authoritative implementation**; current package version is `0.7.18`.
 - The user subsequently requested completion of all existing ports. Python is now
-  `0.7.17`, Web shares the JS core, and the native panel is `0.3.17`. Describe the
+  `0.7.18`, Web shares the JS core, and the native panel is `0.3.18`. Describe the
   documented feature differences; do not claim identical APIs or hardware proof.
 - After that delivery, the user requested the remaining **non-camera** capabilities
   under the same autonomous/offline conditions. Expansion work is in progress;
@@ -716,3 +716,15 @@ CacheHelper设置调用没有串联确认，UI回调成功更新延时显示标�
 统一离线Node162/Web14、Python3.8/3.12各140、原生113核心+148假设备+3独立SDK、研究工具两环境各88、类型/边界/构建通过。隔离安装Node tarball162/Python wheel140通过，Python导入路径确认为wheel目标。40方法源码独立复现与JSON逐字节一致；源事件FLOWER_SPECIAL_CMD读取右移3/掩码3及三端四枚举目录比对通过。
 
 新增四种34写体、源读取未知位/原字节/headerByte、错参数/短体/NACK、显式profile/拒绝PF标签及原始值、参数快照/互斥、取消前不发/后不重放、超时/断连与重连无重放、Web无Buffer测试。原生查询沿用占槽/先停，Node/Python查询沿用有限并发。不自动组合132/17/18/19/35或预设，不承诺其他位保留。没有硬件/liveUI/厂商执行或高级新增，全命令门槛仍false。
+
+
+## 0.7.18普通跟随轴开关 / 原生0.3.18 build21
+
+四端getSmoothTrackAxes/sendSmoothTrackAxesRequest（Python snake别名）显式App来源下封装17/18/19、size1，默认读三轴/可过滤单轴，写非空命名布尔子集，一条0F按yaw/pitch/roll排序，未指定字段省略。源App直接参数数组路径已确认，本次未定位逐轴SDK setter；不将其不存在或本机支持当结论。读raw0/1→enabled false/true，其他→null，保留raw/header、sourceEnabled=(raw==1)与withinSourceRange，不按bit0或错误码丢值。参数快照/写先停/独占至ACK，取消/超时/断线无重放/回滚，重连不恢复请求；不自动写132/34/35/预设/输入源/保存，不是完整模式。atomicApplication/activePreset/modelLayout/device/physical/persistence相关标志false。见docs/APP_SMOOTH_TRACK.md；没有高级新增、硬件/厂商执行，全命令仍未完成。
+
+
+## 0.7.18普通跟随轴验证（2026-10-17）
+
+统一离线Node170/Web14、Python3.8/3.12各148、原生120核心+155假设备+3独立SDK、研究工具两环境各88、类型/边界/构建通过。隔离安装Node tarball170/Python wheel148通过，Python导入路径为wheel目标。40方法源码独立复现逐字节一致，三轴事件读取raw==1及真假常量、三个命名索引目录逐项核对。
+
+新增完整/子集/单轴单帧载荷、默认/过滤读取、异常3/255的原值/三态/源解释、错参数/短体/NACK、空/非布尔/未知字段拒绝、嵌套字典快照、互斥、取消/超时/断连重连无重放及Web无Buffer覆盖。未指定轴省略，同包ACK不等于原子应用，不自动写其他域或组合完整模式。没有扫描、连接、移动硬件、实时UI、厂商执行或高级新增，全部命令与实机验收仍未完成。

@@ -1,0 +1,30 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {connected,until,gate} from './fakes.js';import {frame,crc16} from '../src/protocol.js';import {smoothTrackWrite,smoothTrackSelection,smoothTrackReply} from '../src/app-smooth-track.js';
+const sent=(p,id)=>p.frames().filter(f=>f.commandId===id);
+function reply(p,r,body,id=r.commandId){const b=frame(r.sequence,4,id,Buffer.from(body),0x80);b[4]=4;b[5]=2;b.writeUInt16LE(crc16(b.subarray(0,-2)),b.length-2);p.rx.emit('data',b,true);}
+const message=body=>({sender:4,receiver:2,commandSet:4,commandId:16,flags:128,payload:Buffer.from(body),raw:Buffer.alloc(0)});
+test('smooth track named patches use canonical yaw pitch roll order and omit absent axes',()=>{
+ for(const [axes,hex] of [[{roll:true,yaw:true,pitch:true},'110101120101130101'],[{roll:false,yaw:true},'110101130100'],[{pitch:false},'120100']])assert.equal(smoothTrackWrite(axes).payload.toString('hex'),hex);
+});
+test('smooth track invalid raw values stay unknown rather than bit0 or error codes',()=>{
+ const r=smoothTrackReply(message([0,17,9,1,18,9,3,19,9,255]),smoothTrackSelection());assert.equal(r.values[0].enabled,true);for(const v of r.values.slice(1)){assert.equal(v.enabled,null);assert.equal(v.sourceEnabled,false);assert.equal(v.withinSourceRange,false);}assert.equal(r.values[2].rawValue,255);
+ for(const body of [[0,18,9,1],[0,17,9],[7]])assert.throws(()=>smoothTrackReply(message(body),smoothTrackSelection('yaw')));
+});
+test('smooth track getters select all or one field without modifying other commands',async t=>{
+ const {gimbal,peripheral:p}=await connected(t);gimbal.appCommands.useProfile('ronin-2.2.2');const task=gimbal.appCommands.getSmoothTrackAxes();await until(()=>sent(p,16).length);assert.equal(sent(p,16)[0].payload.toString('hex'),'111213');reply(p,sent(p,16)[0],[0,17,9,1,18,9,0,19,9,255]);const result=await task;assert.deepEqual(result.values.map(v=>v.enabled),[true,false,null]);assert.equal(result.values[2].headerByte,9);const one=gimbal.appCommands.getSmoothTrackAxes({axis:'pitch'});await until(()=>sent(p,16).length===2);assert.equal(sent(p,16)[1].payload.toString('hex'),'12');reply(p,sent(p,16)[1],[0,18,9,0]);assert.equal((await one).values[0].axis,'pitch');assert.ok(p.frames().every(f=>f.commandId===16));
+});
+test('smooth track setter snapshots axes, sends one frame and holds ACK ownership',async t=>{
+ const {gimbal,peripheral:p}=await connected(t);gimbal.appCommands.useProfile('ronin-2.2.2');const axes={roll:false,yaw:true};const task=gimbal.appCommands.sendSmoothTrackAxesRequest({axes});axes.yaw=false;axes.pitch=true;await until(()=>sent(p,15).length);assert.equal(sent(p,15)[0].payload.toString('hex'),'110101130100');await assert.rejects(gimbal.setVelocity({pan:.1}),{code:'RS4MINI_BUSY'});reply(p,sent(p,15)[0],[0]);const r=await task;assert.deepEqual(r.requestedAxes,{yaw:true,roll:false});for(const k of ['deviceVerified','physicalCompletionVerified','activePresetVerified','atomicApplicationVerified','persistenceVerified'])assert.equal(r[k],false);assert.equal(sent(p,15).length,1);assert.ok(p.frames().every(f=>[1,15].includes(f.commandId)));assert.equal(gimbal.appCommands.userParameterStatus,null);
+});
+test('smooth track requires explicit profile and nonempty named booleans',async t=>{
+ const {gimbal,peripheral:p}=await connected(t);await assert.rejects(gimbal.appCommands.sendSmoothTrackAxesRequest({axes:{yaw:true}}));gimbal.appCommands.useProfile('ronin-2.2.2');for(const axes of [{},{yaw:1},{yaw:null},{enabled:true},{yaw:true,index:17},[true],null])await assert.rejects(gimbal.appCommands.sendSmoothTrackAxesRequest({axes}));await assert.rejects(gimbal.appCommands.sendSmoothTrackAxesRequest({axes:{yaw:true},value:1}));await assert.rejects(gimbal.appCommands.getSmoothTrackAxes({axis:'pan'}));assert.equal(p.frames().length,0);
+});
+test('smooth track wrong ACK and NACK never cause saved state, retries or another field write',async t=>{
+ const {gimbal,peripheral:p}=await connected(t);gimbal.appCommands.useProfile('ronin-2.2.2');const failed=assert.rejects(gimbal.appCommands.sendSmoothTrackAxesRequest({axes:{yaw:true,pitch:true,roll:true}}),{code:'RS4MINI_DEVICE_ERROR'});await until(()=>sent(p,15).length);reply(p,sent(p,15)[0],[0],16);assert.equal(gimbal.experimental.pending.size,1);reply(p,sent(p,15)[0],[7]);await failed;assert.equal(sent(p,15).length,1);assert.ok(p.frames().every(f=>[1,15].includes(f.commandId)));
+});
+test('smooth track cancellation before request sends nothing; postwrite cancellation and timeout do not repeat',async t=>{
+ const {gimbal,peripheral:p}=await connected(t);gimbal.appCommands.useProfile('ronin-2.2.2');const blocked=gate(),started=gate(),original=p.tx.writeAsync.bind(p.tx);let first=true;p.tx.writeAsync=async(...args)=>{if(first){first=false;started.resolve();await blocked.promise;}return original(...args);};const opts={axes:{pitch:false}};const failed=assert.rejects(gimbal.appCommands.sendSmoothTrackAxesRequest(opts),{code:'RS4MINI_OPERATION_CANCELLED'});await started.promise;const stopping=gimbal.stop();blocked.resolve();await stopping;await failed;assert.equal(sent(p,15).length,0);const cancelled=assert.rejects(gimbal.appCommands.sendSmoothTrackAxesRequest(opts),{code:'RS4MINI_OPERATION_CANCELLED'});await until(()=>sent(p,15).length);await gimbal.stop();await cancelled;await assert.rejects(gimbal.appCommands.sendSmoothTrackAxesRequest({...opts,timeoutMs:10}),{code:'RS4MINI_RESPONSE_TIMEOUT'});assert.equal(sent(p,15).length,2);assert.ok(sent(p,15).every(f=>f.payload.toString('hex')==='120100'));assert.equal(gimbal.activeOperation,null);
+});
+test('smooth track disconnect and reconnect do not repeat batch',async t=>{
+ const {gimbal,peripheral:p}=await connected(t);gimbal.appCommands.useProfile('ronin-2.2.2');const failed=assert.rejects(gimbal.appCommands.sendSmoothTrackAxesRequest({axes:{yaw:true,pitch:true,roll:true}}),{code:'RS4MINI_DISCONNECTED'});await until(()=>sent(p,15).length);await p.disconnectAsync();await failed;await gimbal.connect();assert.equal(sent(p,15).length,1);assert.equal(gimbal.experimental.pending.size,0);
+});

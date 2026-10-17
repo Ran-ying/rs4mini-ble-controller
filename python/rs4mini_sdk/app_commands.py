@@ -1,3 +1,4 @@
+from .app_smooth_track import smooth_track_selection,smooth_track_write,smooth_track_reply
 from .app_axis_mode import axis_mode_write,axis_mode_reply
 """Current-App device commands share the existing connection/queue/pending map."""
 from .app_fine_tune import fine_tune_spec
@@ -70,6 +71,21 @@ class AppCommands:
         return await self.owner._run('sendFineTuneRequest',body,False)
 
     send_fine_tune_request=sendFineTuneRequest
+
+    async def getSmoothTrackAxes(self,*,axis=None,timeoutMs=3000):
+        self._require_profile();selection=smooth_track_selection(axis)
+        message=await self.owner.experimental._query_payload_command('App smooth track query',(4,0x10),parameter_request([dict(index=r['index'],size=1) for r in selection]),timeoutMs)
+        return smooth_track_reply(message,selection)
+    get_smooth_track_axes=getSmoothTrackAxes
+
+    async def sendSmoothTrackAxesRequest(self,*,axes,timeoutMs=3000):
+        self._require_profile();spec=smooth_track_write(axes);_duration(timeoutMs,'timeoutMs',False)
+        async def work(operation):
+            await self.owner._halt();self.owner._check(operation)
+            message=await self.owner.experimental._query_payload_command('App smooth track axes',(4,0x0f),spec['payload'],timeoutMs,external_operation=operation,epoch=self.owner._epoch)
+            return dict(app_reply(message,0x0f),requestedAxes=dict(spec['requestedAxes']),activePresetVerified=False,atomicApplicationVerified=False,persistenceVerified=False)
+        return await self.owner._run('sendSmoothTrackAxesRequest',work,False)
+    send_smooth_track_axes_request=sendSmoothTrackAxesRequest
 
     async def getAxisMode(self,*,timeoutMs=3000):
         self._require_profile()

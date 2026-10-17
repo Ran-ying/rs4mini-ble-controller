@@ -1,3 +1,4 @@
+import {smoothTrackSelection,smoothTrackWrite,smoothTrackReply} from './app-smooth-track.js';
 import {axisModeWrite,axisModeReply} from './app-axis-mode.js';
 import { fineTuneSpec } from './app-fine-tune.js';
 import { handleReply, handleWriteSpec } from './app-handle.js';
@@ -44,6 +45,21 @@ export class AppCommands {
       await this.owner._stop();check(operation.controller.signal);
       const message=await this.owner.experimental._queryPayloadCommand('App fine tune',[4,7],spec.payload,timeoutMs,{signal:operation.controller.signal,epoch:this.owner.motionEpoch});
       const {payload,...requested}=spec;return {...appReply(message,7),...requested,stabilizationStateVerified:false};
+    },false);
+  }
+  async getSmoothTrackAxes(options={}) {
+    optionsOnly(options,['axis','timeoutMs']);this._requireProfile();
+    const selection=smoothTrackSelection(options.axis),context=selection.map(({index,size})=>({index,size}));
+    return smoothTrackReply(await this.owner.experimental._queryPayloadCommand('App smooth track query',[4,0x10],parameterRequest(context),options.timeoutMs??3000),selection);
+  }
+  async sendSmoothTrackAxesRequest(options={}) {
+    optionsOnly(options,['axes','timeoutMs']);this._requireProfile();
+    const spec=smoothTrackWrite(options.axes),timeoutMs=options.timeoutMs??3000;
+    if(!Number.isFinite(timeoutMs)||timeoutMs<=0||timeoutMs>60000)throw new RangeError('timeoutMs must be >0..60000');
+    return this.owner._run('sendSmoothTrackAxesRequest',async operation=>{
+      await this.owner._stop();check(operation.controller.signal);
+      const message=await this.owner.experimental._queryPayloadCommand('App smooth track axes',[4,0x0f],spec.payload,timeoutMs,{signal:operation.controller.signal,epoch:this.owner.motionEpoch});
+      return {...appReply(message,0x0f),requestedAxes:{...spec.requestedAxes},activePresetVerified:false,atomicApplicationVerified:false,persistenceVerified:false};
     },false);
   }
   async getAxisMode(options={}) {

@@ -65,6 +65,12 @@
       "baseCommand": "FLOWER_SPECIAL_CMD"
     }
   ],
+  "ordinarySmoothTrack": {
+    "readTransform": "raw-equals-one",
+    "sourceOtherValuesBecomeFalse": true,
+    "appWritesViaParameterArrays": true,
+    "perAxisSdkSetterEstablished": false
+  },
   "axisModeSourceEnums": [
     {
       "name": "ThreeAxis",

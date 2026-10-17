@@ -200,3 +200,13 @@ async function axisModeTypes(gimbal: RS4Mini) {
   await gimbal.appCommands.sendAxisModeRequest({sourceMode:'ThreeAxis',value:64});
   return bits;
 }
+
+async function smoothTrackTypes(gimbal: RS4Mini) {
+  const r=await gimbal.appCommands.getSmoothTrackAxes({axis:'pitch'});const enabled:boolean|null=r.values[0].enabled;
+  await gimbal.appCommands.sendSmoothTrackAxesRequest({axes:{yaw:true,roll:false}});
+  // @ts-expect-error no numeric booleans
+  await gimbal.appCommands.sendSmoothTrackAxesRequest({axes:{yaw:1}});
+  // @ts-expect-error no custom flag or unknown axes
+  await gimbal.appCommands.sendSmoothTrackAxesRequest({axes:{enabled:true}});
+  return enabled;
+}

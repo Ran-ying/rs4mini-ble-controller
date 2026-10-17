@@ -189,6 +189,15 @@ int main(void) {
         Require([axisRead[@"rawValue"] intValue]==255 && [axisRead[@"unknownBits"] intValue]==231 && [axisRead[@"sourceMode"] isEqualToString:@"ThreeDRoll360"] && ![axisRead[@"modelLayoutVerified"] boolValue],@"axis source read mask preserves raw unknown bits");
         Require(!RSAppAxisModeSpec(@{@"sourceMode":@"FPV"}) && !RSAppAxisModeSpec(@{@"sourceMode":@24}) && !RSAppAxisModeSpec(@{@"sourceMode":@"ThreeAxis",@"value":@64}) && !RSAppAxisModeWriteFrame(3,@[@{@"index":@35,@"size":@1}],@24) && !RSAppAxisModeWriteFrame(3,@[@{@"index":@34,@"size":@1}],@YES),@"axis rejects mode aliases raw overrides motor context and boolean");
         Require(!RSDecodeAppAxisModeReply(parameterMessage(16,[NSData dataWithBytes:(uint8_t[]){0,35,9,24} length:4],128),&error),@"axis read rejects wrong parameter context");
+        Require(RSAppSmoothTrackSelection(@{}).count==3 && [RSAppSmoothTrackSelection(@{@"axis":@"pitch"})[0][@"index"] intValue]==18,@"smooth query selects canonical three axes or named one");
+        for(NSArray *row in @[@[@{@"roll":@YES,@"yaw":@YES,@"pitch":@YES},@"110101120101130101"],@[@{@"roll":@NO,@"yaw":@YES},@"110101130100"],@[@{@"pitch":@NO},@"120100"]]) {
+            NSDictionary *spec=RSAppSmoothTrackSpec(@{@"axes":row[0]});[decoder reset];NSDictionary *f=[decoder push:RSAppSmoothTrackWriteFrame(4,spec[@"context"],spec[@"bits"])].firstObject;
+            Require([f[@"commandId"] intValue]==15 && [Hex(f[@"payload"]) isEqualToString:row[1]],@"smooth patch emits one canonical frame without omitted-axis defaults");
+        }
+        Require(!RSAppSmoothTrackSpec(@{@"axes":@{}}) && !RSAppSmoothTrackSpec(@{@"axes":@{@"yaw":@1}}) && !RSAppSmoothTrackSelection(@{@"axis":@"pan"}) && !RSAppSmoothTrackWriteFrame(4,@[@{@"index":@17,@"size":@1}],@2),@"smooth rejects empty numeric axes and unused bitmask bits");
+        NSDictionary *smoothRead=RSDecodeAppSmoothTrackReply(parameterMessage(16,[NSData dataWithBytes:(uint8_t[]){0,17,9,1,18,9,3,19,9,255} length:10],128),RSAppSmoothTrackSelection(@{}),&error);
+        Require([smoothRead[@"values"][0][@"enabled"] boolValue] && smoothRead[@"values"][1][@"enabled"]==NSNull.null && ![smoothRead[@"values"][1][@"sourceEnabled"] boolValue] && [smoothRead[@"values"][2][@"rawValue"] intValue]==255,@"smooth preserves invalid raw values separately from source equality conversion");
+        Require(!RSDecodeAppSmoothTrackReply(parameterMessage(16,[NSData dataWithBytes:(uint8_t[]){0,18,9,1} length:4],128),RSAppSmoothTrackSelection(@{@"axis":@"yaw"}),&error),@"smooth read rejects wrong index rather than mapping by position");
         printf("Native protocol, reassembly, stop queue and motion-core checks: %lu passed\n", (unsigned long)assertions);
     }
     return 0;

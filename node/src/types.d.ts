@@ -260,6 +260,8 @@ export interface AppTuningReading extends AppParameterReply {
 export type StandaloneParameter='speed'|'smoothing';
 export type AppSourceAxisMode='ThreeAxis'|'TwoAxis'|'Roll360'|'ThreeDRoll360';
 export interface AppCommands {
+  getSmoothTrackAxes(options?:{axis?:'yaw'|'pitch'|'roll';timeoutMs?:number}):Promise<AppParameterReply & {modelLayoutVerified:false;activePresetVerified:false;values:Array<AppParameterContext & {axis:'yaw'|'pitch'|'roll';rawValue:number;withinSourceRange:boolean;sourceEnabled:boolean;enabled:boolean|null;headerByte:number;rawHex:string}>}>;
+  sendSmoothTrackAxesRequest(options:{axes:Partial<Record<'yaw'|'pitch'|'roll',boolean>>;timeoutMs?:number}):Promise<AppCommandReply & {requestedAxes:Partial<Record<'yaw'|'pitch'|'roll',boolean>>;activePresetVerified:false;atomicApplicationVerified:false;persistenceVerified:false}>;
   getAxisMode(options?:{timeoutMs?:number}):Promise<AppParameterReply & {rawValue:number;sourceModeValue:number;sourceMode:AppSourceAxisMode;unknownBits:number;modelLayoutVerified:false;activePresetVerified:false}>;
   sendAxisModeRequest(options:{sourceMode:AppSourceAxisMode;timeoutMs?:number}):Promise<AppCommandReply & {requestedSourceMode:AppSourceAxisMode;requestedRawValue:number;activePresetVerified:false;otherBitsPreservationVerified:false;persistenceVerified:false}>;
   sendFactorySettingsResetRequest(options:{sourcePlatform:'HG724';timeoutMs?:number}):Promise<AppCommandReply & {requestedSourcePlatform:'HG724';targetResetScopeVerified:false;persistenceVerified:false}>;

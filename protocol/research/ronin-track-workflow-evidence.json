@@ -1,0 +1,425 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "bankSha256": {
+    "3": "bb50b39865520f55e97116ae1903bda3545b01c2fb7e2aba67a979dc264a9854",
+    "5": "4fdbd74a05df63d72a0feb1c907d9395426ec3cdb5d6aeb45e3836d856d66654"
+  },
+  "appCodeExecuted": false,
+  "liveUiExecuted": false,
+  "targetDeviceVerified": false,
+  "wholeProtocolRecovered": false,
+  "researchToolProvidesSdkInterface": false,
+  "fullModelWorkflowVerified": false,
+  "scope": "Selected static resource mount and track UI callback/status source declarations; no runtime initialization or physical effects",
+  "priorEntryEvidence": "protocol/research/ronin-program-entry-evidence.json",
+  "priorProgramEvidence": "protocol/research/ronin-program-evidence.json",
+  "mainViewLiteral": {
+    "ordinal": 15,
+    "viewId": 2131363446,
+    "layoutId": 2131558933
+  },
+  "layouts": [
+    {
+      "name": "MainRoninNew",
+      "resourceId": 2131558933,
+      "path": "res/EP.xml",
+      "sha256": "d3ab1013022909e24beb006659410f0821784fa8b8297df324e1ed3f514c71c2",
+      "rootClass": "com.dji.ronin.base.UIStageView",
+      "elements": [
+        {
+          "className": "com.dji.ronin.ui.create.CreateMainJumpEntryView",
+          "id": null
+        }
+      ]
+    },
+    {
+      "name": "CreateMainJumpEntryChild",
+      "resourceId": 2131558843,
+      "path": "res/g3.xml",
+      "sha256": "099f46c0627cb6ede66df2f7f261c5b754ec2fa6baf4bd255ca11a815a9afd9b",
+      "rootClass": "androidx.constraintlayout.widget.ConstraintLayout",
+      "elements": [
+        {
+          "className": "com.dji.ronin.ui.entry.RoninCreateJumpTextView",
+          "id": "@7F0A0313"
+        }
+      ]
+    }
+  ],
+  "methods": [
+    {
+      "className": "Lcom/dji/ronin/home/UIViewManager$ViewIndex;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 2269088,
+      "instructionSha256": "eb5390273acde8b8052cda90fe1e2950435b901f64804a524808baf394bfe37a"
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/CreateMainJumpEntryView;",
+      "method": "initView",
+      "descriptor": "()V",
+      "codeOffset": 3914072,
+      "instructionSha256": "5401e56dfc42c13c5cd9415b715017a171082945a25fe0c225e26eade3f04074"
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/CreateMainJumpEntryView;",
+      "method": "onFinishInflate",
+      "descriptor": "()V",
+      "codeOffset": 3914716,
+      "instructionSha256": "4c381cb4283c796c9f705e48bbb61d263f77a951043d780764808e9c4e83d126"
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/CreateMainJumpEntryView;",
+      "method": "onAttachedToWindow",
+      "descriptor": "()V",
+      "codeOffset": 3914592,
+      "instructionSha256": "c803fbb12d365f638cb57583d3b08d5a03433f6f9ac034469bdec055ee0d5f22"
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/CreateMainJumpEntryView;",
+      "method": "updateVisibility",
+      "descriptor": "()V",
+      "codeOffset": 3914368,
+      "instructionSha256": "a9be91eeebe90c96567a8ed8e237c1eb5b61fddc9b7bd98f687dde7508913344"
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/CreateMainJumpEntryView;",
+      "method": "lambda$initView$0",
+      "descriptor": "(Landroid/view/View;)V",
+      "codeOffset": 3914248,
+      "instructionSha256": "96c00abd2f9a49b96e375769e4a33d78017f25e980d873d9ba0432dd23af4397"
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/entry/RoninCreateJumpTextView;",
+      "method": "<init>",
+      "descriptor": "(Landroid/content/Context; Landroid/util/AttributeSet;)V",
+      "codeOffset": 4752028,
+      "instructionSha256": "88acd650833f6dd8801741e5725e8cf9dfa1e3049e68a0d56eed23284aa61b99"
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/entry/RoninCreateJumpTextView;",
+      "method": "onClick",
+      "descriptor": "(Landroid/view/View;)V",
+      "codeOffset": 4752052,
+      "instructionSha256": "c0ecddb62dd99689bedbc97cd5b3e8b2cf28bc07d972e96802e3e31bbfc2c700"
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "previewToggle",
+      "descriptor": "()V",
+      "codeOffset": 5005056,
+      "instructionSha256": "3d1c4786a21a27aeac5e9c9be993cdad1371c6eaa486cb13c71e2903806dabd6"
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "sendToDeviceStart",
+      "descriptor": "(I Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 5005704,
+      "instructionSha256": "35606af2c1f59be5d768735cdcfdc5bce2285cfbdad4dda6773fb4497135c918"
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "sendToDeviceStop",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 5006008,
+      "instructionSha256": "0b0e73326b4fe2167959d93e85e38d993b93a44278d0e8766167dc1a43e27260"
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "startRecord",
+      "descriptor": "()V",
+      "codeOffset": 5006308,
+      "instructionSha256": "e2bfa425912d3c0ff984dd38556bf9fbde78badbec403f7ff95c36a2dd5496f3"
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "stopRecord",
+      "descriptor": "()V",
+      "codeOffset": 5006412,
+      "instructionSha256": "6df5b43621b2855f85846ba45db0691597c035e1f2ca7f5111a75f9977ac5c20"
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "checkGimbalStateStart",
+      "descriptor": "()V",
+      "codeOffset": 5003860,
+      "instructionSha256": "da234f0f5fd3e853d61405c043255799fec82c22c4122cea50e8f8417265c278"
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "checkGimbalStateStop",
+      "descriptor": "()V",
+      "codeOffset": 5003928,
+      "instructionSha256": "6731a1c5fe071c28b881b891d9c39ec543d620256903b29d0f844fa733b8a309"
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "onEvent3MainThread",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalGetPushExternalStatus;)V",
+      "codeOffset": 5009592,
+      "instructionSha256": "3acd00492aa29c511473dd486a9d22e0a3ae944a68b86123ef8fc06d5bd2b7b3"
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "onAttachedToWindow",
+      "descriptor": "()V",
+      "codeOffset": 5008240,
+      "instructionSha256": "b7fddde46ec03da7a0d8c7cc8c81fffea01eacd5644ebfe0a38e115b4da59bea"
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "onDetachedFromWindow",
+      "descriptor": "()V",
+      "codeOffset": 5009460,
+      "instructionSha256": "36d58a22f1075ea87fdef883e5879c68eb97e925a7a8850cee2dd6f3307bbd8b"
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "openPushEnable",
+      "descriptor": "()V",
+      "codeOffset": 5005000,
+      "instructionSha256": "ba80f4eb9a452f523fb5a90403f0f330c51d1920b2a84002e73321fbbc407653"
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "closePushEnable",
+      "descriptor": "()V",
+      "codeOffset": 5004104,
+      "instructionSha256": "e3f0bba907ee27f8895b943811b0473519a29700f8f48a2cccf61e6962365686"
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView$12;",
+      "method": "onSuccess",
+      "descriptor": "(Ljava/lang/Object;)V",
+      "codeOffset": 2630668,
+      "instructionSha256": "7b0b7a65e144d2a32743c300021bdc2292610785515e34df5d5aee035031e345"
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView$12;",
+      "method": "onFailure",
+      "descriptor": "(Ldji/midware/data/config/P3/Ccode;)V",
+      "codeOffset": 2630604,
+      "instructionSha256": "6ee5af6e7d669e2ffc3a7d5852edf9a01fe6079ea91acfa897208fc185e61e6e"
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView$12$1;",
+      "method": "run",
+      "descriptor": "()V",
+      "codeOffset": 2630524,
+      "instructionSha256": "a53e2dec37acd97a4d555f8cd77675a32146576560163f985eaefa43d89d512f"
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView$13;",
+      "method": "onSuccess",
+      "descriptor": "(Ljava/lang/Object;)V",
+      "codeOffset": 2630896,
+      "instructionSha256": "0820dca4f9c7c11192d43418d493d66b91ce014412cac3359fa542bb5314e473"
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView$13;",
+      "method": "onFailure",
+      "descriptor": "(Ldji/midware/data/config/P3/Ccode;)V",
+      "codeOffset": 2630832,
+      "instructionSha256": "6ee5af6e7d669e2ffc3a7d5852edf9a01fe6079ea91acfa897208fc185e61e6e"
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView$13$1;",
+      "method": "run",
+      "descriptor": "()V",
+      "codeOffset": 2630732,
+      "instructionSha256": "f911e9ef0a44d4ae49da45532a6119f966b107b84b94bc362924c659676c4a46"
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView$1;",
+      "method": "handleMessage",
+      "descriptor": "(Landroid/os/Message;)Z",
+      "codeOffset": 2632408,
+      "instructionSha256": "15c0434eaea4f2fc52ec502163a4c90e69837b5f7ec3e43b63284bedfe814253"
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "-$$Nest$fputmStatus",
+      "descriptor": "(Lcom/dji/ronin/ui/create/track/CreateTrackView; Lcom/dji/ronin/ui/create/CreateUtils$Status;)V",
+      "codeOffset": 5003416,
+      "instructionSha256": "64752bc11a3587e9068d4c5e11128ceb8483de1ee1efb626a8f34a19f9fc94cd"
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "-$$Nest$mupdateUI",
+      "descriptor": "(Lcom/dji/ronin/ui/create/track/CreateTrackView;)V",
+      "codeOffset": 5003668,
+      "instructionSha256": "b417a4d08e80c9d809dc07d7eaa97d15473e1ff743e96ed5ec9b8a2fc634058e"
+    }
+  ],
+  "conditionalMountChain": [
+    "IsHandleDevice cache true and preceding Ronin2 route false",
+    "showMainView selects MainRoninNew",
+    "main resource mounts CreateMainJumpEntryView",
+    "onFinishInflate calls initView and inflates child resource",
+    "child subclass id matches CreateRoninNew viewId",
+    "subclass click logs then invokes parent click",
+    "parent generic route opens selected create menu"
+  ],
+  "staticSelectedMountChainEstablished": true,
+  "androidInflationExecuted": false,
+  "track": {
+    "command": "04:62",
+    "previewSourceValue": 1,
+    "startPhase": 0,
+    "stopPhase": 1,
+    "sourcePreviewAckPostsUiState": "PREVIEWING",
+    "sourceStopAckPostsUiState": "IDLE",
+    "uiStateIsPhysicalCompletionVerified": false,
+    "sourceSubscriptionCommand": "04:6B",
+    "subscriptionTag": "62",
+    "subscriptionStopIsProgramStop": false,
+    "statusHandlerDirectCalls": [
+      {
+        "className": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalStatus;",
+        "method": "getTrackStatus",
+        "descriptor": "()I"
+      },
+      {
+        "className": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalStatus;",
+        "method": "getTrackCurPercent",
+        "descriptor": "()I"
+      },
+      {
+        "className": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalStatus;",
+        "method": "getTrackFinishedPoints",
+        "descriptor": "()I"
+      },
+      {
+        "className": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalStatus;",
+        "method": "getTrackTotalPercent",
+        "descriptor": "()I"
+      },
+      {
+        "className": "Ljava/lang/Integer;",
+        "method": "valueOf",
+        "descriptor": "(I)Ljava/lang/Integer;"
+      },
+      {
+        "className": "Ljava/lang/Integer;",
+        "method": "valueOf",
+        "descriptor": "(I)Ljava/lang/Integer;"
+      },
+      {
+        "className": "Ljava/lang/Integer;",
+        "method": "valueOf",
+        "descriptor": "(I)Ljava/lang/Integer;"
+      },
+      {
+        "className": "Ljava/lang/String;",
+        "method": "format",
+        "descriptor": "(Ljava/lang/String; [Ljava/lang/Object;)Ljava/lang/String;"
+      },
+      {
+        "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+        "method": "log",
+        "descriptor": "(Ljava/lang/String; Ljava/lang/String;)V"
+      },
+      {
+        "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+        "method": "getContext",
+        "descriptor": "()Landroid/content/Context;"
+      },
+      {
+        "className": "Landroid/widget/Toast;",
+        "method": "makeText",
+        "descriptor": "(Landroid/content/Context; I I)Landroid/widget/Toast;"
+      },
+      {
+        "className": "Landroid/widget/Toast;",
+        "method": "show",
+        "descriptor": "()V"
+      },
+      {
+        "className": "Lcom/dji/ronin/ui/create/CreateBottomBar;",
+        "method": "setVideoState",
+        "descriptor": "(Z)V"
+      },
+      {
+        "className": "Lcom/dji/ronin/util/CommonUtils;",
+        "method": "isRonin2",
+        "descriptor": "(Ldji/midware/component/DJIComponentManager$GimbalComponentType;)Z"
+      },
+      {
+        "className": "Lcom/dji/ronin/ui/create/CreateCameraManager;",
+        "method": "getInstance",
+        "descriptor": "()Lcom/dji/ronin/ui/create/CreateCameraManager;"
+      },
+      {
+        "className": "Lcom/dji/ronin/ui/create/CreateCameraManager;",
+        "method": "sendRemote",
+        "descriptor": "(Lcom/dji/ronin/ui/create/video/CameraControlView$CameraAction; Ldji/midware/interfaces/DJIDataCallBack;)V"
+      },
+      {
+        "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+        "method": "updateTotalTime",
+        "descriptor": "()V"
+      },
+      {
+        "className": "Lcom/dji/ronin/ui/create/track/CreateTrackPathView;",
+        "method": "updateTouchPoint",
+        "descriptor": "()V"
+      },
+      {
+        "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+        "method": "reportCreateData",
+        "descriptor": "(Ljava/lang/String;)V"
+      },
+      {
+        "className": "Lcom/dji/ronin/ui/create/CreateBottomBar;",
+        "method": "setVideoState",
+        "descriptor": "(Z)V"
+      },
+      {
+        "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+        "method": "showProgressView",
+        "descriptor": "(I)V"
+      },
+      {
+        "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+        "method": "hideProgressView",
+        "descriptor": "()V"
+      },
+      {
+        "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+        "method": "updateUI",
+        "descriptor": "()V"
+      },
+      {
+        "className": "Landroid/os/Handler;",
+        "method": "hasMessages",
+        "descriptor": "(I)Z"
+      },
+      {
+        "className": "Landroid/os/Handler;",
+        "method": "removeMessages",
+        "descriptor": "(I)V"
+      },
+      {
+        "className": "Landroid/os/Handler;",
+        "method": "sendEmptyMessageDelayed",
+        "descriptor": "(I J)Z"
+      }
+    ],
+    "statusHandlerDirectlyChecksCommandId": false,
+    "statusHandlerDirectlyChecksSuccess": false,
+    "statusHandlerDirectlyChecksSequence": false,
+    "statusHandlerMayReadRetainedSingletonTrackFields": true,
+    "watchdogMs": 3000,
+    "watchdogAction": "re-request StartContinuePush, not motor stop",
+    "sourceTimedUiUnlockMs": 1200,
+    "sourceRecordingHasCameraBranch": true,
+    "completeCameraIsolationVerified": false
+  },
+  "remaining": [
+    "Static mount is conditional on product cache/platform and does not prove live target firmware support.",
+    "Selected UI callbacks can change state from ACK or stale shared status; do not copy them as SDK completion or cancellation.",
+    "Program units/reference frame, raw BLE receive path, sender/receiver addressing, target acceptance and physical stop remain unverified.",
+    "Camera/recording branches and all indirect callbacks are not fully isolated; no SDK program send or advanced feature added."
+  ]
+}

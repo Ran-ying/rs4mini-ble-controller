@@ -214,3 +214,6 @@ HG724继承的启动路径为普通用户参数04:0F，balance_test/index37/size
 
 
 [程序菜单与HG724条件分类](../tools/research/PROGRAM_ENTRY.md)补齐产品缓存/布局声明链，区分快门线帮助与检查函数可达性；尚未证明完整型号工作流，不新增发送或高级功能。
+
+
+[主页面挂载与轨迹UI工作流](../tools/research/TRACK_WORKFLOW.md)补齐静态挂载链，区分ACK后的界面状态、重订阅和物理停止；仍未开放程序SDK或高级功能。

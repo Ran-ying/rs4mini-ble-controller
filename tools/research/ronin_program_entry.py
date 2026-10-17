@@ -30,7 +30,8 @@ def switch_assignments(ops,enum):
     return result
 
 
-def view_literals(ops):
+def view_literals(ops,selected=None):
+    selected=SELECTED if selected is None else selected
     registers={};result={}
     for op,text in ops:
         if op.startswith('const-string'):
@@ -41,7 +42,7 @@ def view_literals(ops):
             raw=text.split(', '+VIEW)[0];regs=re.findall(r'v\d+',raw)
             if ' ... ' in raw:regs=['v%d'%i for i in range(int(regs[0][1:]),int(regs[-1][1:])+1)]
             fields=[registers.get(r) for r in regs[1:5]]
-            if fields[0] in SELECTED:
+            if fields[0] in selected:
                 if type(fields[0]) is not str or any(type(v) is not int for v in fields[1:]) or fields[0] in result:raise ValueError('unresolved selected view literals')
                 result[fields[0]]=dict(ordinal=fields[1],viewId=fields[2],layoutId=fields[3])
         elif op in ('new-instance','sget-object','move-result','move-result-object'):registers[text.split(', ')[0]]=None

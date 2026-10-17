@@ -539,3 +539,14 @@ if manifest.get('programEntryResearch'):
     assert entry['helpRouteIsShutterCableNotProgram'] is True
     assert entry['selectedClickDirectlyCallsShutterHelper'] is False
     assert entry['componentArgumentIgnoredByHandheldHelper'] is True
+
+if manifest.get('trackWorkflowResearch'):
+    workflow=json.loads((root/manifest['trackWorkflowResearch']).read_text())
+    for flag in ('appCodeExecuted','liveUiExecuted','targetDeviceVerified','wholeProtocolRecovered','researchToolProvidesSdkInterface','fullModelWorkflowVerified','androidInflationExecuted'):
+        assert workflow[flag] is False
+    assert len(workflow['methods'])==29 and len(workflow['layouts'])==2
+    assert workflow['staticSelectedMountChainEstablished'] is True
+    track=workflow['track']
+    assert track['watchdogMs']==3000 and track['sourceTimedUiUnlockMs']==1200
+    for flag in ('uiStateIsPhysicalCompletionVerified','subscriptionStopIsProgramStop','statusHandlerDirectlyChecksCommandId','statusHandlerDirectlyChecksSuccess','statusHandlerDirectlyChecksSequence','completeCameraIsolationVerified'):
+        assert track[flag] is False

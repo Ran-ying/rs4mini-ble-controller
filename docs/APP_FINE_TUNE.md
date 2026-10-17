@@ -41,3 +41,6 @@ requestedAdjustmentDegrees保留请求参数，nominalAdjustmentDegrees为encode
 tools/research/ronin_controls_trace.py扩展为49方法指纹，包含暂停标志更新/相关暂停方法以及Pitch/Roll成功失败回调；protocol/research/ronin-controls-evidence.json记录源事实。Node/Python/原生轴表逐项比对，Web共享JS；各端黄金向量、可变输入、互斥、错误ACK、请求前后取消和超时离线回归。没有执行厂商代码或操作硬件。
 
 仍需受控验证实际效果/精度/累加/持久化、暂停状态、到位和中止；手柄写入、保存/重置及其他协议继续推进。全部命令与高级新增门槛保持false。
+
+
+[暂停状态与等待依赖审计](../tools/research/STABILIZATION_DEPENDENCY.md)区分源stabilization状态、3秒等待与真实云台停止/到位；关闭也返回paused、等待不按请求序号关联，未新增运行时功能或声明本机支持。

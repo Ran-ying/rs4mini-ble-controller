@@ -73,3 +73,6 @@ python/.venv/bin/python -m unittest discover -s tools/research -p test_ronin_ang
 下一步需核对直连入口是否使用/裁剪EYE依赖、错误返回/完成/取消/释放，以及本机坐标与地址。
 没有证据前不补一个擅自省略依赖的原生定位接口，也不宣称暂停请求已验收。
 仍可继续离线研究其他命令；全部命令完整性与新增高级功能门槛保持false。
+
+
+[暂停状态与等待依赖审计](STABILIZATION_DEPENDENCY.md)区分源stabilization状态、3秒等待与真实云台停止/到位；关闭也返回paused、等待不按请求序号关联，未新增运行时功能或声明本机支持。

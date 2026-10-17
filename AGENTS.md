@@ -776,3 +776,15 @@ justSendPauseData的无回调重载发EYE/AppState=98，SINGLE类型17/ID7，源
 ## 角度上下文验证（2026-10-17）
 
 固定APK/SDK实际复现29方法指纹与初始化范围覆盖。新增9项声明提取/未知写失效/分支拒绝/精确索引/哈希预检，研究工具Python3.8/3.12各118通过。统一离线Node178/Web14/Python156/原生131+168+3、类型/边界/构建通过。运行时安装包不变，无硬件或厂商执行；直接BLE依赖、恢复和物理完成仍待核对。
+
+
+## stabilization状态/等待依赖静态审计（运行时仍0.7.19/0.3.19）
+
+固定六段16方法/6直接调用方法：EYE GetPushStabilizationState=97绑定类，业务byte0的bit7开启、bit6=1且开启时未暂停、低6位原因，关闭源getter也返回paused=true。事件关闭/paused释放全部waitList，未按序号关联，不是角度到位/取消通知。等待3秒；needPause=false也发START；真实异常表16..38捕获InterruptedException到40，await中断后源标志可能保留成功，不复制为SDK取消成功。
+
+HG724继承基础resetGimbal先调用此等待，后按平台选择DataSpecialControl或DataGimbalNewResetAndSetMode；平台分支未完整审计，不替换FE01。rotate只发送不等待；所选方法未建立恢复，不等于全App无恢复。见tools/research/STABILIZATION_DEPENDENCY.md与protocol/research/ronin-stabilization-evidence.json。没有SDK发送、相机/视觉/高级新增、硬件/liveUI/厂商执行，全部命令门槛false。
+
+
+## stabilization依赖验证（2026-10-17）
+
+实际六段复现16方法/6直接调用方法，补核PauseReason.find的OTHER回退及await真实异常表。新增9项检查，研究工具Python3.8/3.12各127通过；统一离线Node178/Web14/Python156/原生131+168+3、类型/边界/构建通过。最后补充find指纹后边界检查与两Python研究回归再次通过。运行时/安装包不变，无新增发送、硬件/厂商执行或高级功能。

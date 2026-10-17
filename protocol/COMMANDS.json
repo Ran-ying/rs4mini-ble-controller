@@ -156,7 +156,8 @@
       ],
       "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
       "angleResearch": "protocol/research/ronin-angles-evidence.json",
-      "angleContextResearch": "protocol/research/ronin-angle-context.json"
+      "angleContextResearch": "protocol/research/ronin-angle-context.json",
+      "stabilizationDependencyResearch": "protocol/research/ronin-stabilization-evidence.json"
     },
     {
       "key": "04:1C",
@@ -223,7 +224,8 @@
       ],
       "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
       "offlineResearchEvidence": "protocol/research/msdk-4.18-evidence.json",
-      "restoredAppEvidence": "protocol/research/ronin-code-restoration-evidence.json"
+      "restoredAppEvidence": "protocol/research/ronin-code-restoration-evidence.json",
+      "stabilizationDependencyResearch": "protocol/research/ronin-stabilization-evidence.json"
     },
     {
       "key": "04:66",
@@ -308,7 +310,8 @@
       "officialAppAliases": [
         "RollFinetune"
       ],
-      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
+      "stabilizationDependencyResearch": "protocol/research/ronin-stabilization-evidence.json"
     },
     {
       "key": "04:0A",
@@ -764,7 +767,8 @@
     "tools/research/ronin_app_payloads.py",
     "tools/research/ronin_code_banks.py",
     "tools/research/ronin_angles_trace.py",
-    "tools/research/ronin_angle_context.py"
+    "tools/research/ronin_angle_context.py",
+    "tools/research/ronin_stabilization_trace.py"
   ],
   "modelIdentityResearch": "protocol/research/ronin-hg724-evidence.json",
   "codeRestorationResearch": "protocol/research/ronin-code-restoration-evidence.json",
@@ -931,5 +935,6 @@
   },
   "commandReferenceResearch": "protocol/research/ronin-command-references.json",
   "angleResearch": "protocol/research/ronin-angles-evidence.json",
-  "angleContextResearch": "protocol/research/ronin-angle-context.json"
+  "angleContextResearch": "protocol/research/ronin-angle-context.json",
+  "stabilizationDependencyResearch": "protocol/research/ronin-stabilization-evidence.json"
 }

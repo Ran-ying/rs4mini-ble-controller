@@ -1,0 +1,305 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "bankSha256": {
+    "0": "76002e76e02e1306ad197c4af127975d573999de174e5a9e44cc6f840196f621",
+    "2": "de69497b77de530d0d559646dc6d3fb24569e2ba8ba9502216f3d6c9fd6f3bf8",
+    "3": "bb50b39865520f55e97116ae1903bda3545b01c2fb7e2aba67a979dc264a9854",
+    "4": "2d3ff70fb84eb02ac75949ca6e7d5cc849a7f9ef55029fd168890c6dbccb1d12",
+    "5": "4fdbd74a05df63d72a0feb1c907d9395426ec3cdb5d6aeb45e3836d856d66654",
+    "6": "057f13084cf969ffadcfa2150d1b3ae3ed8a7822c95fb54158781764c9156e2f"
+  },
+  "appCodeExecuted": false,
+  "targetDeviceVerified": false,
+  "wholeProtocolRecovered": false,
+  "researchToolProvidesSdkInterface": false,
+  "scope": "offline dependency research; no camera or vision runtime capability",
+  "sourceBusinessByte": {
+    "offset": 0,
+    "width": 1,
+    "turnedOnMask": 128,
+    "notPausedWhenEnabledMask": 64,
+    "pauseReasonMask": 63,
+    "disabledReturnsPaused": true,
+    "rawBleOffsetVerified": false
+  },
+  "pauseReasons": {
+    "UnCharacteristic": 0,
+    "CameraChanging": 1,
+    "GimbalMoving": 2,
+    "DroneMoving": 3,
+    "Tracking": 4,
+    "OTHER": 255
+  },
+  "dispatch": [
+    {
+      "name": "GetPushStabilizationState",
+      "arguments": [
+        "GetPushStabilizationState",
+        34,
+        97,
+        0,
+        "Ldji/midware/data/model/P3/DataEyeGetPushStabilizationState;"
+      ]
+    }
+  ],
+  "waitFlow": {
+    "timeoutSeconds": 3,
+    "falseNeedPauseStillSendsStart": true,
+    "awaitResultIsInvertedThenReturnInverted": true,
+    "startInstructionCodeUnits": [
+      27,
+      70
+    ],
+    "sourceReturnsFirmwareMotionCompletion": false,
+    "sourceWaitUsesAngleAck": false
+  },
+  "sourceEvent": {
+    "needPauseWhen": "turnedOn and notPaused",
+    "waitersReleasedWhen": "turnedOff or paused",
+    "waitersAreNotSequenceCorrelated": true,
+    "angleCompletionVerified": false
+  },
+  "sourceInterruption": {
+    "handlerPrintsException": true,
+    "returnCanSucceedWithoutPausedEvent": true,
+    "selectedAwaitExceptionTableAudited": true,
+    "exceptionRanges": [
+      {
+        "startCodeUnit": 16,
+        "endCodeUnit": 38,
+        "handlers": [
+          {
+            "typeName": "Ljava/lang/InterruptedException;",
+            "targetCodeUnit": 40
+          }
+        ],
+        "catchAllCodeUnit": null
+      }
+    ]
+  },
+  "sourceReset": {
+    "implementationOwner": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+    "platformBranchAudited": false,
+    "usesPauseWait": true,
+    "notAngleCompletionNotification": true
+  },
+  "callSites": [
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "onEvent3BackgroundThread",
+      "descriptor": "(Ldji/midware/data/model/P3/DataEyeGetPushStabilizationState;)V",
+      "references": [
+        {
+          "kind": "direct-invoke",
+          "target": "state-class-method"
+        },
+        {
+          "kind": "direct-invoke",
+          "target": "state-class-method"
+        }
+      ]
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "resetGimbal",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "references": [
+        {
+          "kind": "direct-invoke",
+          "target": "tryToPauseTheStabilizationIfNecessary"
+        }
+      ]
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "rotate",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback; Ldji/common/gimbal/Rotation;)V",
+      "references": [
+        {
+          "kind": "direct-invoke",
+          "target": "justSendPauseData"
+        },
+        {
+          "kind": "direct-invoke",
+          "target": "justSendPauseData"
+        }
+      ]
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/flightcontroller/flightassistant/IntelligentFlightAssistant1860Abstraction;",
+      "method": "getPushData",
+      "descriptor": "()V",
+      "references": [
+        {
+          "kind": "direct-invoke",
+          "target": "state-class-method"
+        }
+      ]
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/flightcontroller/flightassistant/IntelligentFlightAssistant1860Abstraction;",
+      "method": "onEvent3BackgroundThread",
+      "descriptor": "(Ldji/midware/data/model/P3/DataEyeGetPushStabilizationState;)V",
+      "references": [
+        {
+          "kind": "direct-invoke",
+          "target": "state-class-method"
+        },
+        {
+          "kind": "direct-invoke",
+          "target": "state-class-method"
+        },
+        {
+          "kind": "direct-invoke",
+          "target": "state-class-method"
+        }
+      ]
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/flightcontroller/flightassistant/IntelligentFlightAssistant1860Abstraction;",
+      "method": "syncPushDataFromMidware",
+      "descriptor": "()V",
+      "references": [
+        {
+          "kind": "direct-invoke",
+          "target": "state-class-method"
+        },
+        {
+          "kind": "direct-invoke",
+          "target": "state-class-method"
+        },
+        {
+          "kind": "direct-invoke",
+          "target": "state-class-method"
+        }
+      ]
+    }
+  ],
+  "methods": [
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "codeOffset": 5244808,
+      "instructionSha256": "dbff8ee872b75de0a3a342a631966621161ffd24985d9dab24c040d9a0871878"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "rotate",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback; Ldji/common/gimbal/Rotation;)V",
+      "codeOffset": 5248528,
+      "instructionSha256": "5416211661f4c1434aa1f6790b05bb912736d8c02b88626074d8e59667a37bc4"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "justSendPauseData",
+      "descriptor": "()V",
+      "codeOffset": 5247480,
+      "instructionSha256": "7fd8adc5bcd516fde336f70ec7df2208c117d5421d3155f43a0943f497b7edf5"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "onEvent3BackgroundThread",
+      "descriptor": "(Ldji/midware/data/model/P3/DataEyeGetPushStabilizationState;)V",
+      "codeOffset": 5247596,
+      "instructionSha256": "bc5daa8dd87cf38d04dfafa8e5e44a382d3f347887b8f42d13d91660c2905caf"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "tryToPauseTheStabilizationIfNecessary",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)Z",
+      "codeOffset": 5251836,
+      "instructionSha256": "5e67225f3e718f9bf12eb84359a91339dddc6629e27070b3a7645e12b8820fb4"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "resetGimbal",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 5248312,
+      "instructionSha256": "d1ac41a9ea3547c0754484c33b932cb963ddef8ea4bdf98c4ab4599d5209622a"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataEyeGetPushStabilizationState;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 4785156,
+      "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataEyeGetPushStabilizationState;",
+      "method": "getStateIsTurnOn",
+      "descriptor": "()Z",
+      "codeOffset": 4785316,
+      "instructionSha256": "517c7d21df8248b2ef43f9dfe8855f6f70358ec50113edbe39e0a7204f02eedf"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataEyeGetPushStabilizationState;",
+      "method": "getStateIsPaused",
+      "descriptor": "()Z",
+      "codeOffset": 4785240,
+      "instructionSha256": "c92e006f93a8b5b0d124684f83e8f4689f1ecb6f786119da7d3cd75c89055ecf"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataEyeGetPushStabilizationState;",
+      "method": "getPauseReason",
+      "descriptor": "()Ldji/midware/data/model/P3/DataEyeGetPushStabilizationState$PauseReason;",
+      "codeOffset": 4785176,
+      "instructionSha256": "adc70d7bf01af59472ccf7706c5145db6c2809e05beb2abb0b1fa405cbfc3a61"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataSingleSendAppStateForStabilization;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "codeOffset": 4975860,
+      "instructionSha256": "a346cbcd22e3dc715c06ffd17c7f25559d3b93899a96cb3660334079a3da69fc"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataSingleSendAppStateForStabilization;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 4975900,
+      "instructionSha256": "f0c62e343e1f9cf7467358aaf9b661a8b08b6f65a9fc1f06b5f6de84f3028c47"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataSingleSendAppStateForStabilization;",
+      "method": "start",
+      "descriptor": "()V",
+      "codeOffset": 4976040,
+      "instructionSha256": "4203a2ef393c1a3074ae9319ff32052822d188d89044db16751f45bedd7106b0"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataEyeGetPushStabilizationState$PauseReason;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3422408,
+      "instructionSha256": "c2e661c556decc56948927d0a0f50e40d2bb7c0877453be9c3b93029111c61d3"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataEyeGetPushStabilizationState$PauseReason;",
+      "method": "find",
+      "descriptor": "(I)Ldji/midware/data/model/P3/DataEyeGetPushStabilizationState$PauseReason;",
+      "codeOffset": 3422604,
+      "instructionSha256": "a1a97885c13983778dc4aadb002ca01dc0391f630ece0eef830cf3f709a418b2"
+    },
+    {
+      "className": "Ldji/midware/data/config/P3/CmdIdEYE$CmdIdType;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 4645160,
+      "instructionSha256": "558220cbc97e4770ee44608d94ca3efafe6d0fa75a144d6e70741a5789ba2256"
+    }
+  ],
+  "remaining": [
+    "Source stabilization state is not gimbal angle completion, cancellation or firmware stop.",
+    "No target BLE framing/address or direct-BLE dependency applicability established.",
+    "No resume request established in these selected routines; not a whole-App absence proof.",
+    "Banks1/7, residual stubs and dynamic paths remain outside scan."
+  ]
+}

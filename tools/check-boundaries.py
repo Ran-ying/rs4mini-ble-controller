@@ -429,3 +429,14 @@ if manifest.get('angleContextResearch'):
     assert context['pause']['requiredForDirectBleVerified'] is False and context['pause']['resumeProtocolVerified'] is False
     assert context['pause']['cameraControlAdded'] is False
     assert len(context['methods']) == 29
+
+if manifest.get('stabilizationDependencyResearch'):
+    stabilization=json.loads((root/manifest['stabilizationDependencyResearch']).read_text())
+    assert stabilization['appCodeExecuted'] is False and stabilization['targetDeviceVerified'] is False
+    assert stabilization['wholeProtocolRecovered'] is False and stabilization['researchToolProvidesSdkInterface'] is False
+    assert stabilization['sourceBusinessByte']['rawBleOffsetVerified'] is False
+    assert stabilization['sourceBusinessByte']['disabledReturnsPaused'] is True
+    assert stabilization['sourceEvent']['angleCompletionVerified'] is False
+    assert stabilization['waitFlow']['sourceWaitUsesAngleAck'] is False
+    assert stabilization['sourceInterruption']['selectedAwaitExceptionTableAudited'] is True
+    assert len(stabilization['methods']) == 16 and len(stabilization['callSites']) == 6

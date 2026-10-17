@@ -89,3 +89,8 @@ NSArray *RSAppSmoothTrackSelection(NSDictionary *filters);
 NSDictionary *RSAppSmoothTrackSpec(NSDictionary *spec);
 NSData *RSAppSmoothTrackWriteFrame(uint16_t sequence,NSArray *context,NSNumber *bits);
 NSDictionary *RSDecodeAppSmoothTrackReply(NSDictionary *message,NSArray *context,NSError **error);
+
+NSArray *RSAppProfileValueContext(NSString *kind);
+NSDictionary *RSAppProfileValueSpec(NSString *kind,NSDictionary *spec);
+NSData *RSAppProfileValueWriteFrame(uint16_t sequence,NSArray *context,NSNumber *value);
+NSDictionary *RSDecodeAppProfileValueReply(NSDictionary *message,NSString *kind,NSError **error);

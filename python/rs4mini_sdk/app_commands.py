@@ -1,3 +1,4 @@
+from .app_profile_values import profile_value_selection,profile_value_write,profile_value_reply
 from .app_smooth_track import smooth_track_selection,smooth_track_write,smooth_track_reply
 from .app_axis_mode import axis_mode_write,axis_mode_reply
 """Current-App device commands share the existing connection/queue/pending map."""
@@ -71,6 +72,28 @@ class AppCommands:
         return await self.owner._run('sendFineTuneRequest',body,False)
 
     send_fine_tune_request=sendFineTuneRequest
+
+    async def getUserProfile(self,*,timeoutMs=3000):return await self._get_profile_value('userProfile',timeoutMs)
+    get_user_profile=getUserProfile
+    async def getWorkMode(self,*,timeoutMs=3000):return await self._get_profile_value('workMode',timeoutMs)
+    get_work_mode=getWorkMode
+    async def _get_profile_value(self,kind,timeout_ms):
+        self._require_profile();row=profile_value_selection(kind)
+        message=await self.owner.experimental._query_payload_command('App '+kind+' query',(4,0x10),parameter_request([dict(index=row['index'],size=1)]),timeout_ms)
+        return profile_value_reply(message,kind)
+    async def sendUserProfileRequest(self,*,sourceProfileValue,timeoutMs=3000):
+        self._require_profile();return await self._send_profile_value('userProfile',profile_value_write('userProfile',sourceProfileValue),timeoutMs)
+    send_user_profile_request=sendUserProfileRequest
+    async def sendWorkModeRequest(self,*,sourceMode,timeoutMs=3000):
+        self._require_profile();return await self._send_profile_value('workMode',profile_value_write('workMode',sourceMode),timeoutMs)
+    send_work_mode_request=sendWorkModeRequest
+    async def _send_profile_value(self,kind,spec,timeout_ms):
+        _duration(timeout_ms,'timeoutMs',False)
+        async def work(operation):
+            await self.owner._halt();self.owner._check(operation)
+            message=await self.owner.experimental._query_payload_command('App '+kind+' write',(4,0x0f),spec['payload'],timeout_ms,external_operation=operation,epoch=self.owner._epoch)
+            return dict(app_reply(message,0x0f),**{k:v for k,v in spec.items() if k!='payload'},activePresetVerified=False,persistenceVerified=False)
+        return await self.owner._run('sendUserProfileRequest' if kind=='userProfile' else 'sendWorkModeRequest',work,False)
 
     async def getSmoothTrackAxes(self,*,axis=None,timeoutMs=3000):
         self._require_profile();selection=smooth_track_selection(axis)

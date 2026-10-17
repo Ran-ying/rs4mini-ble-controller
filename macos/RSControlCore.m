@@ -621,3 +621,29 @@ NSDictionary *RSDecodeAppSmoothTrackReply(NSDictionary *message,NSArray *context
     for(NSDictionary *record in reply[@"parameters"]){unsigned index=[record[@"index"] unsignedIntValue],raw=(unsigned)strtoul([record[@"rawHex"] UTF8String],NULL,16);NSMutableDictionary *row=[record mutableCopy];row[@"axis"]=@[@"yaw",@"pitch",@"roll"][index-17];row[@"rawValue"]=@(raw);row[@"withinSourceRange"]=@(raw<=1);row[@"sourceEnabled"]=@(raw==1);row[@"enabled"]=raw<=1?@(raw==1):NSNull.null;[values addObject:[row copy]];}
     NSMutableDictionary *result=[reply mutableCopy];result[@"values"]=[values copy];result[@"modelLayoutVerified"]=@NO;result[@"activePresetVerified"]=@NO;return [result copy];
 }
+
+static NSDictionary *ProfileValueCatalog(void) {
+    NSDictionary *catalog=@{@"userProfile":@{@"index":@0,@"size":@1,@"min":@0,@"max":@5},@"workMode":@{@"index":@62,@"size":@1,@"min":@0,@"max":@128}};return catalog;
+}
+NSArray *RSAppProfileValueContext(NSString *kind) {
+    if(![kind isKindOfClass:NSString.class])return nil;NSDictionary *row=ProfileValueCatalog()[kind];return row?@[@{@"index":row[@"index"],@"size":row[@"size"]}]:nil;
+}
+NSDictionary *RSAppProfileValueSpec(NSString *kind,NSDictionary *spec) {
+    if(![spec isKindOfClass:NSDictionary.class]||spec.count!=1)return nil;unsigned raw;NSMutableDictionary *result=[NSMutableDictionary dictionary];
+    if([kind isEqual:@"userProfile"]){NSNumber *v=spec[@"sourceProfileValue"];if(!Numeric(v)||floor(v.doubleValue)!=v.doubleValue||v.doubleValue<0||v.doubleValue>5)return nil;raw=v.unsignedIntValue;result[@"requestedSourceProfileValue"]=@(raw);}
+    else if([kind isEqual:@"workMode"]){NSDictionary *modes=@{@"Free":@0,@"Flower":@1,@"Fpv":@2,@"Center":@3};id name=spec[@"sourceMode"];NSNumber *v=[name isKindOfClass:NSString.class]?modes[name]:nil;if(!v)return nil;raw=v.unsignedIntValue;result[@"requestedSourceMode"]=@[@"Free",@"Flower",@"Fpv",@"Center"][raw];}
+    else return nil;
+    result[@"parameter"]=[kind copy];result[@"requestedRawValue"]=@(raw);return [result copy];
+}
+NSData *RSAppProfileValueWriteFrame(uint16_t sequence,NSArray *context,NSNumber *value) {
+    context=RSAppParameterContext(context);if(context.count!=1||![context[0][@"size"] isEqual:@1]||!Numeric(value)||floor(value.doubleValue)!=value.doubleValue)return nil;
+    unsigned index=[context[0][@"index"] unsignedIntValue];int max=index==0?5:index==62?3:-1;if(max<0||value.doubleValue<0||value.doubleValue>max)return nil;
+    uint8_t payload[]={(uint8_t)index,1,value.unsignedCharValue};return CommandFrame(sequence,4,0x0f,[NSData dataWithBytes:payload length:3],0x40);
+}
+NSDictionary *RSDecodeAppProfileValueReply(NSDictionary *message,NSString *kind,NSError **error) {
+    NSArray *context=RSAppProfileValueContext(kind);if(!context){if(error)*error=RSAppError(@"RS4MINI_INVALID_ARGUMENT",@"Named profile parameter required",nil);return nil;}
+    NSDictionary *reply=RSDecodeAppReply(message,0x10,context,error);if(!reply)return nil;unsigned raw=(unsigned)strtoul([reply[@"parameters"][0][@"rawHex"] UTF8String],NULL,16);NSMutableDictionary *result=[reply mutableCopy];
+    result[@"parameter"]=[kind copy];result[@"rawValue"]=@(raw);result[@"withinSourceRange"]=@(raw<=[ProfileValueCatalog()[kind][@"max"] unsignedIntValue]);result[@"modelLayoutVerified"]=@NO;result[@"activePresetVerified"]=@NO;
+    if([kind isEqual:@"userProfile"])result[@"sourceUiName"]=raw<3?@[@"M1",@"M2",@"M3"][raw]:NSNull.null;
+    else result[@"sourceMode"]=raw<4?@[@"Free",@"Flower",@"Fpv",@"Center"][raw]:NSNull.null;return [result copy];
+}

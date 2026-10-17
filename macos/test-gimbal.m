@@ -466,12 +466,38 @@ int main(void) {
         Require(appCallbacks==56 && smoothWrites==1 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_DEVICE_ERROR"],@"smooth NACK never retries individual fields or rolls back");
         [peripheral.writes setLength:0];[gimbal sendSmoothTrackAxesRequest:@{@"axes":@{@"pitch":@NO}} timeoutMs:1000 completion:appDone];ThreeTicks(gimbal);[gimbal stop];ThreeTicks(gimbal);PumpCallbacks();[decoder reset];frames=[decoder push:peripheral.writes];smoothWrites=0;for(NSDictionary *f in frames)if([f[@"commandId"] intValue]==15)smoothWrites++;
         Require(appCallbacks==57 && smoothWrites==1 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_OPERATION_CANCELLED"],@"smooth cancel never fills omitted axes or replays");
+        [peripheral.writes setLength:0];[gimbal sendUserProfileRequest:@{@"sourceProfileValue":@YES} timeoutMs:1000 completion:appDone];PumpCallbacks();
+        Require(appCallbacks==58 && peripheral.writes.length==0 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_INVALID_ARGUMENT"],@"profile rejects boolean before pre-stop");
+        [gimbal getUserProfileWithTimeoutMs:1000 completion:appDone];ThreeTicks(gimbal);[decoder reset];frames=[decoder push:peripheral.writes];
+        Require(gimbal.busy && [frames.lastObject[@"commandId"] intValue]==16 && [frames.lastObject[@"payload"] isEqualToData:[NSData dataWithBytes:(uint8_t[]){0} length:1]],@"native profile getter emits zero byte not empty request");
+        appSequence=[[gimbal valueForKey:@"deviceQuerySequence"] unsignedShortValue];notify.value=AppResponse(appSequence,16,[NSData dataWithBytes:(uint8_t[]){0,0,9,2} length:4],4);[gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil];PumpCallbacks();
+        Require(appCallbacks==59 && [appResult[@"sourceUiName"] isEqualToString:@"M3"] && ![appResult[@"activePresetVerified"] boolValue] && !gimbal.appUserParameterStatus,@"profile read labels source UI without active preset or passive cache claim");
+        [peripheral.writes setLength:0];[gimbal getWorkModeWithTimeoutMs:1000 completion:appDone];ThreeTicks(gimbal);[decoder reset];frames=[decoder push:peripheral.writes];
+        Require(gimbal.busy && [frames.lastObject[@"payload"] isEqualToData:[NSData dataWithBytes:(uint8_t[]){62} length:1]],@"native work getter queries distinct62");
+        appSequence=[[gimbal valueForKey:@"deviceQuerySequence"] unsignedShortValue];notify.value=AppResponse(appSequence,16,[NSData dataWithBytes:(uint8_t[]){0,62,9,128} length:4],4);[gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil];PumpCallbacks();
+        Require(appCallbacks==60 && [appResult[@"rawValue"] intValue]==128 && appResult[@"sourceMode"]==NSNull.null && [appResult[@"withinSourceRange"] boolValue],@"work unknown enum never falls back to stale mode");
+        [peripheral.writes setLength:0];NSMutableDictionary *profileInput=[@{@"sourceProfileValue":@0} mutableCopy];[gimbal sendUserProfileRequest:profileInput timeoutMs:1000 completion:appDone];profileInput[@"sourceProfileValue"]=@5;ThreeTicks(gimbal);[decoder reset];frames=[decoder push:peripheral.writes];
+        Require(gimbal.busy && [frames.lastObject[@"payload"] isEqualToData:[NSData dataWithBytes:(uint8_t[]){0,1,0} length:3]],@"profile write snapshots zero value and owns ACK");
+        appSequence=[[gimbal valueForKey:@"deviceQuerySequence"] unsignedShortValue];notify.value=AppResponse(appSequence,15,ok,4);[gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil];PumpCallbacks();
+        Require(appCallbacks==61 && [appResult[@"requestedSourceProfileValue"] intValue]==0 && ![appResult[@"activePresetVerified"] boolValue] && ![appResult[@"persistenceVerified"] boolValue],@"profile ACK does not confirm active preset or persistence");
+        [peripheral.writes setLength:0];NSMutableString *workName=[@"Fpv" mutableCopy];[gimbal sendWorkModeRequest:@{@"sourceMode":workName} timeoutMs:1000 completion:appDone];[workName setString:@"Flower"];ThreeTicks(gimbal);[decoder reset];frames=[decoder push:peripheral.writes];
+        Require(gimbal.busy && [frames.lastObject[@"payload"] isEqualToData:[NSData dataWithBytes:(uint8_t[]){62,1,2} length:3]],@"work source-name snapshot uses62 without complete FPV transaction");
+        appSequence=[[gimbal valueForKey:@"deviceQuerySequence"] unsignedShortValue];notify.value=AppResponse(appSequence,15,ok,4);[gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil];PumpCallbacks();
+        Require(appCallbacks==62 && [appResult[@"requestedSourceMode"] isEqualToString:@"Fpv"] && ![appResult[@"physicalCompletionVerified"] boolValue],@"work ACK is not a physical follow mode guarantee");
+        for(unsigned i=0;i<2;i++) {
+            [peripheral.writes setLength:0];if(i==0)[gimbal sendUserProfileRequest:@{@"sourceProfileValue":@2} timeoutMs:1000 completion:appDone];else [gimbal sendWorkModeRequest:@{@"sourceMode":@"Center"} timeoutMs:1000 completion:appDone];ThreeTicks(gimbal);appSequence=[[gimbal valueForKey:@"deviceQuerySequence"] unsignedShortValue];notify.value=AppResponse(appSequence,15,[NSData dataWithBytes:(uint8_t[]){7} length:1],4);[gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil];ThreeTicks(gimbal);PumpCallbacks();[decoder reset];frames=[decoder push:peripheral.writes];NSUInteger writes=0;for(NSDictionary *f in frames)if([f[@"commandId"] intValue]==15)writes++;
+            Require(appCallbacks==63+i && writes==1 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_DEVICE_ERROR"],@"profile/work NACK never retries or writes another domain");
+        }
+        for(unsigned i=0;i<2;i++) {
+            [peripheral.writes setLength:0];if(i==0)[gimbal sendUserProfileRequest:@{@"sourceProfileValue":@2} timeoutMs:1000 completion:appDone];else [gimbal sendWorkModeRequest:@{@"sourceMode":@"Center"} timeoutMs:1000 completion:appDone];ThreeTicks(gimbal);[gimbal stop];ThreeTicks(gimbal);PumpCallbacks();[decoder reset];frames=[decoder push:peripheral.writes];NSUInteger writes=0;for(NSDictionary *f in frames)if([f[@"commandId"] intValue]==15)writes++;
+            Require(appCallbacks==65+i && writes==1 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_OPERATION_CANCELLED"],@"profile/work cancellation never replays or rolls back");
+        }
         [peripheral.writes setLength:0];
         [gimbal sendFactorySettingsResetRequest:@{@"sourcePlatform":@"HG724"} timeoutMs:1000 completion:appDone]; ThreeTicks(gimbal);
         notify.value=AppNotification(5,0x24,fixedBody);[gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil];PumpCallbacks();
-        Require(gimbal.busy && gimbal.appUserParameterStatus && appCallbacks==57,@"passive report does not release or complete an outstanding parameter query");
+        Require(gimbal.busy && gimbal.appUserParameterStatus && appCallbacks==66,@"passive report does not release or complete an outstanding parameter query");
         [gimbal centralManager:(id)central didDisconnectPeripheral:(id)peripheral error:nil]; PumpCallbacks();
-        Require(appCallbacks == 58 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_DISCONNECTED"], @"native disconnect rejects pending App query");
+        Require(appCallbacks == 67 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_DISCONNECTED"], @"native disconnect rejects pending App query");
         Require(!gimbal.appUserParameterStatus,@"native disconnect clears cached fixed report");
         [decoder reset];frames=[decoder push:peripheral.writes];resetWrites=0;for(NSDictionary *f in frames)if([f[@"commandId"] intValue]==0x13)resetWrites++;Require(resetWrites==1,@"native reset disconnect never repeats request");
         [gimbal disconnect]; ThreeTicks(gimbal);

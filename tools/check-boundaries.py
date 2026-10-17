@@ -224,7 +224,7 @@ if manifest.get('profilesResearch'):
     assert profiles['apkSha256'] == numeric['apkSha256']
     assert profiles['sdkDerivedSha256'] == numeric['sdkDerivedSha256'] and profiles['uiDerivedSha256'] == numeric['uiDerivedSha256']
     assert profiles['appCodeExecuted'] is False and profiles['targetDeviceVerified'] is False and profiles['wholeProtocolRecovered'] is False and profiles['researchToolProvidesSdkInterface'] is False
-    assert len(profiles['methods']) == 40
+    assert len(profiles['methods']) == 41
     assert [(r['baseCommand'],r['name'],r['index'],r['size']) for r in profiles['parameters']] == [('USER_PROFILE','table_choice',0,1),('GIMBAL_WORK_MODE','ronin_gimbal_work_mode',62,1)]
     assert profiles['userProfileUiValues'] == [0,1,2] and profiles['userProfileUiNames'] == ['M1','M2','M3']
     assert [r['value'] for r in profiles['movementProfileSourceEnums']] == [0,1,3,4,5,255]
@@ -373,5 +373,22 @@ if manifest.get('smoothTrackSdk',{}).get('implemented'):
     native=(root/'macos/RSControlCore.m').read_text().split('NSArray *RSAppSmoothTrackSelection(',1)[1]
     objc=json.loads(re.search(r'NSDictionary \*axes=(@\{.*?\});',native).group(1).replace('@',''))
     assert js==py==objc==expected==dict(yaw=17,pitch=18,roll=19)
+if manifest.get('profileValueSdk',{}).get('implemented'):
+    sdk=manifest['profileValueSdk']
+    for key in ['targetDeviceVerified','modelLayoutVerified','activePresetVerified','persistenceVerified']:assert sdk[key] is False
+    source=profiles['profileValueSourceRead'];assert source['userProfileRawInteger'] and source['workModeMatchesEnumValue'] and source['unknownWorkModeFallbackVerified'] is False and source['activePresetMappingVerified'] is False
+    for filename in sdk['files']:assert (root/filename).is_file()
+    kinds={'USER_PROFILE':'userProfile','GIMBAL_WORK_MODE':'workMode'}
+    expected={kinds[r['baseCommand']]:dict(index=r['index'],size=r['size'],min=r['minValue'],max=r['maxValue']) for r in profiles['parameters']}
+    js=(root/'node/src/app-profile-values.js').read_text()
+    assert json.loads(re.search(r'const parameters=(\{.*?\});',js).group(1))==expected
+    tree=ast.parse((root/'python/rs4mini_sdk/app_profile_values.py').read_text())
+    py={t.id:ast.literal_eval(n.value) for n in tree.body if isinstance(n,ast.Assign) for t in n.targets if isinstance(t,ast.Name)}
+    native=(root/'macos/RSControlCore.m').read_text().split('static NSDictionary *ProfileValueCatalog(void)',1)[1]
+    objc=json.loads(re.search(r'NSDictionary \*catalog=(@\{.*?\});',native).group(1).replace('@',''))
+    assert py['PARAMETERS']==objc==expected
+    modes={r['name']:r['value'] for r in profiles['workModeSourceEnums']}
+    objc_modes=(root/'macos/RSControlCore.m').read_text().split('NSDictionary *RSAppProfileValueSpec(',1)[1]
+    assert json.loads(re.search(r'const workModes=(\{.*?\});',js).group(1))==py['WORK_MODES']==json.loads(re.search(r'NSDictionary \*modes=(@\{.*?\});',objc_modes).group(1).replace('@',''))==modes
 print('Layer boundaries passed: device modules do not depend on motion; upper layers do not encode/write packets.')
 print('Protocol inventory: %d entries; inventoryComplete=false; further advanced development is gated.' % len(manifest['commands']))

@@ -27,6 +27,12 @@
       "baseCommand": "GIMBAL_WORK_MODE"
     }
   ],
+  "profileValueSourceRead": {
+    "userProfileRawInteger": true,
+    "workModeMatchesEnumValue": true,
+    "unknownWorkModeFallbackVerified": false,
+    "activePresetMappingVerified": false
+  },
   "modeParameters": [
     {
       "name": "yaw_smooth_track",
@@ -348,6 +354,14 @@
       "descriptor": "()V",
       "codeOffset": 3018140,
       "instructionSha256": "cb4125994af379a7307700ba3d21d341a2f6d00d7b13d553f8eaaac8444d9e86"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/common/gimbal/DJIGimbalRonin2WorkMode;",
+      "method": "value",
+      "descriptor": "()I",
+      "codeOffset": 3013596,
+      "instructionSha256": "2456d9a8ad9cf66578e3de5313245c2c60339c7f5f590e14e61676542c1e178b"
     },
     {
       "bank": "sdk",

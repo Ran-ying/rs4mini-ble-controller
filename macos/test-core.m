@@ -198,6 +198,17 @@ int main(void) {
         NSDictionary *smoothRead=RSDecodeAppSmoothTrackReply(parameterMessage(16,[NSData dataWithBytes:(uint8_t[]){0,17,9,1,18,9,3,19,9,255} length:10],128),RSAppSmoothTrackSelection(@{}),&error);
         Require([smoothRead[@"values"][0][@"enabled"] boolValue] && smoothRead[@"values"][1][@"enabled"]==NSNull.null && ![smoothRead[@"values"][1][@"sourceEnabled"] boolValue] && [smoothRead[@"values"][2][@"rawValue"] intValue]==255,@"smooth preserves invalid raw values separately from source equality conversion");
         Require(!RSDecodeAppSmoothTrackReply(parameterMessage(16,[NSData dataWithBytes:(uint8_t[]){0,18,9,1} length:4],128),RSAppSmoothTrackSelection(@{@"axis":@"yaw"}),&error),@"smooth read rejects wrong index rather than mapping by position");
+        Require([RSAppProfileValueContext(@"userProfile")[0][@"index"] intValue]==0 && [RSAppProfileValueContext(@"workMode")[0][@"index"] intValue]==62,@"profile and work have distinct contexts including zero index");
+        for(NSArray *row in @[@[@"userProfile",@{@"sourceProfileValue":@0},@"000100"],@[@"userProfile",@{@"sourceProfileValue":@5},@"000105"],@[@"workMode",@{@"sourceMode":@"Free"},@"3e0100"],@[@"workMode",@{@"sourceMode":@"Flower"},@"3e0101"],@[@"workMode",@{@"sourceMode":@"Fpv"},@"3e0102"],@[@"workMode",@{@"sourceMode":@"Center"},@"3e0103"]]) {
+            NSDictionary *spec=RSAppProfileValueSpec(row[0],row[1]);[decoder reset];NSDictionary *f=[decoder push:RSAppProfileValueWriteFrame(4,RSAppProfileValueContext(row[0]),spec[@"requestedRawValue"])].firstObject;
+            Require([f[@"commandId"] intValue]==15 && [Hex(f[@"payload"]) isEqualToString:row[2]],@"profile/work named write golden vector");
+        }
+        NSDictionary *profileRead=RSDecodeAppProfileValueReply(parameterMessage(16,[NSData dataWithBytes:(uint8_t[]){0,0,9,5} length:4],128),@"userProfile",&error);
+        Require([profileRead[@"rawValue"] intValue]==5 && profileRead[@"sourceUiName"]==NSNull.null && [profileRead[@"withinSourceRange"] boolValue] && ![profileRead[@"activePresetVerified"] boolValue],@"profile raw5 is in source range without invented UI or movement label");
+        NSDictionary *workRead=RSDecodeAppProfileValueReply(parameterMessage(16,[NSData dataWithBytes:(uint8_t[]){0,62,9,128} length:4],128),@"workMode",&error);
+        Require([workRead[@"rawValue"] intValue]==128 && workRead[@"sourceMode"]==NSNull.null && [workRead[@"withinSourceRange"] boolValue],@"work unknown enum inside source range is preserved");
+        Require(!RSAppProfileValueSpec(@"userProfile",@{@"sourceProfileValue":@YES}) && !RSAppProfileValueSpec(@"userProfile",@{@"sourceProfileValue":@6}) && !RSAppProfileValueSpec(@"workMode",@{@"sourceMode":@"FPV"}) && !RSAppProfileValueWriteFrame(4,RSAppProfileValueContext(@"workMode"),@128),@"profile/work write forbids boolean unknown label or unnamed raw value");
+        Require(!RSDecodeAppProfileValueReply(parameterMessage(16,[NSData dataWithBytes:(uint8_t[]){0,62,9,2} length:4],128),@"userProfile",&error),@"profile/work cross-domain read context rejected");
         printf("Native protocol, reassembly, stop queue and motion-core checks: %lu passed\n", (unsigned long)assertions);
     }
     return 0;

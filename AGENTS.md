@@ -8,9 +8,9 @@ verification status changes.
 ## Objective and user decisions
 
 - Provide an unofficial, direct BLE controller for **DJI RS 4 Mini**, initially on macOS.
-- **Node.js is the authoritative implementation**; current package version is `0.7.18`.
+- **Node.js is the authoritative implementation**; current package version is `0.7.19`.
 - The user subsequently requested completion of all existing ports. Python is now
-  `0.7.18`, Web shares the JS core, and the native panel is `0.3.18`. Describe the
+  `0.7.19`, Web shares the JS core, and the native panel is `0.3.19`. Describe the
   documented feature differences; do not claim identical APIs or hardware proof.
 - After that delivery, the user requested the remaining **non-camera** capabilities
   under the same autonomous/offline conditions. Expansion work is in progress;
@@ -728,3 +728,15 @@ CacheHelper设置调用没有串联确认，UI回调成功更新延时显示标�
 统一离线Node170/Web14、Python3.8/3.12各148、原生120核心+155假设备+3独立SDK、研究工具两环境各88、类型/边界/构建通过。隔离安装Node tarball170/Python wheel148通过，Python导入路径为wheel目标。40方法源码独立复现逐字节一致，三轴事件读取raw==1及真假常量、三个命名索引目录逐项核对。
 
 新增完整/子集/单轴单帧载荷、默认/过滤读取、异常3/255的原值/三态/源解释、错参数/短体/NACK、空/非布尔/未知字段拒绝、嵌套字典快照、互斥、取消/超时/断连重连无重放及Web无Buffer覆盖。未指定轴省略，同包ACK不等于原子应用，不自动写其他域或组合完整模式。没有扫描、连接、移动硬件、实时UI、厂商执行或高级新增，全部命令与实机验收仍未完成。
+
+
+## 0.7.19配置0与工作模式62 / 原生0.3.19 build22
+
+四端getUserProfile/sendUserProfileRequest、getWorkMode/sendWorkModeRequest（Python snake别名）显式App来源下独立读写0/62、size1。配置源范围0..5，源UI名仅0/1/2=M1/M2/M3，其他不推断运动预设；工作写仅精确Free/Flower/Fpv/Center四枚举，读取未知128/255保留raw并sourceMode=null、范围标志分别true/false。索引0不是空请求。与MovementSettingsProfile、推送preset、34/17-19/132等域分开，不自动组合模式或激活其他配置。写前验证/快照/停主机运动、独占至ACK，取消/超时/断线不重放/回滚/保存/读回，重连不重放，NACK不缓存兜底。modelLayout/activePreset/device/physical/persistence相关标志false，见docs/APP_PROFILE_VALUES.md。41方法源审计补充原始整数/枚举匹配与value访问器，未操作硬件、执行厂商代码或新增高级功能，全命令仍未完成。
+
+
+## 0.7.19配置/工作模式验证（2026-10-17）
+
+统一离线Node178/Web14、Python3.8/3.12各156、原生131核心+168假设备+3独立SDK、研究工具两环境各88、类型/边界/构建通过。隔离安装Node tarball178/Python wheel156通过，导入路径核对为wheel目标。41方法源码独立复现逐字节一致；0/62元数据与四工作枚举三端目录比对，原始整数/枚举value访问器及事件匹配已核对。
+
+新增零索引/零值黄金体、配置0..5与工作四枚举、范围内未知128/范围外255保留、错域/短体/NACK、拒绝布尔/超范围/跟随标签/任意字段、参数快照/互斥、请求前后取消、超时和断连重连无重放，Web无Buffer编码。未自动写其他域/保存/回读/组合完整模式，活动预设/持久化等标志false。没有扫描、连接、移动硬件、实时UI、厂商执行或高级新增，全命令仍未完成。

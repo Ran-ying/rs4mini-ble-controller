@@ -90,6 +90,13 @@ def trace(apk,sdk_path,ui_path):
             if not writes or writes[-1]!=('const/4',reg+', '+str(value)):raise ValueError('smooth boolean constants unresolved')
     modes='Ldji/common/gimbal/DJIGimbalRonin2WorkMode;';movement='Ldji/common/gimbal/MovementSettingsProfile;'
     work_enum=ops(take(sdk,modes,'<clinit>'));movement_enum=ops(take(sdk,movement,'<clinit>'))
+    if ops(take(sdk,modes,'value'))!=[('iget','v0, v1, '+modes+'->value I'),('return','v0')]:raise ValueError('work mode value accessor changed')
+    require(take(sdk,ronin,'setGimbalWorkMode'),'->value()I')
+    user_start=next(i for i,(_,text) in enumerate(event_ops) if '->USER_PROFILE ' in text)
+    if event_ops[user_start+8]!=('invoke-static','v11, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;') or event_ops[user_start+10]!=('const-string/jumbo','v0, UserProfile'):raise ValueError('user profile raw event transform changed')
+    work_start=next(i for i,(_,text) in enumerate(event_ops) if '->GIMBAL_WORK_MODE ' in text)
+    if ('if-ne','v9, v11, +00dh') not in event_ops[work_start:work_start+20] or not any(modes+'->value()I' in text for _,text in event_ops[work_start:work_start+20]):raise ValueError('work mode no longer matches source enum value')
+
     work=[enum_entry(work_enum,modes,n) for n in ('Free','Flower','Fpv','Center')]
     presets=[enum_entry(movement_enum,movement,n) for n in ('CUSTOM_1','CUSTOM_2','FAST','MEDIUM','SLOW','UNKNOWN')]
     if [r['value'] for r in work]!=[0,1,2,3] or [r['value'] for r in presets]!=[0,1,3,4,5,255]:raise ValueError('profile enums changed')
@@ -182,7 +189,7 @@ def trace(apk,sdk_path,ui_path):
         arrays.append(dict(resourceId=hex(rid),defaultLanguageValues=values))
     return dict(schemaVersion=1,apkSha256=APK_SHA256,sdkDerivedSha256=DERIVED_SHA256,uiDerivedSha256=UI_BANK_SHA256,
                 appCodeExecuted=False,targetDeviceVerified=False,wholeProtocolRecovered=False,researchToolProvidesSdkInterface=False,
-                parameters=selected,modeParameters=mode_parameters,ordinarySmoothTrack=dict(readTransform='raw-equals-one',sourceOtherValuesBecomeFalse=True,appWritesViaParameterArrays=True,perAxisSdkSetterEstablished=False),axisModeSourceEnums=axis_enums,axisModeSourceRead=dict(shift=3,mask=3,packedMask=24),axisModeSourceValues={r['name']:axis_mode_value(r['name']) for r in axis_enums},newModeFlow=dict(fpvSmoothValues=[1,1,1],customFollowFlagReadModifyWrite=True,index2BypassesSmoothSetter=True,uiCustomFlagIsLocalOnly=True,customAxisDisplayLocalOnly=True,callbacksChainParameterWrites=False,atomicTransactionVerified=False,wireOrderVerified=False,firmwareRollbackVerified=False,axisModeIsNotMotorControlBit=True),hg724Inheritance=chain,userProfileUiValues=[0,1,2],userProfileUiNames=['M1','M2','M3'],
+                parameters=selected,profileValueSourceRead=dict(userProfileRawInteger=True,workModeMatchesEnumValue=True,unknownWorkModeFallbackVerified=False,activePresetMappingVerified=False),modeParameters=mode_parameters,ordinarySmoothTrack=dict(readTransform='raw-equals-one',sourceOtherValuesBecomeFalse=True,appWritesViaParameterArrays=True,perAxisSdkSetterEstablished=False),axisModeSourceEnums=axis_enums,axisModeSourceRead=dict(shift=3,mask=3,packedMask=24),axisModeSourceValues={r['name']:axis_mode_value(r['name']) for r in axis_enums},newModeFlow=dict(fpvSmoothValues=[1,1,1],customFollowFlagReadModifyWrite=True,index2BypassesSmoothSetter=True,uiCustomFlagIsLocalOnly=True,customAxisDisplayLocalOnly=True,callbacksChainParameterWrites=False,atomicTransactionVerified=False,wireOrderVerified=False,firmwareRollbackVerified=False,axisModeIsNotMotorControlBit=True),hg724Inheritance=chain,userProfileUiValues=[0,1,2],userProfileUiNames=['M1','M2','M3'],
                 workModeSourceEnums=work,movementProfileSourceEnums=presets,presetGetter=business,uiLabels=labels,uiModeArrays=arrays,
                 sourceFacts=dict(userProfileIsNotMovementPreset=True,workModeIsNotPfPtfEnum=True,
                                  hg724ConditionalNewProfileBranch=True,newBranchCallsSetTrackModeHG711=True,

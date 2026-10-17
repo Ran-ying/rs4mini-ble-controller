@@ -1,6 +1,6 @@
 # 用户配置、运动预设与工作模式的静态核对
 
-2026-10-17，当前运行时0.7.18 / 原生0.3.18；下方早期研究保留历史上下文。本批新增只读审计与证据，没有新增发送、SDK接口或高级功能，没有执行厂商代码或操作设备。
+2026-10-17，当前运行时0.7.19 / 原生0.3.19；下方早期研究保留历史上下文。本批新增只读审计与证据，没有新增发送、SDK接口或高级功能，没有执行厂商代码或操作设备。
 
 ## 三个概念不能共用枚举
 
@@ -31,7 +31,7 @@ DataGimbalGetPushUserParams.getPresetID的业务get参数为offset2/width1，isC
 
 ## 复现
 
-工具ronin_profiles_trace.py固定APK与SDK/UI恢复视图SHA256，输出40个方法指纹、参数记录、两套枚举、条件链及资源列表。证据位于protocol/research/ronin-profiles-evidence.json。APK、派生DEX和完整反汇编继续留在忽略目录，不执行或提交。
+工具ronin_profiles_trace.py固定APK与SDK/UI恢复视图SHA256，输出41个方法指纹、参数记录、两套枚举、条件链及资源列表。证据位于protocol/research/ronin-profiles-evidence.json。APK、派生DEX和完整反汇编继续留在忽略目录，不执行或提交。
 
 ```sh
 PYTHONPATH=work/research/analysis-libs work/python312/bin/python tools/research/ronin_profiles_trace.py --apk work/research/dji-ronin-2.2.2.apk --sdk work/research/code-banks/business-05-code-restored.dex --ui work/research/code-banks/business-03-code-restored.dex --output work/research/profiles-reproduced.json
@@ -67,3 +67,6 @@ TwoAxis/Roll360对应8/16只确认源枚举与通用setter，不是已找到的H
 
 
 0.7.18补充三轴源事件读取raw==1且假值寄存器为0的校验，新增独立17/18/19命名SDK，见[APP_SMOOTH_TRACK.md](../../docs/APP_SMOOTH_TRACK.md)。不把参数子集同包等同完整模式或目标原子生效，其他SDK/本机门槛仍未完成。
+
+
+0.7.19独立封装配置0与工作模式62，源读取/枚举value访问器纳入41方法审计。见[APP_PROFILE_VALUES.md](../../docs/APP_PROFILE_VALUES.md)。此前未开放字段SDK的描述为历史；不自动映射活动预设或完整跟随模式。

@@ -383,6 +383,7 @@ static BOOL Matches(NSString *name) {
         case 0x10: return RSAppParameterRequestFrame(sequence, context);
         case 0x0f:
             if (context) {
+                if (mode && context.count==1 && [@[@0,@62] containsObject:context[0][@"index"]]) return RSAppProfileValueWriteFrame(sequence,context,mode);
                 if (mode && context.count>0 && [context[0][@"index"] intValue]>=17 && [context[0][@"index"] intValue]<=19) return RSAppSmoothTrackWriteFrame(sequence,context,mode);
                 if (mode && context.count==1 && [context[0][@"index"] intValue]==34) return RSAppAxisModeWriteFrame(sequence,context,mode);
                 if (mode) return context.count==2 ? RSAppStandaloneWriteFrame(sequence,context,mode) : RSAppTuningWriteFrame(sequence,context,mode);
@@ -430,6 +431,23 @@ static BOOL Matches(NSString *name) {
     if(!request){if(completion)dispatch_async(dispatch_get_main_queue(), ^{completion(nil,RSAppError(@"RS4MINI_INVALID_ARGUMENT",@"Fine tune requires pitch/roll and finite adjustmentDegrees -2..2",nil));});return;}
     [self startAppCommand:7 parameters:@[@{@"index":request[@"axisWire"],@"size":@1}] mode:request[@"encodedTenths"] settingsKind:nil settingsPatch:nil timeoutMs:timeoutMs completion:^(NSDictionary *reply,NSError *error) {
         NSMutableDictionary *result=[reply mutableCopy];if(result){NSMutableDictionary *metadata=[request mutableCopy];[metadata removeObjectForKey:@"axisWire"];[result addEntriesFromDictionary:metadata];result[@"stabilizationStateVerified"]=@NO;}
+        if(completion)completion(result?[result copy]:nil,error);
+    }];
+}
+- (void)getUserProfileWithTimeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {[self getProfileValue:@"userProfile" timeoutMs:timeoutMs completion:completion];}
+- (void)getWorkModeWithTimeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {[self getProfileValue:@"workMode" timeoutMs:timeoutMs completion:completion];}
+- (void)getProfileValue:(NSString *)kind timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
+    [self readAppParameters:RSAppProfileValueContext(kind) timeoutMs:timeoutMs completion:^(NSDictionary *reply,NSError *error) {
+        if(error){if(completion)completion(nil,error);return;}NSError *decodeError=nil;NSDictionary *result=RSDecodeAppProfileValueReply(reply[@"message"],kind,&decodeError);if(completion)completion(result,decodeError);
+    }];
+}
+- (void)sendUserProfileRequest:(NSDictionary *)spec timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {[self sendProfileValue:@"userProfile" spec:spec timeoutMs:timeoutMs completion:completion];}
+- (void)sendWorkModeRequest:(NSDictionary *)spec timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {[self sendProfileValue:@"workMode" spec:spec timeoutMs:timeoutMs completion:completion];}
+- (void)sendProfileValue:(NSString *)kind spec:(NSDictionary *)spec timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
+    NSDictionary *request=RSAppProfileValueSpec(kind,spec);
+    if(!request){if(completion)dispatch_async(dispatch_get_main_queue(), ^{completion(nil,RSAppError(@"RS4MINI_INVALID_ARGUMENT",@"Named source profile/work-mode value required",nil));});return;}
+    [self startAppCommand:0x0f parameters:RSAppProfileValueContext(kind) mode:request[@"requestedRawValue"] settingsKind:nil settingsPatch:nil timeoutMs:timeoutMs completion:^(NSDictionary *reply,NSError *error) {
+        NSMutableDictionary *result=[reply mutableCopy];if(result){[result addEntriesFromDictionary:request];result[@"activePresetVerified"]=@NO;result[@"persistenceVerified"]=@NO;}
         if(completion)completion(result?[result copy]:nil,error);
     }];
 }

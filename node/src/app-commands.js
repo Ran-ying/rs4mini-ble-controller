@@ -1,3 +1,4 @@
+import {profileValueSelection,profileValueWrite,profileValueReply} from './app-profile-values.js';
 import {smoothTrackSelection,smoothTrackWrite,smoothTrackReply} from './app-smooth-track.js';
 import {axisModeWrite,axisModeReply} from './app-axis-mode.js';
 import { fineTuneSpec } from './app-fine-tune.js';
@@ -45,6 +46,26 @@ export class AppCommands {
       await this.owner._stop();check(operation.controller.signal);
       const message=await this.owner.experimental._queryPayloadCommand('App fine tune',[4,7],spec.payload,timeoutMs,{signal:operation.controller.signal,epoch:this.owner.motionEpoch});
       const {payload,...requested}=spec;return {...appReply(message,7),...requested,stabilizationStateVerified:false};
+    },false);
+  }
+  getUserProfile(options={}) {return this._getProfileValue('userProfile',options);}
+  getWorkMode(options={}) {return this._getProfileValue('workMode',options);}
+  async _getProfileValue(kind,options) {
+    optionsOnly(options,['timeoutMs']);this._requireProfile();const row=profileValueSelection(kind);
+    return profileValueReply(await this.owner.experimental._queryPayloadCommand('App '+kind+' query',[4,0x10],parameterRequest([{index:row.index,size:1}]),options.timeoutMs??3000),kind);
+  }
+  async sendUserProfileRequest(options={}) {
+    optionsOnly(options,['sourceProfileValue','timeoutMs']);this._requireProfile();return this._sendProfileValue('userProfile',profileValueWrite('userProfile',options.sourceProfileValue),options.timeoutMs??3000);
+  }
+  async sendWorkModeRequest(options={}) {
+    optionsOnly(options,['sourceMode','timeoutMs']);this._requireProfile();return this._sendProfileValue('workMode',profileValueWrite('workMode',options.sourceMode),options.timeoutMs??3000);
+  }
+  async _sendProfileValue(kind,spec,timeoutMs) {
+    if(!Number.isFinite(timeoutMs)||timeoutMs<=0||timeoutMs>60000)throw new RangeError('timeoutMs must be >0..60000');
+    return this.owner._run(kind==='userProfile'?'sendUserProfileRequest':'sendWorkModeRequest',async operation=>{
+      await this.owner._stop();check(operation.controller.signal);
+      const message=await this.owner.experimental._queryPayloadCommand('App '+kind+' write',[4,0x0f],spec.payload,timeoutMs,{signal:operation.controller.signal,epoch:this.owner.motionEpoch});
+      const {payload,...requested}=spec;return {...appReply(message,0x0f),...requested,activePresetVerified:false,persistenceVerified:false};
     },false);
   }
   async getSmoothTrackAxes(options={}) {

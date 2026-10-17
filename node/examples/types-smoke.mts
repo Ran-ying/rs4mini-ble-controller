@@ -210,3 +210,15 @@ async function smoothTrackTypes(gimbal: RS4Mini) {
   await gimbal.appCommands.sendSmoothTrackAxesRequest({axes:{enabled:true}});
   return enabled;
 }
+
+async function profileValueTypes(gimbal: RS4Mini) {
+  const p=await gimbal.appCommands.getUserProfile();const label:string|null=p.sourceUiName;
+  const w=await gimbal.appCommands.getWorkMode();const mode:string|null=w.sourceMode;
+  await gimbal.appCommands.sendUserProfileRequest({sourceProfileValue:2});
+  await gimbal.appCommands.sendWorkModeRequest({sourceMode:'Fpv'});
+  // @ts-expect-error no movement preset label for profile
+  await gimbal.appCommands.sendUserProfileRequest({sourceProfileValue:'FAST'});
+  // @ts-expect-error no PF follow label for source work enum
+  await gimbal.appCommands.sendWorkModeRequest({sourceMode:'PF'});
+  return [label,mode];
+}

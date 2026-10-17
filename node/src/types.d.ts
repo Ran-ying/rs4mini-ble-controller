@@ -259,7 +259,12 @@ export interface AppTuningReading extends AppParameterReply {
 }
 export type StandaloneParameter='speed'|'smoothing';
 export type AppSourceAxisMode='ThreeAxis'|'TwoAxis'|'Roll360'|'ThreeDRoll360';
+export type AppSourceWorkMode='Free'|'Flower'|'Fpv'|'Center';
 export interface AppCommands {
+  getUserProfile(options?:{timeoutMs?:number}):Promise<AppParameterReply & {parameter:'userProfile';rawValue:number;withinSourceRange:boolean;sourceUiName:'M1'|'M2'|'M3'|null;modelLayoutVerified:false;activePresetVerified:false}>;
+  getWorkMode(options?:{timeoutMs?:number}):Promise<AppParameterReply & {parameter:'workMode';rawValue:number;withinSourceRange:boolean;sourceMode:AppSourceWorkMode|null;modelLayoutVerified:false;activePresetVerified:false}>;
+  sendUserProfileRequest(options:{sourceProfileValue:0|1|2|3|4|5;timeoutMs?:number}):Promise<AppCommandReply & {parameter:'userProfile';requestedSourceProfileValue:number;requestedRawValue:number;activePresetVerified:false;persistenceVerified:false}>;
+  sendWorkModeRequest(options:{sourceMode:AppSourceWorkMode;timeoutMs?:number}):Promise<AppCommandReply & {parameter:'workMode';requestedSourceMode:AppSourceWorkMode;requestedRawValue:number;activePresetVerified:false;persistenceVerified:false}>;
   getSmoothTrackAxes(options?:{axis?:'yaw'|'pitch'|'roll';timeoutMs?:number}):Promise<AppParameterReply & {modelLayoutVerified:false;activePresetVerified:false;values:Array<AppParameterContext & {axis:'yaw'|'pitch'|'roll';rawValue:number;withinSourceRange:boolean;sourceEnabled:boolean;enabled:boolean|null;headerByte:number;rawHex:string}>}>;
   sendSmoothTrackAxesRequest(options:{axes:Partial<Record<'yaw'|'pitch'|'roll',boolean>>;timeoutMs?:number}):Promise<AppCommandReply & {requestedAxes:Partial<Record<'yaw'|'pitch'|'roll',boolean>>;activePresetVerified:false;atomicApplicationVerified:false;persistenceVerified:false}>;
   getAxisMode(options?:{timeoutMs?:number}):Promise<AppParameterReply & {rawValue:number;sourceModeValue:number;sourceMode:AppSourceAxisMode;unknownBits:number;modelLayoutVerified:false;activePresetVerified:false}>;

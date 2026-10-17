@@ -38,6 +38,30 @@ def handle_getter_context(operations):
     raise ValueError('missing handle getter')
 
 
+def handle_setter_context(operations):
+    """Resolve one freshly allocated source setter, not a reusable singleton."""
+    owner=MODEL+'DataGimbalSetHandleParams;'
+    allocation=[text for op,text in operations if op=='new-instance' and owner in text]
+    setters=[text.split('->')[1].split('(')[0] for op,text in operations if op=='invoke-virtual' and owner+'->set' in text]
+    allowed={'setDualChannelEnable':('dualChannelMode',0),'setTiltDirection':('tiltDirection',1),'setPanDirection':('panDirection',2)}
+    if len(allocation)!=1 or len(setters)!=1 or setters[0] not in allowed:raise ValueError('unsupported handle action setter')
+    reg=allocation[0].split(', ')[0]
+    if ('invoke-direct',reg+', '+owner+'-><init>()V') not in operations:raise ValueError('missing fresh handle constructor')
+    if any('->getInstance(' in text for _,text in operations):raise ValueError('unexpected handle singleton')
+    field,offset=allowed[setters[0]]
+    return dict(field=field,offset=offset,sourceSetter=setters[0],freshObject=True)
+
+
+def handle_fallback_comparison(operations):
+    """Accept pinned reference comparison, never label it value equality."""
+    tokens=[text for _,text in operations]
+    if not any('->getData()Ljava/lang/Object;' in t for t in tokens) or not any('Ljava/lang/Class;->cast(' in t for t in tokens):raise ValueError('missing fallback cast/data')
+    if ('if-ne','v0, v3, +00bh') not in operations or any('->equals(' in t for t in tokens):raise ValueError('fallback reference comparison changed')
+    if ('if-eqz','v3, +022h') not in operations or not any('->RESULT_FAILED ' in t for t in tokens):raise ValueError('fallback failure branches changed')
+    if not any('->onSuccess(Ljava/lang/Object;)V' in t for t in tokens) or not any('->onFails(' in t for t in tokens):raise ValueError('fallback callback changed')
+    return 'reference-identity-after-Class.cast'
+
+
 def trace(apk,sdk_path,ui_path):
     if hashlib.sha256(apk.read_bytes()).hexdigest()!=APK_SHA256:raise ValueError('APK hash mismatch')
     raw=sdk_path.read_bytes();uiraw=ui_path.read_bytes()
@@ -114,6 +138,41 @@ def trace(apk,sdk_path,ui_path):
     for name,field in zip(setters,fields):require(take(put,name),'->'+field+' I')
     mode_owner='Ldji/common/handheldcontroller/ControllerMode;';modes=constructor_records(ops(take(mode_owner,'<clinit>')),mode_owner)
     if {key:modes[key]['arguments'][2] for key in modes}!={'ONE_AXIS':0,'TWO_AXIS':1,'UNKNOWN':255}:raise ValueError('controller enum changed')
+    handheld=BASE+'DJIGimbalHandheldAbstraction;'
+    actions=[]
+    for method,callback,getcallback,key,getter in [
+        ('setGimbalControllerMode','1','2','ControllerMode','getDualChannelEnable'),
+        ('setPitchOrRollInverseControlEnabled','7','8','PitchInvertedControlEnabled','getTiltDirection'),
+        ('setYawInverseControlEnabled','5','6','YawInvertedControlEnabled','getPanDirection')]:
+        context=handle_setter_context(ops(take(handheld,method)))
+        require(take(handheld,method),'DJIGimbalHandheldAbstraction$'+callback+';-><init>(')
+        if method=='setGimbalControllerMode':require(take(handheld,method),'ControllerMode;->value()I')
+        putcallback=handheld[:-1]+'$'+callback+';'
+        failure=take(putcallback,'onFailure');success=take(putcallback,'onSuccess')
+        require(failure,key,'->-$$Nest$mgetGimbalSettingValue(')
+        require(success,'->onSuccess(Ljava/lang/Object;)V')
+        if any('DataGimbalGetHandleParams;->' in t for _,t in ops(failure)+ops(success)):raise ValueError('write callback directly queries handle')
+        readcallback=handheld[:-1]+'$'+getcallback+';'
+        readsuccess=take(readcallback,'onSuccess');require(readsuccess,'->'+getter+'()I')
+        require(take(readcallback,'onFailure'),'->onFails(')
+        readops=ops(readsuccess)
+        if context['field']=='dualChannelMode':
+            require(readsuccess,'ControllerMode;->values()')
+            if not any(op=='aget-object' for op,_ in readops):raise ValueError('controller mode ordinal lookup changed')
+            semantics='enum-array-index-not-find'
+        else:
+            if ('const/4','v1, 1') not in readops or ('if-ne','v3, v1, +003h') not in readops:raise ValueError('handle direction is not equality-one')
+            if any(op.startswith('and-int') for op,_ in readops):raise ValueError('direction unexpectedly uses bit mask')
+            semantics='raw-equals-one-not-bit0'
+        actions.append(dict(sourceMethod=method,cacheKey=key,getter=getter,readTransform=semantics,**context))
+    require(take('Ldji/common/handheldcontroller/ControllerMode;','value'),'->value I')
+    require(take(handheld,'-$$Nest$mgetGimbalSettingValue'),'->getGimbalSettingValue(')
+    fallback=take(handheld,'getGimbalSettingValue')
+    require(fallback,'DJISDKCache;->getValue(','DJISDKCacheKey$Builder;->paramKey(')
+    if any('DataGimbalGetHandleParams;->' in t for _,t in ops(fallback)):raise ValueError('cache helper directly sends handle query')
+    fallbackowner=handheld[:-1]+'$10;'
+    comparison=handle_fallback_comparison(ops(take(fallbackowner,'onSuccess')))
+    require(take(fallbackowner,'onFails'),'->onFails(')
     for owner,key in [(fine,'RollFinetune'),(get,'GetHandleParams'),(put,'SetHandleParams'),(reset,'ResetUserParams'),(save,'SaveUserParams')]:
         require(take(owner,'start'),'DeviceType;->GIMBAL ','NEEDACK;->YES ','CmdIdGimbal$CmdIdType;->'+key+' ')
     reset_pack=take(reset,'doPack');require(reset_pack,'PlatformType;->HG724 ','v0, 3','v0, v2, [B')
@@ -134,7 +193,7 @@ def trace(apk,sdk_path,ui_path):
                     record(m,bank);direct_save.append(dict(bank=bank,className=owner,method=m.get_name()))
     return dict(schemaVersion=1,apkSha256=APK_SHA256,derivedSha256=DERIVED_SHA256,uiDerivedSha256=UI_BANK_SHA256,appCodeExecuted=False,targetDeviceVerified=False,wholeProtocolRecovered=False,researchToolProvidesSdkInterface=False,
                 hg724Inheritance=chain,effectiveMethods=resolved,fineTune=dict(command='04:07',axisWireValues=axis_values,sourceCallableAxes=['pitch','roll'],sourceAdjustmentDegrees=[-2,2],conversion='float32 multiply10, truncate-to-int, low signed byte; physical effect/cumulative semantics unverified',targetAdjustmentEffectVerified=False,callbacksDoNotParseActualAngles=True,pauseStabilizationGateNotFirmwareVerified=True,pauseGateSource=dict(defaultValue=False,eventClass='DataEyeGetPushStabilizationState',requiresPauseWhen='turnedOn and notPaused',fineRollDoesNotAutomaticallyInvokePause=True,targetStateVerified=False)),
-                handle=dict(readCommand='04:36',writeCommand='04:35',readBodyHex='',fields=getter_rows,writeFieldOrder=fields,constructorByteDefaults=[255]*8,afterPackResetFields=reset_fields,afterPackRetainedFields=fields[6:],unspecifiedByteFirmwareSemanticsVerified=False),
+                handle=dict(readCommand='04:36',writeCommand='04:35',readBodyHex='',fields=getter_rows,writeFieldOrder=fields,constructorByteDefaults=[255]*8,afterPackResetFields=reset_fields,afterPackRetainedFields=fields[6:],unspecifiedByteFirmwareSemanticsVerified=False,sourceActions=actions,writeFailureFallback=dict(api='DJISDKCache.getValue',comparison=comparison,directBleReadProven=False,writeAcceptanceProven=False),writeSuccessParsesReadback=False),
                 parameterReset=dict(command='04:13',sourceCondition='PlatformType.HG724 (not GimbalComponentType ordinal)',sourceBodyHex=hg724_reset_payload('HG724').hex(),targetResetScopeVerified=False),
                 parameterSave=dict(command='04:11',sourceBodyHex='',directCallerScanBanks=['business05','business03'],directCallers=direct_save,targetModelCallPathEstablished=False),
                 offlineVectors=dict(pitchNegative= fine_tune_payload('pitch',-1.29).hex(),rollPositive=fine_tune_payload('roll',1.29).hex(),panDirectionPatch=handle_patch_payload(panDirection=1).hex()),methods=list(methods.values()))

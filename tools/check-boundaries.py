@@ -269,13 +269,18 @@ if manifest.get('controlsResearch'):
     controls = json.loads((root / manifest['controlsResearch']).read_text())
     assert controls['apkSha256'] == numeric['apkSha256'] and controls['derivedSha256'] == restored['derivedSha256'] and controls['uiDerivedSha256'] == numeric['uiDerivedSha256']
     assert controls['appCodeExecuted'] is False and controls['targetDeviceVerified'] is False and controls['wholeProtocolRecovered'] is False and controls['researchToolProvidesSdkInterface'] is False
-    assert len(controls['methods']) == 49
+    assert len(controls['methods']) == 66
     assert controls['fineTune']['axisWireValues'] == dict(ROLL=0,PITCH=2,YAW=4) and controls['fineTune']['sourceCallableAxes'] == ['pitch','roll']
     handle = controls['handle']
     assert [r['offset'] for r in handle['fields']] == list(range(8)) and all(r['size']==1 for r in handle['fields'])
     assert [r['sourceBit0Boolean'] for r in handle['fields']] == [False]*5+[True]*3
     assert handle['constructorByteDefaults'] == [255]*8 and handle['afterPackResetFields'] == handle['writeFieldOrder'][:6]
     assert handle['afterPackRetainedFields'] == handle['writeFieldOrder'][6:] and handle['unspecifiedByteFirmwareSemanticsVerified'] is False
+    assert [(a['field'],a['offset'],a['sourceSetter']) for a in handle['sourceActions']] == [('dualChannelMode',0,'setDualChannelEnable'),('tiltDirection',1,'setTiltDirection'),('panDirection',2,'setPanDirection')]
+    assert all(a['freshObject'] is True for a in handle['sourceActions'])
+    assert [a['readTransform'] for a in handle['sourceActions']] == ['enum-array-index-not-find','raw-equals-one-not-bit0','raw-equals-one-not-bit0']
+    assert handle['writeFailureFallback'] == dict(api='DJISDKCache.getValue',comparison='reference-identity-after-Class.cast',directBleReadProven=False,writeAcceptanceProven=False)
+    assert handle['writeSuccessParsesReadback'] is False
     assert controls['parameterReset']['sourceBodyHex'] == '010001' and controls['parameterReset']['targetResetScopeVerified'] is False
     assert controls['parameterSave']['directCallerScanBanks'] == ['business05','business03'] and controls['parameterSave']['directCallers'] == [] and controls['parameterSave']['targetModelCallPathEstablished'] is False
     assert controls['offlineVectors'] == dict(pitchNegative='f402',rollPositive='0c00',panDirectionPatch='ffff01ffffffffff')

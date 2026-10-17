@@ -177,7 +177,46 @@
       "mRotationFocusEnable",
       "mCellphoneSensorDisable"
     ],
-    "unspecifiedByteFirmwareSemanticsVerified": false
+    "unspecifiedByteFirmwareSemanticsVerified": false,
+    "sourceActions": [
+      {
+        "sourceMethod": "setGimbalControllerMode",
+        "cacheKey": "ControllerMode",
+        "getter": "getDualChannelEnable",
+        "readTransform": "enum-array-index-not-find",
+        "field": "dualChannelMode",
+        "offset": 0,
+        "sourceSetter": "setDualChannelEnable",
+        "freshObject": true
+      },
+      {
+        "sourceMethod": "setPitchOrRollInverseControlEnabled",
+        "cacheKey": "PitchInvertedControlEnabled",
+        "getter": "getTiltDirection",
+        "readTransform": "raw-equals-one-not-bit0",
+        "field": "tiltDirection",
+        "offset": 1,
+        "sourceSetter": "setTiltDirection",
+        "freshObject": true
+      },
+      {
+        "sourceMethod": "setYawInverseControlEnabled",
+        "cacheKey": "YawInvertedControlEnabled",
+        "getter": "getPanDirection",
+        "readTransform": "raw-equals-one-not-bit0",
+        "field": "panDirection",
+        "offset": 2,
+        "sourceSetter": "setPanDirection",
+        "freshObject": true
+      }
+    ],
+    "writeFailureFallback": {
+      "api": "DJISDKCache.getValue",
+      "comparison": "reference-identity-after-Class.cast",
+      "directBleReadProven": false,
+      "writeAcceptanceProven": false
+    },
+    "writeSuccessParsesReadback": false
   },
   "parameterReset": {
     "command": "04:13",
@@ -536,6 +575,142 @@
       "descriptor": "()V",
       "codeOffset": 3023136,
       "instructionSha256": "4f1a7e9eb1a2798c879ac18c422df52268c639ab8a21065ed112088eb8a24132"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction$1;",
+      "method": "onFailure",
+      "descriptor": "(Ldji/midware/data/config/P3/Ccode;)V",
+      "codeOffset": 5254368,
+      "instructionSha256": "eea1428c7cfb7d21400f9e3b357b8e1995be0376a6ceed56a6464ff408698104"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction$1;",
+      "method": "onSuccess",
+      "descriptor": "(Ljava/lang/Object;)V",
+      "codeOffset": 5254416,
+      "instructionSha256": "25529c7c36010cf6ec3ecf28a1e1342128e52961f6827835d8b57c6f6e9eb322"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction$2;",
+      "method": "onSuccess",
+      "descriptor": "(Ljava/lang/Object;)V",
+      "codeOffset": 5254528,
+      "instructionSha256": "c474cd333109abf8753a54e0088b62e63a00784f4967994c96be6c53f5530ec9"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction$2;",
+      "method": "onFailure",
+      "descriptor": "(Ldji/midware/data/config/P3/Ccode;)V",
+      "codeOffset": 5254488,
+      "instructionSha256": "2ef90d01e4158776480e426b8a559671a0b984525e33c24f13a0456aef2fc4ed"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction$7;",
+      "method": "onFailure",
+      "descriptor": "(Ldji/midware/data/config/P3/Ccode;)V",
+      "codeOffset": 5255188,
+      "instructionSha256": "cb77bbf6be21d86ac421276831c21ff4685255bd2588ac32458f65d004cee0ca"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction$7;",
+      "method": "onSuccess",
+      "descriptor": "(Ljava/lang/Object;)V",
+      "codeOffset": 5255244,
+      "instructionSha256": "9578fcb8db41d51c742a88b6b220e07df4c2013da8e89244f1bdc3a355605dcd"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction$8;",
+      "method": "onSuccess",
+      "descriptor": "(Ljava/lang/Object;)V",
+      "codeOffset": 5255356,
+      "instructionSha256": "b279d2bc728b132342331e2f6931c4906ff1a13d047524cfbb342c9869a567d4"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction$8;",
+      "method": "onFailure",
+      "descriptor": "(Ldji/midware/data/config/P3/Ccode;)V",
+      "codeOffset": 5255316,
+      "instructionSha256": "429413a5685d292ede28efd30fd299dc18dc91b488d5551189af1bfc613c72ab"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction$5;",
+      "method": "onFailure",
+      "descriptor": "(Ldji/midware/data/config/P3/Ccode;)V",
+      "codeOffset": 5254920,
+      "instructionSha256": "cf67019f01bb68b5e03a6618869c85fc6607fc848a56d5e7cb983e3e8f1f24a9"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction$5;",
+      "method": "onSuccess",
+      "descriptor": "(Ljava/lang/Object;)V",
+      "codeOffset": 5254976,
+      "instructionSha256": "a1ba834457a4bc2077afea6faae679a3b969f4b910865a714c1745ca09d3e85f"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction$6;",
+      "method": "onSuccess",
+      "descriptor": "(Ljava/lang/Object;)V",
+      "codeOffset": 5255088,
+      "instructionSha256": "f90e5e8443229c70d0dbf440a1165993b36f0d1ce5e729b851f91f8d65f90e52"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction$6;",
+      "method": "onFailure",
+      "descriptor": "(Ldji/midware/data/config/P3/Ccode;)V",
+      "codeOffset": 5255048,
+      "instructionSha256": "81485e56571dade0d09b7da5fa039864f8b6cc92ea6eddb5ac954c109f94e6e2"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/common/handheldcontroller/ControllerMode;",
+      "method": "value",
+      "descriptor": "()I",
+      "codeOffset": 3023452,
+      "instructionSha256": "72640b088862b3689ee5ef768d084f9518cbfaf885ba4b0df66731a5e20e4ac6"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction;",
+      "method": "-$$Nest$mgetGimbalSettingValue",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction; Ljava/lang/String; Ljava/lang/Class; Ljava/lang/Object; Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6385260,
+      "instructionSha256": "376b07cf92e683b0de115136c3c3e8923aa90a0394b891fd8d61f08ee607fb35"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction;",
+      "method": "getGimbalSettingValue",
+      "descriptor": "(Ljava/lang/String; Ljava/lang/Class; Ljava/lang/Object; Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6385308,
+      "instructionSha256": "89cdaefd59db4d58a9052d510901d257861d414960ad4d4a6a0af1ebc1d87240"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction$10;",
+      "method": "onSuccess",
+      "descriptor": "(Ldji/sdksharedlib/store/DJISDKCacheParamValue;)V",
+      "codeOffset": 5254244,
+      "instructionSha256": "2ce716fa883e880ffa18e006069fa4ab244d2350b0af0d0748a13ba8021b83ee"
+    },
+    {
+      "bank": "sdk",
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction$10;",
+      "method": "onFails",
+      "descriptor": "(Ldji/common/error/DJIError;)V",
+      "codeOffset": 5254212,
+      "instructionSha256": "c4168f2d5374254d814d21327b68c06a568ee952fe363bfcbf2398ebe8de66d9"
     },
     {
       "bank": "sdk",

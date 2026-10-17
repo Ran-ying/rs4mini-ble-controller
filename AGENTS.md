@@ -640,3 +640,17 @@ execution oradvancedfeatures; remaining35/11/13 etc and wholeprotocol incomplete
 Node141/Web14、Python3.8/3.12各119、原生98核心+130假设备+3独立SDK、研究工具两个环境各77通过。统一离线检查含类型、边界与构建通过；安装后的Node包141/Python wheel119通过。固定49方法审计独立复现与证据JSON逐字节一致。覆盖Pitch/Roll的float32截断、参数快照、互斥、关联ACK、错误响应、取消和超时无重放；实际效果、累加、持久化及暂停稳定状态仍未验收。
 
 第二Python环境暴露旧轨迹测试依赖调度时序：首次写入前超时会正确地只有3帧中位，旧测试要求4帧。现用局部可控时钟分别验证首次写入前0+3帧和写入后1+3帧，保持精确清理与所有权检查，未修改运行时轨迹逻辑。没有扫描、连接、移动设备、实时UI或执行厂商代码；全部命令与高级新增门槛仍false。
+
+
+## 手柄写入调用及失败回退审计（运行时仍0.7.14/原生0.3.14）
+
+固定源码控制审计现66方法。HG724继承的三个手柄setter均新建DataGimbalSetHandleParams对象，仅设置一个字段：ControllerMode→dualChannelMode/0，PitchOrRollInverse→tiltDirection/1，YawInverse→panDirection/2。模式通过ControllerMode.value传递枚举值（含UNKNOWN255）；反向参数是布尔0/1。不能从PitchOrRoll的名字扩展出独立Roll开关。未指定字段沿新对象默认FF编码，固件是否保留仍未证实；不以读值重写所有8字段替代源语义。
+
+对应写入成功回调仅报告null，不解码回读。失败回调没有直接上报原Ccode，而按ControllerMode/PitchInvertedControlEnabled/YawInvertedControlEnabled键调用DJISDKCache.getValue；这不是已证实的直接BLE读取。缓存取值回调Class.cast后使用if-ne比较对象引用，非Object.equals；非空结果中相同引用可回报成功，否则RESULT_FAILED；结果对象为空时直接返回、没有完成回调，取值失败则传递错误。不能复制为“写入失败也成功”，也不能据此声称固件写入接受或持久化。
+
+读取ControllerMode的上层回调用values()[raw]数组下标，不是find(raw)；方向回调仅raw==1为true，不是bit0（raw3不等于true）。SDK现有getHandleSettings继续保留原值，不照搬源代码对异常值的数组风险，也不重解释既有结果。新增3项审计测试覆盖单字段新对象、禁止singleton/多字段/未构造、引用比较与错误分支变更。没有新增SDK发送、厂商代码执行或硬件操作；手柄写入SDK及本机验收仍待完成，两个完整性门槛false。
+
+
+## 2026-10-17 手柄调用/缓存回退静态研究
+
+运行时0.7.14/原生0.3.14不变。66方法固定APK审计独立复现与JSON逐字节一致；研究工具Python3.8/3.12各80。统一离线检查Node141/Web14/Python119/原生98+130+3及类型/边界/构建通过。新增测试确认单字段新对象与引用比较，拒绝单例、多字段、缺构造和比较/错误分支变更。没有SDK发送扩展、硬件/liveUI/厂商代码执行；全部命令仍未完成。

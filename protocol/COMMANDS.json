@@ -538,7 +538,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "源8字节字段顺序及FF构造默认值已核对；打包后只重置前6字段，后2保留。只有部分非相机SDK调用链已确认继承，FF固件语义/完整字段/实机/SDK封装未完成",
+      "remaining": "66方法审计确认三个非相机setter新对象单字段及FF默认；写入失败走SDK缓存取值/对象引用比较，不能视为固件接受，成功回调不读回。FF固件语义、SDK写入封装、本机效果/持久化仍未验收。",
       "officialAppAliases": [
         "SetHandleParams"
       ],

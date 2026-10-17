@@ -1,6 +1,6 @@
 # 微调、手柄与用户参数保存/重置的静态审计
 
-2026-10-17，SDK0.7.14 / 原生0.3.14。本文工具固定49方法指纹、字段和继承，自身不提供SDK或传输。四端SDK接入手柄只读查询与Pitch/Roll微调请求，其他动作尚未封装；未执行厂商代码或操作硬件。来源为固定Ronin 2.2.2/7096 APK与恢复bank05；保存调用者另核对bank03。
+2026-10-17，SDK0.7.14 / 原生0.3.14。本文工具固定66方法指纹、字段和继承，自身不提供SDK或传输。四端SDK接入手柄只读查询与Pitch/Roll微调请求，其他动作尚未封装；未执行厂商代码或操作硬件。来源为固定Ronin 2.2.2/7096 APK与恢复bank05；保存调用者另核对bank03。
 
 ## 微调04:07
 
@@ -50,3 +50,12 @@ PYTHONPATH=work/research/analysis-libs work/python312/bin/python tools/research/
 
 
 0.7.14微调请求契约与暂停标志/回调审计见 [APP_FINE_TUNE.md](../../docs/APP_FINE_TUNE.md)，工具现固定49方法，真实效果仍未验收。
+
+
+## 手柄写入调用及失败回退审计（运行时仍0.7.14/原生0.3.14）
+
+固定源码控制审计现66方法。HG724继承的三个手柄setter均新建DataGimbalSetHandleParams对象，仅设置一个字段：ControllerMode→dualChannelMode/0，PitchOrRollInverse→tiltDirection/1，YawInverse→panDirection/2。模式通过ControllerMode.value传递枚举值（含UNKNOWN255）；反向参数是布尔0/1。不能从PitchOrRoll的名字扩展出独立Roll开关。未指定字段沿新对象默认FF编码，固件是否保留仍未证实；不以读值重写所有8字段替代源语义。
+
+对应写入成功回调仅报告null，不解码回读。失败回调没有直接上报原Ccode，而按ControllerMode/PitchInvertedControlEnabled/YawInvertedControlEnabled键调用DJISDKCache.getValue；这不是已证实的直接BLE读取。缓存取值回调Class.cast后使用if-ne比较对象引用，非Object.equals；非空结果中相同引用可回报成功，否则RESULT_FAILED；结果对象为空时直接返回、没有完成回调，取值失败则传递错误。不能复制为“写入失败也成功”，也不能据此声称固件写入接受或持久化。
+
+读取ControllerMode的上层回调用values()[raw]数组下标，不是find(raw)；方向回调仅raw==1为true，不是bit0（raw3不等于true）。SDK现有getHandleSettings继续保留原值，不照搬源代码对异常值的数组风险，也不重解释既有结果。新增3项审计测试覆盖单字段新对象、禁止singleton/多字段/未构造、引用比较与错误分支变更。没有新增SDK发送、厂商代码执行或硬件操作；手柄写入SDK及本机验收仍待完成，两个完整性门槛false。

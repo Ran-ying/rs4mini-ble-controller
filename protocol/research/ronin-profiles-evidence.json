@@ -87,6 +87,11 @@
       "value": 3
     }
   ],
+  "axisModeSourceRead": {
+    "shift": 3,
+    "mask": 3,
+    "packedMask": 24
+  },
   "axisModeSourceValues": {
     "ThreeAxis": 0,
     "TwoAxis": 8,

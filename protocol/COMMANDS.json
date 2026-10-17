@@ -130,7 +130,7 @@
         "node/src/app-tuning.js",
         "python/rs4mini_sdk/app_tuning.py"
       ],
-      "remaining": "当前App配置封装灵敏度、两组位设置、平衡/系统校准请求、六组按轴档位读改写及ACK；非任意参数写入。PF/PTF、其余字段、持久化与本机效果未验收，旧休眠仍为其他型号来源；0.7.10新增18项普通命名数值的1/2字节读写和异常原值保留，不自动切预设/输入源，活动预设与实际效果未验收；0.7.11新增六项独立配置及显式输入源2同包写入，读取保留实际输入源，不代表活动预设或实机支持",
+      "remaining": "当前App配置封装灵敏度、两组位设置、平衡/系统校准请求、六组按轴档位读改写及ACK；非任意参数写入。PF/PTF、其余字段、持久化与本机效果未验收，旧休眠仍为其他型号来源；0.7.10新增18项普通命名数值的1/2字节读写和异常原值保留，不自动切预设/输入源，活动预设与实际效果未验收；0.7.11新增六项独立配置及显式输入源2同包写入，读取保留实际输入源，不代表活动预设或实机支持；0.7.17新增独立轴模式34命名读写，源枚举<<3、读取右移3&3保留未知位；整字节源写入不承诺其他位保留，不自动改132/17/18/19或预设/运动，本机效果未验收。",
       "officialAppAliases": [
         "SetUserParams"
       ],
@@ -260,7 +260,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "app-code-path",
       "implementation": [],
-      "remaining": "已有灵敏度、自定义轴/档位/普通数值SDK；38方法新模式审计确认HG724列表FPV/Custom/3D Roll360、普通轴开关17/18/19、轴模式34及枚举<<3，并与132自定义位和35电机位分开。完整模式事务、先后/部分失败/取消、本机生效/活动预设仍未验收，未新增模式SDK。",
+      "remaining": "0.7.17轴模式34的四种源枚举已独立封装（非PF/PTF/FPV）；读取位3/4并保留未知位，写入整字节0/8/16/24。HG724 UI只确认ThreeAxis/ThreeDRoll360入口；FPV/Custom等完整多请求事务、17/18/19普通轴开关、活动预设/部分失败/取消/本机效果仍待实现验收。",
       "modelResearchEvidence": "protocol/research/ronin-hg724-evidence.json",
       "restoredAppEvidence": "protocol/research/ronin-code-restoration-evidence.json"
     },
@@ -355,7 +355,7 @@
         "node/src/app-tuning.js",
         "python/rs4mini_sdk/app_tuning.py"
       ],
-      "remaining": "当前App配置按请求index/size读取，返回码、无符号索引和原始头字节分离；命名设置/状态/六组按轴档位已解码，未按索引推断其他字段，本机读数和更多参数仍待验收；0.7.10新增18项普通命名数值的1/2字节读写和异常原值保留，不自动切预设/输入源，活动预设与实际效果未验收；0.7.11新增六项独立配置及显式输入源2同包写入，读取保留实际输入源，不代表活动预设或实机支持",
+      "remaining": "当前App配置按请求index/size读取，返回码、无符号索引和原始头字节分离；命名设置/状态/六组按轴档位已解码，未按索引推断其他字段，本机读数和更多参数仍待验收；0.7.10新增18项普通命名数值的1/2字节读写和异常原值保留，不自动切预设/输入源，活动预设与实际效果未验收；0.7.11新增六项独立配置及显式输入源2同包写入，读取保留实际输入源，不代表活动预设或实机支持；0.7.17新增独立轴模式34命名读写，源枚举<<3、读取右移3&3保留未知位；整字节源写入不承诺其他位保留，不自动改132/17/18/19或预设/运动，本机效果未验收。",
       "officialAppAliases": [
         "GetUserParams"
       ],
@@ -883,5 +883,19 @@
       "docs/APP_FACTORY_RESET.md"
     ]
   },
-  "saveCallerResearch": "protocol/research/ronin-save-callers-evidence.json"
+  "saveCallerResearch": "protocol/research/ronin-save-callers-evidence.json",
+  "axisModeSdk": {
+    "implemented": true,
+    "index": 34,
+    "size": 1,
+    "targetDeviceVerified": false,
+    "activePresetVerified": false,
+    "otherBitsPreservationVerified": false,
+    "files": [
+      "node/src/app-axis-mode.js",
+      "python/rs4mini_sdk/app_axis_mode.py",
+      "macos/RSControlCore.m",
+      "docs/APP_AXIS_MODE.md"
+    ]
+  }
 }

@@ -576,3 +576,18 @@ NSData *RSAppFactoryResetFrame(uint16_t sequence,NSString *sourcePlatform) {
     if(![sourcePlatform isKindOfClass:NSString.class]||![sourcePlatform isEqualToString:@"HG724"])return nil;
     uint8_t payload[]={1,0,1};return CommandFrame(sequence,4,0x13,[NSData dataWithBytes:payload length:3],0x40);
 }
+
+NSDictionary *RSAppAxisModeSpec(NSDictionary *spec) {
+    if(![spec isKindOfClass:NSDictionary.class]||spec.count!=1||![spec[@"sourceMode"] isKindOfClass:NSString.class])return nil;
+    NSDictionary *modes=@{@"ThreeAxis":@0,@"TwoAxis":@8,@"Roll360":@16,@"ThreeDRoll360":@24};NSNumber *value=modes[spec[@"sourceMode"]];if(!value)return nil;
+    return @{@"requestedSourceMode":@[@"ThreeAxis",@"TwoAxis",@"Roll360",@"ThreeDRoll360"][value.unsignedIntegerValue>>3],@"requestedRawValue":value};
+}
+NSData *RSAppAxisModeWriteFrame(uint16_t sequence,NSArray *context,NSNumber *value) {
+    context=RSAppParameterContext(context);if(context.count!=1||![context[0][@"index"] isEqual:@34]||![context[0][@"size"] isEqual:@1]||!Numeric(value)||![@[@0,@8,@16,@24] containsObject:value])return nil;
+    uint8_t payload[]={34,1,value.unsignedCharValue};return CommandFrame(sequence,4,0x0f,[NSData dataWithBytes:payload length:3],0x40);
+}
+NSDictionary *RSDecodeAppAxisModeReply(NSDictionary *message,NSError **error) {
+    NSDictionary *reply=RSDecodeAppReply(message,0x10,@[@{@"index":@34,@"size":@1}],error);if(!reply)return nil;
+    unsigned raw=(unsigned)strtoul([reply[@"parameters"][0][@"rawHex"] UTF8String],NULL,16),mode=(raw>>3)&3;
+    NSMutableDictionary *result=[reply mutableCopy];result[@"rawValue"]=@(raw);result[@"sourceModeValue"]=@(mode);result[@"sourceMode"]=@[@"ThreeAxis",@"TwoAxis",@"Roll360",@"ThreeDRoll360"][mode];result[@"unknownBits"]=@(raw&231);result[@"modelLayoutVerified"]=@NO;result[@"activePresetVerified"]=@NO;return [result copy];
+}

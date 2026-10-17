@@ -1,3 +1,4 @@
+import {axisModeWrite,axisModeReply} from './app-axis-mode.js';
 import { fineTuneSpec } from './app-fine-tune.js';
 import { handleReply, handleWriteSpec } from './app-handle.js';
 import { userParameterNotification } from './app-user-parameters.js';
@@ -43,6 +44,20 @@ export class AppCommands {
       await this.owner._stop();check(operation.controller.signal);
       const message=await this.owner.experimental._queryPayloadCommand('App fine tune',[4,7],spec.payload,timeoutMs,{signal:operation.controller.signal,epoch:this.owner.motionEpoch});
       const {payload,...requested}=spec;return {...appReply(message,7),...requested,stabilizationStateVerified:false};
+    },false);
+  }
+  async getAxisMode(options={}) {
+    optionsOnly(options,['timeoutMs']);this._requireProfile();
+    return axisModeReply(await this.owner.experimental._queryPayloadCommand('App axis mode query',[4,0x10],parameterRequest([{index:34,size:1}]),options.timeoutMs??3000));
+  }
+  async sendAxisModeRequest(options={}) {
+    optionsOnly(options,['sourceMode','timeoutMs']);this._requireProfile();
+    const spec=axisModeWrite(options),timeoutMs=options.timeoutMs??3000;
+    if(!Number.isFinite(timeoutMs)||timeoutMs<=0||timeoutMs>60000)throw new RangeError('timeoutMs must be >0..60000');
+    return this.owner._run('sendAxisModeRequest',async operation=>{
+      await this.owner._stop();check(operation.controller.signal);
+      const message=await this.owner.experimental._queryPayloadCommand('App axis mode',[4,0x0f],spec.payload,timeoutMs,{signal:operation.controller.signal,epoch:this.owner.motionEpoch});
+      const {payload,...requested}=spec;return {...appReply(message,0x0f),...requested,activePresetVerified:false,otherBitsPreservationVerified:false,persistenceVerified:false};
     },false);
   }
   async sendFactorySettingsResetRequest(options={}) {

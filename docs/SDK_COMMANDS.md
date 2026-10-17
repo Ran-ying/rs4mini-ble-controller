@@ -1,6 +1,6 @@
 # 设备 SDK 命令审计与高级开发前置条件
 
-2026-10-17，0.7.16 / 原生 0.3.16。**尚不能确认 RS 4 Mini 全部非相机 BLE 命令都已枚举、解析并封装。**
+2026-10-17，0.7.17 / 原生 0.3.17。**尚不能确认 RS 4 Mini 全部非相机 BLE 命令都已枚举、解析并封装。**
 机器清单是 [protocol/COMMANDS.json](../protocol/COMMANDS.json)，目前记录 48 个命令或缺口条目；
 它不是厂商完整命令表，不能以“所有已知代码已封装”代替“所有设备命令已知”。
 
@@ -164,3 +164,8 @@ HG724继承的启动路径为普通用户参数04:0F，balance_test/index37/size
 保存命令六段引用扫描与限制见 [SAVE_CALLERS.md](../tools/research/SAVE_CALLERS.md)，不是本机不支持证明。
 
 新模式40方法审计确认参数17/18/19及34/枚举移位，index2绕过普通三轴开关setter；源回调不串联写入，尚无完整模式SDK或本机效果。见[PROFILES.md](../tools/research/PROFILES.md)。
+
+
+## 0.7.17轴模式34读写 / 原生0.3.17 build20
+
+四端getAxisMode/sendAxisModeRequest（Python snake别名）在显式App来源下封装34/size1。四个源枚举写0/8/16/24，读(raw>>3)&3，保留raw/unknownBits=raw&0xe7及headerByte，modelLayout/activePreset/device/physical标志false。HG724 UI只定位ThreeAxis及ThreeDRoll360，不宣称全部四种固件支持。源setter整字节写，不擅自RMW或保留其他位，otherBitsPreservationVerified/persistenceVerified=false。参数快照、写先停主机运动并独占至ACK，取消/超时/断线无重放/回滚，NACK不缓存兜底；不自动写132、17/18/19、35或激活预设，不是完整跟随模式。Node/Python有限读并发与原生读占槽差异保留。见docs/APP_AXIS_MODE.md；未操作硬件/执行厂商代码/新增高级任务，全命令未完成。

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.7.17
+
+- 四端新增getAxisMode/sendAxisModeRequest，显式源配置下独立参数34，四种枚举value<<3，不与35电机位或PF/PTF列表混用。
+- 源事件读取右移3&3，保留原字节/未知位；源整字节写不承诺其他位保留。
+- ACK/取消/错误/超时/断线无重放；不自动改预设或组合完整模式，未操作硬件。
+
 ## 0.7.16
 
 - 四端新增sendFactorySettingsResetRequest，显式来源与HG724源码分支010001，独占至关联ACK。

@@ -80,3 +80,7 @@ NSData *RSAppHandleWriteFrame(uint16_t sequence,NSArray *context,NSNumber *value
 
 NSDictionary *RSAppFactoryResetSpec(NSDictionary *spec);
 NSData *RSAppFactoryResetFrame(uint16_t sequence,NSString *sourcePlatform);
+
+NSDictionary *RSAppAxisModeSpec(NSDictionary *spec);
+NSData *RSAppAxisModeWriteFrame(uint16_t sequence,NSArray *context,NSNumber *value);
+NSDictionary *RSDecodeAppAxisModeReply(NSDictionary *message,NSError **error);

@@ -190,3 +190,13 @@ async function resetTypes(gimbal: RS4Mini) {
   // @ts-expect-error source platform must be explicit
   await gimbal.appCommands.sendFactorySettingsResetRequest({});
 }
+
+async function axisModeTypes(gimbal: RS4Mini) {
+  const r=await gimbal.appCommands.getAxisMode();const bits:number=r.unknownBits;
+  await gimbal.appCommands.sendAxisModeRequest({sourceMode:'ThreeDRoll360'});
+  // @ts-expect-error track-mode labels are not source axis enums
+  await gimbal.appCommands.sendAxisModeRequest({sourceMode:'FPV'});
+  // @ts-expect-error no raw parameter value writes
+  await gimbal.appCommands.sendAxisModeRequest({sourceMode:'ThreeAxis',value:64});
+  return bits;
+}

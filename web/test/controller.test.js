@@ -115,6 +115,7 @@ test('protocol, telemetry and controller import without Node Buffer or Node modu
     assert.equal(reply.parameters[0].headerByte, 9);
     assert(reply.message.payload instanceof Uint8Array);
     assert.deepEqual([...app.factoryResetSpec({sourcePlatform:'HG724'}).payload],[1,0,1]);
+    const axisMode=await import('./node/src/app-axis-mode.js');assert.deepEqual([...axisMode.axisModeWrite({sourceMode:'ThreeDRoll360'}).payload],[34,1,24]);
     const settings = await import('./node/src/app-settings.js');
     assert.equal(settings.settingsWrite('motor', { enabled: true }, 255).payload[2], 254);
     const calibration = await import('./node/src/app-calibration.js');

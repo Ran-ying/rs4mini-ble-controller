@@ -18,6 +18,8 @@ typedef void (^RSAppCompletion)(NSDictionary *result, NSError *error);
 - (void)requestDegreeInfo;
 @property(nonatomic, readonly, copy) NSString *appProfile;
 - (void)sendFineTuneRequest:(NSDictionary *)spec timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion;
+- (void)getAxisModeWithTimeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion;
+- (void)sendAxisModeRequest:(NSDictionary *)spec timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion;
 - (void)sendFactorySettingsResetRequest:(NSDictionary *)spec timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion;
 - (void)sendHandleSettingRequest:(NSDictionary *)spec timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion;
 - (void)getHandleSettingsWithTimeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion;

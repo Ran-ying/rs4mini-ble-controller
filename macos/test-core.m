@@ -181,6 +181,14 @@ int main(void) {
         Require([resetFrame[@"commandId"] intValue]==0x13 && [resetFrame[@"flags"] intValue]==0x40 && [Hex(resetFrame[@"payload"]) isEqualToString:@"010001"],@"factory reset source HG724 branch body and ACK envelope");
         Require(RSAppFactoryResetSpec(@{@"sourcePlatform":@"HG724"}) && !RSAppFactoryResetSpec(@{}) && !RSAppFactoryResetSpec(@{@"sourcePlatform":@103}) && !RSAppFactoryResetSpec(@{@"sourcePlatform":@"HG724",@"payload":@[]}),@"reset requires named source platform not enum ordinal or arbitrary body");
         Require(!RSAppFactoryResetFrame(3,@"HG702") && !RSAppFactoryResetFrame(3,nil),@"reset codec does not reuse another platform empty branch");
+        for(NSArray *row in @[@[@"ThreeAxis",@0],@[@"TwoAxis",@8],@[@"Roll360",@16],@[@"ThreeDRoll360",@24]]) {
+            NSDictionary *spec=RSAppAxisModeSpec(@{@"sourceMode":row[0]});[decoder reset];NSDictionary *f=[decoder push:RSAppAxisModeWriteFrame(3,@[@{@"index":@34,@"size":@1}],spec[@"requestedRawValue"])].firstObject;
+            Require([f[@"commandId"] intValue]==15 && [f[@"payload"] isEqualToData:[NSData dataWithBytes:(uint8_t[]){34,1,[row[1] unsignedCharValue]} length:3]],@"axis source enum uses shifted parameter34 not motor35");
+        }
+        NSDictionary *axisRead=RSDecodeAppAxisModeReply(parameterMessage(16,[NSData dataWithBytes:(uint8_t[]){0,34,9,255} length:4],128),&error);
+        Require([axisRead[@"rawValue"] intValue]==255 && [axisRead[@"unknownBits"] intValue]==231 && [axisRead[@"sourceMode"] isEqualToString:@"ThreeDRoll360"] && ![axisRead[@"modelLayoutVerified"] boolValue],@"axis source read mask preserves raw unknown bits");
+        Require(!RSAppAxisModeSpec(@{@"sourceMode":@"FPV"}) && !RSAppAxisModeSpec(@{@"sourceMode":@24}) && !RSAppAxisModeSpec(@{@"sourceMode":@"ThreeAxis",@"value":@64}) && !RSAppAxisModeWriteFrame(3,@[@{@"index":@35,@"size":@1}],@24) && !RSAppAxisModeWriteFrame(3,@[@{@"index":@34,@"size":@1}],@YES),@"axis rejects mode aliases raw overrides motor context and boolean");
+        Require(!RSDecodeAppAxisModeReply(parameterMessage(16,[NSData dataWithBytes:(uint8_t[]){0,35,9,24} length:4],128),&error),@"axis read rejects wrong parameter context");
         printf("Native protocol, reassembly, stop queue and motion-core checks: %lu passed\n", (unsigned long)assertions);
     }
     return 0;

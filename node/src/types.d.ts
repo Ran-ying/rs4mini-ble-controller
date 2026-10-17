@@ -258,7 +258,10 @@ export interface AppTuningReading extends AppParameterReply {
   values:Array<AppParameterContext & {headerByte:number;rawHex:string;axis:MotorTuningAxis;parameter:FollowParameter|RcParameter;rawValue:number;withinSourceRange:boolean}>;
 }
 export type StandaloneParameter='speed'|'smoothing';
+export type AppSourceAxisMode='ThreeAxis'|'TwoAxis'|'Roll360'|'ThreeDRoll360';
 export interface AppCommands {
+  getAxisMode(options?:{timeoutMs?:number}):Promise<AppParameterReply & {rawValue:number;sourceModeValue:number;sourceMode:AppSourceAxisMode;unknownBits:number;modelLayoutVerified:false;activePresetVerified:false}>;
+  sendAxisModeRequest(options:{sourceMode:AppSourceAxisMode;timeoutMs?:number}):Promise<AppCommandReply & {requestedSourceMode:AppSourceAxisMode;requestedRawValue:number;activePresetVerified:false;otherBitsPreservationVerified:false;persistenceVerified:false}>;
   sendFactorySettingsResetRequest(options:{sourcePlatform:'HG724';timeoutMs?:number}):Promise<AppCommandReply & {requestedSourcePlatform:'HG724';targetResetScopeVerified:false;persistenceVerified:false}>;
   sendHandleSettingRequest(options:{setting:'dualChannelMode'|'tiltDirection'|'panDirection';value:0|1;timeoutMs?:number}):Promise<AppCommandReply & {setting:'dualChannelMode'|'tiltDirection'|'panDirection';requestedValue:0|1;unspecifiedByteSemanticsVerified:false;readbackVerified:false;persistenceVerified:false}>;
   sendFineTuneRequest(options:{axis:'pitch'|'roll';adjustmentDegrees:number;timeoutMs?:number}):Promise<AppCommandReply & {axis:'pitch'|'roll';requestedAdjustmentDegrees:number;encodedTenths:number;nominalAdjustmentDegrees:number;stabilizationStateVerified:false}>;

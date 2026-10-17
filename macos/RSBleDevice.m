@@ -383,6 +383,7 @@ static BOOL Matches(NSString *name) {
         case 0x10: return RSAppParameterRequestFrame(sequence, context);
         case 0x0f:
             if (context) {
+                if (mode && context.count==1 && [context[0][@"index"] intValue]==34) return RSAppAxisModeWriteFrame(sequence,context,mode);
                 if (mode) return context.count==2 ? RSAppStandaloneWriteFrame(sequence,context,mode) : RSAppTuningWriteFrame(sequence,context,mode);
                 if (context.count!=1 || [context[0][@"size"] intValue]!=1) return nil;
                 if ([context[0][@"index"] intValue]==37) return RSAppBalanceStartFrame(sequence);
@@ -428,6 +429,19 @@ static BOOL Matches(NSString *name) {
     if(!request){if(completion)dispatch_async(dispatch_get_main_queue(), ^{completion(nil,RSAppError(@"RS4MINI_INVALID_ARGUMENT",@"Fine tune requires pitch/roll and finite adjustmentDegrees -2..2",nil));});return;}
     [self startAppCommand:7 parameters:@[@{@"index":request[@"axisWire"],@"size":@1}] mode:request[@"encodedTenths"] settingsKind:nil settingsPatch:nil timeoutMs:timeoutMs completion:^(NSDictionary *reply,NSError *error) {
         NSMutableDictionary *result=[reply mutableCopy];if(result){NSMutableDictionary *metadata=[request mutableCopy];[metadata removeObjectForKey:@"axisWire"];[result addEntriesFromDictionary:metadata];result[@"stabilizationStateVerified"]=@NO;}
+        if(completion)completion(result?[result copy]:nil,error);
+    }];
+}
+- (void)getAxisModeWithTimeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
+    [self readAppParameters:@[@{@"index":@34,@"size":@1}] timeoutMs:timeoutMs completion:^(NSDictionary *reply,NSError *error) {
+        if(error){if(completion)completion(nil,error);return;}NSError *decodeError=nil;NSDictionary *result=RSDecodeAppAxisModeReply(reply[@"message"],&decodeError);if(completion)completion(result,decodeError);
+    }];
+}
+- (void)sendAxisModeRequest:(NSDictionary *)spec timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
+    NSDictionary *request=RSAppAxisModeSpec(spec);
+    if(!request){if(completion)dispatch_async(dispatch_get_main_queue(), ^{completion(nil,RSAppError(@"RS4MINI_INVALID_ARGUMENT",@"Named source axis mode required",nil));});return;}
+    [self startAppCommand:0x0f parameters:@[@{@"index":@34,@"size":@1}] mode:request[@"requestedRawValue"] settingsKind:nil settingsPatch:nil timeoutMs:timeoutMs completion:^(NSDictionary *reply,NSError *error) {
+        NSMutableDictionary *result=[reply mutableCopy];if(result){[result addEntriesFromDictionary:request];result[@"activePresetVerified"]=@NO;result[@"otherBitsPreservationVerified"]=@NO;result[@"persistenceVerified"]=@NO;}
         if(completion)completion(result?[result copy]:nil,error);
     }];
 }

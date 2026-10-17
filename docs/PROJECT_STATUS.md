@@ -1,12 +1,16 @@
 # 项目状态与接手入口
 
-更新日期：2026-10-17。当前源码检查点为 Node/Python/Web **0.7.16**、macOS 原生面板 **0.3.16**。
+更新日期：2026-10-17。当前源码检查点为 Node/Python/Web **0.7.17**、macOS 原生面板 **0.3.17**。
 
 **当前 App 参数事务已进入四端设备 SDK；全部非相机 BLE 能力整体目标尚未完成。**
 用户已要求将源码与相关信息提交至 GitHub。本记录随源码版本保存，提交和远端状态以 Git 历史为准；
 这不是 npm 发布或 GitHub 二进制 Release。
 
-## 当前进度：0.7.16 恢复设置源请求
+## 当前进度：0.7.17 轴模式34命名读写
+
+源枚举/读取掩码与未知位已封装，其他位保留与本机效果未验收；不自动执行完整跟随切换。见 [APP_AXIS_MODE.md](APP_AXIS_MODE.md)。
+
+## 历史进度：0.7.16 恢复设置源请求
 
 四端封装显式HG724分支04:13/010001及关联ACK。取消/超时/断线不重放，范围、实际效果和持久化未验收。见 [APP_FACTORY_RESET.md](APP_FACTORY_RESET.md)。下方历史进度不代表本机验收或全命令完成。
 
@@ -253,3 +257,15 @@ CacheHelper设置调用没有串联确认，UI回调成功更新延时显示标�
 ## 2026-10-17 HG724新模式链验证
 
 40方法固定APK/SDK/UI审计独立复现与证据JSON逐字节一致，研究工具Python3.8/3.12各88项（新增3项分支单位/轴枚举移位边界）。统一离线Node154/Web14/Python132/原生106+141+3、类型/边界/构建通过。原生模式参数17/18/19/34、枚举0/8/16/24、index2跳转绕过普通轴开关、自定义控件无设备副作用及回调无链式参数写入已核对。没有新增SDK发送/高级任务、操作硬件或执行厂商代码，运行时与安装包保持0.7.16/0.3.16，完整模式切换及全命令验收仍未完成。
+
+
+## 0.7.17轴模式34读写 / 原生0.3.17 build20
+
+四端getAxisMode/sendAxisModeRequest（Python snake别名）在显式App来源下封装34/size1。四个源枚举写0/8/16/24，读(raw>>3)&3，保留raw/unknownBits=raw&0xe7及headerByte，modelLayout/activePreset/device/physical标志false。HG724 UI只定位ThreeAxis及ThreeDRoll360，不宣称全部四种固件支持。源setter整字节写，不擅自RMW或保留其他位，otherBitsPreservationVerified/persistenceVerified=false。参数快照、写先停主机运动并独占至ACK，取消/超时/断线无重放/回滚，NACK不缓存兜底；不自动写132、17/18/19、35或激活预设，不是完整跟随模式。Node/Python有限读并发与原生读占槽差异保留。见docs/APP_AXIS_MODE.md；未操作硬件/执行厂商代码/新增高级任务，全命令未完成。
+
+
+## 0.7.17轴模式命名读写验证（2026-10-17）
+
+统一离线Node162/Web14、Python3.8/3.12各140、原生113核心+148假设备+3独立SDK、研究工具两环境各88、类型/边界/构建通过。隔离安装Node tarball162/Python wheel140通过，Python导入路径确认为wheel目标。40方法源码独立复现与JSON逐字节一致；源事件FLOWER_SPECIAL_CMD读取右移3/掩码3及三端四枚举目录比对通过。
+
+新增四种34写体、源读取未知位/原字节/headerByte、错参数/短体/NACK、显式profile/拒绝PF标签及原始值、参数快照/互斥、取消前不发/后不重放、超时/断连与重连无重放、Web无Buffer测试。原生查询沿用占槽/先停，Node/Python查询沿用有限并发。不自动组合132/17/18/19/35或预设，不承诺其他位保留。没有硬件/liveUI/厂商执行或高级新增，全命令门槛仍false。

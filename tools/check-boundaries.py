@@ -349,5 +349,17 @@ if manifest.get('saveCallerResearch'):
     assert save['externalDirectCallers']==[] and len(save['methods'])==4
     assert all(b['methodCount']>=b['methodWithCodeCount']>0 and b['instructionCount']>0 for b in save['banks'])
     assert not any(r['kind']=='external-direct-invoke' for m in save['methods'] for r in m['references'])
+if manifest.get('axisModeSdk',{}).get('implemented'):
+    sdk=manifest['axisModeSdk']
+    assert sdk['index']==34 and sdk['size']==1 and sdk['targetDeviceVerified'] is False and sdk['activePresetVerified'] is False and sdk['otherBitsPreservationVerified'] is False
+    assert profiles['axisModeSourceRead']==dict(shift=3,mask=3,packedMask=24)
+    for filename in sdk['files']:assert (root/filename).is_file()
+    expected=profiles['axisModeSourceValues']
+    js=json.loads(re.search(r'const modes=(\{.*?\});',(root/'node/src/app-axis-mode.js').read_text()).group(1))
+    tree=ast.parse((root/'python/rs4mini_sdk/app_axis_mode.py').read_text())
+    py=ast.literal_eval(next(n.value for n in tree.body if isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and t.id=='MODES' for t in n.targets)))
+    native=(root/'macos/RSControlCore.m').read_text().split('NSDictionary *RSAppAxisModeSpec(',1)[1]
+    objc=json.loads(re.search(r'NSDictionary \*modes=(@\{.*?\});',native).group(1).replace('@',''))
+    assert js==py==objc==expected
 print('Layer boundaries passed: device modules do not depend on motion; upper layers do not encode/write packets.')
 print('Protocol inventory: %d entries; inventoryComplete=false; further advanced development is gated.' % len(manifest['commands']))

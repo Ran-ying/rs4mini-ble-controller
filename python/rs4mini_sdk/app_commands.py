@@ -1,3 +1,4 @@
+from .app_axis_mode import axis_mode_write,axis_mode_reply
 """Current-App device commands share the existing connection/queue/pending map."""
 from .app_fine_tune import fine_tune_spec
 from .app_handle import handle_reply,handle_write_spec
@@ -69,6 +70,21 @@ class AppCommands:
         return await self.owner._run('sendFineTuneRequest',body,False)
 
     send_fine_tune_request=sendFineTuneRequest
+
+    async def getAxisMode(self,*,timeoutMs=3000):
+        self._require_profile()
+        message=await self.owner.experimental._query_payload_command('App axis mode query',(4,0x10),parameter_request([dict(index=34,size=1)]),timeoutMs)
+        return axis_mode_reply(message)
+    get_axis_mode=getAxisMode
+
+    async def sendAxisModeRequest(self,*,sourceMode,timeoutMs=3000):
+        self._require_profile();spec=axis_mode_write(sourceMode);_duration(timeoutMs,'timeoutMs',False)
+        async def work(operation):
+            await self.owner._halt();self.owner._check(operation)
+            message=await self.owner.experimental._query_payload_command('App axis mode',(4,0x0f),spec['payload'],timeoutMs,external_operation=operation,epoch=self.owner._epoch)
+            return dict(app_reply(message,0x0f),**{k:v for k,v in spec.items() if k!='payload'},activePresetVerified=False,otherBitsPreservationVerified=False,persistenceVerified=False)
+        return await self.owner._run('sendAxisModeRequest',work,False)
+    send_axis_mode_request=sendAxisModeRequest
 
     async def sendFactorySettingsResetRequest(self,*,sourcePlatform,timeoutMs=3000):
         self._require_profile();spec=factory_reset_spec(sourcePlatform);_duration(timeoutMs,'timeoutMs',False)

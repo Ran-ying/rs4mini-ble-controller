@@ -6,6 +6,10 @@
 用户已要求将源码与相关信息提交至 GitHub。本记录随源码版本保存，提交和远端状态以 Git 历史为准；
 这不是 npm 发布或 GitHub 二进制 Release。
 
+## 最新研究：参数订阅与推送包层
+
+新增34方法审计，04:12为CENTER/id7无ACK，按命令号/最高频道/位图分组；本地引用计数、1秒刷新和临时get的3秒移除不证明远端TTL或停止。源未加密请求型04:24的payload偏移2已追通，与04:10订阅参数响应分开。见 [SUBSCRIPTIONS.md](../tools/research/SUBSCRIPTIONS.md)。研究67项在两个Python环境通过，固定APK独立复现一致；统一离线检查通过。本批未开放SDK接口或操作硬件，运行时仍0.7.11/0.3.11，全协议和高级门槛仍false。
+
 ## 最新研究：预设与模式的不同路径
 
 新增26个方法指纹，核对table_choice/index0、工作模式index62、独立的MovementSettingsProfile及getPresetID业务读取上下文。HG724条件分支与设备选择列表均走新模式路径，列表只有FPV/Custom/3D Roll 360，不能移用旧PTF/PF编号；新路径模式下拉还受UserProfile=2条件约束。见 [PROFILES.md](../tools/research/PROFILES.md)。研究58项在两个Python环境通过，固定APK实际复现一致；统一离线检查通过。本批未新增SDK/UI接口或硬件证据，运行时版本和完整性门槛不变。

@@ -145,3 +145,6 @@ Node/Web、Python 与原生已分别拆分；完整模块映射见 `ARCHITECTURE
 
 
 2026-10-17预设研究新增26个方法指纹：UserProfile/table_choice、MovementSettingsProfile和GimbalWorkMode分别核对；HG724条件新模式列表为FPV/Custom/3D Roll 360，不能照搬旧PF/PTF位置。业务getPresetID偏移2尚未证明原始BLE偏移，SDK不解码为活动预设。见 [PROFILES.md](../tools/research/PROFILES.md)。运行时仍0.7.11/0.3.11，未新增接口或操作硬件，全命令门槛false。
+
+
+后续订阅审计确认04:12为CENTER/id7无ACK、最高频道号+位图及本地引用计数刷新；本地停发不能当远端取消。未加密请求型04:24的源payload偏移2已追通，但不代表本机活动预设或04:10参数订阅。见 [SUBSCRIPTIONS.md](../tools/research/SUBSCRIPTIONS.md)。本批不新增SDK发送/解码接口，运行时与全命令门槛不变。

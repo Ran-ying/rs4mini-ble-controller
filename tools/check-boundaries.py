@@ -229,5 +229,21 @@ if manifest.get('profilesResearch'):
     assert profiles['presetGetter'] == dict(businessOffset=2,width=1,rawBleOffsetVerified=False)
     assert profiles['sourceFacts']['hg724SelectedModelUsesNewUiList'] and profiles['sourceFacts']['newProfileSelectorRequiresUserProfile2']
     assert profiles['uiModeArrays'][1]['defaultLanguageValues'] == ['FPV','Custom','3D Roll 360']
+if manifest.get('subscriptionResearch'):
+    subscription = json.loads((root / manifest['subscriptionResearch']).read_text())
+    assert subscription['apkSha256'] == numeric['apkSha256'] and subscription['derivedSha256'] == restored['derivedSha256']
+    assert subscription['appCodeExecuted'] is False and subscription['targetDeviceVerified'] is False and subscription['wholeProtocolRecovered'] is False and subscription['researchToolProvidesSdkInterface'] is False
+    assert len(subscription['methods']) == 34
+    endpoint = subscription['sourceEndpoint']
+    assert (endpoint['receiverTypeValue'],endpoint['receiverId'],endpoint['packedReceiverByte']) == (5,7,229)
+    assert endpoint['ackRequested'] is False and endpoint['actualTargetRoutingVerified'] is False
+    assert [(r['command'],r['channel']) for r in subscription['selectedChannels']] == [(16,0),(50,0)]
+    assert subscription['sourceCancellation']['remoteStopOrLeaseDurationVerified'] is False and subscription['sourceCancellation']['refreshSkipsEmptyMap'] is True
+    assert subscription['sourceRefreshSeconds'] == 1 and subscription['sourceTemporaryGetLifetimeMs'] == 3000
+    preset = subscription['presetRequestPush']
+    assert preset['sourcePayloadOffset'] == 2 and preset['width'] == 1 and preset['sourceFramingEstablished'] is True
+    assert preset['requestTypeRequired'] is True and preset['encryptionAllowed'] is False and preset['targetDeviceVerified'] is False and preset['activePresetVerified'] is False
+    assert [(r['name'],r['value']) for r in subscription['sourceMovementEnums']] == [(r['name'],r['value']) for r in profiles['movementProfileSourceEnums']]
+    assert [r['bodyHex'] for r in subscription['offlineBodyVectors']] == ['100001','320001','24090502','']
 print('Layer boundaries passed: device modules do not depend on motion; upper layers do not encode/write packets.')
 print('Protocol inventory: %d entries; inventoryComplete=false; further advanced development is gated.' % len(manifest['commands']))

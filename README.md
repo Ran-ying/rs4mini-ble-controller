@@ -9,6 +9,8 @@
 
 最新[预设与模式研究](tools/research/PROFILES.md)区分配置、运动预设和工作模式，确认HG724条件新列表不能套用旧PF/PTF编号；尚未据此新增接口。
 
+最新[订阅与推送包层研究](tools/research/SUBSCRIPTIONS.md)区分CENTER/id7无ACK订阅、本地取消与源预设推送偏移；尚无本机效果或新接口声明。
+
 ## 安装与离线验证
 
 需要 Node.js 18+。macOS 原生构建还需要 Xcode Command Line Tools。

@@ -38,3 +38,6 @@ PYTHONPATH=work/research/analysis-libs work/python312/bin/python tools/research/
 ```
 
 四个新增边界测试覆盖错误APK、业务偏移/宽度、错误寄存器和控制流前缀。仍须审计完整模式前置条件、其他字段、请求/推送与取消语义，再封装SDK并进行实机验收；全部命令与高级新增门槛保持false。
+
+
+后续[订阅与包层审计](SUBSCRIPTIONS.md)已在未加密请求型04:24范围追通payload偏移2/width1。ACK偏移和table_choice订阅不得混用；本机推送/活动预设仍未验证，本SDK尚未接入该字段。

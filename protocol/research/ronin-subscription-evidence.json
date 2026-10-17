@@ -1,0 +1,379 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "derivedSha256": "4fdbd74a05df63d72a0feb1c907d9395426ec3cdb5d6aeb45e3836d856d66654",
+  "appCodeExecuted": false,
+  "targetDeviceVerified": false,
+  "wholeProtocolRecovered": false,
+  "researchToolProvidesSdkInterface": false,
+  "sourceEndpoint": {
+    "receiverType": "CENTER",
+    "receiverTypeValue": 5,
+    "receiverId": 7,
+    "packedReceiverByte": 229,
+    "ackRequested": false,
+    "command": "04:12",
+    "actualTargetRoutingVerified": false
+  },
+  "subscriptionFormat": {
+    "groupHeader": [
+      "commandByte",
+      "highestChannelIndex"
+    ],
+    "bitmap": "LSB-first; ceil((highestChannel+1)/8) bytes",
+    "multipleGroupOrder": "HashMap iteration; no stable order guaranteed",
+    "emptyGroupOmitted": true
+  },
+  "selectedChannels": [
+    {
+      "baseCommand": "USER_PROFILE",
+      "parameterName": "table_choice",
+      "command": 16,
+      "channel": 0,
+      "sourceArguments": [
+        "USER_PROFILE",
+        12,
+        0,
+        "table_choice",
+        "Ldji/midware/data/model/P3/DataGimbalGetUserParams;"
+      ]
+    },
+    {
+      "baseCommand": "STIFFNESS_PITCH",
+      "parameterName": "ronin_sensibility_pitch",
+      "command": 50,
+      "channel": 0,
+      "sourceArguments": [
+        "STIFFNESS_PITCH",
+        0,
+        0,
+        "ronin_sensibility_pitch",
+        "Ldji/midware/data/model/P3/DataGimbalRoninGetUserParams;"
+      ]
+    }
+  ],
+  "sourceMovementEnums": [
+    {
+      "name": "CUSTOM_1",
+      "value": 0
+    },
+    {
+      "name": "CUSTOM_2",
+      "value": 1
+    },
+    {
+      "name": "FAST",
+      "value": 3
+    },
+    {
+      "name": "MEDIUM",
+      "value": 4
+    },
+    {
+      "name": "SLOW",
+      "value": 5
+    },
+    {
+      "name": "UNKNOWN",
+      "value": 255
+    }
+  ],
+  "targetInheritanceControllerAssignments": [
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;-><init>()V"
+  ],
+  "sourceRefreshSeconds": 1,
+  "sourceTemporaryGetLifetimeMs": 3000,
+  "sourceCancellation": {
+    "localReferenceCounted": true,
+    "trailingZeroChannelsTrimmed": true,
+    "lastGroupRemoved": true,
+    "refreshSkipsEmptyMap": true,
+    "remoteStopOrLeaseDurationVerified": false
+  },
+  "presetRequestPush": {
+    "command": "04:24",
+    "requestTypeRequired": true,
+    "encryptionAllowed": false,
+    "sourcePayloadOffset": 2,
+    "width": 1,
+    "sourceFramingEstablished": true,
+    "targetDeviceVerified": false,
+    "activePresetVerified": false,
+    "ackPayloadOffsetNotInterchangeable": true
+  },
+  "offlineBodyVectors": [
+    {
+      "command": 16,
+      "channels": [
+        0
+      ],
+      "bodyHex": "100001"
+    },
+    {
+      "command": 50,
+      "channels": [
+        0
+      ],
+      "bodyHex": "320001"
+    },
+    {
+      "command": 36,
+      "channels": [
+        0,
+        2,
+        9
+      ],
+      "bodyHex": "24090502"
+    },
+    {
+      "command": 36,
+      "channels": [],
+      "bodyHex": ""
+    }
+  ],
+  "remaining": [
+    "Verify target routing, refresh/lease and remote stop before exposing a persistent SDK subscription.",
+    "04:24 fixed-layout preset is distinct from subscribed 04:10 parameter records; no active target profile proof.",
+    "Audit all remaining registered key/channel semantics and target traffic."
+  ],
+  "methods": [
+    {
+      "className": "Ldji/midware/data/config/P3/DeviceType;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3324752,
+      "instructionSha256": "8c5490336a38fb0c07e0694c8038b25b63d5a012034edfcde87a5eb069bfe83b"
+    },
+    {
+      "className": "Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 4652020,
+      "instructionSha256": "89d7e5d4c317f54eb541d186eff2e608a50e62f9387974ef9c74a54543aa6609"
+    },
+    {
+      "className": "Ldji/common/gimbal/MovementSettingsProfile;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3018140,
+      "instructionSha256": "cb4125994af379a7307700ba3d21d341a2f6d00d7b13d553f8eaaac8444d9e86"
+    },
+    {
+      "className": "Ldji/midware/ronin2/Ronin2GimbalParamsManager$BaseCommand;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3728816,
+      "instructionSha256": "38bb193999c192890ce98dda452e438e6f5a880db1faf8ab5587320f113b1682"
+    },
+    {
+      "className": "Ldji/midware/ronin2/Ronin2GimbalParamsManager$BaseCommand;",
+      "method": "<init>",
+      "descriptor": "(Ljava/lang/String; I Ljava/lang/String;)V",
+      "codeOffset": 3731808,
+      "instructionSha256": "dff18940db1f41e1e4487d31d13d343cdba04213ada27b87c1de0dfa5aba9101"
+    },
+    {
+      "className": "Ldji/midware/ronin2/Ronin2GimbalParamsManager$BaseCommand;",
+      "method": "<init>",
+      "descriptor": "(Ljava/lang/String; I I Ljava/lang/String;)V",
+      "codeOffset": 3731728,
+      "instructionSha256": "8a89f9132d0e0fbf5abc698a0496158ac28657f495655b92a7bedadf15902f87"
+    },
+    {
+      "className": "Ldji/midware/ronin2/Ronin2GimbalParamsManager$BaseCommand;",
+      "method": "<init>",
+      "descriptor": "(Ljava/lang/String; I I Ljava/lang/String; Ljava/lang/Class;)V",
+      "codeOffset": 3731768,
+      "instructionSha256": "113d760a11a230f4818e60526fdf76c7dd30354ac2080f15f390efb53dae806b"
+    },
+    {
+      "className": "Ldji/midware/ronin2/Ronin2GimbalParamsManager$BaseCommand;",
+      "method": "getId",
+      "descriptor": "()I",
+      "codeOffset": 3731936,
+      "instructionSha256": "4796b1883090ef2397dc5b4d54d9aad879c2f93a4911d922e0719c7aea707d51"
+    },
+    {
+      "className": "Ldji/midware/ronin2/Ronin2GimbalParamsManager$BaseCommand;",
+      "method": "getPushClazz",
+      "descriptor": "()Ljava/lang/Class;",
+      "codeOffset": 3731984,
+      "instructionSha256": "aff56c24ff532c04c250bf7caf2a85833b429760cd80bd6c15b998ceafe24493"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSubscribeParams;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4892496,
+      "instructionSha256": "64b850c3891ca5cb54e967a0b1f86d79cb27c0d9f3c5f7148c62a9eb52f3aba4"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSubscribeParams;",
+      "method": "mergeList",
+      "descriptor": "(Ljava/util/List;)[B",
+      "codeOffset": 4891688,
+      "instructionSha256": "df6f267d61c069a0a89aa6a85604e64118c02c6ac0851c8219cdaaacab69962e"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSubscribeParams;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 4891824,
+      "instructionSha256": "cb0d3b6137f9daadc481ce5155a3f720617266c3ef93df0a4006b63118c56535"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSubscribeParams;",
+      "method": "subscribeCmdChannel",
+      "descriptor": "(Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType; I)V",
+      "codeOffset": 4892700,
+      "instructionSha256": "8bcbbb4472e55a650818cfad60382d3cffb4bed64c33e78f175f24df250553ea"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSubscribeParams;",
+      "method": "unsubscribeCmdChannel",
+      "descriptor": "(Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType; I)V",
+      "codeOffset": 4892928,
+      "instructionSha256": "d73753ce26784965e2aa423583afe0784180e3a0010ac9b83a5027333d04a553"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSubscribeParams;",
+      "method": "hasChannelSubscribed",
+      "descriptor": "()Z",
+      "codeOffset": 4892116,
+      "instructionSha256": "9ff6155e57245a961efd704ca33ff23609d733ff7d1a5813067fdabfdc272ecc"
+    },
+    {
+      "className": "Ldji/common/gimbal/Ronin2SubscribeIMPL;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "codeOffset": 4477776,
+      "instructionSha256": "55e9e64e2be16daa7356c2b2bbdce8c6059ca5c23b42e4fb871aec1e69619a2a"
+    },
+    {
+      "className": "Ldji/common/gimbal/Ronin2SubscribeIMPL;",
+      "method": "put",
+      "descriptor": "(Ljava/lang/String; Ldji/midware/ronin2/Ronin2GimbalParamsManager$BaseCommand;)V",
+      "codeOffset": 4481444,
+      "instructionSha256": "bcac0f6c8d2bcecd7606694979caf0c39ea80978fa167a6f8b03ca046e6295a4"
+    },
+    {
+      "className": "Ldji/common/gimbal/Ronin2SubscribeIMPL;",
+      "method": "put",
+      "descriptor": "(Ljava/lang/String; I I)V",
+      "codeOffset": 4481816,
+      "instructionSha256": "baa750b7ac2a44a9b1093ccb1f6ca870f959116929b7d39ca810f263094b7ba2"
+    },
+    {
+      "className": "Ldji/common/gimbal/Ronin2SubscribeIMPL;",
+      "method": "lambda$new$0",
+      "descriptor": "()V",
+      "codeOffset": 4481244,
+      "instructionSha256": "44bba50403ec7c43e3d21a9c8398c522316982d975440ce7f2e1f24758748121"
+    },
+    {
+      "className": "Ldji/common/gimbal/Ronin2SubscribeIMPL;",
+      "method": "callGetValue",
+      "descriptor": "(Ljava/lang/String;)V",
+      "codeOffset": 4481528,
+      "instructionSha256": "82b3a54fae9b8d14c1282b11f08d4cccb61d88c56590bfb750ff4e2ecf92de8a"
+    },
+    {
+      "className": "Ldji/common/gimbal/Ronin2SubscribeIMPL;",
+      "method": "registerPushValue",
+      "descriptor": "(Ljava/lang/String;)V",
+      "codeOffset": 4481872,
+      "instructionSha256": "a1d49073c85efa99ce82f7b52213b9c2bd2a9cf043655b15365079c8aa71c5c4"
+    },
+    {
+      "className": "Ldji/common/gimbal/Ronin2SubscribeIMPL;",
+      "method": "unregisterPushValue",
+      "descriptor": "(Ljava/lang/String;)V",
+      "codeOffset": 4481968,
+      "instructionSha256": "810d9f3a3336b2c759220dbd2ae8e06680f21f9dfb3ae0057d4944740ce5db3b"
+    },
+    {
+      "className": "Ldji/common/gimbal/Ronin2SubscribeIMPL;",
+      "method": "destroy",
+      "descriptor": "()V",
+      "codeOffset": 4481696,
+      "instructionSha256": "1b98feda68bff8ad22412f4903d7d1845ba5465966418c494601de8b72e6ccd8"
+    },
+    {
+      "className": "Ldji/common/gimbal/Ronin2SubscribeIMPL$InnerHandler;",
+      "method": "handleMessage",
+      "descriptor": "(Landroid/os/Message;)V",
+      "codeOffset": 3019064,
+      "instructionSha256": "0384cdf087bc59fb3803f69779de06e12978036f70610eabe23c5127a584fbaf"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "codeOffset": 6505920,
+      "instructionSha256": "b5d50f0a0e13faf336c28adb9ba22c22c2b2b699e2c772543a1fc18f164d6514"
+    },
+    {
+      "className": "Ldji/midware/data/packages/P3/RecvPack;",
+      "method": "setBuffer",
+      "descriptor": "([B)V",
+      "codeOffset": 5031432,
+      "instructionSha256": "f3a4d52a3ef8cf1d939cb1b1e00d6b7f2fd8f65fe1a8b37f1916b2e340c342c2"
+    },
+    {
+      "className": "Ldji/midware/data/packages/P3/RecvPack;",
+      "method": "isNeedCcode",
+      "descriptor": "()V",
+      "codeOffset": 5031076,
+      "instructionSha256": "56ebd2bfd536331c7470349c7c7d1be7085b613231fa02ac8f815e32c574a83e"
+    },
+    {
+      "className": "Ldji/midware/data/packages/P3/SendPack;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 5031864,
+      "instructionSha256": "0f4b7e3cd180df4776166ce8cf055778ff0dc39eee3a00a8a14ba6fcff4a2996"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "setPushRecPack",
+      "descriptor": "(Ldji/midware/data/packages/P3/Pack;)V",
+      "codeOffset": 3352564,
+      "instructionSha256": "80f0bb9c5884940e7c2600d2e6f22c5287da3c37061590ec9049cce5b53d03ee"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "setPushRecData",
+      "descriptor": "([B)V",
+      "codeOffset": 3352480,
+      "instructionSha256": "23cb6a1baab1f2b12f4ae5da131785e6792d83970eb43826c9d8e1b6462faf23"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "setRecData",
+      "descriptor": "([B)V",
+      "codeOffset": 3352748,
+      "instructionSha256": "a6675a47286fe5b2725b26418463a503442cf7fbb89df865e1303c316ccc4b64"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "get",
+      "descriptor": "(I I Ljava/lang/Class; [I)Ljava/lang/Number;",
+      "codeOffset": 3350128,
+      "instructionSha256": "b18000d48ddc01efccdeacf01cb7ee48c15db0e93e62710fdd4bdccb5bcd0be7"
+    },
+    {
+      "className": "Ldji/midware/data/model/base/DJICameraDataBase;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "codeOffset": 5017356,
+      "instructionSha256": "20b19993098dcc58f25a499e08c6c24946fc39bc2fcc929f0911519d944f68f9"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushUserParams;",
+      "method": "getPresetID",
+      "descriptor": "([I)I",
+      "codeOffset": 5914140,
+      "instructionSha256": "31b8104cabdd07d9128d30a0743c25a33eac21df32e1440c4a713e590421cf7e"
+    }
+  ]
+}

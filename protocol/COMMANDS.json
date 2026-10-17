@@ -379,7 +379,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送",
+      "remaining": "当前App订阅打包、CENTER/id7端点、无ACK、1秒刷新和本地引用计数已静态核对；频道按命令空间区分，末组移除后停发不等于远端停止。尚未开放SDK订阅，本机路由、推送/租期与远端停止语义未验收",
       "officialAppAliases": [
         "SubscribeGimbalParams"
       ],
@@ -405,7 +405,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送",
+      "remaining": "当前App未加密请求型推送经RecvPack/DataBase到getPresetID的载荷偏移2/宽度1已静态核对；不同于04:10参数订阅响应。SDK尚未接入解码，不能提升为本机活动预设或照搬ACK偏移",
       "officialAppAliases": [
         "GetPushUserParams"
       ],
@@ -776,5 +776,6 @@
       "docs/APP_STANDALONE_TUNING.md"
     ]
   },
-  "profilesResearch": "protocol/research/ronin-profiles-evidence.json"
+  "profilesResearch": "protocol/research/ronin-profiles-evidence.json",
+  "subscriptionResearch": "protocol/research/ronin-subscription-evidence.json"
 }

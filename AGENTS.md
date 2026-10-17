@@ -540,3 +540,24 @@ and protocol/research/ronin-profiles-evidence.json. No added runtime SDK sending
 hardware/UI/vendor execution, or advanced features; both completeness gatesfalse.
 
 Profile research checks:58 tests in bothPython environments, pinned APK/two-bank26-method output reproduced exactly. Unified check Node126/Web14/Python103/native87+119+3/types/boundaries/build pass. Runtime/packages unchanged.
+
+
+## Subscription/push source audit (runtime stays0.7.11/native0.3.11)
+
+ronin_subscription_trace.py fixes34 methods from pinnedAPK/bank05. 04:12 source
+start selects CENTER5/id7 (SendPack packing E5), noACK; actual target routing
+unverified. Groups are commandByte/highestChannelIndex/LSB bitmap, not byte
+length. BaseCommand explicitmId differs from ordinal; USER_PROFILE ordinal12
+channel0 belongs10, pitchstiffness channel0 belongs32. Source manager refreshes
+nonempty map every1second, local reference counts; temporary get removes its
+reference after3000ms, NOT firmwareTTL. Local unsubscribe trims/removes groups,
+refresh skips empty map; no remote-stop/lease proof, no persistentSDK API.
+Request-type unencrypted04:24 source RecvPack→DataBase→getPresetID establishes
+payload offset2/width1; ACK may strip Ccode and cannot share that context.
+Supersedes earlier raw-offset-unknown ONLY for this source scope, not hardware.
+Do not equate it with table_choice/10, activate presets or flip verified flags.
+See tools/research/SUBSCRIPTIONS.md and protocol/research/ronin-subscription-evidence.json.
+Offline helper builds single group body only, neverDUML/transport; noSDK/UI
+imports, hardware, vendor execution or advanced features. Both gatesfalse.
+
+Subscription research:67 tests in bothPython environments, pinned34-method output reproduced exactly. Unified Node126/Web14/Python103/native87+119+3/types/boundaries/build passed. Earlier approval-review quota failure executed nothing; normal reviewed retry succeeded, no bypass. Runtime/install packages unchanged.

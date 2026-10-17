@@ -492,3 +492,15 @@ if manifest.get('tutorialResearch'):
     assert tutorial['sourceFinishAndStartSelectBits'] == [30,31]
     assert tutorial['sourceSend']['sendEnabledInSdk'] is False
     assert len(tutorial['methods']) == 28 and tutorial['externalCallers'] == []
+
+if manifest.get('keySupportResearch'):
+    keys=json.loads((root/manifest['keySupportResearch']).read_text())
+    assert keys['appCodeExecuted'] is False and keys['javaReflectionExecuted'] is False
+    assert keys['targetDeviceVerified'] is False and keys['wholeProtocolRecovered'] is False
+    assert keys['researchToolProvidesSdkInterface'] is False
+    assert len(keys['declaredFields']) == 223 and len(keys['methods']) == 12
+    assert sum(k['sourceSupport'] for k in keys['declaredFields']) == 200
+    assert sum(k['sourceSupport'] and not k['selectionUnambiguous'] for k in keys['declaredFields']) == 7
+    assert keys['sourceRules']['mostSpecificClassPriorityVerified'] is False
+    assert keys['abstractionGroupReferences'] == []
+    assert {a['action'] for a in keys['selectedActionAnnotations']} == {'Rotate','ResetGimbal'}

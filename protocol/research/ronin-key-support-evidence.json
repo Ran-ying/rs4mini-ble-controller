@@ -1,0 +1,6320 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "sdkSha256": "4fdbd74a05df63d72a0feb1c907d9395426ec3cdb5d6aeb45e3836d856d66654",
+  "appCodeExecuted": false,
+  "javaReflectionExecuted": false,
+  "targetDeviceVerified": false,
+  "wholeProtocolRecovered": false,
+  "researchToolProvidesSdkInterface": false,
+  "scope": "Declared public static annotated String fields in GimbalKeys only; not inherited catalog fields or complete BLE inventory",
+  "targetClass": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG724Abstraction;",
+  "targetClassChain": [
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG724Abstraction;",
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG702Abstraction;",
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninBaseAbstraction;",
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction;",
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalX3Abstraction;",
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAircraftAbstraction;",
+    "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+    "Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction;"
+  ],
+  "defaults": {
+    "accessType": null,
+    "includedAbstractions": [],
+    "excludedAbstractions": [],
+    "type": "Ljava/lang/Object;",
+    "types": []
+  },
+  "abstractionGroupReferences": [],
+  "declaredFields": [
+    {
+      "fieldName": "APPLY_MOTOR_CONTROL_PRESET",
+      "literalKeyName": "ApplyMotorControlPreset",
+      "entries": [
+        {
+          "accessType": 8,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninMXAbstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ldji/common/gimbal/MotorControlPreset;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": false,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [],
+      "registrationCandidateIndexes": [],
+      "selectionUnambiguous": false,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "ATTITUDE_IN_DEGREES",
+      "literalKeyName": "AttitudeInDegrees",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [],
+          "excludedAbstractions": [],
+          "type": "Ldji/common/gimbal/Attitude;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": 0,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "AUTO_TUNE_PERCENT",
+      "literalKeyName": "AutoTunePercent",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "AUTO_TUNE_PROGRESS",
+      "literalKeyName": "AutoTuneProgress",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "AUTO_TUNE_STATUS",
+      "literalKeyName": "AutoTuneStatus",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ldji/midware/data/model/P3/DataGimbalGetPushCalibrationStatus$CalibrationStatus;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "BALANCE_STATE",
+      "literalKeyName": "BalanceState",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalMobileHandheldAbstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Object;",
+          "types": [
+            "Ldji/common/gimbal/BalanceState;"
+          ]
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": false,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [],
+      "registrationCandidateIndexes": [],
+      "selectionUnambiguous": false,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "BALANCE_TEST_STATUS",
+      "literalKeyName": "BalanceTestStatus",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninMXAbstraction;",
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Boolean;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "BLUETOOTH_PASSWORD",
+      "literalKeyName": "bluetoothPwd",
+      "entries": [
+        {
+          "accessType": 3,
+          "includedAbstractions": [],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/String;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": 0,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "BLUETOOTH_SSID",
+      "literalKeyName": "bluetoothSSID",
+      "entries": [
+        {
+          "accessType": 3,
+          "includedAbstractions": [],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/String;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": 0,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "CALIBRATION_PROGRESS",
+      "literalKeyName": "CalibrationProgress",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/airlink/lb/Lightbridge2Phantom4PAbstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": false,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [],
+      "registrationCandidateIndexes": [],
+      "selectionUnambiguous": false,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "CAPABILITIES",
+      "literalKeyName": "Capabilities",
+      "entries": [
+        {
+          "accessType": 1,
+          "includedAbstractions": [],
+          "excludedAbstractions": [],
+          "type": "Ljava/util/Map;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": 0,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "CENTER_ACTIVATE_WRITE",
+      "literalKeyName": "centerActivateWrite",
+      "entries": [
+        {
+          "accessType": 2,
+          "includedAbstractions": [],
+          "excludedAbstractions": [],
+          "type": "Ldji/midware/data/model/P3/DataCenterActiveStatus$ActivateTime;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": 0,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "CHANNEL_1_MAP_STATE",
+      "literalKeyName": "Channel1MapState",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Object;",
+          "types": [
+            "Ldji/common/gimbal/GimbalMapState;"
+          ]
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "CHANNEL_1_VAL",
+      "literalKeyName": "Channel1Val",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Object;",
+          "types": [
+            "Ljava/lang/Integer;"
+          ]
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "CHANNEL_2_MAP_STATE",
+      "literalKeyName": "Channel2MapState",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Object;",
+          "types": [
+            "Ldji/common/gimbal/GimbalMapState;"
+          ]
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "CHANNEL_2_VAL",
+      "literalKeyName": "Channel2Val",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Object;",
+          "types": [
+            "Ljava/lang/Integer;"
+          ]
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "CHANNEL_3_MAP_STATE",
+      "literalKeyName": "Channel3MapState",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Object;",
+          "types": [
+            "Ldji/common/gimbal/GimbalMapState;"
+          ]
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "CHANNEL_3_VAL",
+      "literalKeyName": "Channel3Val",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Object;",
+          "types": [
+            "Ljava/lang/Integer;"
+          ]
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "CHANNEL_4_MAP_STATE",
+      "literalKeyName": "Channel4MapState",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Object;",
+          "types": [
+            "Ldji/common/gimbal/GimbalMapState;"
+          ]
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "CHANNEL_4_VAL",
+      "literalKeyName": "Channel4Val",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Object;",
+          "types": [
+            "Ljava/lang/Integer;"
+          ]
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "CHANNEL_5_MAP_STATE",
+      "literalKeyName": "Channel5MapState",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Object;",
+          "types": [
+            "Ldji/common/gimbal/GimbalMapState;"
+          ]
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "CHANNEL_5_VAL",
+      "literalKeyName": "Channel5Val",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Object;",
+          "types": [
+            "Ljava/lang/Integer;"
+          ]
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "CHANNEL_6_MAP_STATE",
+      "literalKeyName": "Channel6MapState",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Object;",
+          "types": [
+            "Ldji/common/gimbal/GimbalMapState;"
+          ]
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "CHANNEL_6_VAL",
+      "literalKeyName": "Channel6Val",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Object;",
+          "types": [
+            "Ljava/lang/Integer;"
+          ]
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "CHARGE_REMAINING_IN_PERCENT",
+      "literalKeyName": "ChargeRemainingInPercent",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": 0,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "CONFIGURE_CUSTOM_MOTOR_CONTROL",
+      "literalKeyName": "MotorCustomControl",
+      "entries": [
+        {
+          "accessType": 8,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninMXAbstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "[Ljava/lang/Number;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": false,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [],
+      "registrationCandidateIndexes": [],
+      "selectionUnambiguous": false,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "CONTROLLER_MAX_SPEED_PITCH",
+      "literalKeyName": "ControllerMaxSpeedPitch",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "CONTROLLER_MAX_SPEED_ROLL",
+      "literalKeyName": "ControllerMaxSpeedRoll",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "CONTROLLER_MAX_SPEED_YAW",
+      "literalKeyName": "ControllerMaxSpeedYaw",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "CONTROLLER_MODE",
+      "literalKeyName": "ControllerMode",
+      "entries": [
+        {
+          "accessType": 3,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction;",
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalMobileHandheldAbstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ldji/common/handheldcontroller/ControllerMode;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "CONTROL_PARAM_MODE",
+      "literalKeyName": "ControlParamMode",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "COUNTRY_CODE",
+      "literalKeyName": "CountryCode",
+      "entries": [
+        {
+          "accessType": 3,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIFocusDF101Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/String;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": false,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [],
+      "registrationCandidateIndexes": [],
+      "selectionUnambiguous": false,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "CUSTOM_FOLLOW_MODE_PITCH_ENABLED",
+      "literalKeyName": "CustomFollowModePitchEnabled",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Boolean;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": 0,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "CUSTOM_FOLLOW_MODE_ROLL_ENABLED",
+      "literalKeyName": "CustomFollowModeRollEnabled",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Boolean;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": 0,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "CUSTOM_FOLLOW_MODE_YAW_ENABLED",
+      "literalKeyName": "CustomFollowModeYawEnabled",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Boolean;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": 0,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "FINE_TUNE_PITCH_IN_DEGREES",
+      "literalKeyName": "FineTunePitchInDegrees",
+      "entries": [
+        {
+          "accessType": 8,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalSparkAbstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Float;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": false,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [],
+      "registrationCandidateIndexes": [],
+      "selectionUnambiguous": false,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "FINE_TUNE_ROLL_IN_DEGREES",
+      "literalKeyName": "FineTuneRollInDegrees",
+      "entries": [
+        {
+          "accessType": 8,
+          "includedAbstractions": [],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Float;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": 0,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "FOCUS_CALIBRATE_INFINITY",
+      "literalKeyName": "FocusCalibrateInfinitySet",
+      "entries": [
+        {
+          "accessType": 2,
+          "includedAbstractions": [],
+          "excludedAbstractions": [],
+          "type": "Ldji/midware/data/model/P3/DataGimbalFocusControl$CaliCommand;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": 0,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "FOCUS_CALI_STATUS",
+      "literalKeyName": "FocusCaliStatus",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG703Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": false,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [],
+      "registrationCandidateIndexes": [],
+      "selectionUnambiguous": false,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "FOCUS_CLEAR_APP_REGIST",
+      "literalKeyName": "FocusClearAppRegistSet",
+      "entries": [
+        {
+          "accessType": 2,
+          "includedAbstractions": [],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": 0,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "FOCUS_CLEAR_GUI_REGIST",
+      "literalKeyName": "FocusClearGuiRegistSet",
+      "entries": [
+        {
+          "accessType": 2,
+          "includedAbstractions": [],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": 0,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "FOCUS_CONNECTED",
+      "literalKeyName": "FocusConnected",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG702Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Boolean;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "FOCUS_LENS_INSTALL_DIS",
+      "literalKeyName": "focusLensInstallDis",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG703Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": false,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [],
+      "registrationCandidateIndexes": [],
+      "selectionUnambiguous": false,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "FOCUS_LIDAR_MAX_SUPPORT_NUM",
+      "literalKeyName": "FocusLidarMaxSupportNum",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG704Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": false,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [],
+      "registrationCandidateIndexes": [],
+      "selectionUnambiguous": false,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "FOCUS_LIDAR_REGISTRABLE",
+      "literalKeyName": "FocusLidarRegistrable",
+      "entries": [
+        {
+          "accessType": 2,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG704Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Boolean;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": false,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [],
+      "registrationCandidateIndexes": [],
+      "selectionUnambiguous": false,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "FOCUS_SPEED_CONTROL",
+      "literalKeyName": "FocusSpeedControl",
+      "entries": [
+        {
+          "accessType": 2,
+          "includedAbstractions": [],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": 0,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "FOLLOW_ACCE_MODE",
+      "literalKeyName": "FollowAcceMode",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "FOLLOW_DEAD_ZONE_MODE",
+      "literalKeyName": "FollowDeadZoneMode",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "FOLLOW_MODE_SENSITIVITY",
+      "literalKeyName": "FollowModeSensitivity",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG704Abstraction;",
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG724Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "FOLLOW_SPEED_MODE",
+      "literalKeyName": "FollowSpeedMode",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "FORBID_ROLL_360_SWITCH",
+      "literalKeyName": "ForbidRoll360Switch",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Boolean;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "FORBID_TRIGGER_SELFIE",
+      "literalKeyName": "ForbidTriggerSelfie",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Boolean;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "FORBID_VERTICAL_SHOOTING_SWITCH",
+      "literalKeyName": "ForbidVerticalShootingSwitch",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Boolean;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "FPV_SUBMODE",
+      "literalKeyName": "FpvSubMode",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": 0,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "GIMBAL_AUTO_MOVEMENT",
+      "literalKeyName": "GimbalAutoMovement",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Boolean;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "GIMBAL_AXIS_MODE",
+      "literalKeyName": "GimbalAxisMode",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ldji/common/gimbal/DJIGimbalRonin2AxisMode;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "GIMBAL_CONNECTED_TO_MONITOR",
+      "literalKeyName": "GimbalConnectedToMonitor",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Boolean;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": 0,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "GIMBAL_CONTROL_STATE",
+      "literalKeyName": "GimbalControlState",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Boolean;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": 0,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "GIMBAL_CREATE_MAX_SPEED_PITCH",
+      "literalKeyName": "GimbalCreateMaxSpeedPitch",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "GIMBAL_CREATE_MAX_SPEED_ROLL",
+      "literalKeyName": "GimbalCreateMaxSpeedRoll",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "GIMBAL_CREATE_MAX_SPEED_YAW",
+      "literalKeyName": "GimbalCreateMaxSpeedYaw",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "GIMBAL_CREATE_SMOOTH_PITCH",
+      "literalKeyName": "GimbalCreateSmoothPitch",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "GIMBAL_CREATE_SMOOTH_ROLL",
+      "literalKeyName": "GimbalCreateSmoothRoll",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "GIMBAL_CREATE_SMOOTH_YAW",
+      "literalKeyName": "GimbalCreateSmoothYaw",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "GIMBAL_FIRMWARE_VERSION",
+      "literalKeyName": "GimbalFirmwareVersion",
+      "entries": [
+        {
+          "accessType": 2,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG702Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/String;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "GIMBAL_FOLD_MODE",
+      "literalKeyName": "GimbalFoldMode",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Boolean;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "GIMBAL_GAMEPAD_MAX_SPEED_PITCH",
+      "literalKeyName": "GimbalGamepadMaxSpeedPitch",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "GIMBAL_GAMEPAD_MAX_SPEED_ROLL",
+      "literalKeyName": "GimbalGamepadMaxSpeedRoll",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "GIMBAL_GAMEPAD_MAX_SPEED_YAW",
+      "literalKeyName": "GimbalGamepadMaxSpeedYaw",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "GIMBAL_GAMEPAD_SMOOTH_PITCH",
+      "literalKeyName": "GimbalGamepadSmoothPitch",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "GIMBAL_GAMEPAD_SMOOTH_ROLL",
+      "literalKeyName": "GimbalGamepadSmoothRoll",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "GIMBAL_GAMEPAD_SMOOTH_YAW",
+      "literalKeyName": "GimbalGamepadSmoothYaw",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "GIMBAL_HOLD_TYPE",
+      "literalKeyName": "GimbalHoldType",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ldji/common/gimbal/DJIGimbalHoldType;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "GIMBAL_INPUT_SOURCE",
+      "literalKeyName": "GimbalInputSource",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "GIMBAL_MOTION_MAX_SPEED_PITCH",
+      "literalKeyName": "GimbalMotionMaxSpeedPitch",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "GIMBAL_MOTION_MAX_SPEED_ROLL",
+      "literalKeyName": "GimbalMotionMaxSpeedRoll",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "GIMBAL_MOTION_MAX_SPEED_YAW",
+      "literalKeyName": "GimbalMotionMaxSpeedYaw",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "GIMBAL_MOTION_SMOOTH_PITCH",
+      "literalKeyName": "GimbalMotionSmoothPitch",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "GIMBAL_MOTION_SMOOTH_ROLL",
+      "literalKeyName": "GimbalMotionSmoothRoll",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "GIMBAL_MOTION_SMOOTH_YAW",
+      "literalKeyName": "GimbalMotionSmoothYaw",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "GIMBAL_SERIAL_NUMBER",
+      "literalKeyName": "GimbalSerialNumber",
+      "entries": [
+        {
+          "accessType": 5,
+          "includedAbstractions": [],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/String;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": 0,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "GIMBAL_UPGRADE_BREAK_POINT_FIRMWARE",
+      "literalKeyName": "GimbalUpgradeBreakPointFirmWare",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "GIMBAL_UPGRADE_BREAK_POINT_MODULEID",
+      "literalKeyName": "GimbalUpgradeBreakPointModuleId",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "GIMBAL_UPGRADE_PROGRESS",
+      "literalKeyName": "GimbalUpgradeProgress",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "GIMBAL_UPGRADE_STATUS",
+      "literalKeyName": "GimbalUpgradeStatus",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ldji/midware/data/model/P3/DataCommonGetPushUpgradeStatus$DJIUpgradeStep;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "GIMBAL_WORK_MODE",
+      "literalKeyName": "GimbalWorkMode",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ldji/common/gimbal/DJIGimbalRonin2WorkMode;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "IS_ATTITUDE_RESET",
+      "literalKeyName": "IsAttitudeReset",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Boolean;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": 0,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "IS_AUTO_TUNE",
+      "literalKeyName": "IsAutoTune",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Boolean;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "IS_CALIBRATING",
+      "literalKeyName": "IsCalibrating",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Boolean;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": 0,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "IS_CALIBRATION_SUCCESSFUL",
+      "literalKeyName": "IsCalibrationSuccessful",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Boolean;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": 0,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "IS_CHANNEL_1_REV",
+      "literalKeyName": "IsChannel1Rev",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Object;",
+          "types": [
+            "Ljava/lang/Boolean;"
+          ]
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "IS_CHANNEL_2_REV",
+      "literalKeyName": "IsChannel2Rev",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Object;",
+          "types": [
+            "Ljava/lang/Boolean;"
+          ]
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "IS_CHANNEL_3_REV",
+      "literalKeyName": "IsChannel3Rev",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Object;",
+          "types": [
+            "Ljava/lang/Boolean;"
+          ]
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "IS_CHANNEL_4_REV",
+      "literalKeyName": "IsChannel4Rev",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Object;",
+          "types": [
+            "Ljava/lang/Boolean;"
+          ]
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "IS_CHANNEL_5_REV",
+      "literalKeyName": "IsChannel5Rev",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Object;",
+          "types": [
+            "Ljava/lang/Boolean;"
+          ]
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "IS_CHANNEL_6_REV",
+      "literalKeyName": "IsChannel6Rev",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Object;",
+          "types": [
+            "Ljava/lang/Boolean;"
+          ]
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "IS_GIMBAL_ON_TOP",
+      "literalKeyName": "IsGimbalOnTopPosition",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Boolean;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": 0,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "IS_HG711_CUSTOM_FOLLOW_MODE",
+      "literalKeyName": "IsCustomFollowMode",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Boolean;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": 0,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "IS_MOBILE_DEVICE_MOUNTED",
+      "literalKeyName": "isMobileDeviceMounted",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalMobileHandheldAbstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Object;",
+          "types": [
+            "Ljava/lang/Boolean;"
+          ]
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": false,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [],
+      "registrationCandidateIndexes": [],
+      "selectionUnambiguous": false,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "IS_MOTOR_OVER_LOADED",
+      "literalKeyName": "IsMotorOverloaded",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalMobileHandheldAbstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Object;",
+          "types": [
+            "Ljava/lang/Boolean;"
+          ]
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": false,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [],
+      "registrationCandidateIndexes": [],
+      "selectionUnambiguous": false,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "IS_PITCH_AT_STOP",
+      "literalKeyName": "IsPitchAtStop",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Boolean;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": 0,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "IS_ROLL_AT_STOP",
+      "literalKeyName": "IsRollAtStop",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Boolean;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": 0,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "IS_STUCK",
+      "literalKeyName": "IsStuck",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Boolean;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": 0,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "IS_TESTING_BALANCE",
+      "literalKeyName": "IsTestingBalance",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninMXAbstraction;",
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Boolean;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "IS_YAW_AT_STOP",
+      "literalKeyName": "IsYawAtStop",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Boolean;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": 0,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "LENS_ACTIVE_CONFIG_NUMBER",
+      "literalKeyName": "LensActiveConfigNumber",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG703Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": false,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [],
+      "registrationCandidateIndexes": [],
+      "selectionUnambiguous": false,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "LENS_ACTIVE_NUMBER",
+      "literalKeyName": "LensActiveNumberSet",
+      "entries": [
+        {
+          "accessType": 2,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG703Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": false,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [],
+      "registrationCandidateIndexes": [],
+      "selectionUnambiguous": false,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "LENS_CALIBRATION_CONFIG_APP",
+      "literalKeyName": "LensCalibrationConfigApp",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG703Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Object;",
+          "types": [
+            "Ldji/midware/data/model/P3/DataGimbalFocusControl$LensFromAppConfig;"
+          ]
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": false,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [],
+      "registrationCandidateIndexes": [],
+      "selectionUnambiguous": false,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "LENS_CALIBRATION_CONFIG_GUI",
+      "literalKeyName": "LensCalibrationConfigGui",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG703Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Object;",
+          "types": [
+            "Ldji/midware/data/model/P3/DataGimbalFocusControl$LensFromGuiConfig;"
+          ]
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": false,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [],
+      "registrationCandidateIndexes": [],
+      "selectionUnambiguous": false,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "LENS_CALIBRATION_CONFIG_SET",
+      "literalKeyName": "LensCalibrationConfigSet",
+      "entries": [
+        {
+          "accessType": 2,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG703Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ldji/midware/data/model/P3/DataGimbalFocusControl$LensCalibrationParam;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": false,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [],
+      "registrationCandidateIndexes": [],
+      "selectionUnambiguous": false,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "LENS_FLANGE_DISTANCE",
+      "literalKeyName": "LensFlangeDistanceSet",
+      "entries": [
+        {
+          "accessType": 2,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG703Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ldji/midware/data/model/P3/DataGimbalFocusControl$LensConfigFromGui;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": false,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [],
+      "registrationCandidateIndexes": [],
+      "selectionUnambiguous": false,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "MODE",
+      "literalKeyName": "Mode",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [],
+          "excludedAbstractions": [],
+          "type": "Ldji/common/gimbal/GimbalMode;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": 0,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "MOTOR_BLOCK_UP_TIME",
+      "literalKeyName": "MotorBlockUpTime",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "MOTOR_ENABLED",
+      "literalKeyName": "MotorEnabled",
+      "entries": [
+        {
+          "accessType": 3,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninMXAbstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Boolean;",
+          "types": []
+        },
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Boolean;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        1
+      ],
+      "registrationCandidateIndexes": [
+        1
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "MOVEMENT_SETTINGS_PROFILE",
+      "literalKeyName": "MovementSettingsProfile",
+      "entries": [
+        {
+          "accessType": 3,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction;",
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalMobileHandheldAbstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ldji/common/gimbal/MovementSettingsProfile;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "NEW_RONIN_CFG_UPGRADE_RECEIVED_SEQUENCE",
+      "literalKeyName": "NewRoninCFGUpgradeReceivedSequence",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG704Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": false,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [],
+      "registrationCandidateIndexes": [],
+      "selectionUnambiguous": false,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PERIPHERAL_ANGLE_PITCH",
+      "literalKeyName": "PeripheralAnglePitch",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PERIPHERAL_ANGLE_ROLL",
+      "literalKeyName": "PeripheralAngleRoll",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PERIPHERAL_ANGLE_YAW",
+      "literalKeyName": "PeripheralAngleYaw",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PERIPHERAL_GIMBAL_CONTROL_STATE",
+      "literalKeyName": "PeriphealGimbalControlState",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Boolean;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PERIPHERAL_GPS_EAST_ACCE_SPEED",
+      "literalKeyName": "PeripheralGpsEastAcceSpeed",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Float;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PERIPHERAL_GPS_EAST_SPEED",
+      "literalKeyName": "PeripheralGpsEastSpeed",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Float;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PERIPHERAL_GPS_LAT",
+      "literalKeyName": "PeripheralGpsLat",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Double;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PERIPHERAL_GPS_LNG",
+      "literalKeyName": "PeripheralGpsLng",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Double;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PERIPHERAL_GPS_NORTH_ACCE_SPEED",
+      "literalKeyName": "PeripheralGpsNorthAcceSpeed",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Float;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PERIPHERAL_GPS_NORTH_SPEED",
+      "literalKeyName": "PeripheralGpsNorthSpeed",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Float;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PERIPHERAL_GPS_NUM",
+      "literalKeyName": "PeripheralGpsNum",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PERIPHERAL_GYRO_ACCE_PITCH",
+      "literalKeyName": "PeripheralGyroAccePitch",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Float;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PERIPHERAL_GYRO_ACCE_ROLL",
+      "literalKeyName": "PeripheralGyroAcceRoll",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Float;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PERIPHERAL_GYRO_ACCE_YAW",
+      "literalKeyName": "PeripheralGyroAcceYaw",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Float;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PERIPHERAL_GYRO_BIAS_PITCH",
+      "literalKeyName": "PeripheralGyroBiasPitch",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Float;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PERIPHERAL_GYRO_BIAS_ROLL",
+      "literalKeyName": "PeripheralGyroBiasRoll",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Float;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PERIPHERAL_GYRO_BIAS_YAW",
+      "literalKeyName": "PeripheralGyroBiasYaw",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Float;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PERIPHERAL_GYRO_OUT_PITCH",
+      "literalKeyName": "PeripheralGyroOutPitch",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Float;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PERIPHERAL_GYRO_OUT_ROLL",
+      "literalKeyName": "PeripheralGyroOutRoll",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Float;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PERIPHERAL_GYRO_OUT_YAW",
+      "literalKeyName": "PeripheralGyroOutYaw",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Float;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PERIPHERAL_HAND_DEVICE_ANGLE",
+      "literalKeyName": "PeripheralHandDeviceAngle",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PERIPHERAL_POS_PITCH",
+      "literalKeyName": "PeripheralPosPitch",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Float;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PERIPHERAL_POS_PITCH_BIAS",
+      "literalKeyName": "PeripheralPosPitchBias",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Float;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PERIPHERAL_POS_ROLL",
+      "literalKeyName": "PeripheralPosRoll",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Float;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PERIPHERAL_POS_ROLL_BIAS",
+      "literalKeyName": "PeripheralPosRollBias",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Float;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PERIPHERAL_POS_YAW",
+      "literalKeyName": "PeripheralPosYaw",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Float;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PERIPHERAL_POS_YAW_BIAS",
+      "literalKeyName": "PeripheralPosYawBias",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Float;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PERIPHERAL_POWER_PITCH",
+      "literalKeyName": "PeripheralPowerPitch",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PERIPHERAL_POWER_ROLL",
+      "literalKeyName": "PeripheralPowerRoll",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PERIPHERAL_POWER_YAW",
+      "literalKeyName": "PeripheralPowerYaw",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PERIPHERAL_TARGET_POS_PITCH",
+      "literalKeyName": "PeripheralTargetPosPitch",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Float;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PERIPHERAL_TARGET_POS_ROLL",
+      "literalKeyName": "PeripheralTargetPosRoll",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Float;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PERIPHERAL_TARGET_POS_YAW",
+      "literalKeyName": "PeripheralTargetPosYaw",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Float;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PERIPHERAL_TEMP_PITCH",
+      "literalKeyName": "PeripheralTempPitch",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PERIPHERAL_TEMP_ROLL",
+      "literalKeyName": "PeripheralTempRoll",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PERIPHERAL_TEMP_YAW",
+      "literalKeyName": "PeripheralTempYaw",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PITCH_CONTROLLER_DEADBAND",
+      "literalKeyName": "PitchControllerDeadband",
+      "entries": [
+        {
+          "accessType": 3,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninMXAbstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        },
+        {
+          "accessType": 5,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        1
+      ],
+      "registrationCandidateIndexes": [
+        1
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PITCH_CONTROLLER_SMOOTHING_FACTOR",
+      "literalKeyName": "PitchControllerSmoothingFactor",
+      "entries": [
+        {
+          "accessType": 3,
+          "includedAbstractions": [],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        },
+        {
+          "accessType": 5,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": 0,
+      "getKeyCandidateIndexes": [
+        1
+      ],
+      "registrationCandidateIndexes": [
+        1
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PITCH_CONTROLLER_SPEED_COEFFICIENT",
+      "literalKeyName": "PitchControllerSpeedCoefficient",
+      "entries": [
+        {
+          "accessType": 3,
+          "includedAbstractions": [],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": 0,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PITCH_DOWN_ENDPOINT",
+      "literalKeyName": "PitchDownEndpoint",
+      "entries": [
+        {
+          "accessType": 3,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninMXAbstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": false,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [],
+      "registrationCandidateIndexes": [],
+      "selectionUnambiguous": false,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PITCH_FINE_TUNING",
+      "literalKeyName": "PitchFineTuning",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PITCH_INVERTED_CONTROL_ENABLED",
+      "literalKeyName": "PitchInvertedControlEnabled",
+      "entries": [
+        {
+          "accessType": 3,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction;",
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalMobileHandheldAbstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Object;",
+          "types": [
+            "Ljava/lang/Boolean;"
+          ]
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PITCH_MOTOR_CONTROL_GYRO_FILTERING_FACTOR",
+      "literalKeyName": "PitchMotorControlGyroFilteringFactor",
+      "entries": [
+        {
+          "accessType": 3,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninMXAbstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        },
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        1
+      ],
+      "registrationCandidateIndexes": [
+        1
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PITCH_MOTOR_CONTROL_PRE_CONTROL",
+      "literalKeyName": "PitchMotorControlPreControl",
+      "entries": [
+        {
+          "accessType": 3,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninMXAbstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        },
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        1
+      ],
+      "registrationCandidateIndexes": [
+        1
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PITCH_MOTOR_CONTROL_STIFFNESS",
+      "literalKeyName": "PitchMotorControlStiffness",
+      "entries": [
+        {
+          "accessType": 3,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninMXAbstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        },
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        1
+      ],
+      "registrationCandidateIndexes": [
+        1
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PITCH_MOTOR_CONTROL_STRENGTH",
+      "literalKeyName": "PitchMotorControlStrength",
+      "entries": [
+        {
+          "accessType": 3,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninMXAbstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        },
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        1
+      ],
+      "registrationCandidateIndexes": [
+        1
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PITCH_RANGE_EXTENSION_ENABLED",
+      "literalKeyName": "PitchRangeExtensionEnabled",
+      "entries": [
+        {
+          "accessType": 3,
+          "includedAbstractions": [],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Boolean;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": 0,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PITCH_SMOOTH_TRACK_ACCELERATION",
+      "literalKeyName": "PitchSmoothTrackAcceleration",
+      "entries": [
+        {
+          "accessType": 3,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction;",
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalMobileHandheldAbstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        },
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0,
+        1
+      ],
+      "registrationCandidateIndexes": [
+        0,
+        1
+      ],
+      "selectionUnambiguous": false,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PITCH_SMOOTH_TRACK_DEADBAND",
+      "literalKeyName": "PitchSmoothTrackDeadband",
+      "entries": [
+        {
+          "accessType": 3,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction;",
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalMobileHandheldAbstraction;",
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninMXAbstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        },
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0,
+        1
+      ],
+      "registrationCandidateIndexes": [
+        0,
+        1
+      ],
+      "selectionUnambiguous": false,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PITCH_SMOOTH_TRACK_ENABLED",
+      "literalKeyName": "PitchSmoothTrackEnabled",
+      "entries": [
+        {
+          "accessType": 3,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction;",
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalMobileHandheldAbstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Boolean;",
+          "types": []
+        },
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Boolean;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0,
+        1
+      ],
+      "registrationCandidateIndexes": [
+        0,
+        1
+      ],
+      "selectionUnambiguous": false,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PITCH_SMOOTH_TRACK_SPEED",
+      "literalKeyName": "PitchSmoothTrackSpeed",
+      "entries": [
+        {
+          "accessType": 3,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction;",
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalMobileHandheldAbstraction;",
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninMXAbstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        },
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0,
+        1
+      ],
+      "registrationCandidateIndexes": [
+        0,
+        1
+      ],
+      "selectionUnambiguous": false,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PITCH_TEST_RESULT",
+      "literalKeyName": "PitchTestResult",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninMXAbstraction;",
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ldji/common/gimbal/BalanceTestResult;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PITCH_UP_ENDPOINT",
+      "literalKeyName": "PitchUpEndpoint",
+      "entries": [
+        {
+          "accessType": 3,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninMXAbstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": false,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [],
+      "registrationCandidateIndexes": [],
+      "selectionUnambiguous": false,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PUSH_ENABLE_PITCH",
+      "literalKeyName": "PushEnablePitch",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Boolean;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PUSH_ENABLE_ROLL",
+      "literalKeyName": "PushEnableRoll",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Boolean;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "PUSH_ENABLE_YAW",
+      "literalKeyName": "PushEnableYaw",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Boolean;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "RC_DEAD_ZONE_MODE",
+      "literalKeyName": "RcDeadZoneMode",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "RC_SMOOTH_MODE",
+      "literalKeyName": "RcSmoothMode",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "RC_SPEED_MODE",
+      "literalKeyName": "RcSpeedMode",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "RESET_GIMBAL",
+      "literalKeyName": "ResetGimbal",
+      "entries": [
+        {
+          "accessType": 8,
+          "includedAbstractions": [],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Object;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": 0,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "RESTORE_FACTORY_SETTINGS",
+      "literalKeyName": "RestoreFactorySettings",
+      "entries": [
+        {
+          "accessType": 8,
+          "includedAbstractions": [],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Object;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": 0,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "ROLL_CONTROLLER_DEADBAND",
+      "literalKeyName": "RollControllerDeadband",
+      "entries": [
+        {
+          "accessType": 5,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "ROLL_CONTROLLER_SMOOTHING_FACTOR",
+      "literalKeyName": "RollControllerSmoothingFactor",
+      "entries": [
+        {
+          "accessType": 5,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "ROLL_FINE_TUNE_IN_DEGREES",
+      "literalKeyName": "RollFineTuneInDegrees",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Float;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": 0,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "ROLL_MOTOR_CONTROL_GYRO_FILTERING_FACTOR",
+      "literalKeyName": "RollMotorControlGyroFilteringFactor",
+      "entries": [
+        {
+          "accessType": 3,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninMXAbstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        },
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        1
+      ],
+      "registrationCandidateIndexes": [
+        1
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "ROLL_MOTOR_CONTROL_PRE_CONTROL",
+      "literalKeyName": "RollMotorControlPreControl",
+      "entries": [
+        {
+          "accessType": 3,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninMXAbstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        },
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        1
+      ],
+      "registrationCandidateIndexes": [
+        1
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "ROLL_MOTOR_CONTROL_STIFFNESS",
+      "literalKeyName": "RollMotorControlStiffness",
+      "entries": [
+        {
+          "accessType": 3,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninMXAbstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        },
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        1
+      ],
+      "registrationCandidateIndexes": [
+        1
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "ROLL_MOTOR_CONTROL_STRENGTH",
+      "literalKeyName": "RollMotorControlStrength",
+      "entries": [
+        {
+          "accessType": 3,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninMXAbstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        },
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        1
+      ],
+      "registrationCandidateIndexes": [
+        1
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "ROLL_SMOOTH_TRACK_ACCELERATION",
+      "literalKeyName": "RollSmoothTrackAcceleration",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "ROLL_SMOOTH_TRACK_DEADBAND",
+      "literalKeyName": "RollSmoothTrackDeadband",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "ROLL_SMOOTH_TRACK_ENABLED",
+      "literalKeyName": "RollSmoothTrackEnabled",
+      "entries": [
+        {
+          "accessType": 3,
+          "includedAbstractions": [],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Boolean;",
+          "types": []
+        },
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Boolean;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": 0,
+      "getKeyCandidateIndexes": [
+        1
+      ],
+      "registrationCandidateIndexes": [
+        1
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "ROLL_SMOOTH_TRACK_SPEED",
+      "literalKeyName": "RollSmoothTrackSpeed",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "ROLL_TEST_RESULT",
+      "literalKeyName": "RollTestResult",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninMXAbstraction;",
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ldji/common/gimbal/BalanceTestResult;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "RONIN2_GIMBAL_CAPABILITIES",
+      "literalKeyName": "Ronin2Capabilities",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/util/Map;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "RONIN2_MAX_ANGLE_PITCH",
+      "literalKeyName": "Ronin2MaxAnglePitch",
+      "entries": [
+        {
+          "accessType": 5,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "RONIN2_MAX_ANGLE_ROLL",
+      "literalKeyName": "Ronin2MaxAngleRoll",
+      "entries": [
+        {
+          "accessType": 5,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "RONIN2_MAX_ANGLE_YAW",
+      "literalKeyName": "Ronin2MaxAngleYaw",
+      "entries": [
+        {
+          "accessType": 5,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "RONIN2_MIN_ANGLE_PITCH",
+      "literalKeyName": "Ronin2MinAnglePitch",
+      "entries": [
+        {
+          "accessType": 5,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "RONIN2_MIN_ANGLE_ROLL",
+      "literalKeyName": "Ronin2MinAngleRoll",
+      "entries": [
+        {
+          "accessType": 5,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "RONIN2_MIN_ANGLE_YAW",
+      "literalKeyName": "Ronin2MinAngleYaw",
+      "entries": [
+        {
+          "accessType": 5,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "ROTATE",
+      "literalKeyName": "Rotate",
+      "entries": [
+        {
+          "accessType": 8,
+          "includedAbstractions": [],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Object;",
+          "types": [
+            "Ldji/common/gimbal/Rotation;"
+          ]
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": 0,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "SILENT_MODE",
+      "literalKeyName": "SilentMode",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Boolean;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "START_AUTO_TUNE",
+      "literalKeyName": "StartAutoTune",
+      "entries": [
+        {
+          "accessType": 8,
+          "includedAbstractions": [],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Object;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": 0,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "START_BALANCE_TEST",
+      "literalKeyName": "StartBalanceTest",
+      "entries": [
+        {
+          "accessType": 8,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninMXAbstraction;",
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Object;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "START_CALIBRATION",
+      "literalKeyName": "StartCalibration",
+      "entries": [
+        {
+          "accessType": 8,
+          "includedAbstractions": [],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Object;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": 0,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "TOF_STATUS",
+      "literalKeyName": "tof_status",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": 0,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "TOGGLE_SELFIE",
+      "literalKeyName": "ToggleSelfie",
+      "entries": [
+        {
+          "accessType": 8,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Object;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "TRACKING_ORIENTATION_VERTICAL",
+      "literalKeyName": "TrackingOrientationVertical",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Boolean;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "TRACKING_SPEED",
+      "literalKeyName": "TrackingSpeed",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "USER_PROFILE",
+      "literalKeyName": "UserProfile",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "YAW_ANGLE_WITH_AIRCRAFT_IN_DEGREE",
+      "literalKeyName": "YawAngleWithAircraftInDegree",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Float;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": 0,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "YAW_CONTROLLER_DEADBAND",
+      "literalKeyName": "YawControllerDeadband",
+      "entries": [
+        {
+          "accessType": 3,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninMXAbstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        },
+        {
+          "accessType": 5,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        1
+      ],
+      "registrationCandidateIndexes": [
+        1
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "YAW_CONTROLLER_SMOOTHING_FACTOR",
+      "literalKeyName": "YawControllerSmoothingFactor",
+      "entries": [
+        {
+          "accessType": 3,
+          "includedAbstractions": [],
+          "excludedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalFoldingDroneAbstraction;",
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalSparkAbstraction;"
+          ],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        },
+        {
+          "accessType": 5,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": 0,
+      "getKeyCandidateIndexes": [
+        1
+      ],
+      "registrationCandidateIndexes": [
+        1
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "YAW_CONTROLLER_SPEED_COEFFICIENT",
+      "literalKeyName": "YawControllerSpeedCoefficient",
+      "entries": [
+        {
+          "accessType": 3,
+          "includedAbstractions": [],
+          "excludedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalFoldingDroneAbstraction;",
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalSparkAbstraction;"
+          ],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": 0,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "YAW_FINE_TUNING",
+      "literalKeyName": "YawFineTuning",
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "YAW_INVERTED_CONTROL_ENABLED",
+      "literalKeyName": "YawInvertedControlEnabled",
+      "entries": [
+        {
+          "accessType": 3,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction;",
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalMobileHandheldAbstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Object;",
+          "types": [
+            "Ljava/lang/Boolean;"
+          ]
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "YAW_LEFT_ENDPOINT",
+      "literalKeyName": "YawLeftEndpoint",
+      "entries": [
+        {
+          "accessType": 3,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninMXAbstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": false,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [],
+      "registrationCandidateIndexes": [],
+      "selectionUnambiguous": false,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "YAW_MOTOR_CONTROL_GYRO_FILTERING_FACTOR",
+      "literalKeyName": "YawMotorControlGyroFilteringFactor",
+      "entries": [
+        {
+          "accessType": 3,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninMXAbstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        },
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        1
+      ],
+      "registrationCandidateIndexes": [
+        1
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "YAW_MOTOR_CONTROL_PRE_CONTROL",
+      "literalKeyName": "YawMotorControlPreControl",
+      "entries": [
+        {
+          "accessType": 3,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninMXAbstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        },
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        1
+      ],
+      "registrationCandidateIndexes": [
+        1
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "YAW_MOTOR_CONTROL_STIFFNESS",
+      "literalKeyName": "YawMotorControlStiffness",
+      "entries": [
+        {
+          "accessType": 3,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninMXAbstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        },
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        1
+      ],
+      "registrationCandidateIndexes": [
+        1
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "YAW_MOTOR_CONTROL_STRENGTH",
+      "literalKeyName": "YawMotorControlStrength",
+      "entries": [
+        {
+          "accessType": 3,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninMXAbstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        },
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        1
+      ],
+      "registrationCandidateIndexes": [
+        1
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "YAW_RIGHT_ENDPOINT",
+      "literalKeyName": "YawRightEndpoint",
+      "entries": [
+        {
+          "accessType": 3,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninMXAbstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": false,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [],
+      "registrationCandidateIndexes": [],
+      "selectionUnambiguous": false,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "YAW_SMOOTH_TRACK_ACCELERATION",
+      "literalKeyName": "YawSmoothTrackAcceleration",
+      "entries": [
+        {
+          "accessType": 3,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction;",
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalMobileHandheldAbstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        },
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0,
+        1
+      ],
+      "registrationCandidateIndexes": [
+        0,
+        1
+      ],
+      "selectionUnambiguous": false,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "YAW_SMOOTH_TRACK_DEADBAND",
+      "literalKeyName": "YawSmoothTrackDeadband",
+      "entries": [
+        {
+          "accessType": 3,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction;",
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalMobileHandheldAbstraction;",
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninMXAbstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        },
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0,
+        1
+      ],
+      "registrationCandidateIndexes": [
+        0,
+        1
+      ],
+      "selectionUnambiguous": false,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "YAW_SMOOTH_TRACK_ENABLED",
+      "literalKeyName": "YawSmoothTrackEnabled",
+      "entries": [
+        {
+          "accessType": 3,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalMobileHandheldAbstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ldji/common/gimbal/MovementSettingsProfile;",
+          "types": []
+        },
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Boolean;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        1
+      ],
+      "registrationCandidateIndexes": [
+        1
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "YAW_SMOOTH_TRACK_SPEED",
+      "literalKeyName": "YawSmoothTrackSpeed",
+      "entries": [
+        {
+          "accessType": 3,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction;",
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalMobileHandheldAbstraction;",
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninMXAbstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        },
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Integer;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0,
+        1
+      ],
+      "registrationCandidateIndexes": [
+        0,
+        1
+      ],
+      "selectionUnambiguous": false,
+      "duplicateIncludedClasses": []
+    },
+    {
+      "fieldName": "YAW_TEST_RESULT",
+      "literalKeyName": "YawTestResult",
+      "entries": [
+        {
+          "accessType": 4,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninMXAbstraction;",
+            "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ldji/common/gimbal/BalanceTestResult;",
+          "types": []
+        }
+      ],
+      "invalidAnnotationReason": null,
+      "sourceSupport": true,
+      "exactTargetExcluded": false,
+      "defaultEntryIndex": null,
+      "getKeyCandidateIndexes": [
+        0
+      ],
+      "registrationCandidateIndexes": [
+        0
+      ],
+      "selectionUnambiguous": true,
+      "duplicateIncludedClasses": []
+    }
+  ],
+  "selectedActionAnnotations": [
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "resetGimbal",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "action": "ResetGimbal"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "rotate",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback; Ldji/common/gimbal/Rotation;)V",
+      "action": "Rotate"
+    }
+  ],
+  "methods": [
+    {
+      "className": "Ldji/sdksharedlib/keycatalog/DJISDKCacheKeys$KeyInfo;",
+      "method": "<init>",
+      "descriptor": "(Ljava/lang/String; Ldji/sdksharedlib/keycatalog/extension/ComplexKey; Ldji/sdksharedlib/keycatalog/extension/Key;)V",
+      "codeOffset": 3955920,
+      "instructionSha256": "032b56e785c5f1791af53042d85d18eda140c5fbeaa22f738fa6a26375f71aaf"
+    },
+    {
+      "className": "Ldji/sdksharedlib/keycatalog/DJISDKCacheKeys$KeyInfo;",
+      "method": "support",
+      "descriptor": "(Ljava/lang/Class;)Z",
+      "codeOffset": 3956408,
+      "instructionSha256": "2e3402733524fc6dc7a9ac6a54368e395e21291d05766a03c26332faebabf8ef"
+    },
+    {
+      "className": "Ldji/sdksharedlib/keycatalog/DJISDKCacheKeys$KeyInfo;",
+      "method": "getKey",
+      "descriptor": "(Ljava/lang/Class;)Ldji/sdksharedlib/keycatalog/extension/Key;",
+      "codeOffset": 3956300,
+      "instructionSha256": "80fdcdfdd88db215cd7d5d3e72fbbaa84c839a39d0ef45aa67cb6ed48ad20404"
+    },
+    {
+      "className": "Ldji/sdksharedlib/keycatalog/extension/Utils;",
+      "method": "parseAllClass",
+      "descriptor": "([Ljava/lang/Class;)[Ljava/lang/Class;",
+      "codeOffset": 3956976,
+      "instructionSha256": "c86e9905e3594767a30ecd2f13e01325f48a0938a22df088a3279bf8d35a5538"
+    },
+    {
+      "className": "Ldji/sdksharedlib/keycatalog/extension/Utils;",
+      "method": "parseAllKey",
+      "descriptor": "(Ldji/sdksharedlib/keycatalog/extension/ComplexKey; Ldji/sdksharedlib/keycatalog/extension/Key;)[Ldji/sdksharedlib/keycatalog/extension/Key;",
+      "codeOffset": 3957176,
+      "instructionSha256": "f8b6b24bdb77474da6b8dffabf442ca283a988b7cabeafa65889ac689eaf4a67"
+    },
+    {
+      "className": "Ldji/sdksharedlib/keycatalog/DJISDKCacheKeys;",
+      "method": "getKeyInfoMap",
+      "descriptor": "(Ljava/lang/Class;)Ljava/util/Map;",
+      "codeOffset": 3956556,
+      "instructionSha256": "b205c72826bf10be736774df30d2fceef9f307b4febf009dec133a675621ebf1"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction;",
+      "method": "addCharacteristics",
+      "descriptor": "(Ljava/lang/Class; Ljava/lang/Class;)V",
+      "codeOffset": 3928064,
+      "instructionSha256": "c9b3db61559df06dd86ed6301e8281e2259082b3190c1342236dcd5ae470a3ff"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction;",
+      "method": "createMethodMap",
+      "descriptor": "()V",
+      "codeOffset": 3928832,
+      "instructionSha256": "c753af9a9f76675fa0efcec2e32a843330b36480148db4be603b420afe8715a1"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction;",
+      "method": "getMethodsFromSuperClass",
+      "descriptor": "(Ljava/lang/Class;)Ljava/util/List;",
+      "codeOffset": 3927352,
+      "instructionSha256": "c9afe7b54e793b32ff8acf9ed22b462ebc6ac2cbbb747b4ce48ad203b78f26cd"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "initializeComponentCharacteristics",
+      "descriptor": "()V",
+      "codeOffset": 5247320,
+      "instructionSha256": "4ae4cc23131fefa6c077903ea374e5c3e8f85c42d4a4db5c60ec428ed9115817"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "resetGimbal",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 5248312,
+      "instructionSha256": "d1ac41a9ea3547c0754484c33b932cb963ddef8ea4bdf98c4ab4599d5209622a"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "rotate",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback; Ldji/common/gimbal/Rotation;)V",
+      "codeOffset": 5248528,
+      "instructionSha256": "5416211661f4c1434aa1f6790b05bb912736d8c02b88626074d8e59667a37bc4"
+    }
+  ],
+  "sourceRules": {
+    "exclusionUsesExactSetContains": true,
+    "inclusionUsesAssignableFrom": true,
+    "duplicateIncludedClassKeepsFirst": true,
+    "lastDefaultKeyWins": true,
+    "getKeyUsesHashMapIteration": true,
+    "mostSpecificClassPriorityVerified": false
+  },
+  "remaining": [
+    "Declared key predicate is not full runtime registration or target firmware support.",
+    "getFields includes inherited public fields; this report scopes only declared GimbalKeys fields.",
+    "Method-map order, inherited annotations, virtual invocation and duplicate key literals still need complete audit.",
+    "No packet layout or physical effect is established solely by key support."
+  ]
+}

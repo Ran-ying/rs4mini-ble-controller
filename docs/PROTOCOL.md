@@ -267,3 +267,6 @@ HG724 跟随灵敏度 setter、参数管理器读取 gimbal_param_infos 的路�
 
 
 [教程命令源审计](../tools/research/TUTORIAL.md)记录未知步骤回退与32位移位边界；未定位HG724业务入口，不新增教程发送或以教程标志判定运动完成。
+
+
+[HG724支持键规则研究](../tools/research/KEY_SUPPORT.md)区分声明支持谓词、缓存动作注册与原生BLE命令；保留多匹配歧义，不据键数量声明协议完整或新增发送。

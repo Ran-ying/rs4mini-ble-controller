@@ -332,5 +332,16 @@ if manifest.get('factoryResetSdk',{}).get('implemented'):
     assert list(ast.literal_eval(re.search(r'payload=bytes\((\(.*?\))\)',py).group(1)))==expected
     native=(root/'macos/RSControlCore.m').read_text().split('NSData *RSAppFactoryResetFrame(',1)[1]
     assert json.loads('['+re.search(r'uint8_t payload\[\]=\{(.*?)\}',native).group(1)+']')==expected
+if manifest.get('saveCallerResearch'):
+    save=json.loads((root/manifest['saveCallerResearch']).read_text())
+    assert save['apkSha256']==controls['apkSha256'] and save['scannedBanks']==[0,2,3,4,5,6] and save['unrestoredBanks']==[1,7]
+    for key in ['appCodeExecuted','targetDeviceVerified','wholeProtocolRecovered','wholeAppRecovered','allScannedBodiesRecovered','indirectReflectionResolved','targetModelCallPathEstablished']:assert save[key] is False
+    expected={b['segment']:b['derivedSha256'] for b in banks['banks'] if b.get('restored')}
+    tree=ast.parse((root/'tools/research/ronin_save_trace.py').read_text())
+    pins=ast.literal_eval(next(n.value for n in tree.body if isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and t.id=='BANKS' for t in n.targets)))
+    assert pins=={b['segment']:b['derivedSha256'] for b in save['banks']}==expected
+    assert save['externalDirectCallers']==[] and len(save['methods'])==4
+    assert all(b['methodCount']>=b['methodWithCodeCount']>0 and b['instructionCount']>0 for b in save['banks'])
+    assert not any(r['kind']=='external-direct-invoke' for m in save['methods'] for r in m['references'])
 print('Layer boundaries passed: device modules do not depend on motion; upper layers do not encode/write packets.')
 print('Protocol inventory: %d entries; inventoryComplete=false; further advanced development is gated.' % len(manifest['commands']))

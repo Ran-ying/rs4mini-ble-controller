@@ -167,3 +167,5 @@ python3 -m http.server 8000 --bind 127.0.0.1
 手柄单字段请求见 [APP_HANDLE_WRITE.md](docs/APP_HANDLE_WRITE.md)，实际设备/FF语义尚未验收。
 
 0.7.16新增[HG724恢复设置请求](docs/APP_FACTORY_RESET.md)，仅源分支与ACK封装，恢复范围和本机实际效果未验收。
+
+新增[保存命令六段引用审计](tools/research/SAVE_CALLERS.md)，扩大检索范围，仍缺HG724业务调用证据，未新增保存接口。

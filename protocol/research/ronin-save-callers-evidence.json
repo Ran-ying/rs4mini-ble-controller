@@ -1,0 +1,171 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "appCodeExecuted": false,
+  "targetDeviceVerified": false,
+  "wholeProtocolRecovered": false,
+  "wholeAppRecovered": false,
+  "allScannedBodiesRecovered": false,
+  "indirectReflectionResolved": false,
+  "targetModelCallPathEstablished": false,
+  "scannedBanks": [
+    0,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "unrestoredBanks": [
+    1,
+    7
+  ],
+  "scope": "instruction references in six pinned restored banks; not whole-App or firmware support proof",
+  "banks": [
+    {
+      "segment": 0,
+      "derivedSha256": "76002e76e02e1306ad197c4af127975d573999de174e5a9e44cc6f840196f621",
+      "classCount": 7119,
+      "methodCount": 53828,
+      "methodWithCodeCount": 50517,
+      "instructionCount": 682926,
+      "stringTableMatches": []
+    },
+    {
+      "segment": 2,
+      "derivedSha256": "de69497b77de530d0d559646dc6d3fb24569e2ba8ba9502216f3d6c9fd6f3bf8",
+      "classCount": 2110,
+      "methodCount": 15931,
+      "methodWithCodeCount": 15446,
+      "instructionCount": 249001,
+      "stringTableMatches": []
+    },
+    {
+      "segment": 3,
+      "derivedSha256": "bb50b39865520f55e97116ae1903bda3545b01c2fb7e2aba67a979dc264a9854",
+      "classCount": 6683,
+      "methodCount": 38674,
+      "methodWithCodeCount": 36349,
+      "instructionCount": 559947,
+      "stringTableMatches": []
+    },
+    {
+      "segment": 4,
+      "derivedSha256": "2d3ff70fb84eb02ac75949ca6e7d5cc849a7f9ef55029fd168890c6dbccb1d12",
+      "classCount": 6696,
+      "methodCount": 56720,
+      "methodWithCodeCount": 53246,
+      "instructionCount": 587995,
+      "stringTableMatches": []
+    },
+    {
+      "segment": 5,
+      "derivedSha256": "4fdbd74a05df63d72a0feb1c907d9395426ec3cdb5d6aeb45e3836d856d66654",
+      "classCount": 8571,
+      "methodCount": 55055,
+      "methodWithCodeCount": 53173,
+      "instructionCount": 677878,
+      "stringTableMatches": [
+        "DataGimbalSaveUserParams.java",
+        "Ldji/midware/data/model/P3/DataGimbalSaveUserParams;",
+        "SaveUserParams"
+      ]
+    },
+    {
+      "segment": 6,
+      "derivedSha256": "057f13084cf969ffadcfa2150d1b3ae3ed8a7822c95fb54158781764c9156e2f",
+      "classCount": 7647,
+      "methodCount": 48024,
+      "methodWithCodeCount": 45737,
+      "instructionCount": 705675,
+      "stringTableMatches": []
+    }
+  ],
+  "externalDirectCallers": [],
+  "methods": [
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+      "method": "$values",
+      "descriptor": "()[Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+      "codeOffset": 4651820,
+      "instructionSha256": "baab9b742889abcd0c7f9e1e30f763657f24807e61a65807c17bd891cb7fc98d",
+      "references": [
+        {
+          "kind": "command-enum-reference",
+          "instructionByteOffset": 40
+        }
+      ]
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 4652020,
+      "instructionSha256": "89d7e5d4c317f54eb541d186eff2e608a50e62f9387974ef9c74a54543aa6609",
+      "references": [
+        {
+          "kind": "string-literal-not-proven-reflection",
+          "instructionByteOffset": 276
+        },
+        {
+          "kind": "command-enum-reference",
+          "instructionByteOffset": 292
+        }
+      ]
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSaveUserParams;",
+      "method": "getInstance",
+      "descriptor": "()Ldji/midware/data/model/P3/DataGimbalSaveUserParams;",
+      "codeOffset": 4882108,
+      "instructionSha256": "18bc934a490780e90c9d0fc008144f9d67a4ae24292033aac37d907c7e235e64",
+      "references": [
+        {
+          "kind": "class-literal",
+          "instructionByteOffset": 0
+        },
+        {
+          "kind": "other-reference",
+          "instructionByteOffset": 6
+        },
+        {
+          "kind": "allocation",
+          "instructionByteOffset": 14
+        },
+        {
+          "kind": "internal-invoke",
+          "instructionByteOffset": 18
+        },
+        {
+          "kind": "other-reference",
+          "instructionByteOffset": 24
+        },
+        {
+          "kind": "other-reference",
+          "instructionByteOffset": 28
+        }
+      ]
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSaveUserParams;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4882208,
+      "instructionSha256": "4bdc21c5c11b5c113b6c183ded3397e5b0e6c5992f43966cb5b9d96c16858568",
+      "references": [
+        {
+          "kind": "command-enum-reference",
+          "instructionByteOffset": 106
+        },
+        {
+          "kind": "internal-invoke",
+          "instructionByteOffset": 122
+        }
+      ]
+    }
+  ]
+}

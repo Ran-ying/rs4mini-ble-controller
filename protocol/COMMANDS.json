@@ -370,7 +370,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "源保存类请求体为空、需要ACK；在固定bank05和bank03未找到直接调用者，不能据此宣称HG724保存接口或持久化支持，未开放发送",
+      "remaining": "源保存类为空体并需ACK；扩大到全部六段已恢复视图仍仅4个内部/枚举引用方法、无外部直接调用者。未恢复1/7、剩余保护桩、反射/动态或固件路径未排除，不证明本机不支持；缺HG724业务调用与持久化证据，未开放SDK。",
       "officialAppAliases": [
         "SaveUserParams"
       ],
@@ -882,5 +882,6 @@
       "macos/RSControlCore.m",
       "docs/APP_FACTORY_RESET.md"
     ]
-  }
+  },
+  "saveCallerResearch": "protocol/research/ronin-save-callers-evidence.json"
 }

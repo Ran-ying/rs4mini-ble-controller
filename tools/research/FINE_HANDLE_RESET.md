@@ -65,3 +65,10 @@ PYTHONPATH=work/research/analysis-libs work/python312/bin/python tools/research/
 
 
 0.7.16新增四端显式HG724源分支恢复设置请求，见[APP_FACTORY_RESET.md](../../docs/APP_FACTORY_RESET.md)。此前未封装重置的记载为历史，实际恢复范围/持久化/本机效果仍未知，保存接口尚未开放。68方法审计包括13回调。
+
+
+## 保存命令六段引用扫描（运行时仍0.7.16/原生0.3.16）
+
+新增ronin_save_trace.py固定APK与六段恢复视图哈希，扫描banks0/2/3/4/5/6的指令引用，区分外部直接invoke、内部invoke、分配、class常量、命令枚举和字符串。逐段计数之和268232方法、254468个带code的方法、3463422条指令（不声明全局去重或全部原始方法已恢复）。只发现bank05的4个方法：命令枚举$values/<clinit>以及保存类getInstance/start；没有外部直接调用者，其他五段无保存相关指令/字符串表线索。
+
+带code的方法不等于原始方法全部恢复，可能含剩余保护桩；1/7段未恢复，反射/动态/本机固件路径未排除。不能据扫描缺失宣称不支持保存，也不能据命令类/空体/ACK开放HG724保存接口。没有新增SDK发送或高级功能、厂商执行/硬件操作。见tools/research/SAVE_CALLERS.md与protocol/research/ronin-save-callers-evidence.json，全命令门槛仍false。

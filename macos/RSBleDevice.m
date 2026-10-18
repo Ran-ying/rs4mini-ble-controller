@@ -161,7 +161,9 @@ static BOOL Matches(NSString *name) {
             ([message[@"flags"] intValue] & 0x80) && [message[@"commandSet"] intValue] == 4 && [message[@"commandId"] intValue] == self.appCommandId &&
             [message[@"sequence"] unsignedShortValue] == self.deviceQuerySequence) {
             NSError *appError = nil;
-            NSDictionary *result = self.appCommandId == 0x6e ? RSDecodeAppCalibrationReply(message, &appError) : RSDecodeAppReply(message, self.appCommandId, self.appParameters, &appError);
+            NSDictionary *result = nil;
+            if(self.appCommandId==0x6b && ([message[@"flags"] intValue]&7)) appError=RSAppError(@"RS4MINI_PROTOCOL_ERROR",@"Unencrypted App response required",nil);
+            else result = self.appCommandId == 0x6e ? RSDecodeAppCalibrationReply(message, &appError) : RSDecodeAppReply(message, self.appCommandId, self.appParameters, &appError);
             if (appError) [self failApp:appError];
             else if (self.appSettingsPatch && self.appCommandId == 0x10) {
                 NSDictionary *before = RSDecodeAppSettings(result, self.appSettingsKind);
@@ -411,6 +413,7 @@ static BOOL Matches(NSString *name) {
         case 0x35: return RSAppHandleWriteFrame(sequence,context,mode);
         case 0x36: return context || mode ? nil : RSAppHandleQueryFrame(sequence);
         case 0x6e: return RSAppCalibrationQueryFrame(sequence);
+        case 0x6b: return context ? nil : RSAppProgramStatusRequestFrame(sequence,mode);
         case 0x31: return RSAppMotorWriteFrame(sequence,context,mode);
         case 0x32: return RSAppMotorReadFrame(sequence,context);
         default: return nil;
@@ -579,6 +582,17 @@ static BOOL Matches(NSString *name) {
         NSMutableDictionary *result=[reply mutableCopy];
         [result addEntriesFromDictionary:@{@"axis":row[@"axis"],@"parameter":row[@"parameter"],@"requestedValue":row[@"value"]}];
         if (completion) completion([result copy],nil);
+    }];
+}
+
+- (void)sendProgramStatusRequest:(NSDictionary *)spec timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
+    NSDictionary *selection=RSAppProgramStatusSelection(spec);
+    if(!selection){if(completion)dispatch_async(dispatch_get_main_queue(), ^{completion(nil,RSAppError(@"RS4MINI_INVALID_ARGUMENT",@"program must be track, timelapse or panorama",nil));});return;}
+    [self startAppCommand:0x6b parameters:nil mode:selection[@"requestedProgramCommandId"] settingsKind:nil settingsPatch:nil timeoutMs:timeoutMs completion:^(NSDictionary *reply,NSError *error){
+        if(error){if(completion)completion(nil,error);return;}
+        NSMutableDictionary *result=[reply mutableCopy];[result addEntriesFromDictionary:selection];
+        [result addEntriesFromDictionary:@{@"requestType":@"RequestSinglePush",@"freshStatusVerified":@NO,@"programCorrelationVerified":@NO,@"modelLayoutVerified":@NO}];
+        if(completion)completion([result copy],nil);
     }];
 }
 - (void)queryCalibrationStatusWithTimeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {

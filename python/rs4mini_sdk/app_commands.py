@@ -1,3 +1,4 @@
+from .app_program_request import program_status_request_spec,program_status_request_reply
 from .app_program_status import program_status_notification
 from .app_source_status import source_status_notification
 from .app_handheld_stick import handheld_stick_notification
@@ -93,6 +94,14 @@ class AppCommands:
 
     def _require_profile(self):
         app_profile(self._profile)
+
+    async def sendProgramStatusRequest(self, *, program, timeoutMs=3000):
+        self._require_profile()
+        spec=program_status_request_spec(program)
+        response=await self.owner.experimental._query_payload_command('App single program status request',(4,0x6b),spec['payload'],timeoutMs)
+        return program_status_request_reply(response,spec['requestedProgram'])
+
+    send_program_status_request = sendProgramStatusRequest
 
     async def sendFineTuneRequest(self, *, axis, adjustmentDegrees, timeoutMs=3000):
         self._require_profile()

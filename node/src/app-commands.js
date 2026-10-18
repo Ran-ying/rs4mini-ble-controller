@@ -1,3 +1,4 @@
+import {programStatusRequestSpec,programStatusRequestReply} from './app-program-request.js';
 import {programStatusNotification} from './app-program-status.js';
 import {sourceStatusNotification} from './app-source-status.js';
 import {handheldStickNotification} from './app-handheld-stick.js';
@@ -51,6 +52,12 @@ export class AppCommands {
     this._profile = profile; this._reset();
   }
   _requireProfile() { appProfile(this._profile); }
+  async sendProgramStatusRequest(options={}) {
+    optionsOnly(options,['program','timeoutMs']);this._requireProfile();
+    const spec=programStatusRequestSpec(options.program);
+    const response=await this.owner.experimental._queryPayloadCommand('App single program status request',[4,0x6b],spec.payload,options.timeoutMs??3000);
+    return programStatusRequestReply(response,spec.requestedProgram);
+  }
   async sendFineTuneRequest(options={}) {
     optionsOnly(options,['axis','adjustmentDegrees','timeoutMs']);this._requireProfile();
     const spec=fineTuneSpec(options),timeoutMs=options.timeoutMs??3000;

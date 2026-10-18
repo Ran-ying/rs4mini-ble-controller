@@ -229,3 +229,14 @@ function programStatusTypes(gimbal: RS4Mini) {
   // @ts-expect-error cache is read-only
   gimbal.appCommands.programStatus=null;
 }
+
+async function programStatusRequestTypes(gimbal: import('../src/index.js').RS4Mini) {
+ const reply=await gimbal.appCommands.sendProgramStatusRequest({program:'track',timeoutMs:1000});
+ const name:'track'|'timelapse'|'panorama'=reply.requestedProgram;const fresh:false=reply.freshStatusVerified;void name;void fresh;
+ await gimbal.appCommands.sendProgramStatusRequest({program:'timelapse'});
+ await gimbal.appCommands.sendProgramStatusRequest({program:'panorama'});
+ // @ts-expect-error only named programs, no wire ID
+ await gimbal.appCommands.sendProgramStatusRequest({program:98});
+ // @ts-expect-error no continuous subscription selector
+ await gimbal.appCommands.sendProgramStatusRequest({program:'track',requestType:0});
+}

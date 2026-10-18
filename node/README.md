@@ -1,4 +1,4 @@
-# RS4 Mini Node.js SDK 0.7.22
+# RS4 Mini Node.js SDK 0.7.23
 
 通过 Noble 直接连接 DJI RS 4 Mini，支持三轴速度、约 1 Hz 的姿态与关节反馈，以及低速关节位置闭环。完整参数、错误码和并发规则见 [API.md](API.md)。
 
@@ -155,3 +155,6 @@ gimbal.onError = error => console.error(error);
 
 
 0.7.22新增[程序状态被动候选](../docs/APP_PROGRAM_STATUS.md)：显式App来源下38/64/6B独立帧快照，未知/重复记录保留，无查询/订阅/自动ACK，不等于物理完成；完整命令仍未验收。
+
+
+0.7.23新增[单次程序状态请求](../docs/APP_PROGRAM_REQUEST.md)：显式App来源、固定type2与三个命名程序，仅关联ACK、业务体不透明；不承诺新通知，不增加连续订阅或动作执行，本机未验收。

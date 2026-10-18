@@ -223,3 +223,18 @@ test('Web program candidates use request bodies without Buffer or automatic subs
  incoming(107,[0,98,4,1,2,3,4]);assert.equal(gimbal.appCommands.programStatus,null);gimbal.appCommands.useProfile('ronin-2.2.2');incoming(107,[1,254,0,55,4,252,254,255,128]);assert.equal(gimbal.appCommands.programStatus.records[1].sourceValues.status,4);incoming(56,[252,254,255,128]);assert.equal(gimbal.appCommands.programStatus.sourceValues.status,0);assert.equal(device.tx.writes.length,0);assert.equal(gimbal.latestTelemetry,null);await gimbal.disconnect();assert.equal(gimbal.appCommands.programStatus,null);
  execFileSync(process.execPath,['--input-type=module','-e',`globalThis.Buffer=undefined;const {programStatusNotification}=await import(${JSON.stringify(new URL('../../node/src/app-program-status.js',import.meta.url).href)});const r=programStatusNotification({sender:4,receiver:2,commandSet:4,commandId:107,flags:0,payload:new Uint8Array([0,98,4,255,1,2,3])});if(r.records[0].sourceValues.status!==255)throw Error('Buffer-free program decode failed');`]);
 });
+
+
+test('Web explicit single program request awaits ACK independently of passive status',async t=>{
+ const {gimbal,device,window}=setup();t.after(()=>gimbal.close());await gimbal.connect();gimbal.appCommands.useProfile('ronin-2.2.2');
+ const request=gimbal.appCommands.sendProgramStatusRequest({program:'track'});
+ await until(()=>device.frames().some(f=>f.commandId===107));const outgoing=device.frames().find(f=>f.commandId===107);
+ assert.equal(outgoing.payload.toString('hex'),'00020162');assert.equal(outgoing.flags,64);
+ const incoming=(body,flags)=>{const data=frame(outgoing.sequence,4,107,new Uint8Array(body),flags);data[4]=4;data[5]=2;new DataView(data.buffer,data.byteOffset,data.byteLength).setUint16(data.length-2,crc16(data.subarray(0,-2)),true);device.rx.notify(data);};
+ incoming([0,98,4,1,2,3,4],0);const before=gimbal.appCommands.programStatus;
+ assert.equal(gimbal.experimental.pending.size,1);window.dispatchEvent(new Event('blur'));assert.equal(gimbal.experimental.pending.size,1);
+ incoming([0,254],128);const reply=await request;assert.equal(reply.bodyHex,'fe');assert.equal(reply.requestedProgram,'track');assert.equal(reply.freshStatusVerified,false);assert.deepEqual(gimbal.appCommands.programStatus,before);
+ assert.equal(device.frames().filter(f=>f.commandId===107).length,1);
+ const pending=gimbal.appCommands.sendProgramStatusRequest({program:'panorama'});const rejected=assert.rejects(pending,{code:'RS4MINI_DISCONNECTED'});await until(()=>device.frames().filter(f=>f.commandId===107).length===2);await gimbal.disconnect();await rejected;
+ execFileSync(process.execPath,['--input-type=module','-e',`globalThis.Buffer=undefined;const {programStatusRequestSpec}=await import(${JSON.stringify(new URL('../../node/src/app-program-request.js',import.meta.url).href)});if(programStatusRequestSpec('panorama').payload.join(',')!=='0,2,1,99')throw Error('Buffer-free request failed');`]);
+});

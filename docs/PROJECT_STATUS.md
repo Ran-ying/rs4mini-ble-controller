@@ -1,12 +1,16 @@
 # 项目状态与接手入口
 
-更新日期：2026-10-18。当前源码检查点为 Node/Python/Web **0.7.22**、macOS 原生面板 **0.3.22**。
+更新日期：2026-10-18。当前源码检查点为 Node/Python/Web **0.7.23**、macOS 原生面板 **0.3.23**。
 
 **当前 App 参数事务已进入四端设备 SDK；全部非相机 BLE 能力整体目标尚未完成。**
 用户已要求将源码与相关信息提交至 GitHub。本记录随源码版本保存，提交和远端状态以 Git 历史为准；
 这不是 npm 发布或 GitHub 二进制 Release。
 
-## 当前进度：0.7.22 程序状态被动候选
+## 当前进度：0.7.23 显式单次程序状态请求
+
+四端提供固定type2、三个命名程序的6B请求与关联ACK，ACK业务体不透明，不承诺新通知、不读旧缓存兜底；连续订阅及程序执行仍未开放。见 [APP_PROGRAM_REQUEST.md](APP_PROGRAM_REQUEST.md)。未操作硬件，完整命令和高级门槛仍false。
+
+## 历史进度：0.7.22 程序状态被动候选
 
 显式App来源下被动解析38/64/6B，独立快照、完整验长、未知/重复记录保留，不自动查询、订阅、ACK或触发程序。见 [APP_PROGRAM_STATUS.md](APP_PROGRAM_STATUS.md)。型号布局、实际通知和物理完成未验收，完整命令门槛仍false。
 
@@ -475,3 +479,10 @@ Rotate/ResetGimbal两条基础Action注解及12框架/动作方法指纹已核�
 统一离线Node197/Web17/Python3.8与3.12各175、原生155核心+176假设备+3独立SDK、研究262及类型/边界/构建通过。五组JSON契约向量跨Node/Python/原生一致，新增源掩码差异、unsigned计数、未知/重复/尾字节、源失败不透明体、坏TLV/负长度拒绝、快照/观察者隔离、来源/断线清空、无ACK/订阅写入和不完成查询、Web无Buffer验证。没有实机或实时UI。
 
 实际安装tarball后197项及TypeScript消费者通过；wheel隔离安装后175项通过，device/controller/app_commands/app_program_status导入路径已核对。Node包82文件、wheel31运行时模块逐字节匹配源码；原生ZIP内容与签名构建逐字节匹配，0.3.22/build25，未启动应用。3.12构建环境缺setuptools时改用已有3.8/setuptools75.3.4离线构建wheel，未下载依赖。所有型号/设备/物理/程序关联标志false，全命令与高级新增门槛仍false。
+
+
+## 0.7.23单次程序状态请求验证（2026-10-18）
+
+统一离线Node205/Web18/Python3.8各183、原生159核心+192假设备+3独立SDK、研究262及类型/边界/构建通过，进程终态0。Python3.12完整183项另行通过。覆盖三个固定请求体、错误profile/原始编号/订阅选项拒绝、关联ACK与通知隔离、输入快照、NACK/空ACK/加密ACK、超时/迟到/断线/取消及排队超时不迟发；原生独占/中位前导和Web blur有限查询差异保留。
+
+实际安装Node tarball后205项及TypeScript消费者通过；wheel隔离安装后183项通过，device/controller/app_commands/app_program_request导入路径核对。所有通知新鲜度、型号布局、本机接受、程序关联及物理完成标志false。无硬件、实时UI、厂商代码执行或高级功能新增，全部命令门槛仍false。

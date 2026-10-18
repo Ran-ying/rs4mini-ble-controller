@@ -100,3 +100,6 @@ NSDictionary *RSDecodeAppHandheldStickNotification(NSDictionary *message);
 NSDictionary *RSDecodeAppSourceStatusNotification(NSDictionary *message);
 
 NSDictionary *RSDecodeAppProgramStatusNotification(NSDictionary *message);
+
+NSDictionary *RSAppProgramStatusSelection(NSDictionary *spec);
+NSData *RSAppProgramStatusRequestFrame(uint16_t sequence, NSNumber *programCommand);

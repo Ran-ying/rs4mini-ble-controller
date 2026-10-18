@@ -1,4 +1,9 @@
 # 0.7.22
+
+## 0.7.23
+
+- 四端显式App来源sendProgramStatusRequest：固定RequestSinglePush/type2，track/timelapse/panorama；只等待关联ACK，保留不透明业务体，不承诺新状态。
+- 通知缓存与请求独立；超时/取消/断线不重放。无连续订阅或原生程序执行；型号、物理效果与全协议仍未验收。
 - 显式ronin-2.2.2来源新增38/64/6B程序状态被动候选，appCommands.programStatus及program事件。
 - 独立帧快照、未知/重复记录和掩码差异保留，拒绝截断/源负长度，无订阅/查询/自动ACK，不计物理完成。
 - Python/Web同步，原生0.3.22 build25；全命令与实机验收仍未完成。

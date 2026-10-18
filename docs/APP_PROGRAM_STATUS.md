@@ -56,3 +56,5 @@ Node/Python的getter和观察者收到各自复制快照；原生顶层、record
 
 Node/Python/原生共用5组独立JSON测试向量，Web通过相同JS核心及无Buffer测试验证。
 硬件、真实UI及实际自动ACK需求未验收，完整命令和高级新增门槛保持false。
+
+0.7.23另增[显式单次请求](APP_PROGRAM_REQUEST.md)，本被动接口的通知/缓存语义与无自动发送行为不变。

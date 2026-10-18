@@ -492,6 +492,34 @@ int main(void) {
             [peripheral.writes setLength:0];if(i==0)[gimbal sendUserProfileRequest:@{@"sourceProfileValue":@2} timeoutMs:1000 completion:appDone];else [gimbal sendWorkModeRequest:@{@"sourceMode":@"Center"} timeoutMs:1000 completion:appDone];ThreeTicks(gimbal);[gimbal stop];ThreeTicks(gimbal);PumpCallbacks();[decoder reset];frames=[decoder push:peripheral.writes];NSUInteger writes=0;for(NSDictionary *f in frames)if([f[@"commandId"] intValue]==15)writes++;
             Require(appCallbacks==65+i && writes==1 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_OPERATION_CANCELLED"],@"profile/work cancellation never replays or rolls back");
         }
+        __block NSUInteger programCallbacks=0;__block NSDictionary *programReply=nil;__block NSError *programError=nil;
+        RSAppCompletion programDone=^(NSDictionary *reply,NSError *error){programCallbacks++;programReply=reply;programError=error;};
+        [peripheral.writes setLength:0];[gimbal sendProgramStatusRequest:@{@"program":@"track",@"requestType":@0} timeoutMs:1000 completion:programDone];PumpCallbacks();
+        Require(programCallbacks==1 && peripheral.writes.length==0 && [programError.userInfo[@"code"] isEqualToString:@"RS4MINI_INVALID_ARGUMENT"],@"single request rejects subscription options before neutral preamble");
+        for(NSString *programName in @[@"track",@"timelapse",@"panorama"]) {
+            [peripheral.writes setLength:0];NSMutableString *mutableProgram=[programName mutableCopy];NSUInteger beforeCallbacks=programCallbacks;
+            [gimbal sendProgramStatusRequest:@{@"program":mutableProgram} timeoutMs:1000 completion:programDone];[mutableProgram setString:@"invalid"];ThreeTicks(gimbal);[decoder reset];frames=[decoder push:peripheral.writes];
+            NSNumber *tag=@{@"track":@98,@"timelapse":@55,@"panorama":@99}[programName];const uint8_t body[]={0,2,1,tag.unsignedCharValue};
+            Require(gimbal.busy && [frames.lastObject[@"commandId"] intValue]==107 && [frames.lastObject[@"payload"] isEqualToData:[NSData dataWithBytes:body length:4]],@"named single request snapshots name and sends fixed type2 after neutral preamble");
+            appSequence=[[gimbal valueForKey:@"deviceQuerySequence"] unsignedShortValue];notify.value=AppNotification(appSequence,107,[NSData dataWithBytes:(uint8_t[]){0,98,4,1,2,3,4} length:7]);[gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil];PumpCallbacks();NSDictionary *beforeProgram=gimbal.appProgramStatus;
+            Require(gimbal.busy && programCallbacks==beforeCallbacks && beforeProgram,@"notification with same sequence does not complete single request");
+            notify.value=AppResponse(appSequence,107,[NSData dataWithBytes:(uint8_t[]){0,254} length:2],4);[gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil];PumpCallbacks();
+            Require(programCallbacks==beforeCallbacks+1 && !gimbal.busy && !programError && [programReply[@"requestedProgram"] isEqualToString:programName] && [programReply[@"bodyHex"] isEqualToString:@"fe"] && ![programReply[@"freshStatusVerified"] boolValue] && ![programReply[@"programCorrelationVerified"] boolValue] && [gimbal.appProgramStatus isEqual:beforeProgram],@"ACK body remains opaque and neither refreshes cache nor proves completion");
+        }
+        for(NSUInteger kind=0;kind<3;kind++) {
+            [peripheral.writes setLength:0];NSUInteger beforeCallbacks=programCallbacks;
+            [gimbal sendProgramStatusRequest:@{@"program":@"track"} timeoutMs:1000 completion:programDone];ThreeTicks(gimbal);appSequence=[[gimbal valueForKey:@"deviceQuerySequence"] unsignedShortValue];
+            NSMutableData *bad=[AppResponse(appSequence,107,kind==0?[NSData dataWithBytes:(uint8_t[]){7} length:1]:kind==1?[NSData data]:ok,4) mutableCopy];
+            if(kind==2){uint8_t *b=bad.mutableBytes;b[8]=129;uint16_t crc=0x3692;for(NSUInteger i=0;i<bad.length-2;i++){crc^=b[i];for(int bit=0;bit<8;bit++)crc=crc&1?(crc>>1)^0x8408:crc>>1;}b[bad.length-2]=crc&255;b[bad.length-1]=crc>>8;}
+            notify.value=bad;[gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil];ThreeTicks(gimbal);PumpCallbacks();[decoder reset];frames=[decoder push:peripheral.writes];NSUInteger count=0;for(NSDictionary *f in frames)if([f[@"commandId"] intValue]==107)count++;
+            Require(programCallbacks==beforeCallbacks+1 && count==1 && [programError.userInfo[@"code"] isEqualToString:kind==0?@"RS4MINI_DEVICE_ERROR":@"RS4MINI_PROTOCOL_ERROR"],@"bad ACK never uses passive cache or retries request");
+        }
+        [peripheral.writes setLength:0];NSUInteger beforeTimeout=programCallbacks;[gimbal sendProgramStatusRequest:@{@"program":@"timelapse"} timeoutMs:1000 completion:programDone];ThreeTicks(gimbal);appSequence=[[gimbal valueForKey:@"deviceQuerySequence"] unsignedShortValue];[gimbal setValue:@(NSProcessInfo.processInfo.systemUptime-1) forKey:@"deviceQueryDeadline"];[gimbal tick];ThreeTicks(gimbal);PumpCallbacks();
+        Require(programCallbacks==beforeTimeout+1 && !gimbal.busy && [programError.userInfo[@"code"] isEqualToString:@"RS4MINI_RESPONSE_TIMEOUT"],@"single request timeout releases native ownership");
+        notify.value=AppResponse(appSequence,107,ok,4);[gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil];PumpCallbacks();[decoder reset];frames=[decoder push:peripheral.writes];NSUInteger timeoutWrites=0;for(NSDictionary *f in frames)if([f[@"commandId"] intValue]==107)timeoutWrites++;
+        Require(programCallbacks==beforeTimeout+1 && timeoutWrites==1,@"late single ACK ignored without replay or new completion");
+        [peripheral.writes setLength:0];NSUInteger beforeCancel=programCallbacks;[gimbal sendProgramStatusRequest:@{@"program":@"track"} timeoutMs:1000 completion:programDone];ThreeTicks(gimbal);[gimbal stop];ThreeTicks(gimbal);PumpCallbacks();[decoder reset];frames=[decoder push:peripheral.writes];NSUInteger programWrites=0;for(NSDictionary *f in frames)if([f[@"commandId"] intValue]==107)programWrites++;
+        Require(programCallbacks==beforeCancel+1 && programWrites==1 && [programError.userInfo[@"code"] isEqualToString:@"RS4MINI_OPERATION_CANCELLED"],@"native stop cancels pending single request without program stop or replay");
         [peripheral.writes setLength:0];
         notify.value=AppNotification(5,107,[NSData dataWithBytes:(uint8_t[]){0,98,4,1,2,3,4} length:7]);[gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil];
         Require(gimbal.appProgramStatus && [gimbal useAppProfile:@"ronin-2.2.2"] && !gimbal.appProgramStatus && peripheral.writes.length==0,@"explicit source reselection clears program cache without sending");

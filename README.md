@@ -1,6 +1,6 @@
 # rs4mini-ble-controller
 
-通过电脑 BLE 直接控制 DJI RS 4 Mini 的非官方项目。Node.js **0.7.22** 为主实现；Python/Web **0.7.22**、macOS 原生面板 **0.3.22** 提供三轴速度、姿态/机械关节反馈、低速定位、轨迹与路点、保存位置返回和显式自动重连。相机控制和视觉跟踪不属于当前范围。
+通过电脑 BLE 直接控制 DJI RS 4 Mini 的非官方项目。Node.js **0.7.23** 为主实现；Python/Web **0.7.23**、macOS 原生面板 **0.3.23** 提供三轴速度、姿态/机械关节反馈、低速定位、轨迹与路点、保存位置返回和显式自动重连。相机控制和视觉跟踪不属于当前范围。
 
 **当前状态：底层 SDK 已增加当前 App 参数事务、调参请求与状态封装；全部非相机 BLE 能力仍未完成。**
 完成项、验证证据与后续接手入口统一保存在 [项目状态](docs/PROJECT_STATUS.md)。
@@ -79,7 +79,7 @@ RS4MINI_POSITION_AXIS=tilt RS4MINI_POSITION_DELTA=3 npm run example:position
 
 ## 各端状态
 
-| 功能 | Node 0.7.22 | Python 0.7.22 | Web 0.7.22 | macOS 面板 0.3.22 |
+| 功能 | Node 0.7.23 | Python 0.7.23 | Web 0.7.23 | macOS 面板 0.3.23 |
 |---|---|---|---|---|
 | 三轴速度 / 停止 / 三轴回中 | 有 | 有 | 有 | 有 |
 | 反馈解析与 CRC 重组 | 有 | 有 | 共享 Node 核心 | 有 |
@@ -222,3 +222,6 @@ python3 -m http.server 8000 --bind 127.0.0.1
 
 
 0.7.22新增[程序状态被动候选](docs/APP_PROGRAM_STATUS.md)：显式App来源下38/64/6B独立帧快照，未知/重复记录保留，无查询/订阅/自动ACK，不等于物理完成；完整命令仍未验收。
+
+
+0.7.23新增[单次程序状态请求](docs/APP_PROGRAM_REQUEST.md)：显式App来源、固定type2与三个命名程序，仅关联ACK、业务体不透明；不承诺新通知，不增加连续订阅或动作执行，本机未验收。

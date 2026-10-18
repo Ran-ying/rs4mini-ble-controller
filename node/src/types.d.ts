@@ -248,6 +248,11 @@ export interface AppBatteryStatus {
   kind:'battery';profile:'ronin-2.2.2';timestamp:number;rawCapacityValue:number;sourceGetter:'getCapacityPercentage';bodyHex:string;
   deviceVerified:false;modelLayoutVerified:false;physicalCompletionVerified:false;
 }
+export type AppProgramName='track'|'timelapse'|'panorama';
+export interface AppProgramStatusRequestReply extends AppCommandReply {
+  requestedProgram:AppProgramName;requestedProgramCommandId:98|55|99;requestType:'RequestSinglePush';
+  freshStatusVerified:false;programCorrelationVerified:false;modelLayoutVerified:false;
+}
 export interface AppProgramRecord {
   rawTag:number;sourceSignedTag:number;length:number;payloadHex:string;sourceValues:Record<string,number>|null;
 }
@@ -284,6 +289,7 @@ export type StandaloneParameter='speed'|'smoothing';
 export type AppSourceAxisMode='ThreeAxis'|'TwoAxis'|'Roll360'|'ThreeDRoll360';
 export type AppSourceWorkMode='Free'|'Flower'|'Fpv'|'Center';
 export interface AppCommands {
+  sendProgramStatusRequest(options:{program:AppProgramName;timeoutMs?:number}):Promise<AppProgramStatusRequestReply>;
   getUserProfile(options?:{timeoutMs?:number}):Promise<AppParameterReply & {parameter:'userProfile';rawValue:number;withinSourceRange:boolean;sourceUiName:'M1'|'M2'|'M3'|null;modelLayoutVerified:false;activePresetVerified:false}>;
   getWorkMode(options?:{timeoutMs?:number}):Promise<AppParameterReply & {parameter:'workMode';rawValue:number;withinSourceRange:boolean;sourceMode:AppSourceWorkMode|null;modelLayoutVerified:false;activePresetVerified:false}>;
   sendUserProfileRequest(options:{sourceProfileValue:0|1|2|3|4|5;timeoutMs?:number}):Promise<AppCommandReply & {parameter:'userProfile';requestedSourceProfileValue:number;requestedRawValue:number;activePresetVerified:false;persistenceVerified:false}>;

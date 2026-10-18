@@ -8,9 +8,9 @@ verification status changes.
 ## Objective and user decisions
 
 - Provide an unofficial, direct BLE controller for **DJI RS 4 Mini**, initially on macOS.
-- **Node.js is the authoritative implementation**; current package version is `0.7.22`.
+- **Node.js is the authoritative implementation**; current package version is `0.7.23`.
 - The user subsequently requested completion of all existing ports. Python is now
-  `0.7.22`, Web shares the JS core, and the native panel is `0.3.22`. Describe the
+  `0.7.23`, Web shares the JS core, and the native panel is `0.3.23`. Describe the
   documented feature differences; do not claim identical APIs or hardware proof.
 - After that delivery, the user requested the remaining **non-camera** capabilities
   under the same autonomous/offline conditions. Expansion work is in progress;
@@ -910,3 +910,15 @@ Rotate/ResetGimbal两条基础Action注解及12框架/动作方法指纹已核�
 统一离线Node197/Web17/Python3.8与3.12各175、原生155核心+176假设备+3独立SDK、研究262及类型/边界/构建通过。五组JSON契约向量跨Node/Python/原生一致，新增源掩码差异、unsigned计数、未知/重复/尾字节、源失败不透明体、坏TLV/负长度拒绝、快照/观察者隔离、来源/断线清空、无ACK/订阅写入和不完成查询、Web无Buffer验证。没有实机或实时UI。
 
 实际安装tarball后197项及TypeScript消费者通过；wheel隔离安装后175项通过，device/controller/app_commands/app_program_status导入路径已核对。Node包82文件、wheel31运行时模块逐字节匹配源码；原生ZIP内容与签名构建逐字节匹配，0.3.22/build25，未启动应用。3.12构建环境缺setuptools时改用已有3.8/setuptools75.3.4离线构建wheel，未下载依赖。所有型号/设备/物理/程序关联标志false，全命令与高级新增门槛仍false。
+
+
+## 0.7.23单次程序状态请求 / 原生0.3.23 build26
+
+四端sendProgramStatusRequest仅显式App来源、固定RequestSinglePush/type2、track62/timelapse37/panorama63，6B关联未加密ACK；业务bodyHex不透明，不承诺新通知、不用旧缓存成功兜底、ACK不更新被动缓存。App通用源的唯一限定发送例外；未取得HG724专属路径或实机证据，不扩大到连续订阅/取消订阅或程序执行。Node/Python有限查询不占运动槽，stop/Web blur不取消该查询；Python任务取消、超时、断线清pending不重放。原生沿用独占事务及中位前导/清理，stop取消不等同固件程序停止。无相机/高级新增、硬件/liveUI/厂商执行，全部命令门槛false。见docs/APP_PROGRAM_REQUEST.md。
+
+
+## 0.7.23单次程序状态请求验证（2026-10-18）
+
+统一离线Node205/Web18/Python3.8各183、原生159核心+192假设备+3独立SDK、研究262及类型/边界/构建通过，进程终态0。Python3.12完整183项另行通过。覆盖三个固定请求体、错误profile/原始编号/订阅选项拒绝、关联ACK与通知隔离、输入快照、NACK/空ACK/加密ACK、超时/迟到/断线/取消及排队超时不迟发；原生独占/中位前导和Web blur有限查询差异保留。
+
+实际安装Node tarball后205项及TypeScript消费者通过；wheel隔离安装后183项通过，device/controller/app_commands/app_program_request导入路径核对。所有通知新鲜度、型号布局、本机接受、程序关联及物理完成标志false。无硬件、实时UI、厂商代码执行或高级功能新增，全部命令门槛仍false。

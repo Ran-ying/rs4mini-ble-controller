@@ -694,3 +694,15 @@ NSDictionary *RSDecodeAppProgramStatusNotification(NSDictionary *message) {
     }
     result[@"records"]=[records copy];return [result copy];
 }
+
+NSDictionary *RSAppProgramStatusSelection(NSDictionary *spec) {
+    if(![spec isKindOfClass:NSDictionary.class] || spec.count!=1 || ![spec[@"program"] isKindOfClass:NSString.class])return nil;
+    NSDictionary *catalog=@{@"track":@98,@"timelapse":@55,@"panorama":@99};
+    NSNumber *tag=catalog[spec[@"program"]];if(!tag)return nil;
+    return @{@"requestedProgram":[spec[@"program"] copy],@"requestedProgramCommandId":tag};
+}
+NSData *RSAppProgramStatusRequestFrame(uint16_t sequence, NSNumber *programCommand) {
+    if(!Numeric(programCommand) || [programCommand doubleValue]!=floor([programCommand doubleValue]) || ![@[@98,@55,@99] containsObject:programCommand])return nil;
+    const uint8_t body[]={0,2,1,programCommand.unsignedCharValue};
+    return Frame(sequence,0x6b,[NSData dataWithBytes:body length:4],0x40);
+}

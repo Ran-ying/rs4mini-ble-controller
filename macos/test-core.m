@@ -241,6 +241,14 @@ int main(void) {
         Require([workRead[@"rawValue"] intValue]==128 && workRead[@"sourceMode"]==NSNull.null && [workRead[@"withinSourceRange"] boolValue],@"work unknown enum inside source range is preserved");
         Require(!RSAppProfileValueSpec(@"userProfile",@{@"sourceProfileValue":@YES}) && !RSAppProfileValueSpec(@"userProfile",@{@"sourceProfileValue":@6}) && !RSAppProfileValueSpec(@"workMode",@{@"sourceMode":@"FPV"}) && !RSAppProfileValueWriteFrame(4,RSAppProfileValueContext(@"workMode"),@128),@"profile/work write forbids boolean unknown label or unnamed raw value");
         Require(!RSDecodeAppProfileValueReply(parameterMessage(16,[NSData dataWithBytes:(uint8_t[]){0,62,9,2} length:4],128),@"userProfile",&error),@"profile/work cross-domain read context rejected");
+        for(NSString *name in @[@"track",@"timelapse",@"panorama"]) {
+            NSDictionary *selected=RSAppProgramStatusSelection(@{@"program":name});
+            NSData *request=RSAppProgramStatusRequestFrame(42,selected[@"requestedProgramCommandId"]);
+            RSFrameDecoder *programDecoder=[RSFrameDecoder new];NSDictionary *decoded=[programDecoder push:request].lastObject;
+            const uint8_t *requestBytes=[decoded[@"payload"] bytes];
+            Require([decoded[@"commandId"] intValue]==107 && [decoded[@"flags"] intValue]==64 && [decoded[@"payload"] length]==4 && requestBytes[0]==0 && requestBytes[1]==2 && requestBytes[2]==1 && requestBytes[3]==[selected[@"requestedProgramCommandId"] intValue],@"single request uses fixed type2 and exact program tag");
+        }
+        Require(!RSAppProgramStatusSelection(@{@"program":@98}) && !RSAppProgramStatusSelection(@{@"program":@"track",@"requestType":@0}) && !RSAppProgramStatusSelection(@{@"program":@"delay"}) && !RSAppProgramStatusRequestFrame(1,@YES) && !RSAppProgramStatusRequestFrame(1,@25),@"single request rejects raw tags boolean and subscription options");
         printf("Native protocol, reassembly, stop queue and motion-core checks: %lu passed\n", (unsigned long)assertions);
     }
     return 0;

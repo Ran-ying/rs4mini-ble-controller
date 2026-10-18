@@ -1,6 +1,6 @@
 # 设备 SDK 命令审计与高级开发前置条件
 
-2026-10-18，0.7.22 / 原生 0.3.22。**尚不能确认 RS 4 Mini 全部非相机 BLE 命令都已枚举、解析并封装。**
+2026-10-18，0.7.23 / 原生 0.3.23。**尚不能确认 RS 4 Mini 全部非相机 BLE 命令都已枚举、解析并封装。**
 机器清单是 [protocol/COMMANDS.json](../protocol/COMMANDS.json)，目前记录 48 个命令或缺口条目；
 它不是厂商完整命令表，不能以“所有已知代码已封装”代替“所有设备命令已知”。
 
@@ -13,7 +13,7 @@
 `partial` 表示仅部分字段/操作已明确；`raw` 表示只提供原始消息，不等于业务字段已解析。
 `hardware` 仅表示存在本机历史观测，具体覆盖看最后一列和 `VALIDATION.md`；
 `other-model`、`official-app-enum` 和 `none` 不得提升为本机支持。
-`app-generic-code` 表示当前App通用类字段已核对，尚无目标型号布局/调用证据，只能提供明确标注的被动候选解码，不允许据此新增发送。
+`app-generic-code` 表示当前App通用类字段已核对，尚无目标型号布局/调用证据，默认仅提供明确标注的被动候选解码；唯一已审计发送例外是6B固定type2单次状态请求，显式来源且不代表本机支持，连续订阅和程序执行仍不开放。
 `candidate-structured` 仅指有来源的候选结构解析，不能计作本机业务字段验证。通知没有请求，记为 `not-applicable`。
 
 | 命令/缺口 | 内容 | 请求封装 / 响应解析 | 设备证据 | 尚缺什么 |
@@ -61,7 +61,7 @@
 | `04:62` | 官方 App 枚举：SetTrack | `unknown` / `unknown` | `official-app-enum` | 通用最多10点、Math.round/低16位与1字节停止候选及Create UI调用已核对；型号可达性、参考系、相机隔离与停止/完成未验收，未开放SDK发送 |
 | `04:63` | 官方 App 枚举：SetPanorama | `unknown` / `unknown` | `official-app-enum` | 通用10字节混合宽度及Create UI调用已核对，含曝光/拍摄字段；型号、预览隔离和物理取消未验收，未开放SDK发送 |
 | `04:64` | 官方 App 枚举：GetPushPanorama | not-applicable / candidate-structured | app-generic-code | 0.7.22显式来源下被动5字节候选、uint16计数与尾字节保留；不发源自动ACK，本机布局/通知与物理完成未验收 |
-| `04:6B` | 官方 App 枚举：GetPushTrackAndTimelapse | unknown / candidate-structured | app-generic-code | 0.7.22仅请求型被动候选，0/1源success、62/37/63及未知/重复记录保留；不自动订阅/查询/ACK或完成请求，不保留源共享单例旧字段；ACK路径/实际扩展/本机布局和原生程序收发仍未验收 |
+| `04:6B` | 官方 App 枚举：GetPushTrackAndTimelapse | partial / candidate-structured | app-generic-code | 0.7.23仅新增显式type2单次请求与关联ACK；ACK业务体不透明，不承诺新通知。被动候选独立；连续订阅、本机布局、程序关联与物理效果未验收 |
 | `04:6E` | 当前 App 校准状态查询/通知 | `implemented` / `partial` | `app-code-path` | 显式当前App配置下空体查询/ACK与被动TLV状态分别解析；未知字段保留，无记录不造零值；无程序ID关联，订阅/停止条件及本机通知待验收 |
 | `04:69` | 官方 App 枚举：GetPushExternalDeviceData | `unknown` / `unknown` | `official-app-enum` | 命令枚举已确认，具体方法/字段与HG724分支仍需逐项证据，不把枚举恢复等同请求体完成；未开放发送 |
 | `04:57` | 源手柄状态被动候选 | `not-applicable` / `candidate-structured` | `app-generic-code` | 0.7.20显式App来源下解码两个signed short与两个源状态位，未知位/尾字节保留；无订阅/发送，本机布局、单位与轴映射未验收 |
@@ -223,3 +223,6 @@ HG724继承的启动路径为普通用户参数04:0F，balance_test/index37/size
 
 
 0.7.22新增[程序状态被动候选](APP_PROGRAM_STATUS.md)：显式App来源下38/64/6B独立帧快照，未知/重复记录保留，无查询/订阅/自动ACK，不等于物理完成；完整命令仍未验收。
+
+
+0.7.23新增[单次程序状态请求](APP_PROGRAM_REQUEST.md)：显式App来源、固定type2与三个命名程序，仅关联ACK、业务体不透明；不承诺新通知，不增加连续订阅或动作执行，本机未验收。

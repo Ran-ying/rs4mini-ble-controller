@@ -22,7 +22,7 @@
 | `04:01` | 虚拟摇杆及中位停止 | `implemented` / `not-applicable` | `hardware` | 历史设备行为已验证，无固件执行确认 |
 | `04:02` | 位置查询 | `implemented` / `raw` | `other-model` | 本机历史尝试未收到有效响应，不能判断不支持 |
 | `04:05` | 姿态与关节通知 | `not-applicable` / `partial` | `hardware` | 姿态/关节映射已确认；四元数顺序及部分标志未知 |
-| `04:08` | 部件校准触发候选 | not-exposed / unknown | other-model | 当前App单字节部件及ACK业务part/status已审计；型号入口/与system_calc关系/路由/中止未验收，不开放发送 |
+| `04:08` | 部件校准触发候选 | not-exposed / unknown | other-model | 已审计HG724显式条件下AUTO00/普通GYRO05及电机缓存门槛；实际挂载/路由/固件效果/中止未验收，不开放当前SDK触发 |
 | `04:0B` | 控制状态查询 | `implemented` / `raw` | `other-model` | 响应字段未确认 |
 | `04:0C` | 原生速率候选 | `implemented` / `unknown` | `other-model` | 轴序/单位/释放仅有 RS 3 来源，本机未验证 |
 | `04:0F` | 用户参数写入与旧休眠候选 | `implemented` / `partial` | `app-code-path` | 当前App配置封装灵敏度、两组位设置、平衡/系统校准请求、六组按轴档位读改写及ACK；非任意参数写入。PF/PTF、其余字段、持久化与本机效果未验收，旧休眠仍为其他型号来源；0.7.10新增18项普通命名数值的1/2字节读写和异常原值保留，不自动切预设/输入源，活动预设与实际效果未验收 |
@@ -268,3 +268,8 @@ HG724继承的启动路径为普通用户参数04:0F，balance_test/index37/size
 ## 0.7.28传感器校准被动候选 / 原生0.3.28 build31
 
 显式App来源下sensorCalibrationStatus/kind=sensorCalibration解析04:30两字节源进度/状态及尾部，保留0..255原值，映射0/1/3/9并标记未知；不复用08状态或旧inProgress，不补短包默认，不由COMPLETE结束查询/运动。缓存复制/不可变、观察者隔离、来源/断线清空。见[传感器校准候选SDK](APP_SENSOR_CALIBRATION_STATUS.md)。没有查询/订阅/自动ACK/校准触发或相机/视觉/高级新增；本机/单位/请求关联与物理完成未验收，无硬件/liveUI/厂商执行，全命令门槛false。此前当前App30“未接SDK”限定为历史状态。
+
+
+## 校准入口条件与HG724静态分支研究
+
+63方法/2布局核对SystemStatus→新设置构造链、普通GYRO05/高级AUTO00的04:08及MotorEnabled缓存门槛。所选项与ModelName均HG724的显式源码情形中，普通隐藏/高级显示且旁路版本；阈值00.02.32.25严格大于、缓存/异步可见性与实际设备分开。高级ACK后60秒本地计时和百分比显示不证明固件中止/请求关联。见[校准入口研究](../tools/research/CALIBRATION_ENTRY.md)及protocol/research/ronin-calibration-entry-evidence.json。不与system_calc/index36混用，未新增SDK收发/高级功能或硬件/liveUI/厂商执行，运行时仍0.7.28/0.3.28，完整命令门槛false。

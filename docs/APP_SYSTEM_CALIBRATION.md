@@ -52,3 +52,6 @@ PYTHONPATH=work/research/analysis-libs work/python312/bin/python tools/research/
 ```
 
 离线测试覆盖写入与状态范围分离、所有未知字节保留、6E错误命令关联、请求/读取向量、畸形上下文、非零ACK、互斥、取消/超时及无重放/无虚构中止。测试通过不提升为本机验收。
+
+
+后续[校准入口条件审计](../tools/research/CALIBRATION_ENTRY.md)已分开页面systemCalibration→04:08/GYRO与本SDK参数36路径，并核对30进度的源UI百分号显示；这不改变本机单位、请求关联或物理完成标志。当前没有开放08触发。

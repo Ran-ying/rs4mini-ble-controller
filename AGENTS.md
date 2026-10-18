@@ -1027,3 +1027,11 @@ FollowModeSensitivity和GimbalControlState分别受isSupportStateSince4Gen控制
 
 
 0.7.28离线验收：统一Node241/Web23/Python3.8与3.12各217、原生637核心+247生命周期+3独立SDK、研究342及严格类型/边界/构建通过，终态0。七组源向量跨端一致，完整uint8/FAIL3与未知2/尾字节、坏包、快照/观察者、来源/断线、COMPLETE不结束查询/运动与Web无Buffer覆盖；修正示例事件分派对新增kind的假设。隔离安装tarball241项与类型、wheel217项通过，device/controller/app_commands/app_sensor_calibration实际安装导入位置核对；Node98文件、wheel36模块及原生ZIP3文件与源码/签名构建逐字节一致（0.3.28/build31），未启动应用。本机布局/单位/请求关联/物理完成及完整命令门槛仍false，无硬件/liveUI/厂商执行。
+
+
+## 校准入口条件与HG724静态分支研究
+
+63方法/2布局核对SystemStatus→新设置构造链、普通GYRO05/高级AUTO00的04:08及MotorEnabled缓存门槛。所选项与ModelName均HG724的显式源码情形中，普通隐藏/高级显示且旁路版本；阈值00.02.32.25严格大于、缓存/异步可见性与实际设备分开。高级ACK后60秒本地计时和百分比显示不证明固件中止/请求关联。见[校准入口研究](tools/research/CALIBRATION_ENTRY.md)及protocol/research/ronin-calibration-entry-evidence.json。不与system_calc/index36混用，未新增SDK收发/高级功能或硬件/liveUI/厂商执行，运行时仍0.7.28/0.3.28，完整命令门槛false。
+
+
+校准入口条件验证（2026-10-18）：最终工具独立提取两次，63方法/2布局证据JSON逐字节一致。新增13研究测试，Python3.8/3.12研究各355项通过；统一离线Node241/Web23/Python217/原生637+247+3及类型/边界/构建通过，终态0。静态HG724所选项/缓存条件不提升为现场身份、实际Activity挂载或固件支持；60秒UI计时不证明中止。未新增SDK收发、相机/视觉/高级功能，运行时/安装包保持0.7.28/0.3.28，无硬件/liveUI/厂商执行，完整命令和高级门槛false。

@@ -40,3 +40,6 @@ COMPLETE只是本帧源状态名称。所有结果deviceVerified、modelLayoutVe
 七组共享JSON向量跨Node/Python/原生一致；测试覆盖全部uint8值、FAIL3/未知2、OTHER9/未知255、进度255、尾部、短/ACK/加密拒绝、快照与观察者隔离、来源/断线清理、COMPLETE不结束查询或运动、Web无Buffer。
 
 尚需本机布局、实际扩展分发、进度单位、型号UI路径、请求关联、校准效果和中止实机证据。没有扫描/连接/移动或校准设备，没有实时UI/厂商执行、相机/视觉/高级功能新增。完整命令与新增高级开发门槛保持false。
+
+
+后续[校准入口条件审计](../tools/research/CALIBRATION_ENTRY.md)已分开页面systemCalibration→04:08/GYRO与本SDK参数36路径，并核对30进度的源UI百分号显示；这不改变本机单位、请求关联或物理完成标志。当前没有开放08触发。

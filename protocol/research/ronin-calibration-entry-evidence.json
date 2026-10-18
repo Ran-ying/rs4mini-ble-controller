@@ -1,0 +1,648 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "bankSha256": {
+    "3": "bb50b39865520f55e97116ae1903bda3545b01c2fb7e2aba67a979dc264a9854",
+    "5": "4fdbd74a05df63d72a0feb1c907d9395426ec3cdb5d6aeb45e3836d856d66654"
+  },
+  "appCodeExecuted": false,
+  "liveUiExecuted": false,
+  "targetDeviceVerified": false,
+  "wholeProtocolRecovered": false,
+  "researchToolProvidesSdkInterface": false,
+  "sdkSendAdded": false,
+  "sdkReceiveAdded": false,
+  "methods": [
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/home/UIViewManager$ViewIndex;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 2269088,
+      "instructionSha256": "eb5390273acde8b8052cda90fe1e2950435b901f64804a524808baf394bfe37a"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/ConfigSystemStatusView;",
+      "method": "initData",
+      "descriptor": "()V",
+      "codeOffset": 3903072,
+      "instructionSha256": "a8abb03243abd81e9c3d93edd3a429304837ba9eb5e1884378486b5c1df0046d"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/system/ConfigNewSettingsView$11;",
+      "method": "onClick",
+      "descriptor": "(Landroid/content/DialogInterface; I)V",
+      "codeOffset": 2502764,
+      "instructionSha256": "9653ce69f483557058a95e44aa5db3c0b3dba181e2ab2522bba665dae75339e2"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/system/ConfigNewSettingsView$13;",
+      "method": "onClick",
+      "descriptor": "(Landroid/content/DialogInterface; I)V",
+      "codeOffset": 2502880,
+      "instructionSha256": "1cbc193ef9aa0513edb6f430fc023fce4e0933fd32580719574bd000c365073e"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/system/ConfigNewSettingsView$16;",
+      "method": "onSuccess",
+      "descriptor": "(Ljava/lang/Object;)V",
+      "codeOffset": 2503316,
+      "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/system/ConfigNewSettingsView$17;",
+      "method": "onSuccess",
+      "descriptor": "(Ljava/lang/Object;)V",
+      "codeOffset": 2503488,
+      "instructionSha256": "473874200beab827ea49da31e2e65358cb03acd083baea45bbf9bf88da85a623"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/system/ConfigNewSettingsView$18;",
+      "method": "onNext",
+      "descriptor": "(Ljava/lang/Long;)V",
+      "codeOffset": 2503628,
+      "instructionSha256": "285bd4ee235803d70d975e96294773fbe2bcbb1124dcba6f3a42aea8000b72d1"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/system/ConfigNewSettingsView$2;",
+      "method": "lambda$onVersionGetFail$1",
+      "descriptor": "()V",
+      "codeOffset": 3906568,
+      "instructionSha256": "5d1c9a4c2087176090caf38728849102190759263ebc672a6297a32926fdb4b6"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/system/ConfigNewSettingsView$2;",
+      "method": "lambda$onVersionGetSuccess$0",
+      "descriptor": "(Ljava/lang/String;)V",
+      "codeOffset": 3906644,
+      "instructionSha256": "20c49323183982996f178f8971922659188d332a0372806d2f8b93bfbbef08b5"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/system/ConfigNewSettingsView$2;",
+      "method": "onVersionGetFail",
+      "descriptor": "(Ldji/midware/data/config/P3/Ccode;)V",
+      "codeOffset": 3906788,
+      "instructionSha256": "2f191a3d11dd7f07d83fc7f3cef43caa3c7fa486ec835949eead598db3fd7454"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/system/ConfigNewSettingsView$2;",
+      "method": "onVersionGetSuccess",
+      "descriptor": "(Ljava/lang/String;)V",
+      "codeOffset": 3906828,
+      "instructionSha256": "57d6b461b6177d70e97b227fb6ead930c721883bcabe963b1db497f55a60fed2"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/system/ConfigNewSettingsView;",
+      "method": "-$$Nest$madvancedCalibration",
+      "descriptor": "(Lcom/dji/ronin/ui/configuration/system/ConfigNewSettingsView;)V",
+      "codeOffset": 3906964,
+      "instructionSha256": "adabb44eeafe6949843430caf469934fce52f32620cb6b02913c148dec9cd20d"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/system/ConfigNewSettingsView;",
+      "method": "-$$Nest$msystemCalibration",
+      "descriptor": "(Lcom/dji/ronin/ui/configuration/system/ConfigNewSettingsView;)V",
+      "codeOffset": 3907168,
+      "instructionSha256": "865029fc10a4b98c1f126589e143023e1d816022a351716c86581ef1cba36a94"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/system/ConfigNewSettingsView;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3907360,
+      "instructionSha256": "ac07aa1b6b84d58def93c7df1f4b094f0801855aa842acc9212591c0083e2c6c"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/system/ConfigNewSettingsView;",
+      "method": "advancedCalibration",
+      "descriptor": "()V",
+      "codeOffset": 3907460,
+      "instructionSha256": "155e23e5d9ffbe09235628388a0628e0225cded89c08c01c9d18dcda0d5953b1"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/system/ConfigNewSettingsView;",
+      "method": "dismissProgressDialog",
+      "descriptor": "()V",
+      "codeOffset": 3907544,
+      "instructionSha256": "d0f41eb2b221223fee541f6d1fce6ec830615403e221f120a6f42e4db0eaf2fb"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/system/ConfigNewSettingsView;",
+      "method": "disposeTimer",
+      "descriptor": "()V",
+      "codeOffset": 3907620,
+      "instructionSha256": "cf751aa0fa716fa90f8004ba4bb10754c5b3f518ed3871f07796f4e5acbaa939"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/system/ConfigNewSettingsView;",
+      "method": "initView",
+      "descriptor": "(Landroid/content/Context;)V",
+      "codeOffset": 3908112,
+      "instructionSha256": "fe3db97b1ddd4b39aee8d186d03f36d7b33fb4a0649a1d132911ad768eed9140"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/system/ConfigNewSettingsView;",
+      "method": "onAttachedToWindow",
+      "descriptor": "()V",
+      "codeOffset": 3910624,
+      "instructionSha256": "322c298320172ee35fc7076bb6c38fe1ef82ddb2255eefc4d8309fd962d3e39c"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/system/ConfigNewSettingsView;",
+      "method": "onClick",
+      "descriptor": "(Landroid/view/View;)V",
+      "codeOffset": 3911060,
+      "instructionSha256": "51187303924fb34b5643fea67b1dd00f42a88125e1c1c5d4861407ecbbea99d4"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/system/ConfigNewSettingsView;",
+      "method": "onDetachedFromWindow",
+      "descriptor": "()V",
+      "codeOffset": 3911404,
+      "instructionSha256": "43b50e4da91db7aafff1c8a540d90e09919c0ae21cbfe1511da72d37febacb48"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/system/ConfigNewSettingsView;",
+      "method": "onEvent3MainThread",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalAutoCalibration;)V",
+      "codeOffset": 3911440,
+      "instructionSha256": "976c472272b9fc7fc5e90a1a1126f032021e5d51927a71ed7914ed70048cc11e"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/system/ConfigNewSettingsView;",
+      "method": "onEvent3MainThread",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalGetPushSensorCalibrateStatus;)V",
+      "codeOffset": 3911560,
+      "instructionSha256": "a29c54319c224fe15ac1eaf89e3675e2613b6f31733b7058750d7f79ac1a7afe"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/system/ConfigNewSettingsView;",
+      "method": "setTimer",
+      "descriptor": "()V",
+      "codeOffset": 3908920,
+      "instructionSha256": "7f19f85c6457edd89f06420f03140476aa0da9bfa2840d2f3fb626f84ca09112"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/system/ConfigNewSettingsView;",
+      "method": "showConfirmDialog",
+      "descriptor": "(Lcom/dji/ronin/ui/configuration/system/ConfigNewSettingsView$DialogEvent;)V",
+      "codeOffset": 3908988,
+      "instructionSha256": "78da86fc3d55aedfad3a19285485ce2118494d1068c2c02bffb773cd8358f9e5"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/system/ConfigNewSettingsView;",
+      "method": "startAdvancedCalibration",
+      "descriptor": "()V",
+      "codeOffset": 3909452,
+      "instructionSha256": "9753ff9e41070a172c957a2ef00e9f113336ee03bacb1ca08d2ba631cf05869c"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/system/ConfigNewSettingsView;",
+      "method": "startCalibration",
+      "descriptor": "()V",
+      "codeOffset": 3909516,
+      "instructionSha256": "6575eed8d6dbfde2b6181fef7e0ece296460bf2d5e30e6541cada31bbd68d616"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/system/ConfigNewSettingsView;",
+      "method": "supportAdvancedCali",
+      "descriptor": "(Ljava/lang/String;)Z",
+      "codeOffset": 3909580,
+      "instructionSha256": "d74027e4dcb76a8e1dee95dded1185ba52be1349d14767469227ede08c748ae7"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/system/ConfigNewSettingsView;",
+      "method": "systemCalibration",
+      "descriptor": "()V",
+      "codeOffset": 3909808,
+      "instructionSha256": "0b6c35d3df13ab453d7e51cb522d71a51dd4b66c7a3df93431dff5b90c41fddf"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/system/ConfigNewSettingsView;",
+      "method": "updateFunctionVisibility",
+      "descriptor": "()V",
+      "codeOffset": 3910016,
+      "instructionSha256": "aedb32b9a80fdc12c613310bd54f5a93250dd43d68e6df81d52907a079038b16"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/system/ConfigNewSettingsView;",
+      "method": "updateSystemConfigItems",
+      "descriptor": "()V",
+      "codeOffset": 3910492,
+      "instructionSha256": "30efd059a4614c7939f4e8dd284e1629d802af35532782b3feb16d185d3887a8"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/entry/DeviceSwitchTextView;",
+      "method": "is2ndGenDeviceIndex",
+      "descriptor": "()Z",
+      "codeOffset": 2652040,
+      "instructionSha256": "c0130cc59b0e3ea8ffec95f48962c2cdbb526bddc1e24138f4805bfaa43fb4df"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/entry/DeviceSwitchTextView;",
+      "method": "is4thGenDeviceIndex",
+      "descriptor": "()Z",
+      "codeOffset": 2652252,
+      "instructionSha256": "63e025e500e146b550ac9a2c4c3bdec1ecdae986ce984f02ccf77f314686d914"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/entry/DeviceSwitchTextView;",
+      "method": "is5thGenDeviceIndex",
+      "descriptor": "()Z",
+      "codeOffset": 2652352,
+      "instructionSha256": "3e27ca9f4faf040b7d78f853462eb88095d8e9482716a4bcf1aa6af2b034b8cd"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/entry/DeviceSwitchTextView;",
+      "method": "isThirdGenDeviceIndex",
+      "descriptor": "()Z",
+      "codeOffset": 2652836,
+      "instructionSha256": "5a9343fa104d0deea42a5e40d6619fa4e35ba33c78901cd8fbd9fefe42159548"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/entry/DeviceSwitchTextView;",
+      "method": "supportSince3rdGenDeviceIndex",
+      "descriptor": "()Z",
+      "codeOffset": 2653240,
+      "instructionSha256": "5cb791cd24975f6b4d84d162ae5777f362daecb97f3ec71d673127018a371f3e"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/tab/TabViewPagerBaseView;",
+      "method": "<init>",
+      "descriptor": "(Landroid/content/Context; Landroid/util/AttributeSet;)V",
+      "codeOffset": 2712504,
+      "instructionSha256": "9fb42fe7be837f9b86b3fef4d79db6c642bb9500e7f5a2fe6e5303e1a976dd4a"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/tab/TabViewPagerBaseView;",
+      "method": "initView",
+      "descriptor": "()V",
+      "codeOffset": 2712544,
+      "instructionSha256": "a291d07db0659801cd9c19b9b78476f2337c1f19f1ab4021e8a3028cd6161594"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/tab/TabViewPagerBaseView;",
+      "method": "onFinishInflate",
+      "descriptor": "()V",
+      "codeOffset": 2712800,
+      "instructionSha256": "43941e015fd373e3403ba95f409b5fe3125cd19c3f47d4c35fe47a7058720100"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/util/CommonUtils;",
+      "method": "formatVersion",
+      "descriptor": "(Ljava/lang/String;)J",
+      "codeOffset": 2776760,
+      "instructionSha256": "5acd6cacd2f5c24ae0c59e7f8d5649567adfe1cc4d0d118d528d148b327aee7f"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/util/CommonUtils;",
+      "method": "is2ndGenDevice",
+      "descriptor": "()Z",
+      "codeOffset": 2777592,
+      "instructionSha256": "4b39fe03f03d55f637833c8e65594455df3ba28cd569170fb9427afa7d7b343d"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/util/CommonUtils;",
+      "method": "isHG701",
+      "descriptor": "(Ldji/midware/component/DJIComponentManager$GimbalComponentType;)Z",
+      "codeOffset": 2778272,
+      "instructionSha256": "3e3167c0e46b38fb9396002f49251fc3b5fd5d5751512ba91e948716f88d3c89"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/util/CommonUtils;",
+      "method": "isHG702",
+      "descriptor": "(Ldji/midware/component/DJIComponentManager$GimbalComponentType;)Z",
+      "codeOffset": 2778300,
+      "instructionSha256": "fe8cdea44676632fac09c8995786e369cf36f6891afe271b06ec727dd7954cd5"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/util/CommonUtils;",
+      "method": "isHG703",
+      "descriptor": "(Ldji/midware/component/DJIComponentManager$GimbalComponentType;)Z",
+      "codeOffset": 2778328,
+      "instructionSha256": "77dad7a4e51cfef9f5fd96d3716622ab49400c7eeef0ad6446d9c10c0c922253"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/util/CommonUtils;",
+      "method": "isHG710",
+      "descriptor": "(Ldji/midware/component/DJIComponentManager$GimbalComponentType;)Z",
+      "codeOffset": 2778412,
+      "instructionSha256": "b6a76f449dcce3c673c2323ebd8e80d9d23ed0df731824f5435cb2c87f1c58b6"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/util/CommonUtils;",
+      "method": "isHG711",
+      "descriptor": "(Ldji/midware/component/DJIComponentManager$GimbalComponentType;)Z",
+      "codeOffset": 2778440,
+      "instructionSha256": "5de1b1fa940339326f88fedb16f91f0f029db61d9c0d0f2a7dfbe8ac6e4c4705"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/util/CommonUtils;",
+      "method": "isHG720",
+      "descriptor": "(Ldji/midware/component/DJIComponentManager$GimbalComponentType;)Z",
+      "codeOffset": 2778524,
+      "instructionSha256": "947e15e9965e7bea7aef370b9b6c6d52d3ade011b2c47a5ab57ea35cdc6dfcf0"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/util/CommonUtils;",
+      "method": "isOldSupportDevices",
+      "descriptor": "()Z",
+      "codeOffset": 2779172,
+      "instructionSha256": "89c18a954f72b852eee1166ab8b609d3c4056f1b8a309ffcf40d74a956d43584"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/util/CommonUtils;",
+      "method": "isRonin2",
+      "descriptor": "(Ldji/midware/component/DJIComponentManager$GimbalComponentType;)Z",
+      "codeOffset": 2779260,
+      "instructionSha256": "42847afdb865c03570e3d13ca3ae695462a64372fe73d6bbdef333b5370d3075"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/util/CommonUtils;",
+      "method": "isRoninS",
+      "descriptor": "(Ldji/midware/component/DJIComponentManager$GimbalComponentType;)Z",
+      "codeOffset": 2779288,
+      "instructionSha256": "27c71ae0900d7d6332bfbe77937a9e972d641d9ad82940e86d4c8d14f907fc6f"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/util/CommonUtils;",
+      "method": "isThirdGenDevice",
+      "descriptor": "()Z",
+      "codeOffset": 2779408,
+      "instructionSha256": "5482e00f00064dd3495b5600eb9cac766a132603fb1468c21abd495473f42ae1"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/util/ISupportedVersion;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 2780008,
+      "instructionSha256": "849d85d82740d90d275e400ac7c39ce24a0f82e9952809acc9c8cd32c01b8f40"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/util/VersionSupportUtils;",
+      "method": "checkIMUVersion",
+      "descriptor": "(Lcom/dji/ronin/util/VersionSupportUtils$VersionGetListener;)V",
+      "codeOffset": 2785412,
+      "instructionSha256": "129c2f04e44877ff8bc196c111e7176f35e70d2fa862a2981ac1898279042be7"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/upgrade/util/CommonUtils;",
+      "method": "isHG701",
+      "descriptor": "(Ldji/midware/component/DJIComponentManager$GimbalComponentType;)Z",
+      "codeOffset": 3022116,
+      "instructionSha256": "32af1573769158c57ebdb211d03acae3cc328eaf40cfd94d3f12d0c48fa7a2da"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/upgrade/util/CommonUtils;",
+      "method": "isHG702",
+      "descriptor": "(Ldji/midware/component/DJIComponentManager$GimbalComponentType;)Z",
+      "codeOffset": 3022164,
+      "instructionSha256": "a2919f5d47c54bc51698e325ffeca5a8a6cf1a2e246a98c5b952a5f1a95d50a9"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/upgrade/util/CommonUtils;",
+      "method": "isHG703",
+      "descriptor": "(Ldji/midware/component/DJIComponentManager$GimbalComponentType;)Z",
+      "codeOffset": 3022212,
+      "instructionSha256": "998e7eaa61fbbc07cb37a4c572da8ec6cf31ebcb7cd72c67ff9103424fc1e9d1"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/upgrade/util/CommonUtils;",
+      "method": "isHG710",
+      "descriptor": "(Ldji/midware/component/DJIComponentManager$GimbalComponentType;)Z",
+      "codeOffset": 3022356,
+      "instructionSha256": "c7ee12bf23e2bd492501d90a27f02f217505b149c1c3697bd7010ac11cf4368c"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/upgrade/util/CommonUtils;",
+      "method": "isHG711",
+      "descriptor": "(Ldji/midware/component/DJIComponentManager$GimbalComponentType;)Z",
+      "codeOffset": 3022404,
+      "instructionSha256": "dd01c107b9c11cd61481aed3f7f59d099564a804753b50d7467ce8fc00eb9ed3"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/upgrade/util/CommonUtils;",
+      "method": "isHG720",
+      "descriptor": "(Ldji/midware/component/DJIComponentManager$GimbalComponentType;)Z",
+      "codeOffset": 3022548,
+      "instructionSha256": "f55690e30bdf1d760866c2b826270037bba6fb0e1abbe3cae4e60f81f5814ae5"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/upgrade/util/CommonUtils;",
+      "method": "isRonin2",
+      "descriptor": "(Ldji/midware/component/DJIComponentManager$GimbalComponentType;)Z",
+      "codeOffset": 3023000,
+      "instructionSha256": "30ad861e98e4b339a535fa43b08e0ad90c1f73b50e8df9648f16ea800d9d6393"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/upgrade/util/CommonUtils;",
+      "method": "isRoninS",
+      "descriptor": "(Ldji/midware/component/DJIComponentManager$GimbalComponentType;)Z",
+      "codeOffset": 3023136,
+      "instructionSha256": "269da36d1ba16d90feb56cf3378bb695c824a166fbad150a1d518ec6e841ce8d"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationPart;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3453568,
+      "instructionSha256": "097f5db56048711768b121727395515a0ba2c1be3db2e0ea02c478e97ecffe8b"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 4856480,
+      "instructionSha256": "96473d63b55cec5e4b419a2279ade5e9b36488da489fda413a1d90409d16d707"
+    }
+  ],
+  "layouts": [
+    {
+      "name": "SystemStatus",
+      "layoutId": 2131558925,
+      "path": "res/Z_.xml",
+      "sha256": "e6c8301b6c2a1f31cc43dc04730be49226bc9ae29d6208a84172c888b4ec33ff",
+      "rootClass": "com.dji.ronin.ui.configuration.ConfigSystemStatusView"
+    },
+    {
+      "name": "SettingsInner",
+      "layoutId": 2131558515,
+      "path": "res/je.xml",
+      "sha256": "c723a657a08beeaeebdb25df221d12af8293247f4c97d8431436760db0b8c92b",
+      "rootClass": "merge"
+    }
+  ],
+  "navigation": {
+    "SystemStatus": {
+      "ordinal": 19,
+      "viewId": 2131362582,
+      "layoutId": 2131558925
+    }
+  },
+  "sourceParts": {
+    "AUTO": 0,
+    "JOINT_ANGLE": 1,
+    "HALL_LINEAR": 2,
+    "JOINT_ANGLE_CAMERA": 3,
+    "JOINT_ANGLE_FIXTURE": 4,
+    "GYRO": 5,
+    "ACCELERATION": 6,
+    "COMPASS": 7,
+    "IMU_AND_SENSOR": 8,
+    "SHOCK_PLATE": 9
+  },
+  "generationModels": {
+    "is2ndGenDeviceIndex": [
+      "HG702",
+      "HG710"
+    ],
+    "isThirdGenDeviceIndex": [
+      "HG703",
+      "HG711",
+      "HG720"
+    ],
+    "is4thGenDeviceIndex": [
+      "HG704",
+      "HG714",
+      "HG724"
+    ],
+    "is5thGenDeviceIndex": [
+      "HG705",
+      "HG715"
+    ]
+  },
+  "oldCacheModelPredicates": {
+    "isRonin2": "RONIN2",
+    "isRoninS": "RONINS",
+    "isHG701": "RONINSC",
+    "isHG702": "HG702",
+    "isHG710": "HG710",
+    "isHG703": "HG703",
+    "isHG711": "HG711",
+    "isHG720": "HG720"
+  },
+  "threshold": {
+    "declaringInterface": "Lcom/dji/ronin/util/ISupportedVersion;",
+    "literal": "00.02.32.25",
+    "number": 139289,
+    "comparison": "strict-greater-than",
+    "canonicalOfflineParserOnly": true
+  },
+  "sourceActions": {
+    "normal": {
+      "viewMethod": "systemCalibration",
+      "startMethod": "startCalibration",
+      "part": "GYRO",
+      "bodyHex": "05"
+    },
+    "advanced": {
+      "viewMethod": "advancedCalibration",
+      "startMethod": "startAdvancedCalibration",
+      "part": "AUTO",
+      "bodyHex": "00"
+    },
+    "bothRequireCachedMotorEnabled": true,
+    "uiSystemCalibrationIsSystemCalc": false
+  },
+  "hg724ExplicitCase": {
+    "normalVisible": false,
+    "advancedVisible": true,
+    "versionQueryRequired": false,
+    "selectedModel": "HG724",
+    "cachedModel": "HG724",
+    "liveVisibilityVerified": false
+  },
+  "lifecycle": {
+    "selectedUiIndexAndCachedModelAreIndependent": true,
+    "liveIndexOrCacheFreshnessVerified": false,
+    "imuVersionCallbackPostedAsynchronously": true,
+    "callbackOrderingOrRaceAbsenceVerified": false,
+    "advancedAckStartsUiTimerMs": 60000,
+    "normalAckCallbackIsEmpty": true,
+    "timeoutDirectlyInvokesFirmwareStop": false,
+    "transitiveFirmwareStopProven": false,
+    "processingSetsLocalAdvancedFlag": true,
+    "sourceUiProgressRenderedWithPercentSuffix": true,
+    "requestSequenceAssociationVerified": false
+  },
+  "scope": {
+    "parsedBanks": [
+      3,
+      5
+    ],
+    "unrestoredBanks": [
+      1,
+      7
+    ],
+    "fullActivityReachabilityVerified": false,
+    "mountOrVisibilityDoesNotProveFirmwareSupport": true
+  },
+  "remaining": [
+    "HG724 selected-item/model-cache source case is conditional, not live device identity or capability.",
+    "Visibility and direct method MotorEnabled gates are distinct; hidden normal action is not proof firmware lacks GYRO.",
+    "Async version callbacks and source local progress flag are not a per-request firmware transaction.",
+    "No actual UI, address routing, physical effects or firmware cancellation were tested."
+  ]
+}

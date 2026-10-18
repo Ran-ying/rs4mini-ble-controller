@@ -724,3 +724,15 @@ if manifest.get('sensorCalibrationSdk'):
     for flag in ('shortDefaultsSynthesized','sourceDomainsConflated','legacyExperimentalFormatOverwritten','automaticQuerySubscriptionAckOrControlEnabled','requestAssociationVerified','modelLayoutVerified','progressUnitVerified','targetDeviceVerified'):
         assert sdk[flag] is False
     assert len(json.loads((root/sdk['fixtures']).read_text()))==7
+
+if manifest.get('calibrationEntryResearch'):
+    proof=json.loads((root/manifest['calibrationEntryResearch']).read_text())
+    assert len(proof['methods'])==63 and len(proof['layouts'])==2
+    assert proof['sourceActions']['normal']['bodyHex']=='05' and proof['sourceActions']['advanced']['bodyHex']=='00'
+    assert proof['sourceActions']['bothRequireCachedMotorEnabled'] is True and proof['sourceActions']['uiSystemCalibrationIsSystemCalc'] is False
+    assert proof['hg724ExplicitCase']['normalVisible'] is False and proof['hg724ExplicitCase']['advancedVisible'] is True and proof['hg724ExplicitCase']['versionQueryRequired'] is False
+    assert proof['threshold']['literal']=='00.02.32.25' and proof['threshold']['number']==139289 and proof['threshold']['comparison']=='strict-greater-than'
+    assert proof['lifecycle']['advancedAckStartsUiTimerMs']==60000 and proof['lifecycle']['transitiveFirmwareStopProven'] is False
+    assert proof['lifecycle']['liveIndexOrCacheFreshnessVerified'] is False and proof['scope']['fullActivityReachabilityVerified'] is False
+    for flag in ('appCodeExecuted','liveUiExecuted','targetDeviceVerified','wholeProtocolRecovered','researchToolProvidesSdkInterface','sdkSendAdded','sdkReceiveAdded'):
+        assert proof[flag] is False

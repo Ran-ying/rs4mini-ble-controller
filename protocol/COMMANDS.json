@@ -74,12 +74,13 @@
       "responseCodec": "unknown",
       "targetEvidence": "other-model",
       "implementation": [],
-      "remaining": "当前App静态确认1字节CalibrationPart、带ACK请求，业务part/status分别偏移0/1，FAIL0/SUCCESS1/PROCESSING2及未知回退；已定位UI/基类调用，但HG724入口、与system_calc关系、实际路由/效果/中止未验收，未开放发送。",
+      "remaining": "源码已定位普通GYRO05/高级AUTO00的04:08请求与独立响应域。显式选中项与ModelName都为HG724时，普通入口隐藏、高级入口直接显示且旁路IMU版本；两动作要求缓存MotorEnabled。界面条件不证明实时身份、实际挂载/地址/固件接受或中止；未开放当前SDK触发。",
       "officialAppAliases": [
         "AutoCalibration"
       ],
       "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
-      "currentAppResearch": "protocol/research/ronin-sensor-calibration-evidence.json"
+      "currentAppResearch": "protocol/research/ronin-sensor-calibration-evidence.json",
+      "currentAppEntryResearch": "protocol/research/ronin-calibration-entry-evidence.json"
     },
     {
       "key": "04:0B",
@@ -1205,5 +1206,6 @@
     "modelLayoutVerified": false,
     "progressUnitVerified": false,
     "targetDeviceVerified": false
-  }
+  },
+  "calibrationEntryResearch": "protocol/research/ronin-calibration-entry-evidence.json"
 }

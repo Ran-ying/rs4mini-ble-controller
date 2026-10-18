@@ -243,11 +243,12 @@
         "python/rs4mini_sdk/experimental_protocol.py",
         "macos/RSControlCore.m"
       ],
-      "remaining": "保留 TLV 原始量，不假设本机 tag 语义",
+      "remaining": "既有其他型号运行时仅原始TLV；新增当前App只读研究确认ActualPose与MotorAngle分离、源整数宽度/除10及缓存链，不将其直接映射为本机关节/姿态；尚无App来源运行时解码、本机布局/通知证据",
       "officialAppAliases": [
         "SetPushPeripheralStatus"
       ],
-      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
+      "trackPointResearch": "protocol/research/ronin-track-points-evidence.json"
     },
     {
       "key": "0D:02",
@@ -293,7 +294,8 @@
       "programResearch": "protocol/research/ronin-program-evidence.json",
       "programEntryResearch": "protocol/research/ronin-program-entry-evidence.json",
       "trackWorkflowResearch": "protocol/research/ronin-track-workflow-evidence.json",
-      "programReceiveResearch": "protocol/research/ronin-program-receive-evidence.json"
+      "programReceiveResearch": "protocol/research/ronin-program-receive-evidence.json",
+      "trackPointResearch": "protocol/research/ronin-track-points-evidence.json"
     },
     {
       "key": "unknown:device-management",
@@ -678,7 +680,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "通用最多10点、Math.round/低16位与1字节停止候选及Create UI调用已核对；型号可达性、参考系、相机隔离与停止/完成未验收，未开放SDK发送",
+      "remaining": "已核对通用最多10点、UI秒数换算/角度显示、ActualPose缓存来源、预览与最终发送的首点差异及Roll固定0；物理参考系、与04:05关节的关系、型号支持、相机隔离和停止/完成仍未验收，未开放SDK发送",
       "officialAppAliases": [
         "SetTrack"
       ],
@@ -686,7 +688,8 @@
       "programResearch": "protocol/research/ronin-program-evidence.json",
       "programEntryResearch": "protocol/research/ronin-program-entry-evidence.json",
       "trackWorkflowResearch": "protocol/research/ronin-track-workflow-evidence.json",
-      "programReceiveResearch": "protocol/research/ronin-program-receive-evidence.json"
+      "programReceiveResearch": "protocol/research/ronin-program-receive-evidence.json",
+      "trackPointResearch": "protocol/research/ronin-track-points-evidence.json"
     },
     {
       "key": "04:63",
@@ -834,7 +837,8 @@
     "tools/research/ronin_program_trace.py",
     "tools/research/ronin_program_entry.py",
     "tools/research/ronin_track_workflow.py",
-    "tools/research/ronin_program_receive.py"
+    "tools/research/ronin_program_receive.py",
+    "tools/research/ronin_track_points.py"
   ],
   "modelIdentityResearch": "protocol/research/ronin-hg724-evidence.json",
   "codeRestorationResearch": "protocol/research/ronin-code-restoration-evidence.json",
@@ -1110,5 +1114,6 @@
       "macos/RSControlCore.m",
       "docs/APP_PROGRAM_SUBSCRIPTION.md"
     ]
-  }
+  },
+  "trackPointResearch": "protocol/research/ronin-track-points-evidence.json"
 }

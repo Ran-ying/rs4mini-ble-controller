@@ -934,3 +934,17 @@ Rotate/ResetGimbal两条基础Action注解及12框架/动作方法指纹已核�
 统一离线Node213/Web19/Python3.8各191、原生167核心+217假设备+3独立SDK、研究262及类型/边界/构建通过，终态0；Python3.12完整191项另行通过。六个共享请求体跨Node/Python/原生核对，覆盖严格布尔/名称/来源/超时验证、输入复制、并发序号、ACK/通知隔离、NACK/空ACK/加密ACK、取消/超时/迟到/断线/排队不迟发和无隐式相反请求。Web保留有限查询blur差异并通过无Buffer检查。固定源程序和轨迹工作流重新实际提取，与提交的106方法/60调用及29方法/2布局证据一致。
 
 tarball隔离安装后213项及TypeScript消费者通过；wheel隔离安装后191项通过，device/controller/app_commands/app_program_request真实导入路径核对。未扫描/连接/移动设备、运行实时UI或执行厂商代码；本机/通知流/远端订阅状态/物理效果仍未验收，全部命令和高级门槛false。
+
+
+## 轨迹路点、时间与ActualPose审计（运行时仍0.7.24/0.3.24）
+
+固定bank03/05新增51方法指纹，UI move进度1..159先float32转int，<=60为秒、>60为(progress-59)*60，停留0..60秒；默认2秒，反向转换有损，JSON move仅上限6000且stop直接float，不当固件安全范围。track preview取保存首点时间，sendToDeviceStart清空首轮后最终首点move=0，两者Roll固定0；onPointAdd忽略回调Roll，JSON保留值也不改变源发送0规则。
+
+04:66 ActualPose P/R/Y mId34/35/36与MotorAngle16/17/18分开；选定Ronin2缓存生产端getP/Y/RActualPose→PeripheralPosPitch/Yaw/Roll，经路径控件转成路点。不能改写或等同现有04:05关节/姿态映射。源按长度1signed byte/2short LE/4int LE/8long后窄化int，转float32再除10；旧map可保留其他记录/缺失补0，离线视图不复制该语义，未知/重复/其他宽度保留。源flag1记录分支、signed长度与完整验长区分。preview所选直接调用无相机，但完整间接/固件隔离仍false；参考系、型号、执行/停止未验收。
+
+见tools/research/TRACK_POINTS.md、ronin_track_points.py与protocol/research/ronin-track-points-evidence.json。未新增SDK解码/发送、订阅或高级功能，无硬件/liveUI/厂商执行，全命令门槛false。
+
+
+## 轨迹路点与ActualPose研究验证（2026-10-18）
+
+最终固定APK/bank03/05实际两次复现51方法指纹、时间/参数路径和六项源DataType，证据JSON逐字节一致。新增22项边界测试；研究工具Python3.8与3.12各284通过。覆盖float32进度与分段/反向损失、pose/motor区分、signed宽度/long窄化/浮点舍入、未知/重复/缺失/截断、局部寄存器来源和两段哈希预检。统一离线Node213/Web19/Python191/原生167+217+3、类型/边界/构建通过，终态0且日志到达最终probe --help。Node/Python/macOS/Web所有源码目录与2eb2298相同，运行时/安装包保持0.7.24/0.3.24，无新增SDK收发/订阅/高级功能或硬件/liveUI/厂商执行，全命令门槛false。

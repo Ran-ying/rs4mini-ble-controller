@@ -1,0 +1,691 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "bankSha256": {
+    "3": "bb50b39865520f55e97116ae1903bda3545b01c2fb7e2aba67a979dc264a9854",
+    "5": "4fdbd74a05df63d72a0feb1c907d9395426ec3cdb5d6aeb45e3836d856d66654"
+  },
+  "appCodeExecuted": false,
+  "liveUiExecuted": false,
+  "targetDeviceVerified": false,
+  "wholeProtocolRecovered": false,
+  "researchToolProvidesSdkInterface": false,
+  "sdkProgramSendAdded": false,
+  "scope": "Selected source track UI times, point argument paths and ActualPose cache producer; no physical reference or complete firmware workflow proof",
+  "methods": [
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "onPointAdd",
+      "descriptor": "(F F F)V",
+      "codeOffset": 5010380,
+      "instructionSha256": "3f7d1188685700041ae7371e2c35ebb31267d266a631a9f54daca5594088f87e"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "onPointFocusChange",
+      "descriptor": "(I F F F)V",
+      "codeOffset": 5010568,
+      "instructionSha256": "c7b1103d1da041db4ea4e628590ee973c0e141a32b22e8484bf296e37833974b"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "sendToDeviceStop",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 5006008,
+      "instructionSha256": "0b0e73326b4fe2167959d93e85e38d993b93a44278d0e8766167dc1a43e27260"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "formatTimeInSecond",
+      "descriptor": "(F)Ljava/lang/String;",
+      "codeOffset": 5004160,
+      "instructionSha256": "67d3508570005dd833fa0a3bdf93e16fd5e25e52437128c07b1fb896411f16cf"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "formatValueInDegree",
+      "descriptor": "(F)Ljava/lang/String;",
+      "codeOffset": 5004188,
+      "instructionSha256": "98725695a4a9bc1072282f80e6509a95e59ab1bada52a71092d0dcb28e8aeb7e"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "transferProgressToSecond",
+      "descriptor": "(F)I",
+      "codeOffset": 5006540,
+      "instructionSha256": "2721324247d74a71d4dcaf1e0533fe945b9e4b3f7ec15f7f953a342b70a737a1"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "transferSecondToProgress",
+      "descriptor": "(I)I",
+      "codeOffset": 5006576,
+      "instructionSha256": "c1e010cdfbbe1564651539a90dc75789531660b7f9389ee359eee0eb9222843d"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "transferTime",
+      "descriptor": "(I)Ljava/lang/String;",
+      "codeOffset": 5006612,
+      "instructionSha256": "0e33ee86bef8e0b4c4da869393c5869f704820ea8343512921d5ffaec8f3d10c"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "updateTotalTime",
+      "descriptor": "()V",
+      "codeOffset": 5007312,
+      "instructionSha256": "167e038477c7d3c822e18fdf2b18f0890ea7dc4ebcbb28e5e31023668691c8b5"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "onClick",
+      "descriptor": "(Landroid/view/View;)V",
+      "codeOffset": 5008472,
+      "instructionSha256": "dae97d5c664d528813dce94cbf1326fd33dc478c3be0146164cc26c773452421"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "<init>",
+      "descriptor": "(Landroid/content/Context; Landroid/util/AttributeSet;)V",
+      "codeOffset": 5003692,
+      "instructionSha256": "342acd065c69d1ef073f2189f12db988063a969af0f44e68278cd1f70ec246ba"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackPathView;",
+      "method": "generatePoint",
+      "descriptor": "()Landroid/graphics/PointF;",
+      "codeOffset": 4749684,
+      "instructionSha256": "27f65aacee474a45d47d662a2102c62b1ffe5d200a40e292f05ae4483919fb4c"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackPathView;",
+      "method": "onAddPoint",
+      "descriptor": "(Landroid/graphics/PointF;)V",
+      "codeOffset": 4750136,
+      "instructionSha256": "48c348775bbf9f2037936aa9629f20b831be782d7f6a2d1eb3e42aedc7093f36"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackPathView;",
+      "method": "onValueChange",
+      "descriptor": "(Ldji/sdksharedlib/keycatalog/DJISDKCacheKey; Ldji/sdksharedlib/store/DJISDKCacheParamValue; Ldji/sdksharedlib/store/DJISDKCacheParamValue;)V",
+      "codeOffset": 4751120,
+      "instructionSha256": "954b0f329bbffc12dd2aa4dd81a341b5b36eb414a1efd9bf08b37ef175f5885a"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackPathView;",
+      "method": "getMaxPoints",
+      "descriptor": "()I",
+      "codeOffset": 4749768,
+      "instructionSha256": "37132a9c7216ebd5f75276154c7791f4c6f7ec5558b217d40f9a944ad27b4e27"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackPathView;",
+      "method": "setListener",
+      "descriptor": "(Lcom/dji/ronin/ui/create/track/CreateTrackPathView$OnPathChangeListener;)V",
+      "codeOffset": 4751328,
+      "instructionSha256": "f83c14b1d8781149f87bb86f09de25dc6a3a3b88ad06b0b8a11e5115d99fceeb"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/CreateGimbalPathView;",
+      "method": "onAttachedToWindow",
+      "descriptor": "()V",
+      "codeOffset": 3912808,
+      "instructionSha256": "c4e30dd307bfe1c6877fb722e733822614885b15fbae5a0d5bae513b997200ce"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/CreateGimbalPathView;",
+      "method": "onValueChange",
+      "descriptor": "(Ldji/sdksharedlib/keycatalog/DJISDKCacheKey; Ldji/sdksharedlib/store/DJISDKCacheParamValue; Ldji/sdksharedlib/store/DJISDKCacheParamValue;)V",
+      "codeOffset": 3913140,
+      "instructionSha256": "d84ff0b7880f1ae086e3aa9f88741f38a38d19db80ef1aa06d82d7e13197cd25"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/CreateGimbalPathView;",
+      "method": "updateYawPitch",
+      "descriptor": "()Z",
+      "codeOffset": 3912480,
+      "instructionSha256": "7f269e426744eb85727921f6b17b52c4fcddca1a75315bb65a53c8e32b75419e"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/CreateGimbalPathView;",
+      "method": "updatePanAndTilt",
+      "descriptor": "()V",
+      "codeOffset": 3913464,
+      "instructionSha256": "07bdd2e107e0ffc5e128ceedbb9e631436df286f0df0f6a5add913fb1f695074"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/CreateGimbalPathView;",
+      "method": "updatePanAndTiltForFocus",
+      "descriptor": "(Z)V",
+      "codeOffset": 3913576,
+      "instructionSha256": "e737e3c745b7e80989025985d8d7c6ef06022d440edd183fd82d9bde6ad09eb6"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/CreatePathBaseView;",
+      "method": "gridToAngleYaw",
+      "descriptor": "(F)F",
+      "codeOffset": 2517552,
+      "instructionSha256": "a6b07785dd6a5c4449c2daeb91fa914fa2907eae0a1d57ff2eac51f5f85efef7"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/CreatePathBaseView;",
+      "method": "gridToAnglePitch",
+      "descriptor": "(F)F",
+      "codeOffset": 2517488,
+      "instructionSha256": "1664291c1b4cd2caebcf0f1b43df920295c60038adb2e1d8de6411705f82ef6d"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/CreatePathBaseView;",
+      "method": "angleToGridYaw",
+      "descriptor": "(F)F",
+      "codeOffset": 2516436,
+      "instructionSha256": "818edbb1801bf610127a2848fce73575e72090116b27639a2388c7321a7190b3"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/CreatePathBaseView;",
+      "method": "angleToGridPitch",
+      "descriptor": "(F)F",
+      "codeOffset": 2516372,
+      "instructionSha256": "685b25d79eade50d0b55e58e7ff425768b0a1b2bda50b6ce51d2235d48360f44"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/CreatePathBaseView;",
+      "method": "setCameraPosition",
+      "descriptor": "(F F)V",
+      "codeOffset": 2519692,
+      "instructionSha256": "de0ce86b1cf7960657f54a48bf7a6c2ddbe9c49c0bf4288d1dfcc3db8db7ec51"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView$7;",
+      "method": "format",
+      "descriptor": "(Ljava/lang/Float;)Ljava/lang/String;",
+      "codeOffset": 3961116,
+      "instructionSha256": "766e368b60b2328f2f808567b31c4b36c1dbb9f5dbc31084543409868453d8bd"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView$8;",
+      "method": "onValueChange",
+      "descriptor": "(F Ljava/lang/String; Z)V",
+      "codeOffset": 3961224,
+      "instructionSha256": "4888bb20b28e7ccb5675bac81f210f69d5baf192c8d99674bca5e06dab2592b5"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView$9;",
+      "method": "onValueChange",
+      "descriptor": "(F Ljava/lang/String; Z)V",
+      "codeOffset": 3961436,
+      "instructionSha256": "b90a0333069d3b54fe5afc17892a0ce5d9b81a0200559fe86a852707b6208cd6"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView$RoadPoint;",
+      "method": "<init>",
+      "descriptor": "(F F F F)V",
+      "codeOffset": 3961640,
+      "instructionSha256": "38fa2a4c4de7d056b600fc08171a8b498ed319861c99dbbdaede043ae8274608"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView$RoadPoint;",
+      "method": "<init>",
+      "descriptor": "(Lorg/json/JSONObject;)V",
+      "codeOffset": 3961672,
+      "instructionSha256": "c7a4a9d2583039af77bbcc352f8c46d367ed0d70f4530be83aefa716ab130b2a"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/newui/BaseRoadPoint;",
+      "method": "<init>",
+      "descriptor": "(F F)V",
+      "codeOffset": 2601184,
+      "instructionSha256": "d4935d9004c10837503fd63edede477a8d6512131666a7f1f1385ce98703724f"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "previewToggle",
+      "descriptor": "()V",
+      "codeOffset": 5005056,
+      "instructionSha256": "3d1c4786a21a27aeac5e9c9be993cdad1371c6eaa486cb13c71e2903806dabd6"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "sendToDeviceStart",
+      "descriptor": "(I Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 5005704,
+      "instructionSha256": "35606af2c1f59be5d768735cdcfdc5bce2285cfbdad4dda6773fb4497135c918"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus$DataType;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3469984,
+      "instructionSha256": "24e0eff978495a3e486ee8870dc40a7cda1fcf7d677fd71d30553a469e67f414"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus$DataType;",
+      "method": "<init>",
+      "descriptor": "(Ljava/lang/String; I I)V",
+      "codeOffset": 3471196,
+      "instructionSha256": "bfd7fc72247e1750ea3338f0159f20968183d90c3fdadef98591f310626cfae9"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 4652020,
+      "instructionSha256": "89d7e5d4c317f54eb541d186eff2e608a50e62f9387974ef9c74a54543aa6609"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "onEvent3BackgroundThread",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;)V",
+      "codeOffset": 6516676,
+      "instructionSha256": "f65d0949d01d6adf7a789c19c46cd8bddbcd3f6386708fa73ce22cf67d8cc06d"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getPActualPose",
+      "descriptor": "()F",
+      "codeOffset": 4886884,
+      "instructionSha256": "69bf30046fd3cd58efa93c03da3a788b8ae85d9dfca85cdf2b296912a326f976"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getYActualPose",
+      "descriptor": "()F",
+      "codeOffset": 4887612,
+      "instructionSha256": "49f60149039a80a46845b4be7ee43243f16c869ab553b60b9158e1f088ef202a"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getRActualPose",
+      "descriptor": "()F",
+      "codeOffset": 4887248,
+      "instructionSha256": "26994ae2e8459af9fa824fdf2d0c8954652536f1cfd0f1ed983c71d9434f1163"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getPMotorAngle",
+      "descriptor": "()F",
+      "codeOffset": 4887004,
+      "instructionSha256": "17d75b4807d7b91e57804cbc53de98cf05fe643499d64095212d4431343fa6fa"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getYMotorAngle",
+      "descriptor": "()F",
+      "codeOffset": 4887732,
+      "instructionSha256": "0319ddb5ba1dccd8e6793d70dada6abf0528dcc34254bfb451325723e6c580d4"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getRMotorAngle",
+      "descriptor": "()F",
+      "codeOffset": 4887368,
+      "instructionSha256": "15a7fd2414273c383bee6af54e3f709091a3ac8ebeec046405af0c2458fdf974"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getIntValue",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus$DataType;)I",
+      "codeOffset": 4885864,
+      "instructionSha256": "fe1c5d859974576fe078a968574c82e0037c886624bd9d6058289fc7db3a66b0"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getData",
+      "descriptor": "([B Ljava/lang/Class;)Ljava/lang/Number;",
+      "codeOffset": 4886240,
+      "instructionSha256": "cf5208dd8f83d3f5768e32b2e6b6d844cf5df80791fd9d017702a0e6620867a0"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "setPushRecData",
+      "descriptor": "([B)V",
+      "codeOffset": 4887936,
+      "instructionSha256": "31d5dee2fea1abff48fd260173ea12d567e265d762326a6dddc1df77f4356f9e"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/util/BytesUtil;",
+      "method": "getSignedInt",
+      "descriptor": "(B)S",
+      "codeOffset": 3783368,
+      "instructionSha256": "f2b4681e91df345bb32677357555ae30393bf38bb3f2a73c1c203d5d939309ac"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/util/BytesUtil;",
+      "method": "getShort",
+      "descriptor": "([B)S",
+      "codeOffset": 3783152,
+      "instructionSha256": "2ea5713ce80826bf91c80b560b4f40eecf85b2506d55d3ef3225387cd1b9ef78"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/util/BytesUtil;",
+      "method": "getInt",
+      "descriptor": "([B)I",
+      "codeOffset": 3782728,
+      "instructionSha256": "c83e6d064884807cec2be0dbd3235f71dd62fcd952eb0b2b88bfc373d0b761e2"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/util/BytesUtil;",
+      "method": "getLong",
+      "descriptor": "([B)J",
+      "codeOffset": 3782944,
+      "instructionSha256": "321ee01520a460a30ea876fa00a64779c8b0fcb758feff575596bbc338d31fff"
+    }
+  ],
+  "time": {
+    "sourceUiUnit": "seconds",
+    "sourceDisplaySuffixes": [
+      "s",
+      "min"
+    ],
+    "moveSliderRange": [
+      1,
+      159
+    ],
+    "stopSliderRange": [
+      0,
+      60
+    ],
+    "moveSecondsAtProgress": {
+      "p1": 1,
+      "p60": 60,
+      "p61": 120,
+      "p159": 6000
+    },
+    "progressAbove60Rule": "(truncFloat32(progress)-59)*60",
+    "inverseAbove60Rule": "integerSeconds/60 truncation +59",
+    "inverseIsExact": false,
+    "sourceDefaultMoveAndStopSeconds": 2,
+    "sourceUiRangeIsFirmwareSafeRange": false
+  },
+  "point": {
+    "sourceUiAngleDisplay": "degrees",
+    "cacheKeys": [
+      "PeripheralPosYaw",
+      "PeripheralPosPitch",
+      "PeripheralPosRoll"
+    ],
+    "previewArgumentViews": [
+      [
+        "moveTime",
+        "stopTime",
+        "yaw",
+        "pitch",
+        0
+      ]
+    ],
+    "sendToDeviceStartArgumentViews": [
+      [
+        "moveTime",
+        "stopTime",
+        "yaw",
+        "pitch",
+        0
+      ],
+      [
+        0,
+        "stopTime",
+        "yaw",
+        "pitch",
+        0
+      ],
+      [
+        "moveTime",
+        "stopTime",
+        "yaw",
+        "pitch",
+        0
+      ]
+    ],
+    "initialSendLoopClearedBeforeFinalLoop": true,
+    "firstFinalSendMoveTime": 0,
+    "sourceTrackRollValue": 0,
+    "sourcePointAddIgnoresRollArgument": true,
+    "selectedJsonMoveTimeUpperClamp": 6000,
+    "selectedJsonMoveTimeLowerClampPresent": false,
+    "selectedJsonStopTimeDirectFloatRead": true,
+    "existingJointAnglesEquivalentVerified": false,
+    "physicalReferenceFrameVerified": false
+  },
+  "peripheral": {
+    "command": "04:66",
+    "selectedTypes": {
+      "PActualPose": {
+        "ordinal": 33,
+        "wireId": 34
+      },
+      "RActualPose": {
+        "ordinal": 34,
+        "wireId": 35
+      },
+      "YActualPose": {
+        "ordinal": 35,
+        "wireId": 36
+      },
+      "PMotorAngle": {
+        "ordinal": 15,
+        "wireId": 16
+      },
+      "RMotorAngle": {
+        "ordinal": 16,
+        "wireId": 17
+      },
+      "YMotorAngle": {
+        "ordinal": 17,
+        "wireId": 18
+      }
+    },
+    "cacheProducer": [
+      {
+        "getter": "getPActualPose",
+        "key": "PeripheralPosPitch"
+      },
+      {
+        "getter": "getYActualPose",
+        "key": "PeripheralPosYaw"
+      },
+      {
+        "getter": "getRActualPose",
+        "key": "PeripheralPosRoll"
+      }
+    ],
+    "sourceActualPoseDistinctFromMotorAngle": true,
+    "sourceGetterDivisor": 10,
+    "sourceWidths": {
+      "byte": 1,
+      "short": 2,
+      "integer": 4,
+      "longNarrowedToInt": 8
+    },
+    "missingSourceMapValueReturnsZero": true,
+    "sourceMapRetainsOtherRecords": true,
+    "sourceLengthUsesSignedByte": true,
+    "sourceUpdateFlag": 1,
+    "offlineViewRetainsDuplicatesAndUnknowns": true,
+    "offlineViewInventsMissingZeros": false,
+    "rawBleOffsetsVerified": false
+  },
+  "preview": {
+    "directCalls": [
+      {
+        "className": "Ldji/midware/data/manager/P3/ServiceManager;",
+        "method": "getInstance",
+        "descriptor": "()Ldji/midware/data/manager/P3/ServiceManager;"
+      },
+      {
+        "className": "Ldji/midware/data/manager/P3/ServiceManager;",
+        "method": "isConnected",
+        "descriptor": "()Z"
+      },
+      {
+        "className": "Ldji/midware/data/manager/P3/ServiceManager;",
+        "method": "getInstance",
+        "descriptor": "()Ldji/midware/data/manager/P3/ServiceManager;"
+      },
+      {
+        "className": "Ldji/midware/data/manager/P3/ServiceManager;",
+        "method": "isRemoteOK",
+        "descriptor": "()Z"
+      },
+      {
+        "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+        "method": "lockUI",
+        "descriptor": "()V"
+      },
+      {
+        "className": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+        "method": "setRecordOrPreview",
+        "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+      },
+      {
+        "className": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+        "method": "setStartOrStop",
+        "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+      },
+      {
+        "className": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+        "method": "setIsTripod",
+        "descriptor": "(Z)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+      },
+      {
+        "className": "Ljava/util/List;",
+        "method": "iterator",
+        "descriptor": "()Ljava/util/Iterator;"
+      },
+      {
+        "className": "Ljava/util/Iterator;",
+        "method": "hasNext",
+        "descriptor": "()Z"
+      },
+      {
+        "className": "Ljava/util/Iterator;",
+        "method": "next",
+        "descriptor": "()Ljava/lang/Object;"
+      },
+      {
+        "className": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+        "method": "addRoadPoint",
+        "descriptor": "(F F F F F)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+      },
+      {
+        "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView$12;",
+        "method": "<init>",
+        "descriptor": "(Lcom/dji/ronin/ui/create/track/CreateTrackView;)V"
+      },
+      {
+        "className": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+        "method": "start",
+        "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V"
+      },
+      {
+        "className": "Ljava/util/List;",
+        "method": "iterator",
+        "descriptor": "()Ljava/util/Iterator;"
+      },
+      {
+        "className": "Ljava/util/Iterator;",
+        "method": "hasNext",
+        "descriptor": "()Z"
+      },
+      {
+        "className": "Ljava/util/Iterator;",
+        "method": "next",
+        "descriptor": "()Ljava/lang/Object;"
+      },
+      {
+        "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView$RoadPoint;",
+        "method": "toString",
+        "descriptor": "()Ljava/lang/String;"
+      },
+      {
+        "className": "Lcom/dji/ronin/ui/create/CreateBottomBar;",
+        "method": "addLog",
+        "descriptor": "(Ljava/lang/CharSequence;)V"
+      },
+      {
+        "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+        "method": "updateTotalTime",
+        "descriptor": "()V"
+      },
+      {
+        "className": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+        "method": "setRecordOrPreview",
+        "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+      },
+      {
+        "className": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+        "method": "setStartOrStop",
+        "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+      },
+      {
+        "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView$13;",
+        "method": "<init>",
+        "descriptor": "(Lcom/dji/ronin/ui/create/track/CreateTrackView;)V"
+      },
+      {
+        "className": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+        "method": "start",
+        "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V"
+      }
+    ],
+    "cameraRelatedDirectCalls": [],
+    "completeCameraIsolationVerified": false,
+    "physicalStopVerified": false
+  },
+  "remaining": [
+    "ActualPose physical reference, relation to existing 04:05 fields, target layout/firmware support and route remain unverified.",
+    "Source UI time/angle display and argument transforms do not prove motor timing, safe ranges or full camera isolation.",
+    "04:66 record widths are selected from record length; no target width is assumed. Other source widths remain opaque in offline view.",
+    "No program execution/stop, subscription changes, new SDK features or hardware operation added."
+  ]
+}

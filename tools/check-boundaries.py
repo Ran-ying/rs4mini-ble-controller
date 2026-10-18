@@ -596,3 +596,18 @@ assert len(vectors)==6
 assert {(v['program'],v['enabled']) for v in vectors} == {(p,e) for p in ('track','timelapse','panorama') for e in (True,False)}
 for source in subscription['files']:
     assert (root/source).is_file()
+
+if manifest.get('trackPointResearch'):
+    points=json.loads((root/manifest['trackPointResearch']).read_text())
+    assert len(points['methods'])==51
+    for flag in ('appCodeExecuted','liveUiExecuted','targetDeviceVerified','wholeProtocolRecovered','researchToolProvidesSdkInterface','sdkProgramSendAdded'):
+        assert points[flag] is False
+    assert points['time']['moveSecondsAtProgress']=={'p1':1,'p60':60,'p61':120,'p159':6000}
+    assert points['point']['previewArgumentViews']==[['moveTime','stopTime','yaw','pitch',0]]
+    assert points['point']['sendToDeviceStartArgumentViews']==[['moveTime','stopTime','yaw','pitch',0],[0,'stopTime','yaw','pitch',0],['moveTime','stopTime','yaw','pitch',0]]
+    assert points['point']['existingJointAnglesEquivalentVerified'] is False
+    assert points['point']['physicalReferenceFrameVerified'] is False
+    assert {n:r['wireId'] for n,r in points['peripheral']['selectedTypes'].items()}=={'PActualPose':34,'RActualPose':35,'YActualPose':36,'PMotorAngle':16,'RMotorAngle':17,'YMotorAngle':18}
+    assert points['peripheral']['rawBleOffsetsVerified'] is False
+    assert points['preview']['completeCameraIsolationVerified'] is False
+    assert points['preview']['physicalStopVerified'] is False

@@ -611,3 +611,11 @@ BLE路由研究验证（2026-10-18）：最终固定输入实际提取两次，3
 
 
 0.7.30实际安装交付验证：Node tarball隔离安装后255项与严格TypeScript消费者通过；wheel隔离安装后230项通过，app_commands/app_component_calibration/device/controller导入位置核对。Node102文件、wheel37模块、原生ZIP3文件与本次源码/签名构建逐字节一致，原生0.3.30/build33，未启动应用。没有npm发布或GitHub二进制Release。
+
+
+## HG724手柄工厂与04:58键绑定研究
+
+固定bank05核对19方法与注解，HG724条件工厂选择MobileHandheldControllerAbstraction；StickGimbalControlEnabled键支持和实际Setter注解对应04:58布尔类。方法名中的MicroPhones不定义功能，不新增麦克风/相机接口。工厂参数1是数量、普通index0，不改作接收地址；源链不证明现场反射/注册或固件效果。见[手柄绑定研究](../tools/research/HANDHELD_BINDING.md)（仓库根目录）及protocol/research/ronin-handheld-binding-evidence.json。未新增SDK收发/高级功能，无硬件/liveUI/厂商执行，运行时0.7.30/0.3.30及全命令false不变。
+
+
+手柄绑定研究验证（2026-10-19）：最终固定输入实际提取两次，19方法/平台switch/Key与Setter注解证据JSON逐字节一致。新增8测试，研究Python3.8与3.12各403通过；统一离线Node255/Web25/Python230/原生949+263+3及类型/分层/构建通过，终态0。运行时目录与bac83a2完全一致，0.7.30/0.3.30安装包不变。没有SDK发送、麦克风/相机/高级新增或硬件/liveUI/厂商执行，全命令门槛false。

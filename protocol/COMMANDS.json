@@ -835,14 +835,15 @@
       "name": "官方 App 枚举：SetHandheldStickControlEnabled",
       "requestCodec": "unknown",
       "responseCodec": "unknown",
-      "targetEvidence": "official-app-enum",
+      "targetEvidence": "app-code-path",
       "implementation": [],
-      "remaining": "通用一字节布尔体/ACK路径已核对，六段调用仅MobileHandheldController且方法名有歧义；无HG724调用/接受/恢复/持久化证据，不开放SDK发送",
+      "remaining": "已核对HG724条件工厂→Mobile手柄类、StickGimbalControlEnabled Key/Setter注解及04:58 bool00/01。尚未封装SDK发送；实际平台/反射注册、固件开关效果/持久化、04:57通知关联未验收。不据方法名扩展麦克风功能。",
       "officialAppAliases": [
         "SetHandheldStickControlEnabled"
       ],
       "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
-      "stickResearch": "protocol/research/ronin-stick-evidence.json"
+      "stickResearch": "protocol/research/ronin-stick-evidence.json",
+      "handheldBindingEvidence": "protocol/research/ronin-handheld-binding-evidence.json"
     }
   ],
   "researchEvidence": [

@@ -44,3 +44,6 @@ python/.venv/bin/python -m unittest discover -s tools/research -p test_ronin_sti
 工具先检查所有固定哈希，输出指纹/字段与直接引用；Short getter前缀拒绝未知分支/类型/宽度。
 其余关键方法按固定指纹人工核对，工具不是通用CFG或虚拟机，不保存厂商反汇编。
 全部命令完整性及新增高级功能条件仍false。
+
+
+后续[HG724工厂与Setter绑定](HANDHELD_BINDING.md)补齐明确HG724平台条件下的Mobile选择及实际StickGimbalControlEnabled注解；本页“尚无型号源绑定”为当时状态。仍未提供58发送或实机效果/持久化证明。

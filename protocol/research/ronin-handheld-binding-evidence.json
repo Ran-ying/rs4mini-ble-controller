@@ -1,0 +1,288 @@
+{
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "bankSha256": "4fdbd74a05df63d72a0feb1c907d9395426ec3cdb5d6aeb45e3836d856d66654",
+  "methods": [
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetHandheldStickControlEnabled;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "codeOffset": 4884164,
+      "instructionSha256": "39168681df57fd2a39a5155e19083ec136bd43029a74e6b4d49ff69d9c42a89a"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetHandheldStickControlEnabled;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 4884276,
+      "instructionSha256": "946c5a1770b9a63276634f1c683ca869c29f12c57eb6f0b1ae45687e00c6a7b6"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetHandheldStickControlEnabled;",
+      "method": "setHandheldStickControlEnabled",
+      "descriptor": "(Z)Ldji/midware/data/model/P3/DataGimbalSetHandheldStickControlEnabled;",
+      "codeOffset": 4884320,
+      "instructionSha256": "ea5e9fa3e39aea431e48aa7f52ddf6c05d0588a055a7cf0ce508cd6c57c547b8"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetHandheldStickControlEnabled;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4884344,
+      "instructionSha256": "d9d41f37cdb37a128f22a9d4675dd1e9d3a7b7a64b0f567df69879bb6f15f2dd"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/DJISDKCacheHWAbstractionLayer$3;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3907956,
+      "instructionSha256": "92f00bb862dc0374714fbe82a04c567d9c52168d2a5df8ed34770bb37d2acd7c"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/DJISDKCacheHWAbstractionLayer;",
+      "method": "addAbstraction",
+      "descriptor": "(I Ljava/lang/String; Ljava/lang/Class;)V",
+      "codeOffset": 3912832,
+      "instructionSha256": "b2abb6de0c1d2b98f0c5e1915777f616c771caa7e6043588cebcb6833f62eaef"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/DJISDKCacheHWAbstractionLayer;",
+      "method": "addHandheldControllerAbstraction",
+      "descriptor": "()V",
+      "codeOffset": 3910912,
+      "instructionSha256": "04b59e20287536a4960b540fa38810004e8225cd5bbce8fb3191b34cb175758e"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/DJISDKCacheHWAbstractionLayer;",
+      "method": "onEvent3BackgroundThread",
+      "descriptor": "(Ldji/midware/component/DJIComponentManager$PlatformType;)V",
+      "codeOffset": 3918624,
+      "instructionSha256": "b094157dfee552bfe8094ce07f32d7a663611a4da5a902e68e114ee16675c532"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/DJISDKCacheHWAbstractionLayer;",
+      "method": "updateHandheldController",
+      "descriptor": "()V",
+      "codeOffset": 3912392,
+      "instructionSha256": "91089c7930f9ed4b5f6b33a5b3bcb5f740f5511f6ff45c504a49b8eaa7b7da4e"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction;",
+      "method": "addCharacteristics",
+      "descriptor": "(Ljava/lang/Class; Ljava/lang/Class;)V",
+      "codeOffset": 3928064,
+      "instructionSha256": "c9b3db61559df06dd86ed6301e8281e2259082b3190c1342236dcd5ae470a3ff"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction;",
+      "method": "createMethodMap",
+      "descriptor": "()V",
+      "codeOffset": 3928832,
+      "instructionSha256": "c753af9a9f76675fa0efcec2e32a843330b36480148db4be603b420afe8715a1"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction;",
+      "method": "init",
+      "descriptor": "(Ljava/lang/String; I Ldji/sdksharedlib/store/DJISDKCacheStoreLayer; Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$OnValueChangeListener;)V",
+      "codeOffset": 3930108,
+      "instructionSha256": "836120aeaafe2cbc7971c5413875b4b9f8c408f3861ad0093d6c14a60bf0dfe9"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/handheldcontroller/HandheldControllerBaseAbstraction;",
+      "method": "init",
+      "descriptor": "(Ljava/lang/String; I Ldji/sdksharedlib/store/DJISDKCacheStoreLayer; Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$OnValueChangeListener;)V",
+      "codeOffset": 5258876,
+      "instructionSha256": "ff4f53624da45a303872c108ee35947b8b9769971efbb274b5926d9ab8721a7e"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/handheldcontroller/HandheldControllerBaseAbstraction;",
+      "method": "initializeComponentCharacteristics",
+      "descriptor": "()V",
+      "codeOffset": 5258916,
+      "instructionSha256": "7de53454e4809b582deac1d600e333e020f256cc174e0d5a96acf5dadfeeee40"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/handheldcontroller/MobileHandheldControllerAbstraction$3;",
+      "method": "onFailure",
+      "descriptor": "(Ldji/midware/data/config/P3/Ccode;)V",
+      "codeOffset": 5259216,
+      "instructionSha256": "c7920edcbbab30076031b9026983af51c902e1b639d5a2b67ab04a635a35d11e"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/handheldcontroller/MobileHandheldControllerAbstraction$3;",
+      "method": "onSuccess",
+      "descriptor": "(Ljava/lang/Object;)V",
+      "codeOffset": 5259244,
+      "instructionSha256": "18f6f12a095b3d25ce485948de0c0c95791d25a3434d96f620f2de8dcbc54b02"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/handheldcontroller/MobileHandheldControllerAbstraction;",
+      "method": "init",
+      "descriptor": "(Ljava/lang/String; I Ldji/sdksharedlib/store/DJISDKCacheStoreLayer; Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$OnValueChangeListener;)V",
+      "codeOffset": 6302252,
+      "instructionSha256": "8bdc6a5534af94061cd15c4eef452539a4c7b7cf855a2a3065faedaabf2ec3c5"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/handheldcontroller/MobileHandheldControllerAbstraction;",
+      "method": "initializeComponentCharacteristics",
+      "descriptor": "()V",
+      "codeOffset": 6302312,
+      "instructionSha256": "a77d41407fb587e043ab68792078e2e980deef8f72917dc32a5a21ed637b05e7"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/handheldcontroller/MobileHandheldControllerAbstraction;",
+      "method": "setIsInternalAndExternalMicroPhonesEnabled",
+      "descriptor": "(Z Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6303356,
+      "instructionSha256": "bc394baf8c3ccfe2f91290d9538e7972937b91f87a06bd4c59ff3801b536be21"
+    }
+  ],
+  "platformCases": {
+    "P3c": 1,
+    "P3x": 2,
+    "P3s": 3,
+    "P3w": 4,
+    "P4": 5,
+    "P4P": 6,
+    "P4A": 7,
+    "M100": 8,
+    "Inspire": 9,
+    "M600": 10,
+    "M600Pro": 11,
+    "M200": 12,
+    "M210": 13,
+    "M210RTK": 14,
+    "Inspire2": 15,
+    "OSMO": 16,
+    "OSMOMobile": 17,
+    "Ronin2": 18,
+    "RoninS": 19,
+    "RoninSC": 20,
+    "HG702": 21,
+    "HG710": 22,
+    "HG711": 23,
+    "HG720": 24,
+    "HG724": 25,
+    "HG703": 26,
+    "HG714": 27,
+    "HG704": 28,
+    "HG715": 29,
+    "HG705": 30,
+    "DF101_HANDLE": 31,
+    "DF101_WHEEL": 32,
+    "FoldingDrone": 33,
+    "Mammoth": 34,
+    "Unknown": 35
+  },
+  "factoryTargets": {
+    "16": 60,
+    "17": 48,
+    "18": 46,
+    "19": 48,
+    "20": 48,
+    "21": 48,
+    "22": 48,
+    "23": 48,
+    "24": 48,
+    "25": 48,
+    "26": 48,
+    "27": 48,
+    "28": 48,
+    "29": 48,
+    "30": 48
+  },
+  "hg724Factory": {
+    "sourcePlatform": "HG724",
+    "sourcePlatformKnown": true,
+    "selectedClass": "Ldji/sdksharedlib/hardware/abstractions/handheldcontroller/MobileHandheldControllerAbstraction;",
+    "factoryOffset": 48,
+    "actualPlatformVerified": false,
+    "reflectionSucceededVerified": false
+  },
+  "selectedClassChain": [
+    "Ldji/sdksharedlib/hardware/abstractions/handheldcontroller/MobileHandheldControllerAbstraction;",
+    "Ldji/sdksharedlib/hardware/abstractions/handheldcontroller/HandheldControllerAbstraction;",
+    "Ldji/sdksharedlib/hardware/abstractions/handheldcontroller/HandheldControllerBaseAbstraction;",
+    "Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction;"
+  ],
+  "keyFields": [
+    {
+      "fieldName": "STICK_GIMBAL_CONTROL_ENABLED",
+      "literalKeyName": "StickGimbalControlEnabled",
+      "rawAnnotations": [
+        {
+          "typeName": "Ldji/sdksharedlib/keycatalog/extension/Key;",
+          "elements": {
+            "accessType": 6,
+            "includedAbstractions": [
+              "Ldji/sdksharedlib/hardware/abstractions/handheldcontroller/MobileHandheldControllerAbstraction;"
+            ],
+            "types": [
+              "Ljava/lang/Boolean;"
+            ]
+          }
+        }
+      ],
+      "entries": [
+        {
+          "accessType": 6,
+          "includedAbstractions": [
+            "Ldji/sdksharedlib/hardware/abstractions/handheldcontroller/MobileHandheldControllerAbstraction;"
+          ],
+          "excludedAbstractions": [],
+          "type": "Ljava/lang/Object;",
+          "types": [
+            "Ljava/lang/Boolean;"
+          ]
+        }
+      ],
+      "selection": {
+        "sourceSupport": true,
+        "exactTargetExcluded": false,
+        "defaultEntryIndex": null,
+        "getKeyCandidateIndexes": [
+          0
+        ],
+        "registrationCandidateIndexes": [
+          0
+        ],
+        "selectionUnambiguous": true,
+        "duplicateIncludedClasses": []
+      }
+    }
+  ],
+  "setter": {
+    "methodName": "setIsInternalAndExternalMicroPhonesEnabled",
+    "annotationKey": "StickGimbalControlEnabled",
+    "declaringClass": "Ldji/sdksharedlib/hardware/abstractions/handheldcontroller/MobileHandheldControllerAbstraction;",
+    "sourceCommand": "04:58",
+    "sourceBooleanBody": true,
+    "methodNameDoesNotDefineMicrophoneSemantics": true
+  },
+  "factoryArgument": {
+    "count": 1,
+    "ordinaryLoopFirstIndex": 0,
+    "argumentOneIsNotReceiverId": true
+  },
+  "scope": {
+    "parsedBanks": [
+      5
+    ],
+    "unrestoredBanks": [
+      1,
+      7
+    ],
+    "sourceHg724FactoryAndSetterPathEstablished": true,
+    "actualPlatformVerified": false,
+    "reflectionExecuted": false,
+    "reflectionAndMethodInvocationSucceededVerified": false,
+    "hardwareTested": false,
+    "vendorCodeExecuted": false,
+    "sdkSendAdded": false
+  },
+  "remaining": [
+    "PlatformType HG724 is a conditional source case, not live model identity.",
+    "Factory reflection, key/method registration and actual invocation were not executed.",
+    "No current device58 acceptance, meaning, persistence, ACK extras or57 request association are proven.",
+    "Raw key types array is retained; method-name mismatch does not introduce microphone control."
+  ]
+}

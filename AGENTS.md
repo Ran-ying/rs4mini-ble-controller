@@ -980,3 +980,8 @@ FollowModeSensitivity和GimbalControlState分别受isSupportStateSince4Gen控制
 固定APK/bank05/DB实际两次提取24方法指纹与152命名注册，最终JSON逐字节一致；81 BaseCommand、121个DB-present命令频道对、17组别名、21资源条件键/15 Base及两处型号条件已核对。新增19项边界，研究工具Python3.8与3.12各312通过。覆盖索引非ordinal、缺失0分支/显式条件、全目录与别名位图、三命令空间、寄存器覆盖/重复/未知注册、switch数组字段和哈希预检。
 
 统一离线Node220/Web20/Python198/原生309+224+3及类型/边界/构建通过，终态0且日志到达最后probe --help。Node/Python/macOS/Web目录与998019a相同，运行时及安装包保持0.7.25/0.3.25，不新增SDK发送/订阅管理或高级功能。资源加载顺序、组件缓存、本机路由/租期/远端停止未验收；没有硬件/liveUI/厂商代码执行，全命令门槛false。
+
+
+## 订阅初始化审计（2026-10-18）
+
+固定六段13方法审计确认元数据异步加载、逐项发布与BaseCommand构造时一次性捕获；不能推断真实调度、竞争或捕获0。独立SDK可明确选择固定DB已加载的索引分支，无需依赖App缓存；本机路由/通知/远端取消仍未验证。见[SUBSCRIPTION_INIT.md](tools/research/SUBSCRIPTION_INIT.md)和证据protocol/research/ronin-subscription-init-evidence.json。两次实际提取JSON逐字节一致，新增7项研究测试。此研究检查点不发布新的运行时版本；已提交运行时仍0.7.25/0.3.25。单次订阅SDK正在工作树中开发，尚未交付，不计作已完成；全命令与高级门槛仍false，无硬件或厂商执行。

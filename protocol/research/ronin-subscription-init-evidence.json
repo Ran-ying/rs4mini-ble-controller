@@ -1,0 +1,231 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "bankSha256": {
+    "0": "76002e76e02e1306ad197c4af127975d573999de174e5a9e44cc6f840196f621",
+    "2": "de69497b77de530d0d559646dc6d3fb24569e2ba8ba9502216f3d6c9fd6f3bf8",
+    "3": "bb50b39865520f55e97116ae1903bda3545b01c2fb7e2aba67a979dc264a9854",
+    "4": "2d3ff70fb84eb02ac75949ca6e7d5cc849a7f9ef55029fd168890c6dbccb1d12",
+    "5": "4fdbd74a05df63d72a0feb1c907d9395426ec3cdb5d6aeb45e3836d856d66654",
+    "6": "057f13084cf969ffadcfa2150d1b3ae3ed8a7822c95fb54158781764c9156e2f"
+  },
+  "appCodeExecuted": false,
+  "threadsStarted": false,
+  "targetDeviceVerified": false,
+  "wholeProtocolRecovered": false,
+  "researchToolProvidesSdkInterface": false,
+  "runtimeInitializationOrderObserved": false,
+  "methods": [
+    {
+      "className": "Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "accessFlags": 65544,
+      "codeOffset": 3336984,
+      "instructionSha256": "84c1ea31b3b2c366369644392e78b08e6ebac164474adaa72dbdb262e0b0de83"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "accessFlags": 65537,
+      "codeOffset": 3337068,
+      "instructionSha256": "f9c82fabdd8b8ba3da4e109991524a1e475b2b44b4a39514c665b4347eece811"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager;",
+      "method": "init",
+      "descriptor": "()V",
+      "accessFlags": 2,
+      "codeOffset": 3337144,
+      "instructionSha256": "ed94b8adc7beaa48dc5f317561c93594b1ae4c13dd68125066cd9f99737f7d9c"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager;",
+      "method": "getInstance",
+      "descriptor": "()Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager;",
+      "accessFlags": 9,
+      "codeOffset": 3337100,
+      "instructionSha256": "d4817b8a6cafa5b55b243f289edf51c534615e5b43eb63e8081462efc056ee2d"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager;",
+      "method": "setContext",
+      "descriptor": "(Landroid/content/Context;)V",
+      "accessFlags": 12,
+      "codeOffset": 3337520,
+      "instructionSha256": "6bb7023fee6a588952d5cac889a8b2e5e3475e25a0b4c993e4e55d81e3dcd512"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager$1;",
+      "method": "run",
+      "descriptor": "()V",
+      "accessFlags": 1,
+      "codeOffset": 3336860,
+      "instructionSha256": "a7fcbca1a14d6c0e88d235e6edab865943ca0af06a20606b19ac7fa3b26d7d3c"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager;",
+      "method": "-$$Nest$mreadToMemory",
+      "descriptor": "(Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager; Ljava/lang/String;)V",
+      "accessFlags": 4168,
+      "codeOffset": 3336936,
+      "instructionSha256": "c3fabf6f069fa593ff858584f0d772ded78fbb9b3645c81564e6815b44a6ed02"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager;",
+      "method": "read",
+      "descriptor": "(Ljava/lang/String;)Ldji/midware/data/params/P3/ParamInfo;",
+      "accessFlags": 9,
+      "codeOffset": 3337248,
+      "instructionSha256": "7a8e4c27d3590efc5f02acd6613f4a55b79e48d79ad896077184f6d2a037e3bb"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager;",
+      "method": "readToMemory",
+      "descriptor": "(Ljava/lang/String;)V",
+      "accessFlags": 2,
+      "codeOffset": 3337284,
+      "instructionSha256": "50a9e35ae581cbb3de11042f14a816efad823ed637a1bc4f63b93041e513d4bc"
+    },
+    {
+      "className": "Ldji/midware/ronin2/Ronin2GimbalParamsManager$BaseCommand;",
+      "method": "<init>",
+      "descriptor": "(Ljava/lang/String; I Ljava/lang/String;)V",
+      "accessFlags": 65538,
+      "codeOffset": 3731808,
+      "instructionSha256": "dff18940db1f41e1e4487d31d13d343cdba04213ada27b87c1de0dfa5aba9101"
+    },
+    {
+      "className": "Ldji/midware/ronin2/Ronin2GimbalParamsManager$BaseCommand;",
+      "method": "getId",
+      "descriptor": "()I",
+      "accessFlags": 1,
+      "codeOffset": 3731936,
+      "instructionSha256": "4796b1883090ef2397dc5b4d54d9aad879c2f93a4911d922e0719c7aea707d51"
+    },
+    {
+      "className": "Ldji/midware/ronin2/Ronin2GimbalParamsManager$BaseCommand;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "accessFlags": 65544,
+      "codeOffset": 3728816,
+      "instructionSha256": "38bb193999c192890ce98dda452e438e6f5a880db1faf8ab5587320f113b1682"
+    },
+    {
+      "className": "Ldji/common/gimbal/Ronin2SubscribeIMPL;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "accessFlags": 65537,
+      "codeOffset": 4477776,
+      "instructionSha256": "55e9e64e2be16daa7356c2b2bbdce8c6059ca5c23b42e4fb871aec1e69619a2a"
+    }
+  ],
+  "directLoaderCallers": [
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "instructionSha256": "f9c82fabdd8b8ba3da4e109991524a1e475b2b44b4a39514c665b4347eece811",
+      "targets": [
+        "init()V"
+      ]
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager;",
+      "method": "setContext",
+      "descriptor": "(Landroid/content/Context;)V",
+      "instructionSha256": "6bb7023fee6a588952d5cac889a8b2e5e3475e25a0b4c993e4e55d81e3dcd512",
+      "targets": [
+        "Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager;->getInstance()Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager;"
+      ]
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/ServiceManager;",
+      "method": "init",
+      "descriptor": "()V",
+      "instructionSha256": "0b993f6cb911df642c682887d533512fb2900374e3ffadeedb883fd286a20d74",
+      "targets": [
+        "setContext(Landroid/content/Context;)V"
+      ]
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRoninBaseAbstraction$4;",
+      "method": "onSuccess",
+      "descriptor": "(Ljava/lang/Object;)V",
+      "instructionSha256": "0ba12c9db7d716d645fd294345db7d62eba66b3ad4b66ef774354d2d04f1fd81",
+      "targets": [
+        "Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager;->getInstance()Ldji/midware/data/manager/P3/DJIGimbalParamInfoManager;"
+      ]
+    }
+  ],
+  "directCapturedIdWriters": [
+    {
+      "bank": 5,
+      "className": "Ldji/midware/ronin2/Ronin2GimbalParamsManager$BaseCommand;",
+      "method": "<init>",
+      "descriptor": "(Ljava/lang/String; I I Ljava/lang/String;)V",
+      "instructionSha256": "8a89f9132d0e0fbf5abc698a0496158ac28657f495655b92a7bedadf15902f87",
+      "writeCount": 1
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/ronin2/Ronin2GimbalParamsManager$BaseCommand;",
+      "method": "<init>",
+      "descriptor": "(Ljava/lang/String; I I Ljava/lang/String; Ljava/lang/Class;)V",
+      "instructionSha256": "113d760a11a230f4818e60526fdf76c7dd30354ac2080f15f390efb53dae806b",
+      "writeCount": 1
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/ronin2/Ronin2GimbalParamsManager$BaseCommand;",
+      "method": "<init>",
+      "descriptor": "(Ljava/lang/String; I Ljava/lang/String;)V",
+      "instructionSha256": "dff18940db1f41e1e4487d31d13d343cdba04213ada27b87c1de0dfa5aba9101",
+      "writeCount": 1
+    }
+  ],
+  "sourceFacts": {
+    "managerInfosStartsEmpty": true,
+    "setContextStartsOrGetsLoader": true,
+    "loaderThreadStartsAsynchronously": true,
+    "resource": "gimbal_param_infos / res/DB.json",
+    "recordsPublishedIndividually": true,
+    "selectedMethodsHaveNoJoinAwaitOrMethodSynchronization": true,
+    "baseConstructorReadsMetadataOnce": true,
+    "getIdDoesNotReReadMetadata": true,
+    "visibleIdWritersOnlyThreeConstructors": true,
+    "completionBeforeBaseEnumInitializationProven": false,
+    "globalExternalBarrierAbsenceProven": false
+  },
+  "scope": {
+    "restoredBanks": [
+      0,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "unrestoredBanks": [
+      1,
+      7
+    ],
+    "reflectionOrOtherClassLoadersRuledOut": false
+  },
+  "sdkDesign": {
+    "useExplicitPinnedDbPresentBranchInsteadOfEmulatingUninitializedZeroFallback": true,
+    "vendorAppCacheNotRequiredForIndependentSdk": true,
+    "targetRoutingStillUnverified": true,
+    "remoteStopOrLeaseStillUnverified": true
+  },
+  "remaining": [
+    "Selected methods show asynchronous loading and no local completion wait; other global barriers or actual scheduling are not proven absent.",
+    "Do not infer a live race, captured zeros or target device failure from this static audit.",
+    "Independent SDK may deliberately encode the pinned metadata-present/HG724 source branch without depending on vendor initialization; keep target/route/stream flags false."
+  ]
+}

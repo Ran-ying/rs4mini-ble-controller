@@ -1141,5 +1141,6 @@
     "referenceFrameVerified": false,
     "fixtures": "node/test/fixtures/peripheral-status.json"
   },
-  "subscriptionCatalogResearch": "protocol/research/ronin-subscription-catalog.json"
+  "subscriptionCatalogResearch": "protocol/research/ronin-subscription-catalog.json",
+  "subscriptionInitResearch": "protocol/research/ronin-subscription-init-evidence.json"
 }

@@ -4,6 +4,6 @@
     "test": "node --test test/*.test.js"
   },
   "name": "rs4mini-web",
-  "version": "0.7.25",
+  "version": "0.7.26",
   "private": true
 }

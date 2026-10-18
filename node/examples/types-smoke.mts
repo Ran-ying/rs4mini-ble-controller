@@ -259,3 +259,13 @@ function peripheralTypes(gimbal:RS4Mini) {
  // @ts-expect-error copied read-only status
  gimbal.appCommands.peripheralStatus=null;
 }
+
+async function parameterSubscriptionTypes(gimbal:RS4Mini){
+ const keys=gimbal.appCommands.parameterSubscriptionKeys;
+ const sent=await gimbal.appCommands.sendParameterSubscriptionRequest({keys:['UserProfile','ControllerMaxSpeedYaw'] as const});
+ const verified:false=sent.targetRoutingVerified;void verified;void keys;
+ // @ts-expect-error no raw channel names
+ await gimbal.appCommands.sendParameterSubscriptionRequest({keys:['raw:41']});
+ // @ts-expect-error no empty stop toggle or subscription manager
+ await gimbal.appCommands.sendParameterSubscriptionRequest({keys:['UserProfile'],enabled:false});
+}

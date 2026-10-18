@@ -650,3 +650,17 @@ if manifest.get('subscriptionCatalogResearch'):
     assert catalog['endpoint']['remoteStopOrLeaseVerified'] is False
     for flag in ('appCodeExecuted','targetDeviceVerified','wholeProtocolRecovered','researchToolProvidesSdkInterface','runtimeRegistrationMapConstructed'):
         assert catalog[flag] is False
+
+if manifest.get('parameterSubscriptionSdk'):
+    sdk=manifest['parameterSubscriptionSdk'];proof=json.loads((root/manifest['subscriptionCatalogResearch']).read_text())
+    projection=[{k:r[k] for k in ('key','commandId','channel','channelSource','sourceCondition')} for r in proof['registrations']]
+    js=(root/'node/src/app-parameter-subscription.js').read_text().split('const catalog = ',1)[1].split(';\n',1)[0]
+    py=(root/'python/rs4mini_sdk/app_parameter_subscription.py').read_text().split('CATALOG = ',1)[1].split('\n',1)[0]
+    native=(root/'macos/RSControlCore.m').read_text().split('static NSArray *AppParameterSubscriptionCatalog(void)',1)[1].split('JSONObjectWithData:[@',1)[1].split(' dataUsingEncoding:',1)[0]
+    assert json.loads(js)==projection and ast.literal_eval(py)==projection and json.loads(json.loads(native))==projection
+    assert sdk['keyCount']==152 and sdk['receiverByte']==229 and sdk['oneShotOnly'] is True
+    for flag in ('automaticRefresh','emptySelectionMeansStop','targetRoutingVerified','notificationStreamVerified','remoteSubscriptionStateVerified','targetDeviceVerified'):
+        assert sdk[flag] is False
+    init=json.loads((root/manifest['subscriptionInitResearch']).read_text())
+    assert init['runtimeInitializationOrderObserved'] is False and init['targetDeviceVerified'] is False
+    assert len(init['methods'])==13 and len(init['directCapturedIdWriters'])==3

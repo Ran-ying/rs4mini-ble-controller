@@ -42,7 +42,7 @@
 | `04:0D` | SetOnOrOff枚举（用途未定） | `unknown` / `unknown` | `official-app-enum` | 六段仅枚举自身引用，无已识别出站候选/同名类；ordinal5不是wire0D，payload/HG724路径未知，不与参数35等同，不据零引用判不支持 |
 | `04:10` | 当前 App 用户参数读取 | `implemented` / `partial` | `app-code-path` | 当前App配置按请求index/size读取，返回码、无符号索引和原始头字节分离；命名设置/状态/六组按轴档位已解码，未按索引推断其他字段，本机读数和更多参数仍待验收；0.7.10新增18项普通命名数值的1/2字节读写和异常原值保留，不自动切预设/输入源，活动预设与实际效果未验收 |
 | `04:11` | 保存用户参数源类 | `unknown` / `unknown` | `official-app-enum` | 六段恢复视图仅4个内部/枚举引用方法，无外部直接调用者；1/7、保护桩、反射/固件路径未排除，未开放HG724保存SDK |
-| `04:12` | 官方 App 枚举：SubscribeGimbalParams | `unknown` / `unknown` | `official-app-enum` | 命令枚举已确认，具体方法/字段与HG724分支仍需逐项证据，不把枚举恢复等同请求体完成；未开放发送 |
+| `04:12` | 单次命名参数订阅请求 | implemented / not-applicable | app-code-path | 0.7.26固定源分支152键、非空单次、CENTER/id7无ACK；无自动刷新或远端停止，本机路由/通知未验收 |
 | `04:13` | HG724恢复设置请求 | `implemented` / `partial` | `app-code-path` | 0.7.16显式来源分支010001与关联ACK；不重放/回滚，范围、生效、持久化及断线行为待实机验收 |
 | `04:24` | 当前App通用固定参数通知 | `not-applicable` / `candidate-structured` | `app-generic-code` | 0.7.12被动解码17个源getter，完整已知布局不少于74字节、仅未加密请求型，未知字节/枚举保留；不触发订阅，本机布局/活动预设及更多字段仍未验收 |
 | `04:25` | 官方 App 枚举：SetDelayTimelapseParams | `unknown` / `unknown` | `official-app-enum` | 当前App通用10字节点/最多6点、OR型info及外设位已静态核对；HG724调用、单位/范围、停止/相机隔离和本机效果未完成，未开放SDK发送 |
@@ -243,3 +243,8 @@ HG724继承的启动路径为普通用户参数04:0F，balance_test/index37/size
 ## 订阅初始化审计（2026-10-18）
 
 固定六段13方法审计确认元数据异步加载、逐项发布与BaseCommand构造时一次性捕获；不能推断真实调度、竞争或捕获0。独立SDK可明确选择固定DB已加载的索引分支，无需依赖App缓存；本机路由/通知/远端取消仍未验证。见[SUBSCRIPTION_INIT.md](../tools/research/SUBSCRIPTION_INIT.md)和证据protocol/research/ronin-subscription-init-evidence.json。两次实际提取JSON逐字节一致，新增7项研究测试。此研究检查点不发布新的运行时版本；已提交运行时仍0.7.25/0.3.25。单次订阅SDK正在工作树中开发，尚未交付，不计作已完成；全命令与高级门槛仍false，无硬件或厂商执行。
+
+
+## 0.7.26单次命名参数订阅 / 原生0.3.26 build29
+
+显式App来源下发送固定DB已加载/HG724静态分支的152命名键非空单次04:12请求，CENTER/id7、无ACK；报告21元数据和2型号条件键。不提供空集停止、后台刷新、反向请求或重连重放；三条中位前导及独占操作槽，不由发送成功判断远端订阅、通知新鲜度或物理效果。详见[单次参数订阅](APP_PARAMETER_SUBSCRIPTION.md)。此版本扩展此前“仅研究/工作树开发”的历史状态；实际型号/路由/通知/远端停止仍待验收，全命令及高级门槛false，无硬件/实时UI/厂商执行。

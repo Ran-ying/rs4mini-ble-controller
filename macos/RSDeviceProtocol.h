@@ -108,3 +108,8 @@ NSDictionary *RSAppProgramStatusSubscriptionSelection(NSDictionary *spec);
 NSData *RSAppProgramStatusSubscriptionFrame(uint16_t sequence, NSDictionary *spec);
 
 NSDictionary *RSDecodeAppPeripheralNotification(NSDictionary *message);
+
+NSArray *RSAppParameterSubscriptionKeys(void);
+NSDictionary *RSAppParameterSubscriptionSpec(NSDictionary *spec);
+NSData *RSAppParameterSubscriptionFrame(uint16_t sequence,NSDictionary *spec);
+NSDictionary *RSAppParameterSubscriptionSent(NSDictionary *selection);

@@ -1,0 +1,31 @@
+[
+  {
+    "keys": [
+      "UserProfile",
+      "PitchMotorControlStiffness",
+      "PeripheralPosYaw"
+    ],
+    "bodyHex": "10000132000166240000000010"
+  },
+  {
+    "keys": [
+      "ControllerMaxSpeedYaw"
+    ],
+    "bodyHex": "1029000000000002"
+  },
+  {
+    "keys": [
+      "IsChannel1Rev",
+      "Channel1MapState",
+      "IsChannel1Rev"
+    ],
+    "bodyHex": "103500000000000020"
+  },
+  {
+    "keys": [
+      "PeripheralGyroOutYaw",
+      "PeripheralGyroAccePitch"
+    ],
+    "bodyHex": "6615000020"
+  }
+]

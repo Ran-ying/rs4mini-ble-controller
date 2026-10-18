@@ -292,9 +292,12 @@ static BOOL Matches(NSString *name) {
             if (after) after();
         }
     } else if (self.appNoAckPending) {
-        if (self.outgoing.empty) [self finishApp:@{@"profile": @"ronin-2.2.2", @"sent": @YES, @"requestedStart": self.appRequestedStart,
-            @"acknowledgementRequested": @NO, @"acknowledged": @NO, @"deviceVerified": @NO, @"physicalCompletionVerified": @NO} error:nil];
-        else if (Clock() >= self.deviceQueryDeadline) [self failApp:RSAppError(@"RS4MINI_IO_TIMEOUT", @"Auto-tune request write timed out", nil)];
+        if (self.outgoing.empty) {
+            NSMutableDictionary *sent=[@{@"profile":@"ronin-2.2.2",@"sent":@YES,@"acknowledgementRequested":@NO,@"acknowledged":@NO,@"deviceVerified":@NO,@"physicalCompletionVerified":@NO} mutableCopy];
+            if(self.appCommandId==0x6a)sent[@"requestedStart"]=self.appRequestedStart;
+            [self finishApp:[sent copy] error:nil];
+        }
+        else if (Clock() >= self.deviceQueryDeadline) [self failApp:RSAppError(@"RS4MINI_IO_TIMEOUT", self.appCommandId==18?@"Parameter subscription write timed out":@"Auto-tune request write timed out", nil)];
     } else if (self.awaitingDeviceQuery) {
         if (Clock() >= self.deviceQueryDeadline) {
             if (self.appCompletion) [self failApp:RSAppError(@"RS4MINI_RESPONSE_TIMEOUT", @"App transaction response timed out", nil)];
@@ -411,6 +414,7 @@ static BOOL Matches(NSString *name) {
                 return nil;
             }
             return RSAppSensitivityFrame(sequence, mode);
+        case 18: return context ? nil : RSAppParameterSubscriptionFrame(sequence,mode);
         case 0x6a: return RSAppAutoTuneFrame(sequence, mode);
         case 7: return RSAppFineTuneFrame(sequence,context,mode);
         case 0x13: return context || mode ? nil : RSAppFactoryResetFrame(sequence,@"HG724");
@@ -589,6 +593,13 @@ static BOOL Matches(NSString *name) {
     }];
 }
 
+- (NSArray *)appParameterSubscriptionKeys{return RSAppParameterSubscriptionKeys();}
+- (void)sendParameterSubscriptionRequest:(NSDictionary *)spec completion:(RSAppCompletion)completion{
+    NSDictionary *selection=RSAppParameterSubscriptionSpec(spec);
+    if(!selection){if(completion)dispatch_async(dispatch_get_main_queue(), ^{completion(nil,RSAppError(@"RS4MINI_INVALID_ARGUMENT",@"Nonempty known subscription keys required",nil));});return;}
+    NSDictionary *snapshot=@{@"keys":selection[@"requestedKeys"]};
+    [self startAppCommand:18 parameters:nil mode:snapshot settingsKind:nil settingsPatch:nil timeoutMs:3000 completion:^(NSDictionary *reply,NSError *error){if(completion)completion(error?nil:RSAppParameterSubscriptionSent(selection),error);}];
+}
 - (void)sendProgramStatusSubscriptionRequest:(NSDictionary *)spec timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
     NSDictionary *selection=RSAppProgramStatusSubscriptionSelection(spec);
     if(!selection){if(completion)dispatch_async(dispatch_get_main_queue(), ^{completion(nil,RSAppError(@"RS4MINI_INVALID_ARGUMENT",@"Named program and boolean enabled required",nil));});return;}
@@ -632,8 +643,8 @@ static BOOL Matches(NSString *name) {
     [self beginStopKeepingApp:^{
         if (!weak.ready || !weak.appCompletion || weak.appToken != token) return;
         weak.deviceQuerySequence = [weak reserveSequence]; weak.deviceQueryDeadline = Clock() + timeoutMs / 1000;
-        weak.awaitingDeviceQuery = command != 0x6a;
-        weak.appNoAckPending = command == 0x6a; weak.appRequestedStart = command == 0x6a ? mode : nil;
+        weak.awaitingDeviceQuery = command != 0x6a && command != 18;
+        weak.appNoAckPending = command == 0x6a || command == 18; weak.appRequestedStart = command == 0x6a ? mode : nil;
         NSData *packet = [weak appCommandFrame:command sequence:weak.deviceQuerySequence context:context mode:mode];
         [weak writeFrame:packet]; [weak ensureTimer];
     } message:nil];

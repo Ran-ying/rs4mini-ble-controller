@@ -38,6 +38,7 @@
 @property(nonatomic) BOOL canSendWriteWithoutResponse;
 @property(nonatomic) BOOL pauseAfterChunk;
 @property(nonatomic) BOOL pauseAfterShortChunk;
+@property(nonatomic) BOOL pauseOnParameterSubscription;
 @property(nonatomic, strong) NSMutableData *writes;
 @end
 @implementation FakePeripheral
@@ -45,7 +46,7 @@
 - (void)discoverCharacteristics:(NSArray *)characteristics forService:(id)service {}
 - (void)setNotifyValue:(BOOL)value forCharacteristic:(id)characteristic {}
 - (void)writeValue:(NSData *)value forCharacteristic:(id)characteristic type:(CBCharacteristicWriteType)type {
-    [self.writes appendData:value]; if (self.pauseAfterChunk || (self.pauseAfterShortChunk && value.length < 20)) { self.canSendWriteWithoutResponse = NO; self.pauseAfterChunk = NO; self.pauseAfterShortChunk = NO; }
+    [self.writes appendData:value]; if(self.pauseOnParameterSubscription && value.length>=11 && ((const uint8_t *)value.bytes)[0]==85 && ((const uint8_t *)value.bytes)[10]==18){self.canSendWriteWithoutResponse=NO;self.pauseOnParameterSubscription=NO;} if (self.pauseAfterChunk || (self.pauseAfterShortChunk && value.length < 20)) { self.canSendWriteWithoutResponse = NO; self.pauseAfterChunk = NO; self.pauseAfterShortChunk = NO; }
 }
 @end
 static NSUInteger assertions;
@@ -217,6 +218,23 @@ int main(void) {
         [decoder reset]; frames = [decoder push:peripheral.writes];
         Require(!gimbal.busy && [frames.lastObject[@"commandId"] intValue] != 0x1e, @"stop cancels delayed device query");
         Require([gimbal useAppProfile:@"ronin-2.2.2"], @"explicit current App profile accepted when idle");
+        __block NSUInteger parameterSubscriptionCallbacks=0;__block NSDictionary *parameterSubscriptionResult=nil;__block NSError *parameterSubscriptionError=nil;
+        RSAppCompletion parameterSubscriptionDone=^(NSDictionary *result,NSError *error){parameterSubscriptionCallbacks++;parameterSubscriptionResult=result;parameterSubscriptionError=error;};
+        [peripheral.writes setLength:0];[gimbal sendParameterSubscriptionRequest:@{@"keys":@[]} completion:parameterSubscriptionDone];PumpCallbacks();
+        Require(parameterSubscriptionCallbacks==1 && !gimbal.busy && !peripheral.writes.length && [parameterSubscriptionError.userInfo[@"code"] isEqual:@"RS4MINI_INVALID_ARGUMENT"],@"subscription validates names before neutral writes");
+        NSMutableArray *parameterSubscriptionKeys=[NSMutableArray arrayWithObject:@"UserProfile"];[gimbal sendParameterSubscriptionRequest:@{@"keys":parameterSubscriptionKeys} completion:parameterSubscriptionDone];parameterSubscriptionKeys[0]=@"SilentMode";
+        Require(gimbal.busy && ![gimbal useAppProfile:@"ronin-2.2.2"],@"subscription owns preamble and blocks source changes");ThreeTicks(gimbal);[gimbal tick];PumpCallbacks();[decoder reset];frames=[decoder push:peripheral.writes];
+        Require(parameterSubscriptionCallbacks==2 && !parameterSubscriptionError && !gimbal.busy && frames.count==4 && [frames.lastObject[@"commandId"] intValue]==18 && [frames.lastObject[@"receiver"] intValue]==229 && [frames.lastObject[@"flags"] intValue]==0,@"subscription sends fixed endpoint once and completes without ACK");
+        Require([parameterSubscriptionResult[@"requestedKeys"] isEqual:@[@"UserProfile"]] && ![parameterSubscriptionResult[@"notificationStreamVerified"] boolValue],@"subscription copies mutable inputs without stream claim");
+        [peripheral.writes setLength:0];[gimbal sendParameterSubscriptionRequest:@{@"keys":@[@"UserProfile"]} completion:parameterSubscriptionDone];[gimbal stop];ThreeTicks(gimbal);PumpCallbacks();[decoder reset];frames=[decoder push:peripheral.writes];BOOL parameterSubscriptionWritten=NO;for(NSDictionary *f in frames)if([f[@"commandId"] intValue]==18)parameterSubscriptionWritten=YES;
+        Require(parameterSubscriptionCallbacks==3 && !parameterSubscriptionWritten && [parameterSubscriptionError.userInfo[@"code"] isEqual:@"RS4MINI_OPERATION_CANCELLED"],@"stop before request sends no subscription or inverse request");
+        [peripheral.writes setLength:0];[gimbal sendParameterSubscriptionRequest:@{@"keys":gimbal.appParameterSubscriptionKeys} completion:parameterSubscriptionDone];peripheral.pauseOnParameterSubscription=YES;ThreeTicks(gimbal);
+        Require(gimbal.busy && parameterSubscriptionCallbacks==3,@"multichunk subscription retains ownership while backpressured");[gimbal stop];peripheral.canSendWriteWithoutResponse=YES;ThreeTicks(gimbal);[gimbal tick];PumpCallbacks();[decoder reset];frames=[decoder push:peripheral.writes];NSUInteger parameterSubscriptionCount=0;for(NSDictionary *f in frames)if([f[@"commandId"] intValue]==18)parameterSubscriptionCount++;
+        Require(parameterSubscriptionCallbacks==4 && parameterSubscriptionCount==1 && decoder.invalidFrames==0 && [parameterSubscriptionError.userInfo[@"code"] isEqual:@"RS4MINI_OPERATION_CANCELLED"],@"started subscription frame finishes all chunks before neutral cleanup");
+        [peripheral.writes setLength:0];
+        [gimbal sendParameterSubscriptionRequest:@{@"keys":gimbal.appParameterSubscriptionKeys} completion:parameterSubscriptionDone];peripheral.pauseOnParameterSubscription=YES;ThreeTicks(gimbal);[gimbal setValue:@(NSProcessInfo.processInfo.systemUptime-1) forKey:@"deviceQueryDeadline"];[gimbal tick];
+        Require(gimbal.busy && parameterSubscriptionCallbacks==4,@"subscription timeout retains ownership through cleanup");peripheral.canSendWriteWithoutResponse=YES;ThreeTicks(gimbal);[gimbal tick];PumpCallbacks();[decoder reset];frames=[decoder push:peripheral.writes];parameterSubscriptionCount=0;for(NSDictionary *f in frames)if([f[@"commandId"] intValue]==18)parameterSubscriptionCount++;
+        Require(parameterSubscriptionCallbacks==5 && !gimbal.busy && gimbal.ready && parameterSubscriptionCount==1 && [parameterSubscriptionError.userInfo[@"code"] isEqual:@"RS4MINI_IO_TIMEOUT"],@"subscription deadline completes started frame and reports timeout without retry");[peripheral.writes setLength:0];
         __block NSDictionary *appResult = nil; __block NSError *appError = nil; __block NSUInteger appCallbacks = 0;
         RSAppCompletion appDone = ^(NSDictionary *result, NSError *error) { appResult = result; appError = error; appCallbacks++; };
         [peripheral.writes setLength:0]; [gimbal setFollowSensitivity:@1 timeoutMs:1000 completion:appDone];

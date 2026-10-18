@@ -236,3 +236,6 @@ Node/Web、Python 与原生已分别拆分；完整模块映射见 `ARCHITECTURE
 
 
 0.7.25新增[外设状态源候选](APP_PERIPHERAL_STATUS.md)：46源类型/43 getter视图、保留tag21碰撞和GPS整数截断；不改现有姿态/关节，不自动ACK/订阅或控制，本机未验收。
+
+
+0.7.26新增[单次命名参数订阅请求](APP_PARAMETER_SUBSCRIPTION.md)：固定DB已加载/HG724静态分支、152命名键、CENTER/id7无ACK，仅一次请求。没有空集停止、后台刷新或重连重放；本机路由/通知/远端状态仍未验收，不改变完整命令及高级门槛。

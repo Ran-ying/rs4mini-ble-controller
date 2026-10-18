@@ -1,3 +1,4 @@
+from .app_parameter_subscription import parameter_subscription_keys,parameter_subscription_spec,parameter_subscription_frame,parameter_subscription_sent
 from .app_peripheral import peripheral_notification
 from .app_program_request import program_status_request_spec,program_status_request_reply,program_status_subscription_spec,program_status_subscription_reply
 from .app_program_status import program_status_notification
@@ -36,6 +37,8 @@ class AppCommands:
         self._program_status = None
         self._peripheral_status = None
 
+    parameterSubscriptionKeys = property(lambda self: parameter_subscription_keys())
+    parameter_subscription_keys = parameterSubscriptionKeys
     peripheralStatus = property(lambda self: copy.deepcopy(self._peripheral_status))
     peripheral_status = peripheralStatus
     programStatus = property(lambda self: copy.deepcopy(self._program_status))
@@ -103,6 +106,16 @@ class AppCommands:
 
     def _require_profile(self):
         app_profile(self._profile)
+
+    async def sendParameterSubscriptionRequest(self, *, keys):
+        self._require_profile();spec=parameter_subscription_spec(keys)
+        async def body(operation):
+            await self.owner._halt();self.owner._check(operation)
+            await self.owner._enqueue(parameter_subscription_frame(self.owner._next_sequence(),spec),operation=operation,epoch=self.owner._epoch)
+            return parameter_subscription_sent(spec)
+        return await self.owner._run('sendParameterSubscriptionRequest',body,False)
+
+    send_parameter_subscription_request = sendParameterSubscriptionRequest
 
     async def sendProgramStatusSubscriptionRequest(self, *, program, enabled, timeoutMs=3000):
         self._require_profile()

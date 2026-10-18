@@ -8,9 +8,9 @@ verification status changes.
 ## Objective and user decisions
 
 - Provide an unofficial, direct BLE controller for **DJI RS 4 Mini**, initially on macOS.
-- **Node.js is the authoritative implementation**; current package version is `0.7.25`.
+- **Node.js is the authoritative implementation**; current package version is `0.7.26`.
 - The user subsequently requested completion of all existing ports. Python is now
-  `0.7.25`, Web shares the JS core, and the native panel is `0.3.25`. Describe the
+  `0.7.26`, Web shares the JS core, and the native panel is `0.3.26`. Describe the
   documented feature differences; do not claim identical APIs or hardware proof.
 - After that delivery, the user requested the remaining **non-camera** capabilities
   under the same autonomous/offline conditions. Expansion work is in progress;
@@ -985,3 +985,13 @@ FollowModeSensitivity和GimbalControlState分别受isSupportStateSince4Gen控制
 ## 订阅初始化审计（2026-10-18）
 
 固定六段13方法审计确认元数据异步加载、逐项发布与BaseCommand构造时一次性捕获；不能推断真实调度、竞争或捕获0。独立SDK可明确选择固定DB已加载的索引分支，无需依赖App缓存；本机路由/通知/远端取消仍未验证。见[SUBSCRIPTION_INIT.md](tools/research/SUBSCRIPTION_INIT.md)和证据protocol/research/ronin-subscription-init-evidence.json。两次实际提取JSON逐字节一致，新增7项研究测试。此研究检查点不发布新的运行时版本；已提交运行时仍0.7.25/0.3.25。单次订阅SDK正在工作树中开发，尚未交付，不计作已完成；全命令与高级门槛仍false，无硬件或厂商执行。
+
+
+## 0.7.26单次命名参数订阅 / 原生0.3.26 build29
+
+显式App来源下发送固定DB已加载/HG724静态分支的152命名键非空单次04:12请求，CENTER/id7、无ACK；报告21元数据和2型号条件键。不提供空集停止、后台刷新、反向请求或重连重放；三条中位前导及独占操作槽，不由发送成功判断远端订阅、通知新鲜度或物理效果。详见[单次参数订阅](docs/APP_PARAMETER_SUBSCRIPTION.md)。此版本扩展此前“仅研究/工作树开发”的历史状态；实际型号/路由/通知/远端停止仍待验收，全命令及高级门槛false，无硬件/实时UI/厂商执行。
+
+
+0.7.26统一离线检查终态0：Node229/Web21/Python3.8及3.12各205、原生324核心+233生命周期+3独立SDK、研究319；类型/分层/三端目录投影及原生签名构建通过。专项覆盖发送前取消、已开始多段完整写后清理、busy、源切换阻止、写失败/超时及无重发；本机/通知/远端状态仍false。未执行硬件或实时UI。
+
+0.7.26交付包已隔离安装：Node tarball229项及严格TypeScript消费者通过，wheel205项通过且device/controller/app_commands/app_parameter_subscription导入位于隔离安装目录。Node92文件、wheel34模块与源码逐字节一致；原生ZIP3文件与签名构建一致（0.3.26/build29），未启动应用。没有发布npm或远程二进制Release。

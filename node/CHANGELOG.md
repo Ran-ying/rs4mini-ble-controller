@@ -1,5 +1,11 @@
 # 0.7.22
 
+## 0.7.26
+
+- Add explicit named one-shot App 04:12 parameter subscription request and copied 152-key discovery catalog across Node/Python/Web/native.
+- Preserve pinned metadata/model conditions and unverified target/notification/remote-state flags; no ACK, automatic refresh, empty stop, replay or advanced motion.
+- Cover fixed vectors, catalog-source equality, cancellation, multichunk writes, ownership and timeout cleanup offline.
+
 ## 0.7.25
 
 - 四端显式App来源新增peripheralStatus与kind=peripheral被动快照，完整源目录46类型/43视图。

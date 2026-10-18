@@ -1,3 +1,4 @@
+import {parameterSubscriptionKeys,parameterSubscriptionSpec,parameterSubscriptionFrame,parameterSubscriptionSent} from './app-parameter-subscription.js';
 import {peripheralNotification} from './app-peripheral.js';
 import {programStatusRequestSpec,programStatusRequestReply,programStatusSubscriptionSpec,programStatusSubscriptionReply} from './app-program-request.js';
 import {programStatusNotification} from './app-program-status.js';
@@ -25,6 +26,7 @@ function optionsOnly(options, keys) {
 }
 export class AppCommands {
   constructor(owner) { this.owner = owner; this._profile = null; this._calibrationStatus = null; this._userParameterStatus = null; this._handheldStickStatus = null; this._abnormalStatus = null; this._batteryStatus = null; this._programStatus = null; this._peripheralStatus = null; }
+  get parameterSubscriptionKeys(){return parameterSubscriptionKeys();}
   get peripheralStatus() { return structuredClone(this._peripheralStatus); }
   get programStatus() { return structuredClone(this._programStatus); }
   get abnormalStatus() { return structuredClone(this._abnormalStatus); }
@@ -56,6 +58,14 @@ export class AppCommands {
     this._profile = profile; this._reset();
   }
   _requireProfile() { appProfile(this._profile); }
+  async sendParameterSubscriptionRequest(options={}){
+    optionsOnly(options,['keys']);this._requireProfile();const spec=parameterSubscriptionSpec(options.keys);
+    return this.owner._run('sendParameterSubscriptionRequest',async operation=>{
+      await this.owner._stop();check(operation.controller.signal);
+      await this.owner._enqueue(parameterSubscriptionFrame(this.owner._nextSequence(),spec),{signal:operation.controller.signal,epoch:this.owner.motionEpoch});
+      return parameterSubscriptionSent(spec);
+    },false);
+  }
   async sendProgramStatusSubscriptionRequest(options={}) {
     optionsOnly(options,['program','enabled','timeoutMs']);this._requireProfile();
     const spec=programStatusSubscriptionSpec(options.program,options.enabled);

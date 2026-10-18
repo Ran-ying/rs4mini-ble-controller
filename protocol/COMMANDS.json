@@ -399,11 +399,16 @@
     {
       "key": "04:12",
       "name": "官方 App 枚举：SubscribeGimbalParams",
-      "requestCodec": "unknown",
-      "responseCodec": "unknown",
-      "targetEvidence": "official-app-enum",
-      "implementation": [],
-      "remaining": "已核对152注册键/121个DB-present命令频道对与别名；21键依赖资源读取，缺失保留0，2键受型号缓存条件，不静默生成固定SDK表。CENTER/id7无ACK、位图、刷新与本地移除已审计，资源初始化顺序、本机路由/租期/远端停止及SDK接口仍未完成",
+      "requestCodec": "implemented",
+      "responseCodec": "not-applicable",
+      "targetEvidence": "app-code-path",
+      "implementation": [
+        "node/src/app-parameter-subscription.js",
+        "python/rs4mini_sdk/app_parameter_subscription.py",
+        "macos/RSControlCore.m",
+        "macos/RSBleDevice.m"
+      ],
+      "remaining": "0.7.26显式App来源、固定DB已加载/HG724静态分支，152命名键的非空单次订阅请求已封装；CENTER/id7无ACK。无后台刷新、空集停止、反向请求或重连重放；真实路由、通知布局/新鲜度、远端订阅/停止及本机支持未验收。",
       "officialAppAliases": [
         "SubscribeGimbalParams"
       ],
@@ -1142,5 +1147,17 @@
     "fixtures": "node/test/fixtures/peripheral-status.json"
   },
   "subscriptionCatalogResearch": "protocol/research/ronin-subscription-catalog.json",
-  "subscriptionInitResearch": "protocol/research/ronin-subscription-init-evidence.json"
+  "subscriptionInitResearch": "protocol/research/ronin-subscription-init-evidence.json",
+  "parameterSubscriptionSdk": {
+    "keyCount": 152,
+    "receiverByte": 229,
+    "oneShotOnly": true,
+    "automaticRefresh": false,
+    "emptySelectionMeansStop": false,
+    "targetRoutingVerified": false,
+    "notificationStreamVerified": false,
+    "remoteSubscriptionStateVerified": false,
+    "targetDeviceVerified": false,
+    "fixtures": "node/test/fixtures/parameter-subscription.json"
+  }
 }

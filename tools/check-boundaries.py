@@ -631,3 +631,22 @@ if manifest.get('peripheralSdk'):
     native=(root/'macos/RSControlCore.m').read_text().split('static NSDictionary *AppPeripheralCatalog(void)',1)[1].split('JSONObjectWithData:[@',1)[1].split(' dataUsingEncoding:',1)[0]
     assert json.loads(js)==proof['catalog'] and ast.literal_eval(py)==proof['catalog'] and json.loads(json.loads(native))==proof['catalog']
     assert len(json.loads((root/sdk['fixtures']).read_text()))==6
+
+if manifest.get('subscriptionCatalogResearch'):
+    catalog=json.loads((root/manifest['subscriptionCatalogResearch']).read_text())
+    assert len(catalog['methods'])==24 and len(catalog['registrations'])==152
+    assert len({r['key'] for r in catalog['registrations']})==152
+    assert catalog['baseCommandCount']==81 and catalog['dbPresentUniqueCommandChannelPairs']==121
+    assert len(catalog['aliasGroups'])==17
+    assert catalog['metadata']['resourceConditionalKeyCount']==21
+    assert catalog['metadata']['resourceConditionalBaseCommandCount']==15
+    assert catalog['metadata']['missingReadLeavesJavaDefaultChannel']==0
+    assert catalog['metadata']['resourceRuntimeLoadedBeforeEnumInitializationVerified'] is False
+    assert catalog['supportPredicate']['conditionalKeys']==['FollowModeSensitivity','GimbalControlState']
+    assert catalog['supportPredicate']['hg724UsesDefault'] is True
+    assert catalog['supportPredicate']['defaultResult'] is True
+    assert catalog['supportPredicate']['runtimeComponentCacheVerified'] is False
+    assert catalog['endpoint']['receiverByte']==229 and catalog['endpoint']['ackRequested'] is False
+    assert catalog['endpoint']['remoteStopOrLeaseVerified'] is False
+    for flag in ('appCodeExecuted','targetDeviceVerified','wholeProtocolRecovered','researchToolProvidesSdkInterface','runtimeRegistrationMapConstructed'):
+        assert catalog[flag] is False

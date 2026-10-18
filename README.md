@@ -234,3 +234,6 @@ python3 -m http.server 8000 --bind 127.0.0.1
 
 
 0.7.25新增[外设状态源候选](docs/APP_PERIPHERAL_STATUS.md)：46源类型/43 getter视图、保留tag21碰撞和GPS整数截断；不改现有姿态/关节，不自动ACK/订阅或控制，本机未验收。
+
+
+新增[完整订阅键与初始化条件审计](tools/research/SUBSCRIPTION_CATALOG.md)：152个注册键分开记录显式索引、21个元数据条件键与2个型号条件；不将缺失0或资源预期索引自动变成SDK发送表。仅离线研究，运行时仍0.7.25/0.3.25，全命令门槛false。

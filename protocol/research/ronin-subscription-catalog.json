@@ -1,0 +1,1984 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "bankSha256": "4fdbd74a05df63d72a0feb1c907d9395426ec3cdb5d6aeb45e3836d856d66654",
+  "resource": {
+    "path": "res/DB.json",
+    "sha256": "3391283785f9ff3bd0d449344bd1243f822a141b10b76751ad82205b1356db68"
+  },
+  "appCodeExecuted": false,
+  "targetDeviceVerified": false,
+  "wholeProtocolRecovered": false,
+  "researchToolProvidesSdkInterface": false,
+  "runtimeRegistrationMapConstructed": false,
+  "methods": [
+    {
+      "className": "Ldji/midware/ronin2/Ronin2GimbalParamsManager$BaseCommand;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3728816,
+      "instructionSha256": "38bb193999c192890ce98dda452e438e6f5a880db1faf8ab5587320f113b1682"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus$DataType;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3469984,
+      "instructionSha256": "24e0eff978495a3e486ee8870dc40a7cda1fcf7d677fd71d30553a469e67f414"
+    },
+    {
+      "className": "Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 4652020,
+      "instructionSha256": "89d7e5d4c317f54eb541d186eff2e608a50e62f9387974ef9c74a54543aa6609"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus$DataType;",
+      "method": "<init>",
+      "descriptor": "(Ljava/lang/String; I I)V",
+      "codeOffset": 3471196,
+      "instructionSha256": "bfd7fc72247e1750ea3338f0159f20968183d90c3fdadef98591f310626cfae9"
+    },
+    {
+      "className": "Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+      "method": "value",
+      "descriptor": "()I",
+      "codeOffset": 4653788,
+      "instructionSha256": "d0b13ae1e07cede5deafa08177a3c7f7c37ad74beefabb6fbb4a30a2b1c43c96"
+    },
+    {
+      "className": "Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+      "method": "<init>",
+      "descriptor": "(Ljava/lang/String; I I)V",
+      "codeOffset": 4653352,
+      "instructionSha256": "1184096218063b65ae6d4ff211c39addd7b116b497237dca47112186677a37f8"
+    },
+    {
+      "className": "Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+      "method": "<init>",
+      "descriptor": "(Ljava/lang/String; I I Z Ljava/lang/Class;)V",
+      "codeOffset": 4653392,
+      "instructionSha256": "c11f4dd857657d0a36d78937c4f73c8c4bb4dbb2da0c9fa41b7ad3d16d1a8833"
+    },
+    {
+      "className": "Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+      "method": "<init>",
+      "descriptor": "(Ljava/lang/String; I I Z Z Ljava/lang/Class;)V",
+      "codeOffset": 4653448,
+      "instructionSha256": "2c0f3af622479a731043a447d72ce978c24c750b014e727ac5cd307d1a854df0"
+    },
+    {
+      "className": "Ldji/midware/ronin2/Ronin2GimbalParamsManager$BaseCommand;",
+      "method": "<init>",
+      "descriptor": "(Ljava/lang/String; I Ljava/lang/String;)V",
+      "codeOffset": 3731808,
+      "instructionSha256": "dff18940db1f41e1e4487d31d13d343cdba04213ada27b87c1de0dfa5aba9101"
+    },
+    {
+      "className": "Ldji/midware/ronin2/Ronin2GimbalParamsManager$BaseCommand;",
+      "method": "<init>",
+      "descriptor": "(Ljava/lang/String; I I Ljava/lang/String;)V",
+      "codeOffset": 3731728,
+      "instructionSha256": "8a89f9132d0e0fbf5abc698a0496158ac28657f495655b92a7bedadf15902f87"
+    },
+    {
+      "className": "Ldji/midware/ronin2/Ronin2GimbalParamsManager$BaseCommand;",
+      "method": "<init>",
+      "descriptor": "(Ljava/lang/String; I I Ljava/lang/String; Ljava/lang/Class;)V",
+      "codeOffset": 3731768,
+      "instructionSha256": "113d760a11a230f4818e60526fdf76c7dd30354ac2080f15f390efb53dae806b"
+    },
+    {
+      "className": "Ldji/midware/ronin2/Ronin2GimbalParamsManager$BaseCommand;",
+      "method": "getId",
+      "descriptor": "()I",
+      "codeOffset": 3731936,
+      "instructionSha256": "4796b1883090ef2397dc5b4d54d9aad879c2f93a4911d922e0719c7aea707d51"
+    },
+    {
+      "className": "Ldji/midware/ronin2/Ronin2GimbalParamsManager$BaseCommand;",
+      "method": "getPushClazz",
+      "descriptor": "()Ljava/lang/Class;",
+      "codeOffset": 3731984,
+      "instructionSha256": "aff56c24ff532c04c250bf7caf2a85833b429760cd80bd6c15b998ceafe24493"
+    },
+    {
+      "className": "Ldji/common/gimbal/Ronin2SubscribeIMPL;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "codeOffset": 4477776,
+      "instructionSha256": "55e9e64e2be16daa7356c2b2bbdce8c6059ca5c23b42e4fb871aec1e69619a2a"
+    },
+    {
+      "className": "Ldji/common/gimbal/Ronin2SubscribeIMPL;",
+      "method": "put",
+      "descriptor": "(Ljava/lang/String; Ldji/midware/ronin2/Ronin2GimbalParamsManager$BaseCommand;)V",
+      "codeOffset": 4481444,
+      "instructionSha256": "bcac0f6c8d2bcecd7606694979caf0c39ea80978fa167a6f8b03ca046e6295a4"
+    },
+    {
+      "className": "Ldji/common/gimbal/Ronin2SubscribeIMPL;",
+      "method": "put",
+      "descriptor": "(Ljava/lang/String; I I)V",
+      "codeOffset": 4481816,
+      "instructionSha256": "baa750b7ac2a44a9b1093ccb1f6ca870f959116929b7d39ca810f263094b7ba2"
+    },
+    {
+      "className": "Ldji/common/gimbal/Ronin2SubscribeIMPL;",
+      "method": "isSupportStateSince4Gen",
+      "descriptor": "()Z",
+      "codeOffset": 4481128,
+      "instructionSha256": "762ba2c9eaa15b6bb82423c40b52255e8be047a888960f17058e3a550b9dc336"
+    },
+    {
+      "className": "Ldji/common/gimbal/Ronin2SubscribeIMPL$2;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3018604,
+      "instructionSha256": "84dc5606942908913bf2c4ab9fa993866147e3d8a7e1522914862d8327213fae"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSubscribeParams;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 4891824,
+      "instructionSha256": "cb0d3b6137f9daadc481ce5155a3f720617266c3ef93df0a4006b63118c56535"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSubscribeParams;",
+      "method": "mergeList",
+      "descriptor": "(Ljava/util/List;)[B",
+      "codeOffset": 4891688,
+      "instructionSha256": "df6f267d61c069a0a89aa6a85604e64118c02c6ac0851c8219cdaaacab69962e"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSubscribeParams;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4892496,
+      "instructionSha256": "64b850c3891ca5cb54e967a0b1f86d79cb27c0d9f3c5f7148c62a9eb52f3aba4"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSubscribeParams;",
+      "method": "subscribeCmdChannel",
+      "descriptor": "(Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType; I)V",
+      "codeOffset": 4892700,
+      "instructionSha256": "8bcbbb4472e55a650818cfad60382d3cffb4bed64c33e78f175f24df250553ea"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSubscribeParams;",
+      "method": "unsubscribeCmdChannel",
+      "descriptor": "(Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType; I)V",
+      "codeOffset": 4892928,
+      "instructionSha256": "d73753ce26784965e2aa423583afe0784180e3a0010ac9b83a5027333d04a553"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSubscribeParams;",
+      "method": "hasChannelSubscribed",
+      "descriptor": "()Z",
+      "codeOffset": 4892116,
+      "instructionSha256": "9ff6155e57245a961efd704ca33ff23609d733ff7d1a5813067fdabfdc272ecc"
+    }
+  ],
+  "baseCommandCount": 81,
+  "registrations": [
+    {
+      "key": "UserProfile",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "table_choice",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 0,
+      "baseCommand": "USER_PROFILE"
+    },
+    {
+      "key": "SilentMode",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "silent_mode",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 1,
+      "baseCommand": "SILENT_MODE"
+    },
+    {
+      "key": "PitchMotorControlStiffness",
+      "sourceCondition": null,
+      "commandId": 50,
+      "parameterName": "ronin_sensibility_pitch",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 0,
+      "baseCommand": "STIFFNESS_PITCH"
+    },
+    {
+      "key": "YawMotorControlStiffness",
+      "sourceCondition": null,
+      "commandId": 50,
+      "parameterName": "ronin_sensibility_yaw",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 2,
+      "baseCommand": "STIFFNESS_YAW"
+    },
+    {
+      "key": "RollMotorControlStiffness",
+      "sourceCondition": null,
+      "commandId": 50,
+      "parameterName": "ronin_sensibility_roll",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 1,
+      "baseCommand": "STIFFNESS_ROLL"
+    },
+    {
+      "key": "PitchMotorControlStrength",
+      "sourceCondition": null,
+      "commandId": 50,
+      "parameterName": "ronin_strength_pitch",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 3,
+      "baseCommand": "STRENGTH_PITCH"
+    },
+    {
+      "key": "YawMotorControlStrength",
+      "sourceCondition": null,
+      "commandId": 50,
+      "parameterName": "ronin_strength_yaw",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 5,
+      "baseCommand": "STRENGTH_YAW"
+    },
+    {
+      "key": "RollMotorControlStrength",
+      "sourceCondition": null,
+      "commandId": 50,
+      "parameterName": "ronin_strength_roll",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 4,
+      "baseCommand": "STRENGTH_ROLL"
+    },
+    {
+      "key": "PitchMotorControlGyroFilteringFactor",
+      "sourceCondition": null,
+      "commandId": 50,
+      "parameterName": "ronin_filter_pitch",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 6,
+      "baseCommand": "FILTERING_PITCH"
+    },
+    {
+      "key": "YawMotorControlGyroFilteringFactor",
+      "sourceCondition": null,
+      "commandId": 50,
+      "parameterName": "ronin_filter_yaw",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 8,
+      "baseCommand": "FILTERING_YAW"
+    },
+    {
+      "key": "RollMotorControlGyroFilteringFactor",
+      "sourceCondition": null,
+      "commandId": 50,
+      "parameterName": "ronin_filter_roll",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 7,
+      "baseCommand": "FILTERING_ROLL"
+    },
+    {
+      "key": "PitchMotorControlPreControl",
+      "sourceCondition": null,
+      "commandId": 50,
+      "parameterName": "ronin_feedback_pitch",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 9,
+      "baseCommand": "PRECONTROL_PITCH"
+    },
+    {
+      "key": "YawMotorControlPreControl",
+      "sourceCondition": null,
+      "commandId": 50,
+      "parameterName": "ronin_feedback_yaw",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 11,
+      "baseCommand": "PRECONTROL_YAW"
+    },
+    {
+      "key": "RollMotorControlPreControl",
+      "sourceCondition": null,
+      "commandId": 50,
+      "parameterName": "ronin_feedback_roll",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 10,
+      "baseCommand": "PRECONTROL_ROLL"
+    },
+    {
+      "key": "MotorBlockUpTime",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "ronin_block_up_time",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 59,
+      "baseCommand": "MOTOR_BLOCK_UP_TIME"
+    },
+    {
+      "key": "YawFineTuning",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "yaw_fine_tuning",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 23,
+      "baseCommand": "YAW_FINE_TUNING"
+    },
+    {
+      "key": "MotorEnabled",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "motor_special_cmd",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 35,
+      "baseCommand": "MOTOR_SPECIAL_CMD"
+    },
+    {
+      "key": "ForbidTriggerSelfie",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "motor_special_cmd",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 35,
+      "baseCommand": "MOTOR_SPECIAL_CMD"
+    },
+    {
+      "key": "ForbidVerticalShootingSwitch",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "motor_special_cmd",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 35,
+      "baseCommand": "MOTOR_SPECIAL_CMD"
+    },
+    {
+      "key": "ForbidRoll360Switch",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "motor_special_cmd",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 35,
+      "baseCommand": "MOTOR_SPECIAL_CMD"
+    },
+    {
+      "key": "StartBalanceTest",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "balance_test",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 37,
+      "baseCommand": "BALANCE_TEST"
+    },
+    {
+      "key": "BalanceTestStatus",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "balance_test",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 37,
+      "baseCommand": "BALANCE_TEST"
+    },
+    {
+      "key": "IsTestingBalance",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "balance_test",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 37,
+      "baseCommand": "BALANCE_TEST"
+    },
+    {
+      "key": "PitchTestResult",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "balance_test",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 37,
+      "baseCommand": "BALANCE_TEST"
+    },
+    {
+      "key": "RollTestResult",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "balance_test",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 37,
+      "baseCommand": "BALANCE_TEST"
+    },
+    {
+      "key": "YawTestResult",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "balance_test",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 37,
+      "baseCommand": "BALANCE_TEST"
+    },
+    {
+      "key": "PitchFineTuning",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "pitch_fine_tuning",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 24,
+      "baseCommand": "PITCH_FINE_TUNING"
+    },
+    {
+      "key": "GimbalHoldType",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "ronin_gimbal_hold_type",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 60,
+      "baseCommand": "GIMBAL_HOLD_TYPE"
+    },
+    {
+      "key": "GimbalWorkMode",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "ronin_gimbal_work_mode",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 62,
+      "baseCommand": "GIMBAL_WORK_MODE"
+    },
+    {
+      "key": "GimbalAxisMode",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "flower_special_cmd",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 34,
+      "baseCommand": "FLOWER_SPECIAL_CMD"
+    },
+    {
+      "key": "PushEnableYaw",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "yaw_push_enable",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 20,
+      "baseCommand": "PUSH_ENABLE_YAW"
+    },
+    {
+      "key": "PushEnablePitch",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "pitch_push_enable",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 21,
+      "baseCommand": "PUSH_ENABLE_PITCH"
+    },
+    {
+      "key": "PushEnableRoll",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "roll_push_enable",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 22,
+      "baseCommand": "PUSH_ENABLE_ROLL"
+    },
+    {
+      "key": "GimbalInputSource",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "gimbal_input_source",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 72,
+      "baseCommand": "GIMBAL_INPUT_SOURCE"
+    },
+    {
+      "key": "GimbalCreateSmoothRoll",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "gimbal_create_smooth_roll",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 76,
+      "baseCommand": "GIMBAL_CREATE_SMOOTH_ROLL"
+    },
+    {
+      "key": "GimbalCreateSmoothPitch",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "gimbal_create_smooth_pitch",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 77,
+      "baseCommand": "GIMBAL_CREATE_SMOOTH_PITCH"
+    },
+    {
+      "key": "GimbalCreateSmoothYaw",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "gimbal_create_smooth_yaw",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 78,
+      "baseCommand": "GIMBAL_CREATE_SMOOTH_YAW"
+    },
+    {
+      "key": "GimbalCreateMaxSpeedRoll",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "gimbal_create_max_speed_roll",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 79,
+      "baseCommand": "GIMBAL_CREATE_MAX_SPEED_ROLL"
+    },
+    {
+      "key": "GimbalCreateMaxSpeedPitch",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "gimbal_create_max_speed_pitch",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 80,
+      "baseCommand": "GIMBAL_CREATE_MAX_SPEED_PITCH"
+    },
+    {
+      "key": "GimbalCreateMaxSpeedYaw",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "gimbal_create_max_speed_yaw",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 81,
+      "baseCommand": "GIMBAL_CREATE_MAX_SPEED_YAW"
+    },
+    {
+      "key": "GimbalMotionSmoothRoll",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "gimbal_create_smooth_roll",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 76,
+      "baseCommand": "GIMBAL_CREATE_SMOOTH_ROLL"
+    },
+    {
+      "key": "GimbalMotionSmoothPitch",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "gimbal_create_smooth_pitch",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 77,
+      "baseCommand": "GIMBAL_CREATE_SMOOTH_PITCH"
+    },
+    {
+      "key": "GimbalMotionSmoothYaw",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "gimbal_create_smooth_yaw",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 78,
+      "baseCommand": "GIMBAL_CREATE_SMOOTH_YAW"
+    },
+    {
+      "key": "GimbalMotionMaxSpeedRoll",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "gimbal_create_max_speed_roll",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 79,
+      "baseCommand": "GIMBAL_CREATE_MAX_SPEED_ROLL"
+    },
+    {
+      "key": "GimbalMotionMaxSpeedPitch",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "gimbal_create_max_speed_pitch",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 80,
+      "baseCommand": "GIMBAL_CREATE_MAX_SPEED_PITCH"
+    },
+    {
+      "key": "GimbalMotionMaxSpeedYaw",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "gimbal_create_max_speed_yaw",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 81,
+      "baseCommand": "GIMBAL_CREATE_MAX_SPEED_YAW"
+    },
+    {
+      "key": "GimbalGamepadSmoothRoll",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "gimbal_create_smooth_roll",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 76,
+      "baseCommand": "GIMBAL_CREATE_SMOOTH_ROLL"
+    },
+    {
+      "key": "GimbalGamepadSmoothPitch",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "gimbal_create_smooth_pitch",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 77,
+      "baseCommand": "GIMBAL_CREATE_SMOOTH_PITCH"
+    },
+    {
+      "key": "GimbalGamepadSmoothYaw",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "gimbal_create_smooth_yaw",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 78,
+      "baseCommand": "GIMBAL_CREATE_SMOOTH_YAW"
+    },
+    {
+      "key": "GimbalGamepadMaxSpeedRoll",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "gimbal_create_max_speed_roll",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 79,
+      "baseCommand": "GIMBAL_CREATE_MAX_SPEED_ROLL"
+    },
+    {
+      "key": "GimbalGamepadMaxSpeedPitch",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "gimbal_create_max_speed_pitch",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 80,
+      "baseCommand": "GIMBAL_CREATE_MAX_SPEED_PITCH"
+    },
+    {
+      "key": "GimbalGamepadMaxSpeedYaw",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "gimbal_create_max_speed_yaw",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 81,
+      "baseCommand": "GIMBAL_CREATE_MAX_SPEED_YAW"
+    },
+    {
+      "key": "TrackingSpeed",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "ronin_tracking_speed",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 117,
+      "baseCommand": "TRACKING_SPEED"
+    },
+    {
+      "key": "TrackingOrientationVertical",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "ronin_tracking_orientation_vertical",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 122,
+      "baseCommand": "TRACKING_ORIENTATION_VERTICAL"
+    },
+    {
+      "key": "GimbalAutoMovement",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "ronin_gimbal_auto_movement",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 105,
+      "baseCommand": "GIMBAL_AUTO_MOVEMENT"
+    },
+    {
+      "key": "GimbalFoldMode",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "ronin_fold_mode",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 107,
+      "baseCommand": "GIMBAL_FOLD_MODE"
+    },
+    {
+      "key": "YawSmoothTrackEnabled",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "yaw_smooth_track",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 17,
+      "baseCommand": "SMOOTH_TRACK_ENABLED_YAW"
+    },
+    {
+      "key": "PitchSmoothTrackEnabled",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "pitch_smooth_track",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 18,
+      "baseCommand": "SMOOTH_TRACK_ENABLED_PITCH"
+    },
+    {
+      "key": "RollSmoothTrackEnabled",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "roll_smooth_track",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 19,
+      "baseCommand": "SMOOTH_TRACK_ENABLED_ROLL"
+    },
+    {
+      "key": "YawSmoothTrackSpeed",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "yaw_speed",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 2,
+      "baseCommand": "SMOOTH_TRACK_SPEED_YAW"
+    },
+    {
+      "key": "PitchSmoothTrackSpeed",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "pitch_speed",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 3,
+      "baseCommand": "SMOOTH_TRACK_SPEED_PITCH"
+    },
+    {
+      "key": "RollSmoothTrackSpeed",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "roll_speed",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 12,
+      "baseCommand": "SMOOTH_TRACK_SPEED_ROLL"
+    },
+    {
+      "key": "YawSmoothTrackDeadband",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "yaw_deadband",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 4,
+      "baseCommand": "SMOOTH_TRACK_DEADBAND_YAW"
+    },
+    {
+      "key": "PitchSmoothTrackDeadband",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "pitch_deadband",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 5,
+      "baseCommand": "SMOOTH_TRACK_DEADBAND_PITCH"
+    },
+    {
+      "key": "RollSmoothTrackDeadband",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "roll_deadband",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 13,
+      "baseCommand": "SMOOTH_TRACK_DEADBAND_ROLL"
+    },
+    {
+      "key": "YawSmoothTrackAcceleration",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "yaw_accel",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 14,
+      "baseCommand": "SMOOTH_TRACK_ACCELERATION_YAW"
+    },
+    {
+      "key": "PitchSmoothTrackAcceleration",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "pitch_accel",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 15,
+      "baseCommand": "SMOOTH_TRACK_ACCELERATION_PITCH"
+    },
+    {
+      "key": "RollSmoothTrackAcceleration",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "roll_accel",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 16,
+      "baseCommand": "SMOOTH_TRACK_ACCELERATION_ROLL"
+    },
+    {
+      "key": "YawControllerSmoothingFactor",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "yaw_time_expo",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 8,
+      "baseCommand": "CONTROLLER_SMOOTHING_YAW"
+    },
+    {
+      "key": "PitchControllerSmoothingFactor",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "pitch_time_expo",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 9,
+      "baseCommand": "CONTROLLER_SMOOTHING_PITCH"
+    },
+    {
+      "key": "RollControllerSmoothingFactor",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "roll_control_smoothing",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 39,
+      "baseCommand": "CONTROLLER_SMOOTHING_ROLL"
+    },
+    {
+      "key": "YawControllerDeadband",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "yaw_dead_zone",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 26,
+      "baseCommand": "CONTROLLER_DEADBAND_YAW"
+    },
+    {
+      "key": "PitchControllerDeadband",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "pitch_dead_zone",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 27,
+      "baseCommand": "CONTROLLER_DEADBAND_PITCH"
+    },
+    {
+      "key": "RollControllerDeadband",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "roll_control_dead_band",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 40,
+      "baseCommand": "CONTROLLER_DEADBAND_ROLL"
+    },
+    {
+      "key": "ControllerMaxSpeedYaw",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "yaw_max_speed",
+      "channelSource": "resource-if-present",
+      "missingMetadataChannel": 0,
+      "channel": 41,
+      "baseCommand": "CONTROLLER_MAX_SPEED_YAW"
+    },
+    {
+      "key": "ControllerMaxSpeedPitch",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "pitch_max_speed",
+      "channelSource": "resource-if-present",
+      "missingMetadataChannel": 0,
+      "channel": 42,
+      "baseCommand": "CONTROLLER_MAX_SPEED_PITCH"
+    },
+    {
+      "key": "ControllerMaxSpeedRoll",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "roll_max_speed",
+      "channelSource": "resource-if-present",
+      "missingMetadataChannel": 0,
+      "channel": 43,
+      "baseCommand": "CONTROLLER_MAX_SPEED_ROLL"
+    },
+    {
+      "key": "Ronin2MaxAngleYaw",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "ronin2_max_angle_yaw",
+      "channelSource": "resource-if-present",
+      "missingMetadataChannel": 0,
+      "channel": 49,
+      "baseCommand": "RONIN2_MAX_ANGLE_YAW"
+    },
+    {
+      "key": "Ronin2MinAngleYaw",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "ronin2_min_angle_yaw",
+      "channelSource": "resource-if-present",
+      "missingMetadataChannel": 0,
+      "channel": 50,
+      "baseCommand": "RONIN2_MIN_ANGLE_YAW"
+    },
+    {
+      "key": "Ronin2MaxAnglePitch",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "ronin2_max_angle_pitch",
+      "channelSource": "resource-if-present",
+      "missingMetadataChannel": 0,
+      "channel": 47,
+      "baseCommand": "RONIN2_MAX_ANGLE_PITCH"
+    },
+    {
+      "key": "Ronin2MinAnglePitch",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "ronin2_min_angle_pitch",
+      "channelSource": "resource-if-present",
+      "missingMetadataChannel": 0,
+      "channel": 48,
+      "baseCommand": "RONIN2_MIN_ANGLE_PITCH"
+    },
+    {
+      "key": "Ronin2MaxAngleRoll",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "ronin2_max_angle_roll",
+      "channelSource": "resource-if-present",
+      "missingMetadataChannel": 0,
+      "channel": 51,
+      "baseCommand": "RONIN2_MAX_ANGLE_ROLL"
+    },
+    {
+      "key": "Ronin2MinAngleRoll",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "ronin2_min_angle_roll",
+      "channelSource": "resource-if-present",
+      "missingMetadataChannel": 0,
+      "channel": 52,
+      "baseCommand": "RONIN2_MIN_ANGLE_ROLL"
+    },
+    {
+      "key": "IsChannel1Rev",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "ronin2_channel_1",
+      "channelSource": "resource-if-present",
+      "missingMetadataChannel": 0,
+      "channel": 53,
+      "baseCommand": "RONIN2_CHANNEL_1_PARAMS"
+    },
+    {
+      "key": "Channel1MapState",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "ronin2_channel_1",
+      "channelSource": "resource-if-present",
+      "missingMetadataChannel": 0,
+      "channel": 53,
+      "baseCommand": "RONIN2_CHANNEL_1_PARAMS"
+    },
+    {
+      "key": "IsChannel2Rev",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "ronin2_channel_2",
+      "channelSource": "resource-if-present",
+      "missingMetadataChannel": 0,
+      "channel": 54,
+      "baseCommand": "RONIN2_CHANNEL_2_PARAMS"
+    },
+    {
+      "key": "Channel2MapState",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "ronin2_channel_2",
+      "channelSource": "resource-if-present",
+      "missingMetadataChannel": 0,
+      "channel": 54,
+      "baseCommand": "RONIN2_CHANNEL_2_PARAMS"
+    },
+    {
+      "key": "IsChannel3Rev",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "ronin2_channel_3",
+      "channelSource": "resource-if-present",
+      "missingMetadataChannel": 0,
+      "channel": 55,
+      "baseCommand": "RONIN2_CHANNEL_3_PARAMS"
+    },
+    {
+      "key": "Channel3MapState",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "ronin2_channel_3",
+      "channelSource": "resource-if-present",
+      "missingMetadataChannel": 0,
+      "channel": 55,
+      "baseCommand": "RONIN2_CHANNEL_3_PARAMS"
+    },
+    {
+      "key": "IsChannel4Rev",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "ronin2_channel_4",
+      "channelSource": "resource-if-present",
+      "missingMetadataChannel": 0,
+      "channel": 56,
+      "baseCommand": "RONIN2_CHANNEL_4_PARAMS"
+    },
+    {
+      "key": "Channel4MapState",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "ronin2_channel_4",
+      "channelSource": "resource-if-present",
+      "missingMetadataChannel": 0,
+      "channel": 56,
+      "baseCommand": "RONIN2_CHANNEL_4_PARAMS"
+    },
+    {
+      "key": "IsChannel5Rev",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "ronin2_channel_5",
+      "channelSource": "resource-if-present",
+      "missingMetadataChannel": 0,
+      "channel": 57,
+      "baseCommand": "RONIN2_CHANNEL_5_PARAMS"
+    },
+    {
+      "key": "Channel5MapState",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "ronin2_channel_5",
+      "channelSource": "resource-if-present",
+      "missingMetadataChannel": 0,
+      "channel": 57,
+      "baseCommand": "RONIN2_CHANNEL_5_PARAMS"
+    },
+    {
+      "key": "IsChannel6Rev",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "ronin2_channel_6",
+      "channelSource": "resource-if-present",
+      "missingMetadataChannel": 0,
+      "channel": 58,
+      "baseCommand": "RONIN2_CHANNEL_6_PARAMS"
+    },
+    {
+      "key": "Channel6MapState",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "ronin2_channel_6",
+      "channelSource": "resource-if-present",
+      "missingMetadataChannel": 0,
+      "channel": 58,
+      "baseCommand": "RONIN2_CHANNEL_6_PARAMS"
+    },
+    {
+      "key": "IsAutoTune",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "ronin_auto_tune_enabled",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 63,
+      "baseCommand": "AUTO_TUNE_ENABLED"
+    },
+    {
+      "key": "AutoTuneProgress",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "ronin_auto_tune_enabled",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 63,
+      "baseCommand": "AUTO_TUNE_ENABLED"
+    },
+    {
+      "key": "AutoTunePercent",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "ronin_auto_tune_percent",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 64,
+      "baseCommand": "AUTO_TUNE_PERCENT"
+    },
+    {
+      "key": "FollowSpeedMode",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "ronin_follow_speed_mode",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 65,
+      "baseCommand": "FOLLOW_SPEED_MODE"
+    },
+    {
+      "key": "FollowDeadZoneMode",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "ronin_follow_dead_zone_mode",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 66,
+      "baseCommand": "FOLLOW_DEAD_ZONE_MODE"
+    },
+    {
+      "key": "RcSpeedMode",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "ronin_rc_speed_mode",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 67,
+      "baseCommand": "RC_SPEED_MODE"
+    },
+    {
+      "key": "RcDeadZoneMode",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "ronin_rc_dead_zone_mode",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 68,
+      "baseCommand": "RC_DEAD_ZONE_MODE"
+    },
+    {
+      "key": "RcSmoothMode",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "ronin_rc_smooth_mode",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 69,
+      "baseCommand": "RC_SMOOTH_MODE"
+    },
+    {
+      "key": "ControlParamMode",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "ronin_control_param_mode",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 70,
+      "baseCommand": "CONTROL_PARAM_MODE"
+    },
+    {
+      "key": "FollowAcceMode",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "ronin_follow_acce_mode",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 71,
+      "baseCommand": "FOLLOW_ACCE_MODE"
+    },
+    {
+      "key": "IsCustomFollowMode",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "ronin_custom_follow_setting",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 132,
+      "baseCommand": "CUSTOM_FOLLOW_SETTING"
+    },
+    {
+      "key": "CustomFollowModePitchEnabled",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "ronin_custom_follow_setting",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 132,
+      "baseCommand": "CUSTOM_FOLLOW_SETTING"
+    },
+    {
+      "key": "CustomFollowModeRollEnabled",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "ronin_custom_follow_setting",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 132,
+      "baseCommand": "CUSTOM_FOLLOW_SETTING"
+    },
+    {
+      "key": "CustomFollowModeYawEnabled",
+      "sourceCondition": null,
+      "commandId": 16,
+      "parameterName": "ronin_custom_follow_setting",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 132,
+      "baseCommand": "CUSTOM_FOLLOW_SETTING"
+    },
+    {
+      "key": "FollowModeSensitivity",
+      "sourceCondition": "isSupportStateSince4Gen",
+      "commandId": 16,
+      "parameterName": "cmd_follow_mode_sensitivity",
+      "channelSource": "explicit-base",
+      "missingMetadataChannel": null,
+      "channel": 150,
+      "baseCommand": "CMD_FOLLOW_MODE_SENSITIVITY"
+    },
+    {
+      "key": "Channel1Val",
+      "sourceCondition": null,
+      "commandId": 102,
+      "channel": 0,
+      "channelSource": "explicit-direct",
+      "baseCommand": null,
+      "parameterName": null,
+      "missingMetadataChannel": null
+    },
+    {
+      "key": "Channel2Val",
+      "sourceCondition": null,
+      "commandId": 102,
+      "channel": 1,
+      "channelSource": "explicit-direct",
+      "baseCommand": null,
+      "parameterName": null,
+      "missingMetadataChannel": null
+    },
+    {
+      "key": "Channel3Val",
+      "sourceCondition": null,
+      "commandId": 102,
+      "channel": 2,
+      "channelSource": "explicit-direct",
+      "baseCommand": null,
+      "parameterName": null,
+      "missingMetadataChannel": null
+    },
+    {
+      "key": "Channel4Val",
+      "sourceCondition": null,
+      "commandId": 102,
+      "channel": 3,
+      "channelSource": "explicit-direct",
+      "baseCommand": null,
+      "parameterName": null,
+      "missingMetadataChannel": null
+    },
+    {
+      "key": "Channel5Val",
+      "sourceCondition": null,
+      "commandId": 102,
+      "channel": 4,
+      "channelSource": "explicit-direct",
+      "baseCommand": null,
+      "parameterName": null,
+      "missingMetadataChannel": null
+    },
+    {
+      "key": "Channel6Val",
+      "sourceCondition": null,
+      "commandId": 102,
+      "channel": 5,
+      "channelSource": "explicit-direct",
+      "baseCommand": null,
+      "parameterName": null,
+      "missingMetadataChannel": null
+    },
+    {
+      "key": "PeripheralPowerPitch",
+      "sourceCondition": null,
+      "commandId": 102,
+      "channel": 6,
+      "channelSource": "explicit-direct",
+      "baseCommand": null,
+      "parameterName": null,
+      "missingMetadataChannel": null
+    },
+    {
+      "key": "PeripheralPowerYaw",
+      "sourceCondition": null,
+      "commandId": 102,
+      "channel": 8,
+      "channelSource": "explicit-direct",
+      "baseCommand": null,
+      "parameterName": null,
+      "missingMetadataChannel": null
+    },
+    {
+      "key": "PeripheralPowerRoll",
+      "sourceCondition": null,
+      "commandId": 102,
+      "channel": 7,
+      "channelSource": "explicit-direct",
+      "baseCommand": null,
+      "parameterName": null,
+      "missingMetadataChannel": null
+    },
+    {
+      "key": "PeripheralAnglePitch",
+      "sourceCondition": null,
+      "commandId": 102,
+      "channel": 16,
+      "channelSource": "explicit-direct",
+      "baseCommand": null,
+      "parameterName": null,
+      "missingMetadataChannel": null
+    },
+    {
+      "key": "PeripheralAngleYaw",
+      "sourceCondition": null,
+      "commandId": 102,
+      "channel": 18,
+      "channelSource": "explicit-direct",
+      "baseCommand": null,
+      "parameterName": null,
+      "missingMetadataChannel": null
+    },
+    {
+      "key": "PeripheralAngleRoll",
+      "sourceCondition": null,
+      "commandId": 102,
+      "channel": 17,
+      "channelSource": "explicit-direct",
+      "baseCommand": null,
+      "parameterName": null,
+      "missingMetadataChannel": null
+    },
+    {
+      "key": "PeripheralTempPitch",
+      "sourceCondition": null,
+      "commandId": 102,
+      "channel": 10,
+      "channelSource": "explicit-direct",
+      "baseCommand": null,
+      "parameterName": null,
+      "missingMetadataChannel": null
+    },
+    {
+      "key": "PeripheralTempYaw",
+      "sourceCondition": null,
+      "commandId": 102,
+      "channel": 12,
+      "channelSource": "explicit-direct",
+      "baseCommand": null,
+      "parameterName": null,
+      "missingMetadataChannel": null
+    },
+    {
+      "key": "PeripheralTempRoll",
+      "sourceCondition": null,
+      "commandId": 102,
+      "channel": 11,
+      "channelSource": "explicit-direct",
+      "baseCommand": null,
+      "parameterName": null,
+      "missingMetadataChannel": null
+    },
+    {
+      "key": "PeripheralPosPitchBias",
+      "sourceCondition": null,
+      "commandId": 102,
+      "channel": 28,
+      "channelSource": "explicit-direct",
+      "baseCommand": null,
+      "parameterName": null,
+      "missingMetadataChannel": null
+    },
+    {
+      "key": "PeripheralPosYawBias",
+      "sourceCondition": null,
+      "commandId": 102,
+      "channel": 30,
+      "channelSource": "explicit-direct",
+      "baseCommand": null,
+      "parameterName": null,
+      "missingMetadataChannel": null
+    },
+    {
+      "key": "PeripheralPosRollBias",
+      "sourceCondition": null,
+      "commandId": 102,
+      "channel": 29,
+      "channelSource": "explicit-direct",
+      "baseCommand": null,
+      "parameterName": null,
+      "missingMetadataChannel": null
+    },
+    {
+      "key": "PeripheralPosPitch",
+      "sourceCondition": null,
+      "commandId": 102,
+      "channel": 34,
+      "channelSource": "explicit-direct",
+      "baseCommand": null,
+      "parameterName": null,
+      "missingMetadataChannel": null
+    },
+    {
+      "key": "PeripheralPosYaw",
+      "sourceCondition": null,
+      "commandId": 102,
+      "channel": 36,
+      "channelSource": "explicit-direct",
+      "baseCommand": null,
+      "parameterName": null,
+      "missingMetadataChannel": null
+    },
+    {
+      "key": "PeripheralPosRoll",
+      "sourceCondition": null,
+      "commandId": 102,
+      "channel": 35,
+      "channelSource": "explicit-direct",
+      "baseCommand": null,
+      "parameterName": null,
+      "missingMetadataChannel": null
+    },
+    {
+      "key": "PeripheralTargetPosPitch",
+      "sourceCondition": null,
+      "commandId": 102,
+      "channel": 31,
+      "channelSource": "explicit-direct",
+      "baseCommand": null,
+      "parameterName": null,
+      "missingMetadataChannel": null
+    },
+    {
+      "key": "PeripheralTargetPosYaw",
+      "sourceCondition": null,
+      "commandId": 102,
+      "channel": 33,
+      "channelSource": "explicit-direct",
+      "baseCommand": null,
+      "parameterName": null,
+      "missingMetadataChannel": null
+    },
+    {
+      "key": "PeripheralTargetPosRoll",
+      "sourceCondition": null,
+      "commandId": 102,
+      "channel": 32,
+      "channelSource": "explicit-direct",
+      "baseCommand": null,
+      "parameterName": null,
+      "missingMetadataChannel": null
+    },
+    {
+      "key": "PeripheralGyroOutPitch",
+      "sourceCondition": null,
+      "commandId": 102,
+      "channel": 19,
+      "channelSource": "explicit-direct",
+      "baseCommand": null,
+      "parameterName": null,
+      "missingMetadataChannel": null
+    },
+    {
+      "key": "PeripheralGyroOutYaw",
+      "sourceCondition": null,
+      "commandId": 102,
+      "channel": 21,
+      "channelSource": "explicit-direct",
+      "baseCommand": null,
+      "parameterName": null,
+      "missingMetadataChannel": null
+    },
+    {
+      "key": "PeripheralGyroOutRoll",
+      "sourceCondition": null,
+      "commandId": 102,
+      "channel": 20,
+      "channelSource": "explicit-direct",
+      "baseCommand": null,
+      "parameterName": null,
+      "missingMetadataChannel": null
+    },
+    {
+      "key": "PeripheralGyroAccePitch",
+      "sourceCondition": null,
+      "commandId": 102,
+      "channel": 21,
+      "channelSource": "explicit-direct",
+      "baseCommand": null,
+      "parameterName": null,
+      "missingMetadataChannel": null
+    },
+    {
+      "key": "PeripheralGyroAcceYaw",
+      "sourceCondition": null,
+      "commandId": 102,
+      "channel": 24,
+      "channelSource": "explicit-direct",
+      "baseCommand": null,
+      "parameterName": null,
+      "missingMetadataChannel": null
+    },
+    {
+      "key": "PeripheralGyroAcceRoll",
+      "sourceCondition": null,
+      "commandId": 102,
+      "channel": 23,
+      "channelSource": "explicit-direct",
+      "baseCommand": null,
+      "parameterName": null,
+      "missingMetadataChannel": null
+    },
+    {
+      "key": "PeripheralGyroBiasPitch",
+      "sourceCondition": null,
+      "commandId": 102,
+      "channel": 25,
+      "channelSource": "explicit-direct",
+      "baseCommand": null,
+      "parameterName": null,
+      "missingMetadataChannel": null
+    },
+    {
+      "key": "PeripheralGyroBiasYaw",
+      "sourceCondition": null,
+      "commandId": 102,
+      "channel": 27,
+      "channelSource": "explicit-direct",
+      "baseCommand": null,
+      "parameterName": null,
+      "missingMetadataChannel": null
+    },
+    {
+      "key": "PeripheralGyroBiasRoll",
+      "sourceCondition": null,
+      "commandId": 102,
+      "channel": 26,
+      "channelSource": "explicit-direct",
+      "baseCommand": null,
+      "parameterName": null,
+      "missingMetadataChannel": null
+    },
+    {
+      "key": "PeripheralGpsNum",
+      "sourceCondition": null,
+      "commandId": 102,
+      "channel": 37,
+      "channelSource": "explicit-direct",
+      "baseCommand": null,
+      "parameterName": null,
+      "missingMetadataChannel": null
+    },
+    {
+      "key": "PeripheralGpsLat",
+      "sourceCondition": null,
+      "commandId": 102,
+      "channel": 39,
+      "channelSource": "explicit-direct",
+      "baseCommand": null,
+      "parameterName": null,
+      "missingMetadataChannel": null
+    },
+    {
+      "key": "PeripheralGpsLng",
+      "sourceCondition": null,
+      "commandId": 102,
+      "channel": 38,
+      "channelSource": "explicit-direct",
+      "baseCommand": null,
+      "parameterName": null,
+      "missingMetadataChannel": null
+    },
+    {
+      "key": "PeripheralGpsNorthSpeed",
+      "sourceCondition": null,
+      "commandId": 102,
+      "channel": 40,
+      "channelSource": "explicit-direct",
+      "baseCommand": null,
+      "parameterName": null,
+      "missingMetadataChannel": null
+    },
+    {
+      "key": "PeripheralGpsEastSpeed",
+      "sourceCondition": null,
+      "commandId": 102,
+      "channel": 41,
+      "channelSource": "explicit-direct",
+      "baseCommand": null,
+      "parameterName": null,
+      "missingMetadataChannel": null
+    },
+    {
+      "key": "PeripheralGpsNorthAcceSpeed",
+      "sourceCondition": null,
+      "commandId": 102,
+      "channel": 42,
+      "channelSource": "explicit-direct",
+      "baseCommand": null,
+      "parameterName": null,
+      "missingMetadataChannel": null
+    },
+    {
+      "key": "PeripheralGpsEastAcceSpeed",
+      "sourceCondition": null,
+      "commandId": 102,
+      "channel": 43,
+      "channelSource": "explicit-direct",
+      "baseCommand": null,
+      "parameterName": null,
+      "missingMetadataChannel": null
+    },
+    {
+      "key": "PeripheralHandDeviceAngle",
+      "sourceCondition": null,
+      "commandId": 102,
+      "channel": 46,
+      "channelSource": "explicit-direct",
+      "baseCommand": null,
+      "parameterName": null,
+      "missingMetadataChannel": null
+    },
+    {
+      "key": "GimbalControlState",
+      "sourceCondition": "isSupportStateSince4Gen",
+      "commandId": 102,
+      "channel": 65,
+      "channelSource": "explicit-direct",
+      "baseCommand": null,
+      "parameterName": null,
+      "missingMetadataChannel": null
+    }
+  ],
+  "uniqueNamedKeys": 152,
+  "dbPresentUniqueCommandChannelPairs": 121,
+  "aliasGroups": [
+    {
+      "commandId": 16,
+      "channel": 35,
+      "keys": [
+        "MotorEnabled",
+        "ForbidTriggerSelfie",
+        "ForbidVerticalShootingSwitch",
+        "ForbidRoll360Switch"
+      ]
+    },
+    {
+      "commandId": 16,
+      "channel": 37,
+      "keys": [
+        "StartBalanceTest",
+        "BalanceTestStatus",
+        "IsTestingBalance",
+        "PitchTestResult",
+        "RollTestResult",
+        "YawTestResult"
+      ]
+    },
+    {
+      "commandId": 16,
+      "channel": 53,
+      "keys": [
+        "IsChannel1Rev",
+        "Channel1MapState"
+      ]
+    },
+    {
+      "commandId": 16,
+      "channel": 54,
+      "keys": [
+        "IsChannel2Rev",
+        "Channel2MapState"
+      ]
+    },
+    {
+      "commandId": 16,
+      "channel": 55,
+      "keys": [
+        "IsChannel3Rev",
+        "Channel3MapState"
+      ]
+    },
+    {
+      "commandId": 16,
+      "channel": 56,
+      "keys": [
+        "IsChannel4Rev",
+        "Channel4MapState"
+      ]
+    },
+    {
+      "commandId": 16,
+      "channel": 57,
+      "keys": [
+        "IsChannel5Rev",
+        "Channel5MapState"
+      ]
+    },
+    {
+      "commandId": 16,
+      "channel": 58,
+      "keys": [
+        "IsChannel6Rev",
+        "Channel6MapState"
+      ]
+    },
+    {
+      "commandId": 16,
+      "channel": 63,
+      "keys": [
+        "IsAutoTune",
+        "AutoTuneProgress"
+      ]
+    },
+    {
+      "commandId": 16,
+      "channel": 76,
+      "keys": [
+        "GimbalCreateSmoothRoll",
+        "GimbalMotionSmoothRoll",
+        "GimbalGamepadSmoothRoll"
+      ]
+    },
+    {
+      "commandId": 16,
+      "channel": 77,
+      "keys": [
+        "GimbalCreateSmoothPitch",
+        "GimbalMotionSmoothPitch",
+        "GimbalGamepadSmoothPitch"
+      ]
+    },
+    {
+      "commandId": 16,
+      "channel": 78,
+      "keys": [
+        "GimbalCreateSmoothYaw",
+        "GimbalMotionSmoothYaw",
+        "GimbalGamepadSmoothYaw"
+      ]
+    },
+    {
+      "commandId": 16,
+      "channel": 79,
+      "keys": [
+        "GimbalCreateMaxSpeedRoll",
+        "GimbalMotionMaxSpeedRoll",
+        "GimbalGamepadMaxSpeedRoll"
+      ]
+    },
+    {
+      "commandId": 16,
+      "channel": 80,
+      "keys": [
+        "GimbalCreateMaxSpeedPitch",
+        "GimbalMotionMaxSpeedPitch",
+        "GimbalGamepadMaxSpeedPitch"
+      ]
+    },
+    {
+      "commandId": 16,
+      "channel": 81,
+      "keys": [
+        "GimbalCreateMaxSpeedYaw",
+        "GimbalMotionMaxSpeedYaw",
+        "GimbalGamepadMaxSpeedYaw"
+      ]
+    },
+    {
+      "commandId": 16,
+      "channel": 132,
+      "keys": [
+        "IsCustomFollowMode",
+        "CustomFollowModePitchEnabled",
+        "CustomFollowModeRollEnabled",
+        "CustomFollowModeYawEnabled"
+      ]
+    },
+    {
+      "commandId": 102,
+      "channel": 21,
+      "keys": [
+        "PeripheralGyroOutYaw",
+        "PeripheralGyroAccePitch"
+      ]
+    }
+  ],
+  "supportPredicate": {
+    "method": "isSupportStateSince4Gen",
+    "falseComponentFields": [
+      "DF101_HANDLE",
+      "DF101_WHEEL",
+      "HG701",
+      "HG702",
+      "HG703",
+      "HG710",
+      "HG711",
+      "HG720",
+      "None",
+      "Ronin2",
+      "Ronins"
+    ],
+    "defaultResult": true,
+    "hg724UsesDefault": true,
+    "unknownOrMissingComponentBehaviorVerified": false,
+    "conditionalKeys": [
+      "FollowModeSensitivity",
+      "GimbalControlState"
+    ],
+    "runtimeComponentCacheVerified": false
+  },
+  "metadata": {
+    "resourceConditionalKeyCount": 21,
+    "resourceConditionalBaseCommandCount": 15,
+    "missingReadLeavesJavaDefaultChannel": 0,
+    "resourceRuntimeLoadedBeforeEnumInitializationVerified": false,
+    "metadataConditionalNamesNotSilentlyResolved": true
+  },
+  "endpoint": {
+    "receiverByte": 229,
+    "ackRequested": false,
+    "sourceRefreshSeconds": 1,
+    "remoteStopOrLeaseVerified": false
+  },
+  "exampleSnapshots": [
+    {
+      "selectedKeys": [
+        "PeripheralPosYaw",
+        "PitchMotorControlStiffness",
+        "UserProfile"
+      ],
+      "groups": [
+        {
+          "commandId": 16,
+          "channels": [
+            0
+          ]
+        },
+        {
+          "commandId": 50,
+          "channels": [
+            0
+          ]
+        },
+        {
+          "commandId": 102,
+          "channels": [
+            36
+          ]
+        }
+      ],
+      "bodyHex": "10000132000166240000000010",
+      "remoteReplacementVerified": false,
+      "remoteStopVerified": false
+    },
+    {
+      "selectedKeys": [
+        "ControllerMaxSpeedYaw"
+      ],
+      "groups": [
+        {
+          "commandId": 16,
+          "channels": [
+            41
+          ]
+        }
+      ],
+      "bodyHex": "1029000000000002",
+      "remoteReplacementVerified": false,
+      "remoteStopVerified": false
+    },
+    {
+      "selectedKeys": [
+        "ControllerMaxSpeedYaw"
+      ],
+      "groups": [
+        {
+          "commandId": 16,
+          "channels": [
+            0
+          ]
+        }
+      ],
+      "bodyHex": "100001",
+      "remoteReplacementVerified": false,
+      "remoteStopVerified": false
+    },
+    {
+      "selectedKeys": [
+        "PeripheralGyroAccePitch",
+        "PeripheralGyroOutYaw"
+      ],
+      "groups": [
+        {
+          "commandId": 102,
+          "channels": [
+            21
+          ]
+        }
+      ],
+      "bodyHex": "6615000020",
+      "remoteReplacementVerified": false,
+      "remoteStopVerified": false
+    }
+  ],
+  "remaining": [
+    "Actual resource load order and component cache, target route/lease and remote replacement/stop remain unverified.",
+    "Selected literal/source-metadata catalog is not 152 target features or all firmware commands.",
+    "No SDK send allowlist or persistent subscription manager added."
+  ]
+}

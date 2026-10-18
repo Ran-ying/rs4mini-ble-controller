@@ -403,11 +403,12 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "当前App订阅打包、CENTER/id7端点、无ACK、1秒刷新和本地引用计数已静态核对；频道按命令空间区分，末组移除后停发不等于远端停止。尚未开放SDK订阅，本机路由、推送/租期与远端停止语义未验收",
+      "remaining": "已核对152注册键/121个DB-present命令频道对与别名；21键依赖资源读取，缺失保留0，2键受型号缓存条件，不静默生成固定SDK表。CENTER/id7无ACK、位图、刷新与本地移除已审计，资源初始化顺序、本机路由/租期/远端停止及SDK接口仍未完成",
       "officialAppAliases": [
         "SubscribeGimbalParams"
       ],
-      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
+      "subscriptionCatalogResearch": "protocol/research/ronin-subscription-catalog.json"
     },
     {
       "key": "04:13",
@@ -842,7 +843,8 @@
     "tools/research/ronin_track_workflow.py",
     "tools/research/ronin_program_receive.py",
     "tools/research/ronin_track_points.py",
-    "tools/research/ronin_peripheral_trace.py"
+    "tools/research/ronin_peripheral_trace.py",
+    "tools/research/ronin_subscription_catalog.py"
   ],
   "modelIdentityResearch": "protocol/research/ronin-hg724-evidence.json",
   "codeRestorationResearch": "protocol/research/ronin-code-restoration-evidence.json",
@@ -1138,5 +1140,6 @@
     "modelLayoutVerified": false,
     "referenceFrameVerified": false,
     "fixtures": "node/test/fixtures/peripheral-status.json"
-  }
+  },
+  "subscriptionCatalogResearch": "protocol/research/ronin-subscription-catalog.json"
 }

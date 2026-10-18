@@ -6,6 +6,10 @@
 用户已要求将源码与相关信息提交至 GitHub。本记录随源码版本保存，提交和远端状态以 Git 历史为准；
 这不是 npm 发布或 GitHub 二进制 Release。
 
+## 最新研究：完整订阅目录与初始化条件
+
+24方法审计取得152不同注册键、DB-present情况下121命令/频道对和17组别名。21键的元数据缺失分支保留默认0，2键由组件缓存条件控制；HG724静态分支走默认true，不等于当前缓存或本机支持。见[SUBSCRIPTION_CATALOG.md](../tools/research/SUBSCRIPTION_CATALOG.md)。未新增SDK发送或高级功能，运行时仍0.7.25/0.3.25，资源加载顺序、路由与远端停止仍待补。
+
 ## 当前进度：0.7.25外设被动源候选
 
 四端peripheralStatus/kind=peripheral覆盖46源类型、43 getter视图；保留tag21双解释、GPS整数截断、未知/重复及原始体，缺失不补零，不更新04:05姿态/关节或主机运动。见[APP_PERIPHERAL_STATUS.md](APP_PERIPHERAL_STATUS.md)。70方法源审计与SDK候选分开记录；未操作硬件，本机/全命令和高级门槛仍未通过。
@@ -519,3 +523,10 @@ tarball隔离安装后213项及TypeScript消费者通过；wheel隔离安装后1
 统一离线Node220/Web20/Python3.8共198、原生309核心+224假设备+3独立SDK、类型/边界/构建通过，终态0；Python3.12完整198另行通过。新增缓存复制/不可变/观察者隔离、来源/断线清空、CRC重组下的通知/查询/运动槽隔离、无ACK/订阅/控制写入及Web无Buffer验证。
 
 实际安装Node tarball后220项及TypeScript消费者通过；wheel隔离安装后198项通过，device/controller/app_commands/app_peripheral导入路径核对。全部型号/设备/参考系/物理标志false，未扫描/连接/移动设备、运行实时UI或执行厂商代码；没有新增发送/高级功能，全部命令门槛false。
+
+
+## 完整订阅目录验证（2026-10-18）
+
+固定APK/bank05/DB实际两次提取24方法指纹与152命名注册，最终JSON逐字节一致；81 BaseCommand、121个DB-present命令频道对、17组别名、21资源条件键/15 Base及两处型号条件已核对。新增19项边界，研究工具Python3.8与3.12各312通过。覆盖索引非ordinal、缺失0分支/显式条件、全目录与别名位图、三命令空间、寄存器覆盖/重复/未知注册、switch数组字段和哈希预检。
+
+统一离线Node220/Web20/Python198/原生309+224+3及类型/边界/构建通过，终态0且日志到达最后probe --help。Node/Python/macOS/Web目录与998019a相同，运行时及安装包保持0.7.25/0.3.25，不新增SDK发送/订阅管理或高级功能。资源加载顺序、组件缓存、本机路由/租期/远端停止未验收；没有硬件/liveUI/厂商代码执行，全命令门槛false。

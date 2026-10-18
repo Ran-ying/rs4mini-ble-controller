@@ -759,3 +759,15 @@ if manifest.get('balanceAdjustResearch'):
     assert proof['sourceRequest']['sendEnabledInSdk'] is False
     row=next(row for row in manifest['commands'] if row['key']=='04:40')
     assert row['balanceAdjustResearch']==manifest['balanceAdjustResearch'] and row['requestCodec']=='unknown' and not row['implementation']
+
+if manifest.get('balanceEntryResearch'):
+    proof=json.loads((root/manifest['balanceEntryResearch']).read_text())
+    for flag in ['appCodeExecuted','liveUiExecuted','targetDeviceVerified','wholeProtocolRecovered','researchToolProvidesSdkInterface','sdkSendAdded','sdkReceiveAdded','hg724Command40PathEstablished','hg724Command40UnsupportedProven']:
+        assert proof[flag] is False
+    assert len(proof['methods'])==30 and len(proof['layouts'])==4 and proof['uniqueLayoutCount']==3
+    case=proof['explicitHg724SelectedCase']
+    assert case['needBalanceTest'] is False and case['menuTarget']=='GimbalVideoAdjustRS3' and case['videoTestButtonVisibility']==8
+    assert case['forcedOldCheckAdjustTextVisibility']==0 and case['firmwareSupportVerified'] is False
+    assert len(proof['oldAdjustLiteralReferenceMethods'])==3
+    row=next(row for row in manifest['commands'] if row['key']=='04:40')
+    assert row['balanceEntryResearch']==manifest['balanceEntryResearch'] and not row['implementation']

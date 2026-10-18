@@ -678,12 +678,13 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "通用04:40同命令请求/状态及旧视图六个直接调用方法已审计；请求0001+命名枚举，状态两位二进制字符串按十进制解析为0/1/10/11，建议非连续枚举。61方法证据；HG724入口、线上包层、物理停止/完成与恢复未知，未开放SDK收发。与HG724 balance_test/index37通过0F/10不同。",
+      "remaining": "通用04:40同命令请求/状态及旧视图六个直接调用方法已审计；请求0001+命名枚举，状态两位二进制字符串按十进制解析为0/1/10/11，建议非连续枚举。61方法证据；HG724入口、线上包层、物理停止/完成与恢复未知，未开放SDK收发。与HG724 balance_test/index37通过0F/10不同。；显式有效所选HG724的普通菜单走GimbalVideoAdjustRS3，视频共享布局且测试按钮隐藏；强制旧页说明可见不证明入口/04:40支持，也不证明固件不支持。",
       "officialAppAliases": [
         "BalanceAdjust"
       ],
       "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
-      "balanceAdjustResearch": "protocol/research/ronin-balance-adjust-evidence.json"
+      "balanceAdjustResearch": "protocol/research/ronin-balance-adjust-evidence.json",
+      "balanceEntryResearch": "protocol/research/ronin-balance-entry-evidence.json"
     },
     {
       "key": "04:6A",
@@ -887,7 +888,8 @@
     "tools/research/ronin_track_points.py",
     "tools/research/ronin_peripheral_trace.py",
     "tools/research/ronin_subscription_catalog.py",
-    "tools/research/ronin_balance_adjust.py"
+    "tools/research/ronin_balance_adjust.py",
+    "tools/research/ronin_balance_entry.py"
   ],
   "modelIdentityResearch": "protocol/research/ronin-hg724-evidence.json",
   "codeRestorationResearch": "protocol/research/ronin-code-restoration-evidence.json",
@@ -1248,5 +1250,6 @@
     "physicalCompletionVerified": false,
     "documentation": "docs/APP_TUTORIAL_STATUS.md"
   },
-  "balanceAdjustResearch": "protocol/research/ronin-balance-adjust-evidence.json"
+  "balanceAdjustResearch": "protocol/research/ronin-balance-adjust-evidence.json",
+  "balanceEntryResearch": "protocol/research/ronin-balance-entry-evidence.json"
 }

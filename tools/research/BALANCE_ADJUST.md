@@ -59,3 +59,6 @@ python/.venv/bin/python -m unittest discover -s tools/research -p test_ronin_bal
 工具先校验所有输入哈希，提取61个方法指纹、枚举/字段/调用事实；输出不含完整厂商方法。测试覆盖256 packed值、256 length值、未知type、短体拒绝、十进制转换和调用目标分类。段01/07、残余保护桩、反射/native/其他类加载器尚未排除。HG724入口、实际包层和通知、状态关联、物理动作/中止及恢复仍需证据。
 
 现有HG724继承的balance_test/index37通过04:0F/10，保持[原研究](BALANCE_TEST.md)及[现有SDK](../../docs/APP_BALANCE_TEST.md)边界；本研究没有用04:40替代它。48项清单、全部命令与高级开发门槛仍未通过。
+
+
+后续[平衡入口条件审计](BALANCE_ENTRY.md)进一步限定HG724普通菜单走视频页；不是全局不支持04:40的证明，原61方法证据不改写。

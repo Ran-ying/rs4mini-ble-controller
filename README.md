@@ -317,3 +317,8 @@ python3 -m http.server 8000 --bind 127.0.0.1
 ## 04:40平衡调整请求与旧视图研究
 
 固定六段61方法核对同命令发送/接收类、8个请求值、状态二进制字符串按十进制解析为0/1/10/11和非连续建议枚举；6个类外直接调用方法集中旧GimbalAdjustView。源attach可能关电机、20秒本地timer、错误/完成/超时发STOP，而detach未发STOP；不等于本机停止保证。见[平衡调整审计](tools/research/BALANCE_ADJUST.md)（仓库根目录）及protocol/research/ronin-balance-adjust-evidence.json。HG724入口、线上包层和物理效果未确认，未开放04:40 SDK收发、不替代balance_test/index37，无硬件/UI/厂商执行或高级新增，运行时仍0.7.32/0.3.32，全命令门槛false。
+
+
+## 平衡入口型号条件与共享布局研究
+
+固定六段30方法、4视图映射/3独立布局确认：有效所选项为HG724且BalanceCheck入口被调用时走GimbalVideoAdjustRS3，视频测试按钮GONE；两个新旧视频名共享同一布局/根类，不能连接为GimbalAdjustHG701的04:40发送。强制旧测试页可见说明是独立条件，不证明普通导航；限定字段引用扫描未建立旧调整页入口，也不证明固件不支持。见tools/research/BALANCE_ENTRY.md及protocol/research/ronin-balance-entry-evidence.json（仓库根目录）。没有新增SDK收发/高级功能或硬件/liveUI/厂商执行，运行时仍0.7.32/0.3.32，全部命令门槛false。

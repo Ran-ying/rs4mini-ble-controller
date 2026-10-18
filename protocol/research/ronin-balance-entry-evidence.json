@@ -1,0 +1,414 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "bankSha256": {
+    "0": "76002e76e02e1306ad197c4af127975d573999de174e5a9e44cc6f840196f621",
+    "2": "de69497b77de530d0d559646dc6d3fb24569e2ba8ba9502216f3d6c9fd6f3bf8",
+    "3": "bb50b39865520f55e97116ae1903bda3545b01c2fb7e2aba67a979dc264a9854",
+    "4": "2d3ff70fb84eb02ac75949ca6e7d5cc849a7f9ef55029fd168890c6dbccb1d12",
+    "5": "4fdbd74a05df63d72a0feb1c907d9395426ec3cdb5d6aeb45e3836d856d66654",
+    "6": "057f13084cf969ffadcfa2150d1b3ae3ed8a7822c95fb54158781764c9156e2f"
+  },
+  "appCodeExecuted": false,
+  "liveUiExecuted": false,
+  "targetDeviceVerified": false,
+  "wholeProtocolRecovered": false,
+  "researchToolProvidesSdkInterface": false,
+  "sdkSendAdded": false,
+  "sdkReceiveAdded": false,
+  "hg724Command40PathEstablished": false,
+  "hg724Command40UnsupportedProven": false,
+  "methods": [
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/home/UIViewManager$ViewIndex;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 2269088,
+      "instructionSha256": "eb5390273acde8b8052cda90fe1e2950435b901f64804a524808baf394bfe37a"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/setting/BalanceCheckJumpEntryView;",
+      "method": "<init>",
+      "descriptor": "(Landroid/content/Context; Landroid/util/AttributeSet;)V",
+      "codeOffset": 4729300,
+      "instructionSha256": "88acd650833f6dd8801741e5725e8cf9dfa1e3049e68a0d56eed23284aa61b99"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/setting/BalanceCheckJumpEntryView;",
+      "method": "onClick",
+      "descriptor": "(Landroid/view/View;)V",
+      "codeOffset": 4729368,
+      "instructionSha256": "4f597ec35d40bf31be1bcf2fee4281ab7d1f5ecd5908e6be42d45128d9d63282"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/setting/SettingBalanceAjustView;",
+      "method": "onAttachedToWindow",
+      "descriptor": "()V",
+      "codeOffset": 4729976,
+      "instructionSha256": "3fafa5715f0a46959ffd5bc6fcabed468f340ace7ae4d9aeccf5d9068342f5b2"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/setting/SettingBalanceAjustView;",
+      "method": "onClick",
+      "descriptor": "(Landroid/view/View;)V",
+      "codeOffset": 4730084,
+      "instructionSha256": "b8dca65d6a38db1edbe9fa931bb8aca9d1d3df9b7f8df6dfb72f412d337b2a2c"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/setting/SettingBalanceAjustView;",
+      "method": "onDetachedFromWindow",
+      "descriptor": "()V",
+      "codeOffset": 4731736,
+      "instructionSha256": "ad72e99db9773bb43489fe5edbd42c8ee7ec395e7ef978678e0c24559a56636c"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/setting/SettingBalanceAjustView;",
+      "method": "onDeviceIndexChanged",
+      "descriptor": "(I)V",
+      "codeOffset": 4731804,
+      "instructionSha256": "5a54386fbfcba79d41c413c88a2e4bc7251582e43cc8e706c41af20c4f888373"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/setting/SettingBalanceAjustView;",
+      "method": "onFinishInflate",
+      "descriptor": "()V",
+      "codeOffset": 4731856,
+      "instructionSha256": "802a50192f8907919a79b9d6d45d1bf172c2a8f4dab792f379a830a808ff0aa0"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/setting/SettingBalanceAjustView;",
+      "method": "startVideoPlayActivity",
+      "descriptor": "(Lcom/dji/ronin/VideoPlay/VideoInfoBean$DataBean$ItemsBean;)V",
+      "codeOffset": 4729652,
+      "instructionSha256": "f3c35e936851e413a674e56d07d9eee5c2f35170d6ce366ad263e8745977e98b"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/setting/SettingBalanceAjustView;",
+      "method": "startWebViewActivity",
+      "descriptor": "(Ljava/lang/String;)V",
+      "codeOffset": 4729736,
+      "instructionSha256": "e67890a45955582254776338bd07c0190b885abef94c0a4d07a9300aeb15319c"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/setting/SettingBalanceAjustView;",
+      "method": "updateNavBarItemVisibility",
+      "descriptor": "()V",
+      "codeOffset": 4729836,
+      "instructionSha256": "50d13c64b46c6c6eb00efb5892614496cfd310ea45f243aed2adec923f0d6ba4"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/setting/SettingBalanceAjustView;",
+      "method": "updateNextVisibility",
+      "descriptor": "()V",
+      "codeOffset": 4729868,
+      "instructionSha256": "3f2d8f12be0774ac10a66bd8a99b7f97fe7dd8e8de6db46b7074ffd937e30cbf"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/setting/SettingBalanceCheckView;",
+      "method": "onAttachedToWindow",
+      "descriptor": "()V",
+      "codeOffset": 2475168,
+      "instructionSha256": "1de5907bd874c9233379f551e2c15d6591a4fceaf22c2e6ce9f5ae0454ecc19b"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/setting/SettingBalanceCheckView;",
+      "method": "onClick",
+      "descriptor": "(Landroid/view/View;)V",
+      "codeOffset": 2475448,
+      "instructionSha256": "3d5e99da136816eb54b919408ea2fdf010288fd38f02e5b95895286d2fa246d4"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/setting/SettingBalanceCheckView;",
+      "method": "onFinishInflate",
+      "descriptor": "()V",
+      "codeOffset": 2475712,
+      "instructionSha256": "369dd3f98e6452c8bcf53c010d68d1fd3cec5862265edec2b14718e93a8b3108"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/setting/SettingBalanceCheckView;",
+      "method": "startTestBalance",
+      "descriptor": "()V",
+      "codeOffset": 2474576,
+      "instructionSha256": "abfe839b7891a2735f4b3f340791f8df5c7c532f5f755f9b7c4f155b881a6102"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/setting/SettingBalanceCheckView;",
+      "method": "updateNextVisibility",
+      "descriptor": "()V",
+      "codeOffset": 2475004,
+      "instructionSha256": "2c75cd1153cdde950962c74f741ed40e295ce27e39510612cc931b8a90e73f32"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/setting/SettingBalanceCheckView;",
+      "method": "viewBalanceCheckVideoList",
+      "descriptor": "()V",
+      "codeOffset": 2475072,
+      "instructionSha256": "760b01b749b149c71eee9d3f879c0637f9039ef8c182da2cbab3aff3b6809dce"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/entry/DeviceSwitchTextView;",
+      "method": "checkMatchIndexAndModel",
+      "descriptor": "(I Ldji/common/product/Model;)Z",
+      "codeOffset": 2651532,
+      "instructionSha256": "4e7b12edac1a2c4cb70a9ae000449d88b1cc6ac4087a6329c9f391e2c433824c"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/entry/DeviceSwitchTextView;",
+      "method": "getModelOfDevice",
+      "descriptor": "(I)Ldji/common/product/Model;",
+      "codeOffset": 2651708,
+      "instructionSha256": "5b44e7ba506b00e802f9a4ecddfe0c13f528b949ef17ceda6a6387096e812961"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/entry/DeviceSwitchTextView;",
+      "method": "is2ndGenDeviceIndex",
+      "descriptor": "()Z",
+      "codeOffset": 2652040,
+      "instructionSha256": "c0130cc59b0e3ea8ffec95f48962c2cdbb526bddc1e24138f4805bfaa43fb4df"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/entry/DeviceSwitchTextView;",
+      "method": "is2ndOrThirdGenDeviceIndex",
+      "descriptor": "()Z",
+      "codeOffset": 2652120,
+      "instructionSha256": "ce4c2b469403727cd0138c48e691b62eed4678a35382ed2c77fe1a62fc65a1a2"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/entry/DeviceSwitchTextView;",
+      "method": "is4thGenDeviceIndex",
+      "descriptor": "()Z",
+      "codeOffset": 2652252,
+      "instructionSha256": "63e025e500e146b550ac9a2c4c3bdec1ecdae986ce984f02ccf77f314686d914"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/entry/DeviceSwitchTextView;",
+      "method": "is5thGenDeviceIndex",
+      "descriptor": "()Z",
+      "codeOffset": 2652352,
+      "instructionSha256": "3e27ca9f4faf040b7d78f853462eb88095d8e9482716a4bcf1aa6af2b034b8cd"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/entry/DeviceSwitchTextView;",
+      "method": "isNeedBalanceTestDeviceIndex",
+      "descriptor": "()Z",
+      "codeOffset": 2652592,
+      "instructionSha256": "540f8f1af21b68e2caae3a2f81f52c3259c5109d0af6314dd2740cb483c9b362"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/entry/DeviceSwitchTextView;",
+      "method": "isThirdGenDeviceIndex",
+      "descriptor": "()Z",
+      "codeOffset": 2652836,
+      "instructionSha256": "5a9343fa104d0deea42a5e40d6619fa4e35ba33c78901cd8fbd9fefe42159548"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/entry/DeviceSwitchTextView;",
+      "method": "supportSince2ndGenDeviceIndex",
+      "descriptor": "()Z",
+      "codeOffset": 2653176,
+      "instructionSha256": "118ce5b9868cae0f125ba8410ea25adb784dd0af41d9008c4ce616c36e3ac34e"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/guide/BeginnerGuideManager;",
+      "method": "next",
+      "descriptor": "()V",
+      "codeOffset": 2684788,
+      "instructionSha256": "1de6b2e2f0bf6124f7ebca2edc8e70a8e4a622a7cf291366c2d15dbf95fd19cc"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/monitor/state/GimbalAdjustView;",
+      "method": "exit",
+      "descriptor": "()V",
+      "codeOffset": 2700892,
+      "instructionSha256": "3a69597cc05045c663ee28891303ae3b12d4b7e24ec9f6fd4b1c36372699154e"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/monitor/state/GimbalAdjustView;",
+      "method": "onAttachedToWindow",
+      "descriptor": "()V",
+      "codeOffset": 2703316,
+      "instructionSha256": "03aaa9ec37e203bce46ded0d7adbb529e8610e9a246a953f9499abcd3b74d3aa"
+    }
+  ],
+  "layouts": [
+    {
+      "viewName": "ConfigSettingBalanceTestHG701",
+      "ordinal": 16,
+      "viewId": 2131362578,
+      "layoutId": 2131558912,
+      "path": "res/jb.xml",
+      "sha256": "c0ed346d1b1c0d9504278b4c85f63179be9f5240a4448b2cad286fb2915eff81",
+      "rootClass": "com.dji.ronin.ui.configuration.setting.SettingBalanceCheckView"
+    },
+    {
+      "viewName": "GimbalAdjustHG701",
+      "ordinal": 38,
+      "viewId": -1,
+      "layoutId": 2131558887,
+      "path": "res/Wq.xml",
+      "sha256": "0a8af369ec7a92e0efacc73d0034f29748e7af927a88bc97f6ab7d5d1265250f",
+      "rootClass": "com.dji.ronin.ui.monitor.state.GimbalAdjustView"
+    },
+    {
+      "viewName": "GimbalVideoAdjustHG701",
+      "ordinal": 39,
+      "viewId": 2131363405,
+      "layoutId": 2131558911,
+      "path": "res/Ci.xml",
+      "sha256": "d7f2d2bbd7eadee64a077e37a33a44036ad5257b4047f1ceb735f7e2934a9195",
+      "rootClass": "com.dji.ronin.ui.configuration.setting.SettingBalanceAjustView"
+    },
+    {
+      "viewName": "GimbalVideoAdjustRS3",
+      "ordinal": 40,
+      "viewId": 2131363405,
+      "layoutId": 2131558911,
+      "path": "res/Ci.xml",
+      "sha256": "d7f2d2bbd7eadee64a077e37a33a44036ad5257b4047f1ceb735f7e2934a9195",
+      "rootClass": "com.dji.ronin.ui.configuration.setting.SettingBalanceAjustView"
+    }
+  ],
+  "uniqueLayoutCount": 3,
+  "navigation": {
+    "ConfigSettingBalanceTestHG701": {
+      "ordinal": 16,
+      "viewId": 2131362578,
+      "layoutId": 2131558912
+    },
+    "GimbalAdjustHG701": {
+      "ordinal": 38,
+      "viewId": -1,
+      "layoutId": 2131558887
+    },
+    "GimbalVideoAdjustHG701": {
+      "ordinal": 39,
+      "viewId": 2131363405,
+      "layoutId": 2131558911
+    },
+    "GimbalVideoAdjustRS3": {
+      "ordinal": 40,
+      "viewId": 2131363405,
+      "layoutId": 2131558911
+    }
+  },
+  "sourceModels": {
+    "needBalanceTest": [
+      "HG702",
+      "HG710",
+      "HG720",
+      "RONIN2",
+      "RONINS",
+      "RONINSC"
+    ],
+    "second": [
+      "HG702",
+      "HG710"
+    ],
+    "third": [
+      "HG703",
+      "HG711",
+      "HG720"
+    ],
+    "fourth": [
+      "HG704",
+      "HG714",
+      "HG724"
+    ],
+    "fifth": [
+      "HG705",
+      "HG715"
+    ]
+  },
+  "explicitHg724SelectedCase": {
+    "sourceSelectedModel": "HG724",
+    "needBalanceTest": false,
+    "menuTarget": "GimbalVideoAdjustRS3",
+    "videoTestButtonVisibility": 8,
+    "forcedOldCheckAdjustTextVisibility": 0,
+    "actualSelectedModelVerified": false,
+    "liveUiVerified": false,
+    "firmwareSupportVerified": false
+  },
+  "oldAdjustLiteralReferenceMethods": [
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/home/UIViewManager$ViewIndex;",
+      "method": "$values",
+      "descriptor": "()[Lcom/dji/ronin/home/UIViewManager$ViewIndex;",
+      "references": [
+        {
+          "opcode": "sget-object",
+          "reference": "v39, Lcom/dji/ronin/home/UIViewManager$ViewIndex;->GimbalAdjustHG701 Lcom/dji/ronin/home/UIViewManager$ViewIndex;"
+        }
+      ]
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/home/UIViewManager$ViewIndex;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "references": [
+        {
+          "opcode": "sput-object",
+          "reference": "v10, Lcom/dji/ronin/home/UIViewManager$ViewIndex;->GimbalAdjustHG701 Lcom/dji/ronin/home/UIViewManager$ViewIndex;"
+        }
+      ]
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/home/ui/RoninGimbalOptionPageFragment;",
+      "method": "shouldRespondBackPress",
+      "descriptor": "()Z",
+      "references": [
+        {
+          "opcode": "sget-object",
+          "reference": "v1, Lcom/dji/ronin/home/UIViewManager$ViewIndex;->GimbalAdjustHG701 Lcom/dji/ronin/home/UIViewManager$ViewIndex;"
+        }
+      ]
+    }
+  ],
+  "sourceConditions": {
+    "validSelectedItemRequiredForCase": true,
+    "indexIsNotDeviceType": true,
+    "menuUsesSelectedIndexNotActualFirmware": true,
+    "videoViewsShareResource": true,
+    "videoHg724BranchesSelectWebHelp": true,
+    "forcedOldViewVisibilityDoesNotEstablishNavigation": true
+  },
+  "remaining": [
+    "Normal menu route for an explicit valid HG724 selected item bypasses the old balance-test page; this does not prove firmware lacks04:40.",
+    "Selected model, actual connected model, live navigation and firmware command support remain distinct.",
+    "Old adjust view resources and back-navigation references do not establish its entry path.",
+    "Banks1/7, reflection, residual stubs and other class loaders remain outside this scan."
+  ]
+}

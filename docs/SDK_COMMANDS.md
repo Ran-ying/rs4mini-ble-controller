@@ -293,3 +293,8 @@ HG724继承的启动路径为普通用户参数04:0F，balance_test/index37/size
 ## HG724手柄工厂与04:58键绑定研究
 
 固定bank05核对19方法与注解，HG724条件工厂选择MobileHandheldControllerAbstraction；StickGimbalControlEnabled键支持和实际Setter注解对应04:58布尔类。方法名中的MicroPhones不定义功能，不新增麦克风/相机接口。工厂参数1是数量、普通index0，不改作接收地址；源链不证明现场反射/注册或固件效果。见[手柄绑定研究](../tools/research/HANDHELD_BINDING.md)（仓库根目录）及protocol/research/ronin-handheld-binding-evidence.json。未新增SDK收发/高级功能，无硬件/liveUI/厂商执行，运行时0.7.30/0.3.30及全命令false不变。
+
+
+## 01/07备份槽位的独立审计
+
+固定APK新增3137条（01段2623/07段514）备份到准确code_off ULEB槽位及方法owner数值索引的核对，复用完整长度/异常表/不重叠校验；不恢复字符串/类型/原型身份，不输出可解析DEX。前128KiB在01另涉及3111条type_ids，在07涉及全部type/proto及部分field_ids，不能只补字符串表。见tools/research/CODE_SLOTS.md及protocol/research/ronin-code-slots-evidence.json（仓库根目录）。既有六段具名恢复/调用扫描范围不变，不把01/07加入其BANKS；运行时仍0.7.32/0.3.32，无SDK收发/高级新增、硬件/liveUI/厂商执行，完整门槛false。

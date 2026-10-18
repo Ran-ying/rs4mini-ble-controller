@@ -1,0 +1,187 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "appCodeExecuted": false,
+  "liveUiExecuted": false,
+  "targetDeviceVerified": false,
+  "wholeAppRecovered": false,
+  "wholeProtocolRecovered": false,
+  "researchToolProvidesSdkInterface": false,
+  "sdkSendAdded": false,
+  "sdkReceiveAdded": false,
+  "observedDamagedPrefixBytes": 131072,
+  "banks": [
+    {
+      "segment": 1,
+      "backupName": "classes2.dex.dgc2",
+      "bankSha256": "829f7dd7d3973e55907436bef531047f3ea1318a8b296e23ec9456c72d3ce852",
+      "originalSize": 4050468,
+      "intactMethodIds": 15871,
+      "intactClassDefinitions": 2297,
+      "intactClassDataItems": 2268,
+      "numericMethodSlots": 12143,
+      "matchedBackupCodeItems": 2623,
+      "matchedCodeBytes": 310959,
+      "slotRecordSha256": "1c924d8ce3000e1a09f273c5272e4fb539583fcefe50e31715f7dbc912da8cd4",
+      "allBackupSlotsMatched": true,
+      "methodOwnerIndicesConsistent": true,
+      "currentAndBackupFootprintsMatch": true,
+      "destinationsNonOverlapping": true,
+      "tableDamage": [
+        {
+          "mapType": 0,
+          "count": 1,
+          "offset": 0,
+          "entryBytes": 112,
+          "bytesInsideObservedDamagedPrefix": 112,
+          "entriesIntersectingPrefix": 1
+        },
+        {
+          "mapType": 1,
+          "count": 29629,
+          "offset": 112,
+          "entryBytes": 4,
+          "bytesInsideObservedDamagedPrefix": 118516,
+          "entriesIntersectingPrefix": 29629
+        },
+        {
+          "mapType": 2,
+          "count": 3482,
+          "offset": 118628,
+          "entryBytes": 4,
+          "bytesInsideObservedDamagedPrefix": 12444,
+          "entriesIntersectingPrefix": 3111
+        },
+        {
+          "mapType": 3,
+          "count": 3715,
+          "offset": 132556,
+          "entryBytes": 12,
+          "bytesInsideObservedDamagedPrefix": 0,
+          "entriesIntersectingPrefix": 0
+        },
+        {
+          "mapType": 4,
+          "count": 65234,
+          "offset": 177136,
+          "entryBytes": 8,
+          "bytesInsideObservedDamagedPrefix": 0,
+          "entriesIntersectingPrefix": 0
+        },
+        {
+          "mapType": 5,
+          "count": 15871,
+          "offset": 699008,
+          "entryBytes": 8,
+          "bytesInsideObservedDamagedPrefix": 0,
+          "entriesIntersectingPrefix": 0
+        },
+        {
+          "mapType": 6,
+          "count": 2297,
+          "offset": 825976,
+          "entryBytes": 32,
+          "bytesInsideObservedDamagedPrefix": 0,
+          "entriesIntersectingPrefix": 0
+        }
+      ],
+      "namedMetadataRestored": false,
+      "stringOrderIndependentlyCorroborated": false,
+      "typeIdentityRecovered": false,
+      "prototypeIdentityRecovered": false,
+      "parseableDexProduced": false
+    },
+    {
+      "segment": 7,
+      "backupName": "classes8.dex.dgc2",
+      "bankSha256": "df2ce23a83701db68f92df716c8fe07fa3acfcbba1e25348fe3ad0310fc2b18d",
+      "originalSize": 1632524,
+      "intactMethodIds": 5224,
+      "intactClassDefinitions": 641,
+      "intactClassDataItems": 621,
+      "numericMethodSlots": 3240,
+      "matchedBackupCodeItems": 514,
+      "matchedCodeBytes": 57395,
+      "slotRecordSha256": "ec248f0afbb530d3fc083963d96b6af3480f0d764ab94c50e518a220ce891b9a",
+      "allBackupSlotsMatched": true,
+      "methodOwnerIndicesConsistent": true,
+      "currentAndBackupFootprintsMatch": true,
+      "destinationsNonOverlapping": true,
+      "tableDamage": [
+        {
+          "mapType": 0,
+          "count": 1,
+          "offset": 0,
+          "entryBytes": 112,
+          "bytesInsideObservedDamagedPrefix": 112,
+          "entriesIntersectingPrefix": 1
+        },
+        {
+          "mapType": 1,
+          "count": 17753,
+          "offset": 112,
+          "entryBytes": 4,
+          "bytesInsideObservedDamagedPrefix": 71012,
+          "entriesIntersectingPrefix": 17753
+        },
+        {
+          "mapType": 2,
+          "count": 1343,
+          "offset": 71124,
+          "entryBytes": 4,
+          "bytesInsideObservedDamagedPrefix": 5372,
+          "entriesIntersectingPrefix": 1343
+        },
+        {
+          "mapType": 3,
+          "count": 1589,
+          "offset": 76496,
+          "entryBytes": 12,
+          "bytesInsideObservedDamagedPrefix": 19068,
+          "entriesIntersectingPrefix": 1589
+        },
+        {
+          "mapType": 4,
+          "count": 27546,
+          "offset": 95564,
+          "entryBytes": 8,
+          "bytesInsideObservedDamagedPrefix": 35508,
+          "entriesIntersectingPrefix": 4439
+        },
+        {
+          "mapType": 5,
+          "count": 5224,
+          "offset": 315932,
+          "entryBytes": 8,
+          "bytesInsideObservedDamagedPrefix": 0,
+          "entriesIntersectingPrefix": 0
+        },
+        {
+          "mapType": 6,
+          "count": 641,
+          "offset": 357724,
+          "entryBytes": 32,
+          "bytesInsideObservedDamagedPrefix": 0,
+          "entriesIntersectingPrefix": 0
+        }
+      ],
+      "namedMetadataRestored": false,
+      "stringOrderIndependentlyCorroborated": false,
+      "typeIdentityRecovered": false,
+      "prototypeIdentityRecovered": false,
+      "parseableDexProduced": false
+    }
+  ],
+  "additionalBackupSlotsAudited": 3137,
+  "namedMetadataStillUnresolvedBanks": [
+    1,
+    7
+  ],
+  "existingSixRestoredDexViewsChanged": false,
+  "remaining": [
+    "Matching numeric method slots and code footprints does not restore string/type/prototype identities.",
+    "01 type-id prefix and07 type/prototype/field regions intersect the observed damaged prefix.",
+    "No parseable/rebuilt DEX is emitted for these banks; existing six-bank named caller scans retain their scope.",
+    "These are source-file code backups, not target BLE inventory, routing or hardware verification."
+  ]
+}

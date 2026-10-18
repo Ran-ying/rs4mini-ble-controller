@@ -771,3 +771,18 @@ if manifest.get('balanceEntryResearch'):
     assert len(proof['oldAdjustLiteralReferenceMethods'])==3
     row=next(row for row in manifest['commands'] if row['key']=='04:40')
     assert row['balanceEntryResearch']==manifest['balanceEntryResearch'] and not row['implementation']
+
+if manifest.get('codeSlotResearch'):
+    proof=json.loads((root/manifest['codeSlotResearch']).read_text())
+    for flag in ['appCodeExecuted','liveUiExecuted','targetDeviceVerified','wholeAppRecovered','wholeProtocolRecovered','researchToolProvidesSdkInterface','sdkSendAdded','sdkReceiveAdded','existingSixRestoredDexViewsChanged']:
+        assert proof[flag] is False
+    assert proof['namedMetadataStillUnresolvedBanks']==[1,7] and proof['additionalBackupSlotsAudited']==3137
+    prior=json.loads((root/manifest['codeBankResearch']).read_text())
+    prior_rows={r['segment']:r for r in prior['banks']}
+    for bank,count in zip(proof['banks'],[2623,514]):
+        assert bank['matchedBackupCodeItems']==count and bank['allBackupSlotsMatched'] and bank['methodOwnerIndicesConsistent']
+        assert bank['currentAndBackupFootprintsMatch'] and bank['destinationsNonOverlapping']
+        for flag in ['namedMetadataRestored','stringOrderIndependentlyCorroborated','typeIdentityRecovered','prototypeIdentityRecovered','parseableDexProduced']:
+            assert bank[flag] is False
+        old=prior_rows[bank['segment']]
+        assert old['bankSha256']==bank['bankSha256'] and old['backupRecords']==count and old['restored'] is False

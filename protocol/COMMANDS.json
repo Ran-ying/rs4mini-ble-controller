@@ -889,7 +889,8 @@
     "tools/research/ronin_peripheral_trace.py",
     "tools/research/ronin_subscription_catalog.py",
     "tools/research/ronin_balance_adjust.py",
-    "tools/research/ronin_balance_entry.py"
+    "tools/research/ronin_balance_entry.py",
+    "tools/research/ronin_code_slots.py"
   ],
   "modelIdentityResearch": "protocol/research/ronin-hg724-evidence.json",
   "codeRestorationResearch": "protocol/research/ronin-code-restoration-evidence.json",
@@ -1251,5 +1252,6 @@
     "documentation": "docs/APP_TUTORIAL_STATUS.md"
   },
   "balanceAdjustResearch": "protocol/research/ronin-balance-adjust-evidence.json",
-  "balanceEntryResearch": "protocol/research/ronin-balance-entry-evidence.json"
+  "balanceEntryResearch": "protocol/research/ronin-balance-entry-evidence.json",
+  "codeSlotResearch": "protocol/research/ronin-code-slots-evidence.json"
 }

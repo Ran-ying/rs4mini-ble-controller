@@ -52,3 +52,6 @@ PYTHONPATH=work/research/analysis-libs work/python312/bin/python tools/research/
 所有输出仅用于离线研究，不能作为可运行APK或设备兼容证据。用户离家期间没有扫描、连接、移动稳定器或启动实时UI；全协议与高级开发门槛保持false。
 
 后续0.7.9已完成六组参数的按轴档位读改写，SDK与UI跨段证据另见 [APP_FOLLOW_MODES.md](../../docs/APP_FOLLOW_MODES.md)。40方法扫描仍是历史覆盖记录，不表示所有相关字段/型号路径已完成。
+
+
+2026-10-19后续[01/07槽位审计](CODE_SLOTS.md)已独立匹配3137条备份到数值方法槽位；上表的“未恢复”仍指具名元数据及完整DEX恢复，不应再解释为这些备份无法定位。01/07部分类型/原型/字段表也位于损坏区，既有六段具名BANKS与调用扫描不扩展。

@@ -56,7 +56,7 @@ for row in manifest['commands']:
         assert row['requestCodec'] in {'unknown', 'not-exposed'} and not row['implementation'], row['key']
     if row['targetEvidence'] == 'app-generic-code':
         if row['key']=='04:69':
-            assert row['requestCodec']=='unknown' and row['responseCodec']=='unknown' and row['implementation']==[]
+            assert row['requestCodec']=='not-applicable' and row['responseCodec']=='candidate-structured' and manifest['externalDeviceSdk']['passiveOnly'] is True
             assert row['externalDeviceResearch']==manifest['externalDeviceResearch']
         else:
             assert row['key'] in {'04:24','04:57','04:27','04:33','04:38','04:64','04:6B','04:66'} and row['requestCodec'] == ('implemented' if row['key']=='04:6B' else 'not-applicable') and row['responseCodec'] == 'candidate-structured'
@@ -681,3 +681,16 @@ if manifest.get('externalDeviceResearch'):
     assert proof['receive']['sourceRetainsPreviousFieldsWhenMissing'] is True
     for flag in ('appCodeExecuted','liveUiExecuted','targetDeviceVerified','modelLayoutVerified','wholeProtocolRecovered','researchToolProvidesSdkInterface','sdkSendAdded','sdkReceiveAdded'):
         assert proof[flag] is False
+
+if manifest.get('externalDeviceSdk'):
+    sdk=manifest['externalDeviceSdk'];proof=json.loads((root/manifest['externalDeviceResearch']).read_text())
+    types={r['sourceId']:r['name'] for r in proof['sourceSpeedControlTypes']}
+    js=(root/'node/src/app-external-device.js').read_text().split('const controlTypes=new Map(',1)[1].split(');',1)[0]
+    py=(root/'python/rs4mini_sdk/app_external_device.py').read_text().split('CONTROL_TYPES=',1)[1].split('\n',1)[0]
+    native=(root/'macos/RSControlCore.m').read_text().split('NSDictionary *RSDecodeAppExternalDeviceNotification(',1)[1].split('NSDictionary *types=@',1)[1].split(';',1)[0]
+    assert dict(ast.literal_eval(js))==types and ast.literal_eval(py)==types
+    assert {int(k):v for k,v in re.findall(r'@(\d+):@"(\w+)"',native)}==types
+    assert sdk['recordOffset']==0 and sdk['speedControlTag']==2 and sdk['sourceOtherControlType']==7 and sdk['passiveOnly'] is True
+    for flag in ('missingFieldsSynthesized','sourceSingletonRetentionEmulated','automaticQuerySubscriptionAckOrControlEnabled','cameraFieldsDecoded','targetDeviceVerified','modelLayoutVerified','unitVerified','referenceFrameVerified'):
+        assert sdk[flag] is False
+    assert len(json.loads((root/sdk['fixtures']).read_text()))==7

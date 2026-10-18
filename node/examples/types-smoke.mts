@@ -269,3 +269,11 @@ async function parameterSubscriptionTypes(gimbal:RS4Mini){
  // @ts-expect-error no empty stop toggle or subscription manager
  await gimbal.appCommands.sendParameterSubscriptionRequest({keys:['UserProfile'],enabled:false});
 }
+
+function externalDeviceTypes(gimbal:RS4Mini){
+ const status=gimbal.appCommands.externalDeviceStatus;
+ if(status){const raw:number|undefined=status.records[0]?.speedControl?.sourcePitchSpeed;const unit:false=status.unitVerified;void raw;void unit;}
+ // @ts-expect-error read-only copied status property
+ gimbal.appCommands.externalDeviceStatus=null;
+ gimbal.onAppStatus=s=>{if(s.kind==='externalDevice'){const records=s.records;void records;}};
+}

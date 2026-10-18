@@ -781,11 +781,15 @@
     {
       "key": "04:69",
       "name": "官方 App 枚举：GetPushExternalDeviceData",
-      "requestCodec": "unknown",
-      "responseCodec": "unknown",
+      "requestCodec": "not-applicable",
+      "responseCodec": "candidate-structured",
       "targetEvidence": "app-generic-code",
-      "implementation": [],
-      "remaining": "36方法及六段直接调用审计已核对无ACK的APP→GIMBAL start、空doPack与源TLV，SpeedControl/tag2含控制来源和Pitch/Roll/Yaw signed16原值；源单例保留/短包清速度语义分开。仅见TrackingPresenter读取两轴的直接调用，无HG724发送/通知布局、实际body/地址或物理单位证据，尚未接入SDK收发。",
+      "implementation": [
+        "node/src/app-external-device.js",
+        "python/rs4mini_sdk/app_external_device.py",
+        "macos/RSControlCore.m"
+      ],
+      "remaining": "0.7.27显式App来源下04:69被动TLV候选，tag2保留来源/三轴signed16原值、重复/未知/尾字节。独立帧不模拟源旧缓存，坏包整帧拒绝；无发送/订阅/自动ACK或控制。本机布局、单位、参考系与实际通知仍未验收。",
       "officialAppAliases": [
         "GetPushExternalDeviceData"
       ],
@@ -1161,5 +1165,20 @@
     "targetDeviceVerified": false,
     "fixtures": "node/test/fixtures/parameter-subscription.json"
   },
-  "externalDeviceResearch": "protocol/research/ronin-external-device-evidence.json"
+  "externalDeviceResearch": "protocol/research/ronin-external-device-evidence.json",
+  "externalDeviceSdk": {
+    "passiveOnly": true,
+    "fixtures": "node/test/fixtures/external-device.json",
+    "recordOffset": 0,
+    "speedControlTag": 2,
+    "sourceOtherControlType": 7,
+    "missingFieldsSynthesized": false,
+    "sourceSingletonRetentionEmulated": false,
+    "automaticQuerySubscriptionAckOrControlEnabled": false,
+    "cameraFieldsDecoded": false,
+    "targetDeviceVerified": false,
+    "modelLayoutVerified": false,
+    "unitVerified": false,
+    "referenceFrameVerified": false
+  }
 }

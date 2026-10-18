@@ -1,3 +1,4 @@
+from .app_external_device import external_device_notification
 from .app_parameter_subscription import parameter_subscription_keys,parameter_subscription_spec,parameter_subscription_frame,parameter_subscription_sent
 from .app_peripheral import peripheral_notification
 from .app_program_request import program_status_request_spec,program_status_request_reply,program_status_subscription_spec,program_status_subscription_reply
@@ -36,9 +37,12 @@ class AppCommands:
         self._battery_status = None
         self._program_status = None
         self._peripheral_status = None
+        self._external_device_status = None
 
     parameterSubscriptionKeys = property(lambda self: parameter_subscription_keys())
     parameter_subscription_keys = parameterSubscriptionKeys
+    externalDeviceStatus = property(lambda self: copy.deepcopy(self._external_device_status))
+    external_device_status = externalDeviceStatus
     peripheralStatus = property(lambda self: copy.deepcopy(self._peripheral_status))
     peripheral_status = peripheralStatus
     programStatus = property(lambda self: copy.deepcopy(self._program_status))
@@ -63,10 +67,15 @@ class AppCommands:
         self._battery_status = None
         self._program_status = None
         self._peripheral_status = None
+        self._external_device_status = None
 
     def _message(self, message):
         if not self._profile:
             return
+        external=external_device_notification(message)
+        if external:
+            self._external_device_status=external
+            self.owner._emit('onAppStatus',copy.deepcopy(external))
         peripheral=peripheral_notification(message)
         if peripheral:
             self._peripheral_status=peripheral

@@ -774,3 +774,21 @@ NSDictionary *RSAppParameterSubscriptionSpec(NSDictionary *spec){
 }
 NSData *RSAppParameterSubscriptionFrame(uint16_t sequence,NSDictionary *spec){NSDictionary *selection=RSAppParameterSubscriptionSpec(spec);if(!selection)return nil;NSMutableData *packet=[Frame(sequence,18,selection[@"payload"],0) mutableCopy];uint8_t *p=packet.mutableBytes;p[5]=229;Put16(p+packet.length-2,CRC16(p,packet.length-2));return [packet copy];}
 NSDictionary *RSAppParameterSubscriptionSent(NSDictionary *selection){NSMutableDictionary *result=[selection mutableCopy];[result removeObjectForKey:@"payload"];[result addEntriesFromDictionary:@{@"profile":@"ronin-2.2.2",@"sent":@YES,@"receiverByte":@229,@"sourceCase":@"pinned-db-present/HG724",@"acknowledgementRequested":@NO,@"acknowledged":@NO,@"sourceAppInitializationVerified":@NO,@"targetRoutingVerified":@NO,@"notificationStreamVerified":@NO,@"remoteSubscriptionStateVerified":@NO,@"freshStatusVerified":@NO,@"deviceVerified":@NO,@"physicalCompletionVerified":@NO}];return [result copy];}
+
+NSDictionary *RSDecodeAppExternalDeviceNotification(NSDictionary *message) {
+    NSNumber *flags=message[@"flags"];
+    if([message[@"sender"] intValue]!=4 || [message[@"receiver"] intValue]!=2 || [message[@"commandSet"] intValue]!=4 || [message[@"commandId"] intValue]!=105 || ![flags isKindOfClass:NSNumber.class] || CFGetTypeID((__bridge CFTypeRef)flags)==CFBooleanGetTypeID() || flags.doubleValue!=floor(flags.doubleValue) || flags.doubleValue<0 || flags.doubleValue>255 || (flags.intValue&0x87))return nil;
+    NSData *body=message[@"payload"];if(![body isKindOfClass:NSData.class] || body.length<2)return nil;
+    const uint8_t *b=body.bytes;NSMutableArray *records=[NSMutableArray array];NSDictionary *types=@{@1:@"CommonStick",@2:@"RockWheel",@3:@"Sensor",@7:@"Other"};
+    for(NSUInteger offset=0;offset<body.length;){
+        if(body.length-offset<2)return nil;uint8_t tag=b[offset],length=b[offset+1];NSUInteger end=offset+2+length;
+        if(length>=128 || end>body.length)return nil;
+        NSData *payload=[body subdataWithRange:NSMakeRange(offset+2,length)];NSMutableDictionary *record=[@{@"rawTag":@(tag),@"sourceSignedTag":@(tag<128?tag:(int)tag-256),@"length":@(length),@"payloadHex":[Hex(payload) copy]} mutableCopy];
+        if(tag==2){
+            if(length<7)return nil;const uint8_t *p=payload.bytes;NSNumber *raw=@(p[0]);
+            record[@"speedControl"]=@{@"rawControlType":raw,@"sourceControlType":types[raw]?:@"Other",@"sourceControlTypeKnown":@(types[raw]!=nil),@"sourcePitchSpeed":@((int16_t)(p[1]|((uint16_t)p[2]<<8))),@"sourceRollSpeed":@((int16_t)(p[3]|((uint16_t)p[4]<<8))),@"sourceYawSpeed":@((int16_t)(p[5]|((uint16_t)p[6]<<8))),@"trailingHex":[Hex([payload subdataWithRange:NSMakeRange(7,length-7)]) copy]};
+        }
+        [records addObject:[record copy]];offset=end;
+    }
+    return @{@"kind":@"externalDevice",@"profile":@"ronin-2.2.2",@"commandId":@105,@"timestamp":@(NSDate.date.timeIntervalSince1970*1000),@"bodyHex":[Hex(body) copy],@"records":[records copy],@"deviceVerified":@NO,@"modelLayoutVerified":@NO,@"unitVerified":@NO,@"referenceFrameVerified":@NO,@"physicalCompletionVerified":@NO};
+}

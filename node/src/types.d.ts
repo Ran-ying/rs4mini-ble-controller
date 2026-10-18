@@ -234,6 +234,14 @@ export interface AppUserParameterStatus {
   preset:{rawValue:number;sourceEnum:'CUSTOM_1'|'CUSTOM_2'|'FAST'|'MEDIUM'|'SLOW'|null};bodyHex:string;
   deviceVerified:false;modelLayoutVerified:false;activePresetVerified:false;physicalCompletionVerified:false;
 }
+export interface AppExternalDeviceRecord {
+  rawTag:number;sourceSignedTag:number;length:number;payloadHex:string;
+  speedControl?:{rawControlType:number;sourceControlType:'CommonStick'|'RockWheel'|'Sensor'|'Other';sourceControlTypeKnown:boolean;sourcePitchSpeed:number;sourceRollSpeed:number;sourceYawSpeed:number;trailingHex:string};
+}
+export interface AppExternalDeviceStatus {
+  kind:'externalDevice';profile:'ronin-2.2.2';commandId:105;timestamp:number;bodyHex:string;records:AppExternalDeviceRecord[];
+  deviceVerified:false;modelLayoutVerified:false;unitVerified:false;referenceFrameVerified:false;physicalCompletionVerified:false;
+}
 export interface AppHandheldStickStatus {
   kind:'handheldStick';profile:'ronin-2.2.2';timestamp:number;
   sourceStickX:number;sourceStickY:number;rawStateWord:number;unknownStateBits:number;
@@ -274,7 +282,7 @@ export interface AppPeripheralStatus {
   kind:'peripheral';profile:'ronin-2.2.2';commandId:102;timestamp:number;bodyHex:string;rawFlag:number;sourceRecordBranchSelected:boolean;records:AppPeripheralRecord[];
   deviceVerified:false;modelLayoutVerified:false;referenceFrameVerified:false;physicalCompletionVerified:false;
 }
-export type AppStatus = AppPeripheralStatus | AppCalibrationStatus | AppUserParameterStatus | AppHandheldStickStatus | AppAbnormalStatus | AppBatteryStatus | AppProgramStatus;
+export type AppStatus = AppExternalDeviceStatus | AppPeripheralStatus | AppCalibrationStatus | AppUserParameterStatus | AppHandheldStickStatus | AppAbnormalStatus | AppBatteryStatus | AppProgramStatus;
 export interface AppAutoTuneSent {
   profile: "ronin-2.2.2"; sent: true; requestedStart: boolean;
   acknowledgementRequested: false; acknowledged: false;
@@ -311,6 +319,7 @@ export interface AppParameterSubscriptionSent {
 export interface AppCommands {
   readonly parameterSubscriptionKeys:AppParameterSubscriptionKey[];
   sendParameterSubscriptionRequest(options:{keys:readonly AppParameterSubscriptionKey[]}):Promise<AppParameterSubscriptionSent>;
+  readonly externalDeviceStatus:AppExternalDeviceStatus|null;
   readonly peripheralStatus:AppPeripheralStatus|null;
   sendProgramStatusSubscriptionRequest(options:{program:AppProgramName;enabled:boolean;timeoutMs?:number}):Promise<AppProgramStatusSubscriptionReply>;
   sendProgramStatusRequest(options:{program:AppProgramName;timeoutMs?:number}):Promise<AppProgramStatusRequestReply>;

@@ -1,0 +1,160 @@
+[
+  {
+    "bodyHex": "0207010080ff7f0000",
+    "records": [
+      {
+        "rawTag": 2,
+        "sourceSignedTag": 2,
+        "length": 7,
+        "payloadHex": "010080ff7f0000",
+        "speedControl": {
+          "rawControlType": 1,
+          "sourceControlType": "CommonStick",
+          "sourceControlTypeKnown": true,
+          "sourcePitchSpeed": -32768,
+          "sourceRollSpeed": 32767,
+          "sourceYawSpeed": 0,
+          "trailingHex": ""
+        }
+      }
+    ]
+  },
+  {
+    "bodyHex": "020701010002000300ff00020803fffffefffdffaa",
+    "records": [
+      {
+        "rawTag": 2,
+        "sourceSignedTag": 2,
+        "length": 7,
+        "payloadHex": "01010002000300",
+        "speedControl": {
+          "rawControlType": 1,
+          "sourceControlType": "CommonStick",
+          "sourceControlTypeKnown": true,
+          "sourcePitchSpeed": 1,
+          "sourceRollSpeed": 2,
+          "sourceYawSpeed": 3,
+          "trailingHex": ""
+        }
+      },
+      {
+        "rawTag": 255,
+        "sourceSignedTag": -1,
+        "length": 0,
+        "payloadHex": ""
+      },
+      {
+        "rawTag": 2,
+        "sourceSignedTag": 2,
+        "length": 8,
+        "payloadHex": "03fffffefffdffaa",
+        "speedControl": {
+          "rawControlType": 3,
+          "sourceControlType": "Sensor",
+          "sourceControlTypeKnown": true,
+          "sourcePitchSpeed": -1,
+          "sourceRollSpeed": -2,
+          "sourceYawSpeed": -3,
+          "trailingHex": "aa"
+        }
+      }
+    ]
+  },
+  {
+    "bodyHex": "020707000000000000",
+    "records": [
+      {
+        "rawTag": 2,
+        "sourceSignedTag": 2,
+        "length": 7,
+        "payloadHex": "07000000000000",
+        "speedControl": {
+          "rawControlType": 7,
+          "sourceControlType": "Other",
+          "sourceControlTypeKnown": true,
+          "sourcePitchSpeed": 0,
+          "sourceRollSpeed": 0,
+          "sourceYawSpeed": 0,
+          "trailingHex": ""
+        }
+      }
+    ]
+  },
+  {
+    "bodyHex": "0207ff000000000000",
+    "records": [
+      {
+        "rawTag": 2,
+        "sourceSignedTag": 2,
+        "length": 7,
+        "payloadHex": "ff000000000000",
+        "speedControl": {
+          "rawControlType": 255,
+          "sourceControlType": "Other",
+          "sourceControlTypeKnown": false,
+          "sourcePitchSpeed": 0,
+          "sourceRollSpeed": 0,
+          "sourceYawSpeed": 0,
+          "trailingHex": ""
+        }
+      }
+    ]
+  },
+  {
+    "bodyHex": "0903010203",
+    "records": [
+      {
+        "rawTag": 9,
+        "sourceSignedTag": 9,
+        "length": 3,
+        "payloadHex": "010203"
+      }
+    ]
+  },
+  {
+    "bodyHex": "ff00",
+    "records": [
+      {
+        "rawTag": 255,
+        "sourceSignedTag": -1,
+        "length": 0,
+        "payloadHex": ""
+      }
+    ]
+  },
+  {
+    "bodyHex": "020701010002000300020702040005000600",
+    "records": [
+      {
+        "rawTag": 2,
+        "sourceSignedTag": 2,
+        "length": 7,
+        "payloadHex": "01010002000300",
+        "speedControl": {
+          "rawControlType": 1,
+          "sourceControlType": "CommonStick",
+          "sourceControlTypeKnown": true,
+          "sourcePitchSpeed": 1,
+          "sourceRollSpeed": 2,
+          "sourceYawSpeed": 3,
+          "trailingHex": ""
+        }
+      },
+      {
+        "rawTag": 2,
+        "sourceSignedTag": 2,
+        "length": 7,
+        "payloadHex": "02040005000600",
+        "speedControl": {
+          "rawControlType": 2,
+          "sourceControlType": "RockWheel",
+          "sourceControlTypeKnown": true,
+          "sourcePitchSpeed": 4,
+          "sourceRollSpeed": 5,
+          "sourceYawSpeed": 6,
+          "trailingHex": ""
+        }
+      }
+    ]
+  }
+]

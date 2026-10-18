@@ -1,5 +1,11 @@
 # 0.7.22
 
+## 0.7.27
+
+- Add explicit App-source passive 04:69 external-device status across SDK ports, copied snapshots and externalDevice event type.
+- Preserve raw signed speed fields, source type7/unknown distinction and all unknown/duplicate records; no singleton stale-value merging or short-body reset.
+- Reject malformed TLVs/ACK/encrypted frames and isolate source/disconnect/observer/query/motion lifecycles; no sends, subscriptions, automatic ACK or advanced features.
+
 ## 0.7.26
 
 - Add explicit named one-shot App 04:12 parameter subscription request and copied 152-key discovery catalog across Node/Python/Web/native.

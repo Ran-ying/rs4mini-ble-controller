@@ -8,9 +8,9 @@ verification status changes.
 ## Objective and user decisions
 
 - Provide an unofficial, direct BLE controller for **DJI RS 4 Mini**, initially on macOS.
-- **Node.js is the authoritative implementation**; current package version is `0.7.26`.
+- **Node.js is the authoritative implementation**; current package version is `0.7.27`.
 - The user subsequently requested completion of all existing ports. Python is now
-  `0.7.26`, Web shares the JS core, and the native panel is `0.3.26`. Describe the
+  `0.7.27`, Web shares the JS core, and the native panel is `0.3.27`. Describe the
   documented feature differences; do not claim identical APIs or hardware proof.
 - After that delivery, the user requested the remaining **non-camera** capabilities
   under the same autonomous/offline conditions. Expansion work is in progress;
@@ -1003,3 +1003,11 @@ FollowModeSensitivity和GimbalControlState分别受isSupportStateSince4Gen控制
 
 
 04:69源研究验证（2026-10-18）：最终固定输入实际提取两次，36方法/1外部直接调用/0外部类型化声明证据JSON逐字节一致。11项新增研究测试通过，Python3.8/3.12研究各330项；统一离线Node229/Web21/Python205/原生324+233+3及类型/边界/构建通过。运行时/安装包仍0.7.26/0.3.26，没有新增SDK收发、相机/视觉/高级功能或硬件/liveUI/厂商执行，全命令门槛false。
+
+
+## 0.7.27外设数据被动候选 / 原生0.3.27 build30
+
+显式App来源下externalDeviceStatus/kind=externalDevice解析04:69完整TLV，tag2保留来源及三轴signed16原值、未知/重复与尾字节；Other7与未知原值分开，不继承源单例旧值或短包清零副作用。来源/断线清空，观察者隔离；不发送/订阅/自动ACK，不完成查询或改变姿态/关节、运动所有权。见[外设数据候选SDK](docs/APP_EXTERNAL_DEVICE_STATUS.md)。本机布局/单位/参考系均未验收，未新增相机/视觉/高级功能，无硬件/liveUI/厂商执行，全命令门槛false；此前“仅研究未接SDK”为历史状态。
+
+
+0.7.27离线验收：统一Node235/Web22/Python3.8与3.12各211、原生356核心+240生命周期+3独立SDK、研究330及严格类型/边界/构建通过，终态0。七个外设契约向量跨端一致；覆盖signed16端点/顺序、Other7与未知255、重复/未知/尾部、负长度/截断整帧拒绝、复制/不可变快照、观察者异常、来源/断线清空、pending查询与运动所有权隔离、Web无Buffer。实际隔离安装tarball235项与类型、wheel211项通过；device/controller/app_commands/app_external_device导入路径核对。Node95文件、wheel35模块、原生ZIP3文件与源码/签名构建逐字节一致（0.3.27/build30），未启动应用。本机/单位/参考系与全部命令门槛仍false。

@@ -113,3 +113,5 @@ NSArray *RSAppParameterSubscriptionKeys(void);
 NSDictionary *RSAppParameterSubscriptionSpec(NSDictionary *spec);
 NSData *RSAppParameterSubscriptionFrame(uint16_t sequence,NSDictionary *spec);
 NSDictionary *RSAppParameterSubscriptionSent(NSDictionary *selection);
+
+NSDictionary *RSDecodeAppExternalDeviceNotification(NSDictionary *message);

@@ -63,7 +63,7 @@
 | `04:64` | 官方 App 枚举：GetPushPanorama | not-applicable / candidate-structured | app-generic-code | 0.7.22显式来源下被动5字节候选、uint16计数与尾字节保留；不发源自动ACK，本机布局/通知与物理完成未验收 |
 | `04:6B` | 官方 App 枚举：GetPushTrackAndTimelapse | implemented / candidate-structured | app-generic-code | 0.7.24封装显式type0/1推送启停和type2单次请求；ACK业务体不透明，不证明远端订阅状态或新通知。无自动维护/程序执行，本机布局、程序关联与物理效果未验收 |
 | `04:6E` | 当前 App 校准状态查询/通知 | `implemented` / `partial` | `app-code-path` | 显式当前App配置下空体查询/ACK与被动TLV状态分别解析；未知字段保留，无记录不造零值；无程序ID关联，订阅/停止条件及本机通知待验收 |
-| `04:69` | 外设数据源候选 | unknown / unknown | app-generic-code | 静态确认tag2控制来源和三轴signed16原值、无ACK start及空doPack；未接SDK，单位/本机路径/实际body与路由未验收 |
+| `04:69` | 外设数据源候选 | not-applicable / candidate-structured | app-generic-code | 0.7.27显式来源被动TLV/tag2原值；不发送/订阅/ACK，不继承旧速度。本机布局/单位/参考系未验收 |
 | `04:57` | 源手柄状态被动候选 | `not-applicable` / `candidate-structured` | `app-generic-code` | 0.7.20显式App来源下解码两个signed short与两个源状态位，未知位/尾字节保留；无订阅/发送，本机布局、单位与轴映射未验收 |
 | `04:58` | 官方 App 枚举：SetHandheldStickControlEnabled | `unknown` / `unknown` | `official-app-enum` | 命令枚举已确认，具体方法/字段与HG724分支仍需逐项证据，不把枚举恢复等同请求体完成；未开放发送 |
 
@@ -253,3 +253,8 @@ HG724继承的启动路径为普通用户参数04:0F，balance_test/index37/size
 ## 外设数据04:69源审计（运行时不变）
 
 固定六段36方法、12数据类型/4来源枚举，核对tag2的控制来源及三轴signed16原值、无ACK start、空doPack和基础双路分发。仅定位跟踪界面读取两轴的一个直接调用者，无HG724或物理单位/路由证据。源旧字段保留/短包只清速度与离线独立帧视图区分；未增加SDK收发、相机/视觉或高级功能。见[EXTERNAL_DEVICE.md](../tools/research/EXTERNAL_DEVICE.md)和protocol/research/ronin-external-device-evidence.json。运行时仍0.7.26/0.3.26，全部命令及高级门槛false，无硬件/实时UI/厂商执行。
+
+
+## 0.7.27外设数据被动候选 / 原生0.3.27 build30
+
+显式App来源下externalDeviceStatus/kind=externalDevice解析04:69完整TLV，tag2保留来源及三轴signed16原值、未知/重复与尾字节；Other7与未知原值分开，不继承源单例旧值或短包清零副作用。来源/断线清空，观察者隔离；不发送/订阅/自动ACK，不完成查询或改变姿态/关节、运动所有权。见[外设数据候选SDK](APP_EXTERNAL_DEVICE_STATUS.md)。本机布局/单位/参考系均未验收，未新增相机/视觉/高级功能，无硬件/liveUI/厂商执行，全命令门槛false；此前“仅研究未接SDK”为历史状态。

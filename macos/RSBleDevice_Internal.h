@@ -2,6 +2,7 @@
 #import "RSDeviceProtocol.h"
 // Subclass collaboration contract. Applications include RSGimbal.h only.
 @interface RSBleDevice ()
+@property(nonatomic, copy) NSDictionary *appExternalDeviceStatus;
 @property(nonatomic, copy) NSDictionary *appProgramStatus;
 @property(nonatomic, copy) NSDictionary *appPeripheralStatus;
 @property(nonatomic, copy) NSDictionary *appAbnormalStatus;

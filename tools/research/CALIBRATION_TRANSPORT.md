@@ -42,3 +42,6 @@ python/.venv/bin/python -m unittest discover -s tools/research -p test_ronin_cal
 [证据JSON](../../protocol/research/ronin-calibration-transport-evidence.json)记录28方法指纹、实际枚举值和直接调用范围，不含厂商完整代码。工具验证固定输入哈希、选定CmdSet在线性前缀中的构造值、关键分支目标及人工审阅的parseOne指纹；不是通用控制流解释器或全App可达性证明。
 
 仍缺直连BLE实际manager的开关配置和消息路径、真实会话状态与对端接受证据、JNI算法以及物理完成/中止。下一步应追踪manager选择与开关写入，不需要重复猜测业务体或默认地址。SDK仍0.7.29/原生0.3.29，不开放04:08、不改变发送允许列表或完整性门槛。
+
+
+后续[BLE路由研究](BLE_ROUTE.md)已定位直连服务与Main包管理器、构造默认开关和共享单例；本页“仍缺manager源码”的表述为当时状态。真实会话策略、加密互操作及物理执行仍未验收。

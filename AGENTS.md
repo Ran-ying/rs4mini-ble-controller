@@ -1054,3 +1054,11 @@ FollowModeSensitivity和GimbalControlState分别受isSupportStateSince4Gen控制
 
 
 校准传输研究验证（2026-10-18）：最终固定输入实际提取两次，28方法/1直接setter调用者（两次调用）证据JSON逐字节一致；新增13测试，研究Python3.8与3.12各368通过。统一离线Node247/Web24/Python222/原生669+250+3及类型/边界/构建通过，终态0。Node/Python/Web/macOS运行时源码与0875cdb一致，安装包保持0.7.29/0.3.29；未新增SDK发送、解密、相机/视觉/高级功能或硬件/liveUI/厂商代码执行，完整命令门槛false。
+
+
+## BLE直连路由与默认策略研究
+
+固定六段37方法核对BluetoothService→Main DJIPackManager→通用parseOne，以及监听、常规发送队列、服务切换、分片与GATT写入。Main继承needCheckEncrypt=true且构造enabledSetDataEvent=true，与DataBase共享加密管理器单例；源路由/构造策略已定位，实际会话与对端接受仍未验证。五处直接字段写入限构造，其他管理器false不套用到BLE。见[BLE路由研究](tools/research/BLE_ROUTE.md)（仓库根目录）及protocol/research/ronin-ble-route-evidence.json。未新增SDK收发/解密/高级功能，无硬件/liveUI/厂商执行，运行时0.7.29/0.3.29及完整命令false不变。
+
+
+BLE路由研究验证（2026-10-18）：最终固定输入实际提取两次，37方法/5个直接字段写入构造方法证据JSON逐字节一致。新增11项测试，研究Python3.8与3.12各379通过；统一离线Node247/Web24/Python222/原生669+250+3及类型/分层/构建通过，终态0。运行时目录与30b2a64完全一致，0.7.29/0.3.29安装包不变。没有SDK发送/解密/相机/视觉/高级新增或硬件/liveUI/厂商执行，完整命令门槛false。

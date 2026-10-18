@@ -1,0 +1,439 @@
+{
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "restoredBanks": {
+    "0": "76002e76e02e1306ad197c4af127975d573999de174e5a9e44cc6f840196f621",
+    "2": "de69497b77de530d0d559646dc6d3fb24569e2ba8ba9502216f3d6c9fd6f3bf8",
+    "3": "bb50b39865520f55e97116ae1903bda3545b01c2fb7e2aba67a979dc264a9854",
+    "4": "2d3ff70fb84eb02ac75949ca6e7d5cc849a7f9ef55029fd168890c6dbccb1d12",
+    "5": "4fdbd74a05df63d72a0feb1c907d9395426ec3cdb5d6aeb45e3836d856d66654",
+    "6": "057f13084cf969ffadcfa2150d1b3ae3ed8a7822c95fb54158781764c9156e2f"
+  },
+  "methods": [
+    {
+      "bank": 5,
+      "className": "Ldji/midware/ble2/BleManager;",
+      "method": "getMaxDataLength",
+      "descriptor": "()I",
+      "codeOffset": 3276664,
+      "instructionSha256": "805eb53f5f51ee4b1470b40e0575f0dd5d063e088eaac6b7869a75c9b0b86808"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/ble2/BleManager;",
+      "method": "sendData",
+      "descriptor": "([B)V",
+      "codeOffset": 3277420,
+      "instructionSha256": "9ec2cbb58555f8da01c1449594f8d1f93779db49c06dbbce9f74b63921ce6a0a"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/ble2/BleManager;",
+      "method": "setDataListener",
+      "descriptor": "(Ldji/midware/ble2/base/BleDataReceiveListener;)V",
+      "codeOffset": 3277600,
+      "instructionSha256": "4c40af38ab37bcd0b40209ed16962ffe28adfb812b7779106361d6fea43af3b7"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/ble2/BluetoothService;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "codeOffset": 4622564,
+      "instructionSha256": "c603e94b3f979bce25218220ff43205a8c780f6c112eaff4999113c1f4199889"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/ble2/BluetoothService;",
+      "method": "onConnect",
+      "descriptor": "()V",
+      "codeOffset": 4623252,
+      "instructionSha256": "6da0b75bf8a9fb2291863debc3086e13a86e82523839e851bf3c47ba2965e3a8"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/ble2/BluetoothService;",
+      "method": "onDataReceived",
+      "descriptor": "([B)V",
+      "codeOffset": 4623616,
+      "instructionSha256": "d1c12da0438640a746bd122d7edea236b1ef25b224f64dfc9abfad7208ce119a"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/ble2/BluetoothService;",
+      "method": "sendBuffer",
+      "descriptor": "(Ldji/midware/data/packages/P3/SendPack;)V",
+      "codeOffset": 4622848,
+      "instructionSha256": "023ff34ff31f4eca8e6889766ac5309a22c752035cdc5342c8f7b532a088ab7b"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/ble2/BluetoothService;",
+      "method": "sendmessage",
+      "descriptor": "(Ldji/midware/data/packages/P3/SendPack;)V",
+      "codeOffset": 4624004,
+      "instructionSha256": "bb65eed4d6bd955568a112f447e839f01ae260b64d735ff662423a2cd940cd86"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/ble2/BluetoothService;",
+      "method": "start",
+      "descriptor": "(I)V",
+      "codeOffset": 4624200,
+      "instructionSha256": "fae0ea343d8411eb0d5e7c0dff95f7618bd4c62f030a76153e8e3753b29da5df"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/ble2/base/BleConnector;",
+      "method": "initWriteCharcteristic",
+      "descriptor": "(Landroid/bluetooth/BluetoothGattService;)V",
+      "codeOffset": 3282588,
+      "instructionSha256": "95de244a0f1aa7bd819f9549ce8db69c8f0ed7f4530defe7261701e7fa08ecc2"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/ble2/base/BleConnector;",
+      "method": "onCharacteristicChanged",
+      "descriptor": "(Landroid/bluetooth/BluetoothGatt; Landroid/bluetooth/BluetoothGattCharacteristic;)V",
+      "codeOffset": 3284280,
+      "instructionSha256": "bccaff49325b9e4e30722d5bdc6aae29e08584a5f788b8bde18c1dd0b073aa85"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/ble2/base/BleConnector;",
+      "method": "sendData",
+      "descriptor": "([B)Z",
+      "codeOffset": 3285876,
+      "instructionSha256": "c98d73ba502f9ef397218cc77ece31c10cabc05183b3070d0cf2d14f8f086cf5"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/ble2/base/BleConnector;",
+      "method": "setDataListener",
+      "descriptor": "(Ldji/midware/ble2/base/BleDataReceiveListener;)V",
+      "codeOffset": 3286412,
+      "instructionSha256": "c3dcf230885870e786110a7e0257271a1051e3574d75e396c95ba787b88d0f77"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/ble2/base/BleDataTransmitter;",
+      "method": "executeQueue",
+      "descriptor": "()Z",
+      "codeOffset": 4627044,
+      "instructionSha256": "50f32794ed0dccfb12e113bcdd2e520fb00e0d508f7cccfee841d73784ac8cb3"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/ble2/base/BleDataTransmitter;",
+      "method": "generateReq",
+      "descriptor": "([B)Z",
+      "codeOffset": 4627576,
+      "instructionSha256": "1def0ac28c02129fa50b1274df936d6aab091a2f56bca6661a856b438159e43d"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/ble2/base/BleDataTransmitter;",
+      "method": "sendData",
+      "descriptor": "([B)V",
+      "codeOffset": 4628684,
+      "instructionSha256": "cb3d4239e7047b5e7a6e91f46b36c45cd859069a5ce4b0d525d88496084a8768"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/ble2/base/BleDataTransmitter;",
+      "method": "sendNonBlockingWriteRequest",
+      "descriptor": "(Ldji/midware/ble2/base/BleDataTransmitter$BleRequest;)I",
+      "codeOffset": 4628708,
+      "instructionSha256": "0949705c4c6ddcd4d9973fb08386e8793a581b81965a7a99fb88b01cb6576136"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/BlockUtils;",
+      "method": "isNeedShieldPack",
+      "descriptor": "(Ldji/midware/data/packages/P3/SendPack;)Z",
+      "codeOffset": 3333996,
+      "instructionSha256": "7e57a2b90b86669b7ada06b158820128460eea8d74ead007fdc7719913da0139"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DJIEncryManager;",
+      "method": "getInstance",
+      "descriptor": "()Ldji/midware/data/manager/P3/DJIEncryManager;",
+      "codeOffset": 3335112,
+      "instructionSha256": "91df209281fa35d8095117e9eca6156e7cf935b81ac5c4b6dc5660a0a5165f12"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DJIPackManager;",
+      "method": "<init>",
+      "descriptor": "(Ljava/lang/String;)V",
+      "codeOffset": 4670640,
+      "instructionSha256": "69cdab17bf409cd9372cd7db59a2024b30c728323786ac6cc690135fbfe2b4c8"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DJIPackManager;",
+      "method": "getInstance",
+      "descriptor": "()Ldji/midware/data/manager/P3/DJIPackManager;",
+      "codeOffset": 4670712,
+      "instructionSha256": "8e217ff20cd2053a30446fc49106f2057986b1083a67f25dbb989d15d80af1e0"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DJIPackManagerBase$2;",
+      "method": "invoke",
+      "descriptor": "(Landroid/os/Message;)V",
+      "codeOffset": 4672596,
+      "instructionSha256": "8e6111bac06543780c4c4747119df3ac140ae83785f904bd87260e8121423933"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DJIPackManagerBase;",
+      "method": "-$$Nest$mparseOne",
+      "descriptor": "(Ldji/midware/data/manager/P3/DJIPackManagerBase;)Z",
+      "codeOffset": 3338160,
+      "instructionSha256": "ea00655a7d0f770737bf621c34c61ad8b4fa03e0b1d263d3c8fb162f3914a774"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DJIPackManagerBase;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "codeOffset": 3338208,
+      "instructionSha256": "e91de68d25fbf34438f213711bbc677c30923ab1807a02879aaefe60de067b28"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DJIPackManagerBase;",
+      "method": "parse",
+      "descriptor": "([B I I)V",
+      "codeOffset": 3339960,
+      "instructionSha256": "5f5af91612eaab8ca782836d76c70d65cf2f7ed1591f7e0135a188ec73a07cb7"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DJIPackManagerBase;",
+      "method": "parseOne",
+      "descriptor": "()Z",
+      "codeOffset": 3338744,
+      "instructionSha256": "776b32b742970dbc45dfd9130ca113ab2bb089d82a57019093a000cae35cd775"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "<init>",
+      "descriptor": "(Z)V",
+      "codeOffset": 3348232,
+      "instructionSha256": "967e5160910e53b2522b2e3758f0fe6998f682cac0fd10fb2c6a9bc483eda62e"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "submitTask",
+      "descriptor": "(Ldji/midware/data/packages/P3/SendPack; Ldji/midware/interfaces/DJIDataCallBack; Z Z)V",
+      "codeOffset": 3349924,
+      "instructionSha256": "723f0515eb73c2458938add332525264b31bac627fc9dd9dbf8d602fe846b915"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DataBaseProcessor$MyHandler;",
+      "method": "handleMessage",
+      "descriptor": "(Landroid/os/Message;)V",
+      "codeOffset": 3354516,
+      "instructionSha256": "5444a0d13dbdfeb29667aa267332c67d6883c47702c3b2c1c0e2d0b92299d668"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DataBaseProcessor;",
+      "method": "-$$Nest$mrealSendOnePack",
+      "descriptor": "(Ldji/midware/data/manager/P3/DataBaseProcessor; Ldji/midware/data/manager/P3/DataBaseProcessor$DataBean; I)V",
+      "codeOffset": 3355312,
+      "instructionSha256": "a9c605d0952a358132d9e32c0f70393feb99e3e9d1e2f2bf4e2858d37982d7f1"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DataBaseProcessor;",
+      "method": "realSendOnePack",
+      "descriptor": "(Ldji/midware/data/manager/P3/DataBaseProcessor$DataBean; I)V",
+      "codeOffset": 3356228,
+      "instructionSha256": "67d71ba1848a0ef1997d44aee8d4073e743d0974f9d3c4c9385bc96fba46df8a"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DataBaseProcessor;",
+      "method": "sendCmd",
+      "descriptor": "(Ldji/midware/data/packages/P3/SendPack; Ldji/midware/interfaces/DJIDataCallBack; Ldji/midware/data/manager/P3/DataBaseProcessor$ProcessCallback; Z Z Z)I",
+      "codeOffset": 3356400,
+      "instructionSha256": "8d708b4127f8b6f26083d03df7a7574cabdaabdddea46dc2934582be6512cbf0"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/ServiceManager;",
+      "method": "changeTo",
+      "descriptor": "(Ldji/midware/data/manager/P3/DJIServiceInterface;)V",
+      "codeOffset": 4674444,
+      "instructionSha256": "c03e035eed8161d81c6855ee206a26cec3a49bd47224d5a51700d10fd88da77e"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/ServiceManager;",
+      "method": "sendmessage",
+      "descriptor": "(Ldji/midware/data/packages/P3/SendPack;)V",
+      "codeOffset": 4676292,
+      "instructionSha256": "6f622eb430ad3e44ebc46c54c161225e2cce664e5e9133a5c49e9f4556c8b830"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/link/DJILinkDaemonService$2;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3588636,
+      "instructionSha256": "c50bda578111fa75e1a019bfdf090e0deb1fec9368d254ce22b1ce08500585a5"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/link/DJILinkDaemonService;",
+      "method": "changeTo",
+      "descriptor": "(Ldji/midware/data/manager/P3/DJIServiceInterface;)V",
+      "codeOffset": 3588936,
+      "instructionSha256": "eb53587b929ce3a7ee8d846739543512c4d21a34d16efeda1b2788618aa5488f"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/link/DJILinkDaemonService;",
+      "method": "setLinkType",
+      "descriptor": "(Ldji/midware/link/DJILinkType;)V",
+      "codeOffset": 3589504,
+      "instructionSha256": "b35af1a6065f4e7b6bd8f63e8935d852b48e10734bc8fc4088203224b460d05a"
+    }
+  ],
+  "directPolicyFieldWriters": [
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DJIPackManagerBase;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "writes": [
+        {
+          "instructionIndex": 7,
+          "field": "needCheckEncrypt",
+          "value": true
+        }
+      ],
+      "instructionSha256": "e91de68d25fbf34438f213711bbc677c30923ab1807a02879aaefe60de067b28"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DJIArPackManager;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "writes": [
+        {
+          "instructionIndex": 5,
+          "field": "needCheckEncrypt",
+          "value": false
+        }
+      ],
+      "instructionSha256": "ece2e0ce4f778cc64107c3cb8fbb7f1ad83bb9767bdb4efc8cf45f94d95636a7"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DJIFlightLogPackManager;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "writes": [
+        {
+          "instructionIndex": 5,
+          "field": "needCheckEncrypt",
+          "value": false
+        }
+      ],
+      "instructionSha256": "4419ef0ab0fa7981aa78b8bacaf61708e772b3f7e2072fba73e2d96439f13361"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DJINotSyncPackManager;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "writes": [
+        {
+          "instructionIndex": 4,
+          "field": "enabledSetDataEvent",
+          "value": true
+        }
+      ],
+      "instructionSha256": "1c13e2b61e7708e5ce2ca8ed02cf25acf212f85492184cff12a1c53602f11e68"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DJIPackManager;",
+      "method": "<init>",
+      "descriptor": "(Ljava/lang/String;)V",
+      "writes": [
+        {
+          "instructionIndex": 10,
+          "field": "enabledSetDataEvent",
+          "value": true
+        }
+      ],
+      "instructionSha256": "69cdab17bf409cd9372cd7db59a2024b30c728323786ac6cc690135fbfe2b4c8"
+    }
+  ],
+  "sourceBlePolicy": {
+    "managerClass": "Ldji/midware/data/manager/P3/DJIPackManager;",
+    "parseInheritedFrom": "Ldji/midware/data/manager/P3/DJIPackManagerBase;",
+    "needCheckEncrypt": true,
+    "enabledSetDataEvent": true,
+    "encryptionSingletonSharedWithDataBase": true,
+    "sourceRouteResolved": true,
+    "actualSessionStateVerified": false
+  },
+  "sourceReceiveRoute": [
+    "BleConnector.onCharacteristicChanged",
+    "mDataListener",
+    "BluetoothService.onDataReceived",
+    "DJIPackManager.parse inherited",
+    "SimpleComsumer queue",
+    "DJIPackManagerBase$2.invoke",
+    "parseOne"
+  ],
+  "sourceSendRoute": [
+    "DataBase.submitTask",
+    "DataBaseProcessor queue/realSendOnePack",
+    "ServiceManager.mInterface.sendmessage",
+    "BluetoothService.sendmessage/sendBuffer",
+    "BleManager.sendData",
+    "BleDataTransmitter queue",
+    "BleConnector.sendData",
+    "BluetoothGatt.writeCharacteristic"
+  ],
+  "sourceLinkSelection": {
+    "linkType": "BLE",
+    "switchCaseValue": 3,
+    "requiresAliveDaemon": true,
+    "selectedService": "Ldji/midware/ble2/BluetoothService;"
+  },
+  "scope": {
+    "scannedBanks": [
+      0,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "unrestoredBanks": [
+      1,
+      7
+    ],
+    "reflectionOrNativeFieldWritesExcluded": false,
+    "appOrJniExecuted": false,
+    "liveBleOrHardwareTested": false,
+    "peerEncryptionAcceptanceVerified": false
+  },
+  "remaining": [
+    "Static BLE route and constructor policy are resolved, not live firmware/session encryption state.",
+    "Callbacks, queue scheduling, actual source gate values and peer acceptance require separate evidence.",
+    "Upgrade shield/connection gates can prevent dispatch; this audit is not an end-to-end delivery guarantee.",
+    "No JNI encryption implementation, calibration SDK trigger or physical completion/abort proof added."
+  ]
+}

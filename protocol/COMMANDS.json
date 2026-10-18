@@ -74,14 +74,15 @@
       "responseCodec": "unknown",
       "targetEvidence": "other-model",
       "implementation": [],
-      "remaining": "源码已定位普通GYRO05/高级AUTO00的04:08请求与独立响应域。显式选中项与ModelName都为HG724时，普通入口隐藏、高级入口直接显示且旁路IMU版本；两动作要求缓存MotorEnabled。界面条件不证明实时身份、实际挂载/地址/固件接受或中止；未开放当前SDK触发。 新对象默认地址/flags与条件加密已审计；直连manager开关、真实会话策略及加密互操作仍未验收。",
+      "remaining": "源码已定位普通GYRO05/高级AUTO00的04:08请求与独立响应域。显式选中项与ModelName都为HG724时，普通入口隐藏、高级入口直接显示且旁路IMU版本；两动作要求缓存MotorEnabled。界面条件不证明实时身份、实际挂载/地址/固件接受或中止；未开放当前SDK触发。 新对象默认地址/flags与条件加密已审计；实际会话策略及加密互操作仍未验收。 BLE源Main管理器、默认检查/事件开关及GATT路由已核对；混合命令ACK包层/业务域接入仍待封装。",
       "officialAppAliases": [
         "AutoCalibration"
       ],
       "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
       "currentAppResearch": "protocol/research/ronin-sensor-calibration-evidence.json",
       "currentAppEntryResearch": "protocol/research/ronin-calibration-entry-evidence.json",
-      "calibrationTransportEvidence": "protocol/research/ronin-calibration-transport-evidence.json"
+      "calibrationTransportEvidence": "protocol/research/ronin-calibration-transport-evidence.json",
+      "bleRouteEvidence": "protocol/research/ronin-ble-route-evidence.json"
     },
     {
       "key": "04:0B",

@@ -825,3 +825,11 @@ NSDictionary *RSDecodeAppHandheldStickControlReply(NSDictionary *message,NSNumbe
     NSDictionary *ack=RSDecodeAppReply(message,0x58,nil,error);if(!ack)return nil;
     NSMutableDictionary *result=[ack mutableCopy];[result addEntriesFromDictionary:@{@"sourceSetting":@"StickGimbalControlEnabled",@"requestedEnabled":enabled,@"modelLayoutVerified":@NO,@"readbackVerified":@NO,@"persistenceVerified":@NO,@"notificationAssociationVerified":@NO}];return [result copy];
 }
+
+NSDictionary *RSDecodeAppTutorialNotification(NSDictionary *message){
+    if([message[@"sender"] intValue]!=4||[message[@"receiver"] intValue]!=2||[message[@"commandSet"] intValue]!=4||[message[@"commandId"] intValue]!=43||!AppPlainFlags(message[@"flags"],NO))return nil;
+    NSData *body=message[@"payload"];if(![body isKindOfClass:NSData.class]||body.length<5)return nil;const uint8_t *p=body.bytes;uint32_t word=(uint32_t)p[1]|((uint32_t)p[2]<<8)|((uint32_t)p[3]<<16)|((uint32_t)p[4]<<24);
+    NSArray *steps=@[@"STEP_FINISH",@"STEP_START",@"STEP_UNLOCK_GIMBAL",@"STEP_HOLD_GIMBAL_UPRIGHT",@"STEP_FOLLOW",@"STEP_STICK",@"STEP_LOCK_DIRECTION",@"STEP_RECENTER",@"STEP_SELFIE",@"STEP_PUSH",@"STEP_APP_CONTROL"],*getters=@[@"getIsUnlock",@"getIsUpright",@"getIsFollowFinish",@"getIsStickFinish",@"getIsLockDirectionFinish",@"getIsRecentFinish",@"getIsSelfieFinish",@"getIsHandlePushFinish",@"getIsAppControlFinish"];
+    NSMutableDictionary *flags=[NSMutableDictionary dictionary],*views=[NSMutableDictionary dictionary];for(NSUInteger i=0;i<getters.count;i++)flags[getters[i]]=@((word>>i)&1);for(NSUInteger i=0;i<steps.count;i++)views[steps[i]]=((word>>((i+30)&31))&1)?@YES:@NO;
+    return @{@"kind":@"tutorial",@"profile":@"ronin-2.2.2",@"commandId":@43,@"timestamp":@([NSDate date].timeIntervalSince1970*1000),@"rawStep":@(p[0]),@"knownSourceStepName":p[0]<steps.count?steps[p[0]]:NSNull.null,@"sourceFindResult":p[0]<steps.count?steps[p[0]]:@"STEP_FINISH",@"rawCompletionWord":@(word),@"sourceSignedCompletionWord":@(word>=0x80000000u?(int64_t)word-4294967296LL:(int64_t)word),@"unknownCompletionBits":@(word&0xfffffe00u),@"sourceFlags":[flags copy],@"sourceStepStatus":[views copy],@"bodyHex":Hex(body),@"trailingHex":Hex([body subdataWithRange:NSMakeRange(5,body.length-5)]),@"deviceVerified":@NO,@"modelLayoutVerified":@NO,@"requestAssociationVerified":@NO,@"physicalCompletionVerified":@NO};
+}

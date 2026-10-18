@@ -1,0 +1,306 @@
+[
+  {
+    "name": "zero",
+    "bodyHex": "0000000000",
+    "expected": {
+      "rawStep": 0,
+      "knownSourceStepName": "STEP_FINISH",
+      "sourceFindResult": "STEP_FINISH",
+      "rawCompletionWord": 0,
+      "sourceSignedCompletionWord": 0,
+      "unknownCompletionBits": 0,
+      "sourceFlags": {
+        "getIsUnlock": 0,
+        "getIsUpright": 0,
+        "getIsFollowFinish": 0,
+        "getIsStickFinish": 0,
+        "getIsLockDirectionFinish": 0,
+        "getIsRecentFinish": 0,
+        "getIsSelfieFinish": 0,
+        "getIsHandlePushFinish": 0,
+        "getIsAppControlFinish": 0
+      },
+      "bodyHex": "0000000000",
+      "sourceStepStatus": {
+        "STEP_FINISH": false,
+        "STEP_START": false,
+        "STEP_UNLOCK_GIMBAL": false,
+        "STEP_HOLD_GIMBAL_UPRIGHT": false,
+        "STEP_FOLLOW": false,
+        "STEP_STICK": false,
+        "STEP_LOCK_DIRECTION": false,
+        "STEP_RECENTER": false,
+        "STEP_SELFIE": false,
+        "STEP_PUSH": false,
+        "STEP_APP_CONTROL": false
+      },
+      "trailingHex": ""
+    }
+  },
+  {
+    "name": "unlock",
+    "bodyHex": "0201000000",
+    "expected": {
+      "rawStep": 2,
+      "knownSourceStepName": "STEP_UNLOCK_GIMBAL",
+      "sourceFindResult": "STEP_UNLOCK_GIMBAL",
+      "rawCompletionWord": 1,
+      "sourceSignedCompletionWord": 1,
+      "unknownCompletionBits": 0,
+      "sourceFlags": {
+        "getIsUnlock": 1,
+        "getIsUpright": 0,
+        "getIsFollowFinish": 0,
+        "getIsStickFinish": 0,
+        "getIsLockDirectionFinish": 0,
+        "getIsRecentFinish": 0,
+        "getIsSelfieFinish": 0,
+        "getIsHandlePushFinish": 0,
+        "getIsAppControlFinish": 0
+      },
+      "bodyHex": "0201000000",
+      "sourceStepStatus": {
+        "STEP_FINISH": false,
+        "STEP_START": false,
+        "STEP_UNLOCK_GIMBAL": true,
+        "STEP_HOLD_GIMBAL_UPRIGHT": false,
+        "STEP_FOLLOW": false,
+        "STEP_STICK": false,
+        "STEP_LOCK_DIRECTION": false,
+        "STEP_RECENTER": false,
+        "STEP_SELFIE": false,
+        "STEP_PUSH": false,
+        "STEP_APP_CONTROL": false
+      },
+      "trailingHex": ""
+    }
+  },
+  {
+    "name": "app-control",
+    "bodyHex": "0a00010000",
+    "expected": {
+      "rawStep": 10,
+      "knownSourceStepName": "STEP_APP_CONTROL",
+      "sourceFindResult": "STEP_APP_CONTROL",
+      "rawCompletionWord": 256,
+      "sourceSignedCompletionWord": 256,
+      "unknownCompletionBits": 0,
+      "sourceFlags": {
+        "getIsUnlock": 0,
+        "getIsUpright": 0,
+        "getIsFollowFinish": 0,
+        "getIsStickFinish": 0,
+        "getIsLockDirectionFinish": 0,
+        "getIsRecentFinish": 0,
+        "getIsSelfieFinish": 0,
+        "getIsHandlePushFinish": 0,
+        "getIsAppControlFinish": 1
+      },
+      "bodyHex": "0a00010000",
+      "sourceStepStatus": {
+        "STEP_FINISH": false,
+        "STEP_START": false,
+        "STEP_UNLOCK_GIMBAL": false,
+        "STEP_HOLD_GIMBAL_UPRIGHT": false,
+        "STEP_FOLLOW": false,
+        "STEP_STICK": false,
+        "STEP_LOCK_DIRECTION": false,
+        "STEP_RECENTER": false,
+        "STEP_SELFIE": false,
+        "STEP_PUSH": false,
+        "STEP_APP_CONTROL": true
+      },
+      "trailingHex": ""
+    }
+  },
+  {
+    "name": "unknown-low",
+    "bodyHex": "0b00020000",
+    "expected": {
+      "rawStep": 11,
+      "knownSourceStepName": null,
+      "sourceFindResult": "STEP_FINISH",
+      "rawCompletionWord": 512,
+      "sourceSignedCompletionWord": 512,
+      "unknownCompletionBits": 512,
+      "sourceFlags": {
+        "getIsUnlock": 0,
+        "getIsUpright": 0,
+        "getIsFollowFinish": 0,
+        "getIsStickFinish": 0,
+        "getIsLockDirectionFinish": 0,
+        "getIsRecentFinish": 0,
+        "getIsSelfieFinish": 0,
+        "getIsHandlePushFinish": 0,
+        "getIsAppControlFinish": 0
+      },
+      "bodyHex": "0b00020000",
+      "sourceStepStatus": {
+        "STEP_FINISH": false,
+        "STEP_START": false,
+        "STEP_UNLOCK_GIMBAL": false,
+        "STEP_HOLD_GIMBAL_UPRIGHT": false,
+        "STEP_FOLLOW": false,
+        "STEP_STICK": false,
+        "STEP_LOCK_DIRECTION": false,
+        "STEP_RECENTER": false,
+        "STEP_SELFIE": false,
+        "STEP_PUSH": false,
+        "STEP_APP_CONTROL": false
+      },
+      "trailingHex": ""
+    }
+  },
+  {
+    "name": "all-bits-unknown-step",
+    "bodyHex": "ffffffffffaa",
+    "expected": {
+      "rawStep": 255,
+      "knownSourceStepName": null,
+      "sourceFindResult": "STEP_FINISH",
+      "rawCompletionWord": 4294967295,
+      "sourceSignedCompletionWord": -1,
+      "unknownCompletionBits": 4294966784,
+      "sourceFlags": {
+        "getIsUnlock": 1,
+        "getIsUpright": 1,
+        "getIsFollowFinish": 1,
+        "getIsStickFinish": 1,
+        "getIsLockDirectionFinish": 1,
+        "getIsRecentFinish": 1,
+        "getIsSelfieFinish": 1,
+        "getIsHandlePushFinish": 1,
+        "getIsAppControlFinish": 1
+      },
+      "bodyHex": "ffffffffffaa",
+      "sourceStepStatus": {
+        "STEP_FINISH": true,
+        "STEP_START": true,
+        "STEP_UNLOCK_GIMBAL": true,
+        "STEP_HOLD_GIMBAL_UPRIGHT": true,
+        "STEP_FOLLOW": true,
+        "STEP_STICK": true,
+        "STEP_LOCK_DIRECTION": true,
+        "STEP_RECENTER": true,
+        "STEP_SELFIE": true,
+        "STEP_PUSH": true,
+        "STEP_APP_CONTROL": true
+      },
+      "trailingHex": "aa"
+    }
+  },
+  {
+    "name": "start-sign-bit",
+    "bodyHex": "0100000080",
+    "expected": {
+      "rawStep": 1,
+      "knownSourceStepName": "STEP_START",
+      "sourceFindResult": "STEP_START",
+      "rawCompletionWord": 2147483648,
+      "sourceSignedCompletionWord": -2147483648,
+      "unknownCompletionBits": 2147483648,
+      "sourceFlags": {
+        "getIsUnlock": 0,
+        "getIsUpright": 0,
+        "getIsFollowFinish": 0,
+        "getIsStickFinish": 0,
+        "getIsLockDirectionFinish": 0,
+        "getIsRecentFinish": 0,
+        "getIsSelfieFinish": 0,
+        "getIsHandlePushFinish": 0,
+        "getIsAppControlFinish": 0
+      },
+      "bodyHex": "0100000080",
+      "sourceStepStatus": {
+        "STEP_FINISH": false,
+        "STEP_START": true,
+        "STEP_UNLOCK_GIMBAL": false,
+        "STEP_HOLD_GIMBAL_UPRIGHT": false,
+        "STEP_FOLLOW": false,
+        "STEP_STICK": false,
+        "STEP_LOCK_DIRECTION": false,
+        "STEP_RECENTER": false,
+        "STEP_SELFIE": false,
+        "STEP_PUSH": false,
+        "STEP_APP_CONTROL": false
+      },
+      "trailingHex": ""
+    }
+  },
+  {
+    "name": "finish-bit",
+    "bodyHex": "0000000040",
+    "expected": {
+      "rawStep": 0,
+      "knownSourceStepName": "STEP_FINISH",
+      "sourceFindResult": "STEP_FINISH",
+      "rawCompletionWord": 1073741824,
+      "sourceSignedCompletionWord": 1073741824,
+      "unknownCompletionBits": 1073741824,
+      "sourceFlags": {
+        "getIsUnlock": 0,
+        "getIsUpright": 0,
+        "getIsFollowFinish": 0,
+        "getIsStickFinish": 0,
+        "getIsLockDirectionFinish": 0,
+        "getIsRecentFinish": 0,
+        "getIsSelfieFinish": 0,
+        "getIsHandlePushFinish": 0,
+        "getIsAppControlFinish": 0
+      },
+      "bodyHex": "0000000040",
+      "sourceStepStatus": {
+        "STEP_FINISH": true,
+        "STEP_START": false,
+        "STEP_UNLOCK_GIMBAL": false,
+        "STEP_HOLD_GIMBAL_UPRIGHT": false,
+        "STEP_FOLLOW": false,
+        "STEP_STICK": false,
+        "STEP_LOCK_DIRECTION": false,
+        "STEP_RECENTER": false,
+        "STEP_SELFIE": false,
+        "STEP_PUSH": false,
+        "STEP_APP_CONTROL": false
+      },
+      "trailingHex": ""
+    }
+  },
+  {
+    "name": "independent-step-flags",
+    "bodyHex": "0501000000",
+    "expected": {
+      "rawStep": 5,
+      "knownSourceStepName": "STEP_STICK",
+      "sourceFindResult": "STEP_STICK",
+      "rawCompletionWord": 1,
+      "sourceSignedCompletionWord": 1,
+      "unknownCompletionBits": 0,
+      "sourceFlags": {
+        "getIsUnlock": 1,
+        "getIsUpright": 0,
+        "getIsFollowFinish": 0,
+        "getIsStickFinish": 0,
+        "getIsLockDirectionFinish": 0,
+        "getIsRecentFinish": 0,
+        "getIsSelfieFinish": 0,
+        "getIsHandlePushFinish": 0,
+        "getIsAppControlFinish": 0
+      },
+      "bodyHex": "0501000000",
+      "sourceStepStatus": {
+        "STEP_FINISH": false,
+        "STEP_START": false,
+        "STEP_UNLOCK_GIMBAL": true,
+        "STEP_HOLD_GIMBAL_UPRIGHT": false,
+        "STEP_FOLLOW": false,
+        "STEP_STICK": false,
+        "STEP_LOCK_DIRECTION": false,
+        "STEP_RECENTER": false,
+        "STEP_SELFIE": false,
+        "STEP_PUSH": false,
+        "STEP_APP_CONTROL": false
+      },
+      "trailingHex": ""
+    }
+  }
+]

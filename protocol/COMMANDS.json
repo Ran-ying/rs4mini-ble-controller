@@ -504,12 +504,19 @@
     },
     {
       "key": "04:2B",
-      "name": "官方 App 枚举：GetPushTutorialStatus",
-      "requestCodec": "unknown",
-      "responseCodec": "unknown",
-      "targetEvidence": "official-app-enum",
-      "implementation": [],
-      "remaining": "源5字节布局、9个状态位及枚举已离线核对；未知步骤源回退FINISH且0/1动态位移回绕，不能作为运动完成。六段无外部直接调用，无HG724布局/通知证据，未加入SDK",
+      "name": "源教程状态被动候选",
+      "requestCodec": "not-applicable",
+      "responseCodec": "candidate-structured",
+      "targetEvidence": "app-generic-code",
+      "implementation": [
+        "node/src/app-tutorial.js",
+        "node/src/app-commands.js",
+        "python/rs4mini_sdk/app_tutorial.py",
+        "python/rs4mini_sdk/app_commands.py",
+        "macos/RSControlCore.m",
+        "macos/RSBleDevice.m"
+      ],
+      "remaining": "0.7.32显式App来源被动5字节候选，9个数值标志、完整uint32/有符号视图、未知步骤/位/尾部及Java位移保留；未知步骤源fallback FINISH不当完成，不更新运动或其他状态。不发送查询/订阅/ACK/2C；HG724布局/真实通知、请求关联与物理完成未验收。",
       "officialAppAliases": [
         "GetPushTutorialStatus"
       ],
@@ -1226,5 +1233,17 @@
     "progressUnitVerified": false,
     "targetDeviceVerified": false
   },
-  "calibrationEntryResearch": "protocol/research/ronin-calibration-entry-evidence.json"
+  "calibrationEntryResearch": "protocol/research/ronin-calibration-entry-evidence.json",
+  "tutorialSdk": {
+    "version": "0.7.32",
+    "passiveOnly": true,
+    "stepSendExposed": false,
+    "automaticAck": false,
+    "unknownStepIsCompletionVerified": false,
+    "targetDeviceVerified": false,
+    "modelLayoutVerified": false,
+    "requestAssociationVerified": false,
+    "physicalCompletionVerified": false,
+    "documentation": "docs/APP_TUTORIAL_STATUS.md"
+  }
 }

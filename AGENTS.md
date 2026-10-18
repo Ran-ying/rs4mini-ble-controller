@@ -8,9 +8,9 @@ verification status changes.
 ## Objective and user decisions
 
 - Provide an unofficial, direct BLE controller for **DJI RS 4 Mini**, initially on macOS.
-- **Node.js is the authoritative implementation**; current package version is `0.7.31`.
+- **Node.js is the authoritative implementation**; current package version is `0.7.32`.
 - The user subsequently requested completion of all existing ports. Python is now
-  `0.7.31`, Web shares the JS core, and the native panel is `0.3.31`. Describe the
+  `0.7.32`, Web shares the JS core, and the native panel is `0.3.32`. Describe the
   documented feature differences; do not claim identical APIs or hardware proof.
 - After that delivery, the user requested the remaining **non-camera** capabilities
   under the same autonomous/offline conditions. Expansion work is in progress;
@@ -1100,3 +1100,11 @@ BLE路由研究验证（2026-10-18）：最终固定输入实际提取两次，3
 
 
 0.7.31实际安装交付验证：Node tarball隔离安装后263项与严格TypeScript消费者通过；wheel隔离安装后238项通过，app_commands/app_handheld_stick/device/controller导入路径核对。Node104文件、wheel37模块、原生ZIP3文件与本次源码/签名构建逐字节一致，原生0.3.31/build34，未启动应用。没有npm发布或GitHub二进制Release。
+
+
+## 0.7.32教程状态被动候选 / 原生0.3.32 build35
+
+显式App来源下tutorialStatus（Python另有tutorial_status，原生appTutorialStatus）与kind=tutorial被动解码04:2B；保留步骤原值、完整32位无符号/有符号状态、9个数值标志、未知位与尾部，以及独立Java位移视图。未知步骤的源回退STEP_FINISH不是完成证明，bit30/31不解释为物理生命周期。缓存复制/不可变、观察者隔离，来源切换/断线清空；不发查询、订阅、ACK或04:2C，不结束查询或moveTo。本机布局/通知、请求关联及物理完成均未验收，完整命令和高级门槛仍false。契约见 docs/APP_TUTORIAL_STATUS.md（仓库根目录）。
+
+
+0.7.32离线验收（2026-10-19）：八组跨端共享向量、256步骤及32单独置位核对；Node269/Web27/Python3.8与3.12各244、原生1290核心+285假设备生命周期+3独立SDK、研究两环境各403通过。统一检查终态0，严格类型、分层及签名构建通过。实际安装Node269+类型、wheel244通过；Node107文件、wheel38模块、原生ZIP3文件与源码/签名构建逐字节一致，Python四模块安装导入来源核对，原生0.3.32/build35未启动。没有蓝牙/实时UI/厂商代码执行，48项清单与完整命令/高级门槛仍false；没有npm发布或GitHub二进制Release。

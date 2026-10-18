@@ -289,7 +289,10 @@ export interface AppPeripheralStatus {
   kind:'peripheral';profile:'ronin-2.2.2';commandId:102;timestamp:number;bodyHex:string;rawFlag:number;sourceRecordBranchSelected:boolean;records:AppPeripheralRecord[];
   deviceVerified:false;modelLayoutVerified:false;referenceFrameVerified:false;physicalCompletionVerified:false;
 }
-export type AppStatus = AppSensorCalibrationStatus | AppExternalDeviceStatus | AppPeripheralStatus | AppCalibrationStatus | AppUserParameterStatus | AppHandheldStickStatus | AppAbnormalStatus | AppBatteryStatus | AppProgramStatus;
+export type AppTutorialStep = 'STEP_FINISH'|'STEP_START'|'STEP_UNLOCK_GIMBAL'|'STEP_HOLD_GIMBAL_UPRIGHT'|'STEP_FOLLOW'|'STEP_STICK'|'STEP_LOCK_DIRECTION'|'STEP_RECENTER'|'STEP_SELFIE'|'STEP_PUSH'|'STEP_APP_CONTROL';
+export type AppTutorialFlag = 'getIsUnlock'|'getIsUpright'|'getIsFollowFinish'|'getIsStickFinish'|'getIsLockDirectionFinish'|'getIsRecentFinish'|'getIsSelfieFinish'|'getIsHandlePushFinish'|'getIsAppControlFinish';
+export interface AppTutorialStatus {kind:'tutorial';profile:'ronin-2.2.2';commandId:43;timestamp:number;rawStep:number;knownSourceStepName:AppTutorialStep|null;sourceFindResult:AppTutorialStep;rawCompletionWord:number;sourceSignedCompletionWord:number;unknownCompletionBits:number;sourceFlags:Record<AppTutorialFlag,0|1>;sourceStepStatus:Record<AppTutorialStep,boolean>;bodyHex:string;trailingHex:string;deviceVerified:false;modelLayoutVerified:false;requestAssociationVerified:false;physicalCompletionVerified:false;}
+export type AppStatus = AppTutorialStatus | AppSensorCalibrationStatus | AppExternalDeviceStatus | AppPeripheralStatus | AppCalibrationStatus | AppUserParameterStatus | AppHandheldStickStatus | AppAbnormalStatus | AppBatteryStatus | AppProgramStatus;
 export interface AppAutoTuneSent {
   profile: "ronin-2.2.2"; sent: true; requestedStart: boolean;
   acknowledgementRequested: false; acknowledged: false;
@@ -348,6 +351,7 @@ export interface AppCommands {
   readonly programStatus:AppProgramStatus|null;
   readonly abnormalStatus:AppAbnormalStatus|null;
   readonly batteryStatus:AppBatteryStatus|null;
+  readonly tutorialStatus:AppTutorialStatus|null;
   readonly handheldStickStatus:AppHandheldStickStatus|null;
   readonly userParameterStatus:AppUserParameterStatus|null;
   getStandaloneTuning(options?:{axis?:MotorTuningAxis;parameter?:StandaloneParameter;timeoutMs?:number}):Promise<AppTuningReading & {inputSourceRaw:number}>;

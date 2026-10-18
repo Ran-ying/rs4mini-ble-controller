@@ -59,7 +59,7 @@ for row in manifest['commands']:
             assert row['requestCodec']=='not-applicable' and row['responseCodec']=='candidate-structured' and manifest['externalDeviceSdk']['passiveOnly'] is True
             assert row['externalDeviceResearch']==manifest['externalDeviceResearch']
         else:
-            assert row['key'] in {'04:24','04:57','04:27','04:33','04:38','04:64','04:6B','04:66','04:30'} and row['requestCodec'] == ('implemented' if row['key']=='04:6B' else 'not-applicable') and row['responseCodec'] == 'candidate-structured'
+            assert row['key'] in {'04:24','04:57','04:27','04:33','04:38','04:64','04:6B','04:66','04:30','04:2B'} and row['requestCodec'] == ('implemented' if row['key']=='04:6B' else 'not-applicable') and row['responseCodec'] == 'candidate-structured'
             assert manifest['userPushSdk']['modelSpecificPathVerified'] is False and manifest['userPushSdk']['targetDeviceVerified'] is False
     if row.get('officialAppEvidence'):
         evidence_path = root / row['officialAppEvidence']
@@ -736,3 +736,14 @@ if manifest.get('calibrationEntryResearch'):
     assert proof['lifecycle']['liveIndexOrCacheFreshnessVerified'] is False and proof['scope']['fullActivityReachabilityVerified'] is False
     for flag in ('appCodeExecuted','liveUiExecuted','targetDeviceVerified','wholeProtocolRecovered','researchToolProvidesSdkInterface','sdkSendAdded','sdkReceiveAdded'):
         assert proof[flag] is False
+
+if manifest.get('tutorialSdk'):
+    sdk=manifest['tutorialSdk']
+    assert sdk['passiveOnly'] is True
+    for flag in ['stepSendExposed','automaticAck','unknownStepIsCompletionVerified','targetDeviceVerified','modelLayoutVerified','requestAssociationVerified','physicalCompletionVerified']:
+        assert sdk[flag] is False
+    assert (root/sdk['documentation']).is_file()
+    tutorial_row=next(row for row in manifest['commands'] if row['key']=='04:2B')
+    assert tutorial_row['tutorialResearch']==manifest['tutorialResearch']
+    step_row=next(row for row in manifest['commands'] if row['key']=='04:2C')
+    assert step_row['requestCodec']=='unknown' and not step_row['implementation']

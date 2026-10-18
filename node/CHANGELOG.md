@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.7.32
+
+- Add explicit App-source passive tutorial status decoding, isolated copied caches and tutorial events across ports. Preserve unknown steps, complete uint32/signed views, numeric flags, Java shift views and trailing bytes.
+- Unknown source fallback FINISH never completes an operation. No tutorial step sends, queries, subscriptions, automatic ACKs or hardware claims.
+
 ## 0.7.31
 
 - Add explicit App-source boolean handheld stick-control request 04:58 across SDK ports; validate before neutral preamble and own the transaction until strictly correlated plaintext ACK.

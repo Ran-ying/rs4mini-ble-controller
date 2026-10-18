@@ -65,3 +65,6 @@ python/.venv/bin/python -m unittest discover -s tools/research -p test_ronin_tut
 未输出厂商反汇编，未安装/执行APK，没有扫描、连接或移动设备。
 后续优先审计HG724支持键/动作注册及真实业务入口，不能只按继承或App枚举判断覆盖。
 完整命令与新增高级功能门槛保持false。
+
+
+0.7.32被动SDK接入见[教程状态契约](../../docs/APP_TUTORIAL_STATUS.md)。既有28方法静态证据保持原样；04:2C仍未开放发送，源fallback不代表设备或运动完成。

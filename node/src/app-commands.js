@@ -1,3 +1,4 @@
+import {tutorialNotification} from './app-tutorial.js';
 import {componentCalibrationPayload,componentCalibrationReply} from './app-component-calibration.js';
 import {sensorCalibrationNotification} from './app-sensor-calibration.js';
 import {externalDeviceNotification} from './app-external-device.js';
@@ -28,8 +29,9 @@ function optionsOnly(options, keys) {
   if (!options || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(key => !keys.includes(key))) throw new TypeError('invalid App command options');
 }
 export class AppCommands {
-  constructor(owner) { this.owner = owner; this._profile = null; this._calibrationStatus = null; this._userParameterStatus = null; this._handheldStickStatus = null; this._abnormalStatus = null; this._batteryStatus = null; this._programStatus = null; this._peripheralStatus = null; this._externalDeviceStatus = null; this._sensorCalibrationStatus = null; }
+  constructor(owner) { this.owner = owner; this._profile = null; this._calibrationStatus = null; this._userParameterStatus = null; this._handheldStickStatus = null; this._abnormalStatus = null; this._batteryStatus = null; this._programStatus = null; this._peripheralStatus = null; this._externalDeviceStatus = null; this._sensorCalibrationStatus = null; this._tutorialStatus=null; }
   get parameterSubscriptionKeys(){return parameterSubscriptionKeys();}
+  get tutorialStatus(){return structuredClone(this._tutorialStatus);}
   get sensorCalibrationStatus() { return structuredClone(this._sensorCalibrationStatus); }
   get externalDeviceStatus() { return structuredClone(this._externalDeviceStatus); }
   get peripheralStatus() { return structuredClone(this._peripheralStatus); }
@@ -40,9 +42,11 @@ export class AppCommands {
   get userParameterStatus() { return structuredClone(this._userParameterStatus); }
   get profile() { return this._profile; }
   get calibrationStatus() { return structuredClone(this._calibrationStatus); }
-  _reset() { this._calibrationStatus = null; this._userParameterStatus = null; this._handheldStickStatus = null; this._abnormalStatus = null; this._batteryStatus = null; this._programStatus = null; this._peripheralStatus = null; this._externalDeviceStatus = null; this._sensorCalibrationStatus = null; }
+  _reset() { this._calibrationStatus = null; this._userParameterStatus = null; this._handheldStickStatus = null; this._abnormalStatus = null; this._batteryStatus = null; this._programStatus = null; this._peripheralStatus = null; this._externalDeviceStatus = null; this._sensorCalibrationStatus = null; this._tutorialStatus=null; }
   _message(message) {
     if (!this._profile) return;
+    const tutorial=tutorialNotification(message);
+    if(tutorial){this._tutorialStatus=tutorial;this.owner._emit('onAppStatus',structuredClone(tutorial));}
     const sensor=sensorCalibrationNotification(message);
     if(sensor) {this._sensorCalibrationStatus=sensor;this.owner._emit('onAppStatus',structuredClone(sensor));}
     const external=externalDeviceNotification(message);

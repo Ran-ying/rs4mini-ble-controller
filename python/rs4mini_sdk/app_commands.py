@@ -1,3 +1,4 @@
+from .app_tutorial import tutorial_notification
 from .app_component_calibration import component_calibration_payload,component_calibration_reply
 from .app_sensor_calibration import sensor_calibration_notification
 from .app_external_device import external_device_notification
@@ -41,9 +42,12 @@ class AppCommands:
         self._peripheral_status = None
         self._external_device_status = None
         self._sensor_calibration_status = None
+        self._tutorial_status = None
 
     parameterSubscriptionKeys = property(lambda self: parameter_subscription_keys())
     parameter_subscription_keys = parameterSubscriptionKeys
+    tutorialStatus = property(lambda self: copy.deepcopy(self._tutorial_status))
+    tutorial_status = tutorialStatus
     sensorCalibrationStatus = property(lambda self: copy.deepcopy(self._sensor_calibration_status))
     sensor_calibration_status = sensorCalibrationStatus
     externalDeviceStatus = property(lambda self: copy.deepcopy(self._external_device_status))
@@ -74,10 +78,15 @@ class AppCommands:
         self._peripheral_status = None
         self._external_device_status = None
         self._sensor_calibration_status = None
+        self._tutorial_status = None
 
     def _message(self, message):
         if not self._profile:
             return
+        tutorial=tutorial_notification(message)
+        if tutorial:
+            self._tutorial_status=tutorial
+            self.owner._emit('onAppStatus',copy.deepcopy(tutorial))
         sensor=sensor_calibration_notification(message)
         if sensor:
             self._sensor_calibration_status=sensor

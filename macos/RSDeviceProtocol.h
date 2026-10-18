@@ -123,3 +123,5 @@ NSDictionary *RSDecodeAppComponentCalibrationReply(NSDictionary *message,uint8_t
 
 NSData *RSAppHandheldStickControlFrame(uint16_t sequence,NSNumber *enabled);
 NSDictionary *RSDecodeAppHandheldStickControlReply(NSDictionary *message,NSNumber *enabled,NSError **error);
+
+NSDictionary *RSDecodeAppTutorialNotification(NSDictionary *message);

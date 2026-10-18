@@ -1046,3 +1046,11 @@ FollowModeSensitivity和GimbalControlState分别受isSupportStateSince4Gen控制
 
 
 0.7.29实际安装交付验证：Node tarball隔离安装后247项与严格TypeScript消费者通过；wheel隔离安装后222项通过，app_protocol/app_calibration/telemetry/experimental_protocol实际导入位置核对。Node99文件、wheel36模块及原生ZIP3文件逐字节匹配本次源码/签名构建，原生版本0.3.29/build32，未启动应用。没有npm发布或GitHub二进制Release。
+
+
+## 校准默认包头与条件加密研究
+
+固定六段28方法审计确认04:08新对象默认APP/id0→GIMBAL/id0、条件加密前flags40；NEEDACK.YES线上值2不是ordinal。通用发送层可按可变会话策略加密包括命令集/命令号的区间；接收事件关闭仍可能运行分类分支，不把业务Encrypt.NO当最终线上保证。见[校准传输审计](tools/research/CALIBRATION_TRANSPORT.md)（仓库根目录）及protocol/research/ronin-calibration-transport-evidence.json。未实现/执行JNI或APK、未新增SDK收发/高级功能、没有硬件或实时UI，运行时仍0.7.29/0.3.29，完整命令门槛false。
+
+
+校准传输研究验证（2026-10-18）：最终固定输入实际提取两次，28方法/1直接setter调用者（两次调用）证据JSON逐字节一致；新增13测试，研究Python3.8与3.12各368通过。统一离线Node247/Web24/Python222/原生669+250+3及类型/边界/构建通过，终态0。Node/Python/Web/macOS运行时源码与0875cdb一致，安装包保持0.7.29/0.3.29；未新增SDK发送、解密、相机/视觉/高级功能或硬件/liveUI/厂商代码执行，完整命令门槛false。

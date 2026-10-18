@@ -1,0 +1,318 @@
+{
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "restoredBanks": {
+    "0": "76002e76e02e1306ad197c4af127975d573999de174e5a9e44cc6f840196f621",
+    "2": "de69497b77de530d0d559646dc6d3fb24569e2ba8ba9502216f3d6c9fd6f3bf8",
+    "3": "bb50b39865520f55e97116ae1903bda3545b01c2fb7e2aba67a979dc264a9854",
+    "4": "2d3ff70fb84eb02ac75949ca6e7d5cc849a7f9ef55029fd168890c6dbccb1d12",
+    "5": "4fdbd74a05df63d72a0feb1c907d9395426ec3cdb5d6aeb45e3836d856d66654",
+    "6": "057f13084cf969ffadcfa2150d1b3ae3ed8a7822c95fb54158781764c9156e2f"
+  },
+  "methods": [
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/config/P3/CmdSet;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3321636,
+      "instructionSha256": "f312d32c7f7b1bdfbcd66b311c3758d0e773ee4880c34b413de5e350af47d732"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/config/P3/DataConfig$CMDTYPE;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3323344,
+      "instructionSha256": "1a8a49809e5122dea9d8bf88ce60a18827845dafa9ca0ca3dfe81735f6113faa"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/config/P3/DataConfig$EncryptType;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3323620,
+      "instructionSha256": "2fd1ff66e856455706b2bae3d9b6667e659284a8aef351d9798d21ebcb39faf1"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/config/P3/DataConfig$NEEDACK;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3323936,
+      "instructionSha256": "ab90dd658517642465a6bbff6ace8d899cb0e9c2fda92670ad319639b47c0cf9"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/config/P3/DeviceType;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3324752,
+      "instructionSha256": "8c5490336a38fb0c07e0694c8038b25b63d5a012034edfcde87a5eb069bfe83b"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DJIEncryManager;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "codeOffset": 3335080,
+      "instructionSha256": "5f05f4f9b0d6bf58760fa41d6a45b29fb27917de2ed19aedb9f86edbc3aae6a6"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DJIEncryManager;",
+      "method": "encryptData",
+      "descriptor": "([B)V",
+      "codeOffset": 3335192,
+      "instructionSha256": "41f66679c5ae155587d480bf879df8eb4caf491d5ffd9769ce6e64984744de98"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DJIEncryManager;",
+      "method": "isEncryptData",
+      "descriptor": "([B)Z",
+      "codeOffset": 3335228,
+      "instructionSha256": "f59b8c6d3c739da3b343f25c8ccf47f9302181f8d5feef6a54a2c14c695e6046"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DJIEncryManager;",
+      "method": "isNeedEncrypt",
+      "descriptor": "([B)Z",
+      "codeOffset": 3335280,
+      "instructionSha256": "c6a34fabe434dc21b7a4ed300e9deca0436716376f823902bace9237f16f15e8"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DJIEncryManager;",
+      "method": "isOldFirmware",
+      "descriptor": "()Z",
+      "codeOffset": 3335416,
+      "instructionSha256": "df6d20ef86383dd120a3a6f838b854e85250e1fe6278e6b911760dcd2bf8d41a"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DJIEncryManager;",
+      "method": "setIsOldFirmware",
+      "descriptor": "(Z)V",
+      "codeOffset": 3335440,
+      "instructionSha256": "956dcb9a22b154e7868c1e3f13f288b20e961ab535ff690c778e1ee46958db50"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DJIEncryManager;",
+      "method": "simpleDecrypt",
+      "descriptor": "([B I)[B",
+      "codeOffset": 3335464,
+      "instructionSha256": "ebd61df5effdb5e59a8b03066e25ff565ee03c8eaa15cf436d1f0c75ff3a4f26"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DJIEncryManager;",
+      "method": "simpleEncrypt",
+      "descriptor": "([B I)[B",
+      "codeOffset": 3335528,
+      "instructionSha256": "ebd61df5effdb5e59a8b03066e25ff565ee03c8eaa15cf436d1f0c75ff3a4f26"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DJIPackManagerBase;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "codeOffset": 3338208,
+      "instructionSha256": "e91de68d25fbf34438f213711bbc677c30923ab1807a02879aaefe60de067b28"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DJIPackManagerBase;",
+      "method": "parseOne",
+      "descriptor": "()Z",
+      "codeOffset": 3338744,
+      "instructionSha256": "776b32b742970dbc45dfd9130ca113ab2bb089d82a57019093a000cae35cd775"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "codeOffset": 3348204,
+      "instructionSha256": "1dff383fc21494c18002a5ce8ac4e0a79ad1bf389e745da89d9835270aad7f2b"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "<init>",
+      "descriptor": "(Z)V",
+      "codeOffset": 3348232,
+      "instructionSha256": "967e5160910e53b2522b2e3758f0fe6998f682cac0fd10fb2c6a9bc483eda62e"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "getSendData",
+      "descriptor": "()[B",
+      "codeOffset": 3350868,
+      "instructionSha256": "e73d99d27b8f8ab7660a473c8353bc1a8f58c02c1f926e3af3cd8b07772d8bc8"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "preprocessPack",
+      "descriptor": "(Ldji/midware/data/packages/P3/SendPack;)Ldji/midware/data/packages/P3/SendPack;",
+      "codeOffset": 3349576,
+      "instructionSha256": "d3a10a8f824d42d2606e477d2d8a0e66aaf2671152d50733e44b6d40bc1285b9"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "setReceiverId",
+      "descriptor": "(I)Ldji/midware/data/manager/P3/DataBase;",
+      "codeOffset": 3352792,
+      "instructionSha256": "19e2e50d2cfb6491d8be8388e604b79b393f12bc24bdbf9b68f19d4dfb8cc851"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/data/packages/P3/SendPack; Ldji/midware/interfaces/DJIDataCallBack; Z)V",
+      "codeOffset": 3352924,
+      "instructionSha256": "62f99fcaf68339e5f3cd2d975ed2ab75023c8d6cb940c75941a9b03c20e6064d"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/data/packages/P3/SendPack; Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 3352896,
+      "instructionSha256": "bfbdf3ebf4e21a9f4718d7a02cd92e7e2120d71d8e5c38966cdeb427ac92284d"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "codeOffset": 4856368,
+      "instructionSha256": "e265b36a5559e4c726841e9c440c6f19e8033aa17431fa78fef1970e39593196"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 4856480,
+      "instructionSha256": "96473d63b55cec5e4b419a2279ade5e9b36488da489fda413a1d90409d16d707"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4856748,
+      "instructionSha256": "27687e2efcbeaf5e0101b03ffcdbee547f9862a5a1a8b18f1536c0a07660c42f"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/packages/P3/Pack;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "codeOffset": 3582500,
+      "instructionSha256": "9fb4537a840da9522636977f3e7da05b1af1855ce902ace2d4449893793c5d00"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/packages/P3/SendPack;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "codeOffset": 5031824,
+      "instructionSha256": "a7c199ec907e3fcd1e589bcf87b97490f65ee685f7ec69e5c0b24fc43d53b747"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/packages/P3/SendPack;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 5031864,
+      "instructionSha256": "0f4b7e3cd180df4776166ce8cf055778ff0dc39eee3a00a8a14ba6fcff4a2996"
+    }
+  ],
+  "enumValues": {
+    "DeviceType": {
+      "APP": 2,
+      "GIMBAL": 4
+    },
+    "DataConfig$CMDTYPE": {
+      "REQUEST": 0
+    },
+    "DataConfig$NEEDACK": {
+      "YES": 2
+    },
+    "DataConfig$EncryptType": {
+      "NO": 0,
+      "SIMPLE": 3
+    },
+    "CmdSet": {
+      "COMMON": 0,
+      "CAMERA": 2,
+      "GIMBAL": 4
+    }
+  },
+  "freshCalibration": {
+    "commandSet": 4,
+    "commandId": 8,
+    "senderType": 2,
+    "receiverType": 4,
+    "packReceiverIdDefault": 0,
+    "packSenderIdDefault": 0,
+    "dataBaseReceiverOverrideDefault": -1,
+    "preConditionalFlags": 64,
+    "sourceNeedsEncrypt": true,
+    "defaultSourceOldFirmwareState": true
+  },
+  "conditionalSend": {
+    "oldTrue": "skip encryption",
+    "oldFalse": "GIMBAL requires native transform then SIMPLE flag3 and CRC rewrite",
+    "commonExcluded": true
+  },
+  "conditionalReceive": {
+    "outerGate": "needCheckEncrypt",
+    "decryptGate": "enabledSetDataEvent and flags low3 ==3",
+    "disabledEventStillRunsPredicate": true,
+    "simpleFlag": 3,
+    "simpleSetsOldFirmware": false,
+    "otherwisePredicateTrueSetsOldFirmware": true,
+    "nativeTransformRange": "offset9 through length-3 inclusive; includes command set/id",
+    "sequenceSource": "bytes6..7"
+  },
+  "directSetterCallers": [
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DJIPackManagerBase;",
+      "method": "parseOne",
+      "descriptor": "()Z",
+      "invokeCount": 2,
+      "instructionSha256": "776b32b742970dbc45dfd9130ca113ab2bb089d82a57019093a000cae35cd775"
+    }
+  ],
+  "scope": {
+    "scannedBanks": [
+      0,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "unrestoredBanks": [
+      1,
+      7
+    ],
+    "vendorCodeExecuted": false,
+    "hardwareTested": false,
+    "actualBleManagerPolicyVerified": false,
+    "cryptoAlgorithmImplemented": false
+  },
+  "remaining": [
+    "Source oldFirmware is mutable session policy, not measured firmware age or model identity.",
+    "Fresh-object/default source path does not prove actual BLE manager switches or peer encryption acceptance.",
+    "JNI transform implementation, live exchange and physical calibration completion/cancellation remain unverified."
+  ]
+}

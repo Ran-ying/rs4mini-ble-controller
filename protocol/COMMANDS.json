@@ -678,11 +678,12 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "当前 App 通用命令方法已恢复并固定指纹；字段与 HG724 调用分支尚待逐项审计，未开放发送；HG724继承的startGimbalBalanceTest静态路径不直接调用此命令，而使用0F的命名参数；不能仅凭类名替代",
+      "remaining": "通用04:40同命令请求/状态及旧视图六个直接调用方法已审计；请求0001+命名枚举，状态两位二进制字符串按十进制解析为0/1/10/11，建议非连续枚举。61方法证据；HG724入口、线上包层、物理停止/完成与恢复未知，未开放SDK收发。与HG724 balance_test/index37通过0F/10不同。",
       "officialAppAliases": [
         "BalanceAdjust"
       ],
-      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
+      "balanceAdjustResearch": "protocol/research/ronin-balance-adjust-evidence.json"
     },
     {
       "key": "04:6A",
@@ -885,7 +886,8 @@
     "tools/research/ronin_program_receive.py",
     "tools/research/ronin_track_points.py",
     "tools/research/ronin_peripheral_trace.py",
-    "tools/research/ronin_subscription_catalog.py"
+    "tools/research/ronin_subscription_catalog.py",
+    "tools/research/ronin_balance_adjust.py"
   ],
   "modelIdentityResearch": "protocol/research/ronin-hg724-evidence.json",
   "codeRestorationResearch": "protocol/research/ronin-code-restoration-evidence.json",
@@ -1245,5 +1247,6 @@
     "requestAssociationVerified": false,
     "physicalCompletionVerified": false,
     "documentation": "docs/APP_TUTORIAL_STATUS.md"
-  }
+  },
+  "balanceAdjustResearch": "protocol/research/ronin-balance-adjust-evidence.json"
 }

@@ -1,0 +1,758 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "bankSha256": {
+    "0": "76002e76e02e1306ad197c4af127975d573999de174e5a9e44cc6f840196f621",
+    "2": "de69497b77de530d0d559646dc6d3fb24569e2ba8ba9502216f3d6c9fd6f3bf8",
+    "3": "bb50b39865520f55e97116ae1903bda3545b01c2fb7e2aba67a979dc264a9854",
+    "4": "2d3ff70fb84eb02ac75949ca6e7d5cc849a7f9ef55029fd168890c6dbccb1d12",
+    "5": "4fdbd74a05df63d72a0feb1c907d9395426ec3cdb5d6aeb45e3836d856d66654",
+    "6": "057f13084cf969ffadcfa2150d1b3ae3ed8a7822c95fb54158781764c9156e2f"
+  },
+  "appCodeExecuted": false,
+  "liveUiExecuted": false,
+  "targetDeviceVerified": false,
+  "wholeProtocolRecovered": false,
+  "researchToolProvidesSdkInterface": false,
+  "sdkSendAdded": false,
+  "sdkReceiveAdded": false,
+  "hg724EntryEstablished": false,
+  "methods": [
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/monitor/state/GimbalAdjustView$11;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 2698004,
+      "instructionSha256": "8d2df77dd19d5481c970e9353d44bcf644918dad1d53abfb2382ff4c4baae63f"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/monitor/state/GimbalAdjustView$4;",
+      "method": "onSuccess",
+      "descriptor": "(Ljava/lang/Object;)V",
+      "codeOffset": 2698800,
+      "instructionSha256": "199eee624a733506eada430f327e65cc44a803a55a9e996cabce6add5e1be849"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/monitor/state/GimbalAdjustView;",
+      "method": "currentAxisBad",
+      "descriptor": "()Z",
+      "codeOffset": 2700696,
+      "instructionSha256": "3c9674398a335ac0c43ed4ac3e0f0de364c2198ffd41cc11f307b4a9734a6304"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/monitor/state/GimbalAdjustView;",
+      "method": "disposeTimer",
+      "descriptor": "()V",
+      "codeOffset": 2700844,
+      "instructionSha256": "a2e0ec6ef14d11c87472d233f187b6834ae75d16b58b1067f401bda60ffe0e4d"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/monitor/state/GimbalAdjustView;",
+      "method": "exit",
+      "descriptor": "()V",
+      "codeOffset": 2700892,
+      "instructionSha256": "3a69597cc05045c663ee28891303ae3b12d4b7e24ec9f6fd4b1c36372699154e"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/monitor/state/GimbalAdjustView;",
+      "method": "onAttachedToWindow",
+      "descriptor": "()V",
+      "codeOffset": 2703316,
+      "instructionSha256": "03aaa9ec37e203bce46ded0d7adbb529e8610e9a246a953f9499abcd3b74d3aa"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/monitor/state/GimbalAdjustView;",
+      "method": "onDetachedFromWindow",
+      "descriptor": "()V",
+      "codeOffset": 2703684,
+      "instructionSha256": "6b98c59c7799c47033901036070fbd10d424007d97567294c62a78127437a83e"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/monitor/state/GimbalAdjustView;",
+      "method": "onEvent3MainThread",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo;)V",
+      "codeOffset": 2703736,
+      "instructionSha256": "370d165dc96a28eff112cd74ffbbbbb8550896cb9c7b3f09168a19b120a935ed"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/monitor/state/GimbalAdjustView;",
+      "method": "onGimbalTestError",
+      "descriptor": "()V",
+      "codeOffset": 2700980,
+      "instructionSha256": "29bdb0fd500e46bdf31d3a43d4e3a675b82e4cf937375906ed04494eba19b099"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/monitor/state/GimbalAdjustView;",
+      "method": "onGimbalTestFinished",
+      "descriptor": "()V",
+      "codeOffset": 2701100,
+      "instructionSha256": "6a5986389b43e982a6f5c272f87ca886b4157fe1b3eaf7d3c09c390f5c95d183"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/monitor/state/GimbalAdjustView;",
+      "method": "onGimbalTestTimeout",
+      "descriptor": "()V",
+      "codeOffset": 2701268,
+      "instructionSha256": "0fad3b9da0bde97fb8e2758f4ad40568403f91e0d90783da7d098eb0a59ab189"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/monitor/state/GimbalAdjustView;",
+      "method": "sendGimbalAdjustRequest",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalBalanceAdjust$GimbalAdjustRequest;)V",
+      "codeOffset": 2701420,
+      "instructionSha256": "3b37d4b7774bb4bd84b78731d4b69b52dc7dd540077e8b1d3d92a1fb74835149"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/monitor/state/GimbalAdjustView;",
+      "method": "setTimer",
+      "descriptor": "()V",
+      "codeOffset": 2702032,
+      "instructionSha256": "e6443856da5df594049f53344966b7b51d4255ddf5925077a12ae22c1ad443cd"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/monitor/state/GimbalAdjustView;",
+      "method": "showAxisNGDialog",
+      "descriptor": "()V",
+      "codeOffset": 2702208,
+      "instructionSha256": "8acfe61bf1c98c58c5233a1379f05785fa4d45138d79301c4adfdd670e70d1d0"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/monitor/state/GimbalAdjustView;",
+      "method": "startAdjustCurrentAxis",
+      "descriptor": "()V",
+      "codeOffset": 2703032,
+      "instructionSha256": "567b2b61f2a26912d986884c603f1c9d384a146dfb21e41179931d4a2ac02667"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/monitor/state/GimbalAdjustView;",
+      "method": "startTestCurrentAxis",
+      "descriptor": "()V",
+      "codeOffset": 2703108,
+      "instructionSha256": "234b15612f978aab33c75552c54419cf02a7b7eba761e91bbf25128bf8694d8f"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 4652020,
+      "instructionSha256": "89d7e5d4c317f54eb541d186eff2e608a50e62f9387974ef9c74a54543aa6609"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalBalanceAdjust$GimbalAdjustRequest;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3454244,
+      "instructionSha256": "9886fa7f6137ad790366c9ac219ac7b61970eb3c4ebbbe4300c17c7ac2f44c18"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalBalanceAdjust$GimbalAdjustRequest;",
+      "method": "<init>",
+      "descriptor": "(Ljava/lang/String; I I)V",
+      "codeOffset": 3454472,
+      "instructionSha256": "1e2592df1d63185ae2aa35b5177bd89ad18ad602e4781569ea9c7c93dc119243"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalBalanceAdjust$GimbalAdjustRequest;",
+      "method": "_equals",
+      "descriptor": "(I)Z",
+      "codeOffset": 3454640,
+      "instructionSha256": "f7ad9bc4ca0b78c493b9c1b95cf0d9c22c76557ae27bfd1e2235db472755b993"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalBalanceAdjust$GimbalAdjustRequest;",
+      "method": "find",
+      "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalBalanceAdjust$GimbalAdjustRequest;",
+      "codeOffset": 3454500,
+      "instructionSha256": "e81ba277d30ce3cf4185eb313b240bf651a71661b157e065cbbb2cabaf2c6ac1"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalBalanceAdjust$GimbalAdjustRequest;",
+      "method": "value",
+      "descriptor": "()I",
+      "codeOffset": 3454672,
+      "instructionSha256": "29ad6d12b266340337171b57ed1cd0c9e768b71c3cd99a087c7660406b87f7d9"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalBalanceAdjust$GimbalAdjustTypeId;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3454732,
+      "instructionSha256": "91d1d80ab867fc962f850a2d38e4671e0d82310aadb16380810227ecda24cd38"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalBalanceAdjust$GimbalAdjustTypeId;",
+      "method": "<init>",
+      "descriptor": "(Ljava/lang/String; I I)V",
+      "codeOffset": 3454812,
+      "instructionSha256": "77513277e632f5753df533338c271c2233322872ddda9391ddc300b42d1e0787"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalBalanceAdjust$GimbalAdjustTypeId;",
+      "method": "_equals",
+      "descriptor": "(I)Z",
+      "codeOffset": 3454980,
+      "instructionSha256": "568fb21312a1944fed01c9808b91708d0c368054963a3be407466625b44ae9cd"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalBalanceAdjust$GimbalAdjustTypeId;",
+      "method": "find",
+      "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalBalanceAdjust$GimbalAdjustTypeId;",
+      "codeOffset": 3454840,
+      "instructionSha256": "e45fafe158b3178c55c3429a7b9a20fbf2760e3188f394e7aff1d82e0aa9f085"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalBalanceAdjust$GimbalAdjustTypeId;",
+      "method": "value",
+      "descriptor": "()I",
+      "codeOffset": 3455012,
+      "instructionSha256": "9662b50f78e554a5d0a6c2ed4cb66b0bce71601a8598a1fd76f3652752ee23cb"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalBalanceAdjust;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "codeOffset": 4856908,
+      "instructionSha256": "20b19993098dcc58f25a499e08c6c24946fc39bc2fcc929f0911519d944f68f9"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalBalanceAdjust;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 4857044,
+      "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalBalanceAdjust;",
+      "method": "getInstance",
+      "descriptor": "()Ldji/midware/data/model/P3/DataGimbalBalanceAdjust;",
+      "codeOffset": 4856932,
+      "instructionSha256": "e49ae0c3c1bccad3bbb2fef6389fc2eb80885fba6fac552e87c3e802bb095a58"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalBalanceAdjust;",
+      "method": "setGimbalAdjustRequest",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalBalanceAdjust$GimbalAdjustRequest;)Ldji/midware/data/model/P3/DataGimbalBalanceAdjust;",
+      "codeOffset": 4857064,
+      "instructionSha256": "bc33995ebba41634aae96503d3f5ab7179572849ce36714554e42b5d4445dcde"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalBalanceAdjust;",
+      "method": "setSendData",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalBalanceAdjust$GimbalAdjustTypeId; I [B)V",
+      "codeOffset": 4856960,
+      "instructionSha256": "39d82542f9d5174a77cc113d77268c96f8dd93fb6877f29093127fc6f9acc004"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalBalanceAdjust;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4857116,
+      "instructionSha256": "6b4a2bd4f0d111caae6f2943adb9b9193c3f5444631361daf81eb444a4eb2c1e"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo$GimbalBalanceAdjustAdvice;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3461628,
+      "instructionSha256": "3e79ca1a30c974d7166304df7584489a94857ca01490acd2f6e98b02daad29eb"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo$GimbalBalanceAdjustAdvice;",
+      "method": "<init>",
+      "descriptor": "(Ljava/lang/String; I I)V",
+      "codeOffset": 3461964,
+      "instructionSha256": "e425933faf228f2b12289785e7db37b2495bda62b5d7d473b47c72528679e955"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo$GimbalBalanceAdjustAdvice;",
+      "method": "_equals",
+      "descriptor": "(I)Z",
+      "codeOffset": 3462132,
+      "instructionSha256": "99f74adf0e1572a4a46ae20b1b616b80253d4d4bbb4c4d3bba236d7b0c1b4278"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo$GimbalBalanceAdjustAdvice;",
+      "method": "find",
+      "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo$GimbalBalanceAdjustAdvice;",
+      "codeOffset": 3461992,
+      "instructionSha256": "41519930629ee25f71e9130845758241108b4d9a462dc25a4ea373d3800cb84c"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo$GimbalBalanceAdjustAdvice;",
+      "method": "value",
+      "descriptor": "()I",
+      "codeOffset": 3462164,
+      "instructionSha256": "9bf54258a6d910163f0279a3db59a954b8b3906e1efc288b27f946a4a6f4f9ac"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo$GimbalTestResult;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3462232,
+      "instructionSha256": "4f4f6cbbf590f380642263ca23ad7c278f3aac4774e07e2e9335f8a73d498de8"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo$GimbalTestResult;",
+      "method": "<init>",
+      "descriptor": "(Ljava/lang/String; I I)V",
+      "codeOffset": 3462360,
+      "instructionSha256": "6209073ce3892b470217c8e22d98e333789b50bc89395a37f91b703164914273"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo$GimbalTestResult;",
+      "method": "_equals",
+      "descriptor": "(I)Z",
+      "codeOffset": 3462528,
+      "instructionSha256": "a2076ee686c9b0e7d30806a8ed5bab95b64e5d70afbe3d68814e827c5d9e84bc"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo$GimbalTestResult;",
+      "method": "find",
+      "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo$GimbalTestResult;",
+      "codeOffset": 3462388,
+      "instructionSha256": "b6f600dbd02b3ed957d48a2a5ca12f37e748678028ea7a3c3c2092a1c4eff61b"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo$GimbalTestResult;",
+      "method": "value",
+      "descriptor": "()I",
+      "codeOffset": 3462560,
+      "instructionSha256": "40404804387f6450d8a8c350750d66c74938ab491727c104f730eccc7d59734f"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo$GimbalTestStatus;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3462628,
+      "instructionSha256": "7ab4ca0e230b0bf84a34018207e7f86ccb8d4675ef61f7a4b91482f01c25d2ac"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo$GimbalTestStatus;",
+      "method": "<init>",
+      "descriptor": "(Ljava/lang/String; I I)V",
+      "codeOffset": 3462756,
+      "instructionSha256": "a6b3e00ef825c0a61776f82789cfdf98fded22d468db98ba662afe7fbc50a16e"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo$GimbalTestStatus;",
+      "method": "_equals",
+      "descriptor": "(I)Z",
+      "codeOffset": 3462924,
+      "instructionSha256": "c29da200c2dd85f981a9228f8be703fc4281d46635cf9052804bdf538bdccea6"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo$GimbalTestStatus;",
+      "method": "find",
+      "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo$GimbalTestStatus;",
+      "codeOffset": 3462784,
+      "instructionSha256": "5a64b18ead0c9e664153c4610dc7900794e40004042b65b21a0af64d6759228e"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo$GimbalTestStatus;",
+      "method": "value",
+      "descriptor": "()I",
+      "codeOffset": 3462956,
+      "instructionSha256": "7f2fd5044ecdef3e3fb5834311f00489c841be938f9a4ead9918eae45dba56c9"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 4863768,
+      "instructionSha256": "c45cac2051fccb24cf6b413c478c3796ec9273f2d6c47b81f3a2da508944b18c"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "codeOffset": 4863900,
+      "instructionSha256": "20b19993098dcc58f25a499e08c6c24946fc39bc2fcc929f0911519d944f68f9"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 4863952,
+      "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo;",
+      "method": "getGimbalTestStatus",
+      "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo$GimbalTestStatus;",
+      "codeOffset": 4863972,
+      "instructionSha256": "0a2e960f2da74616babed08c50f96705f5b415a29580c7773096766419928baf"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo;",
+      "method": "getInstance",
+      "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo;",
+      "codeOffset": 4863924,
+      "instructionSha256": "0a97c0b0e2b51ad352022ea113688a4a583894f1ef9ce417dd25ed309a36dd37"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo;",
+      "method": "getPitchAdjustAdvice",
+      "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo$GimbalBalanceAdjustAdvice;",
+      "codeOffset": 4864004,
+      "instructionSha256": "e6ddd01a8dc6d9b0fc9b8e256498e0ac17b4fb6e771f9af120ec3bc519daf298"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo;",
+      "method": "getPitchTestResult",
+      "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo$GimbalTestResult;",
+      "codeOffset": 4864036,
+      "instructionSha256": "a20a16f0ce5f47b3f7b97d9daea3aa33728e1add54a99f290894695995761eee"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo;",
+      "method": "getRollAdjustAdvice",
+      "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo$GimbalBalanceAdjustAdvice;",
+      "codeOffset": 4864068,
+      "instructionSha256": "9a1e397113c3ebeb3898265ac01320c1029959139514a05d0965e84566bc3ca9"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo;",
+      "method": "getRollTestResult",
+      "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo$GimbalTestResult;",
+      "codeOffset": 4864100,
+      "instructionSha256": "d7e88c8f08a78d2b0e203df0d9b90c2dadcc94c5102924db2567f3b1e878d794"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo;",
+      "method": "getYawAdjustAdvice",
+      "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo$GimbalBalanceAdjustAdvice;",
+      "codeOffset": 4864132,
+      "instructionSha256": "1f83483fc765653cd4d62be1fbc09deba97f0d8e30fbe3b85904b2210bd6447d"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo;",
+      "method": "getYawTestResult",
+      "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo$GimbalTestResult;",
+      "codeOffset": 4864164,
+      "instructionSha256": "f3109a2072963fbd66df8bd907a68356bd73f19cde73f4658083fad4b9d56574"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo;",
+      "method": "setPushRecData",
+      "descriptor": "([B)V",
+      "codeOffset": 4864196,
+      "instructionSha256": "450aa25356bd768365315b38210dfff0ea192440c9363dbde315e84b559fde3e"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/util/BytesUtil;",
+      "method": "getBinaryStrFromByte",
+      "descriptor": "(B)Ljava/lang/String;",
+      "codeOffset": 3781504,
+      "instructionSha256": "aee7cb2133b7d995074dc6322aab7f38438f102868bff4d3077f45780bf3400f"
+    }
+  ],
+  "directCallers": [
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/monitor/state/GimbalAdjustView$11;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "references": [
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalBalanceAdjust$GimbalAdjustRequest;",
+          "method": "values"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalBalanceAdjust$GimbalAdjustRequest;",
+          "method": "ordinal"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalBalanceAdjust$GimbalAdjustRequest;",
+          "method": "ordinal"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalBalanceAdjust$GimbalAdjustRequest;",
+          "method": "ordinal"
+        }
+      ]
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/monitor/state/GimbalAdjustView$4;",
+      "method": "onSuccess",
+      "descriptor": "(Ljava/lang/Object;)V",
+      "references": [
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalBalanceAdjust$GimbalAdjustRequest;",
+          "method": "ordinal"
+        }
+      ]
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/monitor/state/GimbalAdjustView;",
+      "method": "currentAxisBad",
+      "descriptor": "()Z",
+      "references": [
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo;",
+          "method": "getPitchTestResult"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo;",
+          "method": "getRollTestResult"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo;",
+          "method": "getYawTestResult"
+        }
+      ]
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/monitor/state/GimbalAdjustView;",
+      "method": "sendGimbalAdjustRequest",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalBalanceAdjust$GimbalAdjustRequest;)V",
+      "references": [
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalBalanceAdjust;",
+          "method": "getInstance"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalBalanceAdjust;",
+          "method": "setGimbalAdjustRequest"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalBalanceAdjust;",
+          "method": "start"
+        }
+      ]
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/monitor/state/GimbalAdjustView;",
+      "method": "showAxisNGDialog",
+      "descriptor": "()V",
+      "references": [
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo;",
+          "method": "getInstance"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo;",
+          "method": "getYawAdjustAdvice"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo;",
+          "method": "getInstance"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo;",
+          "method": "getRollAdjustAdvice"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo;",
+          "method": "getInstance"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo;",
+          "method": "getPitchAdjustAdvice"
+        }
+      ]
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/monitor/state/GimbalAdjustView;",
+      "method": "onEvent3MainThread",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo;)V",
+      "references": [
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo;",
+          "method": "getGimbalTestStatus"
+        }
+      ]
+    }
+  ],
+  "typedDeclarations": [
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/monitor/state/GimbalAdjustView;",
+      "method": "onEvent3MainThread",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo;)V"
+    }
+  ],
+  "sourceEnums": {
+    "requests": {
+      "PITCH_TEST": 1,
+      "PITCH_ADJUST": 2,
+      "ROLL_TEST": 4,
+      "ROLL_ADJUST": 8,
+      "YAW_TEST": 16,
+      "YAW_ADJUST": 32,
+      "STOP_ADJUST": 64,
+      "OTHER": 100
+    },
+    "types": {
+      "ADJUST_REQUEST": 0,
+      "OTHER": 100
+    },
+    "status": {
+      "TEST_NOT_IN_PROCESS": 0,
+      "TEST_IN_PROCESS": 1,
+      "TEST_FINISHED": 10,
+      "TEST_ERROR": 11
+    },
+    "results": {
+      "DEFAULT": 0,
+      "PERFECT": 1,
+      "OKAY": 10,
+      "BAD": 11
+    },
+    "advice": {
+      "NONE": 0,
+      "UP": 4,
+      "DOWN": 12,
+      "FORWARD": 16,
+      "BACK": 48,
+      "UP_FORWARD": 20,
+      "UP_BACK": 52,
+      "DOWN_FORWARD": 28,
+      "DOWN_BACK": 60,
+      "LEFT": 1,
+      "RIGHT": 3,
+      "OTHER": 100
+    }
+  },
+  "commandEnumArguments": [
+    "BalanceAdjust",
+    29,
+    64,
+    0,
+    1,
+    "Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo;"
+  ],
+  "sourceRequest": {
+    "command": "04:40",
+    "bodyHexByName": {
+      "PITCH_TEST": "000101",
+      "PITCH_ADJUST": "000102",
+      "ROLL_TEST": "000104",
+      "ROLL_ADJUST": "000108",
+      "YAW_TEST": "000110",
+      "YAW_ADJUST": "000120",
+      "STOP_ADJUST": "000140",
+      "OTHER": "000164"
+    },
+    "receiverId": 0,
+    "ackRequested": true,
+    "repeatTimes": 1,
+    "sendEnabledInSdk": false
+  },
+  "sourceReceive": {
+    "command": "04:40",
+    "sameCommandAsRequest": true,
+    "typeByte": 0,
+    "lengthByteReadButNotValidated": true,
+    "packedOffset": 2,
+    "sourceGuardOnlyLengthGreaterThanOne": true,
+    "completeCandidateBytes": 6,
+    "statusShift": 0,
+    "pitchShift": 2,
+    "rollShift": 4,
+    "yawShift": 6,
+    "bitPairsParsedAsDecimalStrings": true,
+    "adviceOffsets": {
+      "pitch": 3,
+      "roll": 4,
+      "yaw": 5
+    },
+    "staticSingletonFields": true,
+    "unknownTypeLeavesPriorFields": true,
+    "physicalCompletionVerified": false
+  },
+  "sourceUi": {
+    "timerMs": 20000,
+    "attachMayDisableMotors": true,
+    "stopOnErrorFinishedTimeout": true,
+    "detachSendsStop": false,
+    "exitView": "ConfigSettingBalanceTestHG701",
+    "modelNameOrAnalyticsLabelProvesHg724": false
+  },
+  "scope": {
+    "restoredBanks": [
+      0,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "unrestoredBanks": [
+      1,
+      7
+    ],
+    "reflectionNativeOrOtherClassLoadersRuledOut": false
+  },
+  "remaining": [
+    "No HG724 entry, target firmware acceptance or physical stop/completion evidence.",
+    "Business-body offsets are not independently confirmed target BLE payload offsets.",
+    "Do not inherit source short-body reads, decimal-pair names or static stale cache as target-device semantics.",
+    "Separate from HG724 balance_test/index37 through 04:0F/10."
+  ]
+}

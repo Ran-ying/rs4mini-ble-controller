@@ -747,3 +747,15 @@ if manifest.get('tutorialSdk'):
     assert tutorial_row['tutorialResearch']==manifest['tutorialResearch']
     step_row=next(row for row in manifest['commands'] if row['key']=='04:2C')
     assert step_row['requestCodec']=='unknown' and not step_row['implementation']
+
+if manifest.get('balanceAdjustResearch'):
+    proof=json.loads((root/manifest['balanceAdjustResearch']).read_text())
+    for flag in ['appCodeExecuted','liveUiExecuted','targetDeviceVerified','wholeProtocolRecovered','researchToolProvidesSdkInterface','sdkSendAdded','sdkReceiveAdded','hg724EntryEstablished']:
+        assert proof[flag] is False
+    assert len(proof['methods'])==61 and len(proof['directCallers'])==6
+    assert proof['sourceReceive']['sameCommandAsRequest'] and proof['sourceReceive']['bitPairsParsedAsDecimalStrings']
+    assert proof['sourceEnums']['status']['TEST_FINISHED']==10 and proof['sourceEnums']['status']['TEST_ERROR']==11
+    assert proof['sourceUi']['timerMs']==20000 and proof['sourceUi']['detachSendsStop'] is False
+    assert proof['sourceRequest']['sendEnabledInSdk'] is False
+    row=next(row for row in manifest['commands'] if row['key']=='04:40')
+    assert row['balanceAdjustResearch']==manifest['balanceAdjustResearch'] and row['requestCodec']=='unknown' and not row['implementation']

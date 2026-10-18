@@ -56,7 +56,7 @@
 | `04:36` | 手柄参数只读查询 | `implemented` / `candidate-structured` | `app-code-path` | 0.7.13空体/关联ACK，8个业务字段原值与bit0、尾字节保留；源继承路径不代表本机布局/效果或预设关系确认 |
 | `04:37` | 官方 App 枚举：SetTimelapseParams | `unknown` / `unknown` | `official-app-enum` | 另一版延时最多5点、mode=1两字节、总时长覆盖首点时长已核对；与25分开，HG724调用/字段单位/完成与停止未验收，未开放SDK发送 |
 | `04:38` | 官方 App 枚举：GetPushTimelapseStatus | not-applicable / candidate-structured | app-generic-code | 0.7.22显式来源下被动4字节候选、状态mask3与原值/尾字节保留；不发源自动ACK，本机布局/状态与物理完成未验收 |
-| `04:40` | 官方 App 枚举：BalanceAdjust | `unknown` / `unknown` | `official-app-enum` | 命令枚举已确认，具体方法/字段与HG724分支仍需逐项证据，不把枚举恢复等同请求体完成；未开放发送；HG724继承的startGimbalBalanceTest静态路径不直接调用此命令，而使用0F的命名参数；不能仅凭类名替代 |
+| `04:40` | 平衡调整请求/状态源候选 | unknown / unknown | official-app-enum | 61方法核对0001+请求值、状态十进制位对与建议；旧视图6个直接调用，HG724入口/包层/物理中止未确认，未开放SDK；与0F的balance_test不同 |
 | `04:6A` | HG702/HG724 自动调参请求（无ACK） | `implemented` / `not-applicable` | `app-code-path` | HG724继承HG702覆盖实现，00 01 bool请求且不请求ACK；仅声明本机发送，false请求的物理中止效果、运行中运动互斥和执行完成均未实机验收 |
 | `04:62` | 官方 App 枚举：SetTrack | `unknown` / `unknown` | `official-app-enum` | 通用最多10点、Math.round/低16位与1字节停止候选及Create UI调用已核对；型号可达性、参考系、相机隔离与停止/完成未验收，未开放SDK发送 |
 | `04:63` | 官方 App 枚举：SetPanorama | `unknown` / `unknown` | `official-app-enum` | 通用10字节混合宽度及Create UI调用已核对，含曝光/拍摄字段；型号、预览隔离和物理取消未验收，未开放SDK发送 |

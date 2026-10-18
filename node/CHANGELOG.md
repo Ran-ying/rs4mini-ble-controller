@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.7.30
+
+- Add source-qualified AUTO component calibration request 04:08 across device SDK ports, with fresh motor parameter35 preflight and a shared read/ACK deadline. Never enables motors.
+- Separate outer ACK from optional business part/status; preserve short/unknown bodies and isolate calibration caches. Cancellation stops host waiting; no firmware abort or physical completion claim.
+
 ## 0.7.29
 
 - Reject encrypted or invalid envelopes before App ACK, telemetry, calibration and legacy research business decoding across ports.

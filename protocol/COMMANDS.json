@@ -70,11 +70,18 @@
     {
       "key": "04:08",
       "name": "校准触发候选",
-      "requestCodec": "not-exposed",
-      "responseCodec": "unknown",
-      "targetEvidence": "other-model",
-      "implementation": [],
-      "remaining": "源码已定位普通GYRO05/高级AUTO00的04:08请求与独立响应域。显式选中项与ModelName都为HG724时，普通入口隐藏、高级入口直接显示且旁路IMU版本；两动作要求缓存MotorEnabled。界面条件不证明实时身份、实际挂载/地址/固件接受或中止；未开放当前SDK触发。 新对象默认地址/flags与条件加密已审计；实际会话策略及加密互操作仍未验收。 BLE源Main管理器、默认检查/事件开关及GATT路由已核对；基础表ACK返回码与业务偏移1/2、混合分发已核对，SDK门槛/收发仍待封装。",
+      "requestCodec": "implemented",
+      "responseCodec": "candidate-structured",
+      "targetEvidence": "app-code-path",
+      "implementation": [
+        "node/src/app-component-calibration.js",
+        "node/src/app-commands.js",
+        "python/rs4mini_sdk/app_component_calibration.py",
+        "python/rs4mini_sdk/app_commands.py",
+        "macos/RSBleDevice.m",
+        "macos/RSControlCore.m"
+      ],
+      "remaining": "0.7.30仅来源明确的HG724高级AUTO00请求及严格ACK/可不完整业务体；新鲜读取35反向bit0作为来源电机门槛，不自动启用。其他部件、实际会话加密/扩展表、本机接受、原子性、物理完成/中止仍未验收；不与system_calc/6A/30混用。",
       "officialAppAliases": [
         "AutoCalibration"
       ],
@@ -83,7 +90,8 @@
       "currentAppEntryResearch": "protocol/research/ronin-calibration-entry-evidence.json",
       "calibrationTransportEvidence": "protocol/research/ronin-calibration-transport-evidence.json",
       "bleRouteEvidence": "protocol/research/ronin-ble-route-evidence.json",
-      "calibrationAckEvidence": "protocol/research/ronin-calibration-ack-evidence.json"
+      "calibrationAckEvidence": "protocol/research/ronin-calibration-ack-evidence.json",
+      "motorGateEvidence": "protocol/research/ronin-component-motor-gate-evidence.json"
     },
     {
       "key": "04:0B",

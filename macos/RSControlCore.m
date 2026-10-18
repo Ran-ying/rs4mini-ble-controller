@@ -803,3 +803,15 @@ NSDictionary *RSDecodeAppSensorCalibrationNotification(NSDictionary *message) {
     const uint8_t *p=body.bytes;NSNumber *raw=@(p[1]);NSDictionary *states=@{@0:@"COMPLETE",@1:@"PROCESSING",@3:@"FAIL",@9:@"OTHER"};
     return @{@"kind":@"sensorCalibration",@"profile":@"ronin-2.2.2",@"commandId":@48,@"timestamp":@(NSDate.date.timeIntervalSince1970*1000),@"rawProgressValue":@(p[0]),@"rawStatus":raw,@"sourceStatus":states[raw]?:@"OTHER",@"sourceStatusKnown":@(states[raw]!=nil),@"bodyHex":[Hex(body) copy],@"trailingHex":[Hex([body subdataWithRange:NSMakeRange(2,body.length-2)]) copy],@"deviceVerified":@NO,@"modelLayoutVerified":@NO,@"progressUnitVerified":@NO,@"requestAssociationVerified":@NO,@"physicalCompletionVerified":@NO};
 }
+
+NSData *RSAppComponentCalibrationFrame(uint16_t sequence,NSString *sourcePart) {
+    if(![sourcePart isKindOfClass:NSString.class]||![sourcePart isEqualToString:@"AUTO"])return nil;
+    return CommandFrame(sequence,4,8,[NSData dataWithBytes:(uint8_t[]){0} length:1],0x40);
+}
+NSDictionary *RSDecodeAppComponentCalibrationReply(NSDictionary *message,uint8_t motorRaw,NSError **error) {
+    NSDictionary *ack=RSDecodeAppReply(message,8,nil,error);if(!ack)return nil;
+    NSData *payload=message[@"payload"],*body=[payload subdataWithRange:NSMakeRange(1,payload.length-1)];const uint8_t *p=body.bytes;BOOL complete=body.length>=2;id calibration=NSNull.null;
+    if(complete){NSArray *parts=@[@"AUTO",@"JOINT_ANGLE",@"HALL_LINEAR",@"JOINT_ANGLE_CAMERA",@"JOINT_ANGLE_FIXTURE",@"GYRO",@"ACCELERATION",@"COMPASS",@"IMU_AND_SENSOR",@"SHOCK_PLATE"],*states=@[@"FAIL",@"SUCCESS",@"PROCESSING"];
+        calibration=@{@"rawPart":@(p[0]),@"sourcePart":p[0]<parts.count?parts[p[0]]:@"AUTO",@"sourcePartKnown":@(p[0]<parts.count),@"rawStatus":@(p[1]),@"sourceStatus":p[1]<states.count?states[p[1]]:@"PROCESSING",@"sourceStatusKnown":@(p[1]<states.count),@"bodyHex":Hex(body),@"trailingHex":Hex([body subdataWithRange:NSMakeRange(2,body.length-2)])};}
+    NSMutableDictionary *result=[ack mutableCopy];[result addEntriesFromDictionary:@{@"requestedSourcePart":@"AUTO",@"motorPreflightRawValue":@(motorRaw),@"motorPreflightEnabled":@(!(motorRaw&1)),@"businessComplete":@(complete),@"calibration":calibration,@"responsePartMatchesRequested":complete?@(p[0]==0):NSNull.null,@"modelLayoutVerified":@NO,@"motorStatePhysicalVerified":@NO,@"businessRequestAssociationVerified":@NO,@"firmwareAbortVerified":@NO}];return [result copy];
+}

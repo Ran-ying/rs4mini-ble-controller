@@ -8,9 +8,9 @@ verification status changes.
 ## Objective and user decisions
 
 - Provide an unofficial, direct BLE controller for **DJI RS 4 Mini**, initially on macOS.
-- **Node.js is the authoritative implementation**; current package version is `0.7.29`.
+- **Node.js is the authoritative implementation**; current package version is `0.7.30`.
 - The user subsequently requested completion of all existing ports. Python is now
-  `0.7.29`, Web shares the JS core, and the native panel is `0.3.29`. Describe the
+  `0.7.30`, Web shares the JS core, and the native panel is `0.3.30`. Describe the
   documented feature differences; do not claim identical APIs or hardware proof.
 - After that delivery, the user requested the remaining **non-camera** capabilities
   under the same autonomous/offline conditions. Expansion work is in progress;
@@ -1070,3 +1070,14 @@ BLE路由研究验证（2026-10-18）：最终固定输入实际提取两次，3
 
 
 校准ACK研究验证（2026-10-18）：最终固定输入实际提取两次，20方法证据JSON逐字节一致。新增12项测试，研究Python3.8与3.12各391通过，覆盖全uint8部件/状态/非零返回码、短业务体、密文拒绝和key边界；统一离线Node247/Web24/Python222/原生669+250+3及类型/分层/构建通过，终态0。运行时目录与a3d4002一致，0.7.29/0.3.29安装包不变，无SDK发送/解密/高级新增或硬件/liveUI/厂商执行，全命令门槛false。
+
+
+## 0.7.30部件校准候选 / 原生0.3.30 build33
+
+显式App来源新增sendComponentCalibrationRequest(sourcePart=AUTO)，同一操作槽内停主机运动、读取35反向bit0门槛、发送04:08/00并等待严格关联ACK；禁用不自动开电机，读取与ACK共用截止时间，不重发/重放。返回码、可不完整的业务part/status和物理完成分开，不更新其他校准/传感器/姿态缓存，不提供固件中止或高级等待组合。见 docs/APP_COMPONENT_CALIBRATION.md（仓库根目录）。实际会话/设备/物理效果待验收，完整命令门槛false；未操作硬件或实时UI。
+
+
+0.7.30离线验收：电机门槛固定输入实际提取两次、3方法/资源记录证据逐字节一致；新增4研究测试，Python3.8/3.12研究各395通过。统一Node255/Web25/Python3.8共230、原生949核心+263假设备生命周期+3独立SDK及严格类型/分层/签名构建通过，终态0；Python3.12完整230另行通过。七组跨端契约覆盖ACK/业务失败/未知/短体/尾部，事务覆盖禁用、坏读数、加密、busy、源切换、取消前后、迟到响应和共享预算。未操作硬件/实时UI/厂商代码，全部命令门槛仍false。
+
+
+0.7.30实际安装交付验证：Node tarball隔离安装后255项与严格TypeScript消费者通过；wheel隔离安装后230项通过，app_commands/app_component_calibration/device/controller导入位置核对。Node102文件、wheel37模块、原生ZIP3文件与本次源码/签名构建逐字节一致，原生0.3.30/build33，未启动应用。没有npm发布或GitHub二进制Release。

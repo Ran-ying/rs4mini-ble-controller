@@ -117,3 +117,6 @@ NSDictionary *RSAppParameterSubscriptionSent(NSDictionary *selection);
 NSDictionary *RSDecodeAppExternalDeviceNotification(NSDictionary *message);
 
 NSDictionary *RSDecodeAppSensorCalibrationNotification(NSDictionary *message);
+
+NSData *RSAppComponentCalibrationFrame(uint16_t sequence,NSString *sourcePart);
+NSDictionary *RSDecodeAppComponentCalibrationReply(NSDictionary *message,uint8_t motorRaw,NSError **error);

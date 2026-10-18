@@ -1,3 +1,4 @@
+import {componentCalibrationPayload,componentCalibrationReply} from './app-component-calibration.js';
 import {sensorCalibrationNotification} from './app-sensor-calibration.js';
 import {externalDeviceNotification} from './app-external-device.js';
 import {parameterSubscriptionKeys,parameterSubscriptionSpec,parameterSubscriptionFrame,parameterSubscriptionSent} from './app-parameter-subscription.js';
@@ -85,6 +86,21 @@ export class AppCommands {
     const spec=programStatusRequestSpec(options.program);
     const response=await this.owner.experimental._queryPayloadCommand('App single program status request',[4,0x6b],spec.payload,options.timeoutMs??3000);
     return programStatusRequestReply(response,spec.requestedProgram);
+  }
+  async sendComponentCalibrationRequest(options={}) {
+    optionsOnly(options,['sourcePart','timeoutMs']);this._requireProfile();
+    const payload=componentCalibrationPayload(options.sourcePart),timeoutMs=options.timeoutMs??3000;
+    if(!Number.isFinite(timeoutMs)||timeoutMs<=0||timeoutMs>60000)throw new RangeError('timeoutMs must be >0..60000');
+    return this.owner._run('sendComponentCalibrationRequest',async operation=>{
+      await this.owner._stop();check(operation.controller.signal);
+      const deadline=now()+timeoutMs,remaining=()=>{const left=deadline-now();if(left<=0)throw failure('RS4MINI_RESPONSE_TIMEOUT','Component calibration transaction deadline expired');return left;};
+      const parameters=[{index:35,size:1}],context={signal:operation.controller.signal,epoch:this.owner.motionEpoch};
+      const read=await this.owner.experimental._queryPayloadCommand('Component calibration motor preflight',[4,16],parameterRequest(parameters),remaining(),context);
+      const before=decodeSettings(parameterReply(read,parameters),'motor');check(operation.controller.signal);
+      if(!before.settings.enabled)throw failure('RS4MINI_MOTOR_DISABLED','Source MotorEnabled precondition is false; no calibration sent');
+      const response=await this.owner.experimental._queryPayloadCommand('Component calibration AUTO',[4,8],payload,remaining(),context);
+      return componentCalibrationReply(response,before.rawValue);
+    },false);
   }
   async sendFineTuneRequest(options={}) {
     optionsOnly(options,['axis','adjustmentDegrees','timeoutMs']);this._requireProfile();

@@ -1,3 +1,4 @@
+from .app_component_calibration import component_calibration_payload,component_calibration_reply
 from .app_sensor_calibration import sensor_calibration_notification
 from .app_external_device import external_device_notification
 from .app_parameter_subscription import parameter_subscription_keys,parameter_subscription_spec,parameter_subscription_frame,parameter_subscription_sent
@@ -150,6 +151,29 @@ class AppCommands:
         return program_status_request_reply(response,spec['requestedProgram'])
 
     send_program_status_request = sendProgramStatusRequest
+
+    async def sendComponentCalibrationRequest(self, *, sourcePart, timeoutMs=3000):
+        self._require_profile()
+        payload=component_calibration_payload(sourcePart)
+        _duration(timeoutMs,'timeoutMs',False)
+        async def work(operation):
+            await self.owner._halt()
+            self.owner._check(operation)
+            deadline=time.monotonic()+timeoutMs/1000
+            def remaining():
+                left=(deadline-time.monotonic())*1000
+                if left<=0:raise RS4MiniError('RS4MINI_RESPONSE_TIMEOUT','Component calibration transaction deadline expired')
+                return left
+            parameters=[dict(index=35,size=1)]
+            read=await self.owner.experimental._query_payload_command('Component calibration motor preflight',(4,16),parameter_request(parameters),remaining(),external_operation=operation,epoch=self.owner._epoch)
+            before=decode_settings(parameter_reply(read,parameters),'motor')
+            self.owner._check(operation)
+            if not before['settings']['enabled']:raise RS4MiniError('RS4MINI_MOTOR_DISABLED','Source MotorEnabled precondition is false; no calibration sent')
+            response=await self.owner.experimental._query_payload_command('Component calibration AUTO',(4,8),payload,remaining(),external_operation=operation,epoch=self.owner._epoch)
+            return component_calibration_reply(response,before['rawValue'])
+        return await self.owner._run('sendComponentCalibrationRequest',work,False)
+
+    send_component_calibration_request=sendComponentCalibrationRequest
 
     async def sendFineTuneRequest(self, *, axis, adjustmentDegrees, timeoutMs=3000):
         self._require_profile()

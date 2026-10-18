@@ -1,0 +1,131 @@
+[
+  {
+    "name": "success",
+    "payloadHex": "000001aa",
+    "expected": {
+      "businessComplete": true,
+      "requestedSourcePart": "AUTO",
+      "motorPreflightRawValue": 128,
+      "motorPreflightEnabled": true,
+      "responsePartMatchesRequested": true,
+      "calibration": {
+        "rawPart": 0,
+        "sourcePart": "AUTO",
+        "sourcePartKnown": true,
+        "rawStatus": 1,
+        "sourceStatus": "SUCCESS",
+        "sourceStatusKnown": true,
+        "bodyHex": "0001aa",
+        "trailingHex": "aa"
+      }
+    }
+  },
+  {
+    "name": "business-fail",
+    "payloadHex": "000000",
+    "expected": {
+      "businessComplete": true,
+      "requestedSourcePart": "AUTO",
+      "motorPreflightRawValue": 128,
+      "motorPreflightEnabled": true,
+      "responsePartMatchesRequested": true,
+      "calibration": {
+        "rawPart": 0,
+        "sourcePart": "AUTO",
+        "sourcePartKnown": true,
+        "rawStatus": 0,
+        "sourceStatus": "FAIL",
+        "sourceStatusKnown": true,
+        "bodyHex": "0000",
+        "trailingHex": ""
+      }
+    }
+  },
+  {
+    "name": "processing",
+    "payloadHex": "000002",
+    "expected": {
+      "businessComplete": true,
+      "requestedSourcePart": "AUTO",
+      "motorPreflightRawValue": 128,
+      "motorPreflightEnabled": true,
+      "responsePartMatchesRequested": true,
+      "calibration": {
+        "rawPart": 0,
+        "sourcePart": "AUTO",
+        "sourcePartKnown": true,
+        "rawStatus": 2,
+        "sourceStatus": "PROCESSING",
+        "sourceStatusKnown": true,
+        "bodyHex": "0002",
+        "trailingHex": ""
+      }
+    }
+  },
+  {
+    "name": "other-part",
+    "payloadHex": "000501",
+    "expected": {
+      "businessComplete": true,
+      "requestedSourcePart": "AUTO",
+      "motorPreflightRawValue": 128,
+      "motorPreflightEnabled": true,
+      "responsePartMatchesRequested": false,
+      "calibration": {
+        "rawPart": 5,
+        "sourcePart": "GYRO",
+        "sourcePartKnown": true,
+        "rawStatus": 1,
+        "sourceStatus": "SUCCESS",
+        "sourceStatusKnown": true,
+        "bodyHex": "0501",
+        "trailingHex": ""
+      }
+    }
+  },
+  {
+    "name": "unknown",
+    "payloadHex": "00ffff",
+    "expected": {
+      "businessComplete": true,
+      "requestedSourcePart": "AUTO",
+      "motorPreflightRawValue": 128,
+      "motorPreflightEnabled": true,
+      "responsePartMatchesRequested": false,
+      "calibration": {
+        "rawPart": 255,
+        "sourcePart": "AUTO",
+        "sourcePartKnown": false,
+        "rawStatus": 255,
+        "sourceStatus": "PROCESSING",
+        "sourceStatusKnown": false,
+        "bodyHex": "ffff",
+        "trailingHex": ""
+      }
+    }
+  },
+  {
+    "name": "ack-only",
+    "payloadHex": "00",
+    "expected": {
+      "businessComplete": false,
+      "requestedSourcePart": "AUTO",
+      "motorPreflightRawValue": 128,
+      "motorPreflightEnabled": true,
+      "responsePartMatchesRequested": null,
+      "calibration": null
+    }
+  },
+  {
+    "name": "one-business-byte",
+    "payloadHex": "0005",
+    "expected": {
+      "businessComplete": false,
+      "requestedSourcePart": "AUTO",
+      "motorPreflightRawValue": 128,
+      "motorPreflightEnabled": true,
+      "responsePartMatchesRequested": null,
+      "calibration": null
+    }
+  }
+]

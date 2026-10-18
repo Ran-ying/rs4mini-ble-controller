@@ -285,3 +285,7 @@ function sensorCalibrationTypes(gimbal:RS4Mini){
  gimbal.appCommands.sensorCalibrationStatus=null;
  gimbal.onAppStatus=s=>{if(s.kind==='sensorCalibration'){const known:boolean=s.sourceStatusKnown;void known;}};
 }
+
+async function componentCalibrationTypes(gimbal: RS4Mini) { const reply=await gimbal.appCommands.sendComponentCalibrationRequest({sourcePart:"AUTO"}); const complete:boolean=reply.businessComplete; const part:number|undefined=reply.calibration?.rawPart; void complete;void part;
+// @ts-expect-error Only the source-qualified AUTO action is available.
+await gimbal.appCommands.sendComponentCalibrationRequest({sourcePart:"GYRO"}); }

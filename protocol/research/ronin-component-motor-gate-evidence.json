@@ -1,0 +1,50 @@
+{
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "bankSha256": "4fdbd74a05df63d72a0feb1c907d9395426ec3cdb5d6aeb45e3836d856d66654",
+  "methods": [
+    {
+      "className": "Ldji/common/gimbal/Ronin2SubscribeIMPL;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "codeOffset": 4477776,
+      "instructionSha256": "55e9e64e2be16daa7356c2b2bbdce8c6059ca5c23b42e4fb871aec1e69619a2a"
+    },
+    {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalRonin2Abstraction;",
+      "method": "onEvent3BackgroundThread",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalGetUserParams;)V",
+      "codeOffset": 6509328,
+      "instructionSha256": "a134a94955e57310e7515f7923b5ae2317f0648d56ca2221153f4e9d57b24fa1"
+    },
+    {
+      "className": "Ldji/midware/ronin2/Ronin2GimbalParamsManager$BaseCommand;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3728816,
+      "instructionSha256": "38bb193999c192890ce98dda452e438e6f5a880db1faf8ab5587320f113b1682"
+    }
+  ],
+  "resourceSha256": "3391283785f9ff3bd0d449344bd1243f822a141b10b76751ad82205b1356db68",
+  "parameter": {
+    "name": "motor_special_cmd",
+    "index": 35,
+    "size": 1,
+    "typeID": 0,
+    "minValue": 0,
+    "maxValue": 255
+  },
+  "sourceCache": {
+    "key": "MotorEnabled",
+    "enabledWhenBit0IsZero": true,
+    "producer": "DataGimbalGetUserParams event -> parameter manager -> cache publication"
+  },
+  "sdkPreflight": {
+    "freshReadIndex": 35,
+    "size": 1,
+    "autoEnableMotors": false,
+    "atomicWithFirmwareCalibration": false
+  },
+  "actualMotorPhysicalStateVerified": false,
+  "hardwareTested": false,
+  "vendorCodeExecuted": false
+}

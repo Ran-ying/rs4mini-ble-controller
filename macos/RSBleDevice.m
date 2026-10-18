@@ -163,8 +163,15 @@ static BOOL Matches(NSString *name) {
             NSError *appError = nil;
             NSDictionary *result = nil;
             if(self.appCommandId==0x6b && ([message[@"flags"] intValue]&7)) appError=RSAppError(@"RS4MINI_PROTOCOL_ERROR",@"Unencrypted App response required",nil);
+            else if(self.appCommandId==8) result=RSDecodeAppComponentCalibrationReply(message,self.appSettingsBefore.unsignedCharValue,&appError);
             else result = self.appCommandId == 0x6e ? RSDecodeAppCalibrationReply(message, &appError) : RSDecodeAppReply(message, self.appCommandId, self.appParameters, &appError);
             if (appError) [self failApp:appError];
+            else if ([self.appSettingsKind isEqualToString:@"componentCalibration"] && self.appCommandId==16) {
+                NSDictionary *before=RSDecodeAppSettings(result,@"motor");
+                if(![before[@"settings"][@"enabled"] boolValue])[self failApp:RSAppError(@"RS4MINI_MOTOR_DISABLED",@"Source MotorEnabled precondition is false; no calibration sent",nil)];
+                else if(Clock()>=self.deviceQueryDeadline)[self failApp:RSAppError(@"RS4MINI_RESPONSE_TIMEOUT",@"Component calibration transaction deadline expired",nil)];
+                else {self.appSettingsBefore=before[@"rawValue"];self.appCommandId=8;self.appParameters=nil;self.deviceQuerySequence=[self reserveSequence];[self writeFrame:RSAppComponentCalibrationFrame(self.deviceQuerySequence,@"AUTO")];}
+            }
             else if (self.appSettingsPatch && self.appCommandId == 0x10) {
                 NSDictionary *before = RSDecodeAppSettings(result, self.appSettingsKind);
                 NSData *candidate = RSAppSettingsFrame(0, self.appSettingsKind, self.appSettingsPatch, before[@"rawValue"]);
@@ -456,6 +463,12 @@ static BOOL Matches(NSString *name) {
         NSMutableDictionary *result=[reply mutableCopy]; if (result) result[@"requestedValue"]=@64;
         if (completion) completion(result?[result copy]:nil,error);
     }];
+}
+- (void)sendComponentCalibrationRequest:(NSDictionary *)spec timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
+    if(![spec isKindOfClass:NSDictionary.class]||spec.count!=1||!RSAppComponentCalibrationFrame(0,spec[@"sourcePart"])) {
+        if(completion)dispatch_async(dispatch_get_main_queue(), ^{completion(nil,RSAppError(@"RS4MINI_INVALID_ARGUMENT",@"Explicit sourcePart AUTO required",nil));});return;
+    }
+    [self startAppCommand:16 parameters:@[@{@"index":@35,@"size":@1}] mode:nil settingsKind:@"componentCalibration" settingsPatch:nil timeoutMs:timeoutMs completion:completion];
 }
 - (void)sendFineTuneRequest:(NSDictionary *)spec timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
     NSDictionary *request=RSAppFineTuneSpec(spec);

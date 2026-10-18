@@ -1,0 +1,442 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "bankSha256": {
+    "0": "76002e76e02e1306ad197c4af127975d573999de174e5a9e44cc6f840196f621",
+    "2": "de69497b77de530d0d559646dc6d3fb24569e2ba8ba9502216f3d6c9fd6f3bf8",
+    "3": "bb50b39865520f55e97116ae1903bda3545b01c2fb7e2aba67a979dc264a9854",
+    "4": "2d3ff70fb84eb02ac75949ca6e7d5cc849a7f9ef55029fd168890c6dbccb1d12",
+    "5": "4fdbd74a05df63d72a0feb1c907d9395426ec3cdb5d6aeb45e3836d856d66654",
+    "6": "057f13084cf969ffadcfa2150d1b3ae3ed8a7822c95fb54158781764c9156e2f"
+  },
+  "appCodeExecuted": false,
+  "liveUiExecuted": false,
+  "targetDeviceVerified": false,
+  "modelLayoutVerified": false,
+  "wholeProtocolRecovered": false,
+  "researchToolProvidesSdkInterface": false,
+  "sdkSendAdded": false,
+  "sdkReceiveAdded": false,
+  "methods": [
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "codeOffset": 4870036,
+      "instructionSha256": "20b19993098dcc58f25a499e08c6c24946fc39bc2fcc929f0911519d944f68f9"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData;",
+      "method": "convertTwoSignInt",
+      "descriptor": "(B B)I",
+      "codeOffset": 4870060,
+      "instructionSha256": "b9acd3987799fd6d6ffb7f87f85e55a52473c43be750b5b31858bab8e8df0128"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData;",
+      "method": "getInstance",
+      "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData;",
+      "codeOffset": 4870088,
+      "instructionSha256": "98cc240a26dd7912c484c0e9aa7195f4941db55ec42beaee42d528ba001ee5f2"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData;",
+      "method": "resetValue",
+      "descriptor": "()V",
+      "codeOffset": 4870116,
+      "instructionSha256": "83449f428b22a69e87e4c29fe06ec2b036ce3c76f583b38a921afe2951b0037a"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 4870148,
+      "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData;",
+      "method": "getPitchSpeed",
+      "descriptor": "()I",
+      "codeOffset": 4870168,
+      "instructionSha256": "100566087203035bc61203de6bb469eb3a9718f4c0b686bab8ce64f6b10a24b8"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData;",
+      "method": "getRollSpeed",
+      "descriptor": "()I",
+      "codeOffset": 4870192,
+      "instructionSha256": "37866d9a154262a8d483f585092ed39b1375d450383678ac2427ee168ce8daac"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData;",
+      "method": "getSpeedControlType",
+      "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData$SpeedControlType;",
+      "codeOffset": 4870216,
+      "instructionSha256": "990ae7a966a8dee7499524cb22420b9e43777f2f4acff2dd3e0b813aaa98b920"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData;",
+      "method": "getYawSpeed",
+      "descriptor": "()I",
+      "codeOffset": 4870248,
+      "instructionSha256": "08f9a6a2be2500b6839c6e3d8b6b86a68f20e1bdaeb06d596c85e1a56773af0f"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData;",
+      "method": "setPushRecData",
+      "descriptor": "([B)V",
+      "codeOffset": 4870272,
+      "instructionSha256": "7102b0da156a3e4ae7d8e60dbe62c03732037419617083772cfedf24251e03d9"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4870536,
+      "instructionSha256": "bdbee2d3cbb106ba67e118f59ecac33da297a53f1921d0ae7c779edf54152a94"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData$DataType;",
+      "method": "$values",
+      "descriptor": "()[Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData$DataType;",
+      "codeOffset": 3463496,
+      "instructionSha256": "54523be8da7f14560a67159b04eec06ede3e8442f838d75387f0123dfdb3c3fd"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData$DataType;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3463572,
+      "instructionSha256": "aad94c2dd789628ff07ca5aca66ce8c2a57a8a687fc6a21859e39424717fec76"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData$DataType;",
+      "method": "<init>",
+      "descriptor": "(Ljava/lang/String; I I)V",
+      "codeOffset": 3463880,
+      "instructionSha256": "d44d988a7e33a3274572b9cea6601954dca363e30d09fb25f45b5ce564d82f04"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData$DataType;",
+      "method": "find",
+      "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData$DataType;",
+      "codeOffset": 3463908,
+      "instructionSha256": "368edcb734d7fcf6b85264514ef756908a3ef48f8b2674cb3e7b077018340b10"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData$DataType;",
+      "method": "valueOf",
+      "descriptor": "(Ljava/lang/String;)Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData$DataType;",
+      "codeOffset": 3463976,
+      "instructionSha256": "27d922ad15ecfeb982abee165abd939dc3ff1ba31bd60f6f77be3700c94eb9b7"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData$DataType;",
+      "method": "values",
+      "descriptor": "()[Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData$DataType;",
+      "codeOffset": 3464012,
+      "instructionSha256": "8c4eb6a9fc59fcb452ad3f31837ba64bca3e3f28e9f7c3a63b62a3bad0a205ee"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData$DataType;",
+      "method": "_equals",
+      "descriptor": "(I)Z",
+      "codeOffset": 3464048,
+      "instructionSha256": "6fca54e3320fb881c1ef5958626b0a6c6367f6e25698347b88a65526faade4b9"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData$DataType;",
+      "method": "value",
+      "descriptor": "()I",
+      "codeOffset": 3464080,
+      "instructionSha256": "5e423358c0259cf15494603acd60043bc2e1ad27eb3d2077dee44a8c98953e26"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData$SpeedControlType;",
+      "method": "$values",
+      "descriptor": "()[Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData$SpeedControlType;",
+      "codeOffset": 3464184,
+      "instructionSha256": "aea571ef1aa7c29c7076fd84ca3fbdcd4aa6aa4117ae4a51e2bb45c1a4f9a8f9"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData$SpeedControlType;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3464228,
+      "instructionSha256": "5ffe3df1a8a42f00f87a47c93688082e3bfd5622b3a842f695fec9067239a030"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData$SpeedControlType;",
+      "method": "<init>",
+      "descriptor": "(Ljava/lang/String; I I)V",
+      "codeOffset": 3464348,
+      "instructionSha256": "fba1209c5ca29b99f79b4f92ad9ee350df8f66ffda395431afb3cd691d1b0434"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData$SpeedControlType;",
+      "method": "find",
+      "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData$SpeedControlType;",
+      "codeOffset": 3464376,
+      "instructionSha256": "caf3d1e3af725cb9572f5223b8b80333aa8a49f9769d4fd3c4cd5c857262eb9d"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData$SpeedControlType;",
+      "method": "valueOf",
+      "descriptor": "(Ljava/lang/String;)Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData$SpeedControlType;",
+      "codeOffset": 3464444,
+      "instructionSha256": "21e2ab264f80b42448a0344f95f71c7d67e16dbc169d904f8982baaaddf493db"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData$SpeedControlType;",
+      "method": "values",
+      "descriptor": "()[Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData$SpeedControlType;",
+      "codeOffset": 3464480,
+      "instructionSha256": "e2f57981e98d51d46c038dfff6062d5197f966ae57af4b1c38c46f6382d1fc2d"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData$SpeedControlType;",
+      "method": "_equals",
+      "descriptor": "(I)Z",
+      "codeOffset": 3464516,
+      "instructionSha256": "eacc34abb5c3f2e68c1843874bd03f81142313601408faf651d49ac7467e7f93"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData$SpeedControlType;",
+      "method": "value",
+      "descriptor": "()I",
+      "codeOffset": 3464548,
+      "instructionSha256": "e5c411bfe7571d878205ca765a31ba7710fa32f4b7758d3d4230d76dce8638fa"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData$InstanceHolder;",
+      "method": "-$$Nest$sfgetsINSTANCE",
+      "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData;",
+      "codeOffset": 3464104,
+      "instructionSha256": "2c6c87e42e438ae809b4d477a4da06592e8bb4110c56bce412b9dc2788bb5ad1"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData$InstanceHolder;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3464128,
+      "instructionSha256": "044333bc3b5b28893657dc9ca2b496dacb188dcbb2a888d895decd8648a4c537"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData$InstanceHolder;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "codeOffset": 3464160,
+      "instructionSha256": "403bcdf0aaae1ae7aee5612482bc340c0994da4d402563efd926090501cdbc40"
+    },
+    {
+      "className": "Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 4652020,
+      "instructionSha256": "89d7e5d4c317f54eb541d186eff2e608a50e62f9387974ef9c74a54543aa6609"
+    },
+    {
+      "className": "Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+      "method": "isNeedCcode",
+      "descriptor": "()Z",
+      "codeOffset": 4653768,
+      "instructionSha256": "cdbefba08f513c5881e2d27c6f2904e1312e1949ce93078fcc2f20c11153eebe"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "setPushRecData",
+      "descriptor": "([B)V",
+      "codeOffset": 3352480,
+      "instructionSha256": "23cb6a1baab1f2b12f4ae5da131785e6792d83970eb43826c9d8e1b6462faf23"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "setPushRecPack",
+      "descriptor": "(Ldji/midware/data/packages/P3/Pack;)V",
+      "codeOffset": 3352564,
+      "instructionSha256": "80f0bb9c5884940e7c2600d2e6f22c5287da3c37061590ec9049cce5b53d03ee"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "setRecData",
+      "descriptor": "([B)V",
+      "codeOffset": 3352748,
+      "instructionSha256": "a6675a47286fe5b2725b26418463a503442cf7fbb89df865e1303c316ccc4b64"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "post",
+      "descriptor": "()V",
+      "codeOffset": 3351644,
+      "instructionSha256": "81cc431f526de1f7b70c5bc1a656ee2de78409afc08335786fe99b6e0de0bda1"
+    }
+  ],
+  "directCallers": [
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/follow/TrackingPresenter;",
+      "method": "runGimbalJniCtr",
+      "descriptor": "()V",
+      "instructionSha256": "36e2cfc6852149a7e412d03d0d5ac5856e29289ea0b421f79ff540524b9c4d47",
+      "targets": [
+        "getInstance()Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData;",
+        "getYawSpeed()I",
+        "getInstance()Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData;",
+        "getPitchSpeed()I"
+      ]
+    }
+  ],
+  "typedMethodDeclarations": [],
+  "sourceTypes": [
+    {
+      "name": "CameraFanPWM",
+      "ordinal": 0,
+      "sourceId": 0
+    },
+    {
+      "name": "CameraLensDust",
+      "ordinal": 1,
+      "sourceId": 1
+    },
+    {
+      "name": "SpeedControl",
+      "ordinal": 2,
+      "sourceId": 2
+    },
+    {
+      "name": "BaseFloorHeight",
+      "ordinal": 3,
+      "sourceId": 3
+    },
+    {
+      "name": "LocationCtrGimbal",
+      "ordinal": 4,
+      "sourceId": 4
+    },
+    {
+      "name": "AttitudeCtrGimbal",
+      "ordinal": 5,
+      "sourceId": 5
+    },
+    {
+      "name": "USBControl",
+      "ordinal": 6,
+      "sourceId": 6
+    },
+    {
+      "name": "CameraLensSetups",
+      "ordinal": 7,
+      "sourceId": 7
+    },
+    {
+      "name": "MouseValue",
+      "ordinal": 8,
+      "sourceId": 8
+    },
+    {
+      "name": "ReceiveVersion",
+      "ordinal": 9,
+      "sourceId": 9
+    },
+    {
+      "name": "CameraStatus",
+      "ordinal": 10,
+      "sourceId": 10
+    },
+    {
+      "name": "Other",
+      "ordinal": 11,
+      "sourceId": 255
+    }
+  ],
+  "sourceSpeedControlTypes": [
+    {
+      "name": "CommonStick",
+      "ordinal": 0,
+      "sourceId": 1
+    },
+    {
+      "name": "RockWheel",
+      "ordinal": 1,
+      "sourceId": 2
+    },
+    {
+      "name": "Sensor",
+      "ordinal": 2,
+      "sourceId": 3
+    },
+    {
+      "name": "Other",
+      "ordinal": 3,
+      "sourceId": 7
+    }
+  ],
+  "basePolicy": {
+    "name": "GetPushExternalDeviceData",
+    "commandId": 105,
+    "isBlock": false,
+    "isMix": true,
+    "modelClass": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData;"
+  },
+  "request": {
+    "commandSet": 4,
+    "commandId": 105,
+    "sender": "APP",
+    "receiver": "GIMBAL",
+    "ackRequested": false,
+    "encrypted": false,
+    "sourceRepeatTimes": 2,
+    "sourceTimeoutMs": 1000,
+    "receiverIdExplicitlyAssigned": false,
+    "doPackAssignsBody": false,
+    "emptyBodyInActualTransportVerified": false
+  },
+  "receive": {
+    "recordOffset": 0,
+    "header": [
+      "signedTag",
+      "signedLength"
+    ],
+    "speedControlTag": 2,
+    "minimumSpeedControlPayloadLength": 7,
+    "layout": [
+      "controlType:uint8",
+      "pitch:int16le",
+      "roll:int16le",
+      "yaw:int16le"
+    ],
+    "sourceUnitVerified": false,
+    "sourceReferenceFrameVerified": false,
+    "sourceCtrTypeMasked255": true,
+    "duplicateSpeedRecordLastWinsInSource": true,
+    "sourceRetainsPreviousFieldsWhenMissing": true,
+    "sourceNullOrLengthAtMostOneResetsOnlySpeeds": true,
+    "sourceResetClearsControlType": false,
+    "sourceSuperReceiveRunsBeforeFieldParsing": true,
+    "sourceBaseAckCcodePolicy": true,
+    "actualExtensionSelectionVerified": false
+  },
+  "scope": {
+    "restoredBanks": [
+      0,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "unrestoredBanks": [
+      1,
+      7
+    ],
+    "reflectionOrOtherClassLoadersRuledOut": false,
+    "cameraFeaturesImplemented": false,
+    "visionTrackingImplemented": false
+  },
+  "remaining": [
+    "Direct invoke scan does not rule out reflection, native code, unrecovered banks or other class loaders.",
+    "Source fields are external-device raw values, not verified angular velocity or RS4Mini attitude/joint feedback.",
+    "Do not copy stale singleton fields or malformed signed-length loops into SDK snapshots.",
+    "Source start and base command mapping do not prove HG724 business entry, actual routing, request-body transport or target notifications."
+  ]
+}

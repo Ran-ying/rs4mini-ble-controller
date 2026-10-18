@@ -239,3 +239,8 @@ Node/Web、Python 与原生已分别拆分；完整模块映射见 `ARCHITECTURE
 
 
 0.7.26新增[单次命名参数订阅请求](APP_PARAMETER_SUBSCRIPTION.md)：固定DB已加载/HG724静态分支、152命名键、CENTER/id7无ACK，仅一次请求。没有空集停止、后台刷新或重连重放；本机路由/通知/远端状态仍未验收，不改变完整命令及高级门槛。
+
+
+## 外设数据04:69源审计（运行时不变）
+
+固定六段36方法、12数据类型/4来源枚举，核对tag2的控制来源及三轴signed16原值、无ACK start、空doPack和基础双路分发。仅定位跟踪界面读取两轴的一个直接调用者，无HG724或物理单位/路由证据。源旧字段保留/短包只清速度与离线独立帧视图区分；未增加SDK收发、相机/视觉或高级功能。见[EXTERNAL_DEVICE.md](../tools/research/EXTERNAL_DEVICE.md)和protocol/research/ronin-external-device-evidence.json。运行时仍0.7.26/0.3.26，全部命令及高级门槛false，无硬件/实时UI/厂商执行。

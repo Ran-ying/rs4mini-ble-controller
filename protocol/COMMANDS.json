@@ -783,13 +783,14 @@
       "name": "官方 App 枚举：GetPushExternalDeviceData",
       "requestCodec": "unknown",
       "responseCodec": "unknown",
-      "targetEvidence": "official-app-enum",
+      "targetEvidence": "app-generic-code",
       "implementation": [],
-      "remaining": "命令枚举已确认；六段引用审计提供候选位置，不等于该命令实现方法/请求体或HG724调用已确认，字段与型号路径仍待逐项审计，未开放发送",
+      "remaining": "36方法及六段直接调用审计已核对无ACK的APP→GIMBAL start、空doPack与源TLV，SpeedControl/tag2含控制来源和Pitch/Roll/Yaw signed16原值；源单例保留/短包清速度语义分开。仅见TrackingPresenter读取两轴的直接调用，无HG724发送/通知布局、实际body/地址或物理单位证据，尚未接入SDK收发。",
       "officialAppAliases": [
         "GetPushExternalDeviceData"
       ],
-      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
+      "externalDeviceResearch": "protocol/research/ronin-external-device-evidence.json"
     },
     {
       "key": "04:57",
@@ -1159,5 +1160,6 @@
     "remoteSubscriptionStateVerified": false,
     "targetDeviceVerified": false,
     "fixtures": "node/test/fixtures/parameter-subscription.json"
-  }
+  },
+  "externalDeviceResearch": "protocol/research/ronin-external-device-evidence.json"
 }

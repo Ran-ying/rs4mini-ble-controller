@@ -55,8 +55,12 @@ for row in manifest['commands']:
     if row['targetEvidence'] == 'official-app-enum':
         assert row['requestCodec'] in {'unknown', 'not-exposed'} and not row['implementation'], row['key']
     if row['targetEvidence'] == 'app-generic-code':
-        assert row['key'] in {'04:24','04:57','04:27','04:33','04:38','04:64','04:6B','04:66'} and row['requestCodec'] == ('implemented' if row['key']=='04:6B' else 'not-applicable') and row['responseCodec'] == 'candidate-structured'
-        assert manifest['userPushSdk']['modelSpecificPathVerified'] is False and manifest['userPushSdk']['targetDeviceVerified'] is False
+        if row['key']=='04:69':
+            assert row['requestCodec']=='unknown' and row['responseCodec']=='unknown' and row['implementation']==[]
+            assert row['externalDeviceResearch']==manifest['externalDeviceResearch']
+        else:
+            assert row['key'] in {'04:24','04:57','04:27','04:33','04:38','04:64','04:6B','04:66'} and row['requestCodec'] == ('implemented' if row['key']=='04:6B' else 'not-applicable') and row['responseCodec'] == 'candidate-structured'
+            assert manifest['userPushSdk']['modelSpecificPathVerified'] is False and manifest['userPushSdk']['targetDeviceVerified'] is False
     if row.get('officialAppEvidence'):
         evidence_path = root / row['officialAppEvidence']
         evidence = json.loads(evidence_path.read_text())
@@ -664,3 +668,16 @@ if manifest.get('parameterSubscriptionSdk'):
     init=json.loads((root/manifest['subscriptionInitResearch']).read_text())
     assert init['runtimeInitializationOrderObserved'] is False and init['targetDeviceVerified'] is False
     assert len(init['methods'])==13 and len(init['directCapturedIdWriters'])==3
+
+if manifest.get('externalDeviceResearch'):
+    proof=json.loads((root/manifest['externalDeviceResearch']).read_text())
+    assert len(proof['methods'])==36 and len(proof['directCallers'])==1
+    assert proof['typedMethodDeclarations']==[]
+    assert proof['basePolicy']['commandId']==105 and proof['basePolicy']['isBlock'] is False and proof['basePolicy']['isMix'] is True
+    assert {r['name']:r['sourceId'] for r in proof['sourceSpeedControlTypes']}=={'CommonStick':1,'RockWheel':2,'Sensor':3,'Other':7}
+    assert proof['request']['ackRequested'] is False and proof['request']['doPackAssignsBody'] is False
+    assert proof['request']['emptyBodyInActualTransportVerified'] is False
+    assert proof['receive']['sourceResetClearsControlType'] is False
+    assert proof['receive']['sourceRetainsPreviousFieldsWhenMissing'] is True
+    for flag in ('appCodeExecuted','liveUiExecuted','targetDeviceVerified','modelLayoutVerified','wholeProtocolRecovered','researchToolProvidesSdkInterface','sdkSendAdded','sdkReceiveAdded'):
+        assert proof[flag] is False

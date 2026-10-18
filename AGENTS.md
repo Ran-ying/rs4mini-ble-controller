@@ -995,3 +995,11 @@ FollowModeSensitivity和GimbalControlState分别受isSupportStateSince4Gen控制
 0.7.26统一离线检查终态0：Node229/Web21/Python3.8及3.12各205、原生324核心+233生命周期+3独立SDK、研究319；类型/分层/三端目录投影及原生签名构建通过。专项覆盖发送前取消、已开始多段完整写后清理、busy、源切换阻止、写失败/超时及无重发；本机/通知/远端状态仍false。未执行硬件或实时UI。
 
 0.7.26交付包已隔离安装：Node tarball229项及严格TypeScript消费者通过，wheel205项通过且device/controller/app_commands/app_parameter_subscription导入位于隔离安装目录。Node92文件、wheel34模块与源码逐字节一致；原生ZIP3文件与签名构建一致（0.3.26/build29），未启动应用。没有发布npm或远程二进制Release。
+
+
+## 外设数据04:69源审计（运行时不变）
+
+固定六段36方法、12数据类型/4来源枚举，核对tag2的控制来源及三轴signed16原值、无ACK start、空doPack和基础双路分发。仅定位跟踪界面读取两轴的一个直接调用者，无HG724或物理单位/路由证据。源旧字段保留/短包只清速度与离线独立帧视图区分；未增加SDK收发、相机/视觉或高级功能。见[EXTERNAL_DEVICE.md](tools/research/EXTERNAL_DEVICE.md)和protocol/research/ronin-external-device-evidence.json。运行时仍0.7.26/0.3.26，全部命令及高级门槛false，无硬件/实时UI/厂商执行。
+
+
+04:69源研究验证（2026-10-18）：最终固定输入实际提取两次，36方法/1外部直接调用/0外部类型化声明证据JSON逐字节一致。11项新增研究测试通过，Python3.8/3.12研究各330项；统一离线Node229/Web21/Python205/原生324+233+3及类型/边界/构建通过。运行时/安装包仍0.7.26/0.3.26，没有新增SDK收发、相机/视觉/高级功能或硬件/liveUI/厂商执行，全命令门槛false。

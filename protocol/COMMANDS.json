@@ -323,7 +323,8 @@
       "responseCodec": "unknown",
       "targetEvidence": "none",
       "implementation": [],
-      "remaining": "是否通过本 BLE 链路提供及其协议尚未枚举；连接成功不证明设备管理命令已全覆盖"
+      "remaining": "是否通过本 BLE 链路提供及其协议尚未枚举；连接成功不证明设备管理命令已全覆盖；八段具名恢复后新增01段ActiveDeviceController/ActiveWebController对激活状态类的直接引用，尚未审计为HG724 BLE激活/绑定协议，不开放发送。",
+      "prefixNewCallers": "protocol/research/ronin-prefix-new-callers.json"
     },
     {
       "key": "04:07",
@@ -890,7 +891,8 @@
     "tools/research/ronin_subscription_catalog.py",
     "tools/research/ronin_balance_adjust.py",
     "tools/research/ronin_balance_entry.py",
-    "tools/research/ronin_code_slots.py"
+    "tools/research/ronin_code_slots.py",
+    "tools/research/ronin_prefix_restore.py"
   ],
   "modelIdentityResearch": "protocol/research/ronin-hg724-evidence.json",
   "codeRestorationResearch": "protocol/research/ronin-code-restoration-evidence.json",
@@ -1253,5 +1255,28 @@
   },
   "balanceAdjustResearch": "protocol/research/ronin-balance-adjust-evidence.json",
   "balanceEntryResearch": "protocol/research/ronin-balance-entry-evidence.json",
-  "codeSlotResearch": "protocol/research/ronin-code-slots-evidence.json"
+  "codeSlotResearch": "protocol/research/ronin-code-slots-evidence.json",
+  "prefixRestorationResearch": "protocol/research/ronin-prefix-restoration-evidence.json",
+  "prefixIndependentValidation": "protocol/research/ronin-prefix-independent-validation.json",
+  "prefixNewCallers": "protocol/research/ronin-prefix-new-callers.json",
+  "currentNamedDexResearch": {
+    "evidence": "protocol/research/ronin-prefix-restoration-evidence.json",
+    "banks": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "filePattern": "business-XX-prefix-code-restored.dex",
+    "namedViews": 8,
+    "backupCodeItemsMatched": 52679,
+    "historicalSixBankEvidenceUnchanged": true,
+    "fullAppRecovered": false,
+    "wholeProtocolRecovered": false,
+    "targetDeviceVerified": false
+  }
 }

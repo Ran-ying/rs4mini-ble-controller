@@ -786,3 +786,25 @@ if manifest.get('codeSlotResearch'):
             assert bank[flag] is False
         old=prior_rows[bank['segment']]
         assert old['bankSha256']==bank['bankSha256'] and old['backupRecords']==count and old['restored'] is False
+
+if manifest.get('prefixRestorationResearch'):
+    proof=json.loads((root/manifest['prefixRestorationResearch']).read_text())
+    for flag in ['appCodeExecuted','liveUiExecuted','nativeLibraryExecuted','targetDeviceVerified','wholeAppRecovered','wholeProtocolRecovered','researchToolProvidesSdkInterface','sdkSendAdded','sdkReceiveAdded','previousSixFilesModified','legacyCallerEvidenceScopeAutomaticallyExpanded']:
+        assert proof[flag] is False
+    assert proof['namedDexViewsRecovered']==8 and proof['restoredBackupCodeItems']==52679
+    assert len(proof['banks'])==8
+    for bank in proof['banks']:
+        assert bank['sourceProtectedContainerAdler32Matched'] and bank['sourceHeaderSha1MatchesProtectedContainer'] is False
+        if bank['segment'] not in (1,7):assert bank['legacySemanticBytes112ToOriginalSizeMatch'] is True
+    independent=json.loads((root/manifest['prefixIndependentValidation']).read_text())
+    assert independent['allPrefixesMatched'] and independent['totalBytesCompared']==1048576
+    assert [b['decryptedPrefixSha256'] for b in independent['banks']]==[b['decryptedPrefixSha256'] for b in proof['banks']]
+    calls=json.loads((root/manifest['prefixNewCallers']).read_text())
+    assert len(calls['directCallerMethods'])==19 and [b['gimbalDirectInvocations'] for b in calls['banks']]==[60,0]
+    for flag in ['appCodeExecuted','targetDeviceVerified','wholeProtocolRecovered','researchToolProvidesSdkInterface','sdkSendAdded','sdkReceiveAdded','modelPathsVerified','cameraApisAdded','activationCommandsAdded']:
+        assert calls[flag] is False
+
+    current=manifest['currentNamedDexResearch']
+    assert current['evidence']==manifest['prefixRestorationResearch'] and current['banks']==list(range(8))
+    assert current['namedViews']==8 and current['backupCodeItemsMatched']==52679 and current['historicalSixBankEvidenceUnchanged'] is True
+    assert current['fullAppRecovered'] is False and current['wholeProtocolRecovered'] is False and current['targetDeviceVerified'] is False

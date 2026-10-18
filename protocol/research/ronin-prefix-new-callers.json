@@ -1,0 +1,465 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "bankSha256": {
+    "1": "0083e9f9e0e615602470ea148cfd581a0c7413a012ef5494b613242d55754f99",
+    "7": "3fc2c4adccd59794f5c28b898d577ed414758875cadb7ce7f6782ffd5b64b723"
+  },
+  "appCodeExecuted": false,
+  "targetDeviceVerified": false,
+  "wholeProtocolRecovered": false,
+  "researchToolProvidesSdkInterface": false,
+  "sdkSendAdded": false,
+  "sdkReceiveAdded": false,
+  "modelPathsVerified": false,
+  "banks": [
+    {
+      "segment": 1,
+      "classDefinitions": 2297,
+      "declaredMethods": 12143,
+      "instructionMethodsParsed": 11452,
+      "gimbalDirectInvocations": 60
+    },
+    {
+      "segment": 7,
+      "classDefinitions": 641,
+      "declaredMethods": 3240,
+      "instructionMethodsParsed": 2977,
+      "gimbalDirectInvocations": 0
+    }
+  ],
+  "directCallerMethods": [
+    {
+      "bank": 1,
+      "className": "Lcom/dji/activate/active/ActiveDeviceController;",
+      "method": "<init>",
+      "descriptor": "(Landroid/content/Context; Lcom/dji/activate/active/ActiveDeviceController$DJIActiveDeviceListener;)V",
+      "codeOffset": 1520876,
+      "instructionSha256": "aea9c5dfc47bacce13ed5f4ba3af740e0e9c5b52f7d3c28db8a91f2d57d3319f",
+      "references": [
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalActiveStatus;",
+          "method": "getInstance"
+        }
+      ]
+    },
+    {
+      "bank": 1,
+      "className": "Lcom/dji/activate/active/ActiveDeviceController;",
+      "method": "activeGimbal",
+      "descriptor": "(Ljava/lang/String;)V",
+      "codeOffset": 1521500,
+      "instructionSha256": "0f5e3f74ce16aa242fcce19236676888acf8dd65a84461cefd15ae4b6ce26c4b",
+      "references": [
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalActiveStatus;",
+          "method": "setType"
+        }
+      ]
+    },
+    {
+      "bank": 1,
+      "className": "Lcom/dji/activate/active/ActiveWebController;",
+      "method": "<init>",
+      "descriptor": "(Landroid/content/Context; Lcom/dji/activate/active/ActiveWebController$DJIActiveWebListener;)V",
+      "codeOffset": 1524408,
+      "instructionSha256": "7e59ecf393dfba4aa550cbb1d6f2e64e10c7a745f2ab7fa9b386547494d3d38a",
+      "references": [
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalActiveStatus;",
+          "method": "getInstance"
+        }
+      ]
+    },
+    {
+      "bank": 1,
+      "className": "Lcom/dji/djifpvjoystick/widget/FpvDragBarView;",
+      "method": "<init>",
+      "descriptor": "(Landroid/content/Context; Landroid/util/AttributeSet;)V",
+      "codeOffset": 1731872,
+      "instructionSha256": "8fe9b814f79d168adbe5cfa1cc071a3798aa1ded7fd045e0a2f4365f1c41afd5",
+      "references": [
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalControl;",
+          "method": "<init>"
+        }
+      ]
+    },
+    {
+      "bank": 1,
+      "className": "Lcom/dji/djifpvjoystick/widget/FpvDragBarView;",
+      "method": "controlHandheldDevice",
+      "descriptor": "()V",
+      "codeOffset": 1732008,
+      "instructionSha256": "4e01a24f6dc3743c2a1d1c77ae97805068cf01137011473c38c8cd232d0273b7",
+      "references": [
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalControl;",
+          "method": "setPitch"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalControl;",
+          "method": "setRoll"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalControl;",
+          "method": "setYaw"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalControl;",
+          "method": "setMode"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalControl;",
+          "method": "start"
+        }
+      ]
+    },
+    {
+      "bank": 1,
+      "className": "Lcom/dji/djifpvjoystick/widget/FpvJoystickView;",
+      "method": "<init>",
+      "descriptor": "(Landroid/content/Context;)V",
+      "codeOffset": 1733388,
+      "instructionSha256": "73904e9dd6277fb27bb75a986830652dbc7998a91f5e2a854562c7bef50081d1",
+      "references": [
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalControl;",
+          "method": "<init>"
+        }
+      ]
+    },
+    {
+      "bank": 1,
+      "className": "Lcom/dji/djifpvjoystick/widget/FpvJoystickView;",
+      "method": "<init>",
+      "descriptor": "(Landroid/content/Context; Landroid/util/AttributeSet;)V",
+      "codeOffset": 1733480,
+      "instructionSha256": "6275ae8e50dcafbc088d376595f30faa6c23b2ff4e170f71c93955ad80c14c12",
+      "references": [
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalControl;",
+          "method": "<init>"
+        }
+      ]
+    },
+    {
+      "bank": 1,
+      "className": "Lcom/dji/djifpvjoystick/widget/FpvJoystickView;",
+      "method": "controlHandheldDevice",
+      "descriptor": "()V",
+      "codeOffset": 1733732,
+      "instructionSha256": "0e61853c96c7e605ca6245540cbcf3c54ec6069effedc198c74b09552d94b049",
+      "references": [
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalControl;",
+          "method": "setPitch"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalControl;",
+          "method": "setYaw"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalControl;",
+          "method": "setRoll"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalControl;",
+          "method": "setMode"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalControl;",
+          "method": "start"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalControl;",
+          "method": "setPitch"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalControl;",
+          "method": "setYaw"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalControl;",
+          "method": "setRoll"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalControl;",
+          "method": "setMode"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalControl;",
+          "method": "start"
+        }
+      ]
+    },
+    {
+      "bank": 1,
+      "className": "Lcom/dji/component/fpv/widget/preview/PreviewShellModel;",
+      "method": "lambda$onCreateView$1",
+      "descriptor": "(Ldji/utils/Optional;)V",
+      "codeOffset": 1926292,
+      "instructionSha256": "d83efd4147fe9797b5c71ffe546626a24a3c1a835e4f49bb2f9d33a3c0d57c38",
+      "references": [
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalFocusControl$TOFStatus;",
+          "method": "value"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalFocusControl$TOFStatus;",
+          "method": "value"
+        }
+      ]
+    },
+    {
+      "bank": 1,
+      "className": "Lcom/dji/djifpvcreate/FpvCreateShellModel;",
+      "method": "<init>",
+      "descriptor": "(Lcom/dji/component/fpv/base/bulletin/BulletinBoardProvider;)V",
+      "codeOffset": 1945540,
+      "instructionSha256": "a186f7246ff14d2e426e7024fe8952e9f11baef12a63b5eeed317588312309c2",
+      "references": [
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalControl;",
+          "method": "<init>"
+        }
+      ]
+    },
+    {
+      "bank": 1,
+      "className": "Lcom/dji/djifpvcreate/FpvCreateShellModel;",
+      "method": "controlHandheldDevice",
+      "descriptor": "()V",
+      "codeOffset": 1946452,
+      "instructionSha256": "f81cadf8ee9531f087477379d86e87746940fa2f58ce7e29ae66944e766fc94b",
+      "references": [
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalControl;",
+          "method": "setPitch"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalControl;",
+          "method": "setYaw"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalControl;",
+          "method": "setRoll"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalControl;",
+          "method": "setMode"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalControl;",
+          "method": "setSource"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalControl;",
+          "method": "start"
+        }
+      ]
+    },
+    {
+      "bank": 1,
+      "className": "Lcom/dji/djifpvcreate/FpvCreateShellModel;",
+      "method": "performParamSet",
+      "descriptor": "(Lcom/dji/djifpvcreate/FpvCreateShellModel$ControlMode; Lcom/dji/djifpvcreate/FpvCreateShellModel$ParamMode; Lcom/dji/djifpvcreate/FpvCreateShellModel$Axis; I)V",
+      "codeOffset": 1949028,
+      "instructionSha256": "9678171a3b71d01381450fbc1799ff636b37897a6271a472d474b9509d8c7d6f",
+      "references": [
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalSetUserParams;",
+          "method": "getInstance"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalSetUserParams;",
+          "method": "setIndexs"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalSetUserParams;",
+          "method": "setValues"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalSetUserParams;",
+          "method": "start"
+        }
+      ]
+    },
+    {
+      "bank": 1,
+      "className": "Lcom/dji/djifpvfocusbar/FocusBarShellModel;",
+      "method": "<init>",
+      "descriptor": "(Lcom/dji/component/fpv/base/bulletin/BulletinBoardProvider;)V",
+      "codeOffset": 1949864,
+      "instructionSha256": "60311ad36e08e26b16a0f3a39a7b04027e7e51392951fa92c87641425476ed8e",
+      "references": [
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalFocusControl;",
+          "method": "getInstance"
+        }
+      ]
+    },
+    {
+      "bank": 1,
+      "className": "Lcom/dji/djifpvfocusbar/FocusBarShellModel;",
+      "method": "motorCalibrating",
+      "descriptor": "()Z",
+      "codeOffset": 1950164,
+      "instructionSha256": "8ace8cfb952d04ba299b4ea665bb7c9597ce6f08265058b9bbccbcce275ed4ae",
+      "references": [
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalFocusControl;",
+          "method": "getCaliStatus"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalFocusControl$CaliStatus;",
+          "method": "value"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalFocusControl;",
+          "method": "getCaliStatus"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalFocusControl$CaliStatus;",
+          "method": "value"
+        }
+      ]
+    },
+    {
+      "bank": 1,
+      "className": "Lcom/dji/djifpvfocusbar/FocusBarShellModel;",
+      "method": "motorNeedCalibrate",
+      "descriptor": "()Z",
+      "codeOffset": 1950248,
+      "instructionSha256": "178c9db97435c5ec433aff434c6bf697542f2604776f9ef0716508fcaba85c3d",
+      "references": [
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalFocusControl;",
+          "method": "getCaliStatus"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalFocusControl$CaliStatus;",
+          "method": "value"
+        }
+      ]
+    },
+    {
+      "bank": 1,
+      "className": "Lcom/dji/djifpvfocusbar/FocusBarShellModel;",
+      "method": "setMotorPosition",
+      "descriptor": "(I)V",
+      "codeOffset": 1950348,
+      "instructionSha256": "9b3681ed6e6f60d851985b98f9b207e7c444670a676407a7dfb4ebc08d228310",
+      "references": [
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalFocusControl;",
+          "method": "setControlMethod"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalFocusControl;",
+          "method": "setFocusMotorControl"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalFocusControl;",
+          "method": "setFocusPosition"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalFocusControl;",
+          "method": "start"
+        }
+      ]
+    },
+    {
+      "bank": 1,
+      "className": "Lcom/dji/djifpvfocusbar/FocusBarShellModel;",
+      "method": "startMotorCali",
+      "descriptor": "()V",
+      "codeOffset": 1950408,
+      "instructionSha256": "2c4efddb6cd86589125589d0028b725374d6dd21597bfce48ac2a12b87af6234",
+      "references": [
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalFocusControl;",
+          "method": "setControlMethod"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalFocusControl;",
+          "method": "setFocusMotorControl"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalFocusControl;",
+          "method": "setCaliCommand"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalFocusControl;",
+          "method": "start"
+        }
+      ]
+    },
+    {
+      "bank": 1,
+      "className": "Lcom/dji/djifpvfocusbar/FocusBarShellModel;",
+      "method": "stopMotorCali",
+      "descriptor": "()V",
+      "codeOffset": 1950472,
+      "instructionSha256": "5cf264d2bea9fccb9ec00477d25de44ec98fc0a22218d16accdd6c00711961f3",
+      "references": [
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalFocusControl;",
+          "method": "setControlMethod"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalFocusControl;",
+          "method": "setFocusMotorControl"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalFocusControl;",
+          "method": "setCaliCommand"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalFocusControl;",
+          "method": "start"
+        }
+      ]
+    },
+    {
+      "bank": 1,
+      "className": "Lcom/dji/djifpvfocusbar/FocusBarShell;",
+      "method": "onEvent3MainThread",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalFocusControl;)V",
+      "codeOffset": 2063408,
+      "instructionSha256": "35d9be60225b7f4216bc176841258dbe720860f03628d432f479982f9cde6003",
+      "references": [
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalFocusControl;",
+          "method": "getMotorConnected"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalFocusControl;",
+          "method": "getCaliStatus"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalFocusControl$CaliStatus;",
+          "method": "value"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalFocusControl$CaliStatus;",
+          "method": "value"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalFocusControl$CaliStatus;",
+          "method": "value"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalFocusControl;",
+          "method": "getMotorConnected"
+        },
+        {
+          "className": "Ldji/midware/data/model/P3/DataGimbalFocusControl;",
+          "method": "getFocusMotorPosition"
+        }
+      ]
+    }
+  ],
+  "cameraApisAdded": false,
+  "activationCommandsAdded": false
+}

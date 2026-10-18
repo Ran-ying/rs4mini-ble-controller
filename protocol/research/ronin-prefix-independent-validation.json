@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "independentImplementation": "OpenSSL 4.0.3 29 Sep 2026 (Library: OpenSSL 4.0.3 29 Sep 2026)",
+  "comparison": "full eight encrypted prefixes through independent OpenSSL SM4-ECB vs owned Python decoder",
+  "allPrefixesMatched": true,
+  "totalBytesCompared": 1048576,
+  "banks": [
+    {
+      "segment": 0,
+      "bytesCompared": 131072,
+      "decryptedPrefixSha256": "62ca899ae2addb17e7bc4ef89280ccc296cb866c9955fbd1810e76f11b7bded7",
+      "matchedOwnedSm4": true
+    },
+    {
+      "segment": 1,
+      "bytesCompared": 131072,
+      "decryptedPrefixSha256": "da930f130f25fe72e55e464dca1b29a8d260a2a37ac9ef813ad3b04d61bb885d",
+      "matchedOwnedSm4": true
+    },
+    {
+      "segment": 2,
+      "bytesCompared": 131072,
+      "decryptedPrefixSha256": "6d47a4f1eee82420f071505f8aa15243318f01e6f2c63ab56a0eef9f81a61f0a",
+      "matchedOwnedSm4": true
+    },
+    {
+      "segment": 3,
+      "bytesCompared": 131072,
+      "decryptedPrefixSha256": "816e5188791ca05b160dee23936d6613735082456aea4c969e5d63bf8ff208c3",
+      "matchedOwnedSm4": true
+    },
+    {
+      "segment": 4,
+      "bytesCompared": 131072,
+      "decryptedPrefixSha256": "a641ed9a2d5a368968c7ee58d2136078f7b750b05e0bc9bf29aeed8d25c81e16",
+      "matchedOwnedSm4": true
+    },
+    {
+      "segment": 5,
+      "bytesCompared": 131072,
+      "decryptedPrefixSha256": "ec60e5f405db12ce913471513702abd4d0ffe19e5262b4a6436d686a4274cfa0",
+      "matchedOwnedSm4": true
+    },
+    {
+      "segment": 6,
+      "bytesCompared": 131072,
+      "decryptedPrefixSha256": "83909ecb20d81dcd437bf5814bc54c3a11bb2ee1828a7e958cfc7dc63d6cd7c4",
+      "matchedOwnedSm4": true
+    },
+    {
+      "segment": 7,
+      "bytesCompared": 131072,
+      "decryptedPrefixSha256": "759d0639ba4a50397cfcf3e0cfce389b758058610e87973b3080708e20a00918",
+      "matchedOwnedSm4": true
+    }
+  ],
+  "appCodeExecuted": false,
+  "nativeLibraryExecuted": false,
+  "targetDeviceVerified": false,
+  "wholeProtocolRecovered": false
+}

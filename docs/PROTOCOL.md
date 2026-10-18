@@ -386,3 +386,8 @@ HG724 跟随灵敏度 setter、参数管理器读取 gimbal_param_infos 的路�
 ## 01/07备份槽位的独立审计
 
 固定APK新增3137条（01段2623/07段514）备份到准确code_off ULEB槽位及方法owner数值索引的核对，复用完整长度/异常表/不重叠校验；不恢复字符串/类型/原型身份，不输出可解析DEX。前128KiB在01另涉及3111条type_ids，在07涉及全部type/proto及部分field_ids，不能只补字符串表。见tools/research/CODE_SLOTS.md及protocol/research/ronin-code-slots-evidence.json（仓库根目录）。既有六段具名恢复/调用扫描范围不变，不把01/07加入其BANKS；运行时仍0.7.32/0.3.32，无SDK收发/高级新增、硬件/liveUI/厂商执行，完整门槛false。
+
+
+## 八段具名恢复与新增调用者
+
+静态保护层线索结合自写SM4-ECB解码，八段完整保护容器源Adler32一致，独立OpenSSL核对全部1MiB前缀一致；01/07现已恢复可解析的类/方法/原型视图，共匹配52679条备份。源SHA1不匹配保护容器仍明确记录，派生校验和不冒充原始源码签名。旧六段[112,originalSize)元数据/代码字节一致、原文件不改写。新增01/07解析找到19方法/60稳定器直接引用，含激活库入口，未证明HG724/BLE路径或新增SDK发送。当前范围以tools/research/PREFIX_RESTORATION.md及protocol/research/ronin-prefix-restoration-evidence.json为准（仓库根目录）；旧六段扫描和“01/07未恢复”保留为历史证据，不自动提升旧结论为八段重审。运行时0.7.32/0.3.32，全App/全协议、全命令及高级门槛仍false，无硬件/liveUI/厂商代码执行。

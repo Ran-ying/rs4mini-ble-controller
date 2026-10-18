@@ -55,3 +55,6 @@ PYTHONPATH=work/research/analysis-libs work/python312/bin/python tools/research/
 
 
 2026-10-19后续[01/07槽位审计](CODE_SLOTS.md)已独立匹配3137条备份到数值方法槽位；上表的“未恢复”仍指具名元数据及完整DEX恢复，不应再解释为这些备份无法定位。01/07部分类型/原型/字段表也位于损坏区，既有六段具名BANKS与调用扫描不扩展。
+
+
+后续[八段具名恢复](PREFIX_RESTORATION.md)已通过静态SM4变换解决01/07名称/类型/原型元数据缺口。本页的未恢复范围是当时事实；旧六段文件与审计保持历史复现，新研究使用PREFIX_BANKS及新的prefix-code-restored视图，不能把不同布局哈希混用或自动改称全部协议完成。

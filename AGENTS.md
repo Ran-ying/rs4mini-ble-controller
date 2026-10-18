@@ -36,6 +36,10 @@ verification status changes.
   package rename, npm publication, or DJI affiliation.
 - User communication and primary usage docs are in Chinese. Code names are English.
 
+## Current static research coverage
+
+All eight pinned business DEX banks now have named offline views via `tools/research/ronin_prefix_restore.py`; use its `PREFIX_BANKS` and `business-XX-prefix-code-restored.dex` for new audits. Legacy six-bank `BANKS`/files/evidence remain unchanged for historical reproduction. Do not carry older global "01/07 metadata unrecovered" conclusions forward. Source protected-container Adler32 matches all eight; source SHA1 does not, and normalized derived checksums are not original-file proof. New 01/07 direct gimbal references are scoped supplemental evidence, not automatic full protocol/model validation. See `tools/research/PREFIX_RESTORATION.md`.
+
 ## Repository map
 
 | Path | Role |
@@ -1132,3 +1136,11 @@ BLE路由研究验证（2026-10-18）：最终固定输入实际提取两次，3
 
 
 01/07槽位审计验证（2026-10-19）：最终工具对真实固定输入独立提取两次，3137条备份数值槽位与归属、完整代码足迹、异常表和不重叠摘要一致。新增12项研究测试，Python3.8/3.12各439通过；统一Node269/Web27/Python244/native1290+285+3及严格类型/分层/签名构建通过，终态0。既有六段具名DEX固定哈希核对，四端源码与e1d10c0一致，0.7.32/0.3.32交付包校验和不变。没有生成01/07可解析DEX、运行厂商代码/实时UI或操作硬件，未新增SDK收发/高级功能，完整门槛false。
+
+
+## 八段具名恢复与新增调用者
+
+静态保护层线索结合自写SM4-ECB解码，八段完整保护容器源Adler32一致，独立OpenSSL核对全部1MiB前缀一致；01/07现已恢复可解析的类/方法/原型视图，共匹配52679条备份。源SHA1不匹配保护容器仍明确记录，派生校验和不冒充原始源码签名。旧六段[112,originalSize)元数据/代码字节一致、原文件不改写。新增01/07解析找到19方法/60稳定器直接引用，含激活库入口，未证明HG724/BLE路径或新增SDK发送。当前范围以tools/research/PREFIX_RESTORATION.md及protocol/research/ronin-prefix-restoration-evidence.json为准（仓库根目录）；旧六段扫描和“01/07未恢复”保留为历史证据，不自动提升旧结论为八段重审。运行时0.7.32/0.3.32，全App/全协议、全命令及高级门槛仍false，无硬件/liveUI/厂商代码执行。
+
+
+八段具名恢复验收（2026-10-19）：最终标准库工具真实输入独立复现两次摘要一致；独立OpenSSL完整核对8×128KiB=1048576字节前缀。8段源保护容器Adler32均匹配、源SHA1均不匹配仍保留；六段旧语义字节/原文件不变。新增两段由Androguard遍历2938类、15383声明方法和14429含代码方法，19方法/60稳定器直接调用，未证明型号路径。新增16测试，Python3.8/3.12研究各455；统一Node269/Web27/Python244/native1290+285+3及类型/分层/签名构建通过，终态0。四端源码与e618a1a一致，运行时/安装包0.7.32/0.3.32不变，无SDK收发/高级新增、硬件/liveUI/厂商执行，完整门槛false。

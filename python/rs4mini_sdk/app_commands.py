@@ -1,3 +1,4 @@
+from .app_sensor_calibration import sensor_calibration_notification
 from .app_external_device import external_device_notification
 from .app_parameter_subscription import parameter_subscription_keys,parameter_subscription_spec,parameter_subscription_frame,parameter_subscription_sent
 from .app_peripheral import peripheral_notification
@@ -38,9 +39,12 @@ class AppCommands:
         self._program_status = None
         self._peripheral_status = None
         self._external_device_status = None
+        self._sensor_calibration_status = None
 
     parameterSubscriptionKeys = property(lambda self: parameter_subscription_keys())
     parameter_subscription_keys = parameterSubscriptionKeys
+    sensorCalibrationStatus = property(lambda self: copy.deepcopy(self._sensor_calibration_status))
+    sensor_calibration_status = sensorCalibrationStatus
     externalDeviceStatus = property(lambda self: copy.deepcopy(self._external_device_status))
     external_device_status = externalDeviceStatus
     peripheralStatus = property(lambda self: copy.deepcopy(self._peripheral_status))
@@ -68,10 +72,15 @@ class AppCommands:
         self._program_status = None
         self._peripheral_status = None
         self._external_device_status = None
+        self._sensor_calibration_status = None
 
     def _message(self, message):
         if not self._profile:
             return
+        sensor=sensor_calibration_notification(message)
+        if sensor:
+            self._sensor_calibration_status=sensor
+            self.owner._emit('onAppStatus',copy.deepcopy(sensor))
         external=external_device_notification(message)
         if external:
             self._external_device_status=external

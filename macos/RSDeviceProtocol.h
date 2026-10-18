@@ -115,3 +115,5 @@ NSData *RSAppParameterSubscriptionFrame(uint16_t sequence,NSDictionary *spec);
 NSDictionary *RSAppParameterSubscriptionSent(NSDictionary *selection);
 
 NSDictionary *RSDecodeAppExternalDeviceNotification(NSDictionary *message);
+
+NSDictionary *RSDecodeAppSensorCalibrationNotification(NSDictionary *message);

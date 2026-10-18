@@ -59,7 +59,7 @@ for row in manifest['commands']:
             assert row['requestCodec']=='not-applicable' and row['responseCodec']=='candidate-structured' and manifest['externalDeviceSdk']['passiveOnly'] is True
             assert row['externalDeviceResearch']==manifest['externalDeviceResearch']
         else:
-            assert row['key'] in {'04:24','04:57','04:27','04:33','04:38','04:64','04:6B','04:66'} and row['requestCodec'] == ('implemented' if row['key']=='04:6B' else 'not-applicable') and row['responseCodec'] == 'candidate-structured'
+            assert row['key'] in {'04:24','04:57','04:27','04:33','04:38','04:64','04:6B','04:66','04:30'} and row['requestCodec'] == ('implemented' if row['key']=='04:6B' else 'not-applicable') and row['responseCodec'] == 'candidate-structured'
             assert manifest['userPushSdk']['modelSpecificPathVerified'] is False and manifest['userPushSdk']['targetDeviceVerified'] is False
     if row.get('officialAppEvidence'):
         evidence_path = root / row['officialAppEvidence']
@@ -710,3 +710,17 @@ if manifest.get('sensorCalibrationResearch'):
         assert facts[flag] is False
     for flag in ('appCodeExecuted','liveUiExecuted','targetDeviceVerified','modelLayoutVerified','wholeProtocolRecovered','researchToolProvidesSdkInterface','sdkSendAdded','sdkReceiveAdded'):
         assert proof[flag] is False
+
+if manifest.get('sensorCalibrationSdk'):
+    sdk=manifest['sensorCalibrationSdk'];proof=json.loads((root/manifest['sensorCalibrationResearch']).read_text())
+    states={r['sourceId']:r['name'] for r in proof['sensorStates']}
+    js=(root/'node/src/app-sensor-calibration.js').read_text().split('const states=new Map(',1)[1].split(');',1)[0]
+    py=(root/'python/rs4mini_sdk/app_sensor_calibration.py').read_text().split('STATES=',1)[1].split('\n',1)[0]
+    native=(root/'macos/RSControlCore.m').read_text().split('NSDictionary *RSDecodeAppSensorCalibrationNotification(',1)[1].split('NSDictionary *states=@',1)[1].split(';',1)[0]
+    assert dict(ast.literal_eval(js))==states and ast.literal_eval(py)==states
+    assert {int(k):v for k,v in re.findall(r'@(\d+):@"(\w+)"',native)}==states
+    assert sdk['sourceModelClass']==proof['basePolicies'][1]['modelClass'] and sdk['sourceStatusIds']==[0,1,3,9]
+    assert sdk['passiveOnly'] is True and sdk['rawProgressUnclamped'] is True
+    for flag in ('shortDefaultsSynthesized','sourceDomainsConflated','legacyExperimentalFormatOverwritten','automaticQuerySubscriptionAckOrControlEnabled','requestAssociationVerified','modelLayoutVerified','progressUnitVerified','targetDeviceVerified'):
+        assert sdk[flag] is False
+    assert len(json.loads((root/sdk['fixtures']).read_text()))==7

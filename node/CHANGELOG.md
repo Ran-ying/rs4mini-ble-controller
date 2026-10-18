@@ -1,5 +1,11 @@
 # 0.7.22
 
+## 0.7.28
+
+- Add explicit App-source passive 04:30 sensor-calibration status and event across SDK ports.
+- Preserve raw uint8 progress/status and tail; use source COMPLETE0/PROCESSING1/FAIL3/OTHER9, distinct from 04:08 and legacy experimental fields.
+- Reject short/default, ACK/encrypted bodies and isolate cache/observer/source/disconnect/query/motion; COMPLETE never implies physical or request completion. No sends or advanced features.
+
 ## 0.7.27
 
 - Add explicit App-source passive 04:69 external-device status across SDK ports, copied snapshots and externalDevice event type.

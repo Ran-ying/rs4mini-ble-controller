@@ -29,7 +29,7 @@
 | `04:14` | 原生绝对角候选 | `implemented` / `unknown` | `other-model` | 当前App继承rotate的8字节体/时间缩放已核对；既有接口仍仅其他型号实验配置，初始化能力与静态地址链已核对；动态能力/本机地址/EYE依赖与恢复、参考系和完成/中止语义仍待验收 |
 | `04:1C` | 设备类型查询 | `implemented` / `raw` | `other-model` | 已在 App 可读代码中关联 RS 4 Mini=HG724，类型枚举值 103；线上偏移、返回码及本机响应未确认，仍返回原始消息 |
 | `04:1E` | degree-info 请求 | `implemented` / `raw` | `hardware` | requestDegreeInfo 封装关联原始响应；本机历史 00 不等于完整字段解析或增频确认 |
-| `04:30` | 传感器校准状态候选 | not-applicable / partial | other-model | 既有实验格式保留；当前App实际类状态0/1/3/9已审计，不能复用旧bool或08枚举，尚未接App SDK/本机验证 |
+| `04:30` | App传感器校准候选与旧型号实验 | not-applicable / candidate-structured | app-generic-code | 0.7.28当前App被动状态0/1/3/9、进度/尾部保留；不复用旧bool/08表，无触发/查询/订阅/ACK，本机/单位/请求关联待验收 |
 | `04:4C` | 重置/模式命令中的三轴回中 | `partial` / `unknown` | `hardware` | 当前 App 的原代码备份确认两字节 mode+布尔reset；本机仍只确认 FE01 三轴回中，无按轴选择位，旧 MSDK 轴枚举不可套用；其他模式/响应待本机证据 |
 | `04:66` | 外设状态源候选与旧型号原始TLV | `not-applicable` / `candidate-structured` | `app-generic-code` | 0.7.25显式App来源46类型/43视图，碰撞/GPS截断保留；无发送或姿态/关节重映射，本机未验收 |
 | `0D:02` | 电量候选通知 | `not-applicable` / `partial` | `other-model` | 百分比仅为其他 Mini 研究格式，本机未证实 |
@@ -263,3 +263,8 @@ HG724继承的启动路径为普通用户参数04:0F，balance_test/index37/size
 ## 校准08/30域与近似类绑定研究
 
 固定六段48方法、17直接调用、9类型化声明/9枚举引用，确认04:30实际绑定SensorCalibrateStatus而非近似AutoCalibrationStatus；30状态COMPLETE0/PROCESSING1/FAIL3/OTHER9，与08响应FAIL0/SUCCESS1/PROCESSING2分开，不复用bool inProgress或system_calc表。08单字节部件及ACK业务偏移已核对，型号入口/实际扩展、路由/物理中止仍未完成。详见[校准源审计](../tools/research/SENSOR_CALIBRATION.md)及protocol/research/ronin-sensor-calibration-evidence.json。仅离线研究，运行时0.7.27/0.3.27不变，没有SDK收发、相机/视觉/高级新增或硬件/liveUI/厂商执行，完整命令门槛false。
+
+
+## 0.7.28传感器校准被动候选 / 原生0.3.28 build31
+
+显式App来源下sensorCalibrationStatus/kind=sensorCalibration解析04:30两字节源进度/状态及尾部，保留0..255原值，映射0/1/3/9并标记未知；不复用08状态或旧inProgress，不补短包默认，不由COMPLETE结束查询/运动。缓存复制/不可变、观察者隔离、来源/断线清空。见[传感器校准候选SDK](APP_SENSOR_CALIBRATION_STATUS.md)。没有查询/订阅/自动ACK/校准触发或相机/视觉/高级新增；本机/单位/请求关联与物理完成未验收，无硬件/liveUI/厂商执行，全命令门槛false。此前当前App30“未接SDK”限定为历史状态。

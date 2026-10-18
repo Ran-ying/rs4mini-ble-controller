@@ -195,16 +195,18 @@
     },
     {
       "key": "04:30",
-      "name": "校准进度候选通知",
+      "name": "传感器校准App候选与旧型号实验",
       "requestCodec": "not-applicable",
-      "responseCodec": "partial",
-      "targetEvidence": "other-model",
+      "responseCodec": "candidate-structured",
+      "targetEvidence": "app-generic-code",
       "implementation": [
         "node/src/experimental-protocol.js",
         "python/rs4mini_sdk/experimental_protocol.py",
-        "macos/RSControlCore.m"
+        "macos/RSControlCore.m",
+        "node/src/app-sensor-calibration.js",
+        "python/rs4mini_sdk/app_sensor_calibration.py"
       ],
-      "remaining": "既有其他型号被动格式保留。当前App基础表绑定SensorCalibrateStatus（非AutoCalibrationStatus）：progress/status偏移0/1，COMPLETE0/PROCESSING1/FAIL3/OTHER9，start空实现；尚未接当前App SDK，不复用旧inProgress布尔或08状态枚举，本机通知/流程关联未验收。",
+      "remaining": "0.7.28显式当前App来源被动解析progress/status字节，状态0/1/3/9与未知原值分开，完整尾字节保留；独立缓存不补短体默认值，无发送/订阅/ACK或完成动作。旧型号实验格式独立保留；本机通知/布局、进度单位和请求关联未验收。",
       "officialAppAliases": [
         "GetPushSensorCalibrationStatus"
       ],
@@ -1183,5 +1185,25 @@
     "unitVerified": false,
     "referenceFrameVerified": false
   },
-  "sensorCalibrationResearch": "protocol/research/ronin-sensor-calibration-evidence.json"
+  "sensorCalibrationResearch": "protocol/research/ronin-sensor-calibration-evidence.json",
+  "sensorCalibrationSdk": {
+    "passiveOnly": true,
+    "fixtures": "node/test/fixtures/sensor-calibration.json",
+    "sourceModelClass": "Ldji/midware/data/model/P3/DataGimbalGetPushSensorCalibrateStatus;",
+    "sourceStatusIds": [
+      0,
+      1,
+      3,
+      9
+    ],
+    "rawProgressUnclamped": true,
+    "shortDefaultsSynthesized": false,
+    "sourceDomainsConflated": false,
+    "legacyExperimentalFormatOverwritten": false,
+    "automaticQuerySubscriptionAckOrControlEnabled": false,
+    "requestAssociationVerified": false,
+    "modelLayoutVerified": false,
+    "progressUnitVerified": false,
+    "targetDeviceVerified": false
+  }
 }

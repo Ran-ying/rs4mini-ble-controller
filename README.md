@@ -1,6 +1,6 @@
 # rs4mini-ble-controller
 
-通过电脑 BLE 直接控制 DJI RS 4 Mini 的非官方项目。Node.js **0.7.27** 为主实现；Python/Web **0.7.27**、macOS 原生面板 **0.3.27** 提供三轴速度、姿态/机械关节反馈、低速定位、轨迹与路点、保存位置返回和显式自动重连。相机控制和视觉跟踪不属于当前范围。
+通过电脑 BLE 直接控制 DJI RS 4 Mini 的非官方项目。Node.js **0.7.28** 为主实现；Python/Web **0.7.28**、macOS 原生面板 **0.3.28** 提供三轴速度、姿态/机械关节反馈、低速定位、轨迹与路点、保存位置返回和显式自动重连。相机控制和视觉跟踪不属于当前范围。
 
 **当前状态：底层 SDK 已增加当前 App 参数事务、调参请求与状态封装；全部非相机 BLE 能力仍未完成。**
 完成项、验证证据与后续接手入口统一保存在 [项目状态](docs/PROJECT_STATUS.md)。
@@ -79,7 +79,7 @@ RS4MINI_POSITION_AXIS=tilt RS4MINI_POSITION_DELTA=3 npm run example:position
 
 ## 各端状态
 
-| 功能 | Node 0.7.27 | Python 0.7.27 | Web 0.7.27 | macOS 面板 0.3.27 |
+| 功能 | Node 0.7.28 | Python 0.7.28 | Web 0.7.28 | macOS 面板 0.3.28 |
 |---|---|---|---|---|
 | 三轴速度 / 停止 / 三轴回中 | 有 | 有 | 有 | 有 |
 | 反馈解析与 CRC 重组 | 有 | 有 | 共享 Node 核心 | 有 |
@@ -262,3 +262,8 @@ python3 -m http.server 8000 --bind 127.0.0.1
 ## 校准08/30域与近似类绑定研究
 
 固定六段48方法、17直接调用、9类型化声明/9枚举引用，确认04:30实际绑定SensorCalibrateStatus而非近似AutoCalibrationStatus；30状态COMPLETE0/PROCESSING1/FAIL3/OTHER9，与08响应FAIL0/SUCCESS1/PROCESSING2分开，不复用bool inProgress或system_calc表。08单字节部件及ACK业务偏移已核对，型号入口/实际扩展、路由/物理中止仍未完成。详见[校准源审计](tools/research/SENSOR_CALIBRATION.md)及protocol/research/ronin-sensor-calibration-evidence.json。仅离线研究，运行时0.7.27/0.3.27不变，没有SDK收发、相机/视觉/高级新增或硬件/liveUI/厂商执行，完整命令门槛false。
+
+
+## 0.7.28传感器校准被动候选 / 原生0.3.28 build31
+
+显式App来源下sensorCalibrationStatus/kind=sensorCalibration解析04:30两字节源进度/状态及尾部，保留0..255原值，映射0/1/3/9并标记未知；不复用08状态或旧inProgress，不补短包默认，不由COMPLETE结束查询/运动。缓存复制/不可变、观察者隔离、来源/断线清空。见[传感器校准候选SDK](docs/APP_SENSOR_CALIBRATION_STATUS.md)。没有查询/订阅/自动ACK/校准触发或相机/视觉/高级新增；本机/单位/请求关联与物理完成未验收，无硬件/liveUI/厂商执行，全命令门槛false。此前当前App30“未接SDK”限定为历史状态。

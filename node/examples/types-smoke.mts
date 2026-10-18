@@ -146,7 +146,7 @@ async function sourceSettingsTypes(gimbal: RS4Mini) {
 }
 
 async function calibrationTypes(gimbal: RS4Mini) {
-  gimbal.onAppStatus = status => { if(status.kind==='calibration') {const raw:number|null=status.rawState;console.log(raw);} else if(status.kind==='userParameters') {const raw:number=status.preset.rawValue;console.log(raw);} else if(status.kind==='handheldStick') {const x:number=status.sourceStickX;console.log(x,gimbal.appCommands.handheldStickStatus);} else if(status.kind==='abnormal') {const v:boolean|number=status.sourceValues.isGimbalLocked;console.log(v,gimbal.appCommands.abnormalStatus);} else if(status.kind==='battery') {const raw:number=status.rawCapacityValue;console.log(raw,gimbal.appCommands.batteryStatus);} else if(status.kind==='peripheral'){const value:number|boolean|undefined=status.records[0]?.sourceViews[0]?.value;console.log(value,gimbal.appCommands.peripheralStatus);} else {const records:number=status.records.length;console.log(records,gimbal.appCommands.programStatus);} };
+  gimbal.onAppStatus = status => { if(status.kind==='calibration') {const raw:number|null=status.rawState;console.log(raw);} else if(status.kind==='userParameters') {const raw:number=status.preset.rawValue;console.log(raw);} else if(status.kind==='handheldStick') {const x:number=status.sourceStickX;console.log(x,gimbal.appCommands.handheldStickStatus);} else if(status.kind==='abnormal') {const v:boolean|number=status.sourceValues.isGimbalLocked;console.log(v,gimbal.appCommands.abnormalStatus);} else if(status.kind==='battery') {const raw:number=status.rawCapacityValue;console.log(raw,gimbal.appCommands.batteryStatus);} else if(status.kind==='peripheral'){const value:number|boolean|undefined=status.records[0]?.sourceViews[0]?.value;console.log(value,gimbal.appCommands.peripheralStatus);} else if(status.kind==='sensorCalibration'){const raw:number=status.rawStatus;console.log(raw,gimbal.appCommands.sensorCalibrationStatus);} else if(status.kind==='externalDevice'){const records:number=status.records.length;console.log(records,gimbal.appCommands.externalDeviceStatus);} else {const records:number=status.records.length;console.log(records,gimbal.appCommands.programStatus);} };
   const fine=await gimbal.appCommands.sendFineTuneRequest({axis:'pitch',adjustmentDegrees:-.1});
   const tenths:number=fine.encodedTenths;void tenths;
   // @ts-expect-error yaw source action is not established
@@ -276,4 +276,12 @@ function externalDeviceTypes(gimbal:RS4Mini){
  // @ts-expect-error read-only copied status property
  gimbal.appCommands.externalDeviceStatus=null;
  gimbal.onAppStatus=s=>{if(s.kind==='externalDevice'){const records=s.records;void records;}};
+}
+
+function sensorCalibrationTypes(gimbal:RS4Mini){
+ const status=gimbal.appCommands.sensorCalibrationStatus;
+ if(status){const raw:number=status.rawProgressValue;const verified:false=status.requestAssociationVerified;void raw;void verified;}
+ // @ts-expect-error copied status is read-only
+ gimbal.appCommands.sensorCalibrationStatus=null;
+ gimbal.onAppStatus=s=>{if(s.kind==='sensorCalibration'){const known:boolean=s.sourceStatusKnown;void known;}};
 }

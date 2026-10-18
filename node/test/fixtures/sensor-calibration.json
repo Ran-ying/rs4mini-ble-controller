@@ -1,0 +1,100 @@
+[
+  {
+    "bodyHex": "0000",
+    "expected": {
+      "rawProgressValue": 0,
+      "rawStatus": 0,
+      "sourceStatus": "COMPLETE",
+      "sourceStatusKnown": true,
+      "bodyHex": "0000",
+      "trailingHex": "",
+      "progressUnitVerified": false,
+      "targetDeviceVerified": false,
+      "physicalCompletionVerified": false
+    }
+  },
+  {
+    "bodyHex": "3201",
+    "expected": {
+      "rawProgressValue": 50,
+      "rawStatus": 1,
+      "sourceStatus": "PROCESSING",
+      "sourceStatusKnown": true,
+      "bodyHex": "3201",
+      "trailingHex": "",
+      "progressUnitVerified": false,
+      "targetDeviceVerified": false,
+      "physicalCompletionVerified": false
+    }
+  },
+  {
+    "bodyHex": "6403aabb",
+    "expected": {
+      "rawProgressValue": 100,
+      "rawStatus": 3,
+      "sourceStatus": "FAIL",
+      "sourceStatusKnown": true,
+      "bodyHex": "6403aabb",
+      "trailingHex": "aabb",
+      "progressUnitVerified": false,
+      "targetDeviceVerified": false,
+      "physicalCompletionVerified": false
+    }
+  },
+  {
+    "bodyHex": "ff09",
+    "expected": {
+      "rawProgressValue": 255,
+      "rawStatus": 9,
+      "sourceStatus": "OTHER",
+      "sourceStatusKnown": true,
+      "bodyHex": "ff09",
+      "trailingHex": "",
+      "progressUnitVerified": false,
+      "targetDeviceVerified": false,
+      "physicalCompletionVerified": false
+    }
+  },
+  {
+    "bodyHex": "7f02",
+    "expected": {
+      "rawProgressValue": 127,
+      "rawStatus": 2,
+      "sourceStatus": "OTHER",
+      "sourceStatusKnown": false,
+      "bodyHex": "7f02",
+      "trailingHex": "",
+      "progressUnitVerified": false,
+      "targetDeviceVerified": false,
+      "physicalCompletionVerified": false
+    }
+  },
+  {
+    "bodyHex": "80ff",
+    "expected": {
+      "rawProgressValue": 128,
+      "rawStatus": 255,
+      "sourceStatus": "OTHER",
+      "sourceStatusKnown": false,
+      "bodyHex": "80ff",
+      "trailingHex": "",
+      "progressUnitVerified": false,
+      "targetDeviceVerified": false,
+      "physicalCompletionVerified": false
+    }
+  },
+  {
+    "bodyHex": "ff00aa",
+    "expected": {
+      "rawProgressValue": 255,
+      "rawStatus": 0,
+      "sourceStatus": "COMPLETE",
+      "sourceStatusKnown": true,
+      "bodyHex": "ff00aa",
+      "trailingHex": "aa",
+      "progressUnitVerified": false,
+      "targetDeviceVerified": false,
+      "physicalCompletionVerified": false
+    }
+  }
+]

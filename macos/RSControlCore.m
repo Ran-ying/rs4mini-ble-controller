@@ -792,3 +792,11 @@ NSDictionary *RSDecodeAppExternalDeviceNotification(NSDictionary *message) {
     }
     return @{@"kind":@"externalDevice",@"profile":@"ronin-2.2.2",@"commandId":@105,@"timestamp":@(NSDate.date.timeIntervalSince1970*1000),@"bodyHex":[Hex(body) copy],@"records":[records copy],@"deviceVerified":@NO,@"modelLayoutVerified":@NO,@"unitVerified":@NO,@"referenceFrameVerified":@NO,@"physicalCompletionVerified":@NO};
 }
+
+NSDictionary *RSDecodeAppSensorCalibrationNotification(NSDictionary *message) {
+    NSNumber *flags=message[@"flags"];
+    if([message[@"sender"] intValue]!=4 || [message[@"receiver"] intValue]!=2 || [message[@"commandSet"] intValue]!=4 || [message[@"commandId"] intValue]!=48 || ![flags isKindOfClass:NSNumber.class] || CFGetTypeID((__bridge CFTypeRef)flags)==CFBooleanGetTypeID() || flags.doubleValue!=floor(flags.doubleValue) || flags.doubleValue<0 || flags.doubleValue>255 || (flags.intValue&0x87))return nil;
+    NSData *body=message[@"payload"];if(![body isKindOfClass:NSData.class] || body.length<2)return nil;
+    const uint8_t *p=body.bytes;NSNumber *raw=@(p[1]);NSDictionary *states=@{@0:@"COMPLETE",@1:@"PROCESSING",@3:@"FAIL",@9:@"OTHER"};
+    return @{@"kind":@"sensorCalibration",@"profile":@"ronin-2.2.2",@"commandId":@48,@"timestamp":@(NSDate.date.timeIntervalSince1970*1000),@"rawProgressValue":@(p[0]),@"rawStatus":raw,@"sourceStatus":states[raw]?:@"OTHER",@"sourceStatusKnown":@(states[raw]!=nil),@"bodyHex":[Hex(body) copy],@"trailingHex":[Hex([body subdataWithRange:NSMakeRange(2,body.length-2)]) copy],@"deviceVerified":@NO,@"modelLayoutVerified":@NO,@"progressUnitVerified":@NO,@"requestAssociationVerified":@NO,@"physicalCompletionVerified":@NO};
+}

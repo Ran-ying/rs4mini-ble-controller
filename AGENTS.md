@@ -8,9 +8,9 @@ verification status changes.
 ## Objective and user decisions
 
 - Provide an unofficial, direct BLE controller for **DJI RS 4 Mini**, initially on macOS.
-- **Node.js is the authoritative implementation**; current package version is `0.7.27`.
+- **Node.js is the authoritative implementation**; current package version is `0.7.28`.
 - The user subsequently requested completion of all existing ports. Python is now
-  `0.7.27`, Web shares the JS core, and the native panel is `0.3.27`. Describe the
+  `0.7.28`, Web shares the JS core, and the native panel is `0.3.28`. Describe the
   documented feature differences; do not claim identical APIs or hardware proof.
 - After that delivery, the user requested the remaining **non-camera** capabilities
   under the same autonomous/offline conditions. Expansion work is in progress;
@@ -1019,3 +1019,11 @@ FollowModeSensitivity和GimbalControlState分别受isSupportStateSince4Gen控制
 
 
 校准08/30研究验证（2026-10-18）：48方法/17直接调用/9类型化声明/9外部枚举引用的最终固定输入实际提取两次，证据JSON逐字节一致。新增12项测试，Python3.8/3.12研究各342项通过；统一离线Node235/Web22/Python211/原生356+240+3及类型、边界、构建通过，终态0。没有SDK收发或运行时版本变更，既有0.7.27/0.3.27不变；无硬件/liveUI/厂商执行或相机/视觉/高级新增，全命令与高级门槛false。
+
+
+## 0.7.28传感器校准被动候选 / 原生0.3.28 build31
+
+显式App来源下sensorCalibrationStatus/kind=sensorCalibration解析04:30两字节源进度/状态及尾部，保留0..255原值，映射0/1/3/9并标记未知；不复用08状态或旧inProgress，不补短包默认，不由COMPLETE结束查询/运动。缓存复制/不可变、观察者隔离、来源/断线清空。见[传感器校准候选SDK](docs/APP_SENSOR_CALIBRATION_STATUS.md)。没有查询/订阅/自动ACK/校准触发或相机/视觉/高级新增；本机/单位/请求关联与物理完成未验收，无硬件/liveUI/厂商执行，全命令门槛false。此前当前App30“未接SDK”限定为历史状态。
+
+
+0.7.28离线验收：统一Node241/Web23/Python3.8与3.12各217、原生637核心+247生命周期+3独立SDK、研究342及严格类型/边界/构建通过，终态0。七组源向量跨端一致，完整uint8/FAIL3与未知2/尾字节、坏包、快照/观察者、来源/断线、COMPLETE不结束查询/运动与Web无Buffer覆盖；修正示例事件分派对新增kind的假设。隔离安装tarball241项与类型、wheel217项通过，device/controller/app_commands/app_sensor_calibration实际安装导入位置核对；Node98文件、wheel36模块及原生ZIP3文件与源码/签名构建逐字节一致（0.3.28/build31），未启动应用。本机布局/单位/请求关联/物理完成及完整命令门槛仍false，无硬件/liveUI/厂商执行。

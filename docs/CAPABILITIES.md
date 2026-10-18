@@ -1,6 +1,6 @@
 # 非相机能力与证据边界
 
-当前0.7.27 / 原生0.3.27为非相机控制项目，**不是全部 BLE 功能支持声明**。软件检查、其他型号的协议研究与 RS 4 Mini 实机证据分别列出。
+当前0.7.28 / 原生0.3.28为非相机控制项目，**不是全部 BLE 功能支持声明**。软件检查、其他型号的协议研究与 RS 4 Mini 实机证据分别列出。
 设备 SDK 与上层组合的归属见 [ARCHITECTURE.md](ARCHITECTURE.md)；下表包含两层，不能把所有行都当作原生 BLE 能力。
 
 | 能力 | 当前代码 | 证据与待办 |
@@ -140,3 +140,8 @@
 ## 校准08/30域与近似类绑定研究
 
 固定六段48方法、17直接调用、9类型化声明/9枚举引用，确认04:30实际绑定SensorCalibrateStatus而非近似AutoCalibrationStatus；30状态COMPLETE0/PROCESSING1/FAIL3/OTHER9，与08响应FAIL0/SUCCESS1/PROCESSING2分开，不复用bool inProgress或system_calc表。08单字节部件及ACK业务偏移已核对，型号入口/实际扩展、路由/物理中止仍未完成。详见[校准源审计](../tools/research/SENSOR_CALIBRATION.md)及protocol/research/ronin-sensor-calibration-evidence.json。仅离线研究，运行时0.7.27/0.3.27不变，没有SDK收发、相机/视觉/高级新增或硬件/liveUI/厂商执行，完整命令门槛false。
+
+
+## 0.7.28传感器校准被动候选 / 原生0.3.28 build31
+
+显式App来源下sensorCalibrationStatus/kind=sensorCalibration解析04:30两字节源进度/状态及尾部，保留0..255原值，映射0/1/3/9并标记未知；不复用08状态或旧inProgress，不补短包默认，不由COMPLETE结束查询/运动。缓存复制/不可变、观察者隔离、来源/断线清空。见[传感器校准候选SDK](APP_SENSOR_CALIBRATION_STATUS.md)。没有查询/订阅/自动ACK/校准触发或相机/视觉/高级新增；本机/单位/请求关联与物理完成未验收，无硬件/liveUI/厂商执行，全命令门槛false。此前当前App30“未接SDK”限定为历史状态。

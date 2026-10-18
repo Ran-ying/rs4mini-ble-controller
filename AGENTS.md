@@ -8,9 +8,9 @@ verification status changes.
 ## Objective and user decisions
 
 - Provide an unofficial, direct BLE controller for **DJI RS 4 Mini**, initially on macOS.
-- **Node.js is the authoritative implementation**; current package version is `0.7.23`.
+- **Node.js is the authoritative implementation**; current package version is `0.7.24`.
 - The user subsequently requested completion of all existing ports. Python is now
-  `0.7.23`, Web shares the JS core, and the native panel is `0.3.23`. Describe the
+  `0.7.24`, Web shares the JS core, and the native panel is `0.3.24`. Describe the
   documented feature differences; do not claim identical APIs or hardware proof.
 - After that delivery, the user requested the remaining **non-camera** capabilities
   under the same autonomous/offline conditions. Expansion work is in progress;
@@ -922,3 +922,15 @@ Rotate/ResetGimbal两条基础Action注解及12框架/动作方法指纹已核�
 统一离线Node205/Web18/Python3.8各183、原生159核心+192假设备+3独立SDK、研究262及类型/边界/构建通过，进程终态0。Python3.12完整183项另行通过。覆盖三个固定请求体、错误profile/原始编号/订阅选项拒绝、关联ACK与通知隔离、输入快照、NACK/空ACK/加密ACK、超时/迟到/断线/取消及排队超时不迟发；原生独占/中位前导和Web blur有限查询差异保留。
 
 实际安装Node tarball后205项及TypeScript消费者通过；wheel隔离安装后183项通过，device/controller/app_commands/app_program_request导入路径核对。所有通知新鲜度、型号布局、本机接受、程序关联及物理完成标志false。无硬件、实时UI、厂商代码执行或高级功能新增，全部命令门槛仍false。
+
+
+## 0.7.24程序状态推送启停请求 / 原生0.3.24 build27
+
+四端sendProgramStatusSubscriptionRequest（Python snake别名/原生等价）仅显式App来源、program track/timelapse/panorama、enabled严格布尔，6B固定type0开始/type1停止推送；不等于程序停止。关联ACK业务体不透明，notificationStreamVerified/remoteSubscriptionStateVerified等均false。被动通知独立，ACK不更新缓存、不承诺新状态，停止请求后仍可接收候选通知。没有自动刷新/反向请求/取消时撤销/断线恢复或程序执行。Node/Python有限查询与原生独占事务差异沿用0.7.23。全命令与高级门槛仍false，无硬件/liveUI/厂商执行。见docs/APP_PROGRAM_SUBSCRIPTION.md；历史0.7.23“仅type2”限定已由本版本明确扩展到type0/1固定状态请求，其他通用候选不因此开放发送。
+
+
+## 0.7.24推送启停请求验证（2026-10-18）
+
+统一离线Node213/Web19/Python3.8各191、原生167核心+217假设备+3独立SDK、研究262及类型/边界/构建通过，终态0；Python3.12完整191项另行通过。六个共享请求体跨Node/Python/原生核对，覆盖严格布尔/名称/来源/超时验证、输入复制、并发序号、ACK/通知隔离、NACK/空ACK/加密ACK、取消/超时/迟到/断线/排队不迟发和无隐式相反请求。Web保留有限查询blur差异并通过无Buffer检查。固定源程序和轨迹工作流重新实际提取，与提交的106方法/60调用及29方法/2布局证据一致。
+
+tarball隔离安装后213项及TypeScript消费者通过；wheel隔离安装后191项通过，device/controller/app_commands/app_program_request真实导入路径核对。未扫描/连接/移动设备、运行实时UI或执行厂商代码；本机/通知流/远端订阅状态/物理效果仍未验收，全部命令和高级门槛false。

@@ -238,3 +238,14 @@ test('Web explicit single program request awaits ACK independently of passive st
  const pending=gimbal.appCommands.sendProgramStatusRequest({program:'panorama'});const rejected=assert.rejects(pending,{code:'RS4MINI_DISCONNECTED'});await until(()=>device.frames().filter(f=>f.commandId===107).length===2);await gimbal.disconnect();await rejected;
  execFileSync(process.execPath,['--input-type=module','-e',`globalThis.Buffer=undefined;const {programStatusRequestSpec}=await import(${JSON.stringify(new URL('../../node/src/app-program-request.js',import.meta.url).href)});if(programStatusRequestSpec('panorama').payload.join(',')!=='0,2,1,99')throw Error('Buffer-free request failed');`]);
 });
+
+
+test('Web explicit subscription requests never automatically stop restart or assert remote state',async t=>{
+ const {gimbal,device,window}=setup();t.after(()=>gimbal.close());await gimbal.connect();gimbal.appCommands.useProfile('ronin-2.2.2');
+ let count=0;
+ for(const enabled of [true,false]){const pending=gimbal.appCommands.sendProgramStatusSubscriptionRequest({program:'track',enabled});++count;await until(()=>device.frames().filter(f=>f.commandId===107).length===count);const outgoing=device.frames().filter(f=>f.commandId===107).at(-1);assert.equal(outgoing.payload.toString('hex'),enabled?'00000162':'00010162');
+ const incoming=(body,flags)=>{const data=frame(outgoing.sequence,4,107,new Uint8Array(body),flags);data[4]=4;data[5]=2;new DataView(data.buffer,data.byteOffset,data.byteLength).setUint16(data.length-2,crc16(data.subarray(0,-2)),true);device.rx.notify(data);};
+ incoming([0,98,4,1,2,3,4],0);const before=gimbal.appCommands.programStatus;assert.equal(gimbal.experimental.pending.size,1);window.dispatchEvent(new Event('blur'));assert.equal(gimbal.experimental.pending.size,1);incoming([0,254],128);const reply=await pending;assert.equal(reply.requestedEnabled,enabled);assert.equal(reply.remoteSubscriptionStateVerified,false);assert.equal(reply.notificationStreamVerified,false);assert.equal(reply.bodyHex,'fe');assert.deepEqual(gimbal.appCommands.programStatus,before);}
+ assert.equal(device.frames().filter(f=>f.commandId===107).length,2);await gimbal.disconnect();assert.equal(device.frames().filter(f=>f.commandId===107).length,2);
+ execFileSync(process.execPath,['--input-type=module','-e',`globalThis.Buffer=undefined;const {programStatusSubscriptionSpec}=await import(${JSON.stringify(new URL('../../node/src/app-program-request.js',import.meta.url).href)});if(programStatusSubscriptionSpec('panorama',false).payload.join(',')!=='0,1,1,99')throw Error('Buffer-free subscription failed');`]);
+});

@@ -726,7 +726,7 @@
     {
       "key": "04:6B",
       "name": "官方 App 枚举：GetPushTrackAndTimelapse",
-      "requestCodec": "partial",
+      "requestCodec": "implemented",
       "responseCodec": "candidate-structured",
       "targetEvidence": "app-generic-code",
       "implementation": [
@@ -736,7 +736,7 @@
         "node/src/app-program-request.js",
         "python/rs4mini_sdk/app_program_request.py"
       ],
-      "remaining": "0.7.23显式来源下仅RequestSinglePush/type2，三个命名程序固定体和关联ACK，业务体不透明、不承诺新状态；保留0.7.22被动候选。连续订阅/取消订阅未开放，型号布局、实际扩展、程序关联与物理效果未验收",
+      "remaining": "0.7.24显式来源下固定type0/1推送启停与type2单次请求，三个命名程序及关联ACK；业务体不透明，不承诺新状态或远端订阅状态。不自动刷新/停止/重放，无程序执行；本机布局、实际扩展、程序关联与物理效果未验收",
       "officialAppAliases": [
         "GetPushTrackAndTimelapse"
       ],
@@ -1066,7 +1066,7 @@
       99
     ],
     "singleRequestSendEnabled": true,
-    "continuousSubscriptionSendEnabled": false,
+    "continuousSubscriptionSendEnabled": true,
     "programExecutionSendEnabled": false,
     "ackBodyOpaque": true,
     "freshStatusVerified": false,
@@ -1079,6 +1079,36 @@
       "python/rs4mini_sdk/app_program_request.py",
       "macos/RSControlCore.m",
       "docs/APP_PROGRAM_REQUEST.md"
+    ]
+  },
+  "programStatusSubscriptionSdk": {
+    "profile": "ronin-2.2.2",
+    "sourceRequestTypes": {
+      "StartContinuePush": 0,
+      "StopContinuePush": 1
+    },
+    "allowedProgramCommands": [
+      98,
+      55,
+      99
+    ],
+    "explicitBooleanEnabledRequired": true,
+    "ackBodyOpaque": true,
+    "automaticRefreshEnabled": false,
+    "automaticStopEnabled": false,
+    "replayAfterDisconnectEnabled": false,
+    "programExecutionSendEnabled": false,
+    "remoteSubscriptionStateVerified": false,
+    "notificationStreamVerified": false,
+    "targetDeviceVerified": false,
+    "modelSpecificPathVerified": false,
+    "physicalCompletionVerified": false,
+    "fixtures": "node/test/fixtures/program-subscription.json",
+    "files": [
+      "node/src/app-program-request.js",
+      "python/rs4mini_sdk/app_program_request.py",
+      "macos/RSControlCore.m",
+      "docs/APP_PROGRAM_SUBSCRIPTION.md"
     ]
   }
 }

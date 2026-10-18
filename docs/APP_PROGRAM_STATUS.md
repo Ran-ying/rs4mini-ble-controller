@@ -58,3 +58,5 @@ Node/Python/原生共用5组独立JSON测试向量，Web通过相同JS核心及�
 硬件、真实UI及实际自动ACK需求未验收，完整命令和高级新增门槛保持false。
 
 0.7.23另增[显式单次请求](APP_PROGRAM_REQUEST.md)，本被动接口的通知/缓存语义与无自动发送行为不变。
+
+0.7.24另增[显式推送启停请求](APP_PROGRAM_SUBSCRIPTION.md)，被动接口不按请求伪造远端状态，也没有自动订阅维护。

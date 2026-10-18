@@ -392,7 +392,7 @@ static BOOL Matches(NSString *name) {
     NSUInteger token = self.appToken; __weak typeof(self) weak = self;
     [self beginStopKeepingApp:^{ if (weak.appToken == token) [weak finishApp:nil error:error]; } message:nil];
 }
-- (NSData *)appCommandFrame:(uint8_t)command sequence:(uint16_t)sequence context:(NSArray *)context mode:(NSNumber *)mode {
+- (NSData *)appCommandFrame:(uint8_t)command sequence:(uint16_t)sequence context:(NSArray *)context mode:(id)mode {
     switch (command) {
         case 0x10: return RSAppParameterRequestFrame(sequence, context);
         case 0x0f:
@@ -413,7 +413,7 @@ static BOOL Matches(NSString *name) {
         case 0x35: return RSAppHandleWriteFrame(sequence,context,mode);
         case 0x36: return context || mode ? nil : RSAppHandleQueryFrame(sequence);
         case 0x6e: return RSAppCalibrationQueryFrame(sequence);
-        case 0x6b: return context ? nil : RSAppProgramStatusRequestFrame(sequence,mode);
+        case 0x6b: return context ? nil : [mode isKindOfClass:NSDictionary.class] ? RSAppProgramStatusSubscriptionFrame(sequence,mode) : RSAppProgramStatusRequestFrame(sequence,mode);
         case 0x31: return RSAppMotorWriteFrame(sequence,context,mode);
         case 0x32: return RSAppMotorReadFrame(sequence,context);
         default: return nil;
@@ -585,6 +585,17 @@ static BOOL Matches(NSString *name) {
     }];
 }
 
+- (void)sendProgramStatusSubscriptionRequest:(NSDictionary *)spec timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
+    NSDictionary *selection=RSAppProgramStatusSubscriptionSelection(spec);
+    if(!selection){if(completion)dispatch_async(dispatch_get_main_queue(), ^{completion(nil,RSAppError(@"RS4MINI_INVALID_ARGUMENT",@"Named program and boolean enabled required",nil));});return;}
+    NSDictionary *snapshot=@{@"program":selection[@"requestedProgram"],@"enabled":selection[@"requestedEnabled"]};
+    [self startAppCommand:0x6b parameters:nil mode:snapshot settingsKind:nil settingsPatch:nil timeoutMs:timeoutMs completion:^(NSDictionary *reply,NSError *error){
+        if(error){if(completion)completion(nil,error);return;}
+        NSMutableDictionary *result=[reply mutableCopy];[result addEntriesFromDictionary:selection];
+        [result addEntriesFromDictionary:@{@"freshStatusVerified":@NO,@"programCorrelationVerified":@NO,@"modelLayoutVerified":@NO,@"notificationStreamVerified":@NO,@"remoteSubscriptionStateVerified":@NO}];
+        if(completion)completion([result copy],nil);
+    }];
+}
 - (void)sendProgramStatusRequest:(NSDictionary *)spec timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
     NSDictionary *selection=RSAppProgramStatusSelection(spec);
     if(!selection){if(completion)dispatch_async(dispatch_get_main_queue(), ^{completion(nil,RSAppError(@"RS4MINI_INVALID_ARGUMENT",@"program must be track, timelapse or panorama",nil));});return;}
@@ -601,7 +612,7 @@ static BOOL Matches(NSString *name) {
 - (void)sendAutoTuneRequest:(NSNumber *)start completion:(RSAppCompletion)completion {
     [self startAppCommand:0x6a parameters:nil mode:[start copy] settingsKind:nil settingsPatch:nil timeoutMs:3000 completion:completion];
 }
-- (void)startAppCommand:(uint8_t)command parameters:(NSArray *)parameters mode:(NSNumber *)mode settingsKind:(NSString *)settingsKind settingsPatch:(NSDictionary *)settingsPatch timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
+- (void)startAppCommand:(uint8_t)command parameters:(NSArray *)parameters mode:(id)mode settingsKind:(NSString *)settingsKind settingsPatch:(NSDictionary *)settingsPatch timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
     NSError *error = nil;
     if (![self.appProfile isEqualToString:@"ronin-2.2.2"]) error = RSAppError(@"RS4MINI_PROFILE_REQUIRED", @"Select explicit ronin-2.2.2 source profile", nil);
     else if (!self.ready) error = RSAppError(@"RS4MINI_DISCONNECTED", @"Device is not connected", nil);

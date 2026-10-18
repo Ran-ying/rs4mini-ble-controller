@@ -706,3 +706,19 @@ NSData *RSAppProgramStatusRequestFrame(uint16_t sequence, NSNumber *programComma
     const uint8_t body[]={0,2,1,programCommand.unsignedCharValue};
     return Frame(sequence,0x6b,[NSData dataWithBytes:body length:4],0x40);
 }
+
+NSDictionary *RSAppProgramStatusSubscriptionSelection(NSDictionary *spec) {
+    if(![spec isKindOfClass:NSDictionary.class] || spec.count!=2 || ![spec[@"enabled"] isKindOfClass:NSNumber.class] || CFGetTypeID((__bridge CFTypeRef)spec[@"enabled"])!=CFBooleanGetTypeID())return nil;
+    NSDictionary *selected=RSAppProgramStatusSelection(@{@"program":spec[@"program"]?:NSNull.null});
+    if(!selected)return nil;
+    NSMutableDictionary *result=[selected mutableCopy];
+    result[@"requestedEnabled"]=spec[@"enabled"];
+    result[@"requestType"]=[spec[@"enabled"] boolValue]?@"StartContinuePush":@"StopContinuePush";
+    return [result copy];
+}
+NSData *RSAppProgramStatusSubscriptionFrame(uint16_t sequence, NSDictionary *spec) {
+    NSDictionary *selection=RSAppProgramStatusSubscriptionSelection(spec);
+    if(!selection)return nil;
+    const uint8_t body[]={0,[selection[@"requestedEnabled"] boolValue]?0:1,1,[selection[@"requestedProgramCommandId"] unsignedCharValue]};
+    return Frame(sequence,0x6b,[NSData dataWithBytes:body length:4],0x40);
+}

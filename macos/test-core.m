@@ -249,6 +249,16 @@ int main(void) {
             Require([decoded[@"commandId"] intValue]==107 && [decoded[@"flags"] intValue]==64 && [decoded[@"payload"] length]==4 && requestBytes[0]==0 && requestBytes[1]==2 && requestBytes[2]==1 && requestBytes[3]==[selected[@"requestedProgramCommandId"] intValue],@"single request uses fixed type2 and exact program tag");
         }
         Require(!RSAppProgramStatusSelection(@{@"program":@98}) && !RSAppProgramStatusSelection(@{@"program":@"track",@"requestType":@0}) && !RSAppProgramStatusSelection(@{@"program":@"delay"}) && !RSAppProgramStatusRequestFrame(1,@YES) && !RSAppProgramStatusRequestFrame(1,@25),@"single request rejects raw tags boolean and subscription options");
+        NSString *subscriptionFixture=[[@__FILE__ stringByDeletingLastPathComponent] stringByDeletingLastPathComponent];
+        subscriptionFixture=[subscriptionFixture stringByAppendingPathComponent:@"node/test/fixtures/program-subscription.json"];
+        NSArray *subscriptionVectors=[NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:subscriptionFixture] options:0 error:nil];
+        Require(subscriptionVectors.count==6,@"load shared six subscription contract vectors");
+        for(NSDictionary *vector in subscriptionVectors){
+            NSDictionary *spec=@{@"program":vector[@"program"],@"enabled":vector[@"enabled"]};NSDictionary *selection=RSAppProgramStatusSubscriptionSelection(spec);
+            NSDictionary *request=[[RSFrameDecoder new] push:RSAppProgramStatusSubscriptionFrame(45,spec)].lastObject;
+            Require([Hex(request[@"payload"]) isEqualToString:vector[@"bodyHex"]] && [request[@"flags"] intValue]==64 && [selection[@"requestType"] isEqual:vector[@"requestType"]] && [selection[@"requestedProgramCommandId"] isEqual:vector[@"programCommand"]],@"fixed subscription body uses exact program wire value and source enable type");
+        }
+        Require(!RSAppProgramStatusSubscriptionSelection(@{@"program":@"track",@"enabled":@1}) && !RSAppProgramStatusSubscriptionFrame(1,@{@"program":@98,@"enabled":@YES}) && !RSAppProgramStatusSubscriptionFrame(1,@{@"program":@"track",@"enabled":@YES,@"requestType":@0}) && !RSAppProgramStatusSubscriptionSelection(@{@"program":@"track"}),@"subscription requires named program and exact boolean with no arbitrary type override");
         printf("Native protocol, reassembly, stop queue and motion-core checks: %lu passed\n", (unsigned long)assertions);
     }
     return 0;

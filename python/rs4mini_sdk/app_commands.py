@@ -1,4 +1,4 @@
-from .app_program_request import program_status_request_spec,program_status_request_reply
+from .app_program_request import program_status_request_spec,program_status_request_reply,program_status_subscription_spec,program_status_subscription_reply
 from .app_program_status import program_status_notification
 from .app_source_status import source_status_notification
 from .app_handheld_stick import handheld_stick_notification
@@ -94,6 +94,14 @@ class AppCommands:
 
     def _require_profile(self):
         app_profile(self._profile)
+
+    async def sendProgramStatusSubscriptionRequest(self, *, program, enabled, timeoutMs=3000):
+        self._require_profile()
+        spec=program_status_subscription_spec(program,enabled)
+        response=await self.owner.experimental._query_payload_command('App program status subscription request',(4,0x6b),spec['payload'],timeoutMs)
+        return program_status_subscription_reply(response,spec['requestedProgram'],spec['requestedEnabled'])
+
+    send_program_status_subscription_request = sendProgramStatusSubscriptionRequest
 
     async def sendProgramStatusRequest(self, *, program, timeoutMs=3000):
         self._require_profile()

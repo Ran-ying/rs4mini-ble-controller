@@ -55,7 +55,7 @@ for row in manifest['commands']:
     if row['targetEvidence'] == 'official-app-enum':
         assert row['requestCodec'] in {'unknown', 'not-exposed'} and not row['implementation'], row['key']
     if row['targetEvidence'] == 'app-generic-code':
-        assert row['key'] in {'04:24','04:57','04:27','04:33','04:38','04:64','04:6B'} and row['requestCodec'] == ('partial' if row['key']=='04:6B' else 'not-applicable') and row['responseCodec'] == 'candidate-structured'
+        assert row['key'] in {'04:24','04:57','04:27','04:33','04:38','04:64','04:6B'} and row['requestCodec'] == ('implemented' if row['key']=='04:6B' else 'not-applicable') and row['responseCodec'] == 'candidate-structured'
         assert manifest['userPushSdk']['modelSpecificPathVerified'] is False and manifest['userPushSdk']['targetDeviceVerified'] is False
     if row.get('officialAppEvidence'):
         evidence_path = root / row['officialAppEvidence']
@@ -572,13 +572,27 @@ if manifest.get('programStatusSdk'):
     assert program['commandIds']==[56,100,107]
     assert len(json.loads((root/program['fixtures']).read_text()))==5
 
-# The only generic-program send exception is a fixed, explicit one-shot status request.
+# Generic-program sends are explicit fixed status requests, never execution.
 request = manifest['programStatusRequestSdk']
 assert request['profile']=='ronin-2.2.2'
 assert request['sourceRequestType']==2 and request['sourceRequestTypeName']=='RequestSinglePush'
 assert request['allowedProgramCommands']==[98,55,99]
 assert request['singleRequestSendEnabled'] is True and request['ackBodyOpaque'] is True
-for flag in ('continuousSubscriptionSendEnabled','programExecutionSendEnabled','freshStatusVerified','programCorrelationVerified','modelSpecificPathVerified','targetDeviceVerified','physicalCompletionVerified'):
+assert request['continuousSubscriptionSendEnabled'] is True
+for flag in ('programExecutionSendEnabled','freshStatusVerified','programCorrelationVerified','modelSpecificPathVerified','targetDeviceVerified','physicalCompletionVerified'):
     assert request[flag] is False
 for source in request['files']:
+    assert (root/source).is_file()
+
+subscription = manifest['programStatusSubscriptionSdk']
+assert subscription['profile']=='ronin-2.2.2'
+assert subscription['sourceRequestTypes']=={'StartContinuePush':0,'StopContinuePush':1}
+assert subscription['allowedProgramCommands']==[98,55,99]
+assert subscription['explicitBooleanEnabledRequired'] is True and subscription['ackBodyOpaque'] is True
+for flag in ('automaticRefreshEnabled','automaticStopEnabled','replayAfterDisconnectEnabled','programExecutionSendEnabled','remoteSubscriptionStateVerified','notificationStreamVerified','targetDeviceVerified','modelSpecificPathVerified','physicalCompletionVerified'):
+    assert subscription[flag] is False
+vectors = json.loads((root/subscription['fixtures']).read_text())
+assert len(vectors)==6
+assert {(v['program'],v['enabled']) for v in vectors} == {(p,e) for p in ('track','timelapse','panorama') for e in (True,False)}
+for source in subscription['files']:
     assert (root/source).is_file()

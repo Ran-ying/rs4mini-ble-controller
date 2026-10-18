@@ -1,4 +1,4 @@
-import {programStatusRequestSpec,programStatusRequestReply} from './app-program-request.js';
+import {programStatusRequestSpec,programStatusRequestReply,programStatusSubscriptionSpec,programStatusSubscriptionReply} from './app-program-request.js';
 import {programStatusNotification} from './app-program-status.js';
 import {sourceStatusNotification} from './app-source-status.js';
 import {handheldStickNotification} from './app-handheld-stick.js';
@@ -52,6 +52,12 @@ export class AppCommands {
     this._profile = profile; this._reset();
   }
   _requireProfile() { appProfile(this._profile); }
+  async sendProgramStatusSubscriptionRequest(options={}) {
+    optionsOnly(options,['program','enabled','timeoutMs']);this._requireProfile();
+    const spec=programStatusSubscriptionSpec(options.program,options.enabled);
+    const response=await this.owner.experimental._queryPayloadCommand('App program status subscription request',[4,0x6b],spec.payload,options.timeoutMs??3000);
+    return programStatusSubscriptionReply(response,spec.requestedProgram,spec.requestedEnabled);
+  }
   async sendProgramStatusRequest(options={}) {
     optionsOnly(options,['program','timeoutMs']);this._requireProfile();
     const spec=programStatusRequestSpec(options.program);

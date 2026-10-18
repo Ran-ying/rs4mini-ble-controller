@@ -1,4 +1,4 @@
-// Fixed single-status request only; no subscription or program execution API.
+// Explicit source status requests; no program execution or automatic subscription lifecycle.
 import {bytes} from './bytes.js';
 import {appReply} from './app-protocol.js';
 import {failure} from './async.js';
@@ -11,4 +11,16 @@ export function programStatusRequestReply(message,program) {
   const {payload,...requested}=programStatusRequestSpec(program);
   if(!message || !Number.isInteger(message.flags) || message.flags<0 || message.flags>255 || (message.flags&7))throw failure('RS4MINI_PROTOCOL_ERROR','Unencrypted App response required');
   return {...appReply(message,0x6b),...requested,requestType:'RequestSinglePush',freshStatusVerified:false,programCorrelationVerified:false,modelLayoutVerified:false};
+}
+
+export function programStatusSubscriptionSpec(program, enabled) {
+  if (typeof enabled !== 'boolean') throw new TypeError('enabled must be a boolean');
+  const {payload, ...requested} = programStatusRequestSpec(program);
+  return {...requested, requestedEnabled: enabled, requestType: enabled ? 'StartContinuePush' : 'StopContinuePush',
+    payload: bytes([0, enabled ? 0 : 1, 1, requested.requestedProgramCommandId])};
+}
+export function programStatusSubscriptionReply(message, program, enabled) {
+  const {payload, ...requested} = programStatusSubscriptionSpec(program, enabled);
+  return {...programStatusRequestReply(message, program), ...requested,
+    notificationStreamVerified: false, remoteSubscriptionStateVerified: false};
 }

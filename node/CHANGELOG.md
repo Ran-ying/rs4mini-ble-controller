@@ -1,5 +1,10 @@
 # 0.7.22
 
+## 0.7.24
+
+- 四端新增sendProgramStatusSubscriptionRequest：显式命名程序/布尔enabled，固定StartContinuePush/StopContinuePush，仅关联ACK，不证明远端状态或通知流。
+- 被动缓存独立；无自动刷新/相反请求/断线恢复、动作程序或高级新增；本机与全协议未验收。
+
 ## 0.7.23
 
 - 四端显式App来源sendProgramStatusRequest：固定RequestSinglePush/type2，track/timelapse/panorama；只等待关联ACK，保留不透明业务体，不承诺新状态。

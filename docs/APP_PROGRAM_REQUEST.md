@@ -49,3 +49,5 @@ Python任务取消会移除pending；Node/Python超时、断线及迟到ACK均�
 
 本功能离线验证使用合成消息、假设备/GATT和源码证据，不扫描、连接或移动硬件。
 全部命令枚举与实机验收仍未完成，新增高级功能门槛保持false。
+
+0.7.24另提供[显式推送启停请求](APP_PROGRAM_SUBSCRIPTION.md)，本单次方法仍固定type2；其通知与ACK分离契约不变。

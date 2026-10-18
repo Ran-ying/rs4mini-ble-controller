@@ -103,3 +103,6 @@ NSDictionary *RSDecodeAppProgramStatusNotification(NSDictionary *message);
 
 NSDictionary *RSAppProgramStatusSelection(NSDictionary *spec);
 NSData *RSAppProgramStatusRequestFrame(uint16_t sequence, NSNumber *programCommand);
+
+NSDictionary *RSAppProgramStatusSubscriptionSelection(NSDictionary *spec);
+NSData *RSAppProgramStatusSubscriptionFrame(uint16_t sequence, NSDictionary *spec);

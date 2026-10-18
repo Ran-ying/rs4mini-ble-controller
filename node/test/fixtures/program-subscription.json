@@ -1,0 +1,44 @@
+[
+  {
+    "program": "track",
+    "enabled": true,
+    "bodyHex": "00000162",
+    "requestType": "StartContinuePush",
+    "programCommand": 98
+  },
+  {
+    "program": "track",
+    "enabled": false,
+    "bodyHex": "00010162",
+    "requestType": "StopContinuePush",
+    "programCommand": 98
+  },
+  {
+    "program": "timelapse",
+    "enabled": true,
+    "bodyHex": "00000137",
+    "requestType": "StartContinuePush",
+    "programCommand": 55
+  },
+  {
+    "program": "timelapse",
+    "enabled": false,
+    "bodyHex": "00010137",
+    "requestType": "StopContinuePush",
+    "programCommand": 55
+  },
+  {
+    "program": "panorama",
+    "enabled": true,
+    "bodyHex": "00000163",
+    "requestType": "StartContinuePush",
+    "programCommand": 99
+  },
+  {
+    "program": "panorama",
+    "enabled": false,
+    "bodyHex": "00010163",
+    "requestType": "StopContinuePush",
+    "programCommand": 99
+  }
+]

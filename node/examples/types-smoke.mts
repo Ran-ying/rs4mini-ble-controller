@@ -240,3 +240,15 @@ async function programStatusRequestTypes(gimbal: import('../src/index.js').RS4Mi
  // @ts-expect-error no continuous subscription selector
  await gimbal.appCommands.sendProgramStatusRequest({program:'track',requestType:0});
 }
+
+async function programSubscriptionTypes(gimbal: RS4Mini) {
+ const reply=await gimbal.appCommands.sendProgramStatusSubscriptionRequest({program:'track',enabled:true});
+ const remote:false=reply.remoteSubscriptionStateVerified;const type:'StartContinuePush'|'StopContinuePush'=reply.requestType;void remote;void type;
+ await gimbal.appCommands.sendProgramStatusSubscriptionRequest({program:'panorama',enabled:false});
+ // @ts-expect-error boolean required
+ await gimbal.appCommands.sendProgramStatusSubscriptionRequest({program:'track',enabled:1});
+ // @ts-expect-error raw request type not public
+ await gimbal.appCommands.sendProgramStatusSubscriptionRequest({program:'track',enabled:true,requestType:0});
+ // @ts-expect-error enabled must be explicit
+ await gimbal.appCommands.sendProgramStatusSubscriptionRequest({program:'track'});
+}

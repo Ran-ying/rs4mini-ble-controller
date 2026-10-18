@@ -592,3 +592,11 @@ tarball隔离安装后213项及TypeScript消费者通过；wheel隔离安装后1
 
 
 BLE路由研究验证（2026-10-18）：最终固定输入实际提取两次，37方法/5个直接字段写入构造方法证据JSON逐字节一致。新增11项测试，研究Python3.8与3.12各379通过；统一离线Node247/Web24/Python222/原生669+250+3及类型/分层/构建通过，终态0。运行时目录与30b2a64完全一致，0.7.29/0.3.29安装包不变。没有SDK发送/解密/相机/视觉/高级新增或硬件/liveUI/厂商执行，完整命令门槛false。
+
+
+## 04:08 ACK与业务域研究
+
+固定bank05独立核对20方法，基础表ACK剥离ccode后part/status对应原始payload1/2；GIMBAL回调成功仅返回码0，与业务SUCCESS1分开。短业务体不补PROCESSING；源混合命令key仅命令集/命令/序号，不照搬到SDK严格会话/ACK/端点关联。见[校准ACK研究](../tools/research/CALIBRATION_ACK.md)（仓库根目录）及protocol/research/ronin-calibration-ack-evidence.json。没有SDK发送/解密/高级新增、硬件/liveUI或厂商执行，运行时0.7.29/0.3.29及完整命令false不变。
+
+
+校准ACK研究验证（2026-10-18）：最终固定输入实际提取两次，20方法证据JSON逐字节一致。新增12项测试，研究Python3.8与3.12各391通过，覆盖全uint8部件/状态/非零返回码、短业务体、密文拒绝和key边界；统一离线Node247/Web24/Python222/原生669+250+3及类型/分层/构建通过，终态0。运行时目录与a3d4002一致，0.7.29/0.3.29安装包不变，无SDK发送/解密/高级新增或硬件/liveUI/厂商执行，全命令门槛false。

@@ -1,0 +1,224 @@
+{
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "bankSha256": "4fdbd74a05df63d72a0feb1c907d9395426ec3cdb5d6aeb45e3836d856d66654",
+  "methods": [
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/config/P3/Ccode;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3319692,
+      "instructionSha256": "a9da688ce57ba37773c36fe5c8de8227f8f0492e4fcbab612fb43c0fd1ddf142"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 4652020,
+      "instructionSha256": "89d7e5d4c317f54eb541d186eff2e608a50e62f9387974ef9c74a54543aa6609"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+      "method": "isNeedCcode",
+      "descriptor": "()Z",
+      "codeOffset": 4653768,
+      "instructionSha256": "cdbefba08f513c5881e2d27c6f2904e1312e1949ce93078fcc2f20c11153eebe"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/config/P3/CmdIdGimbal;",
+      "method": "getCurCmdIdValues",
+      "descriptor": "()[Ldji/midware/interfaces/CmdIdInterface;",
+      "codeOffset": 4653836,
+      "instructionSha256": "3f2ab619cd952526de946529d927aab47f87bad28d95362727d859f745173b6d"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/config/P3/CmdSet;",
+      "method": "<init>",
+      "descriptor": "(Ljava/lang/String; I I Ldji/midware/data/config/P3/DJICmdSetBase;)V",
+      "codeOffset": 3322540,
+      "instructionSha256": "b4a57def88fb246be2a66fa53fd6f4f1018bca711d0c6af5a528b56f5ad3a953"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/config/P3/CmdSet;",
+      "method": "getExtraCmdSetInterface",
+      "descriptor": "(Ldji/midware/data/config/P3/DJICmdSetBase;)Ldji/midware/data/config/P3/DJICmdSetBase;",
+      "codeOffset": 3322628,
+      "instructionSha256": "f582f30de77ee962ff4e3d977c9401087819be858b9e75fc22b78204ee42b412"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/config/P3/DJICmdSetBase;",
+      "method": "isBlock",
+      "descriptor": "(I)Z",
+      "codeOffset": 3323152,
+      "instructionSha256": "7fa158265b7011ea6066e085324a63d9382ca15b58e22c1cb84b58b86340d8e5"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/config/P3/DJICmdSetBase;",
+      "method": "isMix",
+      "descriptor": "(I)Z",
+      "codeOffset": 3323204,
+      "instructionSha256": "c1bf5a0e385567bf0aeb934289c8f506a1c8bac6621cc9bb42b1d110e9313f53"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/config/P3/DJICmdSetBase;",
+      "method": "isNeedCcode",
+      "descriptor": "(I)Z",
+      "codeOffset": 3323256,
+      "instructionSha256": "6051e59b0f01d28a35ef2d5e906a7e0f03ddef6848acc9c5ec51f5e35e268f6a"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DJIPackManagerBase;",
+      "method": "setMsg",
+      "descriptor": "(Ldji/midware/data/packages/P3/RecvPack;)V",
+      "codeOffset": 3339548,
+      "instructionSha256": "d537ebbfbf8d725bbe8be61b59d80296d91d061667e121d653c77c1fd5100e64"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DataBase$3;",
+      "method": "call",
+      "descriptor": "()Ljava/lang/Integer;",
+      "codeOffset": 3347260,
+      "instructionSha256": "b418796d8679a7088ddca8098154683caa6a6842504c6d05f785b3485e9423ba"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "sendPackResult",
+      "descriptor": "(Ldji/midware/data/packages/P3/SendPack; Ldji/midware/interfaces/DJIDataCallBack; Ldji/midware/data/packages/P3/RecvPack; Z)V",
+      "codeOffset": 3349724,
+      "instructionSha256": "7904caf5718c30e52996a996c68f3b30288d8aba98afd81733328f258dc9c30c"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "setPushRecPack",
+      "descriptor": "(Ldji/midware/data/packages/P3/Pack;)V",
+      "codeOffset": 3352564,
+      "instructionSha256": "80f0bb9c5884940e7c2600d2e6f22c5287da3c37061590ec9049cce5b53d03ee"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "setRecData",
+      "descriptor": "([B)V",
+      "codeOffset": 3352748,
+      "instructionSha256": "a6675a47286fe5b2725b26418463a503442cf7fbb89df865e1303c316ccc4b64"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DataBaseProcessor;",
+      "method": "getKey",
+      "descriptor": "(Ldji/midware/data/packages/P3/Pack;)I",
+      "codeOffset": 3355588,
+      "instructionSha256": "bf44f7befe400c28b140a85163d425bb4870b3d67b99a486a16569355b7a22fe"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DataBaseProcessor;",
+      "method": "setMsg",
+      "descriptor": "(Ldji/midware/data/packages/P3/Pack;)V",
+      "codeOffset": 3356776,
+      "instructionSha256": "d30dcf0a0c68a849d5d17d525ebbcbfb83451924d5f11110d2bc27d12052025a"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+      "method": "getStatus",
+      "descriptor": "()Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationStatus;",
+      "codeOffset": 4856528,
+      "instructionSha256": "bc2b38e0c3ffe937c9cb3933a7fb9897eeadf6023e0547733c49ac4702aafdd8"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+      "method": "getType",
+      "descriptor": "()Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationPart;",
+      "codeOffset": 4856636,
+      "instructionSha256": "38fb5916f644d6abd437666d334dc2cf5581da04f1ada8083a8ca31fbe24f087"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/packages/P3/RecvPack;",
+      "method": "isNeedCcode",
+      "descriptor": "()V",
+      "codeOffset": 5031076,
+      "instructionSha256": "56ebd2bfd536331c7470349c7c7d1be7085b613231fa02ac8f815e32c574a83e"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/packages/P3/RecvPack;",
+      "method": "setBuffer",
+      "descriptor": "([B)V",
+      "codeOffset": 5031432,
+      "instructionSha256": "f3a4d52a3ef8cf1d939cb1b1e00d6b7f2fd8f65fe1a8b37f1916b2e340c342c2"
+    }
+  ],
+  "baseCommandPolicy": {
+    "name": "AutoCalibration",
+    "commandId": 8,
+    "isBlock": false,
+    "isMix": true,
+    "modelClass": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;"
+  },
+  "mapping": {
+    "ackCcodeInRawPayload": 0,
+    "ackBusinessPartInRawPayload": 1,
+    "ackBusinessStatusInRawPayload": 2,
+    "requestBusinessPartInRawPayload": 0,
+    "requestBusinessStatusInRawPayload": 1,
+    "baseNeedsCcode": true,
+    "emptyBusinessDoesNotAssignNewSourceData": true
+  },
+  "callback": {
+    "gimbalSuccessReturnCode": 0,
+    "cameraOnlyAlternateSuccess": 1,
+    "businessSuccessStatus": 1,
+    "successCallbackDoesNotCheckBusinessStatus": true,
+    "failureCallbackAlsoStoresBusinessData": true
+  },
+  "mixedPaths": {
+    "processorPathEligible": true,
+    "pushPathEligible": true
+  },
+  "sourceProcessor": {
+    "keyFields": [
+      "cmdSet",
+      "cmdId",
+      "sequence"
+    ],
+    "ackBitInKey": false,
+    "endpointsInKey": false,
+    "matchingMapEntryOnlyQueuesHandlerMessage12": true,
+    "fullTransactionBehaviorVerified": false
+  },
+  "scope": {
+    "parsedBanks": [
+      5
+    ],
+    "unrestoredBanks": [
+      1,
+      7
+    ],
+    "actualExtensionSelectionVerified": false,
+    "vendorCodeExecuted": false,
+    "hardwareTested": false,
+    "sdkInterfaceAdded": false,
+    "physicalCompletionVerified": false
+  },
+  "remaining": [
+    "Base-table wire mapping is established; reflection-loaded alternatives and actual target frames remain unverified.",
+    "Do not copy weaker source key matching: SDK still requires session, ACK bit, endpoints, command and sequence.",
+    "Return-code success, complete business bytes and source SUCCESS are distinct; none proves current physical completion.",
+    "Short/empty business view is explicitly incomplete, not the source fallback PROCESSING or a fresh cached result."
+  ]
+}

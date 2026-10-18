@@ -77,7 +77,7 @@ NSData *RSResearchQueryFrame(uint16_t sequence, NSString *kind) {
     return CommandFrame(sequence, [kind isEqualToString:@"version"] ? 0 : 4, [ids[kind] unsignedCharValue], [NSData data], 0x40);
 }
 NSDictionary *RSDecodeResearchStatus(NSDictionary *message, NSString *profile) {
-    if (![@[@"rs3", @"rs3mini"] containsObject:profile] || [message[@"receiver"] intValue] != 2) return nil;
+    if (![@[@"rs3", @"rs3mini"] containsObject:profile] || [message[@"receiver"] intValue] != 2 || ![message[@"flags"] isKindOfClass:NSNumber.class] || CFGetTypeID((__bridge CFTypeRef)message[@"flags"])==CFBooleanGetTypeID() || [message[@"flags"] doubleValue]!=floor([message[@"flags"] doubleValue]) || [message[@"flags"] doubleValue]<0 || [message[@"flags"] doubleValue]>255 || ([message[@"flags"] intValue]&7)) return nil;
     NSData *payload = message[@"payload"]; if (![payload isKindOfClass:NSData.class]) return nil;
     const uint8_t *p = payload.bytes; NSUInteger n = payload.length;
     NSMutableDictionary *result = [@{@"profile": profile, @"deviceVerified": @NO, @"payloadHex": Hex(payload)} mutableCopy];
@@ -198,11 +198,14 @@ NSError *RSAppError(NSString *code, NSString *message, NSNumber *statusCode) {
     if (statusCode) info[@"statusCode"] = statusCode;
     return [NSError errorWithDomain:@"RS4MiniSDK" code:statusCode ? statusCode.integerValue : -1 userInfo:info];
 }
+static BOOL AppPlainFlags(id flags, BOOL ack) {
+    return [flags isKindOfClass:NSNumber.class] && CFGetTypeID((__bridge CFTypeRef)flags)!=CFBooleanGetTypeID() && [flags doubleValue]==floor([flags doubleValue]) && [flags doubleValue]>=0 && [flags doubleValue]<=255 && !([flags intValue]&7) && ((([flags intValue]&128)!=0)==ack);
+}
 NSDictionary *RSDecodeAppReply(NSDictionary *message, uint8_t command, NSArray *parameters, NSError **error) {
     NSData *payload = message[@"payload"];
     if ([message[@"sender"] intValue] != 4 || [message[@"receiver"] intValue] != 2 || [message[@"commandSet"] intValue] != 4 ||
-        [message[@"commandId"] intValue] != command || !([message[@"flags"] intValue] & 0x80) || ![payload isKindOfClass:NSData.class] || !payload.length) {
-        if (error) *error = RSAppError(@"RS4MINI_PROTOCOL_ERROR", @"Expected correlated App response with status byte", nil); return nil;
+        [message[@"commandId"] intValue] != command || !AppPlainFlags(message[@"flags"],YES) || ![payload isKindOfClass:NSData.class] || !payload.length) {
+        if (error) *error = RSAppError(@"RS4MINI_PROTOCOL_ERROR", @"Expected correlated unencrypted App response with status byte", nil); return nil;
     }
     const uint8_t *p = payload.bytes;
     if (p[0]) { if (error) *error = RSAppError(@"RS4MINI_DEVICE_ERROR", @"Device rejected App command", @(p[0])); return nil; }
@@ -319,7 +322,7 @@ NSDictionary *RSDecodeAppCalibrationReply(NSDictionary *message, NSError **error
     NSMutableDictionary *result = [reply mutableCopy]; result[@"calibration"] = calibration; return [result copy];
 }
 NSDictionary *RSDecodeAppCalibrationNotification(NSDictionary *message) {
-    if ([message[@"sender"] intValue] != 4 || [message[@"receiver"] intValue] != 2 || [message[@"commandSet"] intValue] != 4 || [message[@"commandId"] intValue] != 0x6e || ([message[@"flags"] intValue] & 0x80)) return nil;
+    if ([message[@"sender"] intValue] != 4 || [message[@"receiver"] intValue] != 2 || [message[@"commandSet"] intValue] != 4 || [message[@"commandId"] intValue] != 0x6e || !AppPlainFlags(message[@"flags"],NO)) return nil;
     NSDictionary *calibration = RSDecodeAppCalibrationRecords(message[@"payload"]);
     if (!calibration || calibration[@"rawState"] == NSNull.null) return nil;
     NSMutableDictionary *result = [calibration mutableCopy];

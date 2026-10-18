@@ -40,7 +40,7 @@ export function researchSleepFrame(sequence, profile, asleep) {
 }
 export function decodeResearchStatus(message, profile) {
   researchProfile(profile);
-  if (!message || message.receiver !== 2) return null;
+  if (!message || message.receiver !== 2 || !Number.isInteger(message.flags) || message.flags<0 || message.flags>255 || (message.flags&7)) return null;
   const p = message.payload, v = view(p);
   const base = { profile, deviceVerified: false, timestamp: message.receivedAt ?? Date.now(), payloadHex: hex(p) };
   if (message.sender === 4 && message.commandSet === 4) {

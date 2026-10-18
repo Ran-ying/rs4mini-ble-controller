@@ -22,8 +22,8 @@ export function sensitivityPayload(mode) {
   return bytes([150, 1, mode]);
 }
 export function appReply(message, commandId) {
-  if (!message || message.sender !== 4 || message.receiver !== 2 || message.commandSet !== 4 || message.commandId !== commandId || !(message.flags & 0x80) || !message.payload?.length)
-    throw failure('RS4MINI_PROTOCOL_ERROR', 'Expected a correlated App response with status byte');
+  if (!message || message.sender !== 4 || message.receiver !== 2 || message.commandSet !== 4 || message.commandId !== commandId || !Number.isInteger(message.flags) || message.flags<0 || message.flags>255 || !(message.flags & 0x80) || (message.flags & 7) || !(message.payload instanceof Uint8Array) || !message.payload.length)
+    throw failure('RS4MINI_PROTOCOL_ERROR', 'Expected a correlated unencrypted App response with status byte');
   const statusCode = message.payload[0];
   if (statusCode !== 0) throw failure('RS4MINI_DEVICE_ERROR', `Device returned status ${statusCode}`, { statusCode, response: copyMessage(message) });
   return { profile: APP_PROFILE, deviceVerified: false, physicalCompletionVerified: false,

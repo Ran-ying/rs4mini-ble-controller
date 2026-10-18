@@ -98,7 +98,7 @@ export class DumlStreamDecoder {
 }
 
 export function decodeGimbalTelemetry(message) {
-  if (!message || message.commandSet !== 0x04 || message.commandId !== 0x05) return null;
+  if (!message || message.commandSet !== 0x04 || message.commandId !== 0x05 || !Number.isInteger(message.flags) || message.flags<0 || message.flags>255 || (message.flags&0x87)) return null;
   if (message.payload.length < 6) return null;
 
   const attitudeRaw = {

@@ -42,7 +42,7 @@ def calibration_reply(message):
 
 def calibration_notification(message):
     if (message.get('sender') != 4 or message.get('receiver') != 2 or message.get('commandSet') != 4
-            or message.get('commandId') != 0x6e or message.get('flags', 0) & 0x80):
+            or message.get('commandId') != 0x6e or type(message.get('flags')) is not int or not 0<=message['flags']<=255 or message['flags'] & 0x87):
         return None
     try:
         result = calibration_records(message['payload'])

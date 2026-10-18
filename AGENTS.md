@@ -8,9 +8,9 @@ verification status changes.
 ## Objective and user decisions
 
 - Provide an unofficial, direct BLE controller for **DJI RS 4 Mini**, initially on macOS.
-- **Node.js is the authoritative implementation**; current package version is `0.7.28`.
+- **Node.js is the authoritative implementation**; current package version is `0.7.29`.
 - The user subsequently requested completion of all existing ports. Python is now
-  `0.7.28`, Web shares the JS core, and the native panel is `0.3.28`. Describe the
+  `0.7.29`, Web shares the JS core, and the native panel is `0.3.29`. Describe the
   documented feature differences; do not claim identical APIs or hardware proof.
 - After that delivery, the user requested the remaining **non-camera** capabilities
   under the same autonomous/offline conditions. Expansion work is in progress;
@@ -1035,3 +1035,14 @@ FollowModeSensitivity和GimbalControlState分别受isSupportStateSince4Gen控制
 
 
 校准入口条件验证（2026-10-18）：最终工具独立提取两次，63方法/2布局证据JSON逐字节一致。新增13研究测试，Python3.8/3.12研究各355项通过；统一离线Node241/Web23/Python217/原生637+247+3及类型/边界/构建通过，终态0。静态HG724所选项/缓存条件不提升为现场身份、实际Activity挂载或固件支持；60秒UI计时不证明中止。未新增SDK收发、相机/视觉/高级功能，运行时/安装包保持0.7.28/0.3.28，无硬件/liveUI/厂商执行，完整命令和高级门槛false。
+
+
+## 0.7.29接收业务解析边界 / 原生0.3.29 build32
+
+关联App ACK、04:05反馈、04:6E调参通知和旧研究状态拒绝加密/无效flags，原始帧保持可观察；加密读取不推进参数写入，加密关节不进入定位反馈。没有新增命令、解密、协商、硬件操作或高级功能，完整命令与高级门槛仍false。契约见 docs/PLAINTEXT_BOUNDARIES.md（仓库根目录）；本版本取代此前宽松解析行为，历史版本记录保留。
+
+
+0.7.29接收边界离线验收（2026-10-18）：统一检查终态0，Node247/Web24/Python3.8与3.12各222、原生669核心+250假设备生命周期+3独立SDK、研究355，类型/分层/签名构建通过。覆盖全部非零加密模式、无效flags、ACK错误分类、加密读取不推进写入、缓存隔离与定位等待下的原始假反馈；没有创建蓝牙会话、运行实时UI或执行厂商代码。未实现解密/协商或开放04:08，全部命令与高级门槛仍false。
+
+
+0.7.29实际安装交付验证：Node tarball隔离安装后247项与严格TypeScript消费者通过；wheel隔离安装后222项通过，app_protocol/app_calibration/telemetry/experimental_protocol实际导入位置核对。Node99文件、wheel36模块及原生ZIP3文件逐字节匹配本次源码/签名构建，原生版本0.3.29/build32，未启动应用。没有npm发布或GitHub二进制Release。

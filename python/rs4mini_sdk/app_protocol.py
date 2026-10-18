@@ -38,8 +38,8 @@ def sensitivity_payload(mode):
 def app_reply(message, command_id):
     if (not isinstance(message, dict) or message.get('sender') != 4 or message.get('receiver') != 2
             or message.get('commandSet') != 4 or message.get('commandId') != command_id
-            or not message.get('flags', 0) & 0x80 or not message.get('payload')):
-        raise RS4MiniError('RS4MINI_PROTOCOL_ERROR', 'Expected correlated App response with status byte')
+            or type(message.get('flags')) is not int or not 0<=message['flags']<=255 or not message['flags'] & 0x80 or message['flags']&7 or not isinstance(message.get('payload'),(bytes,bytearray)) or not message['payload']):
+        raise RS4MiniError('RS4MINI_PROTOCOL_ERROR', 'Expected correlated unencrypted App response with status byte')
     status = message['payload'][0]
     if status:
         error = RS4MiniError('RS4MINI_DEVICE_ERROR', 'Device returned status ' + str(status))

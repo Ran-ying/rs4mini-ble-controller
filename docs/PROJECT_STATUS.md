@@ -1,6 +1,6 @@
 # 项目状态与接手入口
 
-更新日期：2026-10-18。当前源码检查点为 Node/Python/Web **0.7.28**、macOS 原生面板 **0.3.28**。
+更新日期：2026-10-18。当前源码检查点为 Node/Python/Web **0.7.29**、macOS 原生面板 **0.3.29**。
 
 **当前 App 参数事务已进入四端设备 SDK；全部非相机 BLE 能力整体目标尚未完成。**
 用户已要求将源码与相关信息提交至 GitHub。本记录随源码版本保存，提交和远端状态以 Git 历史为准；
@@ -565,3 +565,14 @@ tarball隔离安装后213项及TypeScript消费者通过；wheel隔离安装后1
 ## 校准入口条件与HG724静态分支研究
 
 63方法/2布局核对SystemStatus→新设置构造链、普通GYRO05/高级AUTO00的04:08及MotorEnabled缓存门槛。所选项与ModelName均HG724的显式源码情形中，普通隐藏/高级显示且旁路版本；阈值00.02.32.25严格大于、缓存/异步可见性与实际设备分开。高级ACK后60秒本地计时和百分比显示不证明固件中止/请求关联。见[校准入口研究](../tools/research/CALIBRATION_ENTRY.md)及protocol/research/ronin-calibration-entry-evidence.json。不与system_calc/index36混用，未新增SDK收发/高级功能或硬件/liveUI/厂商执行，运行时仍0.7.28/0.3.28，完整命令门槛false。
+
+
+## 0.7.29接收业务解析边界 / 原生0.3.29 build32
+
+关联App ACK、04:05反馈、04:6E调参通知和旧研究状态拒绝加密/无效flags，原始帧保持可观察；加密读取不推进参数写入，加密关节不进入定位反馈。没有新增命令、解密、协商、硬件操作或高级功能，完整命令与高级门槛仍false。契约见 docs/PLAINTEXT_BOUNDARIES.md（仓库根目录）；本版本取代此前宽松解析行为，历史版本记录保留。
+
+
+0.7.29接收边界离线验收（2026-10-18）：统一检查终态0，Node247/Web24/Python3.8与3.12各222、原生669核心+250假设备生命周期+3独立SDK、研究355，类型/分层/签名构建通过。覆盖全部非零加密模式、无效flags、ACK错误分类、加密读取不推进写入、缓存隔离与定位等待下的原始假反馈；没有创建蓝牙会话、运行实时UI或执行厂商代码。未实现解密/协商或开放04:08，全部命令与高级门槛仍false。
+
+
+0.7.29实际安装交付验证：Node tarball隔离安装后247项与严格TypeScript消费者通过；wheel隔离安装后222项通过，app_protocol/app_calibration/telemetry/experimental_protocol实际导入位置核对。Node99文件、wheel36模块及原生ZIP3文件逐字节匹配本次源码/签名构建，原生版本0.3.29/build32，未启动应用。没有npm发布或GitHub二进制Release。

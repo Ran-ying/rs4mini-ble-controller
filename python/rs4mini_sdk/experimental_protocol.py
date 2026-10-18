@@ -50,7 +50,7 @@ def research_sleep_frame(sequence, profile, asleep):
 
 def decode_research_status(message, profile):
     research_profile(profile)
-    if not message or message['receiver'] != 2:
+    if not message or message['receiver'] != 2 or type(message.get('flags')) is not int or not 0<=message['flags']<=255 or message['flags']&7:
         return None
     payload = message['payload']
     base = dict(profile=profile, deviceVerified=False, timestamp=message.get('receivedAt', time.time() * 1000), payloadHex=payload.hex())

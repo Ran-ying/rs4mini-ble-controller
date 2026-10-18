@@ -133,9 +133,9 @@ int main(void) {
         Require([Hex(sleep.firstObject[@"payload"]) isEqualToString:@"230111"] && [sleep.firstObject[@"sequence"] intValue] == 1, @"RS 3 Mini sleep vector and frame metadata");
         Require(!RSResearchAbsoluteFrame(1, @{@"pan": @181}, 20) && !RSResearchQueryFrame(1, @"calibrate"), @"research command ranges and query allowlist");
         NSMutableData *battery = [NSMutableData dataWithLength:21]; ((uint8_t *)battery.mutableBytes)[20] = 67;
-        NSDictionary *message = @{@"sender": @0xe5, @"receiver": @2, @"commandSet": @0x0d, @"commandId": @2, @"payload": battery};
+        NSDictionary *message = @{@"sender": @0xe5, @"receiver": @2, @"commandSet": @0x0d, @"commandId": @2, @"flags": @0, @"payload": battery};
         Require([RSDecodeResearchStatus(message, @"rs3mini")[@"batteryPercent"] intValue] == 67 && RSDecodeResearchStatus(message, @"rs3")[@"batteryPercent"] == NSNull.null, @"battery interpretation is model-specific");
-        Require(!RSDecodeResearchStatus(@{@"sender": @0xe5, @"receiver": @2, @"commandSet": @4, @"commandId": @0x66, @"payload": [NSData dataWithBytes:(uint8_t[]){1, 0x22, 2, 0} length:4]}, @"rs3mini"), @"malformed status TLV rejected");
+        Require(!RSDecodeResearchStatus(@{@"sender": @0xe5, @"receiver": @2, @"commandSet": @4, @"commandId": @0x66, @"flags": @0, @"payload": [NSData dataWithBytes:(uint8_t[]){1, 0x22, 2, 0} length:4]}, @"rs3mini"), @"malformed status TLV rejected");
         NSDictionary *(^parameterMessage)(NSUInteger, NSData *, NSUInteger) = ^NSDictionary *(NSUInteger command, NSData *payload, NSUInteger flags) {
             return @{@"sender": @4, @"receiver": @2, @"commandSet": @4, @"commandId": @(command), @"flags": @(flags), @"payload": payload};
         };
@@ -291,6 +291,9 @@ int main(void) {
         Require(!RSDecodeAppSensorCalibrationNotification(parameterMessage(48,ProgramHex(@"00"),0)) && !RSDecodeAppSensorCalibrationNotification(parameterMessage(48,NSData.data,0)),@"sensor short body never synthesizes zero progress or status");
         for(NSNumber *bad in @[@128,@1,@256,@(-1),@NO]){NSMutableDictionary *m=[parameterMessage(48,ProgramHex(@"6403"),0) mutableCopy];m[@"flags"]=bad;Require(!RSDecodeAppSensorCalibrationNotification(m),@"sensor rejects ACK encrypted and nonbyte/bool flags");}
         for(NSString *key in @[@"sender",@"receiver",@"commandSet",@"commandId"]){NSMutableDictionary *m=[parameterMessage(48,ProgramHex(@"6403"),0) mutableCopy];m[key]=@0;Require(!RSDecodeAppSensorCalibrationNotification(m),@"sensor rejects other command or endpoint");}
+        for(NSUInteger mode=1;mode<8;mode++)for(NSUInteger code=0;code<2;code++){NSError *cipherError=nil;NSDictionary *m=parameterMessage(15,[NSData dataWithBytes:(uint8_t[]){code?7:0} length:1],128|mode);Require(!RSDecodeAppReply(m,15,nil,&cipherError) && [cipherError.userInfo[@"code"] isEqual:@"RS4MINI_PROTOCOL_ERROR"],@"cipher ACK rejected before response status interpretation");}
+        for(NSNumber *bad in @[@(-128),@384,@128.5,@YES]){NSMutableDictionary *m=[parameterMessage(15,ProgramHex(@"00"),128) mutableCopy];m[@"flags"]=bad;NSError *e=nil;Require(!RSDecodeAppReply(m,15,nil,&e),@"App ACK requires uint8 flags");}
+        for(NSUInteger mode=1;mode<8;mode++){Require(!RSDecodeAppCalibrationNotification(parameterMessage(110,ProgramHex(@"00020264"),mode)),@"auto-tune candidate rejects encrypted body");Require(!RSDecodeResearchStatus(parameterMessage(48,ProgramHex(@"6401"),mode),@"rs3"),@"legacy candidate rejects encrypted body");}
         printf("Native protocol, reassembly, stop queue and motion-core checks: %lu passed\n", (unsigned long)assertions);
     }
     return 0;

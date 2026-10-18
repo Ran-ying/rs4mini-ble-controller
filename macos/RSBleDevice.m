@@ -228,7 +228,7 @@ static BOOL Matches(NSString *name) {
         }
         if (self.messageHandler) self.messageHandler(message);
         [self didReceiveMessage:message];
-        if ([message[@"commandSet"] intValue] != 4 || [message[@"commandId"] intValue] != 5) continue;
+        if ([message[@"commandSet"] intValue] != 4 || [message[@"commandId"] intValue] != 5 || ([message[@"flags"] intValue]&0x87)) continue;
         NSDictionary *sample = RSDecodeTelemetry(message[@"payload"]);
         if (!sample) continue;
         self.latestSample = sample;

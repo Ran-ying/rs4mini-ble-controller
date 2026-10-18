@@ -1,4 +1,10 @@
-# 0.7.22
+# Changelog
+
+## 0.7.29
+
+- Reject encrypted or invalid envelopes before App ACK, telemetry, calibration and legacy research business decoding across ports.
+- Preserve raw messages; prevent ciphertext from advancing parameter writes, contaminating status caches or supplying moveTo feedback. No decryption, new commands or hardware claims.
+
 
 ## 0.7.28
 

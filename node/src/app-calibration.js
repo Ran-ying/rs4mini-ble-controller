@@ -28,7 +28,7 @@ export function calibrationReply(message) {
   return { ...ack, calibration: calibrationRecords(message.payload.subarray(1)) };
 }
 export function calibrationNotification(message) {
-  if (message.sender !== 4 || message.receiver !== 2 || message.commandSet !== 4 || message.commandId !== 0x6e || (message.flags & 0x80)) return null;
+  if (message.sender !== 4 || message.receiver !== 2 || message.commandSet !== 4 || message.commandId !== 0x6e || !Number.isInteger(message.flags) || message.flags<0 || message.flags>255 || (message.flags & 0x87)) return null;
   try {
     const calibration = calibrationRecords(message.payload);
     if (calibration.rawState === null) return null; // Unknown-only records never reset known progress to zero.

@@ -70,7 +70,7 @@ class DumlStreamDecoder:
 
 
 def decode_gimbal_telemetry(message):
-    if not message or (message['commandSet'], message['commandId']) != (4, 5):
+    if not message or (message['commandSet'], message['commandId']) != (4, 5) or type(message.get('flags')) is not int or not 0<=message['flags']<=255 or message['flags']&0x87:
         return None
     data = message['payload']
     if len(data) < 6:

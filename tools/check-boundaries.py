@@ -55,7 +55,7 @@ for row in manifest['commands']:
     if row['targetEvidence'] == 'official-app-enum':
         assert row['requestCodec'] in {'unknown', 'not-exposed'} and not row['implementation'], row['key']
     if row['targetEvidence'] == 'app-generic-code':
-        assert row['key'] in {'04:24','04:57','04:27','04:33'} and row['requestCodec'] == 'not-applicable' and row['responseCodec'] == 'candidate-structured'
+        assert row['key'] in {'04:24','04:57','04:27','04:33','04:38','04:64','04:6B'} and row['requestCodec'] == ('unknown' if row['key']=='04:6B' else 'not-applicable') and row['responseCodec'] == 'candidate-structured'
         assert manifest['userPushSdk']['modelSpecificPathVerified'] is False and manifest['userPushSdk']['targetDeviceVerified'] is False
     if row.get('officialAppEvidence'):
         evidence_path = root / row['officialAppEvidence']
@@ -562,3 +562,12 @@ if manifest.get('programReceiveResearch'):
     assert receive['eventOrder']['baseMayPostBeforeDerivedFieldsParsed'] is True
     assert receive['extensionLookup']['namespaceMatchesInSixRestoredBanks']==[]
     assert receive['extensionLookup']['dynamicExtensionAbsenceProven'] is False
+
+if manifest.get('programStatusSdk'):
+    program=manifest['programStatusSdk']
+    assert program['passiveOnly'] and program['requestEnvelopesOnly']
+    for flag in ('querySubscriptionAckSendEnabled','modelSpecificPathVerified','targetDeviceVerified','programCorrelationVerified','physicalCompletionVerified','sharedSourceStateRetained'):
+        assert program[flag] is False
+    assert program['sourceSignedLengthHighBitRejected'] is True
+    assert program['commandIds']==[56,100,107]
+    assert len(json.loads((root/program['fixtures']).read_text()))==5

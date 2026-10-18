@@ -621,11 +621,15 @@
     {
       "key": "04:38",
       "name": "官方 App 枚举：GetPushTimelapseStatus",
-      "requestCodec": "unknown",
-      "responseCodec": "unknown",
-      "targetEvidence": "official-app-enum",
-      "implementation": [],
-      "remaining": "独立4字节业务状态掩码3及源接收时ACK已核对，与6B掩码7分开；本机路由/通知/物理完成未验收，未接SDK",
+      "requestCodec": "not-applicable",
+      "responseCodec": "candidate-structured",
+      "targetEvidence": "app-generic-code",
+      "implementation": [
+        "node/src/app-program-status.js",
+        "python/rs4mini_sdk/app_program_status.py",
+        "macos/RSControlCore.m"
+      ],
+      "remaining": "0.7.22显式来源下被动4字节候选、状态mask3与原值/尾字节保留；不发源自动ACK，本机布局/状态与物理完成未验收",
       "officialAppAliases": [
         "GetPushTimelapseStatus"
       ],
@@ -703,11 +707,15 @@
     {
       "key": "04:64",
       "name": "官方 App 枚举：GetPushPanorama",
-      "requestCodec": "unknown",
-      "responseCodec": "unknown",
-      "targetEvidence": "official-app-enum",
-      "implementation": [],
-      "remaining": "独立5字节业务状态/计数及源接收时ACK已核对；本机路由/通知/完成未验收，未接SDK",
+      "requestCodec": "not-applicable",
+      "responseCodec": "candidate-structured",
+      "targetEvidence": "app-generic-code",
+      "implementation": [
+        "node/src/app-program-status.js",
+        "python/rs4mini_sdk/app_program_status.py",
+        "macos/RSControlCore.m"
+      ],
+      "remaining": "0.7.22显式来源下被动5字节候选、uint16计数与尾字节保留；不发源自动ACK，本机布局/通知与物理完成未验收",
       "officialAppAliases": [
         "GetPushPanorama"
       ],
@@ -719,10 +727,14 @@
       "key": "04:6B",
       "name": "官方 App 枚举：GetPushTrackAndTimelapse",
       "requestCodec": "unknown",
-      "responseCodec": "unknown",
-      "targetEvidence": "official-app-enum",
-      "implementation": [],
-      "remaining": "通用4字节订阅/停止订阅/单次请求及62/37/63记录源解析已核对，0/1首字节均源success、有符号长度/缓存保留；不是程序停止，型号/原始BLE偏移与通知未验收，未接SDK",
+      "responseCodec": "candidate-structured",
+      "targetEvidence": "app-generic-code",
+      "implementation": [
+        "node/src/app-program-status.js",
+        "python/rs4mini_sdk/app_program_status.py",
+        "macos/RSControlCore.m"
+      ],
+      "remaining": "0.7.22仅请求型被动候选，0/1源success、62/37/63及未知/重复记录保留；不自动订阅/查询/ACK或完成请求，不保留源共享单例旧字段；ACK路径/实际扩展/本机布局和原生程序收发仍未验收",
       "officialAppAliases": [
         "GetPushTrackAndTimelapse"
       ],
@@ -1023,5 +1035,23 @@
   "programResearch": "protocol/research/ronin-program-evidence.json",
   "programEntryResearch": "protocol/research/ronin-program-entry-evidence.json",
   "trackWorkflowResearch": "protocol/research/ronin-track-workflow-evidence.json",
-  "programReceiveResearch": "protocol/research/ronin-program-receive-evidence.json"
+  "programReceiveResearch": "protocol/research/ronin-program-receive-evidence.json",
+  "programStatusSdk": {
+    "profile": "ronin-2.2.2",
+    "passiveOnly": true,
+    "requestEnvelopesOnly": true,
+    "commandIds": [
+      56,
+      100,
+      107
+    ],
+    "querySubscriptionAckSendEnabled": false,
+    "modelSpecificPathVerified": false,
+    "targetDeviceVerified": false,
+    "programCorrelationVerified": false,
+    "physicalCompletionVerified": false,
+    "sourceSignedLengthHighBitRejected": true,
+    "sharedSourceStateRetained": false,
+    "fixtures": "node/test/fixtures/program-status.json"
+  }
 }

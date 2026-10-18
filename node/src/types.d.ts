@@ -248,7 +248,16 @@ export interface AppBatteryStatus {
   kind:'battery';profile:'ronin-2.2.2';timestamp:number;rawCapacityValue:number;sourceGetter:'getCapacityPercentage';bodyHex:string;
   deviceVerified:false;modelLayoutVerified:false;physicalCompletionVerified:false;
 }
-export type AppStatus = AppCalibrationStatus | AppUserParameterStatus | AppHandheldStickStatus | AppAbnormalStatus | AppBatteryStatus;
+export interface AppProgramRecord {
+  rawTag:number;sourceSignedTag:number;length:number;payloadHex:string;sourceValues:Record<string,number>|null;
+}
+export interface AppProgramStatus {
+  kind:'program';profile:'ronin-2.2.2';commandId:56|100|107;timestamp:number;bodyHex:string;
+  format:'standalone-timelapse'|'standalone-panorama'|'program-records';sourceValues:Record<string,number>|null;
+  rawSuccessByte:number|null;sourceSuccess:boolean|null;records:AppProgramRecord[];
+  deviceVerified:false;modelLayoutVerified:false;programCorrelationVerified:false;physicalCompletionVerified:false;
+}
+export type AppStatus = AppCalibrationStatus | AppUserParameterStatus | AppHandheldStickStatus | AppAbnormalStatus | AppBatteryStatus | AppProgramStatus;
 export interface AppAutoTuneSent {
   profile: "ronin-2.2.2"; sent: true; requestedStart: boolean;
   acknowledgementRequested: false; acknowledged: false;
@@ -287,6 +296,7 @@ export interface AppCommands {
   sendHandleSettingRequest(options:{setting:'dualChannelMode'|'tiltDirection'|'panDirection';value:0|1;timeoutMs?:number}):Promise<AppCommandReply & {setting:'dualChannelMode'|'tiltDirection'|'panDirection';requestedValue:0|1;unspecifiedByteSemanticsVerified:false;readbackVerified:false;persistenceVerified:false}>;
   sendFineTuneRequest(options:{axis:'pitch'|'roll';adjustmentDegrees:number;timeoutMs?:number}):Promise<AppCommandReply & {axis:'pitch'|'roll';requestedAdjustmentDegrees:number;encodedTenths:number;nominalAdjustmentDegrees:number;stabilizationStateVerified:false}>;
   getHandleSettings(options?:{timeoutMs?:number}):Promise<AppCommandReply & {modelLayoutVerified:false;values:Array<{sourceGetter:string;offset:number;size:1;rawValue:number;sourceBit0:boolean|null}>}>;
+  readonly programStatus:AppProgramStatus|null;
   readonly abnormalStatus:AppAbnormalStatus|null;
   readonly batteryStatus:AppBatteryStatus|null;
   readonly handheldStickStatus:AppHandheldStickStatus|null;

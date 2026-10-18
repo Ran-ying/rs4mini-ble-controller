@@ -667,3 +667,30 @@ NSDictionary *RSDecodeAppSourceStatusNotification(NSDictionary *message) {
     for(NSArray *field in fields){unsigned value=(b[[field[1] unsignedIntegerValue]]>>[field[2] unsignedIntValue])&[field[3] unsignedIntValue];values[field[0]]=[field[4] boolValue]?@(value!=0):@(value);}
     values[@"isGimbalLocked"]=@([values[@"isRollLocked"] boolValue] || [values[@"isPitchLocked"] boolValue]);result[@"sourceValues"]=[values copy];return [result copy];
 }
+
+static NSDictionary *AppProgramValues(int tag,const uint8_t *p) {
+    if(tag==0x62)return @{@"status":@(p[0]),@"finishedPoints":@(p[1]),@"currentPercent":@(p[2]),@"totalPercent":@(p[3])};
+    if(tag==0x37)return @{@"rawFlags":@(p[0]),@"status":@(p[0]&7),@"recordingOrPreview":@((p[0]>>3)&1),@"finishedPoints":@(p[1]),@"currentRoadPercent":@(p[2]),@"totalRoadPercent":@(p[3]),@"unknownFlagBits":@(p[0]&0xf0)};
+    if(tag==0x63)return @{@"status":@(p[0]),@"currentPictures":@(p[1]|((unsigned)p[2]<<8)),@"totalPictures":@(p[3]|((unsigned)p[4]<<8))};
+    return nil;
+}
+NSDictionary *RSDecodeAppProgramStatusNotification(NSDictionary *message) {
+    for(NSString *key in @[@"sender",@"receiver",@"commandSet",@"commandId",@"flags"]){id n=message[key];if(!Numeric(n) || [n doubleValue]!=floor([n doubleValue]) || [n doubleValue]<0 || [n doubleValue]>255)return nil;}
+    int command=[message[@"commandId"] intValue],flags=[message[@"flags"] intValue];
+    if([message[@"sender"] intValue]!=4 || [message[@"receiver"] intValue]!=2 || [message[@"commandSet"] intValue]!=4 || (command!=0x38 && command!=0x64 && command!=0x6b) || (flags&0x87))return nil;
+    NSData *body=message[@"payload"];if(![body isKindOfClass:NSData.class] || body.length<(command==0x38?4:command==0x64?5:2))return nil;
+    const uint8_t *b=body.bytes;
+    NSMutableDictionary *result=[@{@"kind":@"program",@"profile":@"ronin-2.2.2",@"commandId":@(command),@"timestamp":@(NSDate.date.timeIntervalSince1970*1000),@"bodyHex":[Hex(body) copy],@"format":command==0x38?@"standalone-timelapse":command==0x64?@"standalone-panorama":@"program-records",@"sourceValues":NSNull.null,@"rawSuccessByte":NSNull.null,@"sourceSuccess":NSNull.null,@"records":@[],@"deviceVerified":@NO,@"modelLayoutVerified":@NO,@"programCorrelationVerified":@NO,@"physicalCompletionVerified":@NO} mutableCopy];
+    if(command==0x38){result[@"sourceValues"]=@{@"rawFlags":@(b[0]),@"status":@(b[0]&3),@"takingOrPreview":@((b[0]>>3)&1),@"finishedPoints":@(b[1]),@"currentRoadPercent":@(b[2]),@"totalRoadPercent":@(b[3]),@"unknownFlagBits":@(b[0]&0xf4)};return [result copy];}
+    if(command==0x64){result[@"sourceValues"]=AppProgramValues(0x63,b);return [result copy];}
+    result[@"rawSuccessByte"]=@(b[0]);BOOL success=b[0]==0 || b[0]==1;result[@"sourceSuccess"]=@(success);if(!success)return [result copy];
+    NSMutableArray *records=[NSMutableArray array];
+    for(NSUInteger offset=1;offset<body.length;){
+        if(body.length-offset<2)return nil;
+        unsigned tag=b[offset],length=b[offset+1];NSUInteger end=offset+2+length;
+        if(length>=128 || end>body.length || length<(tag==0x62 || tag==0x37?4:tag==0x63?5:0))return nil;
+        NSData *payload=[body subdataWithRange:NSMakeRange(offset+2,length)];
+        [records addObject:@{@"rawTag":@(tag),@"sourceSignedTag":@(tag<128?(int)tag:(int)tag-256),@"length":@(length),@"payloadHex":[Hex(payload) copy],@"sourceValues":AppProgramValues(tag,b+offset+2)?:NSNull.null}];offset=end;
+    }
+    result[@"records"]=[records copy];return [result copy];
+}

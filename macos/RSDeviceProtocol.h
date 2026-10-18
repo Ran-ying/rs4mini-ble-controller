@@ -98,3 +98,5 @@ NSDictionary *RSDecodeAppProfileValueReply(NSDictionary *message,NSString *kind,
 NSDictionary *RSDecodeAppHandheldStickNotification(NSDictionary *message);
 
 NSDictionary *RSDecodeAppSourceStatusNotification(NSDictionary *message);
+
+NSDictionary *RSDecodeAppProgramStatusNotification(NSDictionary *message);

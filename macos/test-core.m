@@ -4,6 +4,7 @@
 static NSUInteger assertions;
 static void Require(BOOL value, NSString *message) { assertions++; if (!value) { fprintf(stderr, "FAIL: %s\n", message.UTF8String); exit(1); } }
 static NSString *Hex(NSData *data) { NSMutableString *hex = [NSMutableString string]; for (NSUInteger i = 0; i < data.length; i++) [hex appendFormat:@"%02x", ((const uint8_t *)data.bytes)[i]]; return hex; }
+static NSData *ProgramHex(NSString *hex) {NSMutableData *data=[NSMutableData data];for(NSUInteger i=0;i<hex.length;i+=2){unsigned value=0;[[NSScanner scannerWithString:[hex substringWithRange:NSMakeRange(i,2)]] scanHexInt:&value];uint8_t byte=value;[data appendBytes:&byte length:1];}return data;}
 int main(void) {
     @autoreleasepool {
         NSArray *appContext = @[@{@"index": @150, @"size": @1}, @{@"index": @150, @"size": @8}];
@@ -154,6 +155,23 @@ int main(void) {
         NSDictionary *standaloneReply=RSDecodeAppStandaloneReply(parameterMessage(0x10,[NSData dataWithBytes:(uint8_t[]){0,72,9,255,80,9,0x34,0x12} length:8],0x80),RSAppStandaloneSelection(@{@"axis":@"pitch",@"parameter":@"speed"}),&error);
         Require([standaloneReply[@"inputSourceRaw"] intValue]==255 && [standaloneReply[@"values"][0][@"rawValue"] intValue]==4660 && ![standaloneReply[@"values"][0][@"withinSourceRange"] boolValue] && ![standaloneReply[@"activePresetVerified"] boolValue], @"standalone preserves unknown source and unsigned little endian value");
         NSData *abnormalBody=[NSData dataWithBytes:(uint8_t[]){4,255,62,103,1,170,187} length:7];
+        NSString *programFixture=[[@__FILE__ stringByDeletingLastPathComponent] stringByDeletingLastPathComponent];
+        programFixture=[programFixture stringByAppendingPathComponent:@"node/test/fixtures/program-status.json"];
+        NSArray *programVectors=[NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:programFixture] options:0 error:nil];
+        Require(programVectors.count==5,@"load shared program contract vectors");
+        for(NSDictionary *vector in programVectors){
+            NSDictionary *program=RSDecodeAppProgramStatusNotification(parameterMessage([vector[@"commandId"] unsignedIntegerValue],ProgramHex(vector[@"bodyHex"]),0));
+            BOOL matches=program!=nil && [program[@"bodyHex"] isEqual:vector[@"bodyHex"]] && ![program[@"programCorrelationVerified"] boolValue];
+            for(NSString *key in vector[@"expected"])matches=matches && [program[key] isEqual:vector[@"expected"][key]];
+            Require(matches,vector[@"name"]);
+        }
+        for(NSString *bad in @[@"",@"00",@"0062",@"006204010203",@"006203010203",@"006280",@"00fe00620401"])
+            Require(!RSDecodeAppProgramStatusNotification(parameterMessage(107,ProgramHex(bad),0)),@"program invalid TLV cannot publish partial snapshot");
+        Require(!RSDecodeAppProgramStatusNotification(parameterMessage(56,[NSMutableData dataWithLength:3],0)) && !RSDecodeAppProgramStatusNotification(parameterMessage(100,[NSMutableData dataWithLength:4],0)),@"standalone program source requires complete fields");
+        Require(!RSDecodeAppProgramStatusNotification(parameterMessage(107,ProgramHex(@"00620401020304"),128)) && !RSDecodeAppProgramStatusNotification(parameterMessage(107,ProgramHex(@"00620401020304"),1)),@"program ACK and encrypted payloads are separate");
+        NSDictionary *immutableProgram=RSDecodeAppProgramStatusNotification(parameterMessage(107,ProgramHex(@"00620401020304"),64));BOOL programImmutable=NO;
+        @try {[(NSMutableDictionary *)immutableProgram[@"records"][0][@"sourceValues"] setObject:@99 forKey:@"status"];} @catch(NSException *e){programImmutable=YES;}
+        Require(programImmutable && [immutableProgram[@"records"][0][@"sourceValues"][@"status"] intValue]==1,@"native nested program snapshots are immutable");
         NSDictionary *abnormalStatus=RSDecodeAppSourceStatusNotification(parameterMessage(0x27,abnormalBody,0)),*abnormalValues=abnormalStatus[@"sourceValues"];
         Require(abnormalValues.count==22 && [abnormalValues[@"getGimbalGravity"] intValue]==3 && [abnormalValues[@"getSleepMode"] intValue]==1 && [abnormalValues[@"isMotorProtected"] boolValue],@"source abnormal fields preserve numeric and boolean getter semantics");
         Require([abnormalValues[@"isYawLocked"] boolValue] && ![abnormalValues[@"isGimbalLocked"] boolValue] && [abnormalStatus[@"bodyHex"] isEqualToString:@"04ff3e6701aabb"] && ![abnormalStatus[@"modelLayoutVerified"] boolValue],@"source composite excludes yaw and retains unknown/tail bytes without model claim");

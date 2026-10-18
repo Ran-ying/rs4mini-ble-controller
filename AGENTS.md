@@ -8,9 +8,9 @@ verification status changes.
 ## Objective and user decisions
 
 - Provide an unofficial, direct BLE controller for **DJI RS 4 Mini**, initially on macOS.
-- **Node.js is the authoritative implementation**; current package version is `0.7.21`.
+- **Node.js is the authoritative implementation**; current package version is `0.7.22`.
 - The user subsequently requested completion of all existing ports. Python is now
-  `0.7.21`, Web shares the JS core, and the native panel is `0.3.21`. Describe the
+  `0.7.22`, Web shares the JS core, and the native panel is `0.3.22`. Describe the
   documented feature differences; do not claim identical APIs or hardware proof.
 - After that delivery, the user requested the remaining **non-camera** capabilities
   under the same autonomous/offline conditions. Expansion work is in progress;
@@ -898,3 +898,15 @@ Rotate/ResetGimbal两条基础Action注解及12框架/动作方法指纹已核�
 ## 程序接收路径验证（2026-10-18）
 
 固定输入两次实际复现37方法/7基础策略及六段扩展命名空间检索，最终证据JSON逐字节一致。新增23项外层返回码/业务成功分离、明示ccode上下文、空体/加密限制、双路与BLE ping例外、三种构造器、未解析类/哨兵拒绝及哈希预检，研究工具Python3.8/3.12各262通过。统一离线Node190/Web16/Python168/原生139+172+3、类型/边界/构建通过，进程终态0。基础表条件不提升为实际扩展/本机流量，运行时/安装包不变，无新增SDK收发、相机/高级功能、硬件/liveUI或厂商执行，全命令门槛false。
+
+
+## 0.7.22程序状态被动候选 / 原生0.3.22 build25
+
+显式App来源下四端programStatus（Python snake别名，原生appProgramStatus）及kind=program事件：38独立mask3、64 unsigned16计数、6B业务0/1与62/37/63及未知/重复记录。完整验长，源负长度高位拒绝，原值/尾字节保留。仅请求型未加密通知，ACK分开；复制/不可变独立帧快照，不保留源单例旧字段，来源/断线清空，不完成查询或改变运动所有权。不新增任何发送、订阅、自动ACK、相机/高级任务或物理完成判断。见docs/APP_PROGRAM_STATUS.md；全部命令门槛false，实机/liveUI未运行。
+
+
+## 0.7.22程序候选验证（2026-10-18）
+
+统一离线Node197/Web17/Python3.8与3.12各175、原生155核心+176假设备+3独立SDK、研究262及类型/边界/构建通过。五组JSON契约向量跨Node/Python/原生一致，新增源掩码差异、unsigned计数、未知/重复/尾字节、源失败不透明体、坏TLV/负长度拒绝、快照/观察者隔离、来源/断线清空、无ACK/订阅写入和不完成查询、Web无Buffer验证。没有实机或实时UI。
+
+实际安装tarball后197项及TypeScript消费者通过；wheel隔离安装后175项通过，device/controller/app_commands/app_program_status导入路径已核对。Node包82文件、wheel31运行时模块逐字节匹配源码；原生ZIP内容与签名构建逐字节匹配，0.3.22/build25，未启动应用。3.12构建环境缺setuptools时改用已有3.8/setuptools75.3.4离线构建wheel，未下载依赖。所有型号/设备/物理/程序关联标志false，全命令与高级新增门槛仍false。

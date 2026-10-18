@@ -1,15 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0"><dict>
-  <key>CFBundleDevelopmentRegion</key><string>zh_CN</string>
-  <key>CFBundleDisplayName</key><string>RS 4 Mini Control</string>
-  <key>CFBundleExecutable</key><string>RS4MiniControl</string>
-  <key>CFBundleIdentifier</key><string>local.codex.rs4minicontrol</string>
-  <key>CFBundleInfoDictionaryVersion</key><string>6.0</string>
-  <key>CFBundleName</key><string>RS 4 Mini Control</string>
-  <key>CFBundlePackageType</key><string>APPL</string>
-  <key>CFBundleShortVersionString</key><string>0.3.21</string>
-  <key>CFBundleVersion</key><string>24</string>
-  <key>LSMinimumSystemVersion</key><string>12.0</string>
-  <key>NSBluetoothAlwaysUsageDescription</key><string>连接并控制用户的 DJI RS 4 Mini 稳定器。</string>
-</dict></plist>
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>zh_CN</string>
+	<key>CFBundleDisplayName</key>
+	<string>RS 4 Mini Control</string>
+	<key>CFBundleExecutable</key>
+	<string>RS4MiniControl</string>
+	<key>CFBundleIdentifier</key>
+	<string>local.codex.rs4minicontrol</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>RS 4 Mini Control</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>0.3.22</string>
+	<key>CFBundleVersion</key>
+	<string>25</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>12.0</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>连接并控制用户的 DJI RS 4 Mini 稳定器。</string>
+</dict>
+</plist>

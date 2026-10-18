@@ -1,3 +1,4 @@
+import {programStatusNotification} from './app-program-status.js';
 import {sourceStatusNotification} from './app-source-status.js';
 import {handheldStickNotification} from './app-handheld-stick.js';
 import {profileValueSelection,profileValueWrite,profileValueReply} from './app-profile-values.js';
@@ -21,16 +22,19 @@ function optionsOnly(options, keys) {
   if (!options || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(key => !keys.includes(key))) throw new TypeError('invalid App command options');
 }
 export class AppCommands {
-  constructor(owner) { this.owner = owner; this._profile = null; this._calibrationStatus = null; this._userParameterStatus = null; this._handheldStickStatus = null; this._abnormalStatus = null; this._batteryStatus = null; }
+  constructor(owner) { this.owner = owner; this._profile = null; this._calibrationStatus = null; this._userParameterStatus = null; this._handheldStickStatus = null; this._abnormalStatus = null; this._batteryStatus = null; this._programStatus = null; }
+  get programStatus() { return structuredClone(this._programStatus); }
   get abnormalStatus() { return structuredClone(this._abnormalStatus); }
   get batteryStatus() { return structuredClone(this._batteryStatus); }
   get handheldStickStatus() { return structuredClone(this._handheldStickStatus); }
   get userParameterStatus() { return structuredClone(this._userParameterStatus); }
   get profile() { return this._profile; }
   get calibrationStatus() { return structuredClone(this._calibrationStatus); }
-  _reset() { this._calibrationStatus = null; this._userParameterStatus = null; this._handheldStickStatus = null; this._abnormalStatus = null; this._batteryStatus = null; }
+  _reset() { this._calibrationStatus = null; this._userParameterStatus = null; this._handheldStickStatus = null; this._abnormalStatus = null; this._batteryStatus = null; this._programStatus = null; }
   _message(message) {
     if (!this._profile) return;
+    const program=programStatusNotification(message);
+    if(program) {this._programStatus=program;this.owner._emit('onAppStatus',structuredClone(program));}
     const source=sourceStatusNotification(message);
     if(source) {if(source.kind==='abnormal')this._abnormalStatus=source;else this._batteryStatus=source;this.owner._emit('onAppStatus',structuredClone(source));}
     const stick=handheldStickNotification(message);

@@ -1,6 +1,6 @@
 # 设备 SDK 命令审计与高级开发前置条件
 
-2026-10-17，0.7.21 / 原生 0.3.21。**尚不能确认 RS 4 Mini 全部非相机 BLE 命令都已枚举、解析并封装。**
+2026-10-18，0.7.22 / 原生 0.3.22。**尚不能确认 RS 4 Mini 全部非相机 BLE 命令都已枚举、解析并封装。**
 机器清单是 [protocol/COMMANDS.json](../protocol/COMMANDS.json)，目前记录 48 个命令或缺口条目；
 它不是厂商完整命令表，不能以“所有已知代码已封装”代替“所有设备命令已知”。
 
@@ -55,13 +55,13 @@
 | `04:35` | 手柄单字段设置请求 | `implemented` / `partial` | `app-code-path` | 0.7.15显式App来源下三个命名字段0/1，未指定字节源默认FF；NACK直接失败，无缓存兜底/回读/保存/重放，FF含义及实际效果/持久化待本机验收 |
 | `04:36` | 手柄参数只读查询 | `implemented` / `candidate-structured` | `app-code-path` | 0.7.13空体/关联ACK，8个业务字段原值与bit0、尾字节保留；源继承路径不代表本机布局/效果或预设关系确认 |
 | `04:37` | 官方 App 枚举：SetTimelapseParams | `unknown` / `unknown` | `official-app-enum` | 另一版延时最多5点、mode=1两字节、总时长覆盖首点时长已核对；与25分开，HG724调用/字段单位/完成与停止未验收，未开放SDK发送 |
-| `04:38` | 官方 App 枚举：GetPushTimelapseStatus | `unknown` / `unknown` | `official-app-enum` | 独立4字节业务状态掩码3及源接收时ACK已核对，与6B掩码7分开；本机路由/通知/物理完成未验收，未接SDK |
+| `04:38` | 官方 App 枚举：GetPushTimelapseStatus | not-applicable / candidate-structured | app-generic-code | 0.7.22显式来源下被动4字节候选、状态mask3与原值/尾字节保留；不发源自动ACK，本机布局/状态与物理完成未验收 |
 | `04:40` | 官方 App 枚举：BalanceAdjust | `unknown` / `unknown` | `official-app-enum` | 命令枚举已确认，具体方法/字段与HG724分支仍需逐项证据，不把枚举恢复等同请求体完成；未开放发送；HG724继承的startGimbalBalanceTest静态路径不直接调用此命令，而使用0F的命名参数；不能仅凭类名替代 |
 | `04:6A` | HG702/HG724 自动调参请求（无ACK） | `implemented` / `not-applicable` | `app-code-path` | HG724继承HG702覆盖实现，00 01 bool请求且不请求ACK；仅声明本机发送，false请求的物理中止效果、运行中运动互斥和执行完成均未实机验收 |
 | `04:62` | 官方 App 枚举：SetTrack | `unknown` / `unknown` | `official-app-enum` | 通用最多10点、Math.round/低16位与1字节停止候选及Create UI调用已核对；型号可达性、参考系、相机隔离与停止/完成未验收，未开放SDK发送 |
 | `04:63` | 官方 App 枚举：SetPanorama | `unknown` / `unknown` | `official-app-enum` | 通用10字节混合宽度及Create UI调用已核对，含曝光/拍摄字段；型号、预览隔离和物理取消未验收，未开放SDK发送 |
-| `04:64` | 官方 App 枚举：GetPushPanorama | `unknown` / `unknown` | `official-app-enum` | 独立5字节业务状态/计数及源接收时ACK已核对；本机路由/通知/完成未验收，未接SDK |
-| `04:6B` | 官方 App 枚举：GetPushTrackAndTimelapse | `unknown` / `unknown` | `official-app-enum` | 通用4字节订阅/停止订阅/单次请求及62/37/63记录源解析已核对，0/1首字节均源success、有符号长度/缓存保留；不是程序停止，型号/原始BLE偏移与通知未验收，未接SDK |
+| `04:64` | 官方 App 枚举：GetPushPanorama | not-applicable / candidate-structured | app-generic-code | 0.7.22显式来源下被动5字节候选、uint16计数与尾字节保留；不发源自动ACK，本机布局/通知与物理完成未验收 |
+| `04:6B` | 官方 App 枚举：GetPushTrackAndTimelapse | unknown / candidate-structured | app-generic-code | 0.7.22仅请求型被动候选，0/1源success、62/37/63及未知/重复记录保留；不自动订阅/查询/ACK或完成请求，不保留源共享单例旧字段；ACK路径/实际扩展/本机布局和原生程序收发仍未验收 |
 | `04:6E` | 当前 App 校准状态查询/通知 | `implemented` / `partial` | `app-code-path` | 显式当前App配置下空体查询/ACK与被动TLV状态分别解析；未知字段保留，无记录不造零值；无程序ID关联，订阅/停止条件及本机通知待验收 |
 | `04:69` | 官方 App 枚举：GetPushExternalDeviceData | `unknown` / `unknown` | `official-app-enum` | 命令枚举已确认，具体方法/字段与HG724分支仍需逐项证据，不把枚举恢复等同请求体完成；未开放发送 |
 | `04:57` | 源手柄状态被动候选 | `not-applicable` / `candidate-structured` | `app-generic-code` | 0.7.20显式App来源下解码两个signed short与两个源状态位，未知位/尾字节保留；无订阅/发送，本机布局、单位与轴映射未验收 |
@@ -220,3 +220,6 @@ HG724继承的启动路径为普通用户参数04:0F，balance_test/index37/size
 
 
 [程序基础接收路径](../tools/research/PROGRAM_RECEIVE.md)区分ACK返回码与业务首字节、6B双路分派及扩展命令表边界；仅静态研究，不新增SDK发送或高级功能。
+
+
+0.7.22新增[程序状态被动候选](APP_PROGRAM_STATUS.md)：显式App来源下38/64/6B独立帧快照，未知/重复记录保留，无查询/订阅/自动ACK，不等于物理完成；完整命令仍未验收。

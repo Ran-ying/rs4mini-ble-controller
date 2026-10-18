@@ -146,7 +146,7 @@ async function sourceSettingsTypes(gimbal: RS4Mini) {
 }
 
 async function calibrationTypes(gimbal: RS4Mini) {
-  gimbal.onAppStatus = status => { if(status.kind==='calibration') {const raw:number|null=status.rawState;console.log(raw);} else if(status.kind==='userParameters') {const raw:number=status.preset.rawValue;console.log(raw);} else if(status.kind==='handheldStick') {const x:number=status.sourceStickX;console.log(x,gimbal.appCommands.handheldStickStatus);} else if(status.kind==='abnormal') {const v:boolean|number=status.sourceValues.isGimbalLocked;console.log(v,gimbal.appCommands.abnormalStatus);} else {const raw:number=status.rawCapacityValue;console.log(raw,gimbal.appCommands.batteryStatus);} };
+  gimbal.onAppStatus = status => { if(status.kind==='calibration') {const raw:number|null=status.rawState;console.log(raw);} else if(status.kind==='userParameters') {const raw:number=status.preset.rawValue;console.log(raw);} else if(status.kind==='handheldStick') {const x:number=status.sourceStickX;console.log(x,gimbal.appCommands.handheldStickStatus);} else if(status.kind==='abnormal') {const v:boolean|number=status.sourceValues.isGimbalLocked;console.log(v,gimbal.appCommands.abnormalStatus);} else if(status.kind==='battery') {const raw:number=status.rawCapacityValue;console.log(raw,gimbal.appCommands.batteryStatus);} else {const records:number=status.records.length;console.log(records,gimbal.appCommands.programStatus);} };
   const fine=await gimbal.appCommands.sendFineTuneRequest({axis:'pitch',adjustmentDegrees:-.1});
   const tenths:number=fine.encodedTenths;void tenths;
   // @ts-expect-error yaw source action is not established
@@ -221,4 +221,11 @@ async function profileValueTypes(gimbal: RS4Mini) {
   // @ts-expect-error no PF follow label for source work enum
   await gimbal.appCommands.sendWorkModeRequest({sourceMode:'PF'});
   return [label,mode];
+}
+
+function programStatusTypes(gimbal: RS4Mini) {
+  const status=gimbal.appCommands.programStatus;
+  if(status){const kind:'program'=status.kind;const verified:false=status.programCorrelationVerified;const raw:number|null=status.rawSuccessByte;const values:Record<string,number>|null=status.records[0]?.sourceValues??null;return [kind,verified,raw,values];}
+  // @ts-expect-error cache is read-only
+  gimbal.appCommands.programStatus=null;
 }

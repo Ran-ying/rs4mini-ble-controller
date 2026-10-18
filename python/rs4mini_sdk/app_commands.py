@@ -1,3 +1,4 @@
+from .app_program_status import program_status_notification
 from .app_source_status import source_status_notification
 from .app_handheld_stick import handheld_stick_notification
 from .app_profile_values import profile_value_selection,profile_value_write,profile_value_reply
@@ -30,7 +31,10 @@ class AppCommands:
         self._handheld_stick_status = None
         self._abnormal_status = None
         self._battery_status = None
+        self._program_status = None
 
+    programStatus = property(lambda self: copy.deepcopy(self._program_status))
+    program_status = programStatus
     abnormalStatus = property(lambda self: copy.deepcopy(self._abnormal_status))
     abnormal_status = abnormalStatus
     batteryStatus = property(lambda self: copy.deepcopy(self._battery_status))
@@ -49,10 +53,15 @@ class AppCommands:
         self._handheld_stick_status = None
         self._abnormal_status = None
         self._battery_status = None
+        self._program_status = None
 
     def _message(self, message):
         if not self._profile:
             return
+        program=program_status_notification(message)
+        if program:
+            self._program_status=program
+            self.owner._emit('onAppStatus',copy.deepcopy(program))
         source=source_status_notification(message)
         if source:
             if source['kind']=='abnormal':self._abnormal_status=source

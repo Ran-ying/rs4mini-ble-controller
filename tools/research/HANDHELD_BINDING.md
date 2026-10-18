@@ -41,3 +41,6 @@ python/.venv/bin/python -m unittest discover -s tools/research -p test_ronin_han
 下一步可设计显式App来源的手柄控制开关候选请求，使用bool00/01、严格关联ACK、独占主机事务和取消无重放；不能自动订阅57、按ACK写回其状态、接管摇杆或推断相机/麦克风功能。实际设备开关效果、命令后运动行为及持久化仍待验收。
 
 本批不新增SDK发送，运行时保持0.7.30/原生0.3.30；完整命令和高级开发门槛false。此前HANDHELD_STICK.md及旧证据中的“尚无HG724调用路径”记录为历史状态，由本次条件源链补充；实机支持仍未证明。
+
+
+后续0.7.31已接入[手柄开关候选SDK](../../docs/APP_HANDHELD_STICK_CONTROL.md)。本研究检查点“未新增发送”保留为历史状态；只读工具仍不发送，真实设备效果仍未验收。

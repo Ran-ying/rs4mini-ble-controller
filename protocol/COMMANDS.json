@@ -833,11 +833,18 @@
     {
       "key": "04:58",
       "name": "官方 App 枚举：SetHandheldStickControlEnabled",
-      "requestCodec": "unknown",
-      "responseCodec": "unknown",
+      "requestCodec": "implemented",
+      "responseCodec": "partial",
       "targetEvidence": "app-code-path",
-      "implementation": [],
-      "remaining": "已核对HG724条件工厂→Mobile手柄类、StickGimbalControlEnabled Key/Setter注解及04:58 bool00/01。尚未封装SDK发送；实际平台/反射注册、固件开关效果/持久化、04:57通知关联未验收。不据方法名扩展麦克风功能。",
+      "implementation": [
+        "node/src/app-handheld-stick.js",
+        "node/src/app-commands.js",
+        "python/rs4mini_sdk/app_handheld_stick.py",
+        "python/rs4mini_sdk/app_commands.py",
+        "macos/RSControlCore.m",
+        "macos/RSBleDevice.m"
+      ],
+      "remaining": "0.7.31显式来源bool00/01请求与严格ACK，额外业务体不透明保留；不据ACK更新57、订阅或回滚。实际会话/平台/固件开关效果、持久化、57通知关联和运动交互仍待验收。",
       "officialAppAliases": [
         "SetHandheldStickControlEnabled"
       ],

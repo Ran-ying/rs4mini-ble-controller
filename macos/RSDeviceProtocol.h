@@ -120,3 +120,6 @@ NSDictionary *RSDecodeAppSensorCalibrationNotification(NSDictionary *message);
 
 NSData *RSAppComponentCalibrationFrame(uint16_t sequence,NSString *sourcePart);
 NSDictionary *RSDecodeAppComponentCalibrationReply(NSDictionary *message,uint8_t motorRaw,NSError **error);
+
+NSData *RSAppHandheldStickControlFrame(uint16_t sequence,NSNumber *enabled);
+NSDictionary *RSDecodeAppHandheldStickControlReply(NSDictionary *message,NSNumber *enabled,NSError **error);

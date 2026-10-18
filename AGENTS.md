@@ -8,9 +8,9 @@ verification status changes.
 ## Objective and user decisions
 
 - Provide an unofficial, direct BLE controller for **DJI RS 4 Mini**, initially on macOS.
-- **Node.js is the authoritative implementation**; current package version is `0.7.30`.
+- **Node.js is the authoritative implementation**; current package version is `0.7.31`.
 - The user subsequently requested completion of all existing ports. Python is now
-  `0.7.30`, Web shares the JS core, and the native panel is `0.3.30`. Describe the
+  `0.7.31`, Web shares the JS core, and the native panel is `0.3.31`. Describe the
   documented feature differences; do not claim identical APIs or hardware proof.
 - After that delivery, the user requested the remaining **non-camera** capabilities
   under the same autonomous/offline conditions. Expansion work is in progress;
@@ -1089,3 +1089,14 @@ BLE路由研究验证（2026-10-18）：最终固定输入实际提取两次，3
 
 
 手柄绑定研究验证（2026-10-19）：最终固定输入实际提取两次，19方法/平台switch/Key与Setter注解证据JSON逐字节一致。新增8测试，研究Python3.8与3.12各403通过；统一离线Node255/Web25/Python230/原生949+263+3及类型/分层/构建通过，终态0。运行时目录与bac83a2完全一致，0.7.30/0.3.30安装包不变。没有SDK发送、麦克风/相机/高级新增或硬件/liveUI/厂商执行，全命令门槛false。
+
+
+## 0.7.31手柄摇杆开关候选 / 原生0.3.31 build34
+
+显式App来源新增sendHandheldStickControlRequest(enabled:boolean)，停止前验证/快照，同一操作槽内中位停止后一次04:58 bool00/01并等待严格关联ACK。不透明尾部保留，requestedEnabled不回写57缓存；无订阅/查询/重试/重放/反向回滚、摇杆接管或麦克风/相机/高级新增。见 docs/APP_HANDHELD_STICK_CONTROL.md（仓库根目录）。型号源链不等于实机效果或持久化，设备/物理/回读/通知关联标志false；未操作硬件/实时UI，完整命令门槛false。
+
+
+0.7.31离线验收：三组跨端共享契约、严格布尔域及ACK尾部覆盖；Node新增8项、Python新增8项，Web新增共享GATT/无Buffer回归，原生新增纯协议与假设备用例。统一Node263/Web26/Python3.8共238、原生969核心+276假设备生命周期+3独立SDK、研究403及严格类型/分层/签名构建通过，终态0。Python3.12完整238、研究403另行通过；验证快照、busy/来源切换、57与58隔离、坏ACK、取消前后、迟到响应及超时不重放。没有硬件/liveUI/厂商执行，完整命令门槛false。
+
+
+0.7.31实际安装交付验证：Node tarball隔离安装后263项与严格TypeScript消费者通过；wheel隔离安装后238项通过，app_commands/app_handheld_stick/device/controller导入路径核对。Node104文件、wheel37模块、原生ZIP3文件与本次源码/签名构建逐字节一致，原生0.3.31/build34，未启动应用。没有npm发布或GitHub二进制Release。

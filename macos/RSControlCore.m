@@ -815,3 +815,13 @@ NSDictionary *RSDecodeAppComponentCalibrationReply(NSDictionary *message,uint8_t
         calibration=@{@"rawPart":@(p[0]),@"sourcePart":p[0]<parts.count?parts[p[0]]:@"AUTO",@"sourcePartKnown":@(p[0]<parts.count),@"rawStatus":@(p[1]),@"sourceStatus":p[1]<states.count?states[p[1]]:@"PROCESSING",@"sourceStatusKnown":@(p[1]<states.count),@"bodyHex":Hex(body),@"trailingHex":Hex([body subdataWithRange:NSMakeRange(2,body.length-2)])};}
     NSMutableDictionary *result=[ack mutableCopy];[result addEntriesFromDictionary:@{@"requestedSourcePart":@"AUTO",@"motorPreflightRawValue":@(motorRaw),@"motorPreflightEnabled":@(!(motorRaw&1)),@"businessComplete":@(complete),@"calibration":calibration,@"responsePartMatchesRequested":complete?@(p[0]==0):NSNull.null,@"modelLayoutVerified":@NO,@"motorStatePhysicalVerified":@NO,@"businessRequestAssociationVerified":@NO,@"firmwareAbortVerified":@NO}];return [result copy];
 }
+
+NSData *RSAppHandheldStickControlFrame(uint16_t sequence,NSNumber *enabled){
+    if(![enabled isKindOfClass:NSNumber.class]||CFGetTypeID((__bridge CFTypeRef)enabled)!=CFBooleanGetTypeID())return nil;
+    uint8_t value=enabled.boolValue;return CommandFrame(sequence,4,0x58,[NSData dataWithBytes:&value length:1],0x40);
+}
+NSDictionary *RSDecodeAppHandheldStickControlReply(NSDictionary *message,NSNumber *enabled,NSError **error){
+    if(![enabled isKindOfClass:NSNumber.class]||CFGetTypeID((__bridge CFTypeRef)enabled)!=CFBooleanGetTypeID()){if(error)*error=RSAppError(@"RS4MINI_INVALID_ARGUMENT",@"enabled must be boolean",nil);return nil;}
+    NSDictionary *ack=RSDecodeAppReply(message,0x58,nil,error);if(!ack)return nil;
+    NSMutableDictionary *result=[ack mutableCopy];[result addEntriesFromDictionary:@{@"sourceSetting":@"StickGimbalControlEnabled",@"requestedEnabled":enabled,@"modelLayoutVerified":@NO,@"readbackVerified":@NO,@"persistenceVerified":@NO,@"notificationAssociationVerified":@NO}];return [result copy];
+}

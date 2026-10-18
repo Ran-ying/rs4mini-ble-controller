@@ -431,6 +431,7 @@ static BOOL Matches(NSString *name) {
             return RSAppSensitivityFrame(sequence, mode);
         case 18: return context ? nil : RSAppParameterSubscriptionFrame(sequence,mode);
         case 0x6a: return RSAppAutoTuneFrame(sequence, mode);
+        case 0x58: return context ? nil : RSAppHandheldStickControlFrame(sequence,mode);
         case 7: return RSAppFineTuneFrame(sequence,context,mode);
         case 0x13: return context || mode ? nil : RSAppFactoryResetFrame(sequence,@"HG724");
         case 0x35: return RSAppHandleWriteFrame(sequence,context,mode);
@@ -462,6 +463,16 @@ static BOOL Matches(NSString *name) {
     [self startAppCommand:0x0f parameters:@[@{@"index":@37,@"size":@1}] mode:nil settingsKind:nil settingsPatch:nil timeoutMs:timeoutMs completion:^(NSDictionary *reply,NSError *error) {
         NSMutableDictionary *result=[reply mutableCopy]; if (result) result[@"requestedValue"]=@64;
         if (completion) completion(result?[result copy]:nil,error);
+    }];
+}
+- (void)sendHandheldStickControlRequest:(NSDictionary *)spec timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
+    if(![spec isKindOfClass:NSDictionary.class]||spec.count!=1||!RSAppHandheldStickControlFrame(0,spec[@"enabled"])) {
+        if(completion)dispatch_async(dispatch_get_main_queue(), ^{completion(nil,RSAppError(@"RS4MINI_INVALID_ARGUMENT",@"Explicit boolean enabled required",nil));});return;
+    }
+    NSNumber *enabled=[spec[@"enabled"] copy];
+    [self startAppCommand:0x58 parameters:nil mode:enabled settingsKind:nil settingsPatch:nil timeoutMs:timeoutMs completion:^(NSDictionary *reply,NSError *error){
+        if(error){if(completion)completion(nil,error);return;}
+        NSError *decodeError=nil;NSDictionary *result=RSDecodeAppHandheldStickControlReply(reply[@"message"],enabled,&decodeError);if(completion)completion(result,decodeError);
     }];
 }
 - (void)sendComponentCalibrationRequest:(NSDictionary *)spec timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {

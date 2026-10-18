@@ -43,3 +43,6 @@ Node/Python观察者与getter返回复制值，原生返回不可变标量/字�
 
 源码证据见[手柄协议审计](../tools/research/HANDHELD_STICK.md)。本机须在用户回家明确要求测试后，
 核对固件、真实57帧、状态位与实际操作；当前没有硬件或实时UI验收。全部命令及高级新增门槛仍false。
+
+
+0.7.31另提供[显式手柄开关请求](APP_HANDHELD_STICK_CONTROL.md)，ACK不更新本页57被动缓存，也没有自动订阅或请求关联证明。

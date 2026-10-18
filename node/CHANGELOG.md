@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.7.31
+
+- Add explicit App-source boolean handheld stick-control request 04:58 across SDK ports; validate before neutral preamble and own the transaction until strictly correlated plaintext ACK.
+- Preserve opaque ACK tail, snapshots and unverified readback/persistence/state-association flags. No optimistic 04:57 cache update, subscription, retries, replay, rollback or microphone/advanced features.
+
 ## 0.7.30
 
 - Add source-qualified AUTO component calibration request 04:08 across device SDK ports, with fresh motor parameter35 preflight and a shared read/ACK deadline. Never enables motors.

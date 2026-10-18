@@ -209,6 +209,7 @@ export interface AppCommandReply {
   message: DumlMessage;
 }
 export interface AppComponentCalibrationReply extends AppCommandReply { requestedSourcePart:'AUTO';motorPreflightRawValue:number;motorPreflightEnabled:boolean;businessComplete:boolean;calibration:null|{rawPart:number;sourcePart:string;sourcePartKnown:boolean;rawStatus:number;sourceStatus:'FAIL'|'SUCCESS'|'PROCESSING';sourceStatusKnown:boolean;bodyHex:string;trailingHex:string};responsePartMatchesRequested:boolean|null;modelLayoutVerified:false;motorStatePhysicalVerified:false;businessRequestAssociationVerified:false;firmwareAbortVerified:false; }
+export interface AppHandheldStickControlReply extends AppCommandReply {sourceSetting:'StickGimbalControlEnabled';requestedEnabled:boolean;modelLayoutVerified:false;readbackVerified:false;persistenceVerified:false;notificationAssociationVerified:false;}
 export interface AppParameterReply extends AppCommandReply {
   parameters: Array<AppParameterContext & { headerByte: number; rawHex: string }>;
 }
@@ -340,6 +341,7 @@ export interface AppCommands {
   sendAxisModeRequest(options:{sourceMode:AppSourceAxisMode;timeoutMs?:number}):Promise<AppCommandReply & {requestedSourceMode:AppSourceAxisMode;requestedRawValue:number;activePresetVerified:false;otherBitsPreservationVerified:false;persistenceVerified:false}>;
   sendFactorySettingsResetRequest(options:{sourcePlatform:'HG724';timeoutMs?:number}):Promise<AppCommandReply & {requestedSourcePlatform:'HG724';targetResetScopeVerified:false;persistenceVerified:false}>;
   sendHandleSettingRequest(options:{setting:'dualChannelMode'|'tiltDirection'|'panDirection';value:0|1;timeoutMs?:number}):Promise<AppCommandReply & {setting:'dualChannelMode'|'tiltDirection'|'panDirection';requestedValue:0|1;unspecifiedByteSemanticsVerified:false;readbackVerified:false;persistenceVerified:false}>;
+  sendHandheldStickControlRequest(options:{enabled:boolean;timeoutMs?:number}):Promise<AppHandheldStickControlReply>;
   sendComponentCalibrationRequest(options:{sourcePart:'AUTO';timeoutMs?:number}):Promise<AppComponentCalibrationReply>;
   sendFineTuneRequest(options:{axis:'pitch'|'roll';adjustmentDegrees:number;timeoutMs?:number}):Promise<AppCommandReply & {axis:'pitch'|'roll';requestedAdjustmentDegrees:number;encodedTenths:number;nominalAdjustmentDegrees:number;stabilizationStateVerified:false}>;
   getHandleSettings(options?:{timeoutMs?:number}):Promise<AppCommandReply & {modelLayoutVerified:false;values:Array<{sourceGetter:string;offset:number;size:1;rawValue:number;sourceBit0:boolean|null}>}>;

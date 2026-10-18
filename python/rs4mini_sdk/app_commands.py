@@ -6,7 +6,7 @@ from .app_peripheral import peripheral_notification
 from .app_program_request import program_status_request_spec,program_status_request_reply,program_status_subscription_spec,program_status_subscription_reply
 from .app_program_status import program_status_notification
 from .app_source_status import source_status_notification
-from .app_handheld_stick import handheld_stick_notification
+from .app_handheld_stick import handheld_stick_notification,handheld_stick_control_payload,handheld_stick_control_reply
 from .app_profile_values import profile_value_selection,profile_value_write,profile_value_reply
 from .app_smooth_track import smooth_track_selection,smooth_track_write,smooth_track_reply
 from .app_axis_mode import axis_mode_write,axis_mode_reply
@@ -151,6 +151,19 @@ class AppCommands:
         return program_status_request_reply(response,spec['requestedProgram'])
 
     send_program_status_request = sendProgramStatusRequest
+
+    async def sendHandheldStickControlRequest(self, *, enabled, timeoutMs=3000):
+        self._require_profile()
+        payload=handheld_stick_control_payload(enabled)
+        _duration(timeoutMs,'timeoutMs',False)
+        async def work(operation):
+            await self.owner._halt()
+            self.owner._check(operation)
+            response=await self.owner.experimental._query_payload_command('App handheld stick control',(4,0x58),payload,timeoutMs,external_operation=operation,epoch=self.owner._epoch)
+            return handheld_stick_control_reply(response,enabled)
+        return await self.owner._run('sendHandheldStickControlRequest',work,False)
+
+    send_handheld_stick_control_request=sendHandheldStickControlRequest
 
     async def sendComponentCalibrationRequest(self, *, sourcePart, timeoutMs=3000):
         self._require_profile()

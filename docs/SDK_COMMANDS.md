@@ -1,6 +1,6 @@
 # 设备 SDK 命令审计与高级开发前置条件
 
-2026-10-18，0.7.30 / 原生 0.3.30。**尚不能确认 RS 4 Mini 全部非相机 BLE 命令都已枚举、解析并封装。**
+2026-10-19，0.7.31 / 原生 0.3.31。**尚不能确认 RS 4 Mini 全部非相机 BLE 命令都已枚举、解析并封装。**
 机器清单是 [protocol/COMMANDS.json](../protocol/COMMANDS.json)，目前记录 48 个命令或缺口条目；
 它不是厂商完整命令表，不能以“所有已知代码已封装”代替“所有设备命令已知”。
 
@@ -65,7 +65,7 @@
 | `04:6E` | 当前 App 校准状态查询/通知 | `implemented` / `partial` | `app-code-path` | 显式当前App配置下空体查询/ACK与被动TLV状态分别解析；未知字段保留，无记录不造零值；无程序ID关联，订阅/停止条件及本机通知待验收 |
 | `04:69` | 外设数据源候选 | not-applicable / candidate-structured | app-generic-code | 0.7.27显式来源被动TLV/tag2原值；不发送/订阅/ACK，不继承旧速度。本机布局/单位/参考系未验收 |
 | `04:57` | 源手柄状态被动候选 | `not-applicable` / `candidate-structured` | `app-generic-code` | 0.7.20显式App来源下解码两个signed short与两个源状态位，未知位/尾字节保留；无订阅/发送，本机布局、单位与轴映射未验收 |
-| `04:58` | 手柄摇杆控制开关来源 | unknown / unknown | app-code-path | HG724条件工厂与实际StickGimbalControlEnabled Setter已核对；bool00/01及ACK为来源证据，SDK发送与实机效果/持久化仍待完成 |
+| `04:58` | 手柄摇杆控制开关候选 | implemented / partial | app-code-path | 0.7.31显式bool00/01与严格ACK，尾部不透明保留；不更新57或自动订阅，实机效果/持久化/控制交互待验收 |
 
 ## 验收要求
 

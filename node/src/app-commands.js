@@ -6,7 +6,7 @@ import {peripheralNotification} from './app-peripheral.js';
 import {programStatusRequestSpec,programStatusRequestReply,programStatusSubscriptionSpec,programStatusSubscriptionReply} from './app-program-request.js';
 import {programStatusNotification} from './app-program-status.js';
 import {sourceStatusNotification} from './app-source-status.js';
-import {handheldStickNotification} from './app-handheld-stick.js';
+import {handheldStickNotification,handheldStickControlPayload,handheldStickControlReply} from './app-handheld-stick.js';
 import {profileValueSelection,profileValueWrite,profileValueReply} from './app-profile-values.js';
 import {smoothTrackSelection,smoothTrackWrite,smoothTrackReply} from './app-smooth-track.js';
 import {axisModeWrite,axisModeReply} from './app-axis-mode.js';
@@ -86,6 +86,16 @@ export class AppCommands {
     const spec=programStatusRequestSpec(options.program);
     const response=await this.owner.experimental._queryPayloadCommand('App single program status request',[4,0x6b],spec.payload,options.timeoutMs??3000);
     return programStatusRequestReply(response,spec.requestedProgram);
+  }
+  async sendHandheldStickControlRequest(options={}) {
+    optionsOnly(options,['enabled','timeoutMs']);this._requireProfile();
+    const enabled=options.enabled,payload=handheldStickControlPayload(enabled),timeoutMs=options.timeoutMs??3000;
+    if(!Number.isFinite(timeoutMs)||timeoutMs<=0||timeoutMs>60000)throw new RangeError('timeoutMs must be >0..60000');
+    return this.owner._run('sendHandheldStickControlRequest',async operation=>{
+      await this.owner._stop();check(operation.controller.signal);
+      const reply=await this.owner.experimental._queryPayloadCommand('App handheld stick control',[4,0x58],payload,timeoutMs,{signal:operation.controller.signal,epoch:this.owner.motionEpoch});
+      return handheldStickControlReply(reply,enabled);
+    },false);
   }
   async sendComponentCalibrationRequest(options={}) {
     optionsOnly(options,['sourcePart','timeoutMs']);this._requireProfile();

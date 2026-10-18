@@ -289,3 +289,7 @@ function sensorCalibrationTypes(gimbal:RS4Mini){
 async function componentCalibrationTypes(gimbal: RS4Mini) { const reply=await gimbal.appCommands.sendComponentCalibrationRequest({sourcePart:"AUTO"}); const complete:boolean=reply.businessComplete; const part:number|undefined=reply.calibration?.rawPart; void complete;void part;
 // @ts-expect-error Only the source-qualified AUTO action is available.
 await gimbal.appCommands.sendComponentCalibrationRequest({sourcePart:"GYRO"}); }
+
+async function handheldStickControlTypes(gimbal: RS4Mini) {const reply=await gimbal.appCommands.sendHandheldStickControlRequest({enabled:false});const requested:boolean=reply.requestedEnabled;const setting:'StickGimbalControlEnabled'=reply.sourceSetting;void requested;void setting;
+// @ts-expect-error Boolean only, not numeric wire byte.
+await gimbal.appCommands.sendHandheldStickControlRequest({enabled:1});}

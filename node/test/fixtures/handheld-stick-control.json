@@ -1,0 +1,32 @@
+[
+  {
+    "name": "disable",
+    "enabled": false,
+    "payloadHex": "00",
+    "expected": {
+      "requestedEnabled": false,
+      "sourceSetting": "StickGimbalControlEnabled",
+      "bodyHex": ""
+    }
+  },
+  {
+    "name": "enable",
+    "enabled": true,
+    "payloadHex": "00",
+    "expected": {
+      "requestedEnabled": true,
+      "sourceSetting": "StickGimbalControlEnabled",
+      "bodyHex": ""
+    }
+  },
+  {
+    "name": "opaque-tail",
+    "enabled": true,
+    "payloadHex": "00ff0102",
+    "expected": {
+      "requestedEnabled": true,
+      "sourceSetting": "StickGimbalControlEnabled",
+      "bodyHex": "ff0102"
+    }
+  }
+]

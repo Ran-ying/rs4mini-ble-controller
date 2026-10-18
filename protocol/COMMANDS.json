@@ -74,11 +74,12 @@
       "responseCodec": "unknown",
       "targetEvidence": "other-model",
       "implementation": [],
-      "remaining": "其他型号研究有自主运动和中止风险，不提供触发",
+      "remaining": "当前App静态确认1字节CalibrationPart、带ACK请求，业务part/status分别偏移0/1，FAIL0/SUCCESS1/PROCESSING2及未知回退；已定位UI/基类调用，但HG724入口、与system_calc关系、实际路由/效果/中止未验收，未开放发送。",
       "officialAppAliases": [
         "AutoCalibration"
       ],
-      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
+      "currentAppResearch": "protocol/research/ronin-sensor-calibration-evidence.json"
     },
     {
       "key": "04:0B",
@@ -203,11 +204,12 @@
         "python/rs4mini_sdk/experimental_protocol.py",
         "macos/RSControlCore.m"
       ],
-      "remaining": "仅被动解析，不触发校准",
+      "remaining": "既有其他型号被动格式保留。当前App基础表绑定SensorCalibrateStatus（非AutoCalibrationStatus）：progress/status偏移0/1，COMPLETE0/PROCESSING1/FAIL3/OTHER9，start空实现；尚未接当前App SDK，不复用旧inProgress布尔或08状态枚举，本机通知/流程关联未验收。",
       "officialAppAliases": [
         "GetPushSensorCalibrationStatus"
       ],
-      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
+      "currentAppResearch": "protocol/research/ronin-sensor-calibration-evidence.json"
     },
     {
       "key": "04:4C",
@@ -1180,5 +1182,6 @@
     "modelLayoutVerified": false,
     "unitVerified": false,
     "referenceFrameVerified": false
-  }
+  },
+  "sensorCalibrationResearch": "protocol/research/ronin-sensor-calibration-evidence.json"
 }

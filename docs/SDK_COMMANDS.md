@@ -22,14 +22,14 @@
 | `04:01` | 虚拟摇杆及中位停止 | `implemented` / `not-applicable` | `hardware` | 历史设备行为已验证，无固件执行确认 |
 | `04:02` | 位置查询 | `implemented` / `raw` | `other-model` | 本机历史尝试未收到有效响应，不能判断不支持 |
 | `04:05` | 姿态与关节通知 | `not-applicable` / `partial` | `hardware` | 姿态/关节映射已确认；四元数顺序及部分标志未知 |
-| `04:08` | 校准触发候选 | `not-exposed` / `unknown` | `other-model` | 其他型号研究有自主运动和中止风险，不提供触发 |
+| `04:08` | 部件校准触发候选 | not-exposed / unknown | other-model | 当前App单字节部件及ACK业务part/status已审计；型号入口/与system_calc关系/路由/中止未验收，不开放发送 |
 | `04:0B` | 控制状态查询 | `implemented` / `raw` | `other-model` | 响应字段未确认 |
 | `04:0C` | 原生速率候选 | `implemented` / `unknown` | `other-model` | 轴序/单位/释放仅有 RS 3 来源，本机未验证 |
 | `04:0F` | 用户参数写入与旧休眠候选 | `implemented` / `partial` | `app-code-path` | 当前App配置封装灵敏度、两组位设置、平衡/系统校准请求、六组按轴档位读改写及ACK；非任意参数写入。PF/PTF、其余字段、持久化与本机效果未验收，旧休眠仍为其他型号来源；0.7.10新增18项普通命名数值的1/2字节读写和异常原值保留，不自动切预设/输入源，活动预设与实际效果未验收 |
 | `04:14` | 原生绝对角候选 | `implemented` / `unknown` | `other-model` | 当前App继承rotate的8字节体/时间缩放已核对；既有接口仍仅其他型号实验配置，初始化能力与静态地址链已核对；动态能力/本机地址/EYE依赖与恢复、参考系和完成/中止语义仍待验收 |
 | `04:1C` | 设备类型查询 | `implemented` / `raw` | `other-model` | 已在 App 可读代码中关联 RS 4 Mini=HG724，类型枚举值 103；线上偏移、返回码及本机响应未确认，仍返回原始消息 |
 | `04:1E` | degree-info 请求 | `implemented` / `raw` | `hardware` | requestDegreeInfo 封装关联原始响应；本机历史 00 不等于完整字段解析或增频确认 |
-| `04:30` | 校准进度候选通知 | `not-applicable` / `partial` | `other-model` | 仅被动解析，不触发校准 |
+| `04:30` | 传感器校准状态候选 | not-applicable / partial | other-model | 既有实验格式保留；当前App实际类状态0/1/3/9已审计，不能复用旧bool或08枚举，尚未接App SDK/本机验证 |
 | `04:4C` | 重置/模式命令中的三轴回中 | `partial` / `unknown` | `hardware` | 当前 App 的原代码备份确认两字节 mode+布尔reset；本机仍只确认 FE01 三轴回中，无按轴选择位，旧 MSDK 轴枚举不可套用；其他模式/响应待本机证据 |
 | `04:66` | 外设状态源候选与旧型号原始TLV | `not-applicable` / `candidate-structured` | `app-generic-code` | 0.7.25显式App来源46类型/43视图，碰撞/GPS截断保留；无发送或姿态/关节重映射，本机未验收 |
 | `0D:02` | 电量候选通知 | `not-applicable` / `partial` | `other-model` | 百分比仅为其他 Mini 研究格式，本机未证实 |
@@ -258,3 +258,8 @@ HG724继承的启动路径为普通用户参数04:0F，balance_test/index37/size
 ## 0.7.27外设数据被动候选 / 原生0.3.27 build30
 
 显式App来源下externalDeviceStatus/kind=externalDevice解析04:69完整TLV，tag2保留来源及三轴signed16原值、未知/重复与尾字节；Other7与未知原值分开，不继承源单例旧值或短包清零副作用。来源/断线清空，观察者隔离；不发送/订阅/自动ACK，不完成查询或改变姿态/关节、运动所有权。见[外设数据候选SDK](APP_EXTERNAL_DEVICE_STATUS.md)。本机布局/单位/参考系均未验收，未新增相机/视觉/高级功能，无硬件/liveUI/厂商执行，全命令门槛false；此前“仅研究未接SDK”为历史状态。
+
+
+## 校准08/30域与近似类绑定研究
+
+固定六段48方法、17直接调用、9类型化声明/9枚举引用，确认04:30实际绑定SensorCalibrateStatus而非近似AutoCalibrationStatus；30状态COMPLETE0/PROCESSING1/FAIL3/OTHER9，与08响应FAIL0/SUCCESS1/PROCESSING2分开，不复用bool inProgress或system_calc表。08单字节部件及ACK业务偏移已核对，型号入口/实际扩展、路由/物理中止仍未完成。详见[校准源审计](../tools/research/SENSOR_CALIBRATION.md)及protocol/research/ronin-sensor-calibration-evidence.json。仅离线研究，运行时0.7.27/0.3.27不变，没有SDK收发、相机/视觉/高级新增或硬件/liveUI/厂商执行，完整命令门槛false。

@@ -1,0 +1,1065 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "bankSha256": {
+    "0": "76002e76e02e1306ad197c4af127975d573999de174e5a9e44cc6f840196f621",
+    "2": "de69497b77de530d0d559646dc6d3fb24569e2ba8ba9502216f3d6c9fd6f3bf8",
+    "3": "bb50b39865520f55e97116ae1903bda3545b01c2fb7e2aba67a979dc264a9854",
+    "4": "2d3ff70fb84eb02ac75949ca6e7d5cc849a7f9ef55029fd168890c6dbccb1d12",
+    "5": "4fdbd74a05df63d72a0feb1c907d9395426ec3cdb5d6aeb45e3836d856d66654",
+    "6": "057f13084cf969ffadcfa2150d1b3ae3ed8a7822c95fb54158781764c9156e2f"
+  },
+  "appCodeExecuted": false,
+  "liveUiExecuted": false,
+  "targetDeviceVerified": false,
+  "modelLayoutVerified": false,
+  "wholeProtocolRecovered": false,
+  "researchToolProvidesSdkInterface": false,
+  "sdkSendAdded": false,
+  "sdkReceiveAdded": false,
+  "methods": [
+    {
+      "className": "Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 4652020,
+      "instructionSha256": "89d7e5d4c317f54eb541d186eff2e608a50e62f9387974ef9c74a54543aa6609"
+    },
+    {
+      "className": "Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+      "method": "isNeedCcode",
+      "descriptor": "()Z",
+      "codeOffset": 4653768,
+      "instructionSha256": "cdbefba08f513c5881e2d27c6f2904e1312e1949ce93078fcc2f20c11153eebe"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "get",
+      "descriptor": "(I I Ljava/lang/Class; [I)Ljava/lang/Number;",
+      "codeOffset": 3350128,
+      "instructionSha256": "b18000d48ddc01efccdeacf01cb7ee48c15db0e93e62710fdd4bdccb5bcd0be7"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "setPushRecData",
+      "descriptor": "([B)V",
+      "codeOffset": 3352480,
+      "instructionSha256": "23cb6a1baab1f2b12f4ae5da131785e6792d83970eb43826c9d8e1b6462faf23"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "setPushRecPack",
+      "descriptor": "(Ldji/midware/data/packages/P3/Pack;)V",
+      "codeOffset": 3352564,
+      "instructionSha256": "80f0bb9c5884940e7c2600d2e6f22c5287da3c37061590ec9049cce5b53d03ee"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "setRecData",
+      "descriptor": "([B)V",
+      "codeOffset": 3352748,
+      "instructionSha256": "a6675a47286fe5b2725b26418463a503442cf7fbb89df865e1303c316ccc4b64"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationPart;",
+      "method": "$values",
+      "descriptor": "()[Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationPart;",
+      "codeOffset": 3453500,
+      "instructionSha256": "6186191e4a3b9375a35cda4d152bd5d158e5994c1e6e5864f8ea76bd181a507b"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationPart;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3453568,
+      "instructionSha256": "097f5db56048711768b121727395515a0ba2c1be3db2e0ea02c478e97ecffe8b"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationPart;",
+      "method": "<init>",
+      "descriptor": "(Ljava/lang/String; I I)V",
+      "codeOffset": 3453824,
+      "instructionSha256": "667e93848af8840053a3f838c97a92e1b75249f72f13400a9d5a63b51f2f5b36"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationPart;",
+      "method": "valueOf",
+      "descriptor": "(Ljava/lang/String;)Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationPart;",
+      "codeOffset": 3453852,
+      "instructionSha256": "744e2e25b2be81e888de4fc48f60be7d1ed65582e3939ae5fcc4aa53b94027ec"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationPart;",
+      "method": "values",
+      "descriptor": "()[Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationPart;",
+      "codeOffset": 3453888,
+      "instructionSha256": "979d88a8d0a8d712d2b4bea07eda729afecdef576cc187986b031e35a76b54ed"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationStatus;",
+      "method": "$values",
+      "descriptor": "()[Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationStatus;",
+      "codeOffset": 3453924,
+      "instructionSha256": "c3dc07834fbf65a24be55050875397e6a71e6fd29026da39021796153aae240f"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationStatus;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3453964,
+      "instructionSha256": "57ae99cd0d354e7ce81e25a6f2da6921980857d094732a9cf77f8e4bfd09b374"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationStatus;",
+      "method": "<init>",
+      "descriptor": "(Ljava/lang/String; I I)V",
+      "codeOffset": 3454060,
+      "instructionSha256": "473e9aed37a13b063d85c5a66470ee6548b7bd4a44b9ad9c936b192c86281453"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationStatus;",
+      "method": "value",
+      "descriptor": "()I",
+      "codeOffset": 3454160,
+      "instructionSha256": "841ddd315eb562e34684bff704dfa7380648ee76c6276e61b980c69333b0ddb7"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationStatus;",
+      "method": "valueOf",
+      "descriptor": "(Ljava/lang/String;)Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationStatus;",
+      "codeOffset": 3454088,
+      "instructionSha256": "6790f4d11931c819fcb918220e79379abf9c2cd7608cd6228489c8a0bca38134"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationStatus;",
+      "method": "values",
+      "descriptor": "()[Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationStatus;",
+      "codeOffset": 3454124,
+      "instructionSha256": "6ef340c142eea3bda1f0e4a6bb2171bd871281211b5b8f95d209d4d684e798d5"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 4856348,
+      "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "codeOffset": 4856368,
+      "instructionSha256": "e265b36a5559e4c726841e9c440c6f19e8033aa17431fa78fef1970e39593196"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 4856480,
+      "instructionSha256": "96473d63b55cec5e4b419a2279ade5e9b36488da489fda413a1d90409d16d707"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+      "method": "getInstance",
+      "descriptor": "()Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+      "codeOffset": 4856400,
+      "instructionSha256": "b815788eb757a672f9fb86741ef103491473eb39b9a15985246865b8f0abe14e"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+      "method": "getStatus",
+      "descriptor": "()Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationStatus;",
+      "codeOffset": 4856528,
+      "instructionSha256": "bc2b38e0c3ffe937c9cb3933a7fb9897eeadf6023e0547733c49ac4702aafdd8"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+      "method": "getType",
+      "descriptor": "()Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationPart;",
+      "codeOffset": 4856636,
+      "instructionSha256": "38fb5916f644d6abd437666d334dc2cf5581da04f1ada8083a8ca31fbe24f087"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+      "method": "setCalType",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationPart;)Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+      "codeOffset": 4856724,
+      "instructionSha256": "ea7743b7664d319776d8ddd8a84fc5c7955b32cacd08dc1714b8a27938711032"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4856748,
+      "instructionSha256": "27687e2efcbeaf5e0101b03ffcdbee547f9862a5a1a8b18f1536c0a07660c42f"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushAutoCalibrationStatus;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 4866636,
+      "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushAutoCalibrationStatus;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "codeOffset": 4866656,
+      "instructionSha256": "20b19993098dcc58f25a499e08c6c24946fc39bc2fcc929f0911519d944f68f9"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushAutoCalibrationStatus;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 4866760,
+      "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushAutoCalibrationStatus;",
+      "method": "getInstance",
+      "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetPushAutoCalibrationStatus;",
+      "codeOffset": 4866680,
+      "instructionSha256": "03d1454e37f27f60c59e221da36a4796de592951f305ef971754d277087bd249"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushAutoCalibrationStatus;",
+      "method": "getProgress",
+      "descriptor": "([I)I",
+      "codeOffset": 4866780,
+      "instructionSha256": "bb4beeb0afdf811bf7eee55c58ce783c5bb52a9fadfb13843b65bd724e50d1c6"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushAutoCalibrationStatus;",
+      "method": "getStatus",
+      "descriptor": "()I",
+      "codeOffset": 4866828,
+      "instructionSha256": "bf07d32ff100a44423308c8c334ddcdbba9fcecf83c03a44266c2db7a70f7ff9"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushAutoCalibrationStatus;",
+      "method": "isChanged",
+      "descriptor": "([B)Z",
+      "codeOffset": 4866880,
+      "instructionSha256": "2152dda32da4d7e693404a188472204fe1fdb3aa4f1fb658a68841010b8603e7"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushSensorCalibrateStatus$CalibrationStatus;",
+      "method": "$values",
+      "descriptor": "()[Ldji/midware/data/model/P3/DataGimbalGetPushSensorCalibrateStatus$CalibrationStatus;",
+      "codeOffset": 3465360,
+      "instructionSha256": "67c449d1fdc88828e26f6794106fc7dfd7a033cbf8e6809d87616ef414cf9488"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushSensorCalibrateStatus$CalibrationStatus;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3465404,
+      "instructionSha256": "47b50539503f2ee924a48828a5d9bcb51985ca1963859682073a5f0f2ebfb188"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushSensorCalibrateStatus$CalibrationStatus;",
+      "method": "<init>",
+      "descriptor": "(Ljava/lang/String; I I)V",
+      "codeOffset": 3465528,
+      "instructionSha256": "e3d653c202b0875cb4c6b47992023dba9e681e242587c2ac1e1e11878f82314a"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushSensorCalibrateStatus$CalibrationStatus;",
+      "method": "_equals",
+      "descriptor": "(I)Z",
+      "codeOffset": 3465696,
+      "instructionSha256": "44997039042f5e0b21d0d9cdf3f82dc61430be5e1ed1129297cc0a2b487acdc6"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushSensorCalibrateStatus$CalibrationStatus;",
+      "method": "find",
+      "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalGetPushSensorCalibrateStatus$CalibrationStatus;",
+      "codeOffset": 3465556,
+      "instructionSha256": "c324855d02161595e71d124f8c3aebf1cf6989f95644aaaf06b6d7215874acf6"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushSensorCalibrateStatus$CalibrationStatus;",
+      "method": "value",
+      "descriptor": "()I",
+      "codeOffset": 3465728,
+      "instructionSha256": "6b8089be41d37c71c7178aab1e3dbaeb9284cd3e5b9e49cbabbc43ddd697d482"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushSensorCalibrateStatus$CalibrationStatus;",
+      "method": "valueOf",
+      "descriptor": "(Ljava/lang/String;)Ldji/midware/data/model/P3/DataGimbalGetPushSensorCalibrateStatus$CalibrationStatus;",
+      "codeOffset": 3465624,
+      "instructionSha256": "695daf5e926f4473f218f767fdcdbb125cc17a3297f05a30f70d03f786f191bd"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushSensorCalibrateStatus$CalibrationStatus;",
+      "method": "values",
+      "descriptor": "()[Ldji/midware/data/model/P3/DataGimbalGetPushSensorCalibrateStatus$CalibrationStatus;",
+      "codeOffset": 3465660,
+      "instructionSha256": "596f24bf0c2d9f64d7e8b7ae37729edaf440778a78aa59db5c7a55f09060e149"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushSensorCalibrateStatus;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 4874964,
+      "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushSensorCalibrateStatus;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "codeOffset": 4874984,
+      "instructionSha256": "20b19993098dcc58f25a499e08c6c24946fc39bc2fcc929f0911519d944f68f9"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushSensorCalibrateStatus;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 4875088,
+      "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushSensorCalibrateStatus;",
+      "method": "getInstance",
+      "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetPushSensorCalibrateStatus;",
+      "codeOffset": 4875008,
+      "instructionSha256": "79e61f7c143ea29b80034294f5e49745af269b15d23b62210dbbed9ac3d70641"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushSensorCalibrateStatus;",
+      "method": "getProgress",
+      "descriptor": "()I",
+      "codeOffset": 4875108,
+      "instructionSha256": "f50090bb1599164cb1e81bde5dd27fdda42f203af8cc19f99948d57aba47c531"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushSensorCalibrateStatus;",
+      "method": "getStatus",
+      "descriptor": "()Ldji/midware/data/model/P3/DataGimbalGetPushSensorCalibrateStatus$CalibrationStatus;",
+      "codeOffset": 4875180,
+      "instructionSha256": "4674e27b0f8ca92f08175d7e3355e02dc0c520df59003505eb13df2555693d3f"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalGetPushSensorCalibrateStatus;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4875264,
+      "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674"
+    },
+    {
+      "className": "Ldji/midware/util/BytesUtil;",
+      "method": "getInt",
+      "descriptor": "([B)I",
+      "codeOffset": 3782728,
+      "instructionSha256": "c83e6d064884807cec2be0dbd3235f71dd62fcd952eb0b2b88bfc373d0b761e2"
+    }
+  ],
+  "directCallers": [
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/ConfigMotorBasicView;",
+      "method": "correctJointAngle",
+      "descriptor": "()V",
+      "instructionSha256": "dcbd40c9b121a8daa5387468c10fa81bbf32fa1f56d129ab787e955bc6b94185",
+      "targets": [
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+          "reference": "<init>()V"
+        },
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+          "reference": "setCalType(Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationPart;)Ldji/midware/data/model/P3/DataGimbalAutoCalibration;"
+        },
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+          "reference": "start(Ldji/midware/interfaces/DJIDataCallBack;)V"
+        }
+      ]
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/ConfigMotorBasicViewRoninSc;",
+      "method": "correctJointAngle",
+      "descriptor": "()V",
+      "instructionSha256": "f3193b14b61de35bf74ef2b0aa984c84d0e731c3db2b72dbb7db31f572f22cbf",
+      "targets": [
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+          "reference": "<init>()V"
+        },
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+          "reference": "setCalType(Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationPart;)Ldji/midware/data/model/P3/DataGimbalAutoCalibration;"
+        },
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+          "reference": "start(Ldji/midware/interfaces/DJIDataCallBack;)V"
+        }
+      ]
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/setting/SettingGeneralView;",
+      "method": "startCalibration",
+      "descriptor": "()V",
+      "instructionSha256": "386e582b60387da983c8332759717cb548928db8f7924c97026dda2891875c49",
+      "targets": [
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+          "reference": "<init>()V"
+        },
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+          "reference": "setCalType(Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationPart;)Ldji/midware/data/model/P3/DataGimbalAutoCalibration;"
+        },
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+          "reference": "start(Ldji/midware/interfaces/DJIDataCallBack;)V"
+        }
+      ]
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/setting/SettingGeneralView;",
+      "method": "onEvent3MainThread",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalAutoCalibration;)V",
+      "instructionSha256": "8a1b2af51757286b9088a461ee0b7418026bae0b9c927730e550f70446ed26d3",
+      "targets": [
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+          "reference": "getType()Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationPart;"
+        },
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+          "reference": "getStatus()Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationStatus;"
+        },
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+          "reference": "getStatus()Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationStatus;"
+        }
+      ]
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/setting/SettingMoreView;",
+      "method": "startCalibration",
+      "descriptor": "()V",
+      "instructionSha256": "f0c66768cf2314e383a80a1634afd466d1bcf3945740c1db7b4517190b7e2d8c",
+      "targets": [
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+          "reference": "<init>()V"
+        },
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+          "reference": "setCalType(Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationPart;)Ldji/midware/data/model/P3/DataGimbalAutoCalibration;"
+        },
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+          "reference": "start(Ldji/midware/interfaces/DJIDataCallBack;)V"
+        }
+      ]
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/setting/SettingMoreView;",
+      "method": "onEvent3MainThread",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalAutoCalibration;)V",
+      "instructionSha256": "eba5fb8e7fa5fc4e89f044ce059c505b4c22ef977f76bdee0870a7b76ebfda8b",
+      "targets": [
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+          "reference": "getStatus()Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationStatus;"
+        },
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+          "reference": "getStatus()Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationStatus;"
+        }
+      ]
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/system/ConfigNewSettingsView;",
+      "method": "startAdvancedCalibration",
+      "descriptor": "()V",
+      "instructionSha256": "9753ff9e41070a172c957a2ef00e9f113336ee03bacb1ca08d2ba631cf05869c",
+      "targets": [
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+          "reference": "<init>()V"
+        },
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+          "reference": "setCalType(Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationPart;)Ldji/midware/data/model/P3/DataGimbalAutoCalibration;"
+        },
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+          "reference": "start(Ldji/midware/interfaces/DJIDataCallBack;)V"
+        }
+      ]
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/system/ConfigNewSettingsView;",
+      "method": "startCalibration",
+      "descriptor": "()V",
+      "instructionSha256": "6575eed8d6dbfde2b6181fef7e0ece296460bf2d5e30e6541cada31bbd68d616",
+      "targets": [
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+          "reference": "<init>()V"
+        },
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+          "reference": "setCalType(Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationPart;)Ldji/midware/data/model/P3/DataGimbalAutoCalibration;"
+        },
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+          "reference": "start(Ldji/midware/interfaces/DJIDataCallBack;)V"
+        }
+      ]
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/system/ConfigNewSettingsView;",
+      "method": "onEvent3MainThread",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalAutoCalibration;)V",
+      "instructionSha256": "976c472272b9fc7fc5e90a1a1126f032021e5d51927a71ed7914ed70048cc11e",
+      "targets": [
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+          "reference": "getStatus()Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationStatus;"
+        },
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+          "reference": "getStatus()Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationStatus;"
+        }
+      ]
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/system/ConfigNewSettingsView;",
+      "method": "onEvent3MainThread",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalGetPushSensorCalibrateStatus;)V",
+      "instructionSha256": "a29c54319c224fe15ac1eaf89e3675e2613b6f31733b7058750d7f79ac1a7afe",
+      "targets": [
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalGetPushSensorCalibrateStatus;",
+          "reference": "getStatus()Ldji/midware/data/model/P3/DataGimbalGetPushSensorCalibrateStatus$CalibrationStatus;"
+        },
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalGetPushSensorCalibrateStatus;",
+          "reference": "getStatus()Ldji/midware/data/model/P3/DataGimbalGetPushSensorCalibrateStatus$CalibrationStatus;"
+        },
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalGetPushSensorCalibrateStatus;",
+          "reference": "getStatus()Ldji/midware/data/model/P3/DataGimbalGetPushSensorCalibrateStatus$CalibrationStatus;"
+        },
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalGetPushSensorCalibrateStatus;",
+          "reference": "getProgress()I"
+        }
+      ]
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "startCalibration",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "instructionSha256": "6fa2558ae7534aa30f15f9ebf5e1bd2c393e073d6523eac56c55f6a07a3e0977",
+      "targets": [
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+          "reference": "<init>()V"
+        },
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+          "reference": "setReceiverId(I Ljava/lang/Class;)Ljava/lang/Object;"
+        },
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
+          "reference": "start(Ldji/midware/interfaces/DJIDataCallBack;)V"
+        }
+      ]
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "updateCalibrationState",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalGetPushParams;)V",
+      "instructionSha256": "de39d924cec358ae4af12456de06417766943f327baaf5892ef711685098807d",
+      "targets": [
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalGetPushAutoCalibrationStatus;",
+          "reference": "getInstance()Ldji/midware/data/model/P3/DataGimbalGetPushAutoCalibrationStatus;"
+        },
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalGetPushAutoCalibrationStatus;",
+          "reference": "getProgress([I)I"
+        }
+      ]
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalFoldingDroneAbstraction;",
+      "method": "onEvent3BackgroundThread",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalGetPushAutoCalibrationStatus;)V",
+      "instructionSha256": "62a747eb3204a8213f7f0b4941f70c610713d12fbd192e734126c02a6e6a1bb5",
+      "targets": [
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalGetPushAutoCalibrationStatus;",
+          "reference": "getProgress([I)I"
+        }
+      ]
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction;",
+      "method": "onEvent3BackgroundThread",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalGetPushAutoCalibrationStatus;)V",
+      "instructionSha256": "6292f5d4b26d1d636b3d517c3a426d09a90a4d0b823b2a2e02a5edc9bc758b69",
+      "targets": [
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalGetPushAutoCalibrationStatus;",
+          "reference": "getProgress([I)I"
+        }
+      ]
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalInspire2Abstraction;",
+      "method": "onEvent3BackgroundThread",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalGetPushAutoCalibrationStatus;)V",
+      "instructionSha256": "d9417283161913d45b48f8ca6788ea46bea1b249713e0d9227ff32f31517e7b1",
+      "targets": [
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalGetPushAutoCalibrationStatus;",
+          "reference": "isGetted()Z"
+        },
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalGetPushAutoCalibrationStatus;",
+          "reference": "getProgress([I)I"
+        }
+      ]
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalPhantom4Abstraction;",
+      "method": "onEvent3BackgroundThread",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalGetPushAutoCalibrationStatus;)V",
+      "instructionSha256": "51810ffe25d6851b6a36ab4993a3bdc539f69d7e4f92be653b55daa3f9d11de7",
+      "targets": [
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalGetPushAutoCalibrationStatus;",
+          "reference": "getProgress([I)I"
+        }
+      ]
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalPhantom4PAbstraction;",
+      "method": "onEvent3BackgroundThread",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalGetPushAutoCalibrationStatus;)V",
+      "instructionSha256": "aa2cbaa9eb3a3d1756606c25b51a84c4e71bb47d8efb7f8dbd47c46be1133354",
+      "targets": [
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalGetPushAutoCalibrationStatus;",
+          "reference": "getProgress([I)I"
+        }
+      ]
+    }
+  ],
+  "typedMethodDeclarations": [
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/setting/SettingGeneralView;",
+      "method": "onEvent3MainThread",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalAutoCalibration;)V",
+      "hasCode": true
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/setting/SettingMoreView;",
+      "method": "onEvent3MainThread",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalAutoCalibration;)V",
+      "hasCode": true
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/system/ConfigNewSettingsView;",
+      "method": "onEvent3MainThread",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalAutoCalibration;)V",
+      "hasCode": true
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/system/ConfigNewSettingsView;",
+      "method": "onEvent3MainThread",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalGetPushSensorCalibrateStatus;)V",
+      "hasCode": true
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalFoldingDroneAbstraction;",
+      "method": "onEvent3BackgroundThread",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalGetPushAutoCalibrationStatus;)V",
+      "hasCode": true
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHandheldAbstraction;",
+      "method": "onEvent3BackgroundThread",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalGetPushAutoCalibrationStatus;)V",
+      "hasCode": true
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalInspire2Abstraction;",
+      "method": "onEvent3BackgroundThread",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalGetPushAutoCalibrationStatus;)V",
+      "hasCode": true
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalPhantom4Abstraction;",
+      "method": "onEvent3BackgroundThread",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalGetPushAutoCalibrationStatus;)V",
+      "hasCode": true
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalPhantom4PAbstraction;",
+      "method": "onEvent3BackgroundThread",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalGetPushAutoCalibrationStatus;)V",
+      "hasCode": true
+    }
+  ],
+  "externalEnumReferences": [
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/ConfigMotorBasicView;",
+      "method": "correctJointAngle",
+      "descriptor": "()V",
+      "instructionSha256": "dcbd40c9b121a8daa5387468c10fa81bbf32fa1f56d129ab787e955bc6b94185",
+      "fields": [
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationPart;",
+          "reference": "JOINT_ANGLE_FIXTURE Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationPart;"
+        }
+      ]
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/ConfigMotorBasicViewRoninSc;",
+      "method": "correctJointAngle",
+      "descriptor": "()V",
+      "instructionSha256": "f3193b14b61de35bf74ef2b0aa984c84d0e731c3db2b72dbb7db31f572f22cbf",
+      "fields": [
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationPart;",
+          "reference": "JOINT_ANGLE_FIXTURE Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationPart;"
+        }
+      ]
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/setting/SettingGeneralView;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "instructionSha256": "2be890fcab60f3f5162853c69f51eb0eaa7871252d3f1ff0707fa71168f74a0c",
+      "fields": [
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationPart;",
+          "reference": "GYRO Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationPart;"
+        }
+      ]
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/setting/SettingGeneralView;",
+      "method": "onEvent3MainThread",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalAutoCalibration;)V",
+      "instructionSha256": "8a1b2af51757286b9088a461ee0b7418026bae0b9c927730e550f70446ed26d3",
+      "fields": [
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationStatus;",
+          "reference": "FAIL Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationStatus;"
+        },
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationStatus;",
+          "reference": "SUCCESS Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationStatus;"
+        }
+      ]
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/setting/SettingMoreView;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "instructionSha256": "b3abfc61fb487c0325fa8c1ad58ead5dc4e3f5eaa57d05c42a792045a6201b08",
+      "fields": [
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationPart;",
+          "reference": "GYRO Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationPart;"
+        }
+      ]
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/setting/SettingMoreView;",
+      "method": "onEvent3MainThread",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalAutoCalibration;)V",
+      "instructionSha256": "eba5fb8e7fa5fc4e89f044ce059c505b4c22ef977f76bdee0870a7b76ebfda8b",
+      "fields": [
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationStatus;",
+          "reference": "FAIL Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationStatus;"
+        },
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationStatus;",
+          "reference": "SUCCESS Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationStatus;"
+        }
+      ]
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/system/ConfigNewSettingsView;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "instructionSha256": "ac07aa1b6b84d58def93c7df1f4b094f0801855aa842acc9212591c0083e2c6c",
+      "fields": [
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationPart;",
+          "reference": "GYRO Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationPart;"
+        },
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationPart;",
+          "reference": "AUTO Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationPart;"
+        }
+      ]
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/system/ConfigNewSettingsView;",
+      "method": "onEvent3MainThread",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalAutoCalibration;)V",
+      "instructionSha256": "976c472272b9fc7fc5e90a1a1126f032021e5d51927a71ed7914ed70048cc11e",
+      "fields": [
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationStatus;",
+          "reference": "FAIL Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationStatus;"
+        },
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationStatus;",
+          "reference": "SUCCESS Ldji/midware/data/model/P3/DataGimbalAutoCalibration$CalibrationStatus;"
+        }
+      ]
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/configuration/system/ConfigNewSettingsView;",
+      "method": "onEvent3MainThread",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalGetPushSensorCalibrateStatus;)V",
+      "instructionSha256": "a29c54319c224fe15ac1eaf89e3675e2613b6f31733b7058750d7f79ac1a7afe",
+      "fields": [
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalGetPushSensorCalibrateStatus$CalibrationStatus;",
+          "reference": "FAIL Ldji/midware/data/model/P3/DataGimbalGetPushSensorCalibrateStatus$CalibrationStatus;"
+        },
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalGetPushSensorCalibrateStatus$CalibrationStatus;",
+          "reference": "COMPLETE Ldji/midware/data/model/P3/DataGimbalGetPushSensorCalibrateStatus$CalibrationStatus;"
+        },
+        {
+          "owner": "Ldji/midware/data/model/P3/DataGimbalGetPushSensorCalibrateStatus$CalibrationStatus;",
+          "reference": "PROCESSING Ldji/midware/data/model/P3/DataGimbalGetPushSensorCalibrateStatus$CalibrationStatus;"
+        }
+      ]
+    }
+  ],
+  "parts": [
+    {
+      "name": "AUTO",
+      "ordinal": 0,
+      "sourceId": 0
+    },
+    {
+      "name": "JOINT_ANGLE",
+      "ordinal": 1,
+      "sourceId": 1
+    },
+    {
+      "name": "HALL_LINEAR",
+      "ordinal": 2,
+      "sourceId": 2
+    },
+    {
+      "name": "JOINT_ANGLE_CAMERA",
+      "ordinal": 3,
+      "sourceId": 3
+    },
+    {
+      "name": "JOINT_ANGLE_FIXTURE",
+      "ordinal": 4,
+      "sourceId": 4
+    },
+    {
+      "name": "GYRO",
+      "ordinal": 5,
+      "sourceId": 5
+    },
+    {
+      "name": "ACCELERATION",
+      "ordinal": 6,
+      "sourceId": 6
+    },
+    {
+      "name": "COMPASS",
+      "ordinal": 7,
+      "sourceId": 7
+    },
+    {
+      "name": "IMU_AND_SENSOR",
+      "ordinal": 8,
+      "sourceId": 8
+    },
+    {
+      "name": "SHOCK_PLATE",
+      "ordinal": 9,
+      "sourceId": 9
+    }
+  ],
+  "responseStates": [
+    {
+      "name": "FAIL",
+      "ordinal": 0,
+      "sourceId": 0
+    },
+    {
+      "name": "SUCCESS",
+      "ordinal": 1,
+      "sourceId": 1
+    },
+    {
+      "name": "PROCESSING",
+      "ordinal": 2,
+      "sourceId": 2
+    }
+  ],
+  "sensorStates": [
+    {
+      "name": "COMPLETE",
+      "ordinal": 0,
+      "sourceId": 0
+    },
+    {
+      "name": "PROCESSING",
+      "ordinal": 1,
+      "sourceId": 1
+    },
+    {
+      "name": "FAIL",
+      "ordinal": 2,
+      "sourceId": 3
+    },
+    {
+      "name": "OTHER",
+      "ordinal": 3,
+      "sourceId": 9
+    }
+  ],
+  "basePolicies": [
+    {
+      "name": "AutoCalibration",
+      "commandId": 8,
+      "isBlock": false,
+      "isMix": true,
+      "modelClass": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;"
+    },
+    {
+      "name": "GetPushSensorCalibrationStatus",
+      "commandId": 48,
+      "isBlock": false,
+      "isMix": false,
+      "modelClass": "Ldji/midware/data/model/P3/DataGimbalGetPushSensorCalibrateStatus;"
+    }
+  ],
+  "unboundAutoStatusFields": [
+    {
+      "sourceGetter": "getProgress",
+      "offset": 0,
+      "size": 1,
+      "shift": 0,
+      "mask": 255,
+      "boolean": false
+    },
+    {
+      "sourceGetter": "getStatus",
+      "offset": 1,
+      "size": 1,
+      "shift": 0,
+      "mask": 255,
+      "boolean": false
+    }
+  ],
+  "sourceFacts": {
+    "requestCommand": "04:08",
+    "requestBodyBytes": 1,
+    "defaultPart": "AUTO",
+    "ackRequested": true,
+    "receiverIdExplicitlyAssigned": false,
+    "requestResponseBusinessOffsets": {
+      "part": 0,
+      "status": 1
+    },
+    "unknownPartFallback": "AUTO",
+    "unknownResponseStatusFallback": "PROCESSING",
+    "shortResponseStatusFallback": "PROCESSING",
+    "baseAckCcodeStrippedBeforeBusinessView": true,
+    "pushCommand": "04:30",
+    "pushModelClass": "Ldji/midware/data/model/P3/DataGimbalGetPushSensorCalibrateStatus;",
+    "pushBusinessOffsets": {
+      "progress": 0,
+      "status": 1
+    },
+    "pushProgressShortFallback": 0,
+    "pushStatusShortOrUnknownFallback": "OTHER",
+    "pushStartIsInert": true,
+    "pushStatusUsesOwnEnum": true,
+    "pushStatusShares08EnumProven": false,
+    "pushInheritsChangeDetection": true,
+    "unboundAutoStatusModelClass": "Ldji/midware/data/model/P3/DataGimbalGetPushAutoCalibrationStatus;",
+    "unboundClassAssignedTo30InBaseTable": false,
+    "unboundProgressAcceptsSenderIdVarargs": true,
+    "unboundStatusUsesDefaultSenderContext": true,
+    "unboundAlwaysChanged": true,
+    "sourceBaseTableActualExtensionVerified": false,
+    "sourceProgressUnitVerified": false,
+    "horizontalCalibrationIdentityVerified": false,
+    "firmwareAbortVerified": false
+  },
+  "scope": {
+    "restoredBanks": [
+      0,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "unrestoredBanks": [
+      1,
+      7
+    ],
+    "reflectionNativeOrOtherClassLoadersRuledOut": false,
+    "cameraFeaturesImplemented": false
+  },
+  "remaining": [
+    "Base command table and class names are not proof of an HG724 business entry or actual BLE routing.",
+    "04:08 request response, 04:30 raw push, system_calc/index36, balance_test/index37 and 6A/6E auto-tune remain separate.",
+    "Unknown/short source response falls back to PROCESSING, not proof that a device is calibrating.",
+    "04:30 has its own COMPLETE0/PROCESSING1/FAIL3/OTHER9 enum, not bool inProgress or the 04:08 response enum.",
+    "The similarly named GetPushAutoCalibrationStatus is a separate class not assigned to 04:30 in this base table."
+  ]
+}

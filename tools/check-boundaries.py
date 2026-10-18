@@ -694,3 +694,19 @@ if manifest.get('externalDeviceSdk'):
     for flag in ('missingFieldsSynthesized','sourceSingletonRetentionEmulated','automaticQuerySubscriptionAckOrControlEnabled','cameraFieldsDecoded','targetDeviceVerified','modelLayoutVerified','unitVerified','referenceFrameVerified'):
         assert sdk[flag] is False
     assert len(json.loads((root/sdk['fixtures']).read_text()))==7
+
+if manifest.get('sensorCalibrationResearch'):
+    proof=json.loads((root/manifest['sensorCalibrationResearch']).read_text())
+    assert len(proof['methods'])==48 and len(proof['directCallers'])==17 and len(proof['externalEnumReferences'])==9
+    assert len(proof['typedMethodDeclarations'])==9
+    assert [r['commandId'] for r in proof['basePolicies']]==[8,48]
+    assert proof['basePolicies'][1]['modelClass']=='Ldji/midware/data/model/P3/DataGimbalGetPushSensorCalibrateStatus;'
+    assert {r['name']:r['sourceId'] for r in proof['sensorStates']}=={'COMPLETE':0,'PROCESSING':1,'FAIL':3,'OTHER':9}
+    assert {r['name']:r['sourceId'] for r in proof['responseStates']}=={'FAIL':0,'SUCCESS':1,'PROCESSING':2}
+    facts=proof['sourceFacts']
+    assert facts['pushStartIsInert'] is True and facts['unboundClassAssignedTo30InBaseTable'] is False
+    assert facts['pushInheritsChangeDetection'] is True and facts['unboundAlwaysChanged'] is True
+    for flag in ('sourceBaseTableActualExtensionVerified','sourceProgressUnitVerified','horizontalCalibrationIdentityVerified','firmwareAbortVerified'):
+        assert facts[flag] is False
+    for flag in ('appCodeExecuted','liveUiExecuted','targetDeviceVerified','modelLayoutVerified','wholeProtocolRecovered','researchToolProvidesSdkInterface','sdkSendAdded','sdkReceiveAdded'):
+        assert proof[flag] is False

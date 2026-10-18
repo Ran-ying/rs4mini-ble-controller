@@ -6,6 +6,7 @@ typedef void (^RSAppCompletion)(NSDictionary *result, NSError *error);
 // Device layer: independent of RSGimbal and composed motion.
 @interface RSBleDevice : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>
 @property(nonatomic, readonly, copy) NSDictionary *appProgramStatus;
+@property(nonatomic, readonly, copy) NSDictionary *appPeripheralStatus;
 @property(nonatomic, readonly, copy) NSDictionary *appAbnormalStatus;
 @property(nonatomic, readonly, copy) NSDictionary *appBatteryStatus;
 @property(nonatomic, readonly, copy) NSDictionary *appHandheldStickStatus;

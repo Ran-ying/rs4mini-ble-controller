@@ -8,9 +8,9 @@ verification status changes.
 ## Objective and user decisions
 
 - Provide an unofficial, direct BLE controller for **DJI RS 4 Mini**, initially on macOS.
-- **Node.js is the authoritative implementation**; current package version is `0.7.24`.
+- **Node.js is the authoritative implementation**; current package version is `0.7.25`.
 - The user subsequently requested completion of all existing ports. Python is now
-  `0.7.24`, Web shares the JS core, and the native panel is `0.3.24`. Describe the
+  `0.7.25`, Web shares the JS core, and the native panel is `0.3.25`. Describe the
   documented feature differences; do not claim identical APIs or hardware proof.
 - After that delivery, the user requested the remaining **non-camera** capabilities
   under the same autonomous/offline conditions. Expansion work is in progress;
@@ -948,3 +948,19 @@ tarball隔离安装后213项及TypeScript消费者通过；wheel隔离安装后1
 ## 轨迹路点与ActualPose研究验证（2026-10-18）
 
 最终固定APK/bank03/05实际两次复现51方法指纹、时间/参数路径和六项源DataType，证据JSON逐字节一致。新增22项边界测试；研究工具Python3.8与3.12各284通过。覆盖float32进度与分段/反向损失、pose/motor区分、signed宽度/long窄化/浮点舍入、未知/重复/缺失/截断、局部寄存器来源和两段哈希预检。统一离线Node213/Web19/Python191/原生167+217+3、类型/边界/构建通过，终态0且日志到达最终probe --help。Node/Python/macOS/Web所有源码目录与2eb2298相同，运行时/安装包保持0.7.24/0.3.24，无新增SDK收发/订阅/高级功能或硬件/liveUI/厂商执行，全命令门槛false。
+
+
+## 0.7.25外设状态候选 / 原生0.3.25 build28
+
+固定bank05新增70方法审计、46 DataType/43 getter视图。04:66基础表block=false/mix=false纯推送、请求业务偏移0；动态Extra/本机未证明。SDK仅显式App来源sender4→2未加密请求通知，新增peripheralStatus（Python snake别名、原生appPeripheralStatus）与kind=peripheral，独立帧快照、完整验长、未知/重复保留、复制/不可变、来源/断线清空，不完成查询/改变运动/自动ACK订阅或更新04:05。
+
+YGyroOut/PAcceOut共mId21，分别除10/100，保留双sourceViews/ambiguous，禁止猜成22；GPS先整数除1000000再double，不修正。三void方法不造电流字段，Other255与负signed键分开。len1/2 signed，其余尾补0/低32位（含8字节窄化），实际空记录源0与缺失不补0分开，float32顺序保留。来源名不等于本机传感器/单位/参考系。所有本机/型号/参考系/物理完成标志false，无新增发送/高级/相机或硬件/liveUI/厂商执行，全命令门槛false。见docs/APP_PERIPHERAL_STATUS.md、tools/research/PERIPHERAL.md和protocol/research/ronin-peripheral-evidence.json。
+
+
+## 0.7.25外设候选验证（2026-10-18）
+
+固定源70方法/46类型/43视图两次实际提取，证据JSON逐字节一致。研究工具Python3.8与3.12各293项通过（新增9），六组共享契约覆盖完整目录、tag21碰撞、GPS整数截断、实际空记录/缺失、未知/重复/void及全长度0..127补零/符号/窄化。三端目录均逐项匹配源证据。
+
+统一离线Node220/Web20/Python3.8共198、原生309核心+224假设备+3独立SDK、类型/边界/构建通过，终态0；Python3.12完整198另行通过。新增缓存复制/不可变/观察者隔离、来源/断线清空、CRC重组下的通知/查询/运动槽隔离、无ACK/订阅/控制写入及Web无Buffer验证。
+
+实际安装Node tarball后220项及TypeScript消费者通过；wheel隔离安装后198项通过，device/controller/app_commands/app_peripheral导入路径核对。全部型号/设备/参考系/物理标志false，未扫描/连接/移动设备、运行实时UI或执行厂商代码；没有新增发送/高级功能，全部命令门槛false。

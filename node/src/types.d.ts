@@ -266,7 +266,15 @@ export interface AppProgramStatus {
   rawSuccessByte:number|null;sourceSuccess:boolean|null;records:AppProgramRecord[];
   deviceVerified:false;modelLayoutVerified:false;programCorrelationVerified:false;physicalCompletionVerified:false;
 }
-export type AppStatus = AppCalibrationStatus | AppUserParameterStatus | AppHandheldStickStatus | AppAbnormalStatus | AppBatteryStatus | AppProgramStatus;
+export interface AppPeripheralRecord {
+  rawTag:number;sourceSignedTag:number;length:number;payloadHex:string;sourceTypes:string[];ambiguous:boolean;sourceInt32:number|null;
+  sourceViews:Array<{sourceType:string;sourceGetter:string;conversion:string;value:number|boolean}>;
+}
+export interface AppPeripheralStatus {
+  kind:'peripheral';profile:'ronin-2.2.2';commandId:102;timestamp:number;bodyHex:string;rawFlag:number;sourceRecordBranchSelected:boolean;records:AppPeripheralRecord[];
+  deviceVerified:false;modelLayoutVerified:false;referenceFrameVerified:false;physicalCompletionVerified:false;
+}
+export type AppStatus = AppPeripheralStatus | AppCalibrationStatus | AppUserParameterStatus | AppHandheldStickStatus | AppAbnormalStatus | AppBatteryStatus | AppProgramStatus;
 export interface AppAutoTuneSent {
   profile: "ronin-2.2.2"; sent: true; requestedStart: boolean;
   acknowledgementRequested: false; acknowledged: false;
@@ -293,6 +301,7 @@ export type StandaloneParameter='speed'|'smoothing';
 export type AppSourceAxisMode='ThreeAxis'|'TwoAxis'|'Roll360'|'ThreeDRoll360';
 export type AppSourceWorkMode='Free'|'Flower'|'Fpv'|'Center';
 export interface AppCommands {
+  readonly peripheralStatus:AppPeripheralStatus|null;
   sendProgramStatusSubscriptionRequest(options:{program:AppProgramName;enabled:boolean;timeoutMs?:number}):Promise<AppProgramStatusSubscriptionReply>;
   sendProgramStatusRequest(options:{program:AppProgramName;timeoutMs?:number}):Promise<AppProgramStatusRequestReply>;
   getUserProfile(options?:{timeoutMs?:number}):Promise<AppParameterReply & {parameter:'userProfile';rawValue:number;withinSourceRange:boolean;sourceUiName:'M1'|'M2'|'M3'|null;modelLayoutVerified:false;activePresetVerified:false}>;

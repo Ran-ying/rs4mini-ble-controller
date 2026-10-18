@@ -1,3 +1,4 @@
+from .app_peripheral import peripheral_notification
 from .app_program_request import program_status_request_spec,program_status_request_reply,program_status_subscription_spec,program_status_subscription_reply
 from .app_program_status import program_status_notification
 from .app_source_status import source_status_notification
@@ -33,7 +34,10 @@ class AppCommands:
         self._abnormal_status = None
         self._battery_status = None
         self._program_status = None
+        self._peripheral_status = None
 
+    peripheralStatus = property(lambda self: copy.deepcopy(self._peripheral_status))
+    peripheral_status = peripheralStatus
     programStatus = property(lambda self: copy.deepcopy(self._program_status))
     program_status = programStatus
     abnormalStatus = property(lambda self: copy.deepcopy(self._abnormal_status))
@@ -55,10 +59,15 @@ class AppCommands:
         self._abnormal_status = None
         self._battery_status = None
         self._program_status = None
+        self._peripheral_status = None
 
     def _message(self, message):
         if not self._profile:
             return
+        peripheral=peripheral_notification(message)
+        if peripheral:
+            self._peripheral_status=peripheral
+            self.owner._emit('onAppStatus',copy.deepcopy(peripheral))
         program=program_status_notification(message)
         if program:
             self._program_status=program

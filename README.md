@@ -1,6 +1,6 @@
 # rs4mini-ble-controller
 
-通过电脑 BLE 直接控制 DJI RS 4 Mini 的非官方项目。Node.js **0.7.24** 为主实现；Python/Web **0.7.24**、macOS 原生面板 **0.3.24** 提供三轴速度、姿态/机械关节反馈、低速定位、轨迹与路点、保存位置返回和显式自动重连。相机控制和视觉跟踪不属于当前范围。
+通过电脑 BLE 直接控制 DJI RS 4 Mini 的非官方项目。Node.js **0.7.25** 为主实现；Python/Web **0.7.25**、macOS 原生面板 **0.3.25** 提供三轴速度、姿态/机械关节反馈、低速定位、轨迹与路点、保存位置返回和显式自动重连。相机控制和视觉跟踪不属于当前范围。
 
 **当前状态：底层 SDK 已增加当前 App 参数事务、调参请求与状态封装；全部非相机 BLE 能力仍未完成。**
 完成项、验证证据与后续接手入口统一保存在 [项目状态](docs/PROJECT_STATUS.md)。
@@ -79,7 +79,7 @@ RS4MINI_POSITION_AXIS=tilt RS4MINI_POSITION_DELTA=3 npm run example:position
 
 ## 各端状态
 
-| 功能 | Node 0.7.24 | Python 0.7.24 | Web 0.7.24 | macOS 面板 0.3.24 |
+| 功能 | Node 0.7.25 | Python 0.7.25 | Web 0.7.25 | macOS 面板 0.3.25 |
 |---|---|---|---|---|
 | 三轴速度 / 停止 / 三轴回中 | 有 | 有 | 有 | 有 |
 | 反馈解析与 CRC 重组 | 有 | 有 | 共享 Node 核心 | 有 |
@@ -231,3 +231,6 @@ python3 -m http.server 8000 --bind 127.0.0.1
 
 
 新增[轨迹路点与ActualPose审计](tools/research/TRACK_POINTS.md)：UI秒数分段、首点/Roll规则及04:66缓存来源已核对，不能把原生轨迹角度直接当作现有机械关节角。仅研究，无SDK发送或硬件操作，运行时仍0.7.24/0.3.24，全命令门槛false。
+
+
+0.7.25新增[外设状态源候选](docs/APP_PERIPHERAL_STATUS.md)：46源类型/43 getter视图、保留tag21碰撞和GPS整数截断；不改现有姿态/关节，不自动ACK/订阅或控制，本机未验收。

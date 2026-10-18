@@ -146,7 +146,7 @@ async function sourceSettingsTypes(gimbal: RS4Mini) {
 }
 
 async function calibrationTypes(gimbal: RS4Mini) {
-  gimbal.onAppStatus = status => { if(status.kind==='calibration') {const raw:number|null=status.rawState;console.log(raw);} else if(status.kind==='userParameters') {const raw:number=status.preset.rawValue;console.log(raw);} else if(status.kind==='handheldStick') {const x:number=status.sourceStickX;console.log(x,gimbal.appCommands.handheldStickStatus);} else if(status.kind==='abnormal') {const v:boolean|number=status.sourceValues.isGimbalLocked;console.log(v,gimbal.appCommands.abnormalStatus);} else if(status.kind==='battery') {const raw:number=status.rawCapacityValue;console.log(raw,gimbal.appCommands.batteryStatus);} else {const records:number=status.records.length;console.log(records,gimbal.appCommands.programStatus);} };
+  gimbal.onAppStatus = status => { if(status.kind==='calibration') {const raw:number|null=status.rawState;console.log(raw);} else if(status.kind==='userParameters') {const raw:number=status.preset.rawValue;console.log(raw);} else if(status.kind==='handheldStick') {const x:number=status.sourceStickX;console.log(x,gimbal.appCommands.handheldStickStatus);} else if(status.kind==='abnormal') {const v:boolean|number=status.sourceValues.isGimbalLocked;console.log(v,gimbal.appCommands.abnormalStatus);} else if(status.kind==='battery') {const raw:number=status.rawCapacityValue;console.log(raw,gimbal.appCommands.batteryStatus);} else if(status.kind==='peripheral'){const value:number|boolean|undefined=status.records[0]?.sourceViews[0]?.value;console.log(value,gimbal.appCommands.peripheralStatus);} else {const records:number=status.records.length;console.log(records,gimbal.appCommands.programStatus);} };
   const fine=await gimbal.appCommands.sendFineTuneRequest({axis:'pitch',adjustmentDegrees:-.1});
   const tenths:number=fine.encodedTenths;void tenths;
   // @ts-expect-error yaw source action is not established
@@ -251,4 +251,11 @@ async function programSubscriptionTypes(gimbal: RS4Mini) {
  await gimbal.appCommands.sendProgramStatusSubscriptionRequest({program:'track',enabled:true,requestType:0});
  // @ts-expect-error enabled must be explicit
  await gimbal.appCommands.sendProgramStatusSubscriptionRequest({program:'track'});
+}
+
+function peripheralTypes(gimbal:RS4Mini) {
+ const status=gimbal.appCommands.peripheralStatus;
+ if(status){const v:number|boolean|undefined=status.records[0]?.sourceViews[0]?.value;const flag:false=status.referenceFrameVerified;void v;void flag;}
+ // @ts-expect-error copied read-only status
+ gimbal.appCommands.peripheralStatus=null;
 }

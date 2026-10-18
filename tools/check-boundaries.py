@@ -55,7 +55,7 @@ for row in manifest['commands']:
     if row['targetEvidence'] == 'official-app-enum':
         assert row['requestCodec'] in {'unknown', 'not-exposed'} and not row['implementation'], row['key']
     if row['targetEvidence'] == 'app-generic-code':
-        assert row['key'] in {'04:24','04:57','04:27','04:33','04:38','04:64','04:6B'} and row['requestCodec'] == ('implemented' if row['key']=='04:6B' else 'not-applicable') and row['responseCodec'] == 'candidate-structured'
+        assert row['key'] in {'04:24','04:57','04:27','04:33','04:38','04:64','04:6B','04:66'} and row['requestCodec'] == ('implemented' if row['key']=='04:6B' else 'not-applicable') and row['responseCodec'] == 'candidate-structured'
         assert manifest['userPushSdk']['modelSpecificPathVerified'] is False and manifest['userPushSdk']['targetDeviceVerified'] is False
     if row.get('officialAppEvidence'):
         evidence_path = root / row['officialAppEvidence']
@@ -611,3 +611,23 @@ if manifest.get('trackPointResearch'):
     assert points['peripheral']['rawBleOffsetsVerified'] is False
     assert points['preview']['completeCameraIsolationVerified'] is False
     assert points['preview']['physicalStopVerified'] is False
+
+if manifest.get('peripheralSdk'):
+    import ast
+    sdk=manifest['peripheralSdk'];proof=json.loads((root/manifest['peripheralResearch']).read_text())
+    assert len(proof['methods'])==70 and len(proof['catalog']['types'])==46 and len(proof['catalog']['getters'])==43
+    assert proof['sourceTagCollisions']==[{'sourceId':21,'sourceTypes':['YGyroOut','PAcceOut']}]
+    assert proof['basePolicy']['isBlock'] is False and proof['basePolicy']['isMix'] is False
+    assert proof['envelope']['requestBusinessOffsetInRawPayload']==0
+    assert proof['envelope']['actualExtensionSelectionVerified'] is False
+    for flag in ('appCodeExecuted','targetDeviceVerified','modelLayoutVerified','wholeProtocolRecovered','researchToolProvidesSdkInterface'):
+        assert proof[flag] is False
+    assert sdk['passiveOnly'] and sdk['sourceTypeCount']==46 and sdk['sourceGetterViewCount']==43
+    assert sdk['ambiguousSourceIds']==[21] and sdk['emptyPresentRecordUsesSourceZero'] is True
+    for flag in ('sourceCollisionRepaired','sourceGpsDivisionCorrected','missingFieldsSynthesized','automaticSubscriptionAckOrControlEnabled','targetDeviceVerified','modelLayoutVerified','referenceFrameVerified'):
+        assert sdk[flag] is False
+    js=(root/'node/src/app-peripheral.js').read_text().split('const catalog = ',1)[1].split(';\n',1)[0]
+    py=(root/'python/rs4mini_sdk/app_peripheral.py').read_text().split('CATALOG = ',1)[1].split('\n',1)[0]
+    native=(root/'macos/RSControlCore.m').read_text().split('static NSDictionary *AppPeripheralCatalog(void)',1)[1].split('JSONObjectWithData:[@',1)[1].split(' dataUsingEncoding:',1)[0]
+    assert json.loads(js)==proof['catalog'] and ast.literal_eval(py)==proof['catalog'] and json.loads(json.loads(native))==proof['catalog']
+    assert len(json.loads((root/sdk['fixtures']).read_text()))==6

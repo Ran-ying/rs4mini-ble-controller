@@ -234,21 +234,24 @@
     },
     {
       "key": "04:66",
-      "name": "状态 TLV 候选通知",
+      "name": "外设状态源候选与旧型号原始TLV",
       "requestCodec": "not-applicable",
-      "responseCodec": "partial",
-      "targetEvidence": "other-model",
+      "responseCodec": "candidate-structured",
+      "targetEvidence": "app-generic-code",
       "implementation": [
         "node/src/experimental-protocol.js",
         "python/rs4mini_sdk/experimental_protocol.py",
-        "macos/RSControlCore.m"
+        "macos/RSControlCore.m",
+        "node/src/app-peripheral.js",
+        "python/rs4mini_sdk/app_peripheral.py"
       ],
-      "remaining": "既有其他型号运行时仅原始TLV；新增当前App只读研究确认ActualPose与MotorAngle分离、源整数宽度/除10及缓存链，不将其直接映射为本机关节/姿态；尚无App来源运行时解码、本机布局/通知证据",
+      "remaining": "0.7.25显式App来源被动候选覆盖46源类型/43 getter视图，保留tag21碰撞、GPS整数截断、未知/重复和原始体；与旧型号原始TLV分开，不改04:05姿态/关节，无订阅/ACK或控制；本机布局、实际扩展、物理参考系/单位仍未验收",
       "officialAppAliases": [
         "SetPushPeripheralStatus"
       ],
       "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
-      "trackPointResearch": "protocol/research/ronin-track-points-evidence.json"
+      "trackPointResearch": "protocol/research/ronin-track-points-evidence.json",
+      "peripheralResearch": "protocol/research/ronin-peripheral-evidence.json"
     },
     {
       "key": "0D:02",
@@ -838,7 +841,8 @@
     "tools/research/ronin_program_entry.py",
     "tools/research/ronin_track_workflow.py",
     "tools/research/ronin_program_receive.py",
-    "tools/research/ronin_track_points.py"
+    "tools/research/ronin_track_points.py",
+    "tools/research/ronin_peripheral_trace.py"
   ],
   "modelIdentityResearch": "protocol/research/ronin-hg724-evidence.json",
   "codeRestorationResearch": "protocol/research/ronin-code-restoration-evidence.json",
@@ -1115,5 +1119,24 @@
       "docs/APP_PROGRAM_SUBSCRIPTION.md"
     ]
   },
-  "trackPointResearch": "protocol/research/ronin-track-points-evidence.json"
+  "trackPointResearch": "protocol/research/ronin-track-points-evidence.json",
+  "peripheralResearch": "protocol/research/ronin-peripheral-evidence.json",
+  "peripheralSdk": {
+    "profile": "ronin-2.2.2",
+    "passiveOnly": true,
+    "sourceTypeCount": 46,
+    "sourceGetterViewCount": 43,
+    "ambiguousSourceIds": [
+      21
+    ],
+    "sourceCollisionRepaired": false,
+    "sourceGpsDivisionCorrected": false,
+    "missingFieldsSynthesized": false,
+    "emptyPresentRecordUsesSourceZero": true,
+    "automaticSubscriptionAckOrControlEnabled": false,
+    "targetDeviceVerified": false,
+    "modelLayoutVerified": false,
+    "referenceFrameVerified": false,
+    "fixtures": "node/test/fixtures/peripheral-status.json"
+  }
 }

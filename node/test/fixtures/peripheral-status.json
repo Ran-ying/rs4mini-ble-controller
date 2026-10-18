@@ -1,0 +1,1142 @@
+[
+  {
+    "name": "all source types below signed-tag boundary",
+    "bodyHex": "010001640101640201640301640401640501640601640701640801640a01640b01640c01640d01640e01640f01641001641101641201641301641401641501641701641801641901641a01641b01641c01641d01641e01641f01642001642101642201642301642401642501642601642701642801642901642a01642b01642e0164410164",
+    "expected": {
+      "rawFlag": 1,
+      "sourceRecordBranchSelected": true,
+      "records": [
+        {
+          "rawTag": 0,
+          "sourceSignedTag": 0,
+          "length": 1,
+          "payloadHex": "64",
+          "sourceTypes": [
+            "Channel1"
+          ],
+          "ambiguous": false,
+          "sourceInt32": 100,
+          "sourceViews": [
+            {
+              "sourceType": "Channel1",
+              "sourceGetter": "getChannel1",
+              "conversion": "int32",
+              "value": 100
+            }
+          ]
+        },
+        {
+          "rawTag": 1,
+          "sourceSignedTag": 1,
+          "length": 1,
+          "payloadHex": "64",
+          "sourceTypes": [
+            "Channel2"
+          ],
+          "ambiguous": false,
+          "sourceInt32": 100,
+          "sourceViews": [
+            {
+              "sourceType": "Channel2",
+              "sourceGetter": "getChannel2",
+              "conversion": "int32",
+              "value": 100
+            }
+          ]
+        },
+        {
+          "rawTag": 2,
+          "sourceSignedTag": 2,
+          "length": 1,
+          "payloadHex": "64",
+          "sourceTypes": [
+            "Channel3"
+          ],
+          "ambiguous": false,
+          "sourceInt32": 100,
+          "sourceViews": [
+            {
+              "sourceType": "Channel3",
+              "sourceGetter": "getChannel3",
+              "conversion": "int32",
+              "value": 100
+            }
+          ]
+        },
+        {
+          "rawTag": 3,
+          "sourceSignedTag": 3,
+          "length": 1,
+          "payloadHex": "64",
+          "sourceTypes": [
+            "Channel4"
+          ],
+          "ambiguous": false,
+          "sourceInt32": 100,
+          "sourceViews": [
+            {
+              "sourceType": "Channel4",
+              "sourceGetter": "getChannel4",
+              "conversion": "int32",
+              "value": 100
+            }
+          ]
+        },
+        {
+          "rawTag": 4,
+          "sourceSignedTag": 4,
+          "length": 1,
+          "payloadHex": "64",
+          "sourceTypes": [
+            "Channel5"
+          ],
+          "ambiguous": false,
+          "sourceInt32": 100,
+          "sourceViews": [
+            {
+              "sourceType": "Channel5",
+              "sourceGetter": "getChannel5",
+              "conversion": "int32",
+              "value": 100
+            }
+          ]
+        },
+        {
+          "rawTag": 5,
+          "sourceSignedTag": 5,
+          "length": 1,
+          "payloadHex": "64",
+          "sourceTypes": [
+            "Channel6"
+          ],
+          "ambiguous": false,
+          "sourceInt32": 100,
+          "sourceViews": [
+            {
+              "sourceType": "Channel6",
+              "sourceGetter": "getChannel6",
+              "conversion": "int32",
+              "value": 100
+            }
+          ]
+        },
+        {
+          "rawTag": 6,
+          "sourceSignedTag": 6,
+          "length": 1,
+          "payloadHex": "64",
+          "sourceTypes": [
+            "PMotorPower"
+          ],
+          "ambiguous": false,
+          "sourceInt32": 100,
+          "sourceViews": [
+            {
+              "sourceType": "PMotorPower",
+              "sourceGetter": "getPMotorPower",
+              "conversion": "int32",
+              "value": 100
+            }
+          ]
+        },
+        {
+          "rawTag": 7,
+          "sourceSignedTag": 7,
+          "length": 1,
+          "payloadHex": "64",
+          "sourceTypes": [
+            "RMotorPower"
+          ],
+          "ambiguous": false,
+          "sourceInt32": 100,
+          "sourceViews": [
+            {
+              "sourceType": "RMotorPower",
+              "sourceGetter": "getRMotorPower",
+              "conversion": "int32",
+              "value": 100
+            }
+          ]
+        },
+        {
+          "rawTag": 8,
+          "sourceSignedTag": 8,
+          "length": 1,
+          "payloadHex": "64",
+          "sourceTypes": [
+            "YMotorPower"
+          ],
+          "ambiguous": false,
+          "sourceInt32": 100,
+          "sourceViews": [
+            {
+              "sourceType": "YMotorPower",
+              "sourceGetter": "getYMotorPower",
+              "conversion": "int32",
+              "value": 100
+            }
+          ]
+        },
+        {
+          "rawTag": 10,
+          "sourceSignedTag": 10,
+          "length": 1,
+          "payloadHex": "64",
+          "sourceTypes": [
+            "PMotorTemp"
+          ],
+          "ambiguous": false,
+          "sourceInt32": 100,
+          "sourceViews": [
+            {
+              "sourceType": "PMotorTemp",
+              "sourceGetter": "getPMotorTemp",
+              "conversion": "int32",
+              "value": 100
+            }
+          ]
+        },
+        {
+          "rawTag": 11,
+          "sourceSignedTag": 11,
+          "length": 1,
+          "payloadHex": "64",
+          "sourceTypes": [
+            "RMotorTemp"
+          ],
+          "ambiguous": false,
+          "sourceInt32": 100,
+          "sourceViews": [
+            {
+              "sourceType": "RMotorTemp",
+              "sourceGetter": "getRMotorTemp",
+              "conversion": "int32",
+              "value": 100
+            }
+          ]
+        },
+        {
+          "rawTag": 12,
+          "sourceSignedTag": 12,
+          "length": 1,
+          "payloadHex": "64",
+          "sourceTypes": [
+            "YMotorTemp"
+          ],
+          "ambiguous": false,
+          "sourceInt32": 100,
+          "sourceViews": [
+            {
+              "sourceType": "YMotorTemp",
+              "sourceGetter": "getYMotorTemp",
+              "conversion": "int32",
+              "value": 100
+            }
+          ]
+        },
+        {
+          "rawTag": 13,
+          "sourceSignedTag": 13,
+          "length": 1,
+          "payloadHex": "64",
+          "sourceTypes": [
+            "PMotorCurrent"
+          ],
+          "ambiguous": false,
+          "sourceInt32": null,
+          "sourceViews": []
+        },
+        {
+          "rawTag": 14,
+          "sourceSignedTag": 14,
+          "length": 1,
+          "payloadHex": "64",
+          "sourceTypes": [
+            "RMotorCurrent"
+          ],
+          "ambiguous": false,
+          "sourceInt32": null,
+          "sourceViews": []
+        },
+        {
+          "rawTag": 15,
+          "sourceSignedTag": 15,
+          "length": 1,
+          "payloadHex": "64",
+          "sourceTypes": [
+            "YMotorCurrent"
+          ],
+          "ambiguous": false,
+          "sourceInt32": null,
+          "sourceViews": []
+        },
+        {
+          "rawTag": 16,
+          "sourceSignedTag": 16,
+          "length": 1,
+          "payloadHex": "64",
+          "sourceTypes": [
+            "PMotorAngle"
+          ],
+          "ambiguous": false,
+          "sourceInt32": 100,
+          "sourceViews": [
+            {
+              "sourceType": "PMotorAngle",
+              "sourceGetter": "getPMotorAngle",
+              "conversion": "float32-div10",
+              "value": 10.0
+            }
+          ]
+        },
+        {
+          "rawTag": 17,
+          "sourceSignedTag": 17,
+          "length": 1,
+          "payloadHex": "64",
+          "sourceTypes": [
+            "RMotorAngle"
+          ],
+          "ambiguous": false,
+          "sourceInt32": 100,
+          "sourceViews": [
+            {
+              "sourceType": "RMotorAngle",
+              "sourceGetter": "getRMotorAngle",
+              "conversion": "float32-div10",
+              "value": 10.0
+            }
+          ]
+        },
+        {
+          "rawTag": 18,
+          "sourceSignedTag": 18,
+          "length": 1,
+          "payloadHex": "64",
+          "sourceTypes": [
+            "YMotorAngle"
+          ],
+          "ambiguous": false,
+          "sourceInt32": 100,
+          "sourceViews": [
+            {
+              "sourceType": "YMotorAngle",
+              "sourceGetter": "getYMotorAngle",
+              "conversion": "float32-div10",
+              "value": 10.0
+            }
+          ]
+        },
+        {
+          "rawTag": 19,
+          "sourceSignedTag": 19,
+          "length": 1,
+          "payloadHex": "64",
+          "sourceTypes": [
+            "PGyroOut"
+          ],
+          "ambiguous": false,
+          "sourceInt32": 100,
+          "sourceViews": [
+            {
+              "sourceType": "PGyroOut",
+              "sourceGetter": "getPGyroOut",
+              "conversion": "float32-div10",
+              "value": 10.0
+            }
+          ]
+        },
+        {
+          "rawTag": 20,
+          "sourceSignedTag": 20,
+          "length": 1,
+          "payloadHex": "64",
+          "sourceTypes": [
+            "RGyroOut"
+          ],
+          "ambiguous": false,
+          "sourceInt32": 100,
+          "sourceViews": [
+            {
+              "sourceType": "RGyroOut",
+              "sourceGetter": "getRGyroOut",
+              "conversion": "float32-div10",
+              "value": 10.0
+            }
+          ]
+        },
+        {
+          "rawTag": 21,
+          "sourceSignedTag": 21,
+          "length": 1,
+          "payloadHex": "64",
+          "sourceTypes": [
+            "YGyroOut",
+            "PAcceOut"
+          ],
+          "ambiguous": true,
+          "sourceInt32": 100,
+          "sourceViews": [
+            {
+              "sourceType": "PAcceOut",
+              "sourceGetter": "getPAcceOut",
+              "conversion": "float32-div100",
+              "value": 1.0
+            },
+            {
+              "sourceType": "YGyroOut",
+              "sourceGetter": "getYGyroOut",
+              "conversion": "float32-div10",
+              "value": 10.0
+            }
+          ]
+        },
+        {
+          "rawTag": 23,
+          "sourceSignedTag": 23,
+          "length": 1,
+          "payloadHex": "64",
+          "sourceTypes": [
+            "RAcceOut"
+          ],
+          "ambiguous": false,
+          "sourceInt32": 100,
+          "sourceViews": [
+            {
+              "sourceType": "RAcceOut",
+              "sourceGetter": "getRAcceOut",
+              "conversion": "float32-div100",
+              "value": 1.0
+            }
+          ]
+        },
+        {
+          "rawTag": 24,
+          "sourceSignedTag": 24,
+          "length": 1,
+          "payloadHex": "64",
+          "sourceTypes": [
+            "YAcceOut"
+          ],
+          "ambiguous": false,
+          "sourceInt32": 100,
+          "sourceViews": [
+            {
+              "sourceType": "YAcceOut",
+              "sourceGetter": "getYAcceOut",
+              "conversion": "float32-div100",
+              "value": 1.0
+            }
+          ]
+        },
+        {
+          "rawTag": 25,
+          "sourceSignedTag": 25,
+          "length": 1,
+          "payloadHex": "64",
+          "sourceTypes": [
+            "PGyroBias"
+          ],
+          "ambiguous": false,
+          "sourceInt32": 100,
+          "sourceViews": [
+            {
+              "sourceType": "PGyroBias",
+              "sourceGetter": "getPGyroBias",
+              "conversion": "float32-div100",
+              "value": 1.0
+            }
+          ]
+        },
+        {
+          "rawTag": 26,
+          "sourceSignedTag": 26,
+          "length": 1,
+          "payloadHex": "64",
+          "sourceTypes": [
+            "RGyroBias"
+          ],
+          "ambiguous": false,
+          "sourceInt32": 100,
+          "sourceViews": [
+            {
+              "sourceType": "RGyroBias",
+              "sourceGetter": "getRGyroBias",
+              "conversion": "float32-div100",
+              "value": 1.0
+            }
+          ]
+        },
+        {
+          "rawTag": 27,
+          "sourceSignedTag": 27,
+          "length": 1,
+          "payloadHex": "64",
+          "sourceTypes": [
+            "YGyroBias"
+          ],
+          "ambiguous": false,
+          "sourceInt32": 100,
+          "sourceViews": [
+            {
+              "sourceType": "YGyroBias",
+              "sourceGetter": "getYGyroBias",
+              "conversion": "float32-div100",
+              "value": 1.0
+            }
+          ]
+        },
+        {
+          "rawTag": 28,
+          "sourceSignedTag": 28,
+          "length": 1,
+          "payloadHex": "64",
+          "sourceTypes": [
+            "PPoseBias"
+          ],
+          "ambiguous": false,
+          "sourceInt32": 100,
+          "sourceViews": [
+            {
+              "sourceType": "PPoseBias",
+              "sourceGetter": "getPPoseBias",
+              "conversion": "float32-div100",
+              "value": 1.0
+            }
+          ]
+        },
+        {
+          "rawTag": 29,
+          "sourceSignedTag": 29,
+          "length": 1,
+          "payloadHex": "64",
+          "sourceTypes": [
+            "RPoseBias"
+          ],
+          "ambiguous": false,
+          "sourceInt32": 100,
+          "sourceViews": [
+            {
+              "sourceType": "RPoseBias",
+              "sourceGetter": "getRPoseBias",
+              "conversion": "float32-div100",
+              "value": 1.0
+            }
+          ]
+        },
+        {
+          "rawTag": 30,
+          "sourceSignedTag": 30,
+          "length": 1,
+          "payloadHex": "64",
+          "sourceTypes": [
+            "YPoseBias"
+          ],
+          "ambiguous": false,
+          "sourceInt32": 100,
+          "sourceViews": [
+            {
+              "sourceType": "YPoseBias",
+              "sourceGetter": "getYPoseBias",
+              "conversion": "float32-div100",
+              "value": 1.0
+            }
+          ]
+        },
+        {
+          "rawTag": 31,
+          "sourceSignedTag": 31,
+          "length": 1,
+          "payloadHex": "64",
+          "sourceTypes": [
+            "PTargetPose"
+          ],
+          "ambiguous": false,
+          "sourceInt32": 100,
+          "sourceViews": [
+            {
+              "sourceType": "PTargetPose",
+              "sourceGetter": "getPTargetPos",
+              "conversion": "float32-div10",
+              "value": 10.0
+            }
+          ]
+        },
+        {
+          "rawTag": 32,
+          "sourceSignedTag": 32,
+          "length": 1,
+          "payloadHex": "64",
+          "sourceTypes": [
+            "RTargetPose"
+          ],
+          "ambiguous": false,
+          "sourceInt32": 100,
+          "sourceViews": [
+            {
+              "sourceType": "RTargetPose",
+              "sourceGetter": "getRTargetPos",
+              "conversion": "float32-div10",
+              "value": 10.0
+            }
+          ]
+        },
+        {
+          "rawTag": 33,
+          "sourceSignedTag": 33,
+          "length": 1,
+          "payloadHex": "64",
+          "sourceTypes": [
+            "YTargetPose"
+          ],
+          "ambiguous": false,
+          "sourceInt32": 100,
+          "sourceViews": [
+            {
+              "sourceType": "YTargetPose",
+              "sourceGetter": "getYTargetPos",
+              "conversion": "float32-div10",
+              "value": 10.0
+            }
+          ]
+        },
+        {
+          "rawTag": 34,
+          "sourceSignedTag": 34,
+          "length": 1,
+          "payloadHex": "64",
+          "sourceTypes": [
+            "PActualPose"
+          ],
+          "ambiguous": false,
+          "sourceInt32": 100,
+          "sourceViews": [
+            {
+              "sourceType": "PActualPose",
+              "sourceGetter": "getPActualPose",
+              "conversion": "float32-div10",
+              "value": 10.0
+            }
+          ]
+        },
+        {
+          "rawTag": 35,
+          "sourceSignedTag": 35,
+          "length": 1,
+          "payloadHex": "64",
+          "sourceTypes": [
+            "RActualPose"
+          ],
+          "ambiguous": false,
+          "sourceInt32": 100,
+          "sourceViews": [
+            {
+              "sourceType": "RActualPose",
+              "sourceGetter": "getRActualPose",
+              "conversion": "float32-div10",
+              "value": 10.0
+            }
+          ]
+        },
+        {
+          "rawTag": 36,
+          "sourceSignedTag": 36,
+          "length": 1,
+          "payloadHex": "64",
+          "sourceTypes": [
+            "YActualPose"
+          ],
+          "ambiguous": false,
+          "sourceInt32": 100,
+          "sourceViews": [
+            {
+              "sourceType": "YActualPose",
+              "sourceGetter": "getYActualPose",
+              "conversion": "float32-div10",
+              "value": 10.0
+            }
+          ]
+        },
+        {
+          "rawTag": 37,
+          "sourceSignedTag": 37,
+          "length": 1,
+          "payloadHex": "64",
+          "sourceTypes": [
+            "GpsNum"
+          ],
+          "ambiguous": false,
+          "sourceInt32": 100,
+          "sourceViews": [
+            {
+              "sourceType": "GpsNum",
+              "sourceGetter": "getGpsNum",
+              "conversion": "int32",
+              "value": 100
+            }
+          ]
+        },
+        {
+          "rawTag": 38,
+          "sourceSignedTag": 38,
+          "length": 1,
+          "payloadHex": "64",
+          "sourceTypes": [
+            "GpsLong"
+          ],
+          "ambiguous": false,
+          "sourceInt32": 100,
+          "sourceViews": [
+            {
+              "sourceType": "GpsLong",
+              "sourceGetter": "getGpsLng",
+              "conversion": "int-div1000000-to-double",
+              "value": 0.0
+            }
+          ]
+        },
+        {
+          "rawTag": 39,
+          "sourceSignedTag": 39,
+          "length": 1,
+          "payloadHex": "64",
+          "sourceTypes": [
+            "GpsLat"
+          ],
+          "ambiguous": false,
+          "sourceInt32": 100,
+          "sourceViews": [
+            {
+              "sourceType": "GpsLat",
+              "sourceGetter": "getGpsLat",
+              "conversion": "int-div1000000-to-double",
+              "value": 0.0
+            }
+          ]
+        },
+        {
+          "rawTag": 40,
+          "sourceSignedTag": 40,
+          "length": 1,
+          "payloadHex": "64",
+          "sourceTypes": [
+            "GpsNorthSpeed"
+          ],
+          "ambiguous": false,
+          "sourceInt32": 100,
+          "sourceViews": [
+            {
+              "sourceType": "GpsNorthSpeed",
+              "sourceGetter": "getGpsNorthSpeed",
+              "conversion": "float32-div10",
+              "value": 10.0
+            }
+          ]
+        },
+        {
+          "rawTag": 41,
+          "sourceSignedTag": 41,
+          "length": 1,
+          "payloadHex": "64",
+          "sourceTypes": [
+            "GpsEastSpeed"
+          ],
+          "ambiguous": false,
+          "sourceInt32": 100,
+          "sourceViews": [
+            {
+              "sourceType": "GpsEastSpeed",
+              "sourceGetter": "getGpsEastSpeed",
+              "conversion": "float32-div10",
+              "value": 10.0
+            }
+          ]
+        },
+        {
+          "rawTag": 42,
+          "sourceSignedTag": 42,
+          "length": 1,
+          "payloadHex": "64",
+          "sourceTypes": [
+            "GpsNorthAcceSpeed"
+          ],
+          "ambiguous": false,
+          "sourceInt32": 100,
+          "sourceViews": [
+            {
+              "sourceType": "GpsNorthAcceSpeed",
+              "sourceGetter": "getGpsNorthAcceSpeed",
+              "conversion": "float32-div10",
+              "value": 10.0
+            }
+          ]
+        },
+        {
+          "rawTag": 43,
+          "sourceSignedTag": 43,
+          "length": 1,
+          "payloadHex": "64",
+          "sourceTypes": [
+            "GpsEastAcceSpeed"
+          ],
+          "ambiguous": false,
+          "sourceInt32": 100,
+          "sourceViews": [
+            {
+              "sourceType": "GpsEastAcceSpeed",
+              "sourceGetter": "getGpsEastAcceSpeed",
+              "conversion": "float32-div10",
+              "value": 10.0
+            }
+          ]
+        },
+        {
+          "rawTag": 46,
+          "sourceSignedTag": 46,
+          "length": 1,
+          "payloadHex": "64",
+          "sourceTypes": [
+            "HandDeviceAngle"
+          ],
+          "ambiguous": false,
+          "sourceInt32": 100,
+          "sourceViews": [
+            {
+              "sourceType": "HandDeviceAngle",
+              "sourceGetter": "getHandDeviceAngle",
+              "conversion": "int32",
+              "value": 100
+            }
+          ]
+        },
+        {
+          "rawTag": 65,
+          "sourceSignedTag": 65,
+          "length": 1,
+          "payloadHex": "64",
+          "sourceTypes": [
+            "ControlState"
+          ],
+          "ambiguous": false,
+          "sourceInt32": 100,
+          "sourceViews": [
+            {
+              "sourceType": "ControlState",
+              "sourceGetter": "getControlState",
+              "conversion": "int32",
+              "value": 100
+            },
+            {
+              "sourceType": "ControlState",
+              "sourceGetter": "getGimbalControlStateBad",
+              "conversion": "masked3-equals2",
+              "value": false
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "signed widths and explicit empty record",
+    "bodyHex": "0122000001ff0102ffff0203ffffff0304ffffffff0408ffffffff00000000",
+    "expected": {
+      "rawFlag": 1,
+      "sourceRecordBranchSelected": true,
+      "records": [
+        {
+          "rawTag": 34,
+          "sourceSignedTag": 34,
+          "length": 0,
+          "payloadHex": "",
+          "sourceTypes": [
+            "PActualPose"
+          ],
+          "ambiguous": false,
+          "sourceInt32": 0,
+          "sourceViews": [
+            {
+              "sourceType": "PActualPose",
+              "sourceGetter": "getPActualPose",
+              "conversion": "float32-div10",
+              "value": 0.0
+            }
+          ]
+        },
+        {
+          "rawTag": 0,
+          "sourceSignedTag": 0,
+          "length": 1,
+          "payloadHex": "ff",
+          "sourceTypes": [
+            "Channel1"
+          ],
+          "ambiguous": false,
+          "sourceInt32": -1,
+          "sourceViews": [
+            {
+              "sourceType": "Channel1",
+              "sourceGetter": "getChannel1",
+              "conversion": "int32",
+              "value": -1
+            }
+          ]
+        },
+        {
+          "rawTag": 1,
+          "sourceSignedTag": 1,
+          "length": 2,
+          "payloadHex": "ffff",
+          "sourceTypes": [
+            "Channel2"
+          ],
+          "ambiguous": false,
+          "sourceInt32": -1,
+          "sourceViews": [
+            {
+              "sourceType": "Channel2",
+              "sourceGetter": "getChannel2",
+              "conversion": "int32",
+              "value": -1
+            }
+          ]
+        },
+        {
+          "rawTag": 2,
+          "sourceSignedTag": 2,
+          "length": 3,
+          "payloadHex": "ffffff",
+          "sourceTypes": [
+            "Channel3"
+          ],
+          "ambiguous": false,
+          "sourceInt32": 16777215,
+          "sourceViews": [
+            {
+              "sourceType": "Channel3",
+              "sourceGetter": "getChannel3",
+              "conversion": "int32",
+              "value": 16777215
+            }
+          ]
+        },
+        {
+          "rawTag": 3,
+          "sourceSignedTag": 3,
+          "length": 4,
+          "payloadHex": "ffffffff",
+          "sourceTypes": [
+            "Channel4"
+          ],
+          "ambiguous": false,
+          "sourceInt32": -1,
+          "sourceViews": [
+            {
+              "sourceType": "Channel4",
+              "sourceGetter": "getChannel4",
+              "conversion": "int32",
+              "value": -1
+            }
+          ]
+        },
+        {
+          "rawTag": 4,
+          "sourceSignedTag": 4,
+          "length": 8,
+          "payloadHex": "ffffffff00000000",
+          "sourceTypes": [
+            "Channel5"
+          ],
+          "ambiguous": false,
+          "sourceInt32": -1,
+          "sourceViews": [
+            {
+              "sourceType": "Channel5",
+              "sourceGetter": "getChannel5",
+              "conversion": "int32",
+              "value": -1
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "collision and source GPS integer division",
+    "bodyHex": "011504ffffff7f41010226044139d2ff",
+    "expected": {
+      "rawFlag": 1,
+      "sourceRecordBranchSelected": true,
+      "records": [
+        {
+          "rawTag": 21,
+          "sourceSignedTag": 21,
+          "length": 4,
+          "payloadHex": "ffffff7f",
+          "sourceTypes": [
+            "YGyroOut",
+            "PAcceOut"
+          ],
+          "ambiguous": true,
+          "sourceInt32": 2147483647,
+          "sourceViews": [
+            {
+              "sourceType": "PAcceOut",
+              "sourceGetter": "getPAcceOut",
+              "conversion": "float32-div100",
+              "value": 21474836.0
+            },
+            {
+              "sourceType": "YGyroOut",
+              "sourceGetter": "getYGyroOut",
+              "conversion": "float32-div10",
+              "value": 214748368.0
+            }
+          ]
+        },
+        {
+          "rawTag": 65,
+          "sourceSignedTag": 65,
+          "length": 1,
+          "payloadHex": "02",
+          "sourceTypes": [
+            "ControlState"
+          ],
+          "ambiguous": false,
+          "sourceInt32": 2,
+          "sourceViews": [
+            {
+              "sourceType": "ControlState",
+              "sourceGetter": "getControlState",
+              "conversion": "int32",
+              "value": 2
+            },
+            {
+              "sourceType": "ControlState",
+              "sourceGetter": "getGimbalControlStateBad",
+              "conversion": "masked3-equals2",
+              "value": true
+            }
+          ]
+        },
+        {
+          "rawTag": 38,
+          "sourceSignedTag": 38,
+          "length": 4,
+          "payloadHex": "4139d2ff",
+          "sourceTypes": [
+            "GpsLong"
+          ],
+          "ambiguous": false,
+          "sourceInt32": -2999999,
+          "sourceViews": [
+            {
+              "sourceType": "GpsLong",
+              "sourceGetter": "getGpsLng",
+              "conversion": "int-div1000000-to-double",
+              "value": -2.0
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "unknown high tags duplicates and empty source stubs",
+    "bodyHex": "01fe02aabbff01000d01ff220100220100",
+    "expected": {
+      "rawFlag": 1,
+      "sourceRecordBranchSelected": true,
+      "records": [
+        {
+          "rawTag": 254,
+          "sourceSignedTag": -2,
+          "length": 2,
+          "payloadHex": "aabb",
+          "sourceTypes": [],
+          "ambiguous": false,
+          "sourceInt32": null,
+          "sourceViews": []
+        },
+        {
+          "rawTag": 255,
+          "sourceSignedTag": -1,
+          "length": 1,
+          "payloadHex": "00",
+          "sourceTypes": [],
+          "ambiguous": false,
+          "sourceInt32": null,
+          "sourceViews": []
+        },
+        {
+          "rawTag": 13,
+          "sourceSignedTag": 13,
+          "length": 1,
+          "payloadHex": "ff",
+          "sourceTypes": [
+            "PMotorCurrent"
+          ],
+          "ambiguous": false,
+          "sourceInt32": null,
+          "sourceViews": []
+        },
+        {
+          "rawTag": 34,
+          "sourceSignedTag": 34,
+          "length": 1,
+          "payloadHex": "00",
+          "sourceTypes": [
+            "PActualPose"
+          ],
+          "ambiguous": false,
+          "sourceInt32": 0,
+          "sourceViews": [
+            {
+              "sourceType": "PActualPose",
+              "sourceGetter": "getPActualPose",
+              "conversion": "float32-div10",
+              "value": 0.0
+            }
+          ]
+        },
+        {
+          "rawTag": 34,
+          "sourceSignedTag": 34,
+          "length": 1,
+          "payloadHex": "00",
+          "sourceTypes": [
+            "PActualPose"
+          ],
+          "ambiguous": false,
+          "sourceInt32": 0,
+          "sourceViews": [
+            {
+              "sourceType": "PActualPose",
+              "sourceGetter": "getPActualPose",
+              "conversion": "float32-div10",
+              "value": 0.0
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "non-record branch retains opaque body",
+    "bodyHex": "002280",
+    "expected": {
+      "rawFlag": 0,
+      "sourceRecordBranchSelected": false,
+      "records": []
+    }
+  },
+  {
+    "name": "record branch with no records",
+    "bodyHex": "01",
+    "expected": {
+      "rawFlag": 1,
+      "sourceRecordBranchSelected": true,
+      "records": []
+    }
+  }
+]

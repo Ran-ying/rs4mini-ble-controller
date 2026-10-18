@@ -249,3 +249,10 @@ test('Web explicit subscription requests never automatically stop restart or ass
  assert.equal(device.frames().filter(f=>f.commandId===107).length,2);await gimbal.disconnect();assert.equal(device.frames().filter(f=>f.commandId===107).length,2);
  execFileSync(process.execPath,['--input-type=module','-e',`globalThis.Buffer=undefined;const {programStatusSubscriptionSpec}=await import(${JSON.stringify(new URL('../../node/src/app-program-request.js',import.meta.url).href)});if(programStatusSubscriptionSpec('panorama',false).payload.join(',')!=='0,1,1,99')throw Error('Buffer-free subscription failed');`]);
 });
+
+
+test('Web peripheral source catalog retains collision views without Buffer or sends',async t=>{
+ const {gimbal,device}=setup();t.after(()=>gimbal.close());await gimbal.connect();const incoming=()=>{const data=frame(3,4,102,new Uint8Array([1,21,1,100]),64);data[4]=4;data[5]=2;new DataView(data.buffer,data.byteOffset,data.byteLength).setUint16(data.length-2,crc16(data.subarray(0,-2)),true);device.rx.notify(data);};
+ incoming();assert.equal(gimbal.appCommands.peripheralStatus,null);gimbal.appCommands.useProfile('ronin-2.2.2');incoming();const r=gimbal.appCommands.peripheralStatus.records[0];assert.equal(r.ambiguous,true);assert.deepEqual(r.sourceTypes,['YGyroOut','PAcceOut']);assert.deepEqual(r.sourceViews.map(v=>v.value),[1,10]);assert.equal(device.tx.writes.length,0);assert.equal(gimbal.latestTelemetry,null);await gimbal.disconnect();assert.equal(gimbal.appCommands.peripheralStatus,null);
+ execFileSync(process.execPath,['--input-type=module','-e',`globalThis.Buffer=undefined;const {peripheralNotification}=await import(${JSON.stringify(new URL('../../node/src/app-peripheral.js',import.meta.url).href)});const r=peripheralNotification({sender:4,receiver:2,commandSet:4,commandId:102,flags:0,payload:new Uint8Array([1,21,1,100])});if(r.records[0].sourceViews.length!==2)throw Error('Buffer-free peripheral failed');`]);
+});

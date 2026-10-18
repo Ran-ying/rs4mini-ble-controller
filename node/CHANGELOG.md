@@ -1,5 +1,11 @@
 # 0.7.22
 
+## 0.7.25
+
+- 四端显式App来源新增peripheralStatus与kind=peripheral被动快照，完整源目录46类型/43视图。
+- 保留tag21碰撞、GPS整数截断、原始/重复/未知记录及显式空记录，不合并旧值，不改变姿态/关节、查询或运动，不自动发送。
+- 来源/断线清理、复制/不可变与观察者隔离；本机布局/参考系及全协议仍未验收。
+
 ## 0.7.24
 
 - 四端新增sendProgramStatusSubscriptionRequest：显式命名程序/布尔enabled，固定StartContinuePush/StopContinuePush，仅关联ACK，不证明远端状态或通知流。

@@ -1,0 +1,1048 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "bankSha256": "4fdbd74a05df63d72a0feb1c907d9395426ec3cdb5d6aeb45e3836d856d66654",
+  "appCodeExecuted": false,
+  "targetDeviceVerified": false,
+  "modelLayoutVerified": false,
+  "wholeProtocolRecovered": false,
+  "researchToolProvidesSdkInterface": false,
+  "methods": [
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus$DataType;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3469984,
+      "instructionSha256": "24e0eff978495a3e486ee8870dc40a7cda1fcf7d677fd71d30553a469e67f414"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus$DataType;",
+      "method": "<init>",
+      "descriptor": "(Ljava/lang/String; I I)V",
+      "codeOffset": 3471196,
+      "instructionSha256": "bfd7fc72247e1750ea3338f0159f20968183d90c3fdadef98591f310626cfae9"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getControlState",
+      "descriptor": "()I",
+      "codeOffset": 4885808,
+      "instructionSha256": "06fe29f6fb1e0a0014b8f9d9074244ea138c6ee1a1eddfe4b1aa1d34fc217254"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getChannel1",
+      "descriptor": "()I",
+      "codeOffset": 4886048,
+      "instructionSha256": "3d3ed5ae712b58e3e1d1eb7122711ecdf2cea7e429f3479c2daf6a16cadf84e0"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getChannel2",
+      "descriptor": "()I",
+      "codeOffset": 4886080,
+      "instructionSha256": "539e752cf967b635ea227d8f68a646c9151a923bd71ffb384934371e067a2336"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getChannel3",
+      "descriptor": "()I",
+      "codeOffset": 4886112,
+      "instructionSha256": "523f68d7ba553b65d113a3e9b0da4efba3881961ef646a9833b214cfe446b6df"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getChannel4",
+      "descriptor": "()I",
+      "codeOffset": 4886144,
+      "instructionSha256": "888a169774658e5ab72ba855d083372287b9e944a424f9ad1c1bca1feaa5cdd8"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getChannel5",
+      "descriptor": "()I",
+      "codeOffset": 4886176,
+      "instructionSha256": "64731d538a4c41343f5369b3654547687665e46e7af2da5da870c34a451aa229"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getChannel6",
+      "descriptor": "()I",
+      "codeOffset": 4886208,
+      "instructionSha256": "5c07a9d392049220300732e0422dcf04f950f3354e33287f734b9dc96077e298"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getGimbalControlStateBad",
+      "descriptor": "()Z",
+      "codeOffset": 4886496,
+      "instructionSha256": "0001fb22d50f43096c611277c04890859876b41652ed351f643ec4d12cc8e4f1"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getGpsEastAcceSpeed",
+      "descriptor": "()F",
+      "codeOffset": 4886540,
+      "instructionSha256": "a45276e757aa29da17bfa0e9085f0fae92fb74a164f21abf7a40d4e63609e510"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getGpsEastSpeed",
+      "descriptor": "()F",
+      "codeOffset": 4886580,
+      "instructionSha256": "e3df6668c30b5a3745d53dc771d93bc6ba89020266628a7b19248ae7835ec4a5"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getGpsLat",
+      "descriptor": "()D",
+      "codeOffset": 4886620,
+      "instructionSha256": "732776b63930dcfe4817e9108f866cf4f769350da92a053ceee949004b2daf5b"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getGpsLng",
+      "descriptor": "()D",
+      "codeOffset": 4886660,
+      "instructionSha256": "09a9be0e91c104d78cdc55e6383c8cb78b8d3888ee45ba72460f710f36e314a5"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getGpsNorthAcceSpeed",
+      "descriptor": "()F",
+      "codeOffset": 4886700,
+      "instructionSha256": "160b205e20709be067fd62555bce7dc8e442b223ae585b595aa63a0e90d9fb67"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getGpsNorthSpeed",
+      "descriptor": "()F",
+      "codeOffset": 4886740,
+      "instructionSha256": "6a341bf09f9053c7f7c5fa50ccf5e3b7af718fec91306f9a194443c4ff46eb28"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getGpsNum",
+      "descriptor": "()I",
+      "codeOffset": 4886780,
+      "instructionSha256": "a6b1c959742c1c444f3f34d8af7f0e319137e2c1b9a786468dba164a73da3e29"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getHandDeviceAngle",
+      "descriptor": "()I",
+      "codeOffset": 4886812,
+      "instructionSha256": "02cc832c19af1f34b312c97730ca41437e2e0ec6b9784e3f676fa03a34bd5d44"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getPAcceOut",
+      "descriptor": "()F",
+      "codeOffset": 4886844,
+      "instructionSha256": "4441bf97d174b9c161826b7fa3de2771150d2e0684d3e077b16bf3354afcb79e"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getPActualPose",
+      "descriptor": "()F",
+      "codeOffset": 4886884,
+      "instructionSha256": "69bf30046fd3cd58efa93c03da3a788b8ae85d9dfca85cdf2b296912a326f976"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getPGyroBias",
+      "descriptor": "()F",
+      "codeOffset": 4886924,
+      "instructionSha256": "09eb077bd10712b2de760cc47a41d7b8bb53b81dee4233aed8e59571b76d5c02"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getPGyroOut",
+      "descriptor": "()F",
+      "codeOffset": 4886964,
+      "instructionSha256": "4b38bc7104dd63421fbcd77c606d029ba8bea68b83d2fd853545af5cceb596df"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getPMotorAngle",
+      "descriptor": "()F",
+      "codeOffset": 4887004,
+      "instructionSha256": "17d75b4807d7b91e57804cbc53de98cf05fe643499d64095212d4431343fa6fa"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getPMotorCurrent",
+      "descriptor": "()V",
+      "codeOffset": 4887044,
+      "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getPMotorPower",
+      "descriptor": "()I",
+      "codeOffset": 4887064,
+      "instructionSha256": "95e2743fcfb38f01ccba80e734e65395756633f4457dc49fa49a2f3afee8bbf3"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getPMotorTemp",
+      "descriptor": "()I",
+      "codeOffset": 4887096,
+      "instructionSha256": "0bb7cd6807fa95713f93844a3a5ddbe3d4648eb0f8ecaa6e2a659877bd8946cd"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getPPoseBias",
+      "descriptor": "()F",
+      "codeOffset": 4887128,
+      "instructionSha256": "78869aea6ffc1c9764ed47018bb570ebc5c0ec6008b4f18ec5eed266e4292b09"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getPTargetPos",
+      "descriptor": "()F",
+      "codeOffset": 4887168,
+      "instructionSha256": "14d74f0afbd08c8f8b299e49394fc9fdf4d531c99571bef9b743f0533a59ae00"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getRAcceOut",
+      "descriptor": "()F",
+      "codeOffset": 4887208,
+      "instructionSha256": "27327b8f6158c9cf2b25bd0f1bf581966a60885aee77fcda3bcca95da64afe8f"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getRActualPose",
+      "descriptor": "()F",
+      "codeOffset": 4887248,
+      "instructionSha256": "26994ae2e8459af9fa824fdf2d0c8954652536f1cfd0f1ed983c71d9434f1163"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getRGyroBias",
+      "descriptor": "()F",
+      "codeOffset": 4887288,
+      "instructionSha256": "671f4bb8b47b1ec970a8c773f0a829be23da57a3257bb7f24256dc69e9ce7e11"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getRGyroOut",
+      "descriptor": "()F",
+      "codeOffset": 4887328,
+      "instructionSha256": "b6a47cbb034150ebc3560b103a1dd13b0a9785083024ef658c1cd11e21522541"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getRMotorAngle",
+      "descriptor": "()F",
+      "codeOffset": 4887368,
+      "instructionSha256": "15a7fd2414273c383bee6af54e3f709091a3ac8ebeec046405af0c2458fdf974"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getRMotorCurrent",
+      "descriptor": "()V",
+      "codeOffset": 4887408,
+      "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getRMotorPower",
+      "descriptor": "()I",
+      "codeOffset": 4887428,
+      "instructionSha256": "8599dcaddb4f35a8e44ef69d781b63121c75addc547e0e2dc53ee600ee8f82ef"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getRMotorTemp",
+      "descriptor": "()I",
+      "codeOffset": 4887460,
+      "instructionSha256": "12c789cef11c6142d85f4ca13319304f052efce2595b5c4db257993663588bed"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getRPoseBias",
+      "descriptor": "()F",
+      "codeOffset": 4887492,
+      "instructionSha256": "c2571789f7f62a6894ee1393aac194c2e267eca2c707e88112ca02be5f9e43ec"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getRTargetPos",
+      "descriptor": "()F",
+      "codeOffset": 4887532,
+      "instructionSha256": "bb2497bd1797784d803ff1778c3eef0cc9827a0a61a36964060fb8845571d72f"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getYAcceOut",
+      "descriptor": "()F",
+      "codeOffset": 4887572,
+      "instructionSha256": "9309da34317d4d97a5951138cbb9f11559bea4c1abd5357dd6b0ec1eb0fff924"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getYActualPose",
+      "descriptor": "()F",
+      "codeOffset": 4887612,
+      "instructionSha256": "49f60149039a80a46845b4be7ee43243f16c869ab553b60b9158e1f088ef202a"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getYGyroBias",
+      "descriptor": "()F",
+      "codeOffset": 4887652,
+      "instructionSha256": "25dc410c0e45d60c0b62761521de527feba117004845b4375438934e0329f84f"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getYGyroOut",
+      "descriptor": "()F",
+      "codeOffset": 4887692,
+      "instructionSha256": "111955e6612904aadd55b5c56a91a27aa64dd723d57ae22a138c68cf9771676b"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getYMotorAngle",
+      "descriptor": "()F",
+      "codeOffset": 4887732,
+      "instructionSha256": "0319ddb5ba1dccd8e6793d70dada6abf0528dcc34254bfb451325723e6c580d4"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getYMotorPower",
+      "descriptor": "()I",
+      "codeOffset": 4887772,
+      "instructionSha256": "a2a4b1ea9c10ce52bb848581bd08a9c70c09f70f79508d8b7e499c61ccaf6a20"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getYMotorTemp",
+      "descriptor": "()I",
+      "codeOffset": 4887804,
+      "instructionSha256": "c47a5c08651e10005680c754fbf58cb6e0d416ebef16cdfecf15e24d93a6ce42"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getYMototBattery",
+      "descriptor": "()V",
+      "codeOffset": 4887836,
+      "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getYPoseBias",
+      "descriptor": "()F",
+      "codeOffset": 4887856,
+      "instructionSha256": "651530e6d248f324b9ac1c592550321c0adebd8f52e917aeee9df6bdb8cac14f"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getYTargetPos",
+      "descriptor": "()F",
+      "codeOffset": 4887896,
+      "instructionSha256": "d4aa0bbbe07ba128c1fefbcf73cfd25f51d8620bd5a2199539a4449066e29034"
+    },
+    {
+      "className": "Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 4652020,
+      "instructionSha256": "89d7e5d4c317f54eb541d186eff2e608a50e62f9387974ef9c74a54543aa6609"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "codeOffset": 4885760,
+      "instructionSha256": "752bd8ac0174163313e65f4030a5f0645978a42417d8dac638055194d05e4cfa"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getIntValue",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus$DataType;)I",
+      "codeOffset": 4885864,
+      "instructionSha256": "fe1c5d859974576fe078a968574c82e0037c886624bd9d6058289fc7db3a66b0"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getData",
+      "descriptor": "([B Ljava/lang/Class;)Ljava/lang/Number;",
+      "codeOffset": 4886240,
+      "instructionSha256": "cf5208dd8f83d3f5768e32b2e6b6d844cf5df80791fd9d017702a0e6620867a0"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getDataByType",
+      "descriptor": "(Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus$DataType;)[B",
+      "codeOffset": 4886448,
+      "instructionSha256": "5c5ac7ecbecaf47e068d40df386070cd8e0b5fc5aef41cd1a9de9e97c9a199cf"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 4885988,
+      "instructionSha256": "5063d17e210eaf969709d13b266e6fe23ba73264f44c48a96e05a79a9341633b"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "start",
+      "descriptor": "()V",
+      "codeOffset": 4888052,
+      "instructionSha256": "760129931b0739573502affaba892b4c2c2fd1bdb6a1b646c642259c29a08a57"
+    },
+    {
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "setPushRecData",
+      "descriptor": "([B)V",
+      "codeOffset": 4887936,
+      "instructionSha256": "31d5dee2fea1abff48fd260173ea12d567e265d762326a6dddc1df77f4356f9e"
+    },
+    {
+      "className": "Ldji/midware/util/BytesUtil;",
+      "method": "getSignedInt",
+      "descriptor": "(B)S",
+      "codeOffset": 3783368,
+      "instructionSha256": "f2b4681e91df345bb32677357555ae30393bf38bb3f2a73c1c203d5d939309ac"
+    },
+    {
+      "className": "Ldji/midware/util/BytesUtil;",
+      "method": "getShort",
+      "descriptor": "([B)S",
+      "codeOffset": 3783152,
+      "instructionSha256": "2ea5713ce80826bf91c80b560b4f40eecf85b2506d55d3ef3225387cd1b9ef78"
+    },
+    {
+      "className": "Ldji/midware/util/BytesUtil;",
+      "method": "getInt",
+      "descriptor": "([B)I",
+      "codeOffset": 3782728,
+      "instructionSha256": "c83e6d064884807cec2be0dbd3235f71dd62fcd952eb0b2b88bfc373d0b761e2"
+    },
+    {
+      "className": "Ldji/midware/util/BytesUtil;",
+      "method": "getLong",
+      "descriptor": "([B)J",
+      "codeOffset": 3782944,
+      "instructionSha256": "321ee01520a460a30ea876fa00a64779c8b0fcb758feff575596bbc338d31fff"
+    },
+    {
+      "className": "Ldji/midware/util/BytesUtil;",
+      "method": "fillBytes",
+      "descriptor": "([B I)[B",
+      "codeOffset": 3781048,
+      "instructionSha256": "2934058aafe6cc8ef7566e3dce18a91f6e31a840de78cb3b73bfee17c61d3b83"
+    },
+    {
+      "className": "Ldji/midware/util/BytesUtil;",
+      "method": "arrayComb",
+      "descriptor": "([B [B)[B",
+      "codeOffset": 3780116,
+      "instructionSha256": "6f79140660c5809f87ebb044cecc6fe4cc6a5c5492c524527d5fecf7db15a28f"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "setPushRecPack",
+      "descriptor": "(Ldji/midware/data/packages/P3/Pack;)V",
+      "codeOffset": 3352564,
+      "instructionSha256": "80f0bb9c5884940e7c2600d2e6f22c5287da3c37061590ec9049cce5b53d03ee"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "setPushRecData",
+      "descriptor": "([B)V",
+      "codeOffset": 3352480,
+      "instructionSha256": "23cb6a1baab1f2b12f4ae5da131785e6792d83970eb43826c9d8e1b6462faf23"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "setRecData",
+      "descriptor": "([B)V",
+      "codeOffset": 3352748,
+      "instructionSha256": "a6675a47286fe5b2725b26418463a503442cf7fbb89df865e1303c316ccc4b64"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "isChanged",
+      "descriptor": "([B)Z",
+      "codeOffset": 3351112,
+      "instructionSha256": "cc9eeb9f9b0e0372f3878aeaf3ea679ae7e724bc5a1d92d8cd6f474406a3a6d7"
+    },
+    {
+      "className": "Ldji/midware/data/packages/P3/RecvPack;",
+      "method": "setBuffer",
+      "descriptor": "([B)V",
+      "codeOffset": 5031432,
+      "instructionSha256": "f3a4d52a3ef8cf1d939cb1b1e00d6b7f2fd8f65fe1a8b37f1916b2e340c342c2"
+    },
+    {
+      "className": "Ldji/midware/data/packages/P3/RecvPack;",
+      "method": "isNeedCcode",
+      "descriptor": "()V",
+      "codeOffset": 5031076,
+      "instructionSha256": "56ebd2bfd536331c7470349c7c7d1be7085b613231fa02ac8f815e32c574a83e"
+    },
+    {
+      "className": "Ldji/midware/data/manager/P3/DJIPackManagerBase;",
+      "method": "setMsg",
+      "descriptor": "(Ldji/midware/data/packages/P3/RecvPack;)V",
+      "codeOffset": 3339548,
+      "instructionSha256": "d537ebbfbf8d725bbe8be61b59d80296d91d061667e121d653c77c1fd5100e64"
+    },
+    {
+      "className": "Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+      "method": "isNeedCcode",
+      "descriptor": "()Z",
+      "codeOffset": 4653768,
+      "instructionSha256": "cdbefba08f513c5881e2d27c6f2904e1312e1949ce93078fcc2f20c11153eebe"
+    }
+  ],
+  "catalog": {
+    "types": [
+      {
+        "name": "Channel1",
+        "ordinal": 0,
+        "sourceId": 0
+      },
+      {
+        "name": "Channel2",
+        "ordinal": 1,
+        "sourceId": 1
+      },
+      {
+        "name": "Channel3",
+        "ordinal": 2,
+        "sourceId": 2
+      },
+      {
+        "name": "Channel4",
+        "ordinal": 3,
+        "sourceId": 3
+      },
+      {
+        "name": "Channel5",
+        "ordinal": 4,
+        "sourceId": 4
+      },
+      {
+        "name": "Channel6",
+        "ordinal": 5,
+        "sourceId": 5
+      },
+      {
+        "name": "PMotorPower",
+        "ordinal": 6,
+        "sourceId": 6
+      },
+      {
+        "name": "RMotorPower",
+        "ordinal": 7,
+        "sourceId": 7
+      },
+      {
+        "name": "YMotorPower",
+        "ordinal": 8,
+        "sourceId": 8
+      },
+      {
+        "name": "PMotorTemp",
+        "ordinal": 9,
+        "sourceId": 10
+      },
+      {
+        "name": "RMotorTemp",
+        "ordinal": 10,
+        "sourceId": 11
+      },
+      {
+        "name": "YMotorTemp",
+        "ordinal": 11,
+        "sourceId": 12
+      },
+      {
+        "name": "PMotorCurrent",
+        "ordinal": 12,
+        "sourceId": 13
+      },
+      {
+        "name": "RMotorCurrent",
+        "ordinal": 13,
+        "sourceId": 14
+      },
+      {
+        "name": "YMotorCurrent",
+        "ordinal": 14,
+        "sourceId": 15
+      },
+      {
+        "name": "PMotorAngle",
+        "ordinal": 15,
+        "sourceId": 16
+      },
+      {
+        "name": "RMotorAngle",
+        "ordinal": 16,
+        "sourceId": 17
+      },
+      {
+        "name": "YMotorAngle",
+        "ordinal": 17,
+        "sourceId": 18
+      },
+      {
+        "name": "PGyroOut",
+        "ordinal": 18,
+        "sourceId": 19
+      },
+      {
+        "name": "RGyroOut",
+        "ordinal": 19,
+        "sourceId": 20
+      },
+      {
+        "name": "YGyroOut",
+        "ordinal": 20,
+        "sourceId": 21
+      },
+      {
+        "name": "PAcceOut",
+        "ordinal": 21,
+        "sourceId": 21
+      },
+      {
+        "name": "RAcceOut",
+        "ordinal": 22,
+        "sourceId": 23
+      },
+      {
+        "name": "YAcceOut",
+        "ordinal": 23,
+        "sourceId": 24
+      },
+      {
+        "name": "PGyroBias",
+        "ordinal": 24,
+        "sourceId": 25
+      },
+      {
+        "name": "RGyroBias",
+        "ordinal": 25,
+        "sourceId": 26
+      },
+      {
+        "name": "YGyroBias",
+        "ordinal": 26,
+        "sourceId": 27
+      },
+      {
+        "name": "PPoseBias",
+        "ordinal": 27,
+        "sourceId": 28
+      },
+      {
+        "name": "RPoseBias",
+        "ordinal": 28,
+        "sourceId": 29
+      },
+      {
+        "name": "YPoseBias",
+        "ordinal": 29,
+        "sourceId": 30
+      },
+      {
+        "name": "PTargetPose",
+        "ordinal": 30,
+        "sourceId": 31
+      },
+      {
+        "name": "RTargetPose",
+        "ordinal": 31,
+        "sourceId": 32
+      },
+      {
+        "name": "YTargetPose",
+        "ordinal": 32,
+        "sourceId": 33
+      },
+      {
+        "name": "PActualPose",
+        "ordinal": 33,
+        "sourceId": 34
+      },
+      {
+        "name": "RActualPose",
+        "ordinal": 34,
+        "sourceId": 35
+      },
+      {
+        "name": "YActualPose",
+        "ordinal": 35,
+        "sourceId": 36
+      },
+      {
+        "name": "GpsNum",
+        "ordinal": 36,
+        "sourceId": 37
+      },
+      {
+        "name": "GpsLong",
+        "ordinal": 37,
+        "sourceId": 38
+      },
+      {
+        "name": "GpsLat",
+        "ordinal": 38,
+        "sourceId": 39
+      },
+      {
+        "name": "GpsNorthSpeed",
+        "ordinal": 39,
+        "sourceId": 40
+      },
+      {
+        "name": "GpsEastSpeed",
+        "ordinal": 40,
+        "sourceId": 41
+      },
+      {
+        "name": "GpsNorthAcceSpeed",
+        "ordinal": 41,
+        "sourceId": 42
+      },
+      {
+        "name": "GpsEastAcceSpeed",
+        "ordinal": 42,
+        "sourceId": 43
+      },
+      {
+        "name": "HandDeviceAngle",
+        "ordinal": 43,
+        "sourceId": 46
+      },
+      {
+        "name": "ControlState",
+        "ordinal": 44,
+        "sourceId": 65
+      },
+      {
+        "name": "Other",
+        "ordinal": 45,
+        "sourceId": 255
+      }
+    ],
+    "getters": [
+      {
+        "sourceGetter": "getControlState",
+        "sourceType": "ControlState",
+        "sourceId": 65,
+        "conversion": "int32"
+      },
+      {
+        "sourceGetter": "getChannel1",
+        "sourceType": "Channel1",
+        "sourceId": 0,
+        "conversion": "int32"
+      },
+      {
+        "sourceGetter": "getChannel2",
+        "sourceType": "Channel2",
+        "sourceId": 1,
+        "conversion": "int32"
+      },
+      {
+        "sourceGetter": "getChannel3",
+        "sourceType": "Channel3",
+        "sourceId": 2,
+        "conversion": "int32"
+      },
+      {
+        "sourceGetter": "getChannel4",
+        "sourceType": "Channel4",
+        "sourceId": 3,
+        "conversion": "int32"
+      },
+      {
+        "sourceGetter": "getChannel5",
+        "sourceType": "Channel5",
+        "sourceId": 4,
+        "conversion": "int32"
+      },
+      {
+        "sourceGetter": "getChannel6",
+        "sourceType": "Channel6",
+        "sourceId": 5,
+        "conversion": "int32"
+      },
+      {
+        "sourceGetter": "getGimbalControlStateBad",
+        "sourceType": "ControlState",
+        "sourceId": 65,
+        "conversion": "masked3-equals2"
+      },
+      {
+        "sourceGetter": "getGpsEastAcceSpeed",
+        "sourceType": "GpsEastAcceSpeed",
+        "sourceId": 43,
+        "conversion": "float32-div10"
+      },
+      {
+        "sourceGetter": "getGpsEastSpeed",
+        "sourceType": "GpsEastSpeed",
+        "sourceId": 41,
+        "conversion": "float32-div10"
+      },
+      {
+        "sourceGetter": "getGpsLat",
+        "sourceType": "GpsLat",
+        "sourceId": 39,
+        "conversion": "int-div1000000-to-double"
+      },
+      {
+        "sourceGetter": "getGpsLng",
+        "sourceType": "GpsLong",
+        "sourceId": 38,
+        "conversion": "int-div1000000-to-double"
+      },
+      {
+        "sourceGetter": "getGpsNorthAcceSpeed",
+        "sourceType": "GpsNorthAcceSpeed",
+        "sourceId": 42,
+        "conversion": "float32-div10"
+      },
+      {
+        "sourceGetter": "getGpsNorthSpeed",
+        "sourceType": "GpsNorthSpeed",
+        "sourceId": 40,
+        "conversion": "float32-div10"
+      },
+      {
+        "sourceGetter": "getGpsNum",
+        "sourceType": "GpsNum",
+        "sourceId": 37,
+        "conversion": "int32"
+      },
+      {
+        "sourceGetter": "getHandDeviceAngle",
+        "sourceType": "HandDeviceAngle",
+        "sourceId": 46,
+        "conversion": "int32"
+      },
+      {
+        "sourceGetter": "getPAcceOut",
+        "sourceType": "PAcceOut",
+        "sourceId": 21,
+        "conversion": "float32-div100"
+      },
+      {
+        "sourceGetter": "getPActualPose",
+        "sourceType": "PActualPose",
+        "sourceId": 34,
+        "conversion": "float32-div10"
+      },
+      {
+        "sourceGetter": "getPGyroBias",
+        "sourceType": "PGyroBias",
+        "sourceId": 25,
+        "conversion": "float32-div100"
+      },
+      {
+        "sourceGetter": "getPGyroOut",
+        "sourceType": "PGyroOut",
+        "sourceId": 19,
+        "conversion": "float32-div10"
+      },
+      {
+        "sourceGetter": "getPMotorAngle",
+        "sourceType": "PMotorAngle",
+        "sourceId": 16,
+        "conversion": "float32-div10"
+      },
+      {
+        "sourceGetter": "getPMotorPower",
+        "sourceType": "PMotorPower",
+        "sourceId": 6,
+        "conversion": "int32"
+      },
+      {
+        "sourceGetter": "getPMotorTemp",
+        "sourceType": "PMotorTemp",
+        "sourceId": 10,
+        "conversion": "int32"
+      },
+      {
+        "sourceGetter": "getPPoseBias",
+        "sourceType": "PPoseBias",
+        "sourceId": 28,
+        "conversion": "float32-div100"
+      },
+      {
+        "sourceGetter": "getPTargetPos",
+        "sourceType": "PTargetPose",
+        "sourceId": 31,
+        "conversion": "float32-div10"
+      },
+      {
+        "sourceGetter": "getRAcceOut",
+        "sourceType": "RAcceOut",
+        "sourceId": 23,
+        "conversion": "float32-div100"
+      },
+      {
+        "sourceGetter": "getRActualPose",
+        "sourceType": "RActualPose",
+        "sourceId": 35,
+        "conversion": "float32-div10"
+      },
+      {
+        "sourceGetter": "getRGyroBias",
+        "sourceType": "RGyroBias",
+        "sourceId": 26,
+        "conversion": "float32-div100"
+      },
+      {
+        "sourceGetter": "getRGyroOut",
+        "sourceType": "RGyroOut",
+        "sourceId": 20,
+        "conversion": "float32-div10"
+      },
+      {
+        "sourceGetter": "getRMotorAngle",
+        "sourceType": "RMotorAngle",
+        "sourceId": 17,
+        "conversion": "float32-div10"
+      },
+      {
+        "sourceGetter": "getRMotorPower",
+        "sourceType": "RMotorPower",
+        "sourceId": 7,
+        "conversion": "int32"
+      },
+      {
+        "sourceGetter": "getRMotorTemp",
+        "sourceType": "RMotorTemp",
+        "sourceId": 11,
+        "conversion": "int32"
+      },
+      {
+        "sourceGetter": "getRPoseBias",
+        "sourceType": "RPoseBias",
+        "sourceId": 29,
+        "conversion": "float32-div100"
+      },
+      {
+        "sourceGetter": "getRTargetPos",
+        "sourceType": "RTargetPose",
+        "sourceId": 32,
+        "conversion": "float32-div10"
+      },
+      {
+        "sourceGetter": "getYAcceOut",
+        "sourceType": "YAcceOut",
+        "sourceId": 24,
+        "conversion": "float32-div100"
+      },
+      {
+        "sourceGetter": "getYActualPose",
+        "sourceType": "YActualPose",
+        "sourceId": 36,
+        "conversion": "float32-div10"
+      },
+      {
+        "sourceGetter": "getYGyroBias",
+        "sourceType": "YGyroBias",
+        "sourceId": 27,
+        "conversion": "float32-div100"
+      },
+      {
+        "sourceGetter": "getYGyroOut",
+        "sourceType": "YGyroOut",
+        "sourceId": 21,
+        "conversion": "float32-div10"
+      },
+      {
+        "sourceGetter": "getYMotorAngle",
+        "sourceType": "YMotorAngle",
+        "sourceId": 18,
+        "conversion": "float32-div10"
+      },
+      {
+        "sourceGetter": "getYMotorPower",
+        "sourceType": "YMotorPower",
+        "sourceId": 8,
+        "conversion": "int32"
+      },
+      {
+        "sourceGetter": "getYMotorTemp",
+        "sourceType": "YMotorTemp",
+        "sourceId": 12,
+        "conversion": "int32"
+      },
+      {
+        "sourceGetter": "getYPoseBias",
+        "sourceType": "YPoseBias",
+        "sourceId": 30,
+        "conversion": "float32-div100"
+      },
+      {
+        "sourceGetter": "getYTargetPos",
+        "sourceType": "YTargetPose",
+        "sourceId": 33,
+        "conversion": "float32-div10"
+      }
+    ]
+  },
+  "emptySourceGetters": [
+    "getPMotorCurrent",
+    "getRMotorCurrent",
+    "getYMototBattery"
+  ],
+  "typesWithoutNumericGetter": [
+    "PMotorCurrent",
+    "RMotorCurrent",
+    "YMotorCurrent",
+    "Other"
+  ],
+  "sourceTagCollisions": [
+    {
+      "sourceId": 21,
+      "sourceTypes": [
+        "YGyroOut",
+        "PAcceOut"
+      ]
+    }
+  ],
+  "basePolicy": {
+    "name": "SetPushPeripheralStatus",
+    "commandId": 102,
+    "isBlock": false,
+    "isMix": false,
+    "modelClass": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;"
+  },
+  "envelope": {
+    "priorBasePathEvidence": "protocol/research/ronin-program-receive-evidence.json",
+    "requestBusinessOffsetInRawPayload": 0,
+    "ackBusinessOffsetInRawPayload": 1,
+    "baseNeedsCcode": true,
+    "requestSourceFlag": 1,
+    "actualExtensionSelectionVerified": false,
+    "targetRawBleLayoutVerified": false
+  },
+  "integerReading": {
+    "oneByteSigned": true,
+    "twoByteSignedLittleEndian": true,
+    "otherWidths": "zero-pad tail if shorter than four; first four little-endian signed bits otherwise; long intValue equals low32",
+    "zeroLengthPresentRecordSourceValue": 0,
+    "missingRecordIsNotZeroInOfflineView": true,
+    "sourceSignedLengthHighBitRejected": true
+  },
+  "semantics": {
+    "sourceMapRetainsOtherRecords": true,
+    "sourceBaseCanPostBeforeDerivedParsing": true,
+    "offlineViewKeepsDuplicatesUnknownAndCollisionCandidates": true,
+    "sourceGpsIntegerDivisionBeforeDouble": true,
+    "sourceCollisionNotRepaired": true,
+    "physicalReferenceFrameVerified": false
+  }
+}

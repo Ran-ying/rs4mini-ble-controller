@@ -297,3 +297,6 @@ HG724 跟随灵敏度 setter、参数管理器读取 gimbal_param_infos 的路�
 
 
 新增[轨迹路点与ActualPose审计](../tools/research/TRACK_POINTS.md)：UI秒数分段、首点/Roll规则及04:66缓存来源已核对，不能把原生轨迹角度直接当作现有机械关节角。仅研究，无SDK发送或硬件操作，运行时仍0.7.24/0.3.24，全命令门槛false。
+
+
+0.7.25新增[外设状态源候选](APP_PERIPHERAL_STATUS.md)：46源类型/43 getter视图、保留tag21碰撞和GPS整数截断；不改现有姿态/关节，不自动ACK/订阅或控制，本机未验收。

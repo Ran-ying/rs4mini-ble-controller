@@ -106,3 +106,5 @@ NSData *RSAppProgramStatusRequestFrame(uint16_t sequence, NSNumber *programComma
 
 NSDictionary *RSAppProgramStatusSubscriptionSelection(NSDictionary *spec);
 NSData *RSAppProgramStatusSubscriptionFrame(uint16_t sequence, NSDictionary *spec);
+
+NSDictionary *RSDecodeAppPeripheralNotification(NSDictionary *message);

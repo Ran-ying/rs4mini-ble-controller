@@ -8,7 +8,7 @@
 
 ## 最新：通用激活状态源候选
 
-00:32已从设备管理缺口中单列，当前清单49项，仍未封装为SDK或实机验证。已区分版本查询、单例初始值、SN布局和显式null/未知对象。见[激活源审计](../tools/research/ACTIVATION.md)及[接收边界](../tools/research/ACTIVATION_RECEIVE.md)。新增39方法确认基础表ACK剥离返回码与双分发，查询版本不能混入激活状态缓存；实际扩展、HG724入口与会话仍未验收。无设备操作。
+00:32已从设备管理缺口中单列，当前清单49项，仍未封装为SDK或实机验证。已区分版本查询、单例初始值、SN布局和显式null/未知对象。见[激活源审计](../tools/research/ACTIVATION.md)及[接收边界](../tools/research/ACTIVATION_RECEIVE.md)。新增39方法确认基础表ACK剥离返回码与双分发，查询版本不能混入激活状态缓存；后续34方法补[GET/V13/V14格式与副作用](../tools/research/ACTIVATION_FORMATS.md)。实际扩展、HG724入口与会话仍未验收。无设备操作。
 
 ## 最新：八段具名恢复
 
@@ -693,3 +693,10 @@ BLE路由研究验证（2026-10-18）：最终固定输入实际提取两次，3
 八段39方法审计确认基础COMMON表isBlock=false/isMix=true，构造独立needsCcode=true，明文ACK先剥离返回码；显式null模型仍有按GIMBAL名称反射回退的条件路径。源激活状态类在null/长度/ACK检查前保存业务体，短版本响应可能先覆盖缓存，SDK不能照搬。八段精确invoke owner扫描7方法，5个类外方法无GIMBAL字段字面引用，不当成不支持或完整数据流证明。见[接收审计](../tools/research/ACTIVATION_RECEIVE.md)（仓库根目录）及protocol/research/ronin-activation-receive-evidence.json。没有SDK收发、激活/硬件/liveUI/厂商执行或高级新增；运行时0.7.32/0.3.32、清单49项及两门槛false不变。
 
 接收审计验收（2026-10-19）：最终工具真实固定输入独立提取两次，39方法/7直接查询调用方法证据逐字节一致；新增13项研究测试，Python3.8/3.12研究各484通过。统一离线Node269/Web27/Python244/native1290核心+285假设备生命周期+3独立SDK及严格类型/分层/签名构建通过，终态0。四端源码与318407a相同，0.7.32/0.3.32交付安装包不变；没有SDK收发、激活/硬件/liveUI/厂商执行或高级功能新增，全命令与高级门槛false。
+
+
+## COMMON00:32 GET与V13/V14格式审计
+
+固定bank05的34方法补GET响应/旧推送/V13设备信息与V14验证信息；全部八段哈希校验但本批方法范围仍仅05。GET的SN偏移8/9与推送1/2分开，源signed-byte十进制SN转换、V13/V14声明长度与实际复制/固定32字节区、标记51/54与版本枚举不同均保留。源V13处理可自动发135字节用户信息请求，工具不执行处理器或回复；isPushActivated直接存isEmpty不当激活成功。见[格式审计](../tools/research/ACTIVATION_FORMATS.md)（仓库根目录）及protocol/research/ronin-activation-formats-evidence.json。HG724入口/实际会话/激活有效性/网络绑定未验收，无SDK收发/高级新增或硬件/liveUI/厂商执行；运行时0.7.32/0.3.32、清单49及两门槛false不变。
+
+格式审计验收（2026-10-19）：最终工具对固定真实输入独立提取两次，34方法证据JSON逐字节一致；新增16项研究测试，Python3.8/3.12研究各500通过。统一离线Node269/Web27/Python244/native1290核心+285假设备生命周期+3独立SDK及严格类型/分层/签名构建通过，终态0。四端运行时代码与bcd24ac相同，0.7.32/0.3.32安装包未变，无SDK收发/激活/硬件/liveUI/厂商执行或高级新增，全命令与高级门槛false。

@@ -64,3 +64,5 @@ python/.venv/bin/python -m unittest discover -s tools/research -p test_ronin_act
 00:32作为源候选单列后清单为49个命令或缺口条目，不是49项设备能力或SDK接口。request/response封装仍unknown、无implementation。没有SDK收发、激活、相机/视觉或高级功能新增，没有扫描、连接、移动硬件/实时UI/厂商执行；inventoryComplete和advancedDevelopment.allowed仍false。
 
 后续39方法接收审计见[ACTIVATION_RECEIVE.md](ACTIVATION_RECEIVE.md)：补基础表包层、条件反射名、源缓存赋值顺序及八段版本查询调用扫描；本页56方法的原证据保持历史范围，不改写为实机证据。
+
+后续[GET/旧推送/V13/V14格式审计](ACTIVATION_FORMATS.md)固定34方法，保留SN转换及长度语义并隔离源自动回复；仍不是HG724协议或激活流程完成证明。

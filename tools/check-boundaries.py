@@ -837,3 +837,16 @@ if manifest.get('activationReceiveResearch'):
     assert len(proof['versionQueryCallers'])==7
     row=next(row for row in manifest['commands'] if row['key']=='00:32')
     assert row['activationReceiveResearch']==manifest['activationReceiveResearch'] and row['responseCodec']=='unknown' and not row['implementation']
+
+if manifest.get('activationFormatsResearch'):
+    proof=json.loads((root/manifest['activationFormatsResearch']).read_text())
+    assert len(proof['methods'])==34 and proof['parsedMethodBanks']==[5] and len(proof['bankSha256'])==8
+    assert proof['sourcePushQuirks']['dispatchIntegerRequestedBytes']==1 and proof['sourcePushQuirks']['oldPushSnOffset']==1
+    assert proof['sourcePushQuirks']['newPushActivatedFieldDirectlyStoresTextIsEmpty'] is True
+    assert proof['v13']['minimumBytes']==23 and proof['v14']['minimumBytes']==143
+    assert proof['sourceSideEffects']['deviceInfoHandlerCallsSetUserInfo'] is True
+    assert proof['sourceSideEffects']['sourceHandlersExecuted'] is False and proof['sourceSideEffects']['automaticReplyAdded'] is False
+    for flag in ['sdkSendAdded','sdkReceiveAdded','targetDeviceVerified','hg724EntryEstablished','actualSessionVersionVerified','activationValidityVerified','vendorCodeExecuted','wholeProtocolRecovered','networkActivationWorkflowComplete']:
+        assert proof[flag] is False
+    row=next(row for row in manifest['commands'] if row['key']=='00:32')
+    assert row['activationFormatsResearch']==manifest['activationFormatsResearch'] and row['requestCodec']=='unknown' and not row['implementation']

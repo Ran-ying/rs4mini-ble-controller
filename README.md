@@ -344,3 +344,8 @@ python3 -m http.server 8000 --bind 127.0.0.1
 ## COMMON00:32接收与查询缓存边界
 
 八段39方法审计确认基础COMMON表isBlock=false/isMix=true，构造独立needsCcode=true，明文ACK先剥离返回码；显式null模型仍有按GIMBAL名称反射回退的条件路径。源激活状态类在null/长度/ACK检查前保存业务体，短版本响应可能先覆盖缓存，SDK不能照搬。八段精确invoke owner扫描7方法，5个类外方法无GIMBAL字段字面引用，不当成不支持或完整数据流证明。见[接收审计](tools/research/ACTIVATION_RECEIVE.md)（仓库根目录）及protocol/research/ronin-activation-receive-evidence.json。没有SDK收发、激活/硬件/liveUI/厂商执行或高级新增；运行时0.7.32/0.3.32、清单49项及两门槛false不变。
+
+
+## COMMON00:32 GET与V13/V14格式审计
+
+固定bank05的34方法补GET响应/旧推送/V13设备信息与V14验证信息；全部八段哈希校验但本批方法范围仍仅05。GET的SN偏移8/9与推送1/2分开，源signed-byte十进制SN转换、V13/V14声明长度与实际复制/固定32字节区、标记51/54与版本枚举不同均保留。源V13处理可自动发135字节用户信息请求，工具不执行处理器或回复；isPushActivated直接存isEmpty不当激活成功。见[格式审计](tools/research/ACTIVATION_FORMATS.md)（仓库根目录）及protocol/research/ronin-activation-formats-evidence.json。HG724入口/实际会话/激活有效性/网络绑定未验收，无SDK收发/高级新增或硬件/liveUI/厂商执行；运行时0.7.32/0.3.32、清单49及两门槛false不变。

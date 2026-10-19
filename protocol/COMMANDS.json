@@ -31,8 +31,9 @@
         "ActiveStatus"
       ],
       "activationResearch": "protocol/research/ronin-activation-evidence.json",
-      "remaining": "八段56方法激活源审计及39方法接收审计确认基础COMMON表ACK剥离ccode、双分发路径、条件GIMBAL反射名和短版本响应覆盖源缓存的可能；实际扩展表/会话、HG724入口、设备接受/网络业务与持久化仍未验证。查询上下文必须与状态分开，未开放SDK收发。",
-      "activationReceiveResearch": "protocol/research/ronin-activation-receive-evidence.json"
+      "remaining": "八段56方法激活源审计及39方法接收审计确认基础COMMON表ACK剥离ccode、双分发路径、条件GIMBAL反射名和短版本响应覆盖源缓存的可能；实际扩展表/会话、HG724入口、设备接受/网络业务与持久化仍未验证。查询上下文必须与状态分开，未开放SDK收发；34方法补GET与V13/V14源格式、截断/符号语义和自动用户信息回复副作用；仅离线视图，不自动识别报文或当作激活有效性。",
+      "activationReceiveResearch": "protocol/research/ronin-activation-receive-evidence.json",
+      "activationFormatsResearch": "protocol/research/ronin-activation-formats-evidence.json"
     },
     {
       "key": "04:01",
@@ -908,7 +909,9 @@
     "tools/research/ronin_balance_entry.py",
     "tools/research/ronin_code_slots.py",
     "tools/research/ronin_prefix_restore.py",
-    "tools/research/ronin_activation_trace.py"
+    "tools/research/ronin_activation_trace.py",
+    "tools/research/ronin_activation_receive.py",
+    "tools/research/ronin_activation_formats.py"
   ],
   "modelIdentityResearch": "protocol/research/ronin-hg724-evidence.json",
   "codeRestorationResearch": "protocol/research/ronin-code-restoration-evidence.json",
@@ -1296,5 +1299,6 @@
     "targetDeviceVerified": false
   },
   "activationResearch": "protocol/research/ronin-activation-evidence.json",
-  "activationReceiveResearch": "protocol/research/ronin-activation-receive-evidence.json"
+  "activationReceiveResearch": "protocol/research/ronin-activation-receive-evidence.json",
+  "activationFormatsResearch": "protocol/research/ronin-activation-formats-evidence.json"
 }

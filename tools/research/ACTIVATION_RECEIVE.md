@@ -55,3 +55,5 @@ python/.venv/bin/python -m unittest discover -s tools/research -p test_ronin_act
 实际扩展表/会话、HG724查询入口、严格请求关联、设备接受和激活/绑定/持久化仍未完成；没有激活发送、自动重试、网络请求或高级组合新增。清单仍49项，inventoryComplete及advancedDevelopment.allowed保持false。此前ACTIVATION.md的“包层尚未独立核对”由本次基础表条件证据补充，不提升为本机协议验收。
 
 验收结果：最终工具对真实固定输入独立提取两次，39方法/7调用方法的JSON逐字节一致；新增13项研究测试，两Python环境研究各484通过。统一离线回归与类型/边界/原生签名构建通过，运行时代码和安装包未变。
+
+后续[GET/旧推送/V13/V14格式审计](ACTIVATION_FORMATS.md)固定34方法，保留SN转换及长度语义并隔离源自动回复；仍不是HG724协议或激活流程完成证明。

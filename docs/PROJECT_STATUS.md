@@ -1,5 +1,7 @@
 # 项目状态与接手入口
 
+研究方法、证据等级、下一步顺序与完成条件见 [研究路线图](RESEARCH_ROADMAP.md)。
+
 更新日期：2026-10-19。当前源码检查点为 Node/Python/Web **0.7.33**、macOS 原生面板 **0.3.33**。
 
 **当前 App 参数事务已进入四端设备 SDK；全部非相机 BLE 能力整体目标尚未完成。**
@@ -10,9 +12,9 @@
 
 四端显式版本的CENTER/id7 GET已接入，严格关联完整本次响应，不沿用源旧SN缓存。见[接口契约](APP_CENTER_INFO.md)；动态版本、实际设备/路由与激活有效性未验收，无激活写入。下文研究条目的“SDK未开放”保留为此前阶段。
 
-## 最新：通用激活状态源候选
+## 历史研究：通用激活状态源候选
 
-00:32已从设备管理缺口中单列，当前清单49项，仍未封装为SDK或实机验证。已区分版本查询、单例初始值、SN布局和显式null/未知对象。见[激活源审计](../tools/research/ACTIVATION.md)及[接收边界](../tools/research/ACTIVATION_RECEIVE.md)。新增39方法确认基础表ACK剥离返回码与双分发，查询版本不能混入激活状态缓存；后续34方法补[GET/V13/V14格式与副作用](../tools/research/ACTIVATION_FORMATS.md)。后续已定位[HG724继承的CENTER/id7只读源码入口](../tools/research/ACTIVATION_ENTRY.md)，实际注册、扩展与会话仍未验收。无设备操作。
+00:32已从设备管理缺口中单列，当前清单49项。此段记录0.7.33前的研究阶段；现已封装上述只读GET，激活写入和实机验证仍未完成。已区分版本查询、单例初始值、SN布局和显式null/未知对象。见[激活源审计](../tools/research/ACTIVATION.md)及[接收边界](../tools/research/ACTIVATION_RECEIVE.md)。新增39方法确认基础表ACK剥离返回码与双分发，查询版本不能混入激活状态缓存；后续34方法补[GET/V13/V14格式与副作用](../tools/research/ACTIVATION_FORMATS.md)。后续已定位[HG724继承的CENTER/id7只读源码入口](../tools/research/ACTIVATION_ENTRY.md)，实际注册、扩展与会话仍未验收。无设备操作。
 
 ## 最新：八段具名恢复
 

@@ -1,5 +1,7 @@
 # AI developer handoff — rs4mini-ble-controller
 
+Current research method and next-task order: `docs/RESEARCH_ROADMAP.md`. Read it with `docs/PROJECT_STATUS.md` and `protocol/COMMANDS.json`; historical six-bank or metadata-only conclusions must not override current eight-bank evidence. Next priority is a new eight-bank 04:11 save-call audit, followed by 0D/2C/0A; these audits are planned, not already completed. No hardware or new advanced features under current gates.
+
 Read this file first, then `README.md`, `node/API.md`, `docs/PROTOCOL.md`, and
 `docs/DEVELOPMENT.md`. This document is intended to make development possible
 without access to the original chat. Update these documents when behavior or

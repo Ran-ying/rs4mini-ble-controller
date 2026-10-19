@@ -1,6 +1,6 @@
 # 设备 SDK 命令审计与高级开发前置条件
 
-2026-10-19，0.7.32 / 原生 0.3.32。**尚不能确认 RS 4 Mini 全部非相机 BLE 命令都已枚举、解析并封装。**
+2026-10-19，0.7.33 / 原生 0.3.33。**尚不能确认 RS 4 Mini 全部非相机 BLE 命令都已枚举、解析并封装。**
 机器清单是 [protocol/COMMANDS.json](../protocol/COMMANDS.json)，目前记录 49 个命令或缺口条目；
 它不是厂商完整命令表，不能以“所有已知代码已封装”代替“所有设备命令已知”。
 
@@ -19,7 +19,7 @@
 | 命令/缺口 | 内容 | 请求封装 / 响应解析 | 设备证据 | 尚缺什么 |
 |---|---|---|---|---|
 | `00:01` | 版本查询 | `implemented` / `raw` | `other-model` | 响应返回原始消息，型号/版本字段未确认 |
-| `00:32` | 激活信息/序列号源候选 | unknown / unknown | app-code-path | HG724继承Ronin2 Getter→CENTER/id7 GET，初始体11；回调可能旧缓存，通用V13/V14默认模块8不匹配4/5。实际注册/会话/版本与设备未验收，SDK不开放，见ACTIVATION_ENTRY.md |
+| `00:32` | CENTER只读激活信息/序列号候选 | implemented / candidate-structured | app-code-path | 0.7.33显式版本、E5目标、严格ACK与完整本次响应，不沿用旧缓存；无激活写入或协商，设备/版本/布局与激活有效性未验收，见APP_CENTER_INFO.md |
 | `04:01` | 虚拟摇杆及中位停止 | `implemented` / `not-applicable` | `hardware` | 历史设备行为已验证，无固件执行确认 |
 | `04:02` | 位置查询 | `implemented` / `raw` | `other-model` | 本机历史尝试未收到有效响应，不能判断不支持 |
 | `04:05` | 姿态与关节通知 | `not-applicable` / `partial` | `hardware` | 姿态/关节映射已确认；四元数顺序及部分标志未知 |

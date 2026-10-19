@@ -8,9 +8,9 @@ verification status changes.
 ## Objective and user decisions
 
 - Provide an unofficial, direct BLE controller for **DJI RS 4 Mini**, initially on macOS.
-- **Node.js is the authoritative implementation**; current package version is `0.7.32`.
+- **Node.js is the authoritative implementation**; current package version is `0.7.33`.
 - The user subsequently requested completion of all existing ports. Python is now
-  `0.7.32`, Web shares the JS core, and the native panel is `0.3.32`. Describe the
+  `0.7.33`, Web shares the JS core, and the native panel is `0.3.33`. Describe the
   documented feature differences; do not claim identical APIs or hardware proof.
 - After that delivery, the user requested the remaining **non-camera** capabilities
   under the same autonomous/offline conditions. Expansion work is in progress;
@@ -1173,3 +1173,10 @@ BLE路由研究验证（2026-10-18）：最终固定输入实际提取两次，3
 新增17方法与八段4个直接模块字段引用方法审计：HG724最近继承Ronin2的GimbalSerialNumber Getter，DataCenterActiveStatus/CENTER5/id7→COMMON00:32 GET，初始源Ver1_1体11不是GetVer00或GIMBAL/id0。源回调getPushSN在新读取空时可能保留旧值；通用基类module_type_唯一直接写为构造默认8，GIMBAL4/CENTER5默认均不通过V13/V14门槛，不等于固件不支持或排除native/反射修改。见[入口审计](tools/research/ACTIVATION_ENTRY.md)（仓库根目录）及protocol/research/ronin-activation-entry-evidence.json。只读源码路径提升为app-code-path，实际注册/会话/版本/设备/网络绑定未验收，SDK未开放；运行时0.7.32/0.3.32、清单49及全命令/高级门槛false。无硬件/liveUI/厂商执行或高级新增。
 
 入口审计验收（2026-10-19）：最终工具对固定八段真实输入独立提取两次，17方法/4个直接模块字段引用方法证据JSON逐字节一致。新增13项研究测试，Python3.8/3.12研究各513通过；统一Node269/Web27/Python244/native1290核心+285假设备生命周期+3独立SDK及严格类型/分层/签名构建通过，终态0。四端运行时代码与d518ff2相同，0.7.32/0.3.32安装包不变。00:32只有继承只读源码路径提升为app-code-path，未新增SDK收发/激活/高级功能或硬件/liveUI/厂商执行；清单49项和两门槛false不变。
+
+
+## 0.7.33 CENTER只读信息候选 / 原生0.3.33 build36
+
+显式App来源新增getCenterActivationInfo（Python另有get_center_activation_info，原生RSGimbal继承同名selector），要求sourceVersion四种已知格式，无默认/OTHER/协商。固定E5/CENTER-id7、COMMON00:32 GET01/11与严格关联明文ACK；完整本次业务体解析active/date/SN原始值及源signed-decimal字符串、尾部，无旧SN缓存成功回退。GIMBAL04:32同命令号隔离，原生完成后恢复普通04路由；无激活/绑定/SET/FAIL/自动回复/重试/重放或高级新增。见[接口契约](docs/APP_CENTER_INFO.md)（仓库根目录）。设备/当前版本/布局/激活有效性未验收，全命令及高级门槛false，无硬件/liveUI/厂商执行。
+
+0.7.33验收（2026-10-19）：十组四端共享契约及严格ACK/版本/长度检查，Node277/Web28/Python3.8与3.12各252、原生1562核心+299假设备生命周期+3独立SDK、研究两环境各513通过；统一检查终态0，严格类型/分层/签名构建通过。Node tarball隔离安装277项和类型通过；wheel隔离安装252项、三模块导入来源核对。Node110文件、wheel39模块、原生ZIP3文件与本次源码/签名构建逐字节一致，原生0.3.33/build36未启动。没有硬件/liveUI/厂商执行或npm发布/远端二进制Release；清单49、全命令/高级门槛false。

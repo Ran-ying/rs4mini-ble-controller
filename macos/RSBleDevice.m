@@ -157,12 +157,13 @@ static BOOL Matches(NSString *name) {
                 if (self.experimentalStatusHandler) self.experimentalStatusHandler(extra);
             }
         }
-        if (self.appCompletion && self.awaitingDeviceQuery && [message[@"sender"] intValue] == 4 && [message[@"receiver"] intValue] == 2 &&
-            ([message[@"flags"] intValue] & 0x80) && [message[@"commandSet"] intValue] == 4 && [message[@"commandId"] intValue] == self.appCommandId &&
+        if (self.appCompletion && self.awaitingDeviceQuery && [message[@"sender"] intValue] == (self.appCenterInfoVersion?229:4) && [message[@"receiver"] intValue] == 2 &&
+            ([message[@"flags"] intValue] & 0x80) && [message[@"commandSet"] intValue] == (self.appCenterInfoVersion?0:4) && [message[@"commandId"] intValue] == self.appCommandId &&
             [message[@"sequence"] unsignedShortValue] == self.deviceQuerySequence) {
             NSError *appError = nil;
             NSDictionary *result = nil;
-            if(self.appCommandId==0x6b && ([message[@"flags"] intValue]&7)) appError=RSAppError(@"RS4MINI_PROTOCOL_ERROR",@"Unencrypted App response required",nil);
+            if(self.appCenterInfoVersion) result=RSDecodeAppCenterInfoReply(message,self.appCenterInfoVersion,&appError);
+            else if(self.appCommandId==0x6b && ([message[@"flags"] intValue]&7)) appError=RSAppError(@"RS4MINI_PROTOCOL_ERROR",@"Unencrypted App response required",nil);
             else if(self.appCommandId==8) result=RSDecodeAppComponentCalibrationReply(message,self.appSettingsBefore.unsignedCharValue,&appError);
             else result = self.appCommandId == 0x6e ? RSDecodeAppCalibrationReply(message, &appError) : RSDecodeAppReply(message, self.appCommandId, self.appParameters, &appError);
             if (appError) [self failApp:appError];
@@ -410,7 +411,7 @@ static BOOL Matches(NSString *name) {
     if (!completion) return;
     self.appCompletion = nil; self.appParameters = nil; self.awaitingDeviceQuery = NO;
     self.appNoAckPending = NO; self.appRequestedStart = nil;
-    self.appSettingsKind = nil; self.appSettingsPatch = nil; self.appSettingsBefore = nil; self.appSettingsRequested = nil;
+    self.appCenterInfoVersion = nil; self.appSettingsKind = nil; self.appSettingsPatch = nil; self.appSettingsBefore = nil; self.appSettingsRequested = nil;
     dispatch_async(dispatch_get_main_queue(), ^{ completion(result, error); });
 }
 - (void)failApp:(NSError *)error {
@@ -663,17 +664,26 @@ static BOOL Matches(NSString *name) {
 - (void)sendAutoTuneRequest:(NSNumber *)start completion:(RSAppCompletion)completion {
     [self startAppCommand:0x6a parameters:nil mode:[start copy] settingsKind:nil settingsPatch:nil timeoutMs:3000 completion:completion];
 }
+- (void)getCenterActivationInfo:(NSDictionary *)spec timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
+    if(![spec isKindOfClass:NSDictionary.class] || spec.count!=1 || !RSAppCenterInfoFrame(0,spec[@"sourceVersion"])) {
+        if(completion)dispatch_async(dispatch_get_main_queue(),^{completion(nil,RSAppError(@"RS4MINI_INVALID_ARGUMENT",@"Explicit sourceVersion required",nil));});return;
+    }
+    [self startAppCommand:50 parameters:nil mode:nil settingsKind:nil settingsPatch:nil timeoutMs:timeoutMs completion:completion centerVersion:[spec[@"sourceVersion"] copy]];
+}
 - (void)startAppCommand:(uint8_t)command parameters:(NSArray *)parameters mode:(id)mode settingsKind:(NSString *)settingsKind settingsPatch:(NSDictionary *)settingsPatch timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
+    [self startAppCommand:command parameters:parameters mode:mode settingsKind:settingsKind settingsPatch:settingsPatch timeoutMs:timeoutMs completion:completion centerVersion:nil];
+}
+- (void)startAppCommand:(uint8_t)command parameters:(NSArray *)parameters mode:(id)mode settingsKind:(NSString *)settingsKind settingsPatch:(NSDictionary *)settingsPatch timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion centerVersion:(NSString *)centerVersion {
     NSError *error = nil;
     if (![self.appProfile isEqualToString:@"ronin-2.2.2"]) error = RSAppError(@"RS4MINI_PROFILE_REQUIRED", @"Select explicit ronin-2.2.2 source profile", nil);
     else if (!self.ready) error = RSAppError(@"RS4MINI_DISCONNECTED", @"Device is not connected", nil);
     else if (self.busy) error = RSAppError(@"RS4MINI_BUSY", @"Device operation is active", nil);
     else if (!isfinite(timeoutMs) || timeoutMs <= 0 || timeoutMs > 60000) error = RSAppError(@"RS4MINI_INVALID_ARGUMENT", @"timeoutMs must be >0..60000", nil);
     NSArray *context = parameters ? RSAppParameterContext(parameters) : nil;
-    if (!error && ![self appCommandFrame:command sequence:0 context:context mode:mode])
+    if (!error && !(centerVersion ? RSAppCenterInfoFrame(0,centerVersion) : [self appCommandFrame:command sequence:0 context:context mode:mode]))
         error = RSAppError(@"RS4MINI_INVALID_ARGUMENT", @"Invalid App command arguments", nil);
     if (error) { if (completion) dispatch_async(dispatch_get_main_queue(), ^{ completion(nil, error); }); return; }
-    self.appSettingsKind = settingsKind; self.appSettingsPatch = settingsPatch;
+    self.appCenterInfoVersion = [centerVersion copy]; self.appSettingsKind = settingsKind; self.appSettingsPatch = settingsPatch;
     self.appParameters = (command == 0x10 || command == 0x32) ? context : nil; self.appCommandId = command; self.appCompletion = completion ?: ^(NSDictionary *result, NSError *error) {};
     NSUInteger token = ++self.appToken; __weak typeof(self) weak = self;
     [self beginStopKeepingApp:^{
@@ -681,7 +691,7 @@ static BOOL Matches(NSString *name) {
         weak.deviceQuerySequence = [weak reserveSequence]; weak.deviceQueryDeadline = Clock() + timeoutMs / 1000;
         weak.awaitingDeviceQuery = command != 0x6a && command != 18;
         weak.appNoAckPending = command == 0x6a || command == 18; weak.appRequestedStart = command == 0x6a ? mode : nil;
-        NSData *packet = [weak appCommandFrame:command sequence:weak.deviceQuerySequence context:context mode:mode];
+        NSData *packet = centerVersion ? RSAppCenterInfoFrame(weak.deviceQuerySequence,centerVersion) : [weak appCommandFrame:command sequence:weak.deviceQuerySequence context:context mode:mode];
         [weak writeFrame:packet]; [weak ensureTimer];
     } message:nil];
 }

@@ -1,3 +1,4 @@
+from .app_center_info import center_info_spec,center_info_reply
 from .app_tutorial import tutorial_notification
 from .app_component_calibration import component_calibration_payload,component_calibration_reply
 from .app_sensor_calibration import sensor_calibration_notification
@@ -144,6 +145,14 @@ class AppCommands:
         return await self.owner._run('sendParameterSubscriptionRequest',body,False)
 
     send_parameter_subscription_request = sendParameterSubscriptionRequest
+
+    async def getCenterActivationInfo(self, *, sourceVersion, timeoutMs=3000):
+        self._require_profile()
+        spec=center_info_spec(sourceVersion)
+        reply=await self.owner.experimental._query_payload_command('App CENTER activation information',(0,50),spec['payload'],timeoutMs,receiver=229)
+        return center_info_reply(reply,spec['sourceVersion'])
+
+    get_center_activation_info=getCenterActivationInfo
 
     async def sendProgramStatusSubscriptionRequest(self, *, program, enabled, timeoutMs=3000):
         self._require_profile()

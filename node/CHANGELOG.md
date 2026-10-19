@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.7.33
+
+- Add explicit source-version CENTER/id7 COMMON00:32 read-only activation information query across ports, with strict target correlation and complete current-body decoding.
+- Preserve raw serial/date/active values, distinguish source decimal SN rendering, and reject short/NACK/encrypted replies without old-cache fallback. No activation writes, negotiation, automatic retries or hardware claims.
+
 ## 0.7.32
 
 - Add explicit App-source passive tutorial status decoding, isolated copied caches and tutorial events across ports. Preserve unknown steps, complete uint32/signed views, numeric flags, Java shift views and trailing bytes.

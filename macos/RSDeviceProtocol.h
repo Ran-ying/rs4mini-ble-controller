@@ -125,3 +125,7 @@ NSData *RSAppHandheldStickControlFrame(uint16_t sequence,NSNumber *enabled);
 NSDictionary *RSDecodeAppHandheldStickControlReply(NSDictionary *message,NSNumber *enabled,NSError **error);
 
 NSDictionary *RSDecodeAppTutorialNotification(NSDictionary *message);
+
+// Explicit CENTER/id7 GET; source version is required, no activation writes.
+NSData *RSAppCenterInfoFrame(uint16_t sequence, NSString *sourceVersion);
+NSDictionary *RSDecodeAppCenterInfoReply(NSDictionary *message, NSString *sourceVersion, NSError **error);

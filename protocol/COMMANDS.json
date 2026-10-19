@@ -23,15 +23,22 @@
     {
       "key": "00:32",
       "name": "通用激活状态与版本源候选",
-      "requestCodec": "unknown",
-      "responseCodec": "unknown",
+      "requestCodec": "implemented",
+      "responseCodec": "candidate-structured",
       "targetEvidence": "app-code-path",
-      "implementation": [],
+      "implementation": [
+        "node/src/app-center-info.js",
+        "node/src/app-commands.js",
+        "python/rs4mini_sdk/app_center_info.py",
+        "python/rs4mini_sdk/app_commands.py",
+        "macos/RSControlCore.m",
+        "macos/RSBleDevice.m"
+      ],
       "officialAppAliases": [
         "ActiveStatus"
       ],
       "activationResearch": "protocol/research/ronin-activation-evidence.json",
-      "remaining": "HG724最近继承序列号Getter已定位为Ronin2→DataCenterActiveStatus→CENTER/id7的COMMON00:32 GET；初始源版本Ver1_1体11不是GetVer00。17方法与八段4个模块字段引用方法确认基类module_type_默认8，默认GIMBAL4/CENTER5不通过V13/V14门槛；这不证明固件不支持。源回调可能保留旧SN缓存，不照搬。此前56/39/34方法的版本、包层与格式证据保留；实际HG724注册/会话/版本/响应/网络业务及持久化未验证，SDK收发未开放。",
+      "remaining": "0.7.33显式App来源、显式sourceVersion的CENTER/id7只读GET与严格关联ACK/完整本次业务体已四端封装，不沿用源getPushSN旧缓存。只读请求不是激活/绑定/版本协商，源日期/active/SN字段不当合法激活或实机布局证明。实际设备版本/路由/加密扩展/固件接受及写入、V13/V14流程未验收。",
       "activationReceiveResearch": "protocol/research/ronin-activation-receive-evidence.json",
       "activationFormatsResearch": "protocol/research/ronin-activation-formats-evidence.json",
       "activationEntryResearch": "protocol/research/ronin-activation-entry-evidence.json"
@@ -1303,5 +1310,31 @@
   "activationResearch": "protocol/research/ronin-activation-evidence.json",
   "activationReceiveResearch": "protocol/research/ronin-activation-receive-evidence.json",
   "activationFormatsResearch": "protocol/research/ronin-activation-formats-evidence.json",
-  "activationEntryResearch": "protocol/research/ronin-activation-entry-evidence.json"
+  "activationEntryResearch": "protocol/research/ronin-activation-entry-evidence.json",
+  "centerInfoSdk": {
+    "implemented": true,
+    "profile": "ronin-2.2.2",
+    "version": "0.7.33",
+    "sourceVersions": [
+      "Ver1_0",
+      "Ver1_1",
+      "Ver1_3",
+      "Ver13"
+    ],
+    "explicitVersionRequired": true,
+    "receiverByte": 229,
+    "commandSet": 0,
+    "commandId": 50,
+    "getOnly": true,
+    "sourceCacheFallbackEnabled": false,
+    "automaticRetryEnabled": false,
+    "versionNegotiationEnabled": false,
+    "activationWriteEnabled": false,
+    "targetDeviceVerified": false,
+    "modelLayoutVerified": false,
+    "actualSessionVersionVerified": false,
+    "activationValidityVerified": false,
+    "fixtures": "node/test/fixtures/center-info.json",
+    "documentation": "docs/APP_CENTER_INFO.md"
+  }
 }

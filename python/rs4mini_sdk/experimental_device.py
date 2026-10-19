@@ -52,7 +52,7 @@ class ExperimentalDevice:
 
     def _message(self, message):
         pending = self.pending.get(message['sequence'])
-        if (pending and pending['client'] is self.owner.client and message['sender'] == 4 and message['receiver'] == 2 and
+        if (pending and pending['client'] is self.owner.client and message['sender'] == pending['receiver'] and message['receiver'] == 2 and
                 message['flags'] & 0x80 and (message['commandSet'], message['commandId']) == pending['command'] and not pending['future'].done()):
             pending['future'].set_result(copy.deepcopy(message))
         if self._profile:
@@ -71,7 +71,9 @@ class ExperimentalDevice:
     async def _query_command(self, kind, command, timeoutMs=3000):
         return await self._query_payload_command(kind, command, b'', timeoutMs)
 
-    async def _query_payload_command(self, kind, command, payload, timeoutMs=3000, *, external_operation=None, epoch=None):
+    async def _query_payload_command(self, kind, command, payload, timeoutMs=3000, *, external_operation=None, epoch=None, receiver=4):
+        if receiver != 4 and not (type(receiver) is int and receiver == 229 and command == (0,50) and self.owner.appCommands.profile == 'ronin-2.2.2' and isinstance(payload,(bytes,bytearray)) and payload in (b'\x01',b'\x11')):
+            raise ValueError('Unsupported query route')
         _duration(timeoutMs, 'timeoutMs', False)
         self.owner._require_connected()
         if len(self.pending) >= 64:
@@ -86,12 +88,12 @@ class ExperimentalDevice:
                 operation['error'] = external_operation['error'] or _error('RS4MINI_OPERATION_CANCELLED', 'Operation cancelled')
                 operation['cancel'].set()
             bridge = asyncio.create_task(propagate_cancel())
-        entry = dict(future=response, operation=operation, client=self.owner.client, command=command)
+        entry = dict(future=response, operation=operation, client=self.owner.client, command=command, receiver=receiver)
         self.pending[sequence] = entry
         command_set, command_id = command
 
         async def work():
-            await self.owner._enqueue(frame(sequence, command_set, command_id, payload, flags=0x40), operation=operation, epoch=epoch)
+            await self.owner._enqueue(frame(sequence, command_set, command_id, payload, flags=0x40, receiver=receiver), operation=operation, epoch=epoch)
             self.owner._check(operation)
             return await response
         task = asyncio.create_task(work())

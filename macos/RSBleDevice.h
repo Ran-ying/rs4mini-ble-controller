@@ -38,6 +38,7 @@ typedef void (^RSAppCompletion)(NSDictionary *result, NSError *error);
 - (void)sendAxisModeRequest:(NSDictionary *)spec timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion;
 - (void)sendFactorySettingsResetRequest:(NSDictionary *)spec timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion;
 - (void)sendHandleSettingRequest:(NSDictionary *)spec timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion;
+- (void)getCenterActivationInfo:(NSDictionary *)spec timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion;
 - (void)getHandleSettingsWithTimeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion;
 - (BOOL)useAppProfile:(NSString *)profile;
 @property(nonatomic,readonly,copy) NSArray *appParameterSubscriptionKeys;

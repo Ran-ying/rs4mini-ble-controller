@@ -833,3 +833,32 @@ NSDictionary *RSDecodeAppTutorialNotification(NSDictionary *message){
     NSMutableDictionary *flags=[NSMutableDictionary dictionary],*views=[NSMutableDictionary dictionary];for(NSUInteger i=0;i<getters.count;i++)flags[getters[i]]=@((word>>i)&1);for(NSUInteger i=0;i<steps.count;i++)views[steps[i]]=((word>>((i+30)&31))&1)?@YES:@NO;
     return @{@"kind":@"tutorial",@"profile":@"ronin-2.2.2",@"commandId":@43,@"timestamp":@([NSDate date].timeIntervalSince1970*1000),@"rawStep":@(p[0]),@"knownSourceStepName":p[0]<steps.count?steps[p[0]]:NSNull.null,@"sourceFindResult":p[0]<steps.count?steps[p[0]]:@"STEP_FINISH",@"rawCompletionWord":@(word),@"sourceSignedCompletionWord":@(word>=0x80000000u?(int64_t)word-4294967296LL:(int64_t)word),@"unknownCompletionBits":@(word&0xfffffe00u),@"sourceFlags":[flags copy],@"sourceStepStatus":[views copy],@"bodyHex":Hex(body),@"trailingHex":Hex([body subdataWithRange:NSMakeRange(5,body.length-5)]),@"deviceVerified":@NO,@"modelLayoutVerified":@NO,@"requestAssociationVerified":@NO,@"physicalCompletionVerified":@NO};
 }
+
+static NSNumber *CenterInfoGetByte(id version) {
+    if(![version isKindOfClass:NSString.class])return nil;
+    return @{@"Ver1_0":@1,@"Ver1_1":@17,@"Ver1_3":@17,@"Ver13":@1}[version];
+}
+NSData *RSAppCenterInfoFrame(uint16_t sequence, NSString *sourceVersion) {
+    NSNumber *value=CenterInfoGetByte(sourceVersion);if(!value)return nil;
+    uint8_t body=value.unsignedCharValue;
+    NSMutableData *data=[CommandFrame(sequence,0,50,[NSData dataWithBytes:&body length:1],0x40) mutableCopy];
+    uint8_t *p=data.mutableBytes;p[5]=229;Put16(p+data.length-2,CRC16(p,data.length-2));return [data copy];
+}
+NSDictionary *RSDecodeAppCenterInfoReply(NSDictionary *message, NSString *sourceVersion, NSError **error) {
+    NSNumber *request=CenterInfoGetByte(sourceVersion);NSData *payload=[message[@"payload"] copy];
+    if(!request || [message[@"sender"] intValue]!=229 || [message[@"receiver"] intValue]!=2 || [message[@"commandSet"] intValue]!=0 || [message[@"commandId"] intValue]!=50 || !AppPlainFlags(message[@"flags"],YES) || ![payload isKindOfClass:NSData.class] || !payload.length){
+        if(error)*error=RSAppError(@"RS4MINI_PROTOCOL_ERROR",@"Expected unencrypted CENTER/id7 activation-info ACK",nil);return nil;
+    }
+    const uint8_t *p=payload.bytes;if(p[0]){if(error)*error=RSAppError(@"RS4MINI_DEVICE_ERROR",@"Device rejected CENTER GET",@(p[0]));return nil;}
+    NSData *body=[payload subdataWithRange:NSMakeRange(1,payload.length-1)];const uint8_t *b=body.bytes;BOOL old=[sourceVersion isEqualToString:@"Ver1_0"];
+    if(body.length<(old?18:9)){if(error)*error=RSAppError(@"RS4MINI_PROTOCOL_ERROR",@"Incomplete CENTER GET business body",nil);return nil;}
+    NSUInteger offset=old?8:9,length=old?10:b[8];
+    if(length>16 || body.length<offset+length){if(error)*error=RSAppError(@"RS4MINI_PROTOCOL_ERROR",@"Invalid or incomplete declared CENTER serial number",nil);return nil;}
+    NSData *sn=[body subdataWithRange:NSMakeRange(offset,length)];NSMutableString *text=[NSMutableString string];
+    for(NSUInteger i=0;i<length;i++){uint8_t v=b[offset+i];if((v>=48&&v<=57)||(v>=65&&v<=90)||(v>=97&&v<=122))[text appendFormat:@"%c",v];else [text appendFormat:@"%d",(int)(int8_t)v];}
+    NSMutableDictionary *copy=[message mutableCopy];copy[@"payload"]=payload;if([message[@"raw"] isKindOfClass:NSData.class])copy[@"raw"]=[message[@"raw"] copy];
+    return @{@"profile":@"ronin-2.2.2",@"statusCode":@0,@"acknowledged":@YES,@"sourceVersion":[sourceVersion copy],@"receiverByte":@229,@"sourceGetRequestByte":request,@"bodyHex":Hex(body),@"message":[copy copy],
+        @"activeByte":@(b[0]),@"sourceActiveBit":@((b[0]&1)!=0),@"unknownActiveBits":@(b[0]&254),@"dateRaw":@{@"year":@((uint16_t)b[1]|((uint16_t)b[2]<<8)),@"month":@(b[3]),@"day":@(b[4]),@"hour":@(b[5]),@"minute":@(b[6]),@"second":@(b[7])},
+        @"serialNumberRawHex":Hex(sn),@"sourceSerialNumber":[text copy],@"serialNumberLength":@(length),@"trailingBodyHex":Hex([body subdataWithRange:NSMakeRange(offset+length,body.length-offset-length)]),
+        @"dateValidityVerified":@NO,@"actualSessionVersionVerified":@NO,@"activationValidityVerified":@NO,@"modelLayoutVerified":@NO,@"deviceVerified":@NO,@"physicalCompletionVerified":@NO};
+}

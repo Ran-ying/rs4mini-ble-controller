@@ -1,0 +1,57 @@
+[
+  {
+    "sourceVersion": "Ver1_1",
+    "payloadHex": "0083ea070a130c223803412dffdead",
+    "sourceSerialNumber": "A45-1",
+    "serialNumberRawHex": "412dff"
+  },
+  {
+    "sourceVersion": "Ver1_3",
+    "payloadHex": "0083ea070a130c223803412dffdead",
+    "sourceSerialNumber": "A45-1",
+    "serialNumberRawHex": "412dff"
+  },
+  {
+    "sourceVersion": "Ver13",
+    "payloadHex": "0083ea070a130c223803412dffdead",
+    "sourceSerialNumber": "A45-1",
+    "serialNumberRawHex": "412dff"
+  },
+  {
+    "sourceVersion": "Ver1_0",
+    "payloadHex": "0083ea070a130c223854455354313233343536",
+    "sourceSerialNumber": "TEST123456",
+    "serialNumberRawHex": "54455354313233343536"
+  },
+  {
+    "sourceVersion": "Ver1_1",
+    "payloadHex": "0083ea070a130c223800",
+    "sourceSerialNumber": "",
+    "serialNumberRawHex": ""
+  },
+  {
+    "sourceVersion": "Ver1_1",
+    "payloadHex": "",
+    "error": "RS4MINI_PROTOCOL_ERROR"
+  },
+  {
+    "sourceVersion": "Ver1_1",
+    "payloadHex": "00",
+    "error": "RS4MINI_PROTOCOL_ERROR"
+  },
+  {
+    "sourceVersion": "Ver1_1",
+    "payloadHex": "0083ea070a130c2238034142",
+    "error": "RS4MINI_PROTOCOL_ERROR"
+  },
+  {
+    "sourceVersion": "Ver1_1",
+    "payloadHex": "0083ea070a130c2238110000000000000000000000000000000000",
+    "error": "RS4MINI_PROTOCOL_ERROR"
+  },
+  {
+    "sourceVersion": "Ver1_1",
+    "payloadHex": "0783ea070a130c223803412dffdead",
+    "error": "RS4MINI_DEVICE_ERROR"
+  }
+]

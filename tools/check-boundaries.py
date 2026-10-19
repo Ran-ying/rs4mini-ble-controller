@@ -44,6 +44,7 @@ for name in ['RSBleDevice.m', 'RSBleDevice.h', 'RSBleDevice_Internal.h', 'RSDevi
 text = (root / 'macos/RSGimbal.m').read_text()
 assert not re.search(r'RS\w*Frame\(|writeFrame:|writeValue:|RSDecode', text), 'native upper layer bypasses SDK'
 manifest = json.loads((root / 'protocol/COMMANDS.json').read_text())
+center_sdk = manifest.get('centerInfoSdk',{}).get('implemented',False)
 assert manifest['inventoryComplete'] is False
 assert manifest['advancedDevelopment']['allowed'] is False
 assert len({row['key'] for row in manifest['commands']}) == len(manifest['commands'])
@@ -822,7 +823,7 @@ if manifest.get('activationResearch'):
     assert proof['sourceVersionQuery']['bodyHex']=='00' and proof['sourceVersionQuery']['sourceResendPolicyCopiedToSdk'] is False
     assert proof['sourceResponse']['wireOffsetsIndependentlyVerified'] is False
     row=next(row for row in manifest['commands'] if row['key']=='00:32')
-    assert row['activationResearch']==manifest['activationResearch'] and row['requestCodec']=='unknown' and not row['implementation']
+    assert row['activationResearch']==manifest['activationResearch'] and row['requestCodec']==('implemented' if center_sdk else 'unknown') and (center_sdk or not row['implementation'])
 
 if manifest.get('activationReceiveResearch'):
     proof=json.loads((root/manifest['activationReceiveResearch']).read_text())
@@ -836,7 +837,7 @@ if manifest.get('activationReceiveResearch'):
         assert proof[flag] is False
     assert len(proof['versionQueryCallers'])==7
     row=next(row for row in manifest['commands'] if row['key']=='00:32')
-    assert row['activationReceiveResearch']==manifest['activationReceiveResearch'] and row['responseCodec']=='unknown' and not row['implementation']
+    assert row['activationReceiveResearch']==manifest['activationReceiveResearch'] and row['responseCodec']==('candidate-structured' if center_sdk else 'unknown') and (center_sdk or not row['implementation'])
 
 if manifest.get('activationFormatsResearch'):
     proof=json.loads((root/manifest['activationFormatsResearch']).read_text())
@@ -849,7 +850,7 @@ if manifest.get('activationFormatsResearch'):
     for flag in ['sdkSendAdded','sdkReceiveAdded','targetDeviceVerified','hg724EntryEstablished','actualSessionVersionVerified','activationValidityVerified','vendorCodeExecuted','wholeProtocolRecovered','networkActivationWorkflowComplete']:
         assert proof[flag] is False
     row=next(row for row in manifest['commands'] if row['key']=='00:32')
-    assert row['activationFormatsResearch']==manifest['activationFormatsResearch'] and row['requestCodec']=='unknown' and not row['implementation']
+    assert row['activationFormatsResearch']==manifest['activationFormatsResearch'] and row['requestCodec']==('implemented' if center_sdk else 'unknown') and (center_sdk or not row['implementation'])
 
 if manifest.get('activationEntryResearch'):
     proof=json.loads((root/manifest['activationEntryResearch']).read_text())
@@ -864,4 +865,12 @@ if manifest.get('activationEntryResearch'):
     for flag in ['actualHg724RegistryVerified','targetDeviceVerified','javaReflectionExecuted','vendorCodeExecuted','sdkSendAdded','sdkReceiveAdded','activationOrBindingImplemented','wholeProtocolRecovered']:
         assert proof[flag] is False
     row=next(row for row in manifest['commands'] if row['key']=='00:32')
-    assert row['activationEntryResearch']==manifest['activationEntryResearch'] and row['targetEvidence']=='app-code-path' and not row['implementation']
+    assert row['activationEntryResearch']==manifest['activationEntryResearch'] and row['targetEvidence']=='app-code-path' and (center_sdk or not row['implementation'])
+
+if center_sdk:
+    sdk=manifest['centerInfoSdk']
+    assert sdk['explicitVersionRequired'] and sdk['getOnly']
+    assert (sdk['commandSet'],sdk['commandId'],sdk['receiverByte'])==(0,50,229)
+    for flag in ['sourceCacheFallbackEnabled','automaticRetryEnabled','versionNegotiationEnabled','activationWriteEnabled','targetDeviceVerified','modelLayoutVerified','actualSessionVersionVerified','activationValidityVerified']:
+        assert sdk[flag] is False
+    assert (root/sdk['fixtures']).is_file() and (root/sdk['documentation']).is_file()

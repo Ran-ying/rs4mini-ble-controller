@@ -297,3 +297,11 @@ await gimbal.appCommands.sendHandheldStickControlRequest({enabled:1});}
 function tutorialTypes(gimbal:RS4Mini){const s=gimbal.appCommands.tutorialStatus;if(s){const value:0|1=s.sourceFlags.getIsUnlock;const bit:boolean=s.sourceStepStatus.STEP_FINISH;void value;void bit;}
 // @ts-expect-error Copied read-only source status.
 gimbal.appCommands.tutorialStatus=null;}
+function centerInfoTypes(gimbal:RS4Mini){
+ const q=gimbal.appCommands.getCenterActivationInfo({sourceVersion:'Ver1_1',timeoutMs:1000});
+ q.then(r=>{const receiver:229=r.receiverByte;const valid:false=r.activationValidityVerified;const sn:string=r.sourceSerialNumber;void receiver;void valid;void sn;});
+ // @ts-expect-error Explicit source version is required.
+ gimbal.appCommands.getCenterActivationInfo({});
+ // @ts-expect-error OTHER is not a query format contract.
+ gimbal.appCommands.getCenterActivationInfo({sourceVersion:'OTHER'});
+}

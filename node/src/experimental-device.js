@@ -1,4 +1,5 @@
-import { frame } from './protocol.js';
+import {view} from './bytes.js';
+import { frame, crc16 } from './protocol.js';
 import { rs3AbsoluteFrame, rs3RateFrame, researchProfile, researchSleepFrame, decodeResearchStatus } from './experimental-protocol.js';
 import { bounded, check, deferred, failure } from './async.js';
 
@@ -28,7 +29,7 @@ export class ExperimentalDevice {
   _reset() { this._status = {}; }
   _message(message) {
     const pending = this.pending.get(message.sequence);
-    if (pending && pending.session === this.owner.session && message.sender === 4 && message.receiver === 2 &&
+    if (pending && pending.session === this.owner.session && message.sender === pending.receiver && message.receiver === 2 &&
       (message.flags & 0x80) && message.commandSet === pending.set && message.commandId === pending.id)
       pending.resolve({ ...message, raw: message.raw.slice(), payload: message.payload.slice() });
     if (!this._profile) return;
@@ -45,7 +46,8 @@ export class ExperimentalDevice {
   async _queryCommand(kind, command, timeoutMs = 3000) {
     return this._queryPayloadCommand(kind, command, undefined, timeoutMs);
   }
-  async _queryPayloadCommand(kind, [set, id], payload, timeoutMs = 3000, { signal, epoch } = {}) {
+  async _queryPayloadCommand(kind, [set, id], payload, timeoutMs = 3000, { signal, epoch, receiver = 4 } = {}) {
+    if (receiver !== 4 && !(receiver === 229 && set === 0 && id === 50 && this.owner.appCommands?.profile === "ronin-2.2.2" && payload instanceof Uint8Array && payload.length === 1 && [1,17].includes(payload[0]))) throw new TypeError("Unsupported query route");
     duration(timeoutMs, 'timeoutMs', false); this.owner._requireConnected(); check(signal);
     if (this.pending.size >= 64) throw failure('RS4MINI_BUSY', 'Too many pending queries');
     const sequence = this.owner._nextSequence(), session = this.owner.session, response = deferred(), controller = new AbortController();
@@ -55,10 +57,12 @@ export class ExperimentalDevice {
       if (parent.aborted) abort();
       else { parent.addEventListener('abort', abort, { once: true }); listeners.push([parent, abort]); }
     }
-    this.pending.set(sequence, { session, set, id, resolve: response.resolve });
+    this.pending.set(sequence, { session, set, id, receiver, resolve: response.resolve });
     try {
       return await bounded(async () => {
-        await this.owner._enqueue(frame(sequence, set, id, payload, 0x40), { signal: controller.signal, epoch });
+        const packet=frame(sequence,set,id,payload,0x40);
+        if(receiver===229){packet[5]=receiver;view(packet).setUint16(packet.length-2,crc16(packet.subarray(0,-2)),true);}
+        await this.owner._enqueue(packet, { signal: controller.signal, epoch });
         return response.promise;
       }, timeoutMs, { signal: controller.signal, error: failure('RS4MINI_RESPONSE_TIMEOUT', `${kind} query had no correlated response`) });
     } finally {

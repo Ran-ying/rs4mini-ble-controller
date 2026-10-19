@@ -1,3 +1,4 @@
+import {centerInfoSpec,centerInfoReply} from './app-center-info.js';
 import {tutorialNotification} from './app-tutorial.js';
 import {componentCalibrationPayload,componentCalibrationReply} from './app-component-calibration.js';
 import {sensorCalibrationNotification} from './app-sensor-calibration.js';
@@ -78,6 +79,12 @@ export class AppCommands {
       await this.owner._enqueue(parameterSubscriptionFrame(this.owner._nextSequence(),spec),{signal:operation.controller.signal,epoch:this.owner.motionEpoch});
       return parameterSubscriptionSent(spec);
     },false);
+  }
+  async getCenterActivationInfo(options={}) {
+    optionsOnly(options,['sourceVersion','timeoutMs']);this._requireProfile();
+    const spec=centerInfoSpec(options.sourceVersion);
+    const reply=await this.owner.experimental._queryPayloadCommand('App CENTER activation information',[0,50],spec.payload,options.timeoutMs??3000,{receiver:229});
+    return centerInfoReply(reply,spec.sourceVersion);
   }
   async sendProgramStatusSubscriptionRequest(options={}) {
     optionsOnly(options,['program','enabled','timeoutMs']);this._requireProfile();

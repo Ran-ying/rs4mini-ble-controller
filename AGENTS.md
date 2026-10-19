@@ -1166,3 +1166,10 @@ BLE路由研究验证（2026-10-18）：最终固定输入实际提取两次，3
 固定bank05的34方法补GET响应/旧推送/V13设备信息与V14验证信息；全部八段哈希校验但本批方法范围仍仅05。GET的SN偏移8/9与推送1/2分开，源signed-byte十进制SN转换、V13/V14声明长度与实际复制/固定32字节区、标记51/54与版本枚举不同均保留。源V13处理可自动发135字节用户信息请求，工具不执行处理器或回复；isPushActivated直接存isEmpty不当激活成功。见[格式审计](tools/research/ACTIVATION_FORMATS.md)（仓库根目录）及protocol/research/ronin-activation-formats-evidence.json。HG724入口/实际会话/激活有效性/网络绑定未验收，无SDK收发/高级新增或硬件/liveUI/厂商执行；运行时0.7.32/0.3.32、清单49及两门槛false不变。
 
 格式审计验收（2026-10-19）：最终工具对固定真实输入独立提取两次，34方法证据JSON逐字节一致；新增16项研究测试，Python3.8/3.12研究各500通过。统一离线Node269/Web27/Python244/native1290核心+285假设备生命周期+3独立SDK及严格类型/分层/签名构建通过，终态0。四端运行时代码与bcd24ac相同，0.7.32/0.3.32安装包未变，无SDK收发/激活/硬件/liveUI/厂商执行或高级新增，全命令与高级门槛false。
+
+
+## HG724序列号CENTER路由与默认模块门槛
+
+新增17方法与八段4个直接模块字段引用方法审计：HG724最近继承Ronin2的GimbalSerialNumber Getter，DataCenterActiveStatus/CENTER5/id7→COMMON00:32 GET，初始源Ver1_1体11不是GetVer00或GIMBAL/id0。源回调getPushSN在新读取空时可能保留旧值；通用基类module_type_唯一直接写为构造默认8，GIMBAL4/CENTER5默认均不通过V13/V14门槛，不等于固件不支持或排除native/反射修改。见[入口审计](tools/research/ACTIVATION_ENTRY.md)（仓库根目录）及protocol/research/ronin-activation-entry-evidence.json。只读源码路径提升为app-code-path，实际注册/会话/版本/设备/网络绑定未验收，SDK未开放；运行时0.7.32/0.3.32、清单49及全命令/高级门槛false。无硬件/liveUI/厂商执行或高级新增。
+
+入口审计验收（2026-10-19）：最终工具对固定八段真实输入独立提取两次，17方法/4个直接模块字段引用方法证据JSON逐字节一致。新增13项研究测试，Python3.8/3.12研究各513通过；统一Node269/Web27/Python244/native1290核心+285假设备生命周期+3独立SDK及严格类型/分层/签名构建通过，终态0。四端运行时代码与d518ff2相同，0.7.32/0.3.32安装包不变。00:32只有继承只读源码路径提升为app-code-path，未新增SDK收发/激活/高级功能或硬件/liveUI/厂商执行；清单49项和两门槛false不变。

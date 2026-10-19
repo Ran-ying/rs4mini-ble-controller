@@ -57,3 +57,5 @@ python/.venv/bin/python -m unittest discover -s tools/research -p test_ronin_act
 验收结果：最终工具对真实固定输入独立提取两次，39方法/7调用方法的JSON逐字节一致；新增13项研究测试，两Python环境研究各484通过。统一离线回归与类型/边界/原生签名构建通过，运行时代码和安装包未变。
 
 后续[GET/旧推送/V13/V14格式审计](ACTIVATION_FORMATS.md)固定34方法，保留SN转换及长度语义并隔离源自动回复；仍不是HG724协议或激活流程完成证明。
+
+后续[HG724入口审计](ACTIVATION_ENTRY.md)定位继承序列号GET为CENTER/id7，并确认通用V13/V14默认模块8的条件门槛；补充源码路由，不代表实际会话/设备或完整激活流程已验收。

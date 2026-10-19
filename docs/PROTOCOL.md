@@ -401,3 +401,8 @@ HG724 跟随灵敏度 setter、参数管理器读取 gimbal_param_infos 的路�
 ## COMMON00:32 GET与V13/V14格式审计
 
 固定bank05的34方法补GET响应/旧推送/V13设备信息与V14验证信息；全部八段哈希校验但本批方法范围仍仅05。GET的SN偏移8/9与推送1/2分开，源signed-byte十进制SN转换、V13/V14声明长度与实际复制/固定32字节区、标记51/54与版本枚举不同均保留。源V13处理可自动发135字节用户信息请求，工具不执行处理器或回复；isPushActivated直接存isEmpty不当激活成功。见[格式审计](../tools/research/ACTIVATION_FORMATS.md)（仓库根目录）及protocol/research/ronin-activation-formats-evidence.json。HG724入口/实际会话/激活有效性/网络绑定未验收，无SDK收发/高级新增或硬件/liveUI/厂商执行；运行时0.7.32/0.3.32、清单49及两门槛false不变。
+
+
+## HG724序列号CENTER路由与默认模块门槛
+
+新增17方法与八段4个直接模块字段引用方法审计：HG724最近继承Ronin2的GimbalSerialNumber Getter，DataCenterActiveStatus/CENTER5/id7→COMMON00:32 GET，初始源Ver1_1体11不是GetVer00或GIMBAL/id0。源回调getPushSN在新读取空时可能保留旧值；通用基类module_type_唯一直接写为构造默认8，GIMBAL4/CENTER5默认均不通过V13/V14门槛，不等于固件不支持或排除native/反射修改。见[入口审计](../tools/research/ACTIVATION_ENTRY.md)（仓库根目录）及protocol/research/ronin-activation-entry-evidence.json。只读源码路径提升为app-code-path，实际注册/会话/版本/设备/网络绑定未验收，SDK未开放；运行时0.7.32/0.3.32、清单49及全命令/高级门槛false。无硬件/liveUI/厂商执行或高级新增。

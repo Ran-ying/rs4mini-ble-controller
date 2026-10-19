@@ -19,7 +19,7 @@
 | 命令/缺口 | 内容 | 请求封装 / 响应解析 | 设备证据 | 尚缺什么 |
 |---|---|---|---|---|
 | `00:01` | 版本查询 | `implemented` / `raw` | `other-model` | 响应返回原始消息，型号/版本字段未确认 |
-| `00:32` | 通用激活状态/版本源候选 | unknown / unknown | official-app-enum | 56方法源布局及39方法接收审计；基础表ACK剥离ccode/混合分发已核对，实际扩展/HG724/会话与持久化未验收，34方法进一步核对GET/V13/V14，SDK不开放，见ACTIVATION_RECEIVE.md及ACTIVATION_FORMATS.md |
+| `00:32` | 激活信息/序列号源候选 | unknown / unknown | app-code-path | HG724继承Ronin2 Getter→CENTER/id7 GET，初始体11；回调可能旧缓存，通用V13/V14默认模块8不匹配4/5。实际注册/会话/版本与设备未验收，SDK不开放，见ACTIVATION_ENTRY.md |
 | `04:01` | 虚拟摇杆及中位停止 | `implemented` / `not-applicable` | `hardware` | 历史设备行为已验证，无固件执行确认 |
 | `04:02` | 位置查询 | `implemented` / `raw` | `other-model` | 本机历史尝试未收到有效响应，不能判断不支持 |
 | `04:05` | 姿态与关节通知 | `not-applicable` / `partial` | `hardware` | 姿态/关节映射已确认；四元数顺序及部分标志未知 |

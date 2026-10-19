@@ -75,3 +75,5 @@ python/.venv/bin/python -m unittest discover -s tools/research -p test_ronin_act
 HG724实际入口、接收扩展表与会话、GET关联/版本、设备接受、网络激活与绑定/持久化仍未完成。SDK收发未开放，清单仍49个命令/缺口；inventoryComplete与advancedDevelopment.allowed保持false，无硬件/liveUI/厂商代码执行或高级功能新增。
 
 格式审计验收（2026-10-19）：最终工具对固定真实输入独立提取两次，34方法证据JSON逐字节一致；新增16项研究测试，Python3.8/3.12研究各500通过。统一离线Node269/Web27/Python244/native1290核心+285假设备生命周期+3独立SDK及严格类型/分层/签名构建通过，终态0。四端运行时代码与bcd24ac相同，0.7.32/0.3.32安装包未变，无SDK收发/激活/硬件/liveUI/厂商执行或高级新增，全命令与高级门槛false。
+
+后续[HG724入口审计](ACTIVATION_ENTRY.md)定位继承序列号GET为CENTER/id7，并确认通用V13/V14默认模块8的条件门槛；补充源码路由，不代表实际会话/设备或完整激活流程已验收。

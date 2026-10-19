@@ -25,15 +25,16 @@
       "name": "通用激活状态与版本源候选",
       "requestCodec": "unknown",
       "responseCodec": "unknown",
-      "targetEvidence": "official-app-enum",
+      "targetEvidence": "app-code-path",
       "implementation": [],
       "officialAppAliases": [
         "ActiveStatus"
       ],
       "activationResearch": "protocol/research/ronin-activation-evidence.json",
-      "remaining": "八段56方法激活源审计及39方法接收审计确认基础COMMON表ACK剥离ccode、双分发路径、条件GIMBAL反射名和短版本响应覆盖源缓存的可能；实际扩展表/会话、HG724入口、设备接受/网络业务与持久化仍未验证。查询上下文必须与状态分开，未开放SDK收发；34方法补GET与V13/V14源格式、截断/符号语义和自动用户信息回复副作用；仅离线视图，不自动识别报文或当作激活有效性。",
+      "remaining": "HG724最近继承序列号Getter已定位为Ronin2→DataCenterActiveStatus→CENTER/id7的COMMON00:32 GET；初始源版本Ver1_1体11不是GetVer00。17方法与八段4个模块字段引用方法确认基类module_type_默认8，默认GIMBAL4/CENTER5不通过V13/V14门槛；这不证明固件不支持。源回调可能保留旧SN缓存，不照搬。此前56/39/34方法的版本、包层与格式证据保留；实际HG724注册/会话/版本/响应/网络业务及持久化未验证，SDK收发未开放。",
       "activationReceiveResearch": "protocol/research/ronin-activation-receive-evidence.json",
-      "activationFormatsResearch": "protocol/research/ronin-activation-formats-evidence.json"
+      "activationFormatsResearch": "protocol/research/ronin-activation-formats-evidence.json",
+      "activationEntryResearch": "protocol/research/ronin-activation-entry-evidence.json"
     },
     {
       "key": "04:01",
@@ -911,7 +912,8 @@
     "tools/research/ronin_prefix_restore.py",
     "tools/research/ronin_activation_trace.py",
     "tools/research/ronin_activation_receive.py",
-    "tools/research/ronin_activation_formats.py"
+    "tools/research/ronin_activation_formats.py",
+    "tools/research/ronin_activation_entry.py"
   ],
   "modelIdentityResearch": "protocol/research/ronin-hg724-evidence.json",
   "codeRestorationResearch": "protocol/research/ronin-code-restoration-evidence.json",
@@ -1300,5 +1302,6 @@
   },
   "activationResearch": "protocol/research/ronin-activation-evidence.json",
   "activationReceiveResearch": "protocol/research/ronin-activation-receive-evidence.json",
-  "activationFormatsResearch": "protocol/research/ronin-activation-formats-evidence.json"
+  "activationFormatsResearch": "protocol/research/ronin-activation-formats-evidence.json",
+  "activationEntryResearch": "protocol/research/ronin-activation-entry-evidence.json"
 }

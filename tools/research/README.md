@@ -71,3 +71,5 @@ NOP/常量/返回模式只标记为保护桩候选，不把返回零解释成协
 COMMON00:32接收审计：[ACTIVATION_RECEIVE.md](ACTIVATION_RECEIVE.md)，39方法核对基础表返回码、双分发/反射及共享缓存顺序；八段版本查询直接调用扫描不证明HG724入口，SDK收发未开放。
 
 后续[GET/旧推送/V13/V14格式审计](ACTIVATION_FORMATS.md)固定34方法，保留SN转换及长度语义并隔离源自动回复；仍不是HG724协议或激活流程完成证明。
+
+后续[HG724入口审计](ACTIVATION_ENTRY.md)定位继承序列号GET为CENTER/id7，并确认通用V13/V14默认模块8的条件门槛；补充源码路由，不代表实际会话/设备或完整激活流程已验收。

@@ -66,3 +66,5 @@ python/.venv/bin/python -m unittest discover -s tools/research -p test_ronin_act
 后续39方法接收审计见[ACTIVATION_RECEIVE.md](ACTIVATION_RECEIVE.md)：补基础表包层、条件反射名、源缓存赋值顺序及八段版本查询调用扫描；本页56方法的原证据保持历史范围，不改写为实机证据。
 
 后续[GET/旧推送/V13/V14格式审计](ACTIVATION_FORMATS.md)固定34方法，保留SN转换及长度语义并隔离源自动回复；仍不是HG724协议或激活流程完成证明。
+
+后续[HG724入口审计](ACTIVATION_ENTRY.md)定位继承序列号GET为CENTER/id7，并确认通用V13/V14默认模块8的条件门槛；补充源码路由，不代表实际会话/设备或完整激活流程已验收。

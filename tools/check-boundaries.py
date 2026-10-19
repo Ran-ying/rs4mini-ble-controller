@@ -850,3 +850,18 @@ if manifest.get('activationFormatsResearch'):
         assert proof[flag] is False
     row=next(row for row in manifest['commands'] if row['key']=='00:32')
     assert row['activationFormatsResearch']==manifest['activationFormatsResearch'] and row['requestCodec']=='unknown' and not row['implementation']
+
+if manifest.get('activationEntryResearch'):
+    proof=json.loads((root/manifest['activationEntryResearch']).read_text())
+    assert len(proof['methods'])==17 and len(proof['bankSha256'])==8
+    assert proof['hg724InheritedSerialSourceRouteEstablished'] is True
+    assert proof['getterAnnotation']==dict(value='GimbalSerialNumber')
+    query=proof['serialQuerySource']
+    assert (query['commandSet'],query['commandId'],query['receiverType'],query['receiverId'],query['packedReceiverByte'])==(0,50,5,7,229)
+    assert query['initialSourceGetBodyHex']=='11' and query['actualSessionVersionVerified'] is False and query['freshResultVerified'] is False
+    assert len(proof['activationModuleFieldReferences'])==4 and len(proof['directModuleTypeWrites'])==1
+    assert proof['sourceDefaultModuleGate']['expectedModuleType']==8 and proof['sourceDefaultModuleGate']['firmwareUnsupportedProven'] is False
+    for flag in ['actualHg724RegistryVerified','targetDeviceVerified','javaReflectionExecuted','vendorCodeExecuted','sdkSendAdded','sdkReceiveAdded','activationOrBindingImplemented','wholeProtocolRecovered']:
+        assert proof[flag] is False
+    row=next(row for row in manifest['commands'] if row['key']=='00:32')
+    assert row['activationEntryResearch']==manifest['activationEntryResearch'] and row['targetEvidence']=='app-code-path' and not row['implementation']

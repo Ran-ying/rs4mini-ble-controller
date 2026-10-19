@@ -14,7 +14,7 @@ COMMON的源wire值为0；ActiveStatus构造为`[ActiveStatus,20,50,0,1,null]`�
 
 GimbalActiveStatus单例首次创建时设置Ver1_1。但DataCommonActiveGetVer.setRecData还有版本更新路径：读取业务首字节→版本find→按DeviceType分支更新对应设备的激活单例。因此不能只读构造默认就固定使用新版。
 
-版本查询源doPack为一字节`00`，同样使用COMMON/ActiveStatus；设备类型由调用方设置。源start含1000ms超时和repeatTimes2，SDK没有复制它的重试策略。源回调偏移与BLE返回码剥离尚未独立核对，不把线上单个00自动当作版本0或成功业务体。
+版本查询源doPack为一字节`00`，同样使用COMMON/ActiveStatus；设备类型由调用方设置。源start含1000ms超时和repeatTimes2，SDK没有复制它的重试策略。后续[接收审计](ACTIVATION_RECEIVE.md)已核对基础COMMON表ACK返回码剥离，实际扩展/会话仍未验证；线上单个00在此条件下只有返回码，不能自动当版本0或完整成功业务体。
 
 | 源版本名 | 源value | TYPE.value(version)分支 |
 |---|---:|---|
@@ -62,3 +62,5 @@ python/.venv/bin/python -m unittest discover -s tools/research -p test_ronin_act
 最终工具对真实固定输入独立提取两次，56方法证据一致。16项测试覆盖null/未知、限定作用域、寄存器覆盖、版本、SN长度/零尾部、八段哈希与未验证标志。完整厂商方法体不入库。
 
 00:32作为源候选单列后清单为49个命令或缺口条目，不是49项设备能力或SDK接口。request/response封装仍unknown、无implementation。没有SDK收发、激活、相机/视觉或高级功能新增，没有扫描、连接、移动硬件/实时UI/厂商执行；inventoryComplete和advancedDevelopment.allowed仍false。
+
+后续39方法接收审计见[ACTIVATION_RECEIVE.md](ACTIVATION_RECEIVE.md)：补基础表包层、条件反射名、源缓存赋值顺序及八段版本查询调用扫描；本页56方法的原证据保持历史范围，不改写为实机证据。

@@ -31,7 +31,8 @@
         "ActiveStatus"
       ],
       "activationResearch": "protocol/research/ronin-activation-evidence.json",
-      "remaining": "八段56方法静态审计确认COMMON/ActiveStatus wire50、显式nullClass绑定、版本查询00、版本化GET/SET/FAIL及SN布局；无HG724入口/实际BLE/线上包层/网络业务与持久化验收，未开放SDK收发，不执行激活。"
+      "remaining": "八段56方法激活源审计及39方法接收审计确认基础COMMON表ACK剥离ccode、双分发路径、条件GIMBAL反射名和短版本响应覆盖源缓存的可能；实际扩展表/会话、HG724入口、设备接受/网络业务与持久化仍未验证。查询上下文必须与状态分开，未开放SDK收发。",
+      "activationReceiveResearch": "protocol/research/ronin-activation-receive-evidence.json"
     },
     {
       "key": "04:01",
@@ -421,7 +422,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "源保存类为空体并需ACK；扩大到全部六段已恢复视图仍仅4个内部/枚举引用方法、无外部直接调用者。未恢复1/7、剩余保护桩、反射/动态或固件路径未排除，不证明本机不支持；缺HG724业务调用与持久化证据，未开放SDK。",
+      "remaining": "源保存类为空体并需ACK；既有六段扫描仅4个内部/枚举引用方法、无外部直接调用者。新增01/07现已有具名视图，但此条尚未八段重审；反射/动态或固件路径未排除，不证明本机不支持。缺HG724业务调用与持久化证据，未开放SDK。",
       "officialAppAliases": [
         "SaveUserParams"
       ],
@@ -1294,5 +1295,6 @@
     "wholeProtocolRecovered": false,
     "targetDeviceVerified": false
   },
-  "activationResearch": "protocol/research/ronin-activation-evidence.json"
+  "activationResearch": "protocol/research/ronin-activation-evidence.json",
+  "activationReceiveResearch": "protocol/research/ronin-activation-receive-evidence.json"
 }

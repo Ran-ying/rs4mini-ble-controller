@@ -823,3 +823,17 @@ if manifest.get('activationResearch'):
     assert proof['sourceResponse']['wireOffsetsIndependentlyVerified'] is False
     row=next(row for row in manifest['commands'] if row['key']=='00:32')
     assert row['activationResearch']==manifest['activationResearch'] and row['requestCodec']=='unknown' and not row['implementation']
+
+if manifest.get('activationReceiveResearch'):
+    proof=json.loads((root/manifest['activationReceiveResearch']).read_text())
+    assert len(proof['methods'])==39 and len(proof['bankSha256'])==8
+    assert proof['baseCommonPolicy']==dict(commandSet=0,commandId=50,isBlock=False,isMix=True,modelClass=None,explicitNullClass=True,needsCcode=True,needsCcodeDerivedFromConstructor=True)
+    assert proof['receiveMapping']['ackBusinessRawPayloadOffset']==1
+    assert proof['mixedDelivery']['processorPathEligible'] and proof['mixedDelivery']['pushPathEligible']
+    assert proof['sourcePushOrder']['assignsRawCacheBeforeNullLengthAndAckGuards'] is True
+    assert proof['sourcePushOrder']['everyAckGuaranteedToReachPushModel'] is False
+    for flag in ['hg724EntryEstablished','actualSessionVersionVerified','targetDeviceVerified','appCodeExecuted','javaReflectionExecuted','sdkSendAdded','sdkReceiveAdded','wholeProtocolRecovered']:
+        assert proof[flag] is False
+    assert len(proof['versionQueryCallers'])==7
+    row=next(row for row in manifest['commands'] if row['key']=='00:32')
+    assert row['activationReceiveResearch']==manifest['activationReceiveResearch'] and row['responseCodec']=='unknown' and not row['implementation']

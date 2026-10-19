@@ -1,0 +1,476 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "bankSha256": {
+    "0": "2229f1f19aa8fe8d819c7b3cecbd844928da817e2bc9cfddfda1c0e120e4cc59",
+    "1": "0083e9f9e0e615602470ea148cfd581a0c7413a012ef5494b613242d55754f99",
+    "2": "f75800c8edb40823c72afdd0eee575135e995440da9a5fd9bfb3e5b3e9e6fe68",
+    "3": "861be662ee36ce3b195c0c1aa179642e34793df3a88e933fa1dfe2a7202a9528",
+    "4": "2fd9aa02f5c9f4217e7e6ef75d724a1ce64efa7c1f365ddb20c93be1fef85f77",
+    "5": "f78b34474816ca253b4133bdbd79ebcbf725f52d58ac00b63f921ff7082470d2",
+    "6": "4da9764901f753190e0c88b5a142a4f9cf1eed9b1b9214bdf97a21f00edcb990",
+    "7": "3fc2c4adccd59794f5c28b898d577ed414758875cadb7ce7f6782ffd5b64b723"
+  },
+  "methods": [
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/config/P3/CmdIdCommon$CmdIdType;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 4641436,
+      "instructionSha256": "691c7fe01ef1377a0d2025e70335b38c26e03d83201fb527210ce16a5fa1e57d"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/config/P3/CmdIdCommon$CmdIdType;",
+      "method": "<init>",
+      "descriptor": "(Ljava/lang/String; I I Z Z Ljava/lang/Class;)V",
+      "codeOffset": 4643112,
+      "instructionSha256": "3a9b7fed29b3a243a014f0c30fd1c3fa0e1672ba53d6b9cc174646aa5d47cffa"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/config/P3/CmdIdCommon$CmdIdType;",
+      "method": "getDataBase",
+      "descriptor": "()Ldji/midware/data/manager/P3/DataBase;",
+      "codeOffset": 4643344,
+      "instructionSha256": "35e03b37ffa2403b845f4bf2ee443d1612c166b5d8dfb5211e232e730d11d68f"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/config/P3/CmdIdCommon$CmdIdType;",
+      "method": "getDataModel",
+      "descriptor": "()Ljava/lang/Class;",
+      "codeOffset": 4643368,
+      "instructionSha256": "0cbdc443bf8ea6f4c7c439da28e703f7d7759bb173e20b9facee34bb11b9455f"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/config/P3/CmdIdCommon$CmdIdType;",
+      "method": "isBlock",
+      "descriptor": "()Z",
+      "codeOffset": 4643392,
+      "instructionSha256": "81bf8d473b31bc65128f52eb4ccac732a5fd390bc68f936b283ca1c39cb37235"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/config/P3/CmdIdCommon$CmdIdType;",
+      "method": "isMix",
+      "descriptor": "()Z",
+      "codeOffset": 4643416,
+      "instructionSha256": "476665b346689ca97d639e31c223bfbed383ef90027492e59a9dcb974484a680"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/config/P3/CmdIdCommon$CmdIdType;",
+      "method": "isNeedCcode",
+      "descriptor": "()Z",
+      "codeOffset": 4643440,
+      "instructionSha256": "8e2681aa13e7d11c346a158e79964d48ee6e99785d55c391cd5d97907ba15265"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/config/P3/CmdIdCommon;",
+      "method": "getCurCmdIdValues",
+      "descriptor": "()[Ldji/midware/interfaces/CmdIdInterface;",
+      "codeOffset": 4643512,
+      "instructionSha256": "c9b596488e5afa251c072e7437eb2bdf3085c6da47fec91487f989e4c2526c93"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/config/P3/CmdIdCommon;",
+      "method": "getDataModelName",
+      "descriptor": "(I I I)Ljava/lang/String;",
+      "codeOffset": 4643688,
+      "instructionSha256": "55356185f45c76d1f8083e5db4ea25d599a9fe798a558fc7d07f1c227331490c"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/config/P3/CmdIdCommon;",
+      "method": "getDataModelName",
+      "descriptor": "(I I)Ljava/lang/String;",
+      "codeOffset": 4643540,
+      "instructionSha256": "d32ceabeed4f4683c0f42d8a79ef6453316fbe0b266a710d52ef7f3bb8b87c9b"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/config/P3/CmdSet;",
+      "method": "<init>",
+      "descriptor": "(Ljava/lang/String; I I Ldji/midware/data/config/P3/DJICmdSetBase;)V",
+      "codeOffset": 3322540,
+      "instructionSha256": "b4a57def88fb246be2a66fa53fd6f4f1018bca711d0c6af5a528b56f5ad3a953"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/config/P3/CmdSet;",
+      "method": "getExtraCmdSetInterface",
+      "descriptor": "(Ldji/midware/data/config/P3/DJICmdSetBase;)Ldji/midware/data/config/P3/DJICmdSetBase;",
+      "codeOffset": 3322628,
+      "instructionSha256": "f582f30de77ee962ff4e3d977c9401087819be858b9e75fc22b78204ee42b412"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/config/P3/DJICmdSetBase;",
+      "method": "getDataBase",
+      "descriptor": "(I)Ldji/midware/data/manager/P3/DataBase;",
+      "codeOffset": 3323048,
+      "instructionSha256": "c494fdc95c78a88a5151c2f97f5089bdf9718672332c40ac3b7c95b2de1be9d2"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/config/P3/DJICmdSetBase;",
+      "method": "getDataModel",
+      "descriptor": "(I)Ljava/lang/Class;",
+      "codeOffset": 3323100,
+      "instructionSha256": "43ae541f66bc1408825d6e12bb55fecf9d3af9004ee98b49b8a0076ef277a63c"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/config/P3/DJICmdSetBase;",
+      "method": "isBlock",
+      "descriptor": "(I)Z",
+      "codeOffset": 3323152,
+      "instructionSha256": "7fa158265b7011ea6066e085324a63d9382ca15b58e22c1cb84b58b86340d8e5"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/config/P3/DJICmdSetBase;",
+      "method": "isMix",
+      "descriptor": "(I)Z",
+      "codeOffset": 3323204,
+      "instructionSha256": "c1bf5a0e385567bf0aeb934289c8f506a1c8bac6621cc9bb42b1d110e9313f53"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/config/P3/DJICmdSetBase;",
+      "method": "isNeedCcode",
+      "descriptor": "(I)Z",
+      "codeOffset": 3323256,
+      "instructionSha256": "6051e59b0f01d28a35ef2d5e906a7e0f03ddef6848acc9c5ec51f5e35e268f6a"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/config/P3/DataUtil;",
+      "method": "getDataBaseInstRefl",
+      "descriptor": "(Ljava/lang/Class;)Ldji/midware/data/manager/P3/DataBase;",
+      "codeOffset": 3324236,
+      "instructionSha256": "3db686e6e75cc7c3604be24ba8d0f677981fbd2e4365544109974c7405c2d1ff"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/config/P3/DataUtil;",
+      "method": "getDataModelName",
+      "descriptor": "(Ljava/lang/String; Ljava/lang/String;)Ljava/lang/String;",
+      "codeOffset": 3324332,
+      "instructionSha256": "cfc77d63b6f04660133ba1f8d392ca6bc4d5fb6aad06780af25f2346af69e0a7"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/config/P3/DeviceType;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 3324752,
+      "instructionSha256": "8c5490336a38fb0c07e0694c8038b25b63d5a012034edfcde87a5eb069bfe83b"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/config/P3/DeviceType;",
+      "method": "<init>",
+      "descriptor": "(Ljava/lang/String; I I)V",
+      "codeOffset": 3325452,
+      "instructionSha256": "938fba5b363f5248a4ffa24bb07d023714ec5531148b6684eed878ac78a44fa0"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/config/P3/DeviceType;",
+      "method": "toString",
+      "descriptor": "()Ljava/lang/String;",
+      "codeOffset": 3326220,
+      "instructionSha256": "6f87d936a315e8b6b8fa40c5796ec05036c863a82c4c0d62e4cb364f5dddf1a0"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DJIPackManagerBase;",
+      "method": "setMsg",
+      "descriptor": "(Ldji/midware/data/packages/P3/RecvPack;)V",
+      "codeOffset": 3339548,
+      "instructionSha256": "d537ebbfbf8d725bbe8be61b59d80296d91d061667e121d653c77c1fd5100e64"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DataBase$3;",
+      "method": "call",
+      "descriptor": "()Ljava/lang/Integer;",
+      "codeOffset": 3347260,
+      "instructionSha256": "b418796d8679a7088ddca8098154683caa6a6842504c6d05f785b3485e9423ba"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "setPushRecPack",
+      "descriptor": "(Ldji/midware/data/packages/P3/Pack;)V",
+      "codeOffset": 3352564,
+      "instructionSha256": "80f0bb9c5884940e7c2600d2e6f22c5287da3c37061590ec9049cce5b53d03ee"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "setRecData",
+      "descriptor": "([B)V",
+      "codeOffset": 3352748,
+      "instructionSha256": "a6675a47286fe5b2725b26418463a503442cf7fbb89df865e1303c316ccc4b64"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/common/DataAbstractGetPushActiveStatus$DJIActiveVersion;",
+      "method": "find",
+      "descriptor": "(I)Ldji/midware/data/model/common/DataAbstractGetPushActiveStatus$DJIActiveVersion;",
+      "codeOffset": 3572756,
+      "instructionSha256": "d09307d9ff01103d0fb1d5456472d5a1803a48a07eddf1fedd742c2e338560e5"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/common/DataAbstractGetPushActiveStatus;",
+      "method": "setPushRecData",
+      "descriptor": "([B)V",
+      "codeOffset": 5026460,
+      "instructionSha256": "6b58cc2b6bd05357f9cb86792072569599c7db2842e90b1c3b07da0a7074fd37"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/common/DataCommonActiveGetVer;",
+      "method": "getVer",
+      "descriptor": "()Ldji/midware/data/model/common/DataAbstractGetPushActiveStatus$DJIActiveVersion;",
+      "codeOffset": 5027256,
+      "instructionSha256": "53101f609882859976315cb748f3288f47044454990f686012ac77d0188adb98"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/common/DataCommonActiveGetVer;",
+      "method": "setDevice",
+      "descriptor": "(Ldji/midware/data/config/P3/DeviceType;)Ldji/midware/data/model/common/DataCommonActiveGetVer;",
+      "codeOffset": 5027280,
+      "instructionSha256": "ce1a3848335ca22ee6954fae123194949d014f4ef2f89a6c77b98d529b9393a7"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/common/DataCommonActiveGetVer;",
+      "method": "setRecData",
+      "descriptor": "([B)V",
+      "codeOffset": 5027304,
+      "instructionSha256": "a7d04f3c2a54fbf6d015e2c7ab9c9ca28dffe473ddd236e9833e80698eed0940"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/common/DataCommonActiveGetVer;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 5027644,
+      "instructionSha256": "99707a6cbb276fcaf25d9abc6cac21b5f69dfae71e1df6f14a60476f3c9d45d5"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/packages/P3/RecvPack;",
+      "method": "isNeedCcode",
+      "descriptor": "()V",
+      "codeOffset": 5031076,
+      "instructionSha256": "56ebd2bfd536331c7470349c7c7d1be7085b613231fa02ac8f815e32c574a83e"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/packages/P3/RecvPack;",
+      "method": "setBuffer",
+      "descriptor": "([B)V",
+      "codeOffset": 5031432,
+      "instructionSha256": "f3a4d52a3ef8cf1d939cb1b1e00d6b7f2fd8f65fe1a8b37f1916b2e340c342c2"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/battery/BatteryPhantom4Abstraction;",
+      "method": "getSerialNumber",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback; I)V",
+      "codeOffset": 5989200,
+      "instructionSha256": "62b882ae77bc8c429f5a011eb9408f231ef3db3843df629f4fb57c0356dc3ad8"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/camera/DJICameraBaseAbstraction;",
+      "method": "getSerialNumber",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback; I)V",
+      "codeOffset": 5991164,
+      "instructionSha256": "590dc605d4a4532ae7e4d79fcd52f5fae2febb7e72d88569e27fb42c176165f4"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/flightcontroller/FlightControllerAbstraction$8;",
+      "method": "onSuccess",
+      "descriptor": "(Ljava/lang/Object;)V",
+      "codeOffset": 5213984,
+      "instructionSha256": "806a27c8decb067b3c0d7cd344743f747879430ff2fa0e36ef7c47d795938166"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/flightcontroller/FlightControllerAbstraction;",
+      "method": "getSerialNumber",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback; I)V",
+      "codeOffset": 5217392,
+      "instructionSha256": "b292d4dfb8c6ba6c6dd2c3b8ea31273433410d144b47a462b907d9b080e47820"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/remotecontroller/DJIRCAbstraction;",
+      "method": "getSerialNumber",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback; I)V",
+      "codeOffset": 5283564,
+      "instructionSha256": "7c7ad10e4a941acf41be348d047f45eb4b3ce92c5742f6f04ed52168e3506215"
+    }
+  ],
+  "baseCommonPolicy": {
+    "commandSet": 0,
+    "commandId": 50,
+    "isBlock": false,
+    "isMix": true,
+    "modelClass": null,
+    "explicitNullClass": true,
+    "needsCcode": true,
+    "needsCcodeDerivedFromConstructor": true
+  },
+  "receiveMapping": {
+    "ackReturnCodeRawPayloadOffset": 0,
+    "ackBusinessRawPayloadOffset": 1,
+    "requestBusinessRawPayloadOffset": 0,
+    "sourceCallbackSuccessCcode": 0,
+    "cameraOnlyAlternateSuccessCcode": 1,
+    "actualCmdSetExtensionSelectionVerified": false
+  },
+  "mixedDelivery": {
+    "processorPathEligible": true,
+    "pushPathEligible": true,
+    "nullClassAlsoYieldsNullBaseInstance": true,
+    "conditionalGimbalReflectionClass": "dji.midware.data.model.P3.DataGimbalActiveStatus",
+    "actualReflectionSuccessVerified": false
+  },
+  "sourcePushOrder": {
+    "assignsRawCacheBeforeNullLengthAndAckGuards": true,
+    "parsingMinimumBytes": 11,
+    "shortVersionAckCouldReplaceStatusCache": true,
+    "everyAckGuaranteedToReachPushModel": false,
+    "sourceCacheBehaviorCopiedToSdk": false
+  },
+  "versionQueryCallers": [
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/common/DataCommonActiveGetVer;",
+      "method": "setRecData",
+      "descriptor": "([B)V",
+      "queryMethods": [
+        "get"
+      ],
+      "deviceTypeLiterals": [],
+      "literalDataflowToQueryVerified": false
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/common/DataCommonActiveGetVer;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "queryMethods": [
+        "start"
+      ],
+      "deviceTypeLiterals": [
+        "APP",
+        "BATTERY"
+      ],
+      "literalDataflowToQueryVerified": false
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/battery/BatteryPhantom4Abstraction;",
+      "method": "getSerialNumber",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback; I)V",
+      "queryMethods": [
+        "<init>",
+        "setDevice",
+        "start"
+      ],
+      "deviceTypeLiterals": [
+        "BATTERY"
+      ],
+      "literalDataflowToQueryVerified": false
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/camera/DJICameraBaseAbstraction;",
+      "method": "getSerialNumber",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback; I)V",
+      "queryMethods": [
+        "<init>",
+        "setReceiverId",
+        "setDevice",
+        "start"
+      ],
+      "deviceTypeLiterals": [
+        "CAMERA"
+      ],
+      "literalDataflowToQueryVerified": false
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/flightcontroller/FlightControllerAbstraction$8;",
+      "method": "onSuccess",
+      "descriptor": "(Ljava/lang/Object;)V",
+      "queryMethods": [
+        "getVer"
+      ],
+      "deviceTypeLiterals": [],
+      "literalDataflowToQueryVerified": false
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/flightcontroller/FlightControllerAbstraction;",
+      "method": "getSerialNumber",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback; I)V",
+      "queryMethods": [
+        "<init>",
+        "setDevice",
+        "start"
+      ],
+      "deviceTypeLiterals": [
+        "FLYC"
+      ],
+      "literalDataflowToQueryVerified": false
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/remotecontroller/DJIRCAbstraction;",
+      "method": "getSerialNumber",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback; I)V",
+      "queryMethods": [
+        "<init>",
+        "setDevice",
+        "start"
+      ],
+      "deviceTypeLiterals": [
+        "RC"
+      ],
+      "literalDataflowToQueryVerified": false
+    }
+  ],
+  "callerScanScope": "Exact invoke target owner DataCommonActiveGetVer across all eight banks; device literals are not a dataflow proof.",
+  "absentGimbalCallerProvesUnsupported": false,
+  "requestAssociationVerified": false,
+  "hg724EntryEstablished": false,
+  "actualSessionVersionVerified": false,
+  "targetDeviceVerified": false,
+  "appCodeExecuted": false,
+  "javaReflectionExecuted": false,
+  "sdkSendAdded": false,
+  "sdkReceiveAdded": false,
+  "wholeProtocolRecovered": false,
+  "remaining": [
+    "Base-table ACK mapping does not verify actual extension/session or target traffic.",
+    "Version query and activation status share command00:32; decode only with explicit request context.",
+    "Failure/short/unknown versions must not become known version0 or overwrite activation status.",
+    "GIMBAL source response support does not prove an HG724 version-query caller, activation/binding or persistence."
+  ]
+}

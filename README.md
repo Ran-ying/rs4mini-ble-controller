@@ -339,3 +339,8 @@ python3 -m http.server 8000 --bind 127.0.0.1
 ## COMMON00:32激活状态源审计
 
 八段56方法确认COMMON/ActiveStatus wire50（非ordinal20）、显式null Class、版本查询00与可能更新单例的版本响应，以及GET/SET/FAIL的版本/SN布局。Ver1_3与Ver13不同；新版SN最多复制16字节但分配仍用原始字节数+10。新增只读解析严格区分显式null与未知对象，旧通用解析器不改写。见tools/research/ACTIVATION.md及protocol/research/ronin-activation-evidence.json（仓库根目录）。00:32单列后当前清单49个命令或缺口条目，不是49项设备支持；无HG724/实际BLE/包层/网络业务及持久化验收，SDK收发未开放。运行时0.7.32/0.3.32，无设备激活/硬件/liveUI/厂商执行或高级新增，完整门槛false。
+
+
+## COMMON00:32接收与查询缓存边界
+
+八段39方法审计确认基础COMMON表isBlock=false/isMix=true，构造独立needsCcode=true，明文ACK先剥离返回码；显式null模型仍有按GIMBAL名称反射回退的条件路径。源激活状态类在null/长度/ACK检查前保存业务体，短版本响应可能先覆盖缓存，SDK不能照搬。八段精确invoke owner扫描7方法，5个类外方法无GIMBAL字段字面引用，不当成不支持或完整数据流证明。见[接收审计](tools/research/ACTIVATION_RECEIVE.md)（仓库根目录）及protocol/research/ronin-activation-receive-evidence.json。没有SDK收发、激活/硬件/liveUI/厂商执行或高级新增；运行时0.7.32/0.3.32、清单49项及两门槛false不变。

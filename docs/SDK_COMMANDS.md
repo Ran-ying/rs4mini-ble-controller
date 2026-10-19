@@ -1,7 +1,7 @@
 # 设备 SDK 命令审计与高级开发前置条件
 
 2026-10-19，0.7.32 / 原生 0.3.32。**尚不能确认 RS 4 Mini 全部非相机 BLE 命令都已枚举、解析并封装。**
-机器清单是 [protocol/COMMANDS.json](../protocol/COMMANDS.json)，目前记录 48 个命令或缺口条目；
+机器清单是 [protocol/COMMANDS.json](../protocol/COMMANDS.json)，目前记录 49 个命令或缺口条目；
 它不是厂商完整命令表，不能以“所有已知代码已封装”代替“所有设备命令已知”。
 
 用户指定的顺序：两层拆分 → 底层全部范围内命令解析/封装验收 → 继续新增高级功能。
@@ -19,6 +19,7 @@
 | 命令/缺口 | 内容 | 请求封装 / 响应解析 | 设备证据 | 尚缺什么 |
 |---|---|---|---|---|
 | `00:01` | 版本查询 | `implemented` / `raw` | `other-model` | 响应返回原始消息，型号/版本字段未确认 |
+| `00:32` | 通用激活状态/版本源候选 | unknown / unknown | official-app-enum | 56方法核对COMMON wire50、版本查询00和SN布局；无HG724/BLE/包层与持久化验收，SDK不开放，见ACTIVATION.md |
 | `04:01` | 虚拟摇杆及中位停止 | `implemented` / `not-applicable` | `hardware` | 历史设备行为已验证，无固件执行确认 |
 | `04:02` | 位置查询 | `implemented` / `raw` | `other-model` | 本机历史尝试未收到有效响应，不能判断不支持 |
 | `04:05` | 姿态与关节通知 | `not-applicable` / `partial` | `hardware` | 姿态/关节映射已确认；四元数顺序及部分标志未知 |

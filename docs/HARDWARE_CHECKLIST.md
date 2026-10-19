@@ -225,3 +225,8 @@
 ## 04:40平衡调整请求与旧视图研究
 
 固定六段61方法核对同命令发送/接收类、8个请求值、状态二进制字符串按十进制解析为0/1/10/11和非连续建议枚举；6个类外直接调用方法集中旧GimbalAdjustView。源attach可能关电机、20秒本地timer、错误/完成/超时发STOP，而detach未发STOP；不等于本机停止保证。见[平衡调整审计](tools/research/BALANCE_ADJUST.md)（仓库根目录）及protocol/research/ronin-balance-adjust-evidence.json。HG724入口、线上包层和物理效果未确认，未开放04:40 SDK收发、不替代balance_test/index37，无硬件/UI/厂商执行或高级新增，运行时仍0.7.32/0.3.32，全命令门槛false。
+
+
+## COMMON00:32激活状态源审计
+
+八段56方法确认COMMON/ActiveStatus wire50（非ordinal20）、显式null Class、版本查询00与可能更新单例的版本响应，以及GET/SET/FAIL的版本/SN布局。Ver1_3与Ver13不同；新版SN最多复制16字节但分配仍用原始字节数+10。新增只读解析严格区分显式null与未知对象，旧通用解析器不改写。见tools/research/ACTIVATION.md及protocol/research/ronin-activation-evidence.json（仓库根目录）。00:32单列后当前清单49个命令或缺口条目，不是49项设备支持；无HG724/实际BLE/包层/网络业务及持久化验收，SDK收发未开放。运行时0.7.32/0.3.32，无设备激活/硬件/liveUI/厂商执行或高级新增，完整门槛false。

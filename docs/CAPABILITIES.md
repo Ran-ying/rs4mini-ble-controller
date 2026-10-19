@@ -180,3 +180,8 @@
 ## 平衡入口型号条件与共享布局研究
 
 固定六段30方法、4视图映射/3独立布局确认：有效所选项为HG724且BalanceCheck入口被调用时走GimbalVideoAdjustRS3，视频测试按钮GONE；两个新旧视频名共享同一布局/根类，不能连接为GimbalAdjustHG701的04:40发送。强制旧测试页可见说明是独立条件，不证明普通导航；限定字段引用扫描未建立旧调整页入口，也不证明固件不支持。见tools/research/BALANCE_ENTRY.md及protocol/research/ronin-balance-entry-evidence.json（仓库根目录）。没有新增SDK收发/高级功能或硬件/liveUI/厂商执行，运行时仍0.7.32/0.3.32，全部命令门槛false。
+
+
+## COMMON00:32激活状态源审计
+
+八段56方法确认COMMON/ActiveStatus wire50（非ordinal20）、显式null Class、版本查询00与可能更新单例的版本响应，以及GET/SET/FAIL的版本/SN布局。Ver1_3与Ver13不同；新版SN最多复制16字节但分配仍用原始字节数+10。新增只读解析严格区分显式null与未知对象，旧通用解析器不改写。见tools/research/ACTIVATION.md及protocol/research/ronin-activation-evidence.json（仓库根目录）。00:32单列后当前清单49个命令或缺口条目，不是49项设备支持；无HG724/实际BLE/包层/网络业务及持久化验收，SDK收发未开放。运行时0.7.32/0.3.32，无设备激活/硬件/liveUI/厂商执行或高级新增，完整门槛false。

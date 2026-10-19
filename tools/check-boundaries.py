@@ -808,3 +808,18 @@ if manifest.get('prefixRestorationResearch'):
     assert current['evidence']==manifest['prefixRestorationResearch'] and current['banks']==list(range(8))
     assert current['namedViews']==8 and current['backupCodeItemsMatched']==52679 and current['historicalSixBankEvidenceUnchanged'] is True
     assert current['fullAppRecovered'] is False and current['wholeProtocolRecovered'] is False and current['targetDeviceVerified'] is False
+
+if manifest.get('activationResearch'):
+    proof=json.loads((root/manifest['activationResearch']).read_text())
+    for flag in ['appCodeExecuted','liveUiExecuted','targetDeviceVerified','wholeProtocolRecovered','wholeAppRecovered','researchToolProvidesSdkInterface','sdkSendAdded','sdkReceiveAdded','hg724EntryEstablished','bleRouteVerified','activationPersistenceVerified','actualSessionVersionVerified','networkVsDeviceWorkflowFullyAudited']:
+        assert proof[flag] is False
+    assert len(proof['methods'])==56 and proof['commonEnumScope']==['ActiveStatus']
+    assert proof['command']['commandSet']==0 and proof['command']['commandId']==50
+    assert proof['command']['enumBinding']['arguments']==['ActiveStatus',20,50,0,1,None]
+    assert proof['command']['enumBinding']['explicitNullArgumentIndexes']==[5]
+    assert proof['commandSetSourceBinding']['unresolvedReferenceArgumentIndexes']==[3]
+    assert proof['typeValuesByVersion']['Ver1_3']['SET']==18 and proof['typeValuesByVersion']['Ver13']['SET']==2
+    assert proof['sourceVersionQuery']['bodyHex']=='00' and proof['sourceVersionQuery']['sourceResendPolicyCopiedToSdk'] is False
+    assert proof['sourceResponse']['wireOffsetsIndependentlyVerified'] is False
+    row=next(row for row in manifest['commands'] if row['key']=='00:32')
+    assert row['activationResearch']==manifest['activationResearch'] and row['requestCodec']=='unknown' and not row['implementation']

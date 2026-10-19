@@ -334,3 +334,8 @@ python3 -m http.server 8000 --bind 127.0.0.1
 ## 八段具名恢复与新增调用者
 
 静态保护层线索结合自写SM4-ECB解码，八段完整保护容器源Adler32一致，独立OpenSSL核对全部1MiB前缀一致；01/07现已恢复可解析的类/方法/原型视图，共匹配52679条备份。源SHA1不匹配保护容器仍明确记录，派生校验和不冒充原始源码签名。旧六段[112,originalSize)元数据/代码字节一致、原文件不改写。新增01/07解析找到19方法/60稳定器直接引用，含激活库入口，未证明HG724/BLE路径或新增SDK发送。当前范围以tools/research/PREFIX_RESTORATION.md及protocol/research/ronin-prefix-restoration-evidence.json为准（仓库根目录）；旧六段扫描和“01/07未恢复”保留为历史证据，不自动提升旧结论为八段重审。运行时0.7.32/0.3.32，全App/全协议、全命令及高级门槛仍false，无硬件/liveUI/厂商代码执行。
+
+
+## COMMON00:32激活状态源审计
+
+八段56方法确认COMMON/ActiveStatus wire50（非ordinal20）、显式null Class、版本查询00与可能更新单例的版本响应，以及GET/SET/FAIL的版本/SN布局。Ver1_3与Ver13不同；新版SN最多复制16字节但分配仍用原始字节数+10。新增只读解析严格区分显式null与未知对象，旧通用解析器不改写。见tools/research/ACTIVATION.md及protocol/research/ronin-activation-evidence.json（仓库根目录）。00:32单列后当前清单49个命令或缺口条目，不是49项设备支持；无HG724/实际BLE/包层/网络业务及持久化验收，SDK收发未开放。运行时0.7.32/0.3.32，无设备激活/硬件/liveUI/厂商执行或高级新增，完整门槛false。

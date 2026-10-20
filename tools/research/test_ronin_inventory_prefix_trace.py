@@ -77,23 +77,33 @@ class InventoryPrefixTraceTests(unittest.TestCase):
 
     def test_full_scan_finds_synthetic_orphan_wire_200_in_every_bank_00_through_07(self):
         """End-to-end: inject orphan into each bank through scan(); banks 00-04 must not be skipped."""
+        import os
         import sys
         root = Path(__file__).resolve().parents[2]
         apk = root / 'work/research/dji-ronin-2.2.2.apk'
         bank_dir = root / 'work/research/prefix-restored-final-b'
         if not apk.is_file() or not bank_dir.is_dir():
             self.skipTest('pinned APK/PREFIX banks unavailable')
-        for site in sorted(root.glob('work/research/analysis-venv/lib/python*/site-packages')):
-            if str(site) not in sys.path:
+        # Accept analysis-venv site-packages, flat analysis-libs, or RONIN_ANALYSIS_PYTHONPATH.
+        sites = []
+        env = os.environ.get('RONIN_ANALYSIS_PYTHONPATH', '').strip()
+        if env:
+            sites.extend(Path(p) for p in env.split(os.pathsep) if p)
+        sites.extend(sorted(root.glob('work/research/analysis-venv/lib/python*/site-packages')))
+        libs = root / 'work/research/analysis-libs'
+        if libs.is_dir():
+            sites.append(libs)
+        for site in sites:
+            if site.is_dir() and str(site) not in sys.path:
                 sys.path.insert(0, str(site))
-            break
-        else:
-            self.skipTest('analysis venv (androguard/loguru) unavailable')
         try:
             import loguru  # noqa: F401
             import androguard  # noqa: F401
         except ImportError:
-            self.skipTest('androguard/loguru not importable')
+            self.skipTest(
+                'androguard/loguru not importable; set RONIN_ANALYSIS_PYTHONPATH or install under '
+                'work/research/analysis-venv or work/research/analysis-libs'
+            )
         extras = {bank: [synthetic_gimbal_orphan_operations(200)] for bank in PREFIX_BANKS}
         result = scan(apk, bank_dir, synthetic_operations_by_bank=extras)
         orphans = result['eightBankPacketScan']['orphanGimbalLiteralCandidatesOutsideExtractedEnum']

@@ -433,6 +433,10 @@ if manifest.get('programPrefixResearch'):
     for key in ['04:25','04:37','04:62','04:63']:
         row=next(row for row in manifest['commands'] if row['key']==key)
         assert row['programPrefixResearch']==manifest['programPrefixResearch'] and not row['implementation']
+if manifest.get('queueCCompletionAbortResearch'):
+    qc=json.loads((root/manifest['queueCCompletionAbortResearch']).read_text())
+    assert qc['status']=='statically_exhausted_needs_hardware' and qc['rotateCompletion']['hostSuccessTiedToAck'] is False
+    assert qc['firmwareCompletionOrAbortVerified'] is False and len(qc['absStartInvokeSites'])==1
 if manifest.get('queueBReferenceFrameResearch'):
     qb=json.loads((root/manifest['queueBReferenceFrameResearch']).read_text())
     assert qb['apkSha256']==controls['apkSha256'] and qb['status']=='statically_exhausted_needs_hardware'

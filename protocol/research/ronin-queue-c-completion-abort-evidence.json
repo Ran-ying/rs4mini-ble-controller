@@ -1,0 +1,142 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "bankSha256": {
+    "0": "2229f1f19aa8fe8d819c7b3cecbd844928da817e2bc9cfddfda1c0e120e4cc59",
+    "1": "0083e9f9e0e615602470ea148cfd581a0c7413a012ef5494b613242d55754f99",
+    "2": "f75800c8edb40823c72afdd0eee575135e995440da9a5fd9bfb3e5b3e9e6fe68",
+    "3": "861be662ee36ce3b195c0c1aa179642e34793df3a88e933fa1dfe2a7202a9528",
+    "4": "2fd9aa02f5c9f4217e7e6ef75d724a1ce64efa7c1f365ddb20c93be1fef85f77",
+    "5": "f78b34474816ca253b4133bdbd79ebcbf725f52d58ac00b63f921ff7082470d2",
+    "6": "4da9764901f753190e0c88b5a142a4f9cf1eed9b1b9214bdf97a21f00edcb990",
+    "7": "3fc2c4adccd59794f5c28b898d577ed414758875cadb7ce7f6782ffd5b64b723"
+  },
+  "scannedBanks": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "analysisBank": 5,
+  "appCodeExecuted": false,
+  "targetDeviceVerified": false,
+  "sendOpened": false,
+  "sdkSendAdded": false,
+  "banks": [
+    {
+      "segment": 0,
+      "derivedSha256": "2229f1f19aa8fe8d819c7b3cecbd844928da817e2bc9cfddfda1c0e120e4cc59"
+    },
+    {
+      "segment": 1,
+      "derivedSha256": "0083e9f9e0e615602470ea148cfd581a0c7413a012ef5494b613242d55754f99"
+    },
+    {
+      "segment": 2,
+      "derivedSha256": "f75800c8edb40823c72afdd0eee575135e995440da9a5fd9bfb3e5b3e9e6fe68"
+    },
+    {
+      "segment": 3,
+      "derivedSha256": "861be662ee36ce3b195c0c1aa179642e34793df3a88e933fa1dfe2a7202a9528"
+    },
+    {
+      "segment": 4,
+      "derivedSha256": "2fd9aa02f5c9f4217e7e6ef75d724a1ce64efa7c1f365ddb20c93be1fef85f77"
+    },
+    {
+      "segment": 5,
+      "derivedSha256": "f78b34474816ca253b4133bdbd79ebcbf725f52d58ac00b63f921ff7082470d2"
+    },
+    {
+      "segment": 6,
+      "derivedSha256": "4da9764901f753190e0c88b5a142a4f9cf1eed9b1b9214bdf97a21f00edcb990"
+    },
+    {
+      "segment": 7,
+      "derivedSha256": "3fc2c4adccd59794f5c28b898d577ed414758875cadb7ce7f6782ffd5b64b723"
+    }
+  ],
+  "methods": [
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalAbsAngleControl;",
+      "method": "start",
+      "descriptor": "()V",
+      "codeOffset": 4855068,
+      "instructionSha256": "dac019d109783821a8f37b3b0109868cd8d7e14cdfc22228c8d926aa0da0aa50"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalAbsAngleControl;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4855216,
+      "instructionSha256": "2e997035732e591844e6d74bbc759e02e33e3986f14417edf7d69c2c383c3316"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 4888492,
+      "instructionSha256": "3728a7cf70591cca73a1b0f9ae5d879198300a8b309edc7f310a016ae662af39"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "method": "setStartOrStop",
+      "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "codeOffset": 4888932,
+      "instructionSha256": "0f0c4e0940b979a783ef9bfe3788f5a568d403a9677ec8bcb1ceca48f0a681ab"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "rotate",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback; Ldji/common/gimbal/Rotation;)V",
+      "codeOffset": 5248528,
+      "instructionSha256": "5416211661f4c1434aa1f6790b05bb912736d8c02b88626074d8e59667a37bc4"
+    }
+  ],
+  "status": "statically_exhausted_needs_hardware",
+  "rotateCompletion": {
+    "usesAbsStartNoCallback": true,
+    "absStartCallbackOverloadExistsButUnusedByRotate": true,
+    "hostCallbackUtilsOnSuccessAfterStart": true,
+    "hostSuccessTiedToAck": false,
+    "hostSuccessTiedToPhysicalArrival": false,
+    "motionCompletionPushHandledInRotate": false
+  },
+  "absAngleTransport": {
+    "needAckYesOnPack": true,
+    "noCallbackStartDelegatesToDataBaseStartSendPack": true,
+    "callbackStartDelegatesToDataBaseStartSendPackCallback": true,
+    "ackIsNotPhysicalCompletion": true
+  },
+  "absStartInvokeSites": [
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "rotate",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback; Ldji/common/gimbal/Rotation;)V",
+      "invoke": "v0, Ldji/midware/data/model/P3/DataGimbalAbsAngleControl;->start()V",
+      "usesCallback": false
+    }
+  ],
+  "trackProgramStop": {
+    "setStartOrStopWritesPhaseField": true,
+    "stopPhaseIsProgramCommandNotRotateAbort": true,
+    "physicalAbortVerified": false
+  },
+  "stabilizationWaitIsNotAngleCompletion": true,
+  "firmwareCompletionOrAbortVerified": false,
+  "reasonNotClosed": "rotate calls AbsAngleControl.start()V then CallbackUtils.onSuccess without waiting for ACK or a reach notification. A start(callback) overload exists for ACK association but is unused by rotate. Track setStartOrStop is a program phase, not a 04:14 abort. Physical completion/cancel/disconnect behavior needs hardware.",
+  "remaining": [
+    "Do not treat host onSuccess as motion complete.",
+    "Do not open program stop or 04:14 based on this audit."
+  ]
+}

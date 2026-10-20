@@ -37,7 +37,7 @@
 |---|---|---|---|
 | A ✓ 静态耗尽 | 动态能力 / 索引地址 / EYE | 端到端链 + 四子项静态耗尽：App rotate 无条件发 EYE；index 默认0/映射；EYE/GIMBAL `isNeedEncrypt=true`；Ronin2 参数能力路径存在。**本机/直连验证未做** | [QUEUE_A_SEMANTICS](../tools/research/QUEUE_A_SEMANTICS.md)、[ROTATE_EYE_TRANSPORT](../tools/research/ROTATE_EYE_TRANSPORT.md) |
 | B ✓ 静态耗尽 | 参考系 | ActualPose≠MotorAngle；无源码等式绑定 04:05；04:14 controlMode≠物理参考系。**物理系未证** | [QUEUE_B_REFERENCE_FRAME](../tools/research/QUEUE_B_REFERENCE_FRAME.md)、[TRACK_POINTS](../tools/research/TRACK_POINTS.md) |
-| C | 完成 / 中止 | 动作完成通知、abort/cancel 路径、与会话/ACK 的关联；静态只记源码契约 | 程序状态 / 运动控制类 |
+| C ✓ 静态耗尽 | 完成 / 中止 | rotate 无回调 start + 立即 onSuccess；ACK 重载存在但未用；程序 stop 相位≠运动 abort。**物理完成未证** | [QUEUE_C_COMPLETION_ABORT](../tools/research/QUEUE_C_COMPLETION_ABORT.md) |
 | D | 程序型号与相机隔离 | 全景曝光、轨迹录制字段与纯云台原语的边界；型号/组件条件 | [PROGRAM_PREFIX](../tools/research/PROGRAM_PREFIX.md) |
 | E | 会话版本 / 状态关联 | 查询版本、激活/CENTER 状态缓存与会话关联；不能把版本查询混入激活缓存 | [ACTIVATION](../tools/research/ACTIVATION.md)、[ACTIVATION_RECEIVE](../tools/research/ACTIVATION_RECEIVE.md) |
 

@@ -1,5 +1,6 @@
 import hashlib
 import json
+import os
 import tempfile
 import unittest
 from pathlib import Path
@@ -8,6 +9,40 @@ from ronin_inventory_prefix_trace import (
     PREFIX_BANKS, CMD_ENUM, extract_cmdid_gimbal_entries, discover_missing_from_commands, scan,
     synthetic_gimbal_orphan_operations,
 )
+
+
+def _probe(interpreter, paths):
+    """True only if interpreter imports the real DEX parser chain (lxml.etree etc.)."""
+    import subprocess
+    if not Path(interpreter).exists():
+        return False
+    env = dict(os.environ, PYTHONPATH=os.pathsep.join(paths))
+    proc = subprocess.run(
+        [interpreter, '-c', 'import loguru, lxml.etree; from androguard.core.dex import DEX'],
+        capture_output=True, text=True, env=env,
+    )
+    return proc.returncode == 0
+
+
+def select_analysis_env(root):
+    """Pick (interpreter, extra_paths) whose packages match that interpreter's ABI."""
+    import sys
+    candidates = []
+    env_py = os.environ.get('RONIN_ANALYSIS_PYTHON', '').strip()
+    env_path = [p for p in os.environ.get('RONIN_ANALYSIS_PYTHONPATH', '').split(os.pathsep) if p]
+    if env_py or env_path:
+        candidates.append((env_py or sys.executable, env_path))
+    libs = root / 'work/research/analysis-libs'
+    candidates.append((sys.executable, []))
+    if libs.is_dir():
+        candidates.append((sys.executable, [str(libs)]))
+    candidates.append((str(root / 'work/research/analysis-venv/bin/python'), []))
+    if libs.is_dir():
+        candidates.append((str(root / 'work/python312/bin/python'), [str(libs)]))
+    for interpreter, paths in candidates:
+        if _probe(interpreter, paths):
+            return interpreter, paths
+    return None
 
 
 class InventoryPrefixTraceTests(unittest.TestCase):
@@ -76,45 +111,47 @@ class InventoryPrefixTraceTests(unittest.TestCase):
             self.assertFalse(r[flag])
 
     def test_full_scan_finds_synthetic_orphan_wire_200_in_every_bank_00_through_07(self):
-        """End-to-end: inject orphan into each bank through scan(); banks 00-04 must not be skipped."""
-        import os
+        """End-to-end: inject orphan into each bank through scan(); banks 00-04 must not be skipped.
+
+        Runs in-process when this interpreter can import the real DEX parser, otherwise dispatches
+        to a compatible analysis interpreter. Scan/hash errors are never swallowed.
+        """
+        import subprocess
         import sys
         root = Path(__file__).resolve().parents[2]
         apk = root / 'work/research/dji-ronin-2.2.2.apk'
         bank_dir = root / 'work/research/prefix-restored-final-b'
         if not apk.is_file() or not bank_dir.is_dir():
             self.skipTest('pinned APK/PREFIX banks unavailable')
-        # Accept analysis-venv site-packages, flat analysis-libs, or RONIN_ANALYSIS_PYTHONPATH.
-        sites = []
-        env = os.environ.get('RONIN_ANALYSIS_PYTHONPATH', '').strip()
-        if env:
-            sites.extend(Path(p) for p in env.split(os.pathsep) if p)
-        sites.extend(sorted(root.glob('work/research/analysis-venv/lib/python*/site-packages')))
-        libs = root / 'work/research/analysis-libs'
-        if libs.is_dir():
-            sites.append(libs)
-        for site in sites:
-            if site.is_dir() and str(site) not in sys.path:
-                sys.path.insert(0, str(site))
-        try:
-            import loguru  # noqa: F401
-            import androguard  # noqa: F401
-        except ImportError:
+        env = select_analysis_env(root)
+        if env is None:
             self.skipTest(
-                'androguard/loguru not importable; set RONIN_ANALYSIS_PYTHONPATH or install under '
-                'work/research/analysis-venv or work/research/analysis-libs'
+                'no analysis env compatible with an available interpreter can import '
+                'androguard.core.dex (tried RONIN_ANALYSIS_PYTHON/RONIN_ANALYSIS_PYTHONPATH, '
+                'work/research/analysis-venv, work/python312 + work/research/analysis-libs)'
             )
-        extras = {bank: [synthetic_gimbal_orphan_operations(200)] for bank in PREFIX_BANKS}
-        result = scan(apk, bank_dir, synthetic_operations_by_bank=extras)
-        orphans = result['eightBankPacketScan']['orphanGimbalLiteralCandidatesOutsideExtractedEnum']
-        self.assertEqual(result['eightBankPacketScan']['banksScanned'], list(PREFIX_BANKS))
-        by_bank = {}
-        for row in orphans:
-            if row.get('className') == 'Lsynthetic/InjectedPacketProbe;' and row.get('commandId') == 200:
-                by_bank.setdefault(row['segment'], []).append(row)
-        self.assertEqual(set(by_bank), set(PREFIX_BANKS), 'missing synthetic orphans in banks: %r' % (set(PREFIX_BANKS) - set(by_bank)))
-        for bank in PREFIX_BANKS:
-            self.assertGreaterEqual(len(by_bank[bank]), 1)
+        interpreter, paths = env
+        script = (
+            'import json,sys\n'
+            'from pathlib import Path\n'
+            'from ronin_inventory_prefix_trace import PREFIX_BANKS, scan, synthetic_gimbal_orphan_operations\n'
+            'extras = {b: [synthetic_gimbal_orphan_operations(200)] for b in PREFIX_BANKS}\n'
+            'r = scan(Path(sys.argv[1]), Path(sys.argv[2]), synthetic_operations_by_bank=extras)\n'
+            'ps = r["eightBankPacketScan"]\n'
+            'hits = sorted({o["segment"] for o in ps["orphanGimbalLiteralCandidatesOutsideExtractedEnum"]\n'
+            '               if o.get("className") == "Lsynthetic/InjectedPacketProbe;" and o.get("commandId") == 200})\n'
+            'print(json.dumps(dict(banksScanned=ps["banksScanned"], hits=hits)))\n'
+        )
+        run_env = dict(os.environ, PYTHONPATH=os.pathsep.join(paths + [str(root / 'tools/research')]))
+        proc = subprocess.run(
+            [interpreter, '-c', script, str(apk), str(bank_dir)],
+            capture_output=True, text=True, env=run_env, cwd=str(root),
+        )
+        self.assertEqual(proc.returncode, 0, 'real-input scan failed under %s:\n%s' % (interpreter, proc.stderr[-4000:]))
+        result = json.loads(proc.stdout.strip().splitlines()[-1])
+        self.assertEqual(result['banksScanned'], list(PREFIX_BANKS))
+        self.assertEqual(result['hits'], list(PREFIX_BANKS),
+                         'missing synthetic orphans in banks: %r' % (set(PREFIX_BANKS) - set(result['hits'])))
 
 
     def test_active_device_controller_ctor_first_getInstance_byte_offset_is_70(self):

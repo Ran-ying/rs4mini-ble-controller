@@ -2,6 +2,10 @@
 
 研究方法、证据等级、下一步顺序与完成条件见 [研究路线图](RESEARCH_ROADMAP.md)。**八段直接引用重审已完成；剩余离线静态队列（能力/EYE、参考系、完成/中止、程序与相机隔离、会话版本关联）仍开放，见路线图。**
 
+## 最新研究：04:14 rotate→EYE→transport 端到端
+
+2026-10-20。ronin_rotate_eye_transport_trace.py 在 PREFIX bank05 追到：继承 rotate → justSendPauseData（EYE/AppState、SINGLE id7、体 0100）→ DataBase.start；ABS 路径 start 后立刻 onSuccess，不等待 ACK/到位。静态与硬件项分列；不开放发送。见 [ROTATE_EYE_TRANSPORT.md](../tools/research/ROTATE_EYE_TRANSPORT.md)。
+
 ## 最新研究：全清单八段复核与设备管理缺口
 
 2026-10-20。ronin_inventory_prefix_trace.py 从 PREFIX bank05 **现场提取** CmdIdGimbal 注册并与 COMMANDS 比对（旧六段表仅对比）；当前 40 个非排除条目均已登记，`newlyDiscovered` 由提取计算为空。bank01 激活控制器仍为缺口、不开放写入；inventoryComplete 保持 false。见 [INVENTORY_PREFIX.md](../tools/research/INVENTORY_PREFIX.md)。

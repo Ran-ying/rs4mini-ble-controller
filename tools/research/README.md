@@ -7,6 +7,7 @@
 0D/2C/0A 八段缺口重审：[GAP_PREFIX.md](GAP_PREFIX.md)。
 
 14/0C/4C 八段运动重审：[MOTION_PREFIX.md](MOTION_PREFIX.md)。
+04:14 rotate→pause/EYE→transport 端到端：[ROTATE_EYE_TRANSPORT.md](ROTATE_EYE_TRANSPORT.md)。
 
 程序 25/37/62/63 八段重审：[PROGRAM_PREFIX.md](PROGRAM_PREFIX.md)。
 

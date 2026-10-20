@@ -1,0 +1,302 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "bankSha256": {
+    "0": "2229f1f19aa8fe8d819c7b3cecbd844928da817e2bc9cfddfda1c0e120e4cc59",
+    "1": "0083e9f9e0e615602470ea148cfd581a0c7413a012ef5494b613242d55754f99",
+    "2": "f75800c8edb40823c72afdd0eee575135e995440da9a5fd9bfb3e5b3e9e6fe68",
+    "3": "861be662ee36ce3b195c0c1aa179642e34793df3a88e933fa1dfe2a7202a9528",
+    "4": "2fd9aa02f5c9f4217e7e6ef75d724a1ce64efa7c1f365ddb20c93be1fef85f77",
+    "5": "f78b34474816ca253b4133bdbd79ebcbf725f52d58ac00b63f921ff7082470d2",
+    "6": "4da9764901f753190e0c88b5a142a4f9cf1eed9b1b9214bdf97a21f00edcb990",
+    "7": "3fc2c4adccd59794f5c28b898d577ed414758875cadb7ce7f6782ffd5b64b723"
+  },
+  "scannedBanks": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "analysisBank": 5,
+  "appCodeExecuted": false,
+  "liveUiExecuted": false,
+  "targetDeviceVerified": false,
+  "wholeProtocolRecovered": false,
+  "researchToolProvidesSdkInterface": false,
+  "sdkSendAdded": false,
+  "sdkReceiveAdded": false,
+  "sendOpened": false,
+  "banks": [
+    {
+      "segment": 0,
+      "derivedSha256": "2229f1f19aa8fe8d819c7b3cecbd844928da817e2bc9cfddfda1c0e120e4cc59",
+      "methodCount": 53828,
+      "methodWithCodeCount": 50517,
+      "hasRotateRoot": false,
+      "hasPauseModel": false,
+      "hasAbsAngle": false
+    },
+    {
+      "segment": 1,
+      "derivedSha256": "0083e9f9e0e615602470ea148cfd581a0c7413a012ef5494b613242d55754f99",
+      "methodCount": 12143,
+      "methodWithCodeCount": 11452,
+      "hasRotateRoot": false,
+      "hasPauseModel": false,
+      "hasAbsAngle": false
+    },
+    {
+      "segment": 2,
+      "derivedSha256": "f75800c8edb40823c72afdd0eee575135e995440da9a5fd9bfb3e5b3e9e6fe68",
+      "methodCount": 15931,
+      "methodWithCodeCount": 15446,
+      "hasRotateRoot": false,
+      "hasPauseModel": false,
+      "hasAbsAngle": false
+    },
+    {
+      "segment": 3,
+      "derivedSha256": "861be662ee36ce3b195c0c1aa179642e34793df3a88e933fa1dfe2a7202a9528",
+      "methodCount": 38674,
+      "methodWithCodeCount": 36349,
+      "hasRotateRoot": false,
+      "hasPauseModel": false,
+      "hasAbsAngle": false
+    },
+    {
+      "segment": 4,
+      "derivedSha256": "2fd9aa02f5c9f4217e7e6ef75d724a1ce64efa7c1f365ddb20c93be1fef85f77",
+      "methodCount": 56720,
+      "methodWithCodeCount": 53246,
+      "hasRotateRoot": false,
+      "hasPauseModel": false,
+      "hasAbsAngle": false
+    },
+    {
+      "segment": 5,
+      "derivedSha256": "f78b34474816ca253b4133bdbd79ebcbf725f52d58ac00b63f921ff7082470d2",
+      "methodCount": 55055,
+      "methodWithCodeCount": 53173,
+      "hasRotateRoot": true,
+      "hasPauseModel": true,
+      "hasAbsAngle": true
+    },
+    {
+      "segment": 6,
+      "derivedSha256": "4da9764901f753190e0c88b5a142a4f9cf1eed9b1b9214bdf97a21f00edcb990",
+      "methodCount": 48024,
+      "methodWithCodeCount": 45737,
+      "hasRotateRoot": false,
+      "hasPauseModel": false,
+      "hasAbsAngle": false
+    },
+    {
+      "segment": 7,
+      "derivedSha256": "3fc2c4adccd59794f5c28b898d577ed414758875cadb7ce7f6782ffd5b64b723",
+      "methodCount": 3240,
+      "methodWithCodeCount": 2977,
+      "hasRotateRoot": false,
+      "hasPauseModel": false,
+      "hasAbsAngle": false
+    }
+  ],
+  "methods": [
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "preprocessPack",
+      "descriptor": "(Ldji/midware/data/packages/P3/SendPack;)Ldji/midware/data/packages/P3/SendPack;",
+      "codeOffset": 3349576,
+      "instructionSha256": "d3a10a8f824d42d2606e477d2d8a0e66aaf2671152d50733e44b6d40bc1285b9"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DataBase;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/data/packages/P3/SendPack;)V",
+      "codeOffset": 3352840,
+      "instructionSha256": "1f36978d337a64663097cbc208123ed6e03955e27893c798faedb6e0c2ce9e8b"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalAbsAngleControl;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 4854632,
+      "instructionSha256": "54d2ef252d489d6b68176fb528acc0fbab5463ba405d23ddfbdbaa917ff17ee8"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataSingleSendAppStateForStabilization;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 4975900,
+      "instructionSha256": "f0c62e343e1f9cf7467358aaf9b661a8b08b6f65a9fc1f06b5f6de84f3028c47"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataSingleSendAppStateForStabilization;",
+      "method": "start",
+      "descriptor": "()V",
+      "codeOffset": 4976040,
+      "instructionSha256": "4203a2ef393c1a3074ae9319ff32052822d188d89044db16751f45bedd7106b0"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/util/DoubleCameraSupportUtil;",
+      "method": "getGimbalIdInProtocol",
+      "descriptor": "(I)I",
+      "codeOffset": 3788548,
+      "instructionSha256": "ce2276998e5bcc59aa75507dce71cb59bb23d509a8aea39c3cfd03dda89fe189"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "getReceiverIdByIndex",
+      "descriptor": "()I",
+      "codeOffset": 5246620,
+      "instructionSha256": "8ba90ecf1db263d0bf5ea0a280f56622008fcdb721a022e72b95580e2b9692ad"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "justSendPauseData",
+      "descriptor": "()V",
+      "codeOffset": 5247480,
+      "instructionSha256": "7fd8adc5bcd516fde336f70ec7df2208c117d5421d3155f43a0943f497b7edf5"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "rotate",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback; Ldji/common/gimbal/Rotation;)V",
+      "codeOffset": 5248528,
+      "instructionSha256": "5416211661f4c1434aa1f6790b05bb912736d8c02b88626074d8e59667a37bc4"
+    }
+  ],
+  "hg724OverridesRotate": [],
+  "chain": {
+    "entry": {
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "rotate",
+      "inheritedByHg724WithoutOverride": true,
+      "note": "HG724 inherits base rotate; missing HG724-named override is not proof of no inherited business entry"
+    },
+    "pauseGate": {
+      "helper": "justSendPauseData",
+      "calledBeforeSpeedAndAbsPacks": true,
+      "sitesCodeUnits": [
+        260,
+        646
+      ],
+      "createsFreshPauseObject": true,
+      "setsGimbalStateStart": true,
+      "invokesNoCallbackStart": true,
+      "waitsForBusinessAckBeforeAngleRequest": false
+    },
+    "eyeTransport": {
+      "modelClass": "Ldji/midware/data/model/P3/DataSingleSendAppStateForStabilization;",
+      "senderTypeName": "APP",
+      "senderTypeWire": 2,
+      "receiverTypeName": "SINGLE",
+      "receiverTypeWire": 17,
+      "receiverIdLiteral": 7,
+      "cmdSetName": "EYE",
+      "cmdIdName": "AppState",
+      "cmdIdWire": 98,
+      "cmdIdOrdinal": 35,
+      "needAckYes": true,
+      "encryptTypeNoOnPack": true,
+      "delegatesToDataBaseStartSendPack": true,
+      "notGimbalCommandSet": true,
+      "notCommand04_62Or04_60": true,
+      "body": {
+        "bodyBytes": 2,
+        "byte0": "gimbalState.value() narrowed to byte",
+        "byte1": "cameraState.value() narrowed to byte",
+        "rotateUsesGimbalStateStart": true,
+        "startEnumName": "START",
+        "startDoesNotProvePhysicalPause": true,
+        "sourceNoCallbackBodyWhenStartAndCameraNormal": "0100",
+        "note": "defaults NORMAL/NORMAL; rotate sets gimbal START before no-callback start; camera left default"
+      }
+    },
+    "angle14": {
+      "key": "04:14",
+      "modelClass": "Ldji/midware/data/model/P3/DataGimbalAbsAngleControl;",
+      "cmdIdName": "AbsAngleControl",
+      "cmdIdWire": 20,
+      "cmdIdOrdinal": 13,
+      "setsReceiverIdFromGetReceiverIdByIndex": true,
+      "invokesNoCallbackStart": true,
+      "thenCallbackUtilsOnSuccessImmediately": true,
+      "onSuccessDoesNotWaitForAckOrMotionComplete": true,
+      "absStartCodeUnit": 1366,
+      "onSuccessCodeUnits": [
+        638,
+        1372
+      ]
+    },
+    "speed0cParallel": {
+      "key": "04:0C",
+      "note": "SPEED branch also calls justSendPauseData then SpeedControl.start then onSuccess; not the 04:14 focus of this trace",
+      "speedStartCodeUnit": 632
+    },
+    "receiverIndex": {
+      "getReceiverIdByIndexUsesDoubleCameraSupportUtil": true,
+      "sourceIndexOneMapsToId": 2,
+      "sourceOtherIntIndexesMapToId": 0,
+      "preprocessPackOverridesSendPackReceiverIdUnlessMinusOne": true,
+      "liveDeviceIndexVerified": false,
+      "bleAddressVerified": false
+    },
+    "returnPath": {
+      "earlyFailuresUseCallbackUtilsOnFailureOrOnFails": true,
+      "failureSiteCount": 6,
+      "successSiteCount": 2,
+      "successMeansHostCallbackFiredAfterStartInvocation": true,
+      "successDoesNotMeanAckAccepted": true,
+      "successDoesNotMeanPhysicalMotionComplete": true,
+      "completionOrAbortNotificationInThisMethod": false
+    },
+    "encrypt": {
+      "pauseStartSetsEncryptTypeNo": true,
+      "encryptTypeNoDoesNotProveFinalBlePlaintext": true,
+      "encryptionPathAudited": false
+    }
+  },
+  "staticallyEstablished": [
+    "Base rotate is the inherited 04:14 entry for HG724; no HG724 rotate override in PREFIX scan.",
+    "Both SPEED and ABS branches call justSendPauseData before packing their gimbal command.",
+    "justSendPauseData \u2192 DataSingleSendAppStateForStabilization with GimbalState.START \u2192 no-callback start().",
+    "That start builds SendPack: APP\u2192SINGLE id7, CmdSet EYE, CmdId AppState (wire 98), NEEDACK YES, EncryptType NO, then DataBase.start(SendPack).",
+    "Pause doPack is 2 bytes: gimbalState byte, cameraState byte; START+default camera yields source body 0100.",
+    "ABS path: setReceiverId(getReceiverIdByIndex()) \u2192 AbsAngleControl.start() \u2192 CallbackUtils.onSuccess; no wait for ACK or motion done.",
+    "Index mapping source: index==1 \u2192 receiver id 2, else 0; preprocessPack can override pack receiverId when stored id != -1."
+  ],
+  "needsHardwareOrLiveSession": [
+    "Whether RS 4 Mini / direct BLE must emit the EYE/SINGLE/id7 AppState pause message at all.",
+    "Live gimbal index and on-wire receiver address for 04:14.",
+    "Whether EncryptType.NO remains plaintext on the final BLE path.",
+    "ACK acceptance, error ccode, completion, cancel/abort, and physical motion for 04:14.",
+    "Resume / un-pause protocol after AppState START, if any.",
+    "Dynamic capability map changes after initGimbalCapability.",
+    "Reference frame of absolute angles vs host joint/attitude feedback."
+  ],
+  "remaining": [
+    "Do not open 04:14 or EYE AppState sends under current gates.",
+    "Do not treat host onSuccess as firmware ACK or physical completion.",
+    "Do not treat missing HG724-named rotate as absence of inherited entry.",
+    "CameraState field stays recorded as pack layout only; no camera API added."
+  ],
+  "relatedPriorEvidence": [
+    "tools/research/ANGLE_CONTEXT.md",
+    "tools/research/STABILIZATION_DEPENDENCY.md",
+    "tools/research/MOTION_PREFIX.md",
+    "tools/research/ANGLES.md"
+  ]
+}

@@ -16,7 +16,7 @@ Ronin UI `RoninGimbalControler`：`send` 写 permission+yaw+pitch（**不写 rol
 
 ## 04:14
 
-类外直接调用仍仅基础 `DJIGimbalAbstraction.rotate`；HG724 无 rotate 覆盖。能力/接收链历史证据保留；本机 index/地址、参考系、ACK/完成/中止、EYE 依赖适用性仍缺，发送关闭。
+端到端静态链见 [ROTATE_EYE_TRANSPORT.md](ROTATE_EYE_TRANSPORT.md)。类外直接调用仍仅基础 `DJIGimbalAbstraction.rotate`；HG724 无 rotate 覆盖。能力/接收链历史证据保留；本机 index/地址、参考系、ACK/完成/中止、EYE 依赖适用性仍缺，发送关闭。
 
 ## 04:4C
 

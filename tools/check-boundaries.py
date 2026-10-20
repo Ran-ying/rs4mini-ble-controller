@@ -433,6 +433,19 @@ if manifest.get('programPrefixResearch'):
     for key in ['04:25','04:37','04:62','04:63']:
         row=next(row for row in manifest['commands'] if row['key']==key)
         assert row['programPrefixResearch']==manifest['programPrefixResearch'] and not row['implementation']
+if manifest.get('rotateEyeTransportResearch'):
+    eye=json.loads((root/manifest['rotateEyeTransportResearch']).read_text())
+    assert eye['apkSha256']==controls['apkSha256'] and eye['scannedBanks']==list(range(8)) and eye['analysisBank']==5
+    for flag in ['appCodeExecuted','liveUiExecuted','targetDeviceVerified','wholeProtocolRecovered','researchToolProvidesSdkInterface','sdkSendAdded','sdkReceiveAdded','sendOpened']:
+        assert eye[flag] is False
+    assert eye['hg724OverridesRotate']==[] and eye['chain']['entry']['inheritedByHg724WithoutOverride'] is True
+    assert eye['chain']['eyeTransport']['cmdIdWire']==98 and eye['chain']['eyeTransport']['receiverTypeWire']==17
+    assert eye['chain']['eyeTransport']['receiverIdLiteral']==7 and eye['chain']['angle14']['cmdIdWire']==20
+    assert eye['chain']['angle14']['onSuccessDoesNotWaitForAckOrMotionComplete'] is True
+    assert eye['chain']['returnPath']['completionOrAbortNotificationInThisMethod'] is False
+    assert len(eye['staticallyEstablished'])>=5 and len(eye['needsHardwareOrLiveSession'])>=5
+    row=next(row for row in manifest['commands'] if row['key']=='04:14')
+    assert row['rotateEyeTransportResearch']==manifest['rotateEyeTransportResearch']
 if manifest.get('motionPrefixResearch'):
     motion=json.loads((root/manifest['motionPrefixResearch']).read_text())
     assert motion['apkSha256']==controls['apkSha256'] and motion['scannedBanks']==list(range(8))

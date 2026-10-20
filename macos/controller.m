@@ -2,6 +2,7 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 
 #import "RSGimbal.h"
+#import "RSSDKPanel.h"
 
 @interface HoldButton : NSButton
 @property(nonatomic, copy) void (^onPress)(void);
@@ -19,6 +20,8 @@
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, NSWindowDelegate>
 @property(nonatomic, strong) NSWindow *window;
+@property(nonatomic, strong) RSSDKPanel *sdkPanel;
+@property(nonatomic, strong) NSTimer *sdkRefresh;
 @property(nonatomic, strong) RSGimbal *gimbal;
 @property(nonatomic, strong) NSTextField *status;
 @property(nonatomic, strong) NSButton *connectButton;
@@ -54,7 +57,7 @@ static NSTextField *Label(NSString *text, CGFloat size, NSFontWeight weight) {
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
-    self.window = [[NSWindow alloc] initWithContentRect:NSMakeRect(0, 0, 420, 820)
+    self.window = [[NSWindow alloc] initWithContentRect:NSMakeRect(0, 0, 1080, MIN(820,NSScreen.mainScreen.visibleFrame.size.height-50))
                                               styleMask:(NSWindowStyleMaskTitled | NSWindowStyleMaskClosable | NSWindowStyleMaskMiniaturizable)
                                                 backing:NSBackingStoreBuffered defer:NO];
     self.window.appearance = [NSAppearance appearanceNamed:NSAppearanceNameDarkAqua];
@@ -64,8 +67,8 @@ static NSTextField *Label(NSString *text, CGFloat size, NSFontWeight weight) {
     [self.window center];
     [self.window makeKeyAndOrderFront:nil];
 
-    NSScrollView *scroll = [[NSScrollView alloc] initWithFrame:self.window.contentView.bounds];
-    scroll.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable; scroll.hasVerticalScroller = YES;
+    NSScrollView *scroll = [[NSScrollView alloc] initWithFrame:NSMakeRect(0,0,420,self.window.contentView.bounds.size.height)];
+    scroll.autoresizingMask = NSViewHeightSizable; scroll.hasVerticalScroller = YES;
     scroll.autohidesScrollers = YES; scroll.drawsBackground = NO;
     NSView *v = [[NSView alloc] initWithFrame:NSMakeRect(0, 0, 420, 1120)];
     scroll.documentView = v; [self.window.contentView addSubview:scroll];
@@ -185,6 +188,15 @@ static NSTextField *Label(NSString *text, CGFloat size, NSFontWeight weight) {
     self.gimbal.experimentalStatusHandler = ^(NSDictionary *sample) {
         weakSelf.scriptLabel.stringValue = [@"实验状态（未验证）：" stringByAppendingString:sample.description];
     };
+    self.sdkPanel=[[RSSDKPanel alloc]initWithFrame:NSMakeRect(430,0,650,820) gimbal:self.gimbal];
+    NSScrollView *sdkScroll=[[NSScrollView alloc]initWithFrame:NSMakeRect(430,0,650,self.window.contentView.bounds.size.height)];
+    sdkScroll.hasVerticalScroller=YES;sdkScroll.autohidesScrollers=YES;sdkScroll.scrollerStyle=NSScrollerStyleOverlay;sdkScroll.drawsBackground=NO;
+    sdkScroll.documentView=self.sdkPanel;[self.window.contentView addSubview:sdkScroll];
+    [sdkScroll.contentView scrollToPoint:NSMakePoint(0,MAX(0,820-sdkScroll.contentSize.height))];[sdkScroll reflectScrolledClipView:sdkScroll.contentView];
+    self.gimbal.appStatusHandler=^(NSDictionary *sample){[weakSelf.sdkPanel receiveStatus:sample];};
+    self.gimbal.messageHandler=^(NSDictionary *message){[weakSelf.sdkPanel receiveMessage:message];};
+    self.sdkRefresh=[NSTimer timerWithTimeInterval:0.2 repeats:YES block:^(NSTimer *timer){[weakSelf.sdkPanel refresh];}];
+    [[NSRunLoop mainRunLoop]addTimer:self.sdkRefresh forMode:NSRunLoopCommonModes];
     [self refreshExpansion];
 }
 

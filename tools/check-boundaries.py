@@ -43,6 +43,13 @@ for name in ['RSBleDevice.m', 'RSBleDevice.h', 'RSBleDevice_Internal.h', 'RSDevi
     assert not re.search(r'RSGimbal|RSPositionLoop|RSTrajectoryLoop|RSMotionCore|RSOrientation\(', re.sub(r'//[^\n]*', '', text)), name
 text = (root / 'macos/RSGimbal.m').read_text()
 assert not re.search(r'RS\w*Frame\(|writeFrame:|writeValue:|RSDecode', text), 'native upper layer bypasses SDK'
+for name in ['controller.m','RSSDKPanel.m','RSSDKActions.m']:
+    text=(root/'macos'/name).read_text()
+    assert not re.search(r'RS\w*Frame\(|writeFrame:|writeValue:|RSDecode',text), 'GUI bypasses public SDK: '+name
+native_public=set(re.findall(r'^- \([^)]*\)(\w+)',(root/'macos/RSBleDevice.h').read_text(),re.M))-{'initWithStatus'}
+gui_text='\n'.join((root/'macos'/name).read_text() for name in ['controller.m','RSSDKPanel.m','RSSDKActions.m'])
+gui_calls=set(re.findall(r'\[(?:\w+\.)?gimbal\s+(\w+)',gui_text))
+assert native_public <= gui_calls, 'native SDK methods missing from GUI: '+str(native_public-gui_calls)
 manifest = json.loads((root / 'protocol/COMMANDS.json').read_text())
 center_sdk = manifest.get('centerInfoSdk',{}).get('implemented',False)
 assert manifest['inventoryComplete'] is False

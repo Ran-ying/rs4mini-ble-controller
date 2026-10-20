@@ -12,3 +12,7 @@ CLANG_MODULE_CACHE_PATH="$project_dir/.module-cache" xcrun clang -fobjc-arc -fmo
 CLANG_MODULE_CACHE_PATH="$project_dir/.module-cache" xcrun clang -fobjc-arc -fmodules -Wall -Wextra -Wno-unused-parameter -Werror \
   -framework Foundation -framework CoreBluetooth "$project_dir/RSControlCore.m" "$project_dir/RSBleDevice.m" "$project_dir/test-device.m" -o "$project_dir/.build/test-device"
 "$project_dir/.build/test-device"
+# GUI command adapter routes only through the public RSGimbal SDK; no AppKit or Bluetooth manager.
+CLANG_MODULE_CACHE_PATH="$project_dir/.module-cache" xcrun clang -fobjc-arc -fmodules -Wall -Wextra -Wno-unused-parameter -Werror \
+  -framework Foundation -framework CoreBluetooth "$project_dir/RSControlCore.m" "$project_dir/RSMotionCore.m" "$project_dir/RSBleDevice.m" "$project_dir/RSGimbal.m" "$project_dir/RSSDKActions.m" "$project_dir/test-sdk-actions.m" -o "$project_dir/.build/test-sdk-actions"
+"$project_dir/.build/test-sdk-actions"

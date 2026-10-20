@@ -1,4 +1,6 @@
-# RS 4 Mini Control 0.3.33
+# RS 4 Mini Control 0.3.34
+
+新增右侧「设备 SDK」面板：43 个命名 App 来源操作、10 类被动状态、原始 degree-info 查询，复用同一个 RSGimbal。使用与验证范围见 [面板说明](../docs/MACOS_SDK_PANEL.md)。
 
 Objective-C / AppKit / CoreBluetooth 原生面板，提供三轴按住速度控制、停止、三轴回中、姿态/机械关节反馈和低速关节目标定位，不依赖 Node 或 Python。
 

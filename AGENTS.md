@@ -12,7 +12,7 @@ verification status changes.
 - Provide an unofficial, direct BLE controller for **DJI RS 4 Mini**, initially on macOS.
 - **Node.js is the authoritative implementation**; current package version is `0.7.33`.
 - The user subsequently requested completion of all existing ports. Python is now
-  `0.7.33`, Web shares the JS core, and the native panel is `0.3.33`. Describe the
+  `0.7.33`, Web shares the JS core, and the native panel is `0.3.34`. Describe the
   documented feature differences; do not claim identical APIs or hardware proof.
 - After that delivery, the user requested the remaining **non-camera** capabilities
   under the same autonomous/offline conditions. Expansion work is in progress;
@@ -1182,3 +1182,10 @@ BLE路由研究验证（2026-10-18）：最终固定输入实际提取两次，3
 显式App来源新增getCenterActivationInfo（Python另有get_center_activation_info，原生RSGimbal继承同名selector），要求sourceVersion四种已知格式，无默认/OTHER/协商。固定E5/CENTER-id7、COMMON00:32 GET01/11与严格关联明文ACK；完整本次业务体解析active/date/SN原始值及源signed-decimal字符串、尾部，无旧SN缓存成功回退。GIMBAL04:32同命令号隔离，原生完成后恢复普通04路由；无激活/绑定/SET/FAIL/自动回复/重试/重放或高级新增。见[接口契约](docs/APP_CENTER_INFO.md)（仓库根目录）。设备/当前版本/布局/激活有效性未验收，全命令及高级门槛false，无硬件/liveUI/厂商执行。
 
 0.7.33验收（2026-10-19）：十组四端共享契约及严格ACK/版本/长度检查，Node277/Web28/Python3.8与3.12各252、原生1562核心+299假设备生命周期+3独立SDK、研究两环境各513通过；统一检查终态0，严格类型/分层/签名构建通过。Node tarball隔离安装277项和类型通过；wheel隔离安装252项、三模块导入来源核对。Node110文件、wheel39模块、原生ZIP3文件与本次源码/签名构建逐字节一致，原生0.3.33/build36未启动。没有硬件/liveUI/厂商执行或npm发布/远端二进制Release；清单49、全命令/高级门槛false。
+
+
+## macOS SDK GUI 0.3.34 / build37 (2026-10-20)
+
+User requested polishing the existing SDK capabilities and making them callable from the macOS GUI. `RSSDKActions` is a typed/form adapter with 43 named App operations; `RSSDKPanel` calls the same public RSGimbal object as the original controls, displays ten passive status caches and raw degree-info messages. No packet construction, new protocol sends, new advanced composition or target-device proof. Native version0.3.34/build37; Node/Python/Web remain0.7.33. See docs/MACOS_SDK_PANEL.md. App profile is explicit, form edits never send, write permission resets per operation/request/disconnect, maintenance shows a concrete confirmation. Pending/errors/results remain distinct from physical completion. Native adapter tests use a recording proxy, not a Bluetooth manager. No real device or live connected GUI testing.
+
+GUI delivery validation: default Python3.8 and explicit Python3.12 unified scripts both pass (Node277/Web28/SDK252/research558, native1562 core+299 fake lifecycle+3 standalone+267 GUI adapter checks). Optional offscreen AppKit layout covers all43 forms, without a Bluetooth manager. Native bundle0.3.34/build37 signed and built; production app/device not launched. GUI coverage/boundary guard verifies every existing public RSBleDevice method except construction has a GUI call site; source codecs and other ports remain unchanged. No all-command completion claim.

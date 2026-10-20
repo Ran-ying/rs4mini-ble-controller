@@ -1,0 +1,819 @@
+{
+  "date": "2026-10-20",
+  "scope": "device SDK only; no GUI or advanced motion layer",
+  "runtime": {
+    "node": "0.7.35",
+    "python": "0.7.35",
+    "native": "0.3.36/build39"
+  },
+  "hardware": "same user-authorized RS4Mini, sequential clients",
+  "settingsWrite": "read sensitivity then write same value1 and fresh readback1; preauthorized",
+  "fullAcceptanceComplete": false,
+  "basicSdkUsable": true,
+  "reports": {
+    "node": {
+      "port": "node",
+      "entry": "BleDevice",
+      "rows": [
+        {
+          "name": "connect",
+          "ok": true
+        },
+        {
+          "name": "deviceLayerOnly",
+          "ok": true
+        },
+        {
+          "name": "attitude",
+          "ok": true,
+          "elapsedMs": 300,
+          "value": {
+            "pitch": -180,
+            "roll": 0,
+            "yaw": -0.1
+          }
+        },
+        {
+          "name": "joints",
+          "ok": true,
+          "elapsedMs": 995,
+          "value": {
+            "pitch": -1,
+            "roll": -1.2,
+            "yaw": 90.65
+          }
+        },
+        {
+          "name": "getFollowSensitivity",
+          "ok": true,
+          "elapsedMs": 23,
+          "value": {
+            "rawValue": 1,
+            "mode": 1
+          }
+        },
+        {
+          "name": "getMotorSettings",
+          "ok": true,
+          "elapsedMs": 22,
+          "value": {
+            "rawValue": 0
+          }
+        },
+        {
+          "name": "getCustomFollowSettings",
+          "ok": true,
+          "elapsedMs": 22,
+          "value": {
+            "rawValue": 0
+          }
+        },
+        {
+          "name": "getAxisMode",
+          "ok": true,
+          "elapsedMs": 23,
+          "value": {
+            "rawValue": 0,
+            "sourceMode": "ThreeAxis"
+          }
+        },
+        {
+          "name": "getUserProfile",
+          "ok": true,
+          "elapsedMs": 22,
+          "value": {
+            "rawValue": 0
+          }
+        },
+        {
+          "name": "getWorkMode",
+          "ok": true,
+          "elapsedMs": 23,
+          "value": {
+            "rawValue": 1,
+            "sourceMode": "Flower"
+          }
+        },
+        {
+          "name": "getSmoothTrackAxes",
+          "ok": true,
+          "elapsedMs": 22,
+          "value": {
+            "valueCount": 3
+          }
+        },
+        {
+          "name": "getFollowTuning",
+          "ok": true,
+          "elapsedMs": 23,
+          "value": {
+            "valueCount": 9
+          }
+        },
+        {
+          "name": "getRcTuning",
+          "ok": true,
+          "elapsedMs": 22,
+          "value": {
+            "valueCount": 9
+          }
+        },
+        {
+          "name": "getStandaloneTuning",
+          "ok": true,
+          "elapsedMs": 24,
+          "value": {
+            "valueCount": 6
+          }
+        },
+        {
+          "name": "sensitivity.sameValueWrite",
+          "ok": true,
+          "elapsedMs": 223,
+          "value": {
+            "statusCode": 0,
+            "acknowledged": true,
+            "requestedMode": 1
+          }
+        },
+        {
+          "name": "sensitivity.sameValueReadback",
+          "ok": true,
+          "elapsedMs": 23,
+          "value": {
+            "rawValue": 1
+          }
+        },
+        {
+          "name": "follow.speed",
+          "ok": true,
+          "elapsedMs": 23,
+          "value": {
+            "rawValue": 252
+          }
+        },
+        {
+          "name": "rc.speed",
+          "ok": true,
+          "elapsedMs": 22,
+          "value": {
+            "rawValue": 84
+          }
+        },
+        {
+          "name": "motor.single",
+          "ok": true,
+          "elapsedMs": 22,
+          "value": {
+            "valueCount": 1
+          }
+        },
+        {
+          "name": "motor.bulk",
+          "ok": false,
+          "elapsedMs": 23,
+          "code": "RS4MINI_PROTOCOL_ERROR"
+        },
+        {
+          "name": "handle",
+          "ok": false,
+          "elapsedMs": 3003,
+          "code": "RS4MINI_RESPONSE_TIMEOUT"
+        },
+        {
+          "name": "calibration.query",
+          "ok": false,
+          "elapsedMs": 3003,
+          "code": "RS4MINI_RESPONSE_TIMEOUT"
+        },
+        {
+          "name": "degreeInfo",
+          "ok": true,
+          "elapsedMs": 25,
+          "value": {
+            "payloadHex": "00"
+          }
+        },
+        {
+          "name": "stop",
+          "ok": true,
+          "elapsedMs": 208
+        },
+        {
+          "name": "decoder",
+          "ok": true,
+          "value": {
+            "invalidFrames": 0,
+            "discardedBytes": 0
+          }
+        },
+        {
+          "name": "close",
+          "ok": true,
+          "elapsedMs": 206,
+          "value": {
+            "connected": false,
+            "closed": true
+          }
+        }
+      ]
+    },
+    "python38": {
+      "port": "python",
+      "runtime": "3.8.10",
+      "entry": "BleDevice",
+      "rows": [
+        {
+          "name": "connect",
+          "ok": true
+        },
+        {
+          "name": "deviceLayerOnly",
+          "ok": true
+        },
+        {
+          "name": "attitude",
+          "ok": true,
+          "elapsedMs": 755,
+          "value": {
+            "pitch": -180.0,
+            "roll": 0.0,
+            "yaw": 0.0
+          }
+        },
+        {
+          "name": "joints",
+          "ok": true,
+          "elapsedMs": 1001,
+          "value": {
+            "pitch": -1.0,
+            "roll": -1.2,
+            "yaw": 90.65
+          }
+        },
+        {
+          "name": "getFollowSensitivity",
+          "ok": true,
+          "elapsedMs": 24,
+          "value": {
+            "rawValue": 1,
+            "mode": 1
+          }
+        },
+        {
+          "name": "getMotorSettings",
+          "ok": true,
+          "elapsedMs": 22,
+          "value": {
+            "rawValue": 0
+          }
+        },
+        {
+          "name": "getCustomFollowSettings",
+          "ok": true,
+          "elapsedMs": 23,
+          "value": {
+            "rawValue": 0
+          }
+        },
+        {
+          "name": "getAxisMode",
+          "ok": true,
+          "elapsedMs": 22,
+          "value": {
+            "rawValue": 0,
+            "sourceMode": "ThreeAxis"
+          }
+        },
+        {
+          "name": "getUserProfile",
+          "ok": true,
+          "elapsedMs": 24,
+          "value": {
+            "rawValue": 0
+          }
+        },
+        {
+          "name": "getWorkMode",
+          "ok": true,
+          "elapsedMs": 21,
+          "value": {
+            "rawValue": 1,
+            "sourceMode": "Flower"
+          }
+        },
+        {
+          "name": "getSmoothTrackAxes",
+          "ok": true,
+          "elapsedMs": 23,
+          "value": {
+            "valueCount": 3
+          }
+        },
+        {
+          "name": "getFollowTuning",
+          "ok": true,
+          "elapsedMs": 21,
+          "value": {
+            "valueCount": 9
+          }
+        },
+        {
+          "name": "getRcTuning",
+          "ok": true,
+          "elapsedMs": 25,
+          "value": {
+            "valueCount": 9
+          }
+        },
+        {
+          "name": "getStandaloneTuning",
+          "ok": true,
+          "elapsedMs": 21,
+          "value": {
+            "valueCount": 6
+          }
+        },
+        {
+          "name": "sensitivity.sameValueWrite",
+          "ok": true,
+          "elapsedMs": 245,
+          "value": {
+            "statusCode": 0,
+            "acknowledged": true,
+            "requestedMode": 1
+          }
+        },
+        {
+          "name": "sensitivity.sameValueReadback",
+          "ok": true,
+          "elapsedMs": 24,
+          "value": {
+            "rawValue": 1
+          }
+        },
+        {
+          "name": "follow.speed",
+          "ok": true,
+          "elapsedMs": 23,
+          "value": {
+            "rawValue": 252
+          }
+        },
+        {
+          "name": "rc.speed",
+          "ok": true,
+          "elapsedMs": 22,
+          "value": {
+            "rawValue": 84
+          }
+        },
+        {
+          "name": "motor.single",
+          "ok": true,
+          "elapsedMs": 23,
+          "value": {
+            "valueCount": 1
+          }
+        },
+        {
+          "name": "motor.bulk",
+          "ok": false,
+          "elapsedMs": 23,
+          "code": "RS4MINI_PROTOCOL_ERROR"
+        },
+        {
+          "name": "handle",
+          "ok": false,
+          "elapsedMs": 3002,
+          "code": "RS4MINI_RESPONSE_TIMEOUT"
+        },
+        {
+          "name": "calibration.query",
+          "ok": false,
+          "elapsedMs": 3003,
+          "code": "RS4MINI_RESPONSE_TIMEOUT"
+        },
+        {
+          "name": "degreeInfo",
+          "ok": true,
+          "elapsedMs": 25,
+          "value": {
+            "payloadHex": "00"
+          }
+        },
+        {
+          "name": "stop",
+          "ok": true,
+          "elapsedMs": 209,
+          "value": null
+        },
+        {
+          "name": "decoder",
+          "ok": true,
+          "value": {
+            "invalidFrames": 0,
+            "discardedBytes": 0
+          }
+        },
+        {
+          "name": "close",
+          "ok": true,
+          "elapsedMs": 213,
+          "value": {
+            "connected": false,
+            "closed": true
+          }
+        }
+      ]
+    },
+    "python312": {
+      "port": "python",
+      "runtime": "3.12.13",
+      "entry": "BleDevice",
+      "rows": [
+        {
+          "name": "connect",
+          "ok": true
+        },
+        {
+          "name": "deviceLayerOnly",
+          "ok": true
+        },
+        {
+          "name": "attitude",
+          "ok": true,
+          "elapsedMs": 708,
+          "value": {
+            "pitch": -180.0,
+            "roll": 0.0,
+            "yaw": 0.0
+          }
+        },
+        {
+          "name": "joints",
+          "ok": true,
+          "elapsedMs": 1000,
+          "value": {
+            "pitch": -1.0,
+            "roll": -1.3,
+            "yaw": 90.65
+          }
+        },
+        {
+          "name": "getFollowSensitivity",
+          "ok": true,
+          "elapsedMs": 24,
+          "value": {
+            "rawValue": 1,
+            "mode": 1
+          }
+        },
+        {
+          "name": "getMotorSettings",
+          "ok": true,
+          "elapsedMs": 22,
+          "value": {
+            "rawValue": 0
+          }
+        },
+        {
+          "name": "getCustomFollowSettings",
+          "ok": true,
+          "elapsedMs": 23,
+          "value": {
+            "rawValue": 0
+          }
+        },
+        {
+          "name": "getAxisMode",
+          "ok": true,
+          "elapsedMs": 22,
+          "value": {
+            "rawValue": 0,
+            "sourceMode": "ThreeAxis"
+          }
+        },
+        {
+          "name": "getUserProfile",
+          "ok": true,
+          "elapsedMs": 23,
+          "value": {
+            "rawValue": 0
+          }
+        },
+        {
+          "name": "getWorkMode",
+          "ok": true,
+          "elapsedMs": 22,
+          "value": {
+            "rawValue": 1,
+            "sourceMode": "Flower"
+          }
+        },
+        {
+          "name": "getSmoothTrackAxes",
+          "ok": true,
+          "elapsedMs": 24,
+          "value": {
+            "valueCount": 3
+          }
+        },
+        {
+          "name": "getFollowTuning",
+          "ok": true,
+          "elapsedMs": 22,
+          "value": {
+            "valueCount": 9
+          }
+        },
+        {
+          "name": "getRcTuning",
+          "ok": true,
+          "elapsedMs": 23,
+          "value": {
+            "valueCount": 9
+          }
+        },
+        {
+          "name": "getStandaloneTuning",
+          "ok": true,
+          "elapsedMs": 22,
+          "value": {
+            "valueCount": 6
+          }
+        },
+        {
+          "name": "sensitivity.sameValueWrite",
+          "ok": true,
+          "elapsedMs": 225,
+          "value": {
+            "statusCode": 0,
+            "acknowledged": true,
+            "requestedMode": 1
+          }
+        },
+        {
+          "name": "sensitivity.sameValueReadback",
+          "ok": true,
+          "elapsedMs": 22,
+          "value": {
+            "rawValue": 1
+          }
+        },
+        {
+          "name": "follow.speed",
+          "ok": true,
+          "elapsedMs": 24,
+          "value": {
+            "rawValue": 252
+          }
+        },
+        {
+          "name": "rc.speed",
+          "ok": true,
+          "elapsedMs": 22,
+          "value": {
+            "rawValue": 84
+          }
+        },
+        {
+          "name": "motor.single",
+          "ok": true,
+          "elapsedMs": 22,
+          "value": {
+            "valueCount": 1
+          }
+        },
+        {
+          "name": "motor.bulk",
+          "ok": false,
+          "elapsedMs": 23,
+          "code": "RS4MINI_PROTOCOL_ERROR"
+        },
+        {
+          "name": "handle",
+          "ok": false,
+          "elapsedMs": 3002,
+          "code": "RS4MINI_RESPONSE_TIMEOUT"
+        },
+        {
+          "name": "calibration.query",
+          "ok": false,
+          "elapsedMs": 3002,
+          "code": "RS4MINI_RESPONSE_TIMEOUT"
+        },
+        {
+          "name": "degreeInfo",
+          "ok": true,
+          "elapsedMs": 26,
+          "value": {
+            "payloadHex": "00"
+          }
+        },
+        {
+          "name": "stop",
+          "ok": true,
+          "elapsedMs": 208,
+          "value": null
+        },
+        {
+          "name": "decoder",
+          "ok": true,
+          "value": {
+            "invalidFrames": 0,
+            "discardedBytes": 0
+          }
+        },
+        {
+          "name": "close",
+          "ok": true,
+          "elapsedMs": 210,
+          "value": {
+            "connected": false,
+            "closed": true
+          }
+        }
+      ]
+    },
+    "macos": {
+      "entry": "RSBleDevice",
+      "rows": [
+        {
+          "name": "deviceLayerOnly",
+          "ok": true
+        },
+        {
+          "name": "bluetoothReady",
+          "ok": true
+        },
+        {
+          "name": "connect",
+          "ok": true
+        },
+        {
+          "name": "attitude",
+          "value": {
+            "pitch": -180,
+            "roll": 0,
+            "yaw": -0.1
+          },
+          "ok": true
+        },
+        {
+          "name": "joints",
+          "value": {
+            "pitch": -1,
+            "roll": -1.2,
+            "yaw": 90.65
+          },
+          "ok": true
+        },
+        {
+          "name": "profile",
+          "ok": true
+        },
+        {
+          "name": "getFollowSensitivity",
+          "value": {
+            "rawValue": 1,
+            "mode": 1
+          },
+          "ok": true
+        },
+        {
+          "name": "getMotorSettings",
+          "value": {
+            "rawValue": 0
+          },
+          "ok": true
+        },
+        {
+          "name": "getCustomFollowSettings",
+          "value": {
+            "rawValue": 0
+          },
+          "ok": true
+        },
+        {
+          "name": "getAxisMode",
+          "value": {
+            "rawValue": 0,
+            "sourceMode": "ThreeAxis"
+          },
+          "ok": true
+        },
+        {
+          "name": "getUserProfile",
+          "value": {
+            "rawValue": 0
+          },
+          "ok": true
+        },
+        {
+          "name": "getWorkMode",
+          "value": {
+            "rawValue": 1,
+            "sourceMode": "Flower"
+          },
+          "ok": true
+        },
+        {
+          "name": "getSmoothTrackAxes",
+          "value": {
+            "valueCount": 3
+          },
+          "ok": true
+        },
+        {
+          "name": "getFollowTuning",
+          "value": {
+            "valueCount": 9
+          },
+          "ok": true
+        },
+        {
+          "name": "getRcTuning",
+          "value": {
+            "valueCount": 9
+          },
+          "ok": true
+        },
+        {
+          "name": "getStandaloneTuning",
+          "value": {
+            "valueCount": 6
+          },
+          "ok": true
+        },
+        {
+          "name": "sensitivity.sameValueWrite",
+          "ok": true
+        },
+        {
+          "name": "sensitivity.sameValueReadback",
+          "value": {
+            "rawValue": 1,
+            "mode": 1
+          },
+          "ok": true
+        },
+        {
+          "name": "follow.speed",
+          "value": {
+            "rawValue": 252
+          },
+          "ok": true
+        },
+        {
+          "name": "rc.speed",
+          "value": {
+            "rawValue": 84
+          },
+          "ok": true
+        },
+        {
+          "name": "motor.single",
+          "value": {
+            "valueCount": 1
+          },
+          "ok": true
+        },
+        {
+          "name": "motor.bulk",
+          "ok": false,
+          "code": "RS4MINI_PROTOCOL_ERROR"
+        },
+        {
+          "name": "handle",
+          "ok": false,
+          "code": "RS4MINI_RESPONSE_TIMEOUT"
+        },
+        {
+          "name": "calibration.query",
+          "ok": false,
+          "code": "RS4MINI_RESPONSE_TIMEOUT"
+        },
+        {
+          "name": "degreeInfo",
+          "ok": true
+        },
+        {
+          "name": "stop",
+          "ok": true
+        },
+        {
+          "name": "disconnect",
+          "ok": true
+        }
+      ],
+      "port": "macos"
+    }
+  },
+  "methodFailures": [
+    "motor.bulk",
+    "handle",
+    "calibration.query"
+  ],
+  "claims": "Basic tested connection/read/same-value write/stop/teardown only; not all command or motion/firmware-task acceptance."
+}

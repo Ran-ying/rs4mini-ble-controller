@@ -514,5 +514,6 @@
     "close": {
       "ok": true
     }
-  }
+  },
+  "sdkOnlyAcceptance": "protocol/SDK_ONLY_ACCEPTANCE.json: direct BleDevice/RSBleDevice tests, no GUI/advanced linkage; basic usability pass, same three candidate failures across ports; prior physical/task acceptance remains separate."
 }

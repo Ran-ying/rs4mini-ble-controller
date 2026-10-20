@@ -14,6 +14,7 @@ from pathlib import Path
 
 from ronin_static import APK_SHA256
 from ronin_prefix_restore import PREFIX_BANKS
+from ronin_dalvik_reaching import analyze, classify, from_androguard
 
 STATUS_UNRESOLVED = 'statically_unresolved'
 STATUS_NEEDS_HW = 'statically_exhausted_needs_hardware'
@@ -121,46 +122,15 @@ def _parse_descriptor_params(descriptor):
     return params
 
 
-def _resolve_arg_before_invoke(ops, invoke_index, arg_reg):
-    """Walk backward from invoke to classify arg_reg as const, param, field, or unknown."""
-    # Track simple copies into arg_reg
-    target = arg_reg
-    for j in range(invoke_index - 1, max(-1, invoke_index - 40), -1):
-        op, text = ops[j]
-        parts = [p.strip() for p in text.split(',')]
-        if op.startswith('const') and parts and parts[0] == target:
-            # const/4 vN, value
-            lit = parts[-1] if len(parts) >= 2 else None
-            try:
-                value = int(lit, 0) if lit is not None else None
-            except ValueError:
-                value = None
-            return dict(kind='const', register=arg_reg, value=value, atIndex=j)
-        if op in ('move', 'move/from16', 'move-object', 'move-object/from16') and parts and parts[0] == target:
-            target = parts[1]
-            continue
-        if op.startswith('iget') and parts and parts[0] == target:
-            field = text.split('->', 1)[1] if '->' in text else text
-            return dict(kind='instance_field', register=arg_reg, field=field.strip(), atIndex=j)
-        if op.startswith('sget') and parts and parts[0] == target:
-            field = text.split('->', 1)[1] if '->' in text else text
-            return dict(kind='static_field', register=arg_reg, field=field.strip(), atIndex=j)
-        if op.startswith('invoke') and 'move-result' not in op:
-            # result may land later; keep scanning
-            pass
-        if op.startswith('move-result') and parts and parts[0] == target:
-            return dict(kind='invoke_result', register=arg_reg, atIndex=j)
-    # Dalvik: in non-static method, first params after `this` start at v(total-regs - param-words)
-    return dict(kind='unresolved_or_param', register=arg_reg, atIndex=None)
-
-
 def _analyze_create_method(bank, owner, method, model_owners):
     """Extract setter invokes with resolved args, instance source, and branch role."""
     if not method.get_code():
         return []
     ops = _ops(method)
     desc = method.get_descriptor()
-    params = _parse_descriptor_params(desc)
+    instrs, cfg_kwargs = from_androguard(method)
+    envs = None
+    cfg_gaps = None
     # Approximate: last N registers are params (this + args). androguard doesn't give register count easily;
     # mark kind unresolved_or_param when backward scan fails; refine if register matches pN naming in output.
     rows = []
@@ -197,11 +167,16 @@ def _analyze_create_method(bank, owner, method, model_owners):
         # regs[0]=instance, regs[1:]=args
         arg_regs = regs[1:] if len(regs) > 1 else []
         args = []
+        if envs is None:
+            envs, cfg_gaps = analyze(instrs, **cfg_kwargs)
         for ar in arg_regs:
-            resolved = _resolve_arg_before_invoke(ops, idx, ar)
-            # If still unresolved, check if register is a known param slot by name pN (rare in androguard output)
-            if resolved['kind'] == 'unresolved_or_param' and params:
-                resolved = dict(resolved, likelyMethodParameter=True, methodDescriptor=desc)
+            if cfg_gaps:
+                resolved = dict(kind='statically_unresolved', reason='cfg_unsupported: ' + '; '.join(sorted(set(cfg_gaps))))
+            elif envs[idx] is None:
+                resolved = dict(kind='statically_unresolved', reason='unreachable_or_unanalysed')
+            else:
+                resolved = classify(envs[idx].get(ar, ('unknown', 'undefined')))
+            resolved = dict(resolved, register=ar, instructionByteOffset=instrs[idx]['off'])
             args.append(resolved)
         role = 'stop' if STOP_METHOD_HINT.search(method.get_name() or '') else (
             'preview_branch' if 'preview' in (method.get_name() or '').lower() else 'start_or_other'
@@ -227,13 +202,18 @@ def compute_substatuses(
     *,
     bit_layout_established,
     call_values_has_dynamic_boundary,
+    call_values_has_unresolved_args=False,
     camera_isolation_has_dynamic_boundary,
     stop_semantics_has_dynamic_boundary,
     model_entry_has_dynamic_boundary,
 ):
     """Map evidence flags to per-facet statuses. Inputs must affect outputs."""
     bit_layout = BIT_LAYOUT_ESTABLISHED if bit_layout_established else STATUS_UNRESOLVED
-    call_values = STATUS_NEEDS_HW if call_values_has_dynamic_boundary else STATUS_UNRESOLVED
+    # An unresolved register is not a hardware boundary: it keeps call_values unresolved.
+    if call_values_has_unresolved_args:
+        call_values = STATUS_UNRESOLVED
+    else:
+        call_values = STATUS_NEEDS_HW if call_values_has_dynamic_boundary else STATUS_UNRESOLVED
     camera_isolation = STATUS_NEEDS_HW if camera_isolation_has_dynamic_boundary else STATUS_UNRESOLVED
     stop_semantics = STATUS_NEEDS_HW if stop_semantics_has_dynamic_boundary else STATUS_UNRESOLVED
     model_entry = STATUS_NEEDS_HW if model_entry_has_dynamic_boundary else STATUS_UNRESOLVED
@@ -262,9 +242,9 @@ def compute_overall(substatuses):
 
 
 def iter_status_combinations():
-    """All bit_layout × four facet boundary flag combinations for tests."""
+    """bit_layout x (call boundary, call unresolved, camera, stop, model) flag combinations."""
     for bit_ok in (False, True):
-        for flags in itertools.product((False, True), repeat=4):
+        for flags in itertools.product((False, True), repeat=5):
             yield (bit_ok,) + flags
 
 
@@ -388,17 +368,20 @@ def scan(apk, bank_dir):
     # Call-value dynamic boundaries: preview/external args that are not compile-time consts
     dynamic_call_sites = []
     const_camera_sites = []
+    unresolved_call_sites = []
     for row in create_setter_traces:
         if not row.get('cameraOrPreviewOrExternalSetter'):
             continue
         for arg in row.get('arguments') or []:
-            if arg.get('kind') == 'const':
+            kind = arg.get('kind')
+            site = dict(className=row['className'], method=row['method'], setter=row['setter'], argument=arg)
+            if kind == 'const':
                 const_camera_sites.append(dict(row, resolvedArgument=arg))
-            elif arg.get('kind') in ('instance_field', 'static_field', 'invoke_result', 'unresolved_or_param'):
-                dynamic_call_sites.append(dict(
-                    className=row['className'], method=row['method'], setter=row['setter'],
-                    argument=arg, boundaryKind=arg.get('kind'),
-                ))
+            elif kind in ('const_set', 'method_parameter', 'instance_field', 'static_field', 'invoke_result'):
+                # const_set: value set proven; selection depends on runtime branch conditions.
+                dynamic_call_sites.append(dict(site, boundaryKind=kind))
+            else:
+                unresolved_call_sites.append(site)
 
     # Instance init/reuse: mSetter field vs getInstance at call site
     instance_reuse = []
@@ -467,7 +450,7 @@ def scan(apk, bank_dir):
         boundaries.append(dict(
             facet='call_values',
             kind='dynamic_register_or_field_argument',
-            detail='Create setter args include method parameters, instance fields, or invoke results (e.g. setISPreview from sendToDeviceStart(I), setControlExternalDevice from mFocusMotorConnected)',
+            detail='Create camera/preview setter args are method parameters, fields, invoke results, or branch-selected const sets (e.g. PathDelay setControlExternalDevice {0,1} chosen by mFocusMotorConnected/createFocusControlEnabled/waypoint count)',
             examples=dynamic_call_sites[:12],
             hardwareMeasurementsNeeded=[
                 'Log actual setISPreview / setControlExternalDevice / setStartOrPreview values on device for start and stop',
@@ -515,6 +498,7 @@ def scan(apk, bank_dir):
     substatuses = compute_substatuses(
         bit_layout_established=bit_layout_ok,
         call_values_has_dynamic_boundary=call_values_boundary,
+        call_values_has_unresolved_args=bool(unresolved_call_sites),
         camera_isolation_has_dynamic_boundary=camera_isolation_boundary,
         stop_semantics_has_dynamic_boundary=stop_boundary,
         model_entry_has_dynamic_boundary=model_boundary,
@@ -550,10 +534,13 @@ def scan(apk, bank_dir):
         infoByteMaps=info_byte_maps,
         createSetterTraces=create_setter_traces,
         constCameraOrPreviewSetterSites=[
-            dict(className=r['className'], method=r['method'], setter=r['setter'], value=r['resolvedArgument'].get('value'))
+            dict(className=r['className'], method=r['method'], setter=r['setter'], value=r['resolvedArgument'].get('value'),
+                 instructionByteOffset=r['resolvedArgument'].get('instructionByteOffset'))
             for r in const_camera_sites[:30]
         ],
-        dynamicCallValueSites=dynamic_call_sites[:40],
+        dynamicCallValueSites=dynamic_call_sites,
+        unresolvedCallValueSites=unresolved_call_sites,
+        argumentResolution='CFG + reaching definitions (ronin_dalvik_reaching); joins give const_set or statically_unresolved; unsupported writes invalidate',
         instanceInitAndReuse=instance_reuse,
         stopCallChains=stop_summary,
         modelReachability=model_reachability,

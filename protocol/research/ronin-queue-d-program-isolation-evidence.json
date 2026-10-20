@@ -649,9 +649,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 1,
-          "atIndex": 2
+          "register": "v1",
+          "instructionByteOffset": 10
         }
       ],
       "instanceSource": {
@@ -675,9 +675,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v2",
           "value": 0,
-          "atIndex": 5
+          "register": "v2",
+          "instructionByteOffset": 20
         }
       ],
       "instanceSource": {
@@ -701,9 +701,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 1,
-          "atIndex": 2
+          "register": "v1",
+          "instructionByteOffset": 28
         }
       ],
       "instanceSource": {
@@ -744,9 +744,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 0,
-          "atIndex": 2
+          "register": "v1",
+          "instructionByteOffset": 10
         }
       ],
       "instanceSource": {
@@ -787,9 +787,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 0,
-          "atIndex": 2
+          "register": "v1",
+          "instructionByteOffset": 10
         }
       ],
       "instanceSource": {
@@ -813,9 +813,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 0,
-          "atIndex": 2
+          "register": "v1",
+          "instructionByteOffset": 18
         }
       ],
       "instanceSource": {
@@ -839,9 +839,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 1,
-          "atIndex": 7
+          "register": "v1",
+          "instructionByteOffset": 28
         }
       ],
       "instanceSource": {
@@ -882,9 +882,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 1,
-          "atIndex": 2
+          "register": "v1",
+          "instructionByteOffset": 10
         }
       ],
       "instanceSource": {
@@ -908,9 +908,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 1,
-          "atIndex": 2
+          "register": "v1",
+          "instructionByteOffset": 18
         }
       ],
       "instanceSource": {
@@ -951,9 +951,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 1,
-          "atIndex": 2
+          "register": "v1",
+          "instructionByteOffset": 10
         }
       ],
       "instanceSource": {
@@ -977,9 +977,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v2",
           "value": 0,
-          "atIndex": 5
+          "register": "v2",
+          "instructionByteOffset": 20
         }
       ],
       "instanceSource": {
@@ -1003,9 +1003,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 1,
-          "atIndex": 2
+          "register": "v1",
+          "instructionByteOffset": 28
         }
       ],
       "instanceSource": {
@@ -1046,9 +1046,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 1,
-          "atIndex": 15
+          "register": "v1",
+          "instructionByteOffset": 68
         }
       ],
       "instanceSource": {
@@ -1072,9 +1072,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v2",
           "value": 0,
-          "atIndex": 4
+          "register": "v2",
+          "instructionByteOffset": 76
         }
       ],
       "instanceSource": {
@@ -1098,9 +1098,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v2",
           "value": 0,
-          "atIndex": 4
+          "register": "v2",
+          "instructionByteOffset": 84
         }
       ],
       "instanceSource": {
@@ -1124,9 +1124,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v2",
           "value": 0,
-          "atIndex": 4
+          "register": "v2",
+          "instructionByteOffset": 92
         }
       ],
       "instanceSource": {
@@ -1150,9 +1150,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 1,
-          "atIndex": 1
+          "register": "v1",
+          "instructionByteOffset": 6
         }
       ],
       "instanceSource": {
@@ -1176,9 +1176,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v2",
           "value": 0,
-          "atIndex": 4
+          "register": "v2",
+          "instructionByteOffset": 16
         }
       ],
       "instanceSource": {
@@ -1202,9 +1202,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 1,
-          "atIndex": 1
+          "register": "v1",
+          "instructionByteOffset": 24
         }
       ],
       "instanceSource": {
@@ -1245,9 +1245,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 1,
-          "atIndex": 1
+          "register": "v1",
+          "instructionByteOffset": 6
         }
       ],
       "instanceSource": {
@@ -1271,9 +1271,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 1,
-          "atIndex": 1
+          "register": "v1",
+          "instructionByteOffset": 14
         }
       ],
       "instanceSource": {
@@ -1296,11 +1296,10 @@
       ],
       "arguments": [
         {
-          "kind": "unresolved_or_param",
+          "kind": "method_parameter",
+          "parameterRegisterIndex": 1,
           "register": "v11",
-          "atIndex": null,
-          "likelyMethodParameter": true,
-          "methodDescriptor": "(I)V"
+          "instructionByteOffset": 22
         }
       ],
       "instanceSource": {
@@ -1324,9 +1323,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v0",
           "value": 0,
-          "atIndex": 8
+          "register": "v0",
+          "instructionByteOffset": 32
         }
       ],
       "instanceSource": {
@@ -1350,9 +1349,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 1,
-          "atIndex": 1
+          "register": "v1",
+          "instructionByteOffset": 6
         }
       ],
       "instanceSource": {
@@ -1376,9 +1375,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v2",
           "value": 0,
-          "atIndex": 4
+          "register": "v2",
+          "instructionByteOffset": 16
         }
       ],
       "instanceSource": {
@@ -1402,9 +1401,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 1,
-          "atIndex": 1
+          "register": "v1",
+          "instructionByteOffset": 24
         }
       ],
       "instanceSource": {
@@ -1444,11 +1443,10 @@
       ],
       "arguments": [
         {
-          "kind": "unresolved_or_param",
+          "kind": "method_parameter",
+          "parameterRegisterIndex": 1,
           "register": "v8",
-          "atIndex": null,
-          "likelyMethodParameter": true,
-          "methodDescriptor": "(I Ldji/midware/interfaces/DJIDataCallBack;)V"
+          "instructionByteOffset": 4
         }
       ],
       "instanceSource": {
@@ -1472,9 +1470,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v0",
           "value": 0,
-          "atIndex": 3
+          "register": "v0",
+          "instructionByteOffset": 14
         }
       ],
       "instanceSource": {
@@ -1498,9 +1496,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v0",
           "value": 1,
-          "atIndex": 6
+          "register": "v0",
+          "instructionByteOffset": 24
         }
       ],
       "instanceSource": {
@@ -1541,9 +1539,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 1,
-          "atIndex": 1
+          "register": "v1",
+          "instructionByteOffset": 6
         }
       ],
       "instanceSource": {
@@ -1585,13 +1583,15 @@
       "arguments": [
         {
           "kind": "invoke_result",
+          "source": "java/lang/Integer;->intValue()I",
           "register": "v3",
-          "atIndex": 14
+          "instructionByteOffset": 74
         },
         {
           "kind": "invoke_result",
+          "source": "java/lang/Integer;->intValue()I",
           "register": "v0",
-          "atIndex": 18
+          "instructionByteOffset": 74
         }
       ],
       "instanceSource": {
@@ -1618,27 +1618,27 @@
       "arguments": [
         {
           "kind": "instance_field",
-          "register": "v2",
           "field": "left I",
-          "atIndex": 21
+          "register": "v2",
+          "instructionByteOffset": 98
         },
         {
           "kind": "instance_field",
-          "register": "v3",
           "field": "top I",
-          "atIndex": 22
+          "register": "v3",
+          "instructionByteOffset": 98
         },
         {
           "kind": "instance_field",
-          "register": "v4",
           "field": "right I",
-          "atIndex": 23
+          "register": "v4",
+          "instructionByteOffset": 98
         },
         {
           "kind": "instance_field",
-          "register": "v1",
           "field": "bottom I",
-          "atIndex": 24
+          "register": "v1",
+          "instructionByteOffset": 98
         }
       ],
       "instanceSource": {
@@ -1661,11 +1661,10 @@
       ],
       "arguments": [
         {
-          "kind": "unresolved_or_param",
+          "kind": "method_parameter",
+          "parameterRegisterIndex": 1,
           "register": "v6",
-          "atIndex": null,
-          "likelyMethodParameter": true,
-          "methodDescriptor": "(I)V"
+          "instructionByteOffset": 106
         }
       ],
       "instanceSource": {
@@ -1689,9 +1688,9 @@
       "arguments": [
         {
           "kind": "instance_field",
-          "register": "v0",
           "field": "mCurDelay I",
-          "atIndex": 29
+          "register": "v0",
+          "instructionByteOffset": 118
         }
       ],
       "instanceSource": {
@@ -1715,9 +1714,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 0,
-          "atIndex": 5
+          "register": "v1",
+          "instructionByteOffset": 20
         }
       ],
       "instanceSource": {
@@ -1758,9 +1757,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v2",
           "value": 1,
-          "atIndex": 14
+          "register": "v2",
+          "instructionByteOffset": 68
         }
       ],
       "instanceSource": {
@@ -1784,9 +1783,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 0,
-          "atIndex": 19
+          "register": "v1",
+          "instructionByteOffset": 78
         }
       ],
       "instanceSource": {
@@ -1810,9 +1809,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v2",
           "value": 1,
-          "atIndex": 14
+          "register": "v2",
+          "instructionByteOffset": 86
         }
       ],
       "instanceSource": {
@@ -1852,10 +1851,10 @@
       ],
       "arguments": [
         {
-          "kind": "instance_field",
+          "kind": "const",
+          "value": 1,
           "register": "v2",
-          "field": "mBottomBar Lcom/dji/ronin/ui/create/CreateBottomBar;",
-          "atIndex": 53
+          "instructionByteOffset": 256
         }
       ],
       "instanceSource": {
@@ -1878,10 +1877,10 @@
       ],
       "arguments": [
         {
-          "kind": "instance_field",
+          "kind": "const",
+          "value": 1,
           "register": "v2",
-          "field": "mBottomBar Lcom/dji/ronin/ui/create/CreateBottomBar;",
-          "atIndex": 53
+          "instructionByteOffset": 264
         }
       ],
       "instanceSource": {
@@ -1904,11 +1903,10 @@
       ],
       "arguments": [
         {
-          "kind": "unresolved_or_param",
+          "kind": "method_parameter",
+          "parameterRegisterIndex": 1,
           "register": "v12",
-          "atIndex": null,
-          "likelyMethodParameter": true,
-          "methodDescriptor": "(I Ldji/midware/interfaces/DJIDataCallBack;)V"
+          "instructionByteOffset": 4
         }
       ],
       "instanceSource": {
@@ -1932,9 +1930,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v0",
           "value": 0,
-          "atIndex": 3
+          "register": "v0",
+          "instructionByteOffset": 14
         }
       ],
       "instanceSource": {
@@ -1958,9 +1956,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 1,
-          "atIndex": 6
+          "register": "v1",
+          "instructionByteOffset": 24
         }
       ],
       "instanceSource": {
@@ -2001,9 +1999,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 1,
-          "atIndex": 2
+          "register": "v1",
+          "instructionByteOffset": 12
         }
       ],
       "instanceSource": {
@@ -2043,10 +2041,13 @@
       ],
       "arguments": [
         {
-          "kind": "const",
+          "kind": "const_set",
+          "values": [
+            0,
+            1
+          ],
           "register": "v0",
-          "value": 0,
-          "atIndex": 4
+          "instructionByteOffset": 42
         }
       ],
       "instanceSource": {
@@ -2069,10 +2070,13 @@
       ],
       "arguments": [
         {
-          "kind": "const",
+          "kind": "const_set",
+          "values": [
+            0,
+            1
+          ],
           "register": "v3",
-          "value": 0,
-          "atIndex": 4
+          "instructionByteOffset": 94
         }
       ],
       "instanceSource": {
@@ -2096,9 +2100,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v2",
           "value": 1,
-          "atIndex": 5
+          "register": "v2",
+          "instructionByteOffset": 102
         }
       ],
       "instanceSource": {
@@ -2121,11 +2125,10 @@
       ],
       "arguments": [
         {
-          "kind": "unresolved_or_param",
+          "kind": "method_parameter",
+          "parameterRegisterIndex": 1,
           "register": "v15",
-          "atIndex": null,
-          "likelyMethodParameter": true,
-          "methodDescriptor": "(I)V"
+          "instructionByteOffset": 110
         }
       ],
       "instanceSource": {
@@ -2149,9 +2152,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 0,
-          "atIndex": 4
+          "register": "v1",
+          "instructionByteOffset": 118
         }
       ],
       "instanceSource": {
@@ -2174,10 +2177,13 @@
       ],
       "arguments": [
         {
-          "kind": "const",
+          "kind": "const_set",
+          "values": [
+            0,
+            1
+          ],
           "register": "v0",
-          "value": 0,
-          "atIndex": 4
+          "instructionByteOffset": 42
         }
       ],
       "instanceSource": {
@@ -2201,9 +2207,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 0,
-          "atIndex": 4
+          "register": "v1",
+          "instructionByteOffset": 50
         }
       ],
       "instanceSource": {
@@ -2227,9 +2233,9 @@
       "arguments": [
         {
           "kind": "instance_field",
-          "register": "v1",
           "field": "mIsPreviewing Z",
-          "atIndex": 17
+          "register": "v1",
+          "instructionByteOffset": 62
         }
       ],
       "instanceSource": {
@@ -2253,9 +2259,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v2",
           "value": 1,
-          "atIndex": 5
+          "register": "v2",
+          "instructionByteOffset": 70
         }
       ],
       "instanceSource": {
@@ -2292,10 +2298,13 @@
       ],
       "arguments": [
         {
-          "kind": "const",
+          "kind": "const_set",
+          "values": [
+            0,
+            1
+          ],
           "register": "v1",
-          "value": 1,
-          "atIndex": 6
+          "instructionByteOffset": 32
         }
       ],
       "instanceSource": {
@@ -2319,9 +2328,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v4",
           "value": 1,
-          "atIndex": 6
+          "register": "v4",
+          "instructionByteOffset": 40
         }
       ],
       "instanceSource": {
@@ -2344,11 +2353,10 @@
       ],
       "arguments": [
         {
-          "kind": "unresolved_or_param",
+          "kind": "method_parameter",
+          "parameterRegisterIndex": 1,
           "register": "v8",
-          "atIndex": null,
-          "likelyMethodParameter": true,
-          "methodDescriptor": "(I)V"
+          "instructionByteOffset": 48
         }
       ],
       "instanceSource": {
@@ -2372,9 +2380,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v3",
           "value": 0,
-          "atIndex": 5
+          "register": "v3",
+          "instructionByteOffset": 56
         }
       ],
       "instanceSource": {
@@ -2399,15 +2407,15 @@
       "arguments": [
         {
           "kind": "instance_field",
-          "register": "v0",
           "field": "mDuration J",
-          "atIndex": 19
+          "register": "v0",
+          "instructionByteOffset": 68
         },
         {
-          "kind": "const",
+          "kind": "statically_unresolved",
+          "reason": "wide_pair_high_half",
           "register": "v1",
-          "value": 1,
-          "atIndex": 6
+          "instructionByteOffset": 68
         }
       ],
       "instanceSource": {
@@ -2431,9 +2439,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 1,
-          "atIndex": 1
+          "register": "v1",
+          "instructionByteOffset": 6
         }
       ],
       "instanceSource": {
@@ -2457,9 +2465,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 1,
-          "atIndex": 1
+          "register": "v1",
+          "instructionByteOffset": 14
         }
       ],
       "instanceSource": {
@@ -2500,9 +2508,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v2",
           "value": 1,
-          "atIndex": 14
+          "register": "v2",
+          "instructionByteOffset": 68
         }
       ],
       "instanceSource": {
@@ -2526,9 +2534,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 0,
-          "atIndex": 19
+          "register": "v1",
+          "instructionByteOffset": 78
         }
       ],
       "instanceSource": {
@@ -2552,9 +2560,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v2",
           "value": 1,
-          "atIndex": 14
+          "register": "v2",
+          "instructionByteOffset": 86
         }
       ],
       "instanceSource": {
@@ -2594,10 +2602,10 @@
       ],
       "arguments": [
         {
-          "kind": "instance_field",
+          "kind": "const",
+          "value": 1,
           "register": "v2",
-          "field": "mBottomBar Lcom/dji/ronin/ui/create/CreateBottomBar;",
-          "atIndex": 53
+          "instructionByteOffset": 256
         }
       ],
       "instanceSource": {
@@ -2620,10 +2628,10 @@
       ],
       "arguments": [
         {
-          "kind": "instance_field",
+          "kind": "const",
+          "value": 1,
           "register": "v2",
-          "field": "mBottomBar Lcom/dji/ronin/ui/create/CreateBottomBar;",
-          "atIndex": 53
+          "instructionByteOffset": 264
         }
       ],
       "instanceSource": {
@@ -2646,11 +2654,10 @@
       ],
       "arguments": [
         {
-          "kind": "unresolved_or_param",
+          "kind": "method_parameter",
+          "parameterRegisterIndex": 1,
           "register": "v13",
-          "atIndex": null,
-          "likelyMethodParameter": true,
-          "methodDescriptor": "(I Ldji/midware/interfaces/DJIDataCallBack;)V"
+          "instructionByteOffset": 6
         }
       ],
       "instanceSource": {
@@ -2674,9 +2681,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v0",
           "value": 0,
-          "atIndex": 4
+          "register": "v0",
+          "instructionByteOffset": 16
         }
       ],
       "instanceSource": {
@@ -2700,9 +2707,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 1,
-          "atIndex": 7
+          "register": "v1",
+          "instructionByteOffset": 26
         }
       ],
       "instanceSource": {
@@ -2777,9 +2784,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 1,
-          "atIndex": 3
+          "register": "v1",
+          "instructionByteOffset": 14
         }
       ],
       "instanceSource": {
@@ -2795,43 +2802,57 @@
       "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
       "method": "stopPanoPreviewWork",
       "setter": "setStopStartOrPreview",
-      "value": 0
+      "value": 0,
+      "instructionByteOffset": 10
     },
     {
       "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
       "method": "stopTrackPreviewWork",
       "setter": "setRecordOrPreview",
-      "value": 1
+      "value": 1,
+      "instructionByteOffset": 10
     },
     {
       "className": "Lcom/dji/ronin/ui/create/follow/CreateFollowActivity;",
       "method": "startTimeLapse",
       "setter": "setISPreview",
-      "value": 0
+      "value": 0,
+      "instructionByteOffset": 84
     },
     {
       "className": "Lcom/dji/ronin/ui/create/panorama/CreatePanoramaView;",
       "method": "sendToDeviceStop",
       "setter": "setStopStartOrPreview",
-      "value": 0
+      "value": 0,
+      "instructionByteOffset": 20
     },
     {
       "className": "Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;",
       "method": "previewToggle",
       "setter": "setRecordOrPreview",
-      "value": 1
+      "value": 1,
+      "instructionByteOffset": 68
     },
     {
-      "className": "Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;",
-      "method": "sendToDeviceStart",
-      "setter": "setControlExternalDevice",
-      "value": 0
+      "className": "Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;",
+      "method": "previewToggle",
+      "setter": "setRecordOrPreview",
+      "value": 1,
+      "instructionByteOffset": 256
     },
     {
       "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
       "method": "previewToggle",
       "setter": "setRecordOrPreview",
-      "value": 1
+      "value": 1,
+      "instructionByteOffset": 68
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "previewToggle",
+      "setter": "setRecordOrPreview",
+      "value": 1,
+      "instructionByteOffset": 256
     }
   ],
   "dynamicCallValueSites": [
@@ -2840,26 +2861,24 @@
       "method": "sendToDeviceStart",
       "setter": "setISPreview",
       "argument": {
-        "kind": "unresolved_or_param",
+        "kind": "method_parameter",
+        "parameterRegisterIndex": 1,
         "register": "v11",
-        "atIndex": null,
-        "likelyMethodParameter": true,
-        "methodDescriptor": "(I)V"
+        "instructionByteOffset": 22
       },
-      "boundaryKind": "unresolved_or_param"
+      "boundaryKind": "method_parameter"
     },
     {
       "className": "Lcom/dji/ronin/ui/create/ronin2/CreateKeyPointView;",
       "method": "sendToDeviceStart",
       "setter": "setRecordOrPreview",
       "argument": {
-        "kind": "unresolved_or_param",
+        "kind": "method_parameter",
+        "parameterRegisterIndex": 1,
         "register": "v8",
-        "atIndex": null,
-        "likelyMethodParameter": true,
-        "methodDescriptor": "(I Ldji/midware/interfaces/DJIDataCallBack;)V"
+        "instructionByteOffset": 4
       },
-      "boundaryKind": "unresolved_or_param"
+      "boundaryKind": "method_parameter"
     },
     {
       "className": "Lcom/dji/ronin/ui/create/panorama/CreatePanoramaView;",
@@ -2867,8 +2886,9 @@
       "setter": "setPictures",
       "argument": {
         "kind": "invoke_result",
+        "source": "java/lang/Integer;->intValue()I",
         "register": "v3",
-        "atIndex": 14
+        "instructionByteOffset": 74
       },
       "boundaryKind": "invoke_result"
     },
@@ -2878,8 +2898,9 @@
       "setter": "setPictures",
       "argument": {
         "kind": "invoke_result",
+        "source": "java/lang/Integer;->intValue()I",
         "register": "v0",
-        "atIndex": 18
+        "instructionByteOffset": 74
       },
       "boundaryKind": "invoke_result"
     },
@@ -2888,13 +2909,12 @@
       "method": "sendToDeviceStart",
       "setter": "setStopStartOrPreview",
       "argument": {
-        "kind": "unresolved_or_param",
+        "kind": "method_parameter",
+        "parameterRegisterIndex": 1,
         "register": "v6",
-        "atIndex": null,
-        "likelyMethodParameter": true,
-        "methodDescriptor": "(I)V"
+        "instructionByteOffset": 106
       },
-      "boundaryKind": "unresolved_or_param"
+      "boundaryKind": "method_parameter"
     },
     {
       "className": "Lcom/dji/ronin/ui/create/panorama/CreatePanoramaView;",
@@ -2902,21 +2922,9 @@
       "setter": "setExposureTime",
       "argument": {
         "kind": "instance_field",
-        "register": "v0",
         "field": "mCurDelay I",
-        "atIndex": 29
-      },
-      "boundaryKind": "instance_field"
-    },
-    {
-      "className": "Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;",
-      "method": "previewToggle",
-      "setter": "setRecordOrPreview",
-      "argument": {
-        "kind": "instance_field",
-        "register": "v2",
-        "field": "mBottomBar Lcom/dji/ronin/ui/create/CreateBottomBar;",
-        "atIndex": 53
+        "register": "v0",
+        "instructionByteOffset": 118
       },
       "boundaryKind": "instance_field"
     },
@@ -2925,26 +2933,39 @@
       "method": "sendToDeviceStart",
       "setter": "setRecordOrPreview",
       "argument": {
-        "kind": "unresolved_or_param",
+        "kind": "method_parameter",
+        "parameterRegisterIndex": 1,
         "register": "v12",
-        "atIndex": null,
-        "likelyMethodParameter": true,
-        "methodDescriptor": "(I Ldji/midware/interfaces/DJIDataCallBack;)V"
+        "instructionByteOffset": 4
       },
-      "boundaryKind": "unresolved_or_param"
+      "boundaryKind": "method_parameter"
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;",
+      "method": "sendToDeviceStart",
+      "setter": "setControlExternalDevice",
+      "argument": {
+        "kind": "const_set",
+        "values": [
+          0,
+          1
+        ],
+        "register": "v3",
+        "instructionByteOffset": 94
+      },
+      "boundaryKind": "const_set"
     },
     {
       "className": "Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;",
       "method": "sendToDeviceStart",
       "setter": "setISPreview",
       "argument": {
-        "kind": "unresolved_or_param",
+        "kind": "method_parameter",
+        "parameterRegisterIndex": 1,
         "register": "v15",
-        "atIndex": null,
-        "likelyMethodParameter": true,
-        "methodDescriptor": "(I)V"
+        "instructionByteOffset": 110
       },
-      "boundaryKind": "unresolved_or_param"
+      "boundaryKind": "method_parameter"
     },
     {
       "className": "Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;",
@@ -2952,9 +2973,9 @@
       "setter": "setISPreview",
       "argument": {
         "kind": "instance_field",
-        "register": "v1",
         "field": "mIsPreviewing Z",
-        "atIndex": 17
+        "register": "v1",
+        "instructionByteOffset": 62
       },
       "boundaryKind": "instance_field"
     },
@@ -2963,40 +2984,28 @@
       "method": "sendToDeviceStart",
       "setter": "setStartOrPreview",
       "argument": {
-        "kind": "unresolved_or_param",
+        "kind": "method_parameter",
+        "parameterRegisterIndex": 1,
         "register": "v8",
-        "atIndex": null,
-        "likelyMethodParameter": true,
-        "methodDescriptor": "(I)V"
+        "instructionByteOffset": 48
       },
-      "boundaryKind": "unresolved_or_param"
-    },
-    {
-      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
-      "method": "previewToggle",
-      "setter": "setRecordOrPreview",
-      "argument": {
-        "kind": "instance_field",
-        "register": "v2",
-        "field": "mBottomBar Lcom/dji/ronin/ui/create/CreateBottomBar;",
-        "atIndex": 53
-      },
-      "boundaryKind": "instance_field"
+      "boundaryKind": "method_parameter"
     },
     {
       "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
       "method": "sendToDeviceStart",
       "setter": "setRecordOrPreview",
       "argument": {
-        "kind": "unresolved_or_param",
+        "kind": "method_parameter",
+        "parameterRegisterIndex": 1,
         "register": "v13",
-        "atIndex": null,
-        "likelyMethodParameter": true,
-        "methodDescriptor": "(I Ldji/midware/interfaces/DJIDataCallBack;)V"
+        "instructionByteOffset": 6
       },
-      "boundaryKind": "unresolved_or_param"
+      "boundaryKind": "method_parameter"
     }
   ],
+  "unresolvedCallValueSites": [],
+  "argumentResolution": "CFG + reaching definitions (ronin_dalvik_reaching); joins give const_set or statically_unresolved; unsupported writes invalidate",
   "instanceInitAndReuse": [
     {
       "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
@@ -3224,9 +3233,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 1,
-          "atIndex": 2
+          "register": "v1",
+          "instructionByteOffset": 10
         }
       ],
       "clearsPreviewBitExplicitly": false
@@ -3238,9 +3247,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v2",
           "value": 0,
-          "atIndex": 5
+          "register": "v2",
+          "instructionByteOffset": 20
         }
       ],
       "clearsPreviewBitExplicitly": false
@@ -3252,9 +3261,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 1,
-          "atIndex": 2
+          "register": "v1",
+          "instructionByteOffset": 28
         }
       ],
       "clearsPreviewBitExplicitly": false
@@ -3273,9 +3282,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 0,
-          "atIndex": 2
+          "register": "v1",
+          "instructionByteOffset": 10
         }
       ],
       "clearsPreviewBitExplicitly": true
@@ -3294,9 +3303,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 0,
-          "atIndex": 2
+          "register": "v1",
+          "instructionByteOffset": 10
         }
       ],
       "clearsPreviewBitExplicitly": false
@@ -3308,9 +3317,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 0,
-          "atIndex": 2
+          "register": "v1",
+          "instructionByteOffset": 18
         }
       ],
       "clearsPreviewBitExplicitly": false
@@ -3322,9 +3331,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 1,
-          "atIndex": 7
+          "register": "v1",
+          "instructionByteOffset": 28
         }
       ],
       "clearsPreviewBitExplicitly": false
@@ -3343,9 +3352,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 1,
-          "atIndex": 2
+          "register": "v1",
+          "instructionByteOffset": 10
         }
       ],
       "clearsPreviewBitExplicitly": true
@@ -3357,9 +3366,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 1,
-          "atIndex": 2
+          "register": "v1",
+          "instructionByteOffset": 18
         }
       ],
       "clearsPreviewBitExplicitly": false
@@ -3378,9 +3387,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 1,
-          "atIndex": 2
+          "register": "v1",
+          "instructionByteOffset": 10
         }
       ],
       "clearsPreviewBitExplicitly": false
@@ -3392,9 +3401,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v2",
           "value": 0,
-          "atIndex": 5
+          "register": "v2",
+          "instructionByteOffset": 20
         }
       ],
       "clearsPreviewBitExplicitly": false
@@ -3406,9 +3415,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 1,
-          "atIndex": 2
+          "register": "v1",
+          "instructionByteOffset": 28
         }
       ],
       "clearsPreviewBitExplicitly": false
@@ -3420,9 +3429,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 1,
-          "atIndex": 1
+          "register": "v1",
+          "instructionByteOffset": 6
         }
       ],
       "clearsPreviewBitExplicitly": false
@@ -3434,9 +3443,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v2",
           "value": 0,
-          "atIndex": 4
+          "register": "v2",
+          "instructionByteOffset": 16
         }
       ],
       "clearsPreviewBitExplicitly": false
@@ -3448,9 +3457,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 1,
-          "atIndex": 1
+          "register": "v1",
+          "instructionByteOffset": 24
         }
       ],
       "clearsPreviewBitExplicitly": false
@@ -3462,9 +3471,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 1,
-          "atIndex": 1
+          "register": "v1",
+          "instructionByteOffset": 6
         }
       ],
       "clearsPreviewBitExplicitly": false
@@ -3476,9 +3485,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v2",
           "value": 0,
-          "atIndex": 4
+          "register": "v2",
+          "instructionByteOffset": 16
         }
       ],
       "clearsPreviewBitExplicitly": false
@@ -3490,9 +3499,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 1,
-          "atIndex": 1
+          "register": "v1",
+          "instructionByteOffset": 24
         }
       ],
       "clearsPreviewBitExplicitly": false
@@ -3504,9 +3513,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 1,
-          "atIndex": 1
+          "register": "v1",
+          "instructionByteOffset": 6
         }
       ],
       "clearsPreviewBitExplicitly": false
@@ -3518,9 +3527,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 0,
-          "atIndex": 5
+          "register": "v1",
+          "instructionByteOffset": 20
         }
       ],
       "clearsPreviewBitExplicitly": true
@@ -3532,9 +3541,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v2",
           "value": 1,
-          "atIndex": 14
+          "register": "v2",
+          "instructionByteOffset": 68
         }
       ],
       "clearsPreviewBitExplicitly": true
@@ -3546,9 +3555,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 0,
-          "atIndex": 19
+          "register": "v1",
+          "instructionByteOffset": 78
         }
       ],
       "clearsPreviewBitExplicitly": false
@@ -3560,9 +3569,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v2",
           "value": 1,
-          "atIndex": 14
+          "register": "v2",
+          "instructionByteOffset": 86
         }
       ],
       "clearsPreviewBitExplicitly": false
@@ -3581,9 +3590,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 1,
-          "atIndex": 2
+          "register": "v1",
+          "instructionByteOffset": 12
         }
       ],
       "clearsPreviewBitExplicitly": false
@@ -3594,10 +3603,13 @@
       "setter": "setMode",
       "arguments": [
         {
-          "kind": "const",
+          "kind": "const_set",
+          "values": [
+            0,
+            1
+          ],
           "register": "v0",
-          "value": 0,
-          "atIndex": 4
+          "instructionByteOffset": 42
         }
       ],
       "clearsPreviewBitExplicitly": false
@@ -3609,9 +3621,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 0,
-          "atIndex": 4
+          "register": "v1",
+          "instructionByteOffset": 50
         }
       ],
       "clearsPreviewBitExplicitly": false
@@ -3623,9 +3635,9 @@
       "arguments": [
         {
           "kind": "instance_field",
-          "register": "v1",
           "field": "mIsPreviewing Z",
-          "atIndex": 17
+          "register": "v1",
+          "instructionByteOffset": 62
         }
       ],
       "clearsPreviewBitExplicitly": true
@@ -3637,9 +3649,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v2",
           "value": 1,
-          "atIndex": 5
+          "register": "v2",
+          "instructionByteOffset": 70
         }
       ],
       "clearsPreviewBitExplicitly": false
@@ -3651,9 +3663,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 1,
-          "atIndex": 1
+          "register": "v1",
+          "instructionByteOffset": 6
         }
       ],
       "clearsPreviewBitExplicitly": false
@@ -3665,9 +3677,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 1,
-          "atIndex": 1
+          "register": "v1",
+          "instructionByteOffset": 14
         }
       ],
       "clearsPreviewBitExplicitly": false
@@ -3679,9 +3691,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v2",
           "value": 1,
-          "atIndex": 14
+          "register": "v2",
+          "instructionByteOffset": 68
         }
       ],
       "clearsPreviewBitExplicitly": true
@@ -3693,9 +3705,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 0,
-          "atIndex": 19
+          "register": "v1",
+          "instructionByteOffset": 78
         }
       ],
       "clearsPreviewBitExplicitly": false
@@ -3707,9 +3719,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v2",
           "value": 1,
-          "atIndex": 14
+          "register": "v2",
+          "instructionByteOffset": 86
         }
       ],
       "clearsPreviewBitExplicitly": false
@@ -3728,9 +3740,9 @@
       "arguments": [
         {
           "kind": "const",
-          "register": "v1",
           "value": 1,
-          "atIndex": 3
+          "register": "v1",
+          "instructionByteOffset": 14
         }
       ],
       "clearsPreviewBitExplicitly": false
@@ -3751,33 +3763,31 @@
     {
       "facet": "call_values",
       "kind": "dynamic_register_or_field_argument",
-      "detail": "Create setter args include method parameters, instance fields, or invoke results (e.g. setISPreview from sendToDeviceStart(I), setControlExternalDevice from mFocusMotorConnected)",
+      "detail": "Create camera/preview setter args are method parameters, fields, invoke results, or branch-selected const sets (e.g. PathDelay setControlExternalDevice {0,1} chosen by mFocusMotorConnected/createFocusControlEnabled/waypoint count)",
       "examples": [
         {
           "className": "Lcom/dji/ronin/ui/create/tapgo/CreateFixDelayView;",
           "method": "sendToDeviceStart",
           "setter": "setISPreview",
           "argument": {
-            "kind": "unresolved_or_param",
+            "kind": "method_parameter",
+            "parameterRegisterIndex": 1,
             "register": "v11",
-            "atIndex": null,
-            "likelyMethodParameter": true,
-            "methodDescriptor": "(I)V"
+            "instructionByteOffset": 22
           },
-          "boundaryKind": "unresolved_or_param"
+          "boundaryKind": "method_parameter"
         },
         {
           "className": "Lcom/dji/ronin/ui/create/ronin2/CreateKeyPointView;",
           "method": "sendToDeviceStart",
           "setter": "setRecordOrPreview",
           "argument": {
-            "kind": "unresolved_or_param",
+            "kind": "method_parameter",
+            "parameterRegisterIndex": 1,
             "register": "v8",
-            "atIndex": null,
-            "likelyMethodParameter": true,
-            "methodDescriptor": "(I Ldji/midware/interfaces/DJIDataCallBack;)V"
+            "instructionByteOffset": 4
           },
-          "boundaryKind": "unresolved_or_param"
+          "boundaryKind": "method_parameter"
         },
         {
           "className": "Lcom/dji/ronin/ui/create/panorama/CreatePanoramaView;",
@@ -3785,8 +3795,9 @@
           "setter": "setPictures",
           "argument": {
             "kind": "invoke_result",
+            "source": "java/lang/Integer;->intValue()I",
             "register": "v3",
-            "atIndex": 14
+            "instructionByteOffset": 74
           },
           "boundaryKind": "invoke_result"
         },
@@ -3796,8 +3807,9 @@
           "setter": "setPictures",
           "argument": {
             "kind": "invoke_result",
+            "source": "java/lang/Integer;->intValue()I",
             "register": "v0",
-            "atIndex": 18
+            "instructionByteOffset": 74
           },
           "boundaryKind": "invoke_result"
         },
@@ -3806,13 +3818,12 @@
           "method": "sendToDeviceStart",
           "setter": "setStopStartOrPreview",
           "argument": {
-            "kind": "unresolved_or_param",
+            "kind": "method_parameter",
+            "parameterRegisterIndex": 1,
             "register": "v6",
-            "atIndex": null,
-            "likelyMethodParameter": true,
-            "methodDescriptor": "(I)V"
+            "instructionByteOffset": 106
           },
-          "boundaryKind": "unresolved_or_param"
+          "boundaryKind": "method_parameter"
         },
         {
           "className": "Lcom/dji/ronin/ui/create/panorama/CreatePanoramaView;",
@@ -3820,21 +3831,9 @@
           "setter": "setExposureTime",
           "argument": {
             "kind": "instance_field",
-            "register": "v0",
             "field": "mCurDelay I",
-            "atIndex": 29
-          },
-          "boundaryKind": "instance_field"
-        },
-        {
-          "className": "Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;",
-          "method": "previewToggle",
-          "setter": "setRecordOrPreview",
-          "argument": {
-            "kind": "instance_field",
-            "register": "v2",
-            "field": "mBottomBar Lcom/dji/ronin/ui/create/CreateBottomBar;",
-            "atIndex": 53
+            "register": "v0",
+            "instructionByteOffset": 118
           },
           "boundaryKind": "instance_field"
         },
@@ -3843,26 +3842,39 @@
           "method": "sendToDeviceStart",
           "setter": "setRecordOrPreview",
           "argument": {
-            "kind": "unresolved_or_param",
+            "kind": "method_parameter",
+            "parameterRegisterIndex": 1,
             "register": "v12",
-            "atIndex": null,
-            "likelyMethodParameter": true,
-            "methodDescriptor": "(I Ldji/midware/interfaces/DJIDataCallBack;)V"
+            "instructionByteOffset": 4
           },
-          "boundaryKind": "unresolved_or_param"
+          "boundaryKind": "method_parameter"
+        },
+        {
+          "className": "Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;",
+          "method": "sendToDeviceStart",
+          "setter": "setControlExternalDevice",
+          "argument": {
+            "kind": "const_set",
+            "values": [
+              0,
+              1
+            ],
+            "register": "v3",
+            "instructionByteOffset": 94
+          },
+          "boundaryKind": "const_set"
         },
         {
           "className": "Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;",
           "method": "sendToDeviceStart",
           "setter": "setISPreview",
           "argument": {
-            "kind": "unresolved_or_param",
+            "kind": "method_parameter",
+            "parameterRegisterIndex": 1,
             "register": "v15",
-            "atIndex": null,
-            "likelyMethodParameter": true,
-            "methodDescriptor": "(I)V"
+            "instructionByteOffset": 110
           },
-          "boundaryKind": "unresolved_or_param"
+          "boundaryKind": "method_parameter"
         },
         {
           "className": "Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;",
@@ -3870,9 +3882,9 @@
           "setter": "setISPreview",
           "argument": {
             "kind": "instance_field",
-            "register": "v1",
             "field": "mIsPreviewing Z",
-            "atIndex": 17
+            "register": "v1",
+            "instructionByteOffset": 62
           },
           "boundaryKind": "instance_field"
         },
@@ -3881,25 +3893,24 @@
           "method": "sendToDeviceStart",
           "setter": "setStartOrPreview",
           "argument": {
-            "kind": "unresolved_or_param",
+            "kind": "method_parameter",
+            "parameterRegisterIndex": 1,
             "register": "v8",
-            "atIndex": null,
-            "likelyMethodParameter": true,
-            "methodDescriptor": "(I)V"
+            "instructionByteOffset": 48
           },
-          "boundaryKind": "unresolved_or_param"
+          "boundaryKind": "method_parameter"
         },
         {
           "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
-          "method": "previewToggle",
+          "method": "sendToDeviceStart",
           "setter": "setRecordOrPreview",
           "argument": {
-            "kind": "instance_field",
-            "register": "v2",
-            "field": "mBottomBar Lcom/dji/ronin/ui/create/CreateBottomBar;",
-            "atIndex": 53
+            "kind": "method_parameter",
+            "parameterRegisterIndex": 1,
+            "register": "v13",
+            "instructionByteOffset": 6
           },
-          "boundaryKind": "instance_field"
+          "boundaryKind": "method_parameter"
         }
       ],
       "hardwareMeasurementsNeeded": [
@@ -3935,9 +3946,9 @@
           "arguments": [
             {
               "kind": "const",
-              "register": "v1",
               "value": 1,
-              "atIndex": 2
+              "register": "v1",
+              "instructionByteOffset": 10
             }
           ],
           "clearsPreviewBitExplicitly": false
@@ -3949,9 +3960,9 @@
           "arguments": [
             {
               "kind": "const",
-              "register": "v2",
               "value": 0,
-              "atIndex": 5
+              "register": "v2",
+              "instructionByteOffset": 20
             }
           ],
           "clearsPreviewBitExplicitly": false
@@ -3963,9 +3974,9 @@
           "arguments": [
             {
               "kind": "const",
-              "register": "v1",
               "value": 1,
-              "atIndex": 2
+              "register": "v1",
+              "instructionByteOffset": 28
             }
           ],
           "clearsPreviewBitExplicitly": false
@@ -3984,9 +3995,9 @@
           "arguments": [
             {
               "kind": "const",
-              "register": "v1",
               "value": 0,
-              "atIndex": 2
+              "register": "v1",
+              "instructionByteOffset": 10
             }
           ],
           "clearsPreviewBitExplicitly": true
@@ -4005,9 +4016,9 @@
           "arguments": [
             {
               "kind": "const",
-              "register": "v1",
               "value": 0,
-              "atIndex": 2
+              "register": "v1",
+              "instructionByteOffset": 10
             }
           ],
           "clearsPreviewBitExplicitly": false
@@ -4019,9 +4030,9 @@
           "arguments": [
             {
               "kind": "const",
-              "register": "v1",
               "value": 0,
-              "atIndex": 2
+              "register": "v1",
+              "instructionByteOffset": 18
             }
           ],
           "clearsPreviewBitExplicitly": false
@@ -4033,9 +4044,9 @@
           "arguments": [
             {
               "kind": "const",
-              "register": "v1",
               "value": 1,
-              "atIndex": 7
+              "register": "v1",
+              "instructionByteOffset": 28
             }
           ],
           "clearsPreviewBitExplicitly": false
@@ -4054,9 +4065,9 @@
           "arguments": [
             {
               "kind": "const",
-              "register": "v1",
               "value": 1,
-              "atIndex": 2
+              "register": "v1",
+              "instructionByteOffset": 10
             }
           ],
           "clearsPreviewBitExplicitly": true
@@ -4068,9 +4079,9 @@
           "arguments": [
             {
               "kind": "const",
-              "register": "v1",
               "value": 1,
-              "atIndex": 2
+              "register": "v1",
+              "instructionByteOffset": 18
             }
           ],
           "clearsPreviewBitExplicitly": false
@@ -4089,9 +4100,9 @@
           "arguments": [
             {
               "kind": "const",
-              "register": "v1",
               "value": 1,
-              "atIndex": 2
+              "register": "v1",
+              "instructionByteOffset": 10
             }
           ],
           "clearsPreviewBitExplicitly": false
@@ -4103,9 +4114,9 @@
           "arguments": [
             {
               "kind": "const",
-              "register": "v2",
               "value": 0,
-              "atIndex": 5
+              "register": "v2",
+              "instructionByteOffset": 20
             }
           ],
           "clearsPreviewBitExplicitly": false
@@ -4117,9 +4128,9 @@
           "arguments": [
             {
               "kind": "const",
-              "register": "v1",
               "value": 1,
-              "atIndex": 2
+              "register": "v1",
+              "instructionByteOffset": 28
             }
           ],
           "clearsPreviewBitExplicitly": false
@@ -4131,9 +4142,9 @@
           "arguments": [
             {
               "kind": "const",
-              "register": "v1",
               "value": 1,
-              "atIndex": 1
+              "register": "v1",
+              "instructionByteOffset": 6
             }
           ],
           "clearsPreviewBitExplicitly": false
@@ -4145,9 +4156,9 @@
           "arguments": [
             {
               "kind": "const",
-              "register": "v2",
               "value": 0,
-              "atIndex": 4
+              "register": "v2",
+              "instructionByteOffset": 16
             }
           ],
           "clearsPreviewBitExplicitly": false
@@ -4159,9 +4170,9 @@
           "arguments": [
             {
               "kind": "const",
-              "register": "v1",
               "value": 1,
-              "atIndex": 1
+              "register": "v1",
+              "instructionByteOffset": 24
             }
           ],
           "clearsPreviewBitExplicitly": false

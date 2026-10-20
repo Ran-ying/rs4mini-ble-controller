@@ -25,7 +25,9 @@
 
 ## Create 追踪要点
 
-- 参数：常量（如 Follow `startTimeLapse` 上 `setISPreview(0)`）与动态（如 PathDelay `sendToDeviceStart(I)` 的 preview 参数、`mFocusMotorConnected` → external）。
+参数解析用 CFG + 到达定义（[ronin_dalvik_reaching.py](ronin_dalvik_reaching.py)）：分支汇合给出可证常量集合（如 `{0,1}`）或 `statically_unresolved`；不支持的写入使寄存器失效。未解析寄存器**不**算硬件边界，只会让 `call_values` 保持 `statically_unresolved`。
+
+- 参数：常量（如 Follow `startTimeLapse` 上 `setISPreview(0)`）；方法参数（如 PathDelay `sendToDeviceStart(I)` 的 preview）；分支选择常量集（PathDelay `setControlExternalDevice` ∈ {0,1}，由 `mFocusMotorConnected`、`createFocusControlEnabled()`、航点数选择）。
 - 实例：`getInstance()` / 字段 `mSetter` 复用；setter OR 累加进同一字节。
 - Stop：`CreateUtils.stop*` 等设置 startOrStop 后 `start(callback)`；部分 stop 未显式清 preview 位。
 - 型号：Create UI 走 midware 单例；PREFIX 无法单独钉死 RS 4 Mini 组件可达。

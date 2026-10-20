@@ -198,7 +198,8 @@
       "keySupportResearch": "protocol/research/ronin-key-support-evidence.json",
       "registrationResearch": "protocol/research/ronin-registration-evidence.json",
       "motionPrefixResearch": "protocol/research/ronin-motion-prefix-evidence.json",
-      "rotateEyeTransportResearch": "protocol/research/ronin-rotate-eye-transport-evidence.json"
+      "rotateEyeTransportResearch": "protocol/research/ronin-rotate-eye-transport-evidence.json",
+      "queueASemanticsResearch": "protocol/research/ronin-queue-a-semantics-evidence.json"
     },
     {
       "key": "04:1C",
@@ -1361,5 +1362,6 @@
   "motionPrefixResearch": "protocol/research/ronin-motion-prefix-evidence.json",
   "programPrefixResearch": "protocol/research/ronin-program-prefix-evidence.json",
   "inventoryPrefixResearch": "protocol/research/ronin-inventory-prefix-evidence.json",
-  "rotateEyeTransportResearch": "protocol/research/ronin-rotate-eye-transport-evidence.json"
+  "rotateEyeTransportResearch": "protocol/research/ronin-rotate-eye-transport-evidence.json",
+  "queueASemanticsResearch": "protocol/research/ronin-queue-a-semantics-evidence.json"
 }

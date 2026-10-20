@@ -433,6 +433,17 @@ if manifest.get('programPrefixResearch'):
     for key in ['04:25','04:37','04:62','04:63']:
         row=next(row for row in manifest['commands'] if row['key']==key)
         assert row['programPrefixResearch']==manifest['programPrefixResearch'] and not row['implementation']
+if manifest.get('queueASemanticsResearch'):
+    qa=json.loads((root/manifest['queueASemanticsResearch']).read_text())
+    assert qa['apkSha256']==controls['apkSha256'] and qa['scannedBanks']==list(range(8))
+    for flag in ['appCodeExecuted','liveUiExecuted','targetDeviceVerified','sdkSendAdded','sendOpened']:
+        assert qa[flag] is False
+    for key in ['eyeDirectBleNecessity','liveIndexAddress','finalEncryptPath','dynamicCapability']:
+        assert qa['queueItemStatuses'][key]=='statically_exhausted_needs_hardware'
+        assert qa[key]['status']=='statically_exhausted_needs_hardware'
+    assert qa['finalEncryptPath']['eyeAppState']['sourceIsNeedEncrypt'] is True
+    assert qa['liveIndexAddress']['ctorDefaultIndex']==0
+    assert qa['eyeDirectBleNecessity']['directBleMustEmitEyeAppStateVerified'] is False
 if manifest.get('rotateEyeTransportResearch'):
     eye=json.loads((root/manifest['rotateEyeTransportResearch']).read_text())
     assert eye['apkSha256']==controls['apkSha256'] and eye['scannedBanks']==list(range(8)) and eye['analysisBank']==5

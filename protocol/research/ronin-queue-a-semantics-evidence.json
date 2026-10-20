@@ -1,0 +1,276 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "bankSha256": {
+    "0": "2229f1f19aa8fe8d819c7b3cecbd844928da817e2bc9cfddfda1c0e120e4cc59",
+    "1": "0083e9f9e0e615602470ea148cfd581a0c7413a012ef5494b613242d55754f99",
+    "2": "f75800c8edb40823c72afdd0eee575135e995440da9a5fd9bfb3e5b3e9e6fe68",
+    "3": "861be662ee36ce3b195c0c1aa179642e34793df3a88e933fa1dfe2a7202a9528",
+    "4": "2fd9aa02f5c9f4217e7e6ef75d724a1ce64efa7c1f365ddb20c93be1fef85f77",
+    "5": "f78b34474816ca253b4133bdbd79ebcbf725f52d58ac00b63f921ff7082470d2",
+    "6": "4da9764901f753190e0c88b5a142a4f9cf1eed9b1b9214bdf97a21f00edcb990",
+    "7": "3fc2c4adccd59794f5c28b898d577ed414758875cadb7ce7f6782ffd5b64b723"
+  },
+  "scannedBanks": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "analysisBank": 5,
+  "appCodeExecuted": false,
+  "liveUiExecuted": false,
+  "targetDeviceVerified": false,
+  "wholeProtocolRecovered": false,
+  "researchToolProvidesSdkInterface": false,
+  "sdkSendAdded": false,
+  "sdkReceiveAdded": false,
+  "sendOpened": false,
+  "banks": [
+    {
+      "segment": 0,
+      "derivedSha256": "2229f1f19aa8fe8d819c7b3cecbd844928da817e2bc9cfddfda1c0e120e4cc59",
+      "classCount": 7119
+    },
+    {
+      "segment": 1,
+      "derivedSha256": "0083e9f9e0e615602470ea148cfd581a0c7413a012ef5494b613242d55754f99",
+      "classCount": 2297
+    },
+    {
+      "segment": 2,
+      "derivedSha256": "f75800c8edb40823c72afdd0eee575135e995440da9a5fd9bfb3e5b3e9e6fe68",
+      "classCount": 2110
+    },
+    {
+      "segment": 3,
+      "derivedSha256": "861be662ee36ce3b195c0c1aa179642e34793df3a88e933fa1dfe2a7202a9528",
+      "classCount": 6683
+    },
+    {
+      "segment": 4,
+      "derivedSha256": "2fd9aa02f5c9f4217e7e6ef75d724a1ce64efa7c1f365ddb20c93be1fef85f77",
+      "classCount": 6696
+    },
+    {
+      "segment": 5,
+      "derivedSha256": "f78b34474816ca253b4133bdbd79ebcbf725f52d58ac00b63f921ff7082470d2",
+      "classCount": 8571
+    },
+    {
+      "segment": 6,
+      "derivedSha256": "4da9764901f753190e0c88b5a142a4f9cf1eed9b1b9214bdf97a21f00edcb990",
+      "classCount": 7647
+    },
+    {
+      "segment": 7,
+      "derivedSha256": "3fc2c4adccd59794f5c28b898d577ed414758875cadb7ce7f6782ffd5b64b723",
+      "classCount": 641
+    }
+  ],
+  "methods": [
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/manager/P3/DJIEncryManager;",
+      "method": "isNeedEncrypt",
+      "descriptor": "([B)Z",
+      "codeOffset": 3335280,
+      "instructionSha256": "c6a34fabe434dc21b7a4ed300e9deca0436716376f823902bace9237f16f15e8"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataSingleSendAppStateForStabilization;",
+      "method": "start",
+      "descriptor": "()V",
+      "codeOffset": 4976040,
+      "instructionSha256": "4203a2ef393c1a3074ae9319ff32052822d188d89044db16751f45bedd7106b0"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/util/DoubleCameraSupportUtil;",
+      "method": "getGimbalIdInProtocol",
+      "descriptor": "(I)I",
+      "codeOffset": 3788548,
+      "instructionSha256": "ce2276998e5bcc59aa75507dce71cb59bb23d509a8aea39c3cfd03dda89fe189"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "codeOffset": 5244808,
+      "instructionSha256": "dbff8ee872b75de0a3a342a631966621161ffd24985d9dab24c040d9a0871878"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "getReceiverIdByIndex",
+      "descriptor": "()I",
+      "codeOffset": 5246620,
+      "instructionSha256": "8ba90ecf1db263d0bf5ea0a280f56622008fcdb721a022e72b95580e2b9692ad"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "init",
+      "descriptor": "(Ljava/lang/String; I Ldji/sdksharedlib/store/DJISDKCacheStoreLayer; Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$OnValueChangeListener;)V",
+      "codeOffset": 5246876,
+      "instructionSha256": "216a9d5a86e448f2d2fb6de0bc9d9d06b1d44f58bdcf19183269966a965a9c6a"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "justSendPauseData",
+      "descriptor": "()V",
+      "codeOffset": 5247480,
+      "instructionSha256": "7fd8adc5bcd516fde336f70ec7df2208c117d5421d3155f43a0943f497b7edf5"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "rotate",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback; Ldji/common/gimbal/Rotation;)V",
+      "codeOffset": 5248528,
+      "instructionSha256": "5416211661f4c1434aa1f6790b05bb912736d8c02b88626074d8e59667a37bc4"
+    }
+  ],
+  "eyeDirectBleNecessity": {
+    "status": "statically_exhausted_needs_hardware",
+    "appRotateAlwaysCallsJustSendPauseDataOnSpeedAndAbsBranches": true,
+    "justSendPauseDataDefinitions": [
+      {
+        "bank": 5,
+        "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+        "descriptor": "()V",
+        "instructionSha256": "7fd8adc5bcd516fde336f70ec7df2208c117d5421d3155f43a0943f497b7edf5"
+      }
+    ],
+    "justSendPauseDataInvokeSites": [
+      {
+        "bank": 5,
+        "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+        "method": "rotate",
+        "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback; Ldji/common/gimbal/Rotation;)V"
+      },
+      {
+        "bank": 5,
+        "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+        "method": "rotate",
+        "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback; Ldji/common/gimbal/Rotation;)V"
+      }
+    ],
+    "hg724OverridesPauseOrRotate": [],
+    "otherPauseModelCallers": [
+      {
+        "bank": 5,
+        "className": "Ldji/sdksharedlib/hardware/abstractions/camera/DJICameraBaseAbstraction;",
+        "method": "checkIfNeedWaitForPauseTheStabilization",
+        "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback; Ldji/midware/data/model/P3/DataSingleSendAppStateForStabilization$CameraState;)V",
+        "cameraAbstraction": true
+      }
+    ],
+    "otherPauseModelCallersAreCameraOnly": true,
+    "noStaticModelOrComponentSkipInsideHelper": true,
+    "directBleMustEmitEyeAppStateVerified": false,
+    "deviceAcceptsOrRequiresEyeAppStateVerified": false,
+    "reasonNotClosed": "Bytecode shows the DJI App rotate path always emits EYE/SINGLE/id7 AppState before 04:0C/04:14, with no HG724 override and no skip inside the helper. That does not prove a direct-BLE host without the DJI stack must send it, nor that RS 4 Mini firmware requires it."
+  },
+  "liveIndexAddress": {
+    "status": "statically_exhausted_needs_hardware",
+    "ctorDefaultIndex": 0,
+    "initStoresSecondIntParameterAsIndex": true,
+    "getReceiverIdByIndexReadsFieldThenDoubleCameraSupportUtil": true,
+    "mappingSamples": {
+      "-1": 0,
+      "0": 0,
+      "1": 2,
+      "2": 0,
+      "7": 0
+    },
+    "sourceIndexOneMapsToReceiverId": 2,
+    "sourceOtherIntsMapToReceiverId": 0,
+    "liveDeviceIndexVerified": false,
+    "onWireReceiverAddressVerified": false,
+    "reasonNotClosed": "Static default index is 0 (maps to receiver id 0); init overwrites from the abstraction index argument. Live RS 4 Mini index and on-wire address are not in the DEX."
+  },
+  "finalEncryptPath": {
+    "status": "statically_exhausted_needs_hardware",
+    "cmdSetWires": {
+      "COMMON": 0,
+      "CAMERA": 2,
+      "GIMBAL": 4,
+      "EYE": 10
+    },
+    "eyeAppState": {
+      "cmdSet": 10,
+      "cmdId": 98,
+      "sourceIsNeedEncrypt": true
+    },
+    "gimbalAbsAngle": {
+      "cmdSet": 4,
+      "cmdId": 20,
+      "sourceIsNeedEncrypt": true
+    },
+    "businessPackMaySetEncryptTypeNo": true,
+    "isNeedEncryptTrueMeansConditionalSimpleEncryptWhenNotOldFirmware": true,
+    "isOldFirmwareIsMutableSessionFlag": true,
+    "nativeRcDataDealNotExecutedOffline": true,
+    "finalBlePlaintextVerified": false,
+    "reasonNotClosed": "Source isNeedEncrypt(cmdSet,cmdId) is true for EYE/10+AppState/98 and GIMBAL/4+20. Business EncryptType.NO can still be rewritten to SIMPLE when isOldFirmware is false. JNI native_rcDataDeal is not executed offline; final on-wire bytes need a live session."
+  },
+  "dynamicCapability": {
+    "status": "statically_exhausted_needs_hardware",
+    "staticInitMergeDocumentedInAngleContext": true,
+    "helperMutatorsOutsideInitGimbalCapability": [
+      {
+        "bank": 5,
+        "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+        "method": "addDefaultToCapability",
+        "descriptor": "(Ldji/common/gimbal/CapabilityKey;)V"
+      },
+      {
+        "bank": 5,
+        "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+        "method": "addIsSupportedToCapability",
+        "descriptor": "(Ldji/common/gimbal/CapabilityKey; Z)V"
+      },
+      {
+        "bank": 5,
+        "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+        "method": "addMinMaxToCapability",
+        "descriptor": "(Ldji/common/gimbal/CapabilityKey; Ljava/lang/Number; Ljava/lang/Number;)V"
+      }
+    ],
+    "ronin2ParamBackedCapabilityPath": [
+      "initCommandCapabilityMap",
+      "addMinMaxToCapability(BaseCommand)"
+    ],
+    "hg724InheritsRonin2": true,
+    "rotateAbsoluteBranchReadsCapabilityAtCallTime": true,
+    "liveDynamicCapabilityChangesVerified": false,
+    "reasonNotClosed": "Post-init helper writers exist; Ronin2 can fill min/max from ParamInfo ranges via BaseCommand, and HG724 inherits Ronin2. rotate absolute checks read capability at call time. Whether RS 4 Mini actually pushes different ranges than the static init merge needs hardware/session evidence."
+  },
+  "protocolGimbalIdSamples": {
+    "-1": 0,
+    "0": 0,
+    "1": 2,
+    "2": 0,
+    "7": 0
+  },
+  "queueItemStatuses": {
+    "eyeDirectBleNecessity": "statically_exhausted_needs_hardware",
+    "liveIndexAddress": "statically_exhausted_needs_hardware",
+    "finalEncryptPath": "statically_exhausted_needs_hardware",
+    "dynamicCapability": "statically_exhausted_needs_hardware"
+  },
+  "remaining": [
+    "Do not open EYE AppState or 04:14 sends based on this audit.",
+    "Do not treat App rotate unconditional pause emit as proof that direct BLE must send it.",
+    "Do not treat EncryptType.NO or isNeedEncrypt predicates as final BLE plaintext proof.",
+    "Do not treat static init capability merge as the live device range."
+  ]
+}

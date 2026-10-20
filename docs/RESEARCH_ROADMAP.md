@@ -35,7 +35,7 @@
 
 | 序号 | 主题 | 具体未决 | 入口线索 |
 |---|---|---|---|
-| A | 动态能力 / 索引地址 / EYE | **端到端静态链已落档**（rotate→pause→EYE AppState→DataBase.start 与返回路径）；仍开放：直连是否必须发 EYE、本机 index/地址、加密终态、动态能力、完成/中止 | [ROTATE_EYE_TRANSPORT](../tools/research/ROTATE_EYE_TRANSPORT.md)、[MOTION_PREFIX](../tools/research/MOTION_PREFIX.md)、[ANGLE_CONTEXT](../tools/research/ANGLE_CONTEXT.md) |
+| A ✓ 静态耗尽 | 动态能力 / 索引地址 / EYE | 端到端链 + 四子项静态耗尽：App rotate 无条件发 EYE；index 默认0/映射；EYE/GIMBAL `isNeedEncrypt=true`；Ronin2 参数能力路径存在。**本机/直连验证未做** | [QUEUE_A_SEMANTICS](../tools/research/QUEUE_A_SEMANTICS.md)、[ROTATE_EYE_TRANSPORT](../tools/research/ROTATE_EYE_TRANSPORT.md) |
 | B | 参考系 | 姿态/关节/电机角与业务「参考系」字段的静态绑定；不能把现有 04:05 关节直接当作固件轨迹角 | [TRACK_POINTS](../tools/research/TRACK_POINTS.md)、运动专题 |
 | C | 完成 / 中止 | 动作完成通知、abort/cancel 路径、与会话/ACK 的关联；静态只记源码契约 | 程序状态 / 运动控制类 |
 | D | 程序型号与相机隔离 | 全景曝光、轨迹录制字段与纯云台原语的边界；型号/组件条件 | [PROGRAM_PREFIX](../tools/research/PROGRAM_PREFIX.md) |

@@ -2,6 +2,10 @@
 
 研究方法、证据等级、下一步顺序与完成条件见 [研究路线图](RESEARCH_ROADMAP.md)。**八段直接引用重审已完成；剩余离线静态队列（能力/EYE、参考系、完成/中止、程序与相机隔离、会话版本关联）仍开放，见路线图。**
 
+## 最新研究：离线队列 A 静态耗尽
+
+2026-10-20。EYE/直连必要性、index/地址、加密终态、动态能力四子项均为 `statically_exhausted_needs_hardware`。见 [QUEUE_A_SEMANTICS.md](../tools/research/QUEUE_A_SEMANTICS.md)。
+
 ## 最新研究：04:14 rotate→EYE→transport 端到端
 
 2026-10-20。ronin_rotate_eye_transport_trace.py 在 PREFIX bank05 追到：继承 rotate → justSendPauseData（EYE/AppState、SINGLE id7、体 0100）→ DataBase.start；ABS 路径 start 后立刻 onSuccess，不等待 ACK/到位。静态与硬件项分列；不开放发送。见 [ROTATE_EYE_TRANSPORT.md](../tools/research/ROTATE_EYE_TRANSPORT.md)。

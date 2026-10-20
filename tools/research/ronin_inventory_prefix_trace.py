@@ -217,11 +217,11 @@ def scan(apk, bank_dir, synthetic_operations_by_bank=None):
                 if bank == 1 and owner.startswith('Lcom/dji/activate/active/Active'):
                     texts = []
                     off = 0
-                    for op, text in operations:
+                    for instruction in method.get_instructions():
+                        op, text = instruction.get_name(), instruction.get_output()
                         if op.startswith('invoke-') and any(t in text for t in (GIMBAL_ACTIVE, CENTER_ACTIVE, 'DataBatteryActiveStatus', 'ActiveHttpApi', 'postToServer')):
                             texts.append(dict(operation=op, instructionByteOffset=off, text=text[:160]))
-                        # byte-offset fix is a separate commit; keep index for now
-                        off += 1
+                        off += instruction.get_length()
                     if texts:
                         key = (owner, method.get_name(), method.get_descriptor())
                         methods[key] = dict(

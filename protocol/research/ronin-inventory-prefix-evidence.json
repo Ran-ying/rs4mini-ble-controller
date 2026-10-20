@@ -830,12 +830,12 @@
       "activationRelatedInvokes": [
         {
           "operation": "invoke-static",
-          "instructionByteOffset": 17,
+          "instructionByteOffset": 70,
           "text": "Ldji/midware/data/model/P3/DataBatteryActiveStatus;->getInstance()Ldji/midware/data/model/P3/DataBatteryActiveStatus;"
         },
         {
           "operation": "invoke-static",
-          "instructionByteOffset": 20,
+          "instructionByteOffset": 82,
           "text": "Ldji/midware/data/model/P3/DataGimbalActiveStatus;->getInstance()Ldji/midware/data/model/P3/DataGimbalActiveStatus;"
         }
       ]
@@ -849,12 +849,12 @@
       "activationRelatedInvokes": [
         {
           "operation": "invoke-virtual",
-          "instructionByteOffset": 4,
+          "instructionByteOffset": 16,
           "text": "v2, v0, Ldji/midware/data/model/P3/DataBatteryActiveStatus;->setIndexMultiBattery(I)Ldji/midware/data/model/P3/DataBatteryActiveStatus;"
         },
         {
           "operation": "invoke-virtual",
-          "instructionByteOffset": 7,
+          "instructionByteOffset": 28,
           "text": "v2, v0, Ldji/midware/data/model/P3/DataBatteryActiveStatus;->setType(Ldji/midware/data/model/common/DataAbstractGetPushActiveStatus$TYPE;)Ldji/midware/data/mode"
         }
       ]
@@ -868,7 +868,7 @@
       "activationRelatedInvokes": [
         {
           "operation": "invoke-virtual",
-          "instructionByteOffset": 2,
+          "instructionByteOffset": 8,
           "text": "v0, v1, Ldji/midware/data/model/P3/DataGimbalActiveStatus;->setType(Ldji/midware/data/model/common/DataAbstractGetPushActiveStatus$TYPE;)Ldji/midware/data/model"
         }
       ]
@@ -882,7 +882,7 @@
       "activationRelatedInvokes": [
         {
           "operation": "invoke-static",
-          "instructionByteOffset": 6,
+          "instructionByteOffset": 30,
           "text": "v0, v4, v1, v2, Lcom/dji/activate/active/ActiveWebController;->-$$Nest$mpostToServer(Lcom/dji/activate/active/ActiveWebController; Ljava/lang/String; Ljava/lang"
         }
       ]
@@ -896,7 +896,7 @@
       "activationRelatedInvokes": [
         {
           "operation": "invoke-static",
-          "instructionByteOffset": 15,
+          "instructionByteOffset": 68,
           "text": "v0, v4, v1, v2, Lcom/dji/activate/active/ActiveWebController;->-$$Nest$mpostToServer(Lcom/dji/activate/active/ActiveWebController; Ljava/lang/String; Ljava/lang"
         }
       ]
@@ -924,7 +924,7 @@
       "activationRelatedInvokes": [
         {
           "operation": "invoke-static",
-          "instructionByteOffset": 9,
+          "instructionByteOffset": 40,
           "text": "Ldji/midware/data/model/P3/DataGimbalActiveStatus;->getInstance()Ldji/midware/data/model/P3/DataGimbalActiveStatus;"
         }
       ]
@@ -938,7 +938,7 @@
       "activationRelatedInvokes": [
         {
           "operation": "invoke-static",
-          "instructionByteOffset": 73,
+          "instructionByteOffset": 342,
           "text": "Lcom/dji/api/ActiveHttpApi;->getActivateKey()Ljava/lang/String;"
         }
       ]
@@ -952,7 +952,7 @@
       "activationRelatedInvokes": [
         {
           "operation": "invoke-static",
-          "instructionByteOffset": 18,
+          "instructionByteOffset": 80,
           "text": "Lcom/dji/api/ActiveHttpApi;->getActiveVerifyUrl()Ljava/lang/String;"
         }
       ]
@@ -966,7 +966,7 @@
       "activationRelatedInvokes": [
         {
           "operation": "invoke-static",
-          "instructionByteOffset": 46,
+          "instructionByteOffset": 200,
           "text": "Lcom/dji/api/ActiveHttpApi;->getPostErrorLogUrl()Ljava/lang/String;"
         }
       ]
@@ -980,7 +980,7 @@
       "activationRelatedInvokes": [
         {
           "operation": "invoke-static",
-          "instructionByteOffset": 2,
+          "instructionByteOffset": 10,
           "text": "Lcom/dji/api/ActiveHttpApi;->getActiveVerifyUrl()Ljava/lang/String;"
         }
       ]

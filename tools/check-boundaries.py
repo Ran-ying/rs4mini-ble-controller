@@ -418,6 +418,9 @@ if manifest.get('inventoryPrefixResearch'):
     assert inv['newlyDiscoveredGimbalWireCommands']==[]
     assert inv['priorTableComparison']['priorTableIsNotDiscoverySource'] is True
     assert inv['eightBankPacketScan']['banksScanned']==list(range(8))
+    ctor=next(m for m in inv['bank01ActivationMethods'] if m['className']=='Lcom/dji/activate/active/ActiveDeviceController;' and m['method']=='<init>')
+    assert ctor['activationRelatedInvokes'][0]['instructionByteOffset']==70
+
     assert inv['eightBankPacketScan']['literalCandidatesProveSend'] is False
     assert inv['inventoryCompleteRemainsFalse'] is True and inv['inventoryCompleteClaimed'] is False
     assert inv['activationOrBindingWriteOpened'] is False and inv['sessionVersionNegotiated'] is False

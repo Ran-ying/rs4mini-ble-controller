@@ -91,3 +91,7 @@ python/.venv/bin/python -m unittest discover -s tools/research -p test_ronin_ang
 ## 后续：八段 PREFIX 重审（2026-10-20）
 
 04:0A 类外调用结论见 [GAP_PREFIX.md](GAP_PREFIX.md)；两种布局证据仍有效，发送仍关闭。
+
+## 后续：八段运动重审（2026-10-20）
+
+见 [MOTION_PREFIX.md](MOTION_PREFIX.md)。

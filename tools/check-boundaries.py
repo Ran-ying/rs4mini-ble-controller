@@ -409,6 +409,19 @@ if manifest.get('profileValueSdk',{}).get('implemented'):
     modes={r['name']:r['value'] for r in profiles['workModeSourceEnums']}
     objc_modes=(root/'macos/RSControlCore.m').read_text().split('NSDictionary *RSAppProfileValueSpec(',1)[1]
     assert json.loads(re.search(r'const workModes=(\{.*?\});',js).group(1))==py['WORK_MODES']==json.loads(re.search(r'NSDictionary \*modes=(@\{.*?\});',objc_modes).group(1).replace('@',''))==modes
+if manifest.get('motionPrefixResearch'):
+    motion=json.loads((root/manifest['motionPrefixResearch']).read_text())
+    assert motion['apkSha256']==controls['apkSha256'] and motion['scannedBanks']==list(range(8))
+    for flag in ['appCodeExecuted','liveUiExecuted','targetDeviceVerified','wholeProtocolRecovered','researchToolProvidesSdkInterface','sdkSendAdded','sdkReceiveAdded']:
+        assert motion[flag] is False
+    assert motion['command0C']['sourceDoPack']['axisOrder']==['yaw','roll','pitch'] and motion['command0C']['sendOpened'] is False
+    assert motion['command0C']['replacesExistingVelocity04_01'] is False
+    assert motion['command14']['onlyBaseRotateCaller'] is True and motion['command14']['sendOpened'] is False
+    assert motion['command4C']['perAxisResetEvidenceFound'] is False and len(motion['command4C']['externalDirectCallers'])==8
+    assert motion['hg724OverridesOfRotateOrReset']==[] and motion['perAxisResetStringHits']==[]
+    for key in ['04:0C','04:14','04:4C']:
+        row=next(row for row in manifest['commands'] if row['key']==key)
+        assert row['motionPrefixResearch']==manifest['motionPrefixResearch']
 if manifest.get('gapPrefixResearch'):
     gap=json.loads((root/manifest['gapPrefixResearch']).read_text())
     assert gap['apkSha256']==controls['apkSha256'] and gap['scannedBanks']==list(range(8)) and len(gap['bankSha256'])==8

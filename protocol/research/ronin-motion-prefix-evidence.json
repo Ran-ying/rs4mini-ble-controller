@@ -1,0 +1,417 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "bankSha256": {
+    "0": "2229f1f19aa8fe8d819c7b3cecbd844928da817e2bc9cfddfda1c0e120e4cc59",
+    "1": "0083e9f9e0e615602470ea148cfd581a0c7413a012ef5494b613242d55754f99",
+    "2": "f75800c8edb40823c72afdd0eee575135e995440da9a5fd9bfb3e5b3e9e6fe68",
+    "3": "861be662ee36ce3b195c0c1aa179642e34793df3a88e933fa1dfe2a7202a9528",
+    "4": "2fd9aa02f5c9f4217e7e6ef75d724a1ce64efa7c1f365ddb20c93be1fef85f77",
+    "5": "f78b34474816ca253b4133bdbd79ebcbf725f52d58ac00b63f921ff7082470d2",
+    "6": "4da9764901f753190e0c88b5a142a4f9cf1eed9b1b9214bdf97a21f00edcb990",
+    "7": "3fc2c4adccd59794f5c28b898d577ed414758875cadb7ce7f6782ffd5b64b723"
+  },
+  "appCodeExecuted": false,
+  "liveUiExecuted": false,
+  "targetDeviceVerified": false,
+  "wholeProtocolRecovered": false,
+  "researchToolProvidesSdkInterface": false,
+  "sdkSendAdded": false,
+  "sdkReceiveAdded": false,
+  "scannedBanks": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "banks": [
+    {
+      "segment": 0,
+      "derivedSha256": "2229f1f19aa8fe8d819c7b3cecbd844928da817e2bc9cfddfda1c0e120e4cc59",
+      "methodCount": 53828,
+      "methodWithCodeCount": 50517,
+      "instructionCount": 682926
+    },
+    {
+      "segment": 1,
+      "derivedSha256": "0083e9f9e0e615602470ea148cfd581a0c7413a012ef5494b613242d55754f99",
+      "methodCount": 12143,
+      "methodWithCodeCount": 11452,
+      "instructionCount": 132775
+    },
+    {
+      "segment": 2,
+      "derivedSha256": "f75800c8edb40823c72afdd0eee575135e995440da9a5fd9bfb3e5b3e9e6fe68",
+      "methodCount": 15931,
+      "methodWithCodeCount": 15446,
+      "instructionCount": 249001
+    },
+    {
+      "segment": 3,
+      "derivedSha256": "861be662ee36ce3b195c0c1aa179642e34793df3a88e933fa1dfe2a7202a9528",
+      "methodCount": 38674,
+      "methodWithCodeCount": 36349,
+      "instructionCount": 559947
+    },
+    {
+      "segment": 4,
+      "derivedSha256": "2fd9aa02f5c9f4217e7e6ef75d724a1ce64efa7c1f365ddb20c93be1fef85f77",
+      "methodCount": 56720,
+      "methodWithCodeCount": 53246,
+      "instructionCount": 587995
+    },
+    {
+      "segment": 5,
+      "derivedSha256": "f78b34474816ca253b4133bdbd79ebcbf725f52d58ac00b63f921ff7082470d2",
+      "methodCount": 55055,
+      "methodWithCodeCount": 53173,
+      "instructionCount": 677878
+    },
+    {
+      "segment": 6,
+      "derivedSha256": "4da9764901f753190e0c88b5a142a4f9cf1eed9b1b9214bdf97a21f00edcb990",
+      "methodCount": 48024,
+      "methodWithCodeCount": 45737,
+      "instructionCount": 705675
+    },
+    {
+      "segment": 7,
+      "derivedSha256": "3fc2c4adccd59794f5c28b898d577ed414758875cadb7ce7f6782ffd5b64b723",
+      "methodCount": 3240,
+      "methodWithCodeCount": 2977,
+      "instructionCount": 36394
+    }
+  ],
+  "methods": [
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/follow/RoninGimbalControler;",
+      "method": "send",
+      "descriptor": "()V",
+      "codeOffset": 2581096,
+      "instructionSha256": "b36f1b118470053e65b43146054a8f31760046d2f966e824a393462e53c1a80f"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/follow/RoninGimbalControler;",
+      "method": "stop",
+      "descriptor": "()V",
+      "codeOffset": 2581192,
+      "instructionSha256": "868e1b243f3a8eaf2a0fed6fede7c3d8338117659321824a0f82f7ec92711d52"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalAbsAngleControl;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 4854632,
+      "instructionSha256": "54d2ef252d489d6b68176fb528acc0fbab5463ba405d23ddfbdbaa917ff17ee8"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalNewResetAndSetMode;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 4878592,
+      "instructionSha256": "49e0c420bbab5cc3656c305c6bcd66be7f29d8c5dfea69189808999a87669513"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSpeedControl;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 4891032,
+      "instructionSha256": "d9d526aab23b4f35ab8bb669aa30afca8b22c735c736b81231bd2db735c95637"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "rotate",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback; Ldji/common/gimbal/Rotation;)V",
+      "codeOffset": 5248528,
+      "instructionSha256": "5416211661f4c1434aa1f6790b05bb912736d8c02b88626074d8e59667a37bc4"
+    }
+  ],
+  "hg724OverridesOfRotateOrReset": [],
+  "perAxisResetStringHits": [],
+  "command0C": {
+    "key": "04:0C",
+    "modelClass": "Ldji/midware/data/model/P3/DataGimbalSpeedControl;",
+    "sourceDoPack": {
+      "bodyBytes": 7,
+      "axisOrder": [
+        "yaw",
+        "roll",
+        "pitch"
+      ],
+      "axisEncoding": "uint16-le-from-int-low16",
+      "permissionBit": 7,
+      "multiControlBit": 0,
+      "instructionSha256": "d9d526aab23b4f35ab8bb669aa30afca8b22c735c736b81231bd2db735c95637"
+    },
+    "rotateSpeedPath": {
+      "scalesWithFloatToIntThenMul10": true,
+      "float32TimesTenPath": false,
+      "stillCallsJustSendPauseData": true,
+      "instructionSha256": "5416211661f4c1434aa1f6790b05bb912736d8c02b88626074d8e59667a37bc4"
+    },
+    "roninUiController": {
+      "className": "Lcom/dji/ronin/ui/create/follow/RoninGimbalControler;",
+      "send": {
+        "setsPermission": true,
+        "setsYaw": true,
+        "setsPitch": true,
+        "setsRoll": false,
+        "callsStart": true,
+        "instructionSha256": "b36f1b118470053e65b43146054a8f31760046d2f966e824a393462e53c1a80f"
+      },
+      "stop": {
+        "setsPermission": true,
+        "setsYaw": false,
+        "setsPitch": false,
+        "setsRoll": false,
+        "callsStart": true,
+        "zerosAxesBeforeStart": false,
+        "note": "stop() only setPermission+start in scanned body; prior yaw/pitch/roll fields may remain",
+        "instructionSha256": "868e1b243f3a8eaf2a0fed6fede7c3d8338117659321824a0f82f7ec92711d52"
+      }
+    },
+    "externalDirectCallers": [
+      {
+        "segment": 3,
+        "className": "Lcom/dji/ronin/ui/create/follow/RoninGimbalControler;",
+        "method": "send",
+        "descriptor": "()V",
+        "target": "Ldji/midware/data/model/P3/DataGimbalSpeedControl;",
+        "cameraOrFocusRelated": false
+      },
+      {
+        "segment": 3,
+        "className": "Lcom/dji/ronin/ui/create/follow/RoninGimbalControler;",
+        "method": "stop",
+        "descriptor": "()V",
+        "target": "Ldji/midware/data/model/P3/DataGimbalSpeedControl;",
+        "cameraOrFocusRelated": false
+      },
+      {
+        "segment": 5,
+        "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+        "method": "rotate",
+        "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback; Ldji/common/gimbal/Rotation;)V",
+        "target": "Ldji/midware/data/model/P3/DataGimbalSpeedControl;",
+        "cameraOrFocusRelated": false
+      },
+      {
+        "segment": 5,
+        "className": "Ldji/sdksharedlib/hardware/abstractions/flightcontroller/FlightControllerM200Abstraction;",
+        "method": "setControlGimbalBehavior",
+        "descriptor": "(Ldji/common/flightcontroller/ControlGimbalBehavior; Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+        "target": "Ldji/midware/data/model/P3/DataGimbalSpeedControl;",
+        "cameraOrFocusRelated": false
+      }
+    ],
+    "nonFlightExternalCallers": [
+      {
+        "segment": 3,
+        "className": "Lcom/dji/ronin/ui/create/follow/RoninGimbalControler;",
+        "method": "send",
+        "descriptor": "()V",
+        "target": "Ldji/midware/data/model/P3/DataGimbalSpeedControl;",
+        "cameraOrFocusRelated": false
+      },
+      {
+        "segment": 3,
+        "className": "Lcom/dji/ronin/ui/create/follow/RoninGimbalControler;",
+        "method": "stop",
+        "descriptor": "()V",
+        "target": "Ldji/midware/data/model/P3/DataGimbalSpeedControl;",
+        "cameraOrFocusRelated": false
+      },
+      {
+        "segment": 5,
+        "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+        "method": "rotate",
+        "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback; Ldji/common/gimbal/Rotation;)V",
+        "target": "Ldji/midware/data/model/P3/DataGimbalSpeedControl;",
+        "cameraOrFocusRelated": false
+      }
+    ],
+    "vectors": {
+      "permissionOnly": "00000000000080",
+      "yaw10roll20pitch30": "0a0014001e0080",
+      "multiControl": "00000000000001"
+    },
+    "unitScaleExample": {
+      "inputFloat": 1.9,
+      "floatToIntThenMul10": 10
+    },
+    "currentAppSourceLayoutEstablished": true,
+    "hg724DedicatedEntryEstablished": false,
+    "eyeOrPauseDependencyResolvedForDirectBle": false,
+    "releaseSemanticsVerified": false,
+    "targetDeviceVerified": false,
+    "sendOpened": false,
+    "replacesExistingVelocity04_01": false
+  },
+  "command14": {
+    "key": "04:14",
+    "modelClass": "Ldji/midware/data/model/P3/DataGimbalAbsAngleControl;",
+    "externalDirectCallers": [
+      {
+        "segment": 5,
+        "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+        "method": "rotate",
+        "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback; Ldji/common/gimbal/Rotation;)V",
+        "target": "Ldji/midware/data/model/P3/DataGimbalAbsAngleControl;",
+        "cameraOrFocusRelated": false
+      }
+    ],
+    "onlyBaseRotateCaller": true,
+    "hg724OverridesRotate": false,
+    "eyePauseDependencyResolvedForDirectBle": false,
+    "liveIndexAddressVerified": false,
+    "referenceFrameVerified": false,
+    "completionOrAbortVerified": false,
+    "sendOpened": false
+  },
+  "command4C": {
+    "key": "04:4C",
+    "modelClass": "Ldji/midware/data/model/P3/DataGimbalNewResetAndSetMode;",
+    "externalDirectCallers": [
+      {
+        "segment": 0,
+        "className": "Lcom/dji/djifpvleftbar/LeftBarShellModel;",
+        "method": "performGimbalRecenter",
+        "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+        "target": "Ldji/midware/data/model/P3/DataGimbalNewResetAndSetMode;",
+        "cameraOrFocusRelated": false
+      },
+      {
+        "segment": 3,
+        "className": "Lcom/dji/ronin/ui/configuration/setting/SettingRoninsGeneralView;",
+        "method": "onClick",
+        "descriptor": "(Landroid/view/View;)V",
+        "target": "Ldji/midware/data/model/P3/DataGimbalNewResetAndSetMode;",
+        "cameraOrFocusRelated": false
+      },
+      {
+        "segment": 3,
+        "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+        "method": "recenterGimbal",
+        "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+        "target": "Ldji/midware/data/model/P3/DataGimbalNewResetAndSetMode;",
+        "cameraOrFocusRelated": false
+      },
+      {
+        "segment": 3,
+        "className": "Lcom/dji/ronin/widget/RoninBackInTextView$1;",
+        "method": "onClick",
+        "descriptor": "(Landroid/view/View;)V",
+        "target": "Ldji/midware/data/model/P3/DataGimbalNewResetAndSetMode;",
+        "cameraOrFocusRelated": false
+      },
+      {
+        "segment": 3,
+        "className": "Lcom/dji/ronin/ui/create/focus/CreateFocusMotorControlView;",
+        "method": "setGimbalRecenter",
+        "descriptor": "()V",
+        "target": "Ldji/midware/data/model/P3/DataGimbalNewResetAndSetMode;",
+        "cameraOrFocusRelated": true
+      },
+      {
+        "segment": 5,
+        "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+        "method": "resetGimbal",
+        "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+        "target": "Ldji/midware/data/model/P3/DataGimbalNewResetAndSetMode;",
+        "cameraOrFocusRelated": false
+      },
+      {
+        "segment": 5,
+        "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+        "method": "setGimbalMode",
+        "descriptor": "(Ldji/common/gimbal/GimbalMode; Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+        "target": "Ldji/midware/data/model/P3/DataGimbalNewResetAndSetMode;",
+        "cameraOrFocusRelated": false
+      },
+      {
+        "segment": 5,
+        "className": "Ldji/sdksharedlib/hardware/abstractions/monitor/DJIDT501Abstraction;",
+        "method": "setUvcCameraGimbalRecenter",
+        "descriptor": "(Ldji/midware/data/model/P3/GimbalControlModeData; Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+        "target": "Ldji/midware/data/model/P3/DataGimbalNewResetAndSetMode;",
+        "cameraOrFocusRelated": true
+      }
+    ],
+    "nonCameraFocusExternalCallers": [
+      {
+        "segment": 0,
+        "className": "Lcom/dji/djifpvleftbar/LeftBarShellModel;",
+        "method": "performGimbalRecenter",
+        "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+        "target": "Ldji/midware/data/model/P3/DataGimbalNewResetAndSetMode;",
+        "cameraOrFocusRelated": false
+      },
+      {
+        "segment": 3,
+        "className": "Lcom/dji/ronin/ui/configuration/setting/SettingRoninsGeneralView;",
+        "method": "onClick",
+        "descriptor": "(Landroid/view/View;)V",
+        "target": "Ldji/midware/data/model/P3/DataGimbalNewResetAndSetMode;",
+        "cameraOrFocusRelated": false
+      },
+      {
+        "segment": 3,
+        "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+        "method": "recenterGimbal",
+        "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+        "target": "Ldji/midware/data/model/P3/DataGimbalNewResetAndSetMode;",
+        "cameraOrFocusRelated": false
+      },
+      {
+        "segment": 3,
+        "className": "Lcom/dji/ronin/widget/RoninBackInTextView$1;",
+        "method": "onClick",
+        "descriptor": "(Landroid/view/View;)V",
+        "target": "Ldji/midware/data/model/P3/DataGimbalNewResetAndSetMode;",
+        "cameraOrFocusRelated": false
+      },
+      {
+        "segment": 5,
+        "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+        "method": "resetGimbal",
+        "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+        "target": "Ldji/midware/data/model/P3/DataGimbalNewResetAndSetMode;",
+        "cameraOrFocusRelated": false
+      },
+      {
+        "segment": 5,
+        "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+        "method": "setGimbalMode",
+        "descriptor": "(Ldji/common/gimbal/GimbalMode; Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+        "target": "Ldji/midware/data/model/P3/DataGimbalNewResetAndSetMode;",
+        "cameraOrFocusRelated": false
+      }
+    ],
+    "perAxisResetEvidenceFound": false,
+    "workModeEnumStillNotAxisReset": true,
+    "priorFe01UiPathsRetained": true,
+    "sendOpened": false,
+    "specialControlNotPromoted": true
+  },
+  "newBanks01And07": {
+    "externalDirectCallers": [],
+    "hg724Overrides": [],
+    "perAxisResetStringHits": []
+  },
+  "remaining": [
+    "04:0C now has current-App yaw/roll/pitch uint16 LE + flag layout and Ronin UI send/stop quirks; still not an HG724-dedicated or hardware-verified native-rate SDK.",
+    "04:14 external callers remain base rotate only; EYE/SINGLE pause dependency, live index/address, frame and completion stay open.",
+    "04:4C eight-bank callers expand UI/FPV/focus/UVC paths; no per-axis reset evidence; keep FE01 three-axis recenter and do not emit SpecialControl mixes.",
+    "Do not replace host 04:01 velocity with 04:0C, and do not open 14/0C sends under current gates."
+  ]
+}

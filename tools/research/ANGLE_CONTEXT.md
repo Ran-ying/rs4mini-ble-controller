@@ -76,3 +76,7 @@ python/.venv/bin/python -m unittest discover -s tools/research -p test_ronin_ang
 
 
 [暂停状态与等待依赖审计](STABILIZATION_DEPENDENCY.md)区分源stabilization状态、3秒等待与真实云台停止/到位；关闭也返回paused、等待不按请求序号关联，未新增运行时功能或声明本机支持。
+
+## 后续：八段运动重审（2026-10-20）
+
+见 [MOTION_PREFIX.md](MOTION_PREFIX.md)。

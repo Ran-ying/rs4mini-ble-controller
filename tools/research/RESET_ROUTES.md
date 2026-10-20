@@ -74,3 +74,7 @@ python/.venv/bin/python -m unittest discover -s tools/research -p test_ronin_res
 未恢复banks1/7、残留保护桩/动态路径不在完整覆盖内，零引用不能判不支持。
 
 继续审计实际HG724动作注册/入口、模式调用与响应、地址和物理完成/取消；全部命令与高级新增门槛仍false。
+
+## 后续：八段运动重审（2026-10-20）
+
+见 [MOTION_PREFIX.md](MOTION_PREFIX.md)。

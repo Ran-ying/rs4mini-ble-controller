@@ -2,6 +2,10 @@
 
 研究方法、证据等级、下一步顺序与完成条件见 [研究路线图](RESEARCH_ROADMAP.md)。
 
+## 最新研究：04:14/0C/4C 八段运动重审
+
+2026-10-20。ronin_motion_prefix_trace.py：0C 当前 App 为 yaw/roll/pitch uint16 LE+标志；UI send 无 roll、stop 不清零；14 仍仅基础 rotate；4C 八段 8 个类外调用、无按轴回中。均不开放新发送。见 [MOTION_PREFIX.md](../tools/research/MOTION_PREFIX.md)。
+
 ## 最新研究：04:0D/2C/0A 八段缺口重审
 
 2026-10-20。ronin_gap_prefix_trace.py 对 PREFIX_BANKS 重审类定义、类外 invoke 与枚举外引用。0D 假设类仍不存在、无枚举外引用；2C 仍无类外调用；0A 类外调用仍仅 DT501 UVC→SetAngle。01/07 无增量。均不开放发送。见 [GAP_PREFIX.md](../tools/research/GAP_PREFIX.md)。运行时仍 0.7.33/0.3.33。

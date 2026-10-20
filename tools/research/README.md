@@ -6,6 +6,8 @@
 
 0D/2C/0A 八段缺口重审：[GAP_PREFIX.md](GAP_PREFIX.md)。
 
+14/0C/4C 八段运动重审：[MOTION_PREFIX.md](MOTION_PREFIX.md)。
+
 早期代码恢复进展：[CODE_RESTORATION.md](CODE_RESTORATION.md) 记录当前 APK 内部代码备份的离线恢复，已读到 HG724 灵敏度 setter 和参数加载逻辑；下面原有工具仍是 metadata-only 视图。
 
 此工具只读 ZIP/DEX 元数据，不安装或运行 APK，不使用 Frida、不连接设备。SDK 与默认测试不依赖可选分析库。

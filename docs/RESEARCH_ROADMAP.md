@@ -29,17 +29,17 @@
 | 5 ✓ 八段重审 | 全清单：[INVENTORY_PREFIX](../tools/research/INVENTORY_PREFIX.md) | bank05 现场提取 CmdIdGimbal 与 COMMANDS 比对；40 非排除均已登记 | inventoryComplete 保持 false；bank01 激活控制器仍缺口；不开放激活写入 |
 | HW | 实机验收：[HARDWARE_CHECKLIST](HARDWARE_CHECKLIST.md) | （待用户回家） | 研究期间不扫描/连接/移动设备，不执行厂商 APK/Java/JNI/native 或实时 UI |
 
-### 离线队列 A–E（静态语义：已耗尽，本机仍开放）
+### 离线队列 A–E（静态语义：按证据计算状态，本机仍开放）
 
-固定 PREFIX 输入下 A–E 能证尽的已落档，状态均为 `statically_exhausted_needs_hardware`。下表保留子项结论；**不能**把静态耗尽当成硬件完成或开放发送。
+固定 PREFIX 下 A–E 工具用证据标志**计算**状态（非硬编码常量）。当前计算值均为 `statically_exhausted_needs_hardware`（静态位图/字段/调用链证毕，硬件/会话未证）。若位图或交织证据缺失，对应项会回落为 `statically_unresolved`。下表保留子项结论；**不能**把该状态当成硬件完成或开放发送。
 
 | 序号 | 主题 | 具体未决 | 入口线索 |
 |---|---|---|---|
-| A ✓ 静态耗尽 | 动态能力 / 索引地址 / EYE | 端到端链 + 四子项静态耗尽：App rotate 无条件发 EYE；index 默认0/映射；EYE/GIMBAL `isNeedEncrypt=true`；Ronin2 参数能力路径存在。**本机/直连验证未做** | [QUEUE_A_SEMANTICS](../tools/research/QUEUE_A_SEMANTICS.md)、[ROTATE_EYE_TRANSPORT](../tools/research/ROTATE_EYE_TRANSPORT.md) |
-| B ✓ 静态耗尽 | 参考系 | ActualPose≠MotorAngle；无源码等式绑定 04:05；04:14 controlMode≠物理参考系。**物理系未证** | [QUEUE_B_REFERENCE_FRAME](../tools/research/QUEUE_B_REFERENCE_FRAME.md)、[TRACK_POINTS](../tools/research/TRACK_POINTS.md) |
-| C ✓ 静态耗尽 | 完成 / 中止 | rotate 无回调 start + 立即 onSuccess；ACK 重载存在但未用；程序 stop 相位≠运动 abort。**物理完成未证** | [QUEUE_C_COMPLETION_ABORT](../tools/research/QUEUE_C_COMPLETION_ABORT.md) |
-| D ✓ 静态耗尽 | 程序型号与相机隔离 | 全景 mExposure、轨迹 mRecordOrPreview 交织；25/37 info 字节未解完；无纯云台原语。**型号可达未证** | [QUEUE_D_PROGRAM_ISOLATION](../tools/research/QUEUE_D_PROGRAM_ISOLATION.md)、[PROGRAM_PREFIX](../tools/research/PROGRAM_PREFIX.md) |
-| E | 会话版本 / 状态关联 | 查询版本、激活/CENTER 状态缓存与会话关联；不能把版本查询混入激活缓存 | [ACTIVATION](../tools/research/ACTIVATION.md)、[ACTIVATION_RECEIVE](../tools/research/ACTIVATION_RECEIVE.md) |
+| A ✓ 计算为静态耗尽 | 动态能力 / 索引地址 / EYE | 端到端链 + 四子项：App rotate 无条件发 EYE；index 默认0/映射；EYE/GIMBAL `isNeedEncrypt=true`；Ronin2 参数能力路径存在。**本机/直连验证未做** | [QUEUE_A_SEMANTICS](../tools/research/QUEUE_A_SEMANTICS.md)、[ROTATE_EYE_TRANSPORT](../tools/research/ROTATE_EYE_TRANSPORT.md) |
+| B ✓ 计算为静态耗尽 | 参考系 | ActualPose≠MotorAngle；无源码等式绑定 04:05；04:14 controlMode≠物理参考系。**物理系未证** | [QUEUE_B_REFERENCE_FRAME](../tools/research/QUEUE_B_REFERENCE_FRAME.md)、[TRACK_POINTS](../tools/research/TRACK_POINTS.md) |
+| C ✓ 计算为静态耗尽 | 完成 / 中止 | rotate 无回调 start + 立即 onSuccess；ACK 重载存在但未用；程序 stop 相位≠运动 abort。**物理完成未证** | [QUEUE_C_COMPLETION_ABORT](../tools/research/QUEUE_C_COMPLETION_ABORT.md) |
+| D ✓ 计算为静态耗尽 | 程序型号与相机隔离 | 全景 mExposure、轨迹 mRecordOrPreview 交织；25/37 mInfoByte 位图已解（预览/外设位同字节）；无纯云台原语。**型号可达与隔离停止未证** | [QUEUE_D_PROGRAM_ISOLATION](../tools/research/QUEUE_D_PROGRAM_ISOLATION.md)、[PROGRAM_PREFIX](../tools/research/PROGRAM_PREFIX.md) |
+| E ✓ 计算为静态耗尽 | 会话版本 / 状态关联 | GetVer 响应改写激活版本字段；push 路径先 setRecData；版本 ACK 视图不得混入失败包。**本机会话/关联器未证**；激活写入仍关闭 | [QUEUE_E_SESSION_VERSION](../tools/research/QUEUE_E_SESSION_VERSION.md)、[ACTIVATION_RECEIVE](../tools/research/ACTIVATION_RECEIVE.md) |
 
 完成底层全命令门槛之后，才重新规划高级组合；不能把八段直接引用重审完成或包构建成功当作该门槛通过。
 

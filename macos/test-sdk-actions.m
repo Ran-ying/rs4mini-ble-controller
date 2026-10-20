@@ -41,6 +41,9 @@ int main(void){@autoreleasepool{
     Check(!RSSDKParseForm(@"rc.tuning.write",@{@"axis":@"pitch",@"parameter":@"smoothing",@"value":@"31"},nil),@"source parameter-specific limits reused");
     Check(!RSSDKParseForm(@"follow.tuning.write",@{@"axis":@"pitch",@"parameter":@"speed",@"value":@"0"},nil),@"source speed minimum reused");
     Check(!RSSDKParseForm(@"motorTuning.write",@{@"axis":@"pitch",@"parameter":@"stiffness",@"value":@"4"},nil),@"source motor minimum reused");
+    Check(!RSSDKParseForm(@"motorTuning.read",@{},nil),@"GUI cannot invoke known-incompatible bulk motor read");
+    Check(!RSSDKParseForm(@"motorTuning.read",@{@"axis":@"pitch"},nil),@"motor read requires both source selectors");
+    Check(RSSDKParseForm(@"motorTuning.read",@{@"axis":@"pitch",@"parameter":@"stiffness"},nil)!=nil,@"single motor read remains available through public SDK");
     Check(!RSSDKParseForm(@"parameter.subscribe",@{@"keys":@"MotorEnabled,MotorEnabled"},nil),@"duplicate subscriptions rejected");
     Check(!RSSDKParseForm(@"parameter.subscribe",@{@"keys":@"NotAKnownKey"},nil),@"unknown subscription key rejected");
     Check(!RSSDKParseForm(@"raw.read",@{@"index":@"1.2",@"size":@"1"},nil),@"fractional integer rejected");

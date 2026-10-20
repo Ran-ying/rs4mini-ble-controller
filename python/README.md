@@ -1,4 +1,4 @@
-# Python SDK 0.7.33
+# Python SDK 0.7.34
 
 Python 3.8+、Bleak 后端。保留早期 camelCase 和 snake_case 调用，同时补充反馈、低速位置闭环、缓存 ID、停止取消和 `close()`。
 
@@ -202,3 +202,10 @@ timeoutMs 分别限制每段，停留不计入下段；snake_case 为 `move_thro
 ## 0.7.33 CENTER只读信息候选 / 原生0.3.33 build36
 
 显式App来源新增getCenterActivationInfo（Python另有get_center_activation_info，原生RSGimbal继承同名selector），要求sourceVersion四种已知格式，无默认/OTHER/协商。固定E5/CENTER-id7、COMMON00:32 GET01/11与严格关联明文ACK；完整本次业务体解析active/date/SN原始值及源signed-decimal字符串、尾部，无旧SN缓存成功回退。GIMBAL04:32同命令号隔离，原生完成后恢复普通04路由；无激活/绑定/SET/FAIL/自动回复/重试/重放或高级新增。见[接口契约](../docs/APP_CENTER_INFO.md)（仓库根目录）。设备/当前版本/布局/激活有效性未验收，全命令及高级门槛false，无硬件/liveUI/厂商执行。
+
+
+## macOS 已知 UUID 连接（0.7.34）
+
+默认客户端可将显式 deviceId 中的 CoreBluetooth UUID 取回为 Bleak 设备对象，因此不要求设备再次广播；未知UUID沿用扫描回退。此桥接只负责设备取回，GATT/通知/写入仍由Bleak和原SDK生命周期管理。PyObjC按需导入，自定义client_factory和非macOS平台不使用该桥接。已在Python3.12实测连接、读取、三轴小幅往返及关闭；3.8/3.12各258项离线回归通过。系统已连接的HID会话下曾发生取消通知Unknown error，断开系统连接后复测正常；不要吞掉清理错误或把mock结果当硬件证明。见仓库docs/HARDWARE_FULL_ACCEPTANCE.md。
+
+Bleak0.22的设备构造要求RSSI参数，新版无此参数；缓存取回按真实构造签名适配，无广播信号强度时保留None，不伪造测量值。修复后的3.8实机复测待现场确认。

@@ -1,0 +1,462 @@
+{
+  "sessionDate": "2026-10-20",
+  "scope": "existing SDK methods, distinct from unknown protocol inventory",
+  "fullAcceptanceComplete": false,
+  "sourceVersion": "0.7.33 / native0.3.35",
+  "operations": [
+    {
+      "id": "sensitivity.read",
+      "title": "读取跟随灵敏度",
+      "write": false,
+      "state": "response_parsed",
+      "evidence": [
+        "2026-10-20 initial Node read session; source semantics/physical association remain separate"
+      ]
+    },
+    {
+      "id": "sensitivity.write",
+      "title": "设置跟随灵敏度",
+      "write": true,
+      "state": "change_readback_restore_passed",
+      "evidence": [
+        "Raw1 ->0 ->1 readback confirmed"
+      ]
+    },
+    {
+      "id": "follow.levels.read",
+      "title": "读取跟随档位",
+      "write": false,
+      "state": "response_parsed",
+      "evidence": [
+        "2026-10-20 initial Node read session; source semantics/physical association remain separate"
+      ]
+    },
+    {
+      "id": "follow.levels.write",
+      "title": "设置跟随档位",
+      "write": true,
+      "state": "same_value_write_readback_passed",
+      "evidence": [
+        "Explicit user-approved exact batch executed; source values unchanged; no persistence proof"
+      ]
+    },
+    {
+      "id": "follow.tuning.read",
+      "title": "读取跟随数值",
+      "write": false,
+      "state": "response_parsed",
+      "evidence": [
+        "2026-10-20 initial Node read session; source semantics/physical association remain separate"
+      ]
+    },
+    {
+      "id": "follow.tuning.write",
+      "title": "设置跟随数值",
+      "write": true,
+      "state": "partial",
+      "evidence": [
+        "3 speed and3 deadZone same-value writes read back; 3 acceleration values0 rejected before send by source range min1"
+      ]
+    },
+    {
+      "id": "rc.levels.read",
+      "title": "读取摇杆档位",
+      "write": false,
+      "state": "response_parsed",
+      "evidence": [
+        "2026-10-20 initial Node read session; source semantics/physical association remain separate"
+      ]
+    },
+    {
+      "id": "rc.levels.write",
+      "title": "设置摇杆档位",
+      "write": true,
+      "state": "same_value_write_readback_passed",
+      "evidence": [
+        "Explicit user-approved exact batch executed; source values unchanged; no persistence proof"
+      ]
+    },
+    {
+      "id": "rc.tuning.read",
+      "title": "读取摇杆数值",
+      "write": false,
+      "state": "response_parsed",
+      "evidence": [
+        "2026-10-20 initial Node read session; source semantics/physical association remain separate"
+      ]
+    },
+    {
+      "id": "rc.tuning.write",
+      "title": "设置摇杆数值",
+      "write": true,
+      "state": "same_value_write_readback_passed",
+      "evidence": [
+        "Explicit user-approved exact batch executed; source values unchanged; no persistence proof"
+      ]
+    },
+    {
+      "id": "CustomFollow.read",
+      "title": "读取自定义跟随",
+      "write": false,
+      "state": "response_parsed",
+      "evidence": [
+        "2026-10-20 initial Node read session; source semantics/physical association remain separate"
+      ]
+    },
+    {
+      "id": "CustomFollow.write",
+      "title": "设置自定义跟随",
+      "write": true,
+      "state": "same_value_write_readback_passed",
+      "evidence": [
+        "Explicit user-approved exact batch executed; source values unchanged; no persistence proof"
+      ]
+    },
+    {
+      "id": "Motor.read",
+      "title": "读取电机开关",
+      "write": false,
+      "state": "response_parsed",
+      "evidence": [
+        "2026-10-20 initial Node read session; source semantics/physical association remain separate"
+      ]
+    },
+    {
+      "id": "Motor.write",
+      "title": "设置电机开关",
+      "write": true,
+      "state": "same_value_write_readback_passed",
+      "evidence": [
+        "Explicit user-approved exact batch executed; source values unchanged; no persistence proof"
+      ]
+    },
+    {
+      "id": "axisMode.read",
+      "title": "读取轴模式",
+      "write": false,
+      "state": "response_parsed",
+      "evidence": [
+        "2026-10-20 initial Node read session; source semantics/physical association remain separate"
+      ]
+    },
+    {
+      "id": "axisMode.write",
+      "title": "设置轴模式",
+      "write": true,
+      "state": "same_value_write_readback_passed",
+      "evidence": [
+        "Explicit user-approved exact batch executed; source values unchanged; no persistence proof"
+      ]
+    },
+    {
+      "id": "profile.read",
+      "title": "读取用户配置",
+      "write": false,
+      "state": "response_parsed",
+      "evidence": [
+        "2026-10-20 initial Node read session; source semantics/physical association remain separate"
+      ]
+    },
+    {
+      "id": "profile.write",
+      "title": "设置用户配置",
+      "write": true,
+      "state": "same_value_write_readback_passed",
+      "evidence": [
+        "Explicit user-approved exact batch executed; source values unchanged; no persistence proof"
+      ]
+    },
+    {
+      "id": "workMode.read",
+      "title": "读取工作模式",
+      "write": false,
+      "state": "response_parsed",
+      "evidence": [
+        "2026-10-20 initial Node read session; source semantics/physical association remain separate"
+      ]
+    },
+    {
+      "id": "workMode.write",
+      "title": "设置工作模式",
+      "write": true,
+      "state": "same_value_write_readback_passed",
+      "evidence": [
+        "Explicit user-approved exact batch executed; source values unchanged; no persistence proof"
+      ]
+    },
+    {
+      "id": "smooth.read",
+      "title": "读取跟随轴开关",
+      "write": false,
+      "state": "response_parsed",
+      "evidence": [
+        "2026-10-20 initial Node read session; source semantics/physical association remain separate"
+      ]
+    },
+    {
+      "id": "smooth.write",
+      "title": "设置跟随轴开关",
+      "write": true,
+      "state": "same_value_write_readback_passed",
+      "evidence": [
+        "Explicit user-approved exact batch executed; source values unchanged; no persistence proof"
+      ]
+    },
+    {
+      "id": "motorTuning.read",
+      "title": "读取电机数值",
+      "write": false,
+      "state": "partial",
+      "evidence": [
+        "12 filtered single reads pass; default bulk returns first record only"
+      ]
+    },
+    {
+      "id": "motorTuning.write",
+      "title": "设置电机数值",
+      "write": true,
+      "state": "same_value_write_readback_passed",
+      "evidence": [
+        "Explicit user-approved exact batch executed; source values unchanged; no persistence proof"
+      ]
+    },
+    {
+      "id": "standalone.read",
+      "title": "读取独立配置",
+      "write": false,
+      "state": "response_parsed",
+      "evidence": [
+        "2026-10-20 initial Node read session; source semantics/physical association remain separate"
+      ]
+    },
+    {
+      "id": "standalone.write",
+      "title": "设置独立配置（输入源2）",
+      "write": true,
+      "state": "write_readback_passed",
+      "evidence": [
+        "Explicit inputSource2/Pitch speed50 ACK0 and fresh read input2/value50; other fields reflect newly selected preset, original source3 not restored per user authorization"
+      ]
+    },
+    {
+      "id": "handle.read",
+      "title": "读取手柄参数",
+      "write": false,
+      "state": "failed_timeout",
+      "evidence": [
+        "No correlated response with 1.8s then 6s deadlines"
+      ]
+    },
+    {
+      "id": "handle.write",
+      "title": "设置手柄单字段",
+      "write": true,
+      "state": "failed_timeout_execution_unknown",
+      "evidence": [
+        "Explicit user-approved named values sent once; no correlated ACK in5s, handle readback timed out"
+      ]
+    },
+    {
+      "id": "stick.write",
+      "title": "设置手柄摇杆开关",
+      "write": true,
+      "state": "failed_timeout_execution_unknown",
+      "evidence": [
+        "Explicit user-approved named values sent once; no correlated ACK in5s, handle readback timed out"
+      ]
+    },
+    {
+      "id": "fine.write",
+      "title": "Pitch / Roll 微调",
+      "write": true,
+      "state": "acknowledged_effect_unverified",
+      "evidence": [
+        "Pitch0 and Roll0 ACK0; no original-offset getter; no claim of physical offset calibration"
+      ]
+    },
+    {
+      "id": "tune.read",
+      "title": "读取自动调参状态",
+      "write": false,
+      "state": "failed_timeout_push_available",
+      "evidence": [
+        "Explicit6E queries timed out before/during/after run; passive6E progress and Complete100 arrive"
+      ]
+    },
+    {
+      "id": "system.read",
+      "title": "读取系统校准状态",
+      "write": false,
+      "state": "response_parsed",
+      "evidence": [
+        "2026-10-20 initial Node read session; source semantics/physical association remain separate"
+      ]
+    },
+    {
+      "id": "balance.read",
+      "title": "读取平衡测试状态",
+      "write": false,
+      "state": "response_parsed",
+      "evidence": [
+        "2026-10-20 initial Node read session; source semantics/physical association remain separate"
+      ]
+    },
+    {
+      "id": "tune.write",
+      "title": "自动调参开始 / 取消请求",
+      "write": true,
+      "state": "device_progress_complete_observed",
+      "evidence": [
+        "Start/stop sent; source6E Processing20..80 then Complete100 after~28s; stop after completion, firmware-abort test pending"
+      ]
+    },
+    {
+      "id": "system.write",
+      "title": "系统校准请求",
+      "write": true,
+      "state": "acknowledged_stuck_start",
+      "evidence": [
+        "ACK0,30successive source status START1, no completion; user explicitly power-cycled and confirmed settled before further maintenance"
+      ]
+    },
+    {
+      "id": "component.write",
+      "title": "AUTO 部件校准请求",
+      "write": true,
+      "state": "authorized_pending",
+      "evidence": [
+        "Specific maintenance/state-change batch explicitly authorized by user"
+      ]
+    },
+    {
+      "id": "balance.write",
+      "title": "启动平衡测试请求",
+      "write": true,
+      "state": "acknowledged_stuck_testing",
+      "evidence": [
+        "ACK0,30successive TESTING64 with empty axis results; no completion/physical report; awaiting user power-cycle before next maintenance"
+      ]
+    },
+    {
+      "id": "reset.write",
+      "title": "恢复设置请求（HG724）",
+      "write": true,
+      "state": "excluded_by_user",
+      "evidence": [
+        "User explicitly chose not to execute factory reset"
+      ]
+    },
+    {
+      "id": "center.read",
+      "title": "CENTER 只读信息",
+      "write": false,
+      "state": "response_parsed",
+      "evidence": [
+        "2026-10-20 initial Node read session; source semantics/physical association remain separate"
+      ]
+    },
+    {
+      "id": "raw.read",
+      "title": "原始参数读取",
+      "write": false,
+      "state": "response_parsed",
+      "evidence": [
+        "2026-10-20 initial Node read session; source semantics/physical association remain separate"
+      ]
+    },
+    {
+      "id": "parameter.subscribe",
+      "title": "单次命名参数订阅请求",
+      "write": true,
+      "state": "sent_no_new_requested_stream",
+      "evidence": [
+        "6 non-camera names across3source groups sent; 8s no new parameter/peripheral stream; transport send is not remote subscription proof"
+      ]
+    },
+    {
+      "id": "program.read",
+      "title": "单次程序状态请求",
+      "write": false,
+      "state": "response_parsed",
+      "evidence": [
+        "2026-10-20 initial Node read session; source semantics/physical association remain separate"
+      ]
+    },
+    {
+      "id": "program.subscribe",
+      "title": "程序状态推送启停请求",
+      "write": true,
+      "state": "acknowledged_remote_effect_unverified",
+      "evidence": [
+        "3programs each start/stop status push ACK0; existing38/64 notifications persisted; no program execution"
+      ]
+    }
+  ],
+  "ports": {
+    "node": "in_progress",
+    "python": "Python3.12 default cached UUID connection/read/3-axis/cancel/home/trajectory/waypoints/close passed. Python3.8 real attempt exposed legacy BLEDevice required rssi; fixed with unknown RSSI and constructor compatibility tests. Offline258 each; fixed3.8 hardware retest pending user presence.",
+    "native": "0.3.35 connection/feedback/sensitivity/degree-info/disconnect hardware pass;0.3.36 requires single motor selectors,270 GUI adapter checks; new GUI hardware motion/single-motor retest pending physical reset",
+    "web": "Real chooser empty before/after authorized system disconnect; cancel/timeout UI restored; awaiting fresh advertising"
+  },
+  "excluded": [
+    "camera/vision",
+    "activation writes",
+    "unknown commands not implemented in SDK"
+  ],
+  "coreMotion": {
+    "node": {
+      "passed": [
+        "setVelocity",
+        "setVelocityDeg",
+        "moveFor",
+        "moveFor running cancellation",
+        "moveTo running cancellation",
+        "position timeout",
+        "telemetry timeout",
+        "two-axis small move",
+        "captureHome/moveHome",
+        "runTrajectory complete/cancel",
+        "moveThrough complete/hold cancellation",
+        "Roll lower-speed settle",
+        "disconnect/reconnect",
+        "autoReconnect static link drop"
+      ],
+      "remaining": [
+        "recenter large sweep review",
+        "motion link loss",
+        "repeated reconnection",
+        "cleanup error diagnosis"
+      ],
+      "cleanup": "Notification unsubscribe reports Unknown error; connected=false and closed=true; not a clean shutdown pass"
+    }
+  },
+  "cleanupAfterSystemDisconnect": "Python full session and Node subscription/settings/autotune sessions close cleanly after authorized OS HID disconnect; do not suppress earlier unsubscribe errors",
+  "targetRelease": "0.7.34 / native0.3.36",
+  "experimental": {
+    "query.version": "raw response received",
+    "query.position": "RS4MINI_RESPONSE_TIMEOUT",
+    "query.controlStatus": "raw response received",
+    "query.type": "raw response received",
+    "absolute/rateFor/setSleep": "Other-model research sends excluded from target-device acceptance; no RS4 Mini safe/route proof, no new send unlock"
+  },
+  "hardwareCoverage": {
+    "appOperations": 43,
+    "attempted": 41,
+    "pending": [
+      "component.write"
+    ],
+    "excludedByUser": [
+      "reset.write"
+    ],
+    "allPassed": false,
+    "notes": "Attempted includes timed out/stuck/partial/ACK-only; same-value writes prove transport/readback only, not setting effects or persistence.",
+    "requiredAfterUserExclusions": 42,
+    "remainingToAttempt": 1
+  },
+  "blockedBy": [
+    "Mac locked: native GUI/Web interaction unavailable; user must unlock",
+    "Awaiting second post-balance power-cycle/settled confirmation before component calibration or new motion",
+    "Awaiting user decision on removing only old DJI pairing for Web discovery"
+  ],
+  "appExecutionComplete": false
+}

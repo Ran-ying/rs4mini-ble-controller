@@ -12,6 +12,7 @@ from .errors import RS4MiniError, positive, finite
 from .reconnect import ReconnectMixin
 from .experimental_device import ExperimentalDevice
 from .app_commands import AppCommands
+from .macos_device import cached_device
 from .experimental_protocol import rs3_rate_frame
 
 NOTIFY = '0000fff4-0000-1000-8000-00805f9b34fb'
@@ -43,7 +44,8 @@ class BleDevice(ReconnectMixin):
         self._latestTelemetry = None
         self.decoder = DumlStreamDecoder()
         self.onNotification = self.onMessage = self.onTelemetry = self.onDisconnect = self.onError = None
-        self._factory, self._scanner = client_factory or BleakClient, scanner or BleakScanner
+        self._factory = client_factory or (lambda address, **kwargs: BleakClient(cached_device(address), **kwargs))
+        self._scanner = scanner or BleakScanner
         self._connectTask = self._disconnectTask = self._closeTask = self._stopTask = self._streamTask = None
         self._context = self._operation = self._streamStop = self._writeLock = None
         self._waiters = set()

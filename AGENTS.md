@@ -1,5 +1,11 @@
 # AI developer handoff — rs4mini-ble-controller
 
+## Active full hardware acceptance (2026-10-20)
+
+User insisted on testing all existing SDK methods. Worktree targets Node/Python/Web0.7.34, native0.3.36/build39. See docs/HARDWARE_FULL_ACCEPTANCE.md and protocol/HARDWARE_ACCEPTANCE.json before any hardware action. Explicit user authorizations: low-speed small motion while balanced/unlocked/clear and present; exact same-value ordinary/motor settings write/readback batch and sensitivity1->0->1 restore; stable-base auto-tune including stop, system calibration, AUTO component calibration and balance test; inputSource2/Pitch speed50, handle three named values0, stick enabled=true, Pitch/Roll fine-tune0 accepting state changes; OS disconnect of only DJI gimbal. User explicitly declined factory reset: do not run it. No camera, activation or unknown-command probing.
+
+System calibration ACK0 then30reads START1; user power-cycled and confirmed settled. Balance then ACK0 and30reads TESTING64 with null axis results. All SDK connections closed. Another physical restart/settled confirmation and permission to remove only old DJI OS pairing are pending user questions. CUA subsequently reports Mac locked/automatic unlock failed: user must manually unlock. Do not start component calibration or new motion before restart/presence reply. All test connections are closed; no autonomous hardware action while waiting. Auto-tune already reported Processing20..80->Complete100 in~28s, query6E still times out; prior stop was after completion, not firmware-abort proof. Python cached UUID bridge default path now hardware-tested,255 offline each Python3.8/3.12 pass. Unified Node277/Web28/research558/native1562+301+3+267/types/boundaries/build pass. New opt-in hardware runners are never default tests. Full protocol/advanced gates remainfalse. Checkpoint commits preserve ongoing acceptance; inspect Git for exact current head. Hardware acceptance remains incomplete while physical restart/AUTO/Web prerequisites are pending.
+
 Current research method and next-task order: `docs/RESEARCH_ROADMAP.md`. Read it with `docs/PROJECT_STATUS.md` and `protocol/COMMANDS.json`; historical six-bank or metadata-only conclusions must not override current eight-bank evidence. Eight-bank direct-reference reviews (roadmap priorities 1–5) landed earlier; offline queue A–E tools **compute** status from PREFIX evidence (2026-10-20). A/B/C/E currently compute `statically_exhausted_needs_hardware` (not device-verified). Queue D uses substatuses: `bit_layout_established` plus call_values/camera_isolation/stop_semantics/model_entry that are needs-hardware only with recorded dynamic/session boundaries—do not claim isolation statically disproven. Program sends stay closed. See the roadmap queue and `QUEUE_*` docs (including `QUEUE_D_PROGRAM_ISOLATION.md` and `QUEUE_E_SESSION_VERSION.md`). A missing HG724-named caller is not proof that no inherited business entry exists. inventoryComplete remains false; activation writes stay closed. The user returned and explicitly authorized low-speed small hardware tests on 2026-10-20; see docs/HARDWARE_SESSION_2026-10-20.md. Keep new advanced features gated.
 
 Read this file first, then `README.md`, `node/API.md`, `docs/PROTOCOL.md`, and
@@ -10,9 +16,9 @@ verification status changes.
 ## Objective and user decisions
 
 - Provide an unofficial, direct BLE controller for **DJI RS 4 Mini**, initially on macOS.
-- **Node.js is the authoritative implementation**; current package version is `0.7.33`.
+- **Node.js is the authoritative implementation**; current worktree package version is `0.7.34`.
 - The user subsequently requested completion of all existing ports. Python is now
-  `0.7.33`, Web shares the JS core, and the native panel is `0.3.34`. Describe the
+  `0.7.34`, Web shares the JS core, and the native panel is `0.3.36`. Describe the
   documented feature differences; do not claim identical APIs or hardware proof.
 - After that delivery, the user requested the remaining **non-camera** capabilities
   under the same autonomous/offline conditions. Expansion work is in progress;

@@ -1,4 +1,4 @@
-# Web Bluetooth 0.7.33
+# Web Bluetooth 0.7.34
 
 从仓库根目录启动本机服务：
 

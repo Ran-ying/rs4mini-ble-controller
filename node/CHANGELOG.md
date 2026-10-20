@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.7.34
+
+- Resolve cached CoreBluetooth UUIDs for the Python default Bleak client, allowing connection without fresh advertisements; fake clients and non-macOS platforms remain independent of PyObjC.
+- Add explicit, opt-in hardware acceptance runners and a per-method acceptance ledger. Default tests and CI never initialize hardware.
+- Record actual read/write/restore, small motion, cancellation, reconnect, subscription and maintenance results, including failures and user-excluded reset. No new protocol sends or advanced features.
+
 ## 0.7.33
 
 - Add explicit source-version CENTER/id7 COMMON00:32 read-only activation information query across ports, with strict target correlation and complete current-body decoding.

@@ -95,7 +95,9 @@ static void PumpCallbacks(void) { [[NSRunLoop mainRunLoop] runUntilDate:[NSDate 
 int main(void) {
     @autoreleasepool {
         FakeCentral *central = [FakeCentral new]; central.state = CBManagerStatePoweredOn;
-        RSGimbal *gimbal = [[RSGimbal alloc] initWithStatus:^(NSString *text, BOOL ready) {} central:(id)central];
+        __block NSString *lastStatus = nil;
+        __block BOOL lastStatusReady = NO;
+        RSGimbal *gimbal = [[RSGimbal alloc] initWithStatus:^(NSString *text, BOOL ready) { lastStatus = text; lastStatusReady = ready; } central:(id)central];
         FakePeripheral *peripheral = Connect(gimbal, central);
         __block NSUInteger cipherRawEvents=0,cipherTelemetryEvents=0;gimbal.messageHandler=^(NSDictionary *m){if([m[@"flags"] intValue]==3)cipherRawEvents++;};gimbal.telemetryHandler=^(NSDictionary *sample){cipherTelemetryEvents++;};
         [gimbal moveTo:@{@"pan":@5}];ThreeTicks(gimbal);NSMutableData *cipherJoints=[NSMutableData dataWithLength:49];((uint8_t *)cipherJoints.mutableBytes)[16]=244;((uint8_t *)cipherJoints.mutableBytes)[17]=1;FakeCharacteristic *cipherRx=[gimbal valueForKey:@"rx"];cipherRx.value=FlaggedApp(1,5,cipherJoints,3);[gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)cipherRx error:nil];
@@ -318,6 +320,7 @@ int main(void) {
         notify.value = AppResponse(appSequence,0x10,[NSData dataWithBytes:(uint8_t[]){0,150,1,255} length:4],4);
         [gimbal peripheral:(id)peripheral didUpdateValueForCharacteristic:(id)notify error:nil]; PumpCallbacks();
         Require(appCallbacks == 2 && [appResult[@"rawValue"] intValue] == 255 && appResult[@"mode"] == NSNull.null, @"native high index and unknown mode remain raw");
+        Require(lastStatusReady && !gimbal.busy && [lastStatus isEqual:@"App 请求已结束（不代表设备动作完成）"], @"successful query publishes idle status so GUI motion buttons recover");
         appError = nil; [gimbal setFollowSensitivity:@0 timeoutMs:1000 completion:appDone]; ThreeTicks(gimbal);
         appSequence = [[gimbal valueForKey:@"deviceQuerySequence"] unsignedShortValue];
         notify.value = AppResponse(appSequence,0x0f,[NSData dataWithBytes:(uint8_t[]){7} length:1],4);
@@ -331,6 +334,7 @@ int main(void) {
         [gimbal setFollowSensitivity:@1 timeoutMs:1000 completion:appDone]; ThreeTicks(gimbal);
         [gimbal setValue:@(NSProcessInfo.processInfo.systemUptime - 1) forKey:@"deviceQueryDeadline"]; [gimbal tick]; ThreeTicks(gimbal); PumpCallbacks();
         Require(appCallbacks == 5 && [appError.userInfo[@"code"] isEqualToString:@"RS4MINI_RESPONSE_TIMEOUT"] && !gimbal.busy, @"native App timeout cleans up exactly once");
+        Require(lastStatusReady && [lastStatus isEqual:@"App 请求失败或取消，详情见请求结果"], @"failed query publishes completed cleanup status without claiming success");
         [peripheral.writes setLength:0];
         NSMutableDictionary *settingsPatch = [@{@"enabled": @YES, @"pitch": @NO} mutableCopy];
         [gimbal setCustomFollowSettings:settingsPatch timeoutMs:1000 completion:appDone]; settingsPatch[@"yaw"] = @NO;

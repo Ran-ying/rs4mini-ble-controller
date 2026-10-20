@@ -412,6 +412,8 @@ static BOOL Matches(NSString *name) {
     self.appCompletion = nil; self.appParameters = nil; self.awaitingDeviceQuery = NO;
     self.appNoAckPending = NO; self.appRequestedStart = nil;
     self.appCenterInfoVersion = nil; self.appSettingsKind = nil; self.appSettingsPatch = nil; self.appSettingsBefore = nil; self.appSettingsRequested = nil;
+    if (self.ready && !self.disconnecting && !self.stopping && ![error.userInfo[@"code"] isEqual:@"RS4MINI_DISCONNECTED"])
+        [self status:error ? @"App 请求失败或取消，详情见请求结果" : @"App 请求已结束（不代表设备动作完成）"];
     dispatch_async(dispatch_get_main_queue(), ^{ completion(result, error); });
 }
 - (void)failApp:(NSError *)error {

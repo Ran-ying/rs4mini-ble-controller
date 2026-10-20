@@ -1,4 +1,4 @@
-# RS 4 Mini Control 0.3.34
+# RS 4 Mini Control 0.3.35
 
 新增右侧「设备 SDK」面板：43 个命名 App 来源操作、10 类被动状态、原始 degree-info 查询，复用同一个 RSGimbal。使用与验证范围见 [面板说明](../docs/MACOS_SDK_PANEL.md)。
 

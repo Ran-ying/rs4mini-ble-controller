@@ -64,15 +64,11 @@
     {
       "key": "04:02",
       "name": "位置查询",
-      "requestCodec": "implemented",
+      "requestCodec": "not-exposed",
       "responseCodec": "raw",
       "targetEvidence": "other-model",
-      "implementation": [
-        "node/src/experimental-device.js",
-        "python/rs4mini_sdk/experimental_device.py",
-        "macos/RSBleDevice.m"
-      ],
-      "remaining": "本机历史尝试未收到有效响应，不能判断不支持"
+      "implementation": [],
+      "remaining": "0.7.39按用户要求移除实验区position查询；重复无响应的历史记录保留，不替代04:05正常关节反馈。"
     },
     {
       "key": "04:05",
@@ -290,13 +286,15 @@
         "node/src/app-peripheral.js",
         "python/rs4mini_sdk/app_peripheral.py"
       ],
-      "remaining": "0.7.25显式App来源被动候选覆盖46源类型/43 getter视图，保留tag21碰撞、GPS整数截断、未知/重复和原始体；与旧型号原始TLV分开，不改04:05姿态/关节，无订阅/ACK或控制；本机布局、实际扩展、物理参考系/单位仍未验收",
+      "remaining": "0.7.39按用户要求移除App来源运行时缓存/事件/公开入口；当前仅保留离线纯codec、源向量和研究证据。旧型号实验区另有原始codec，不作为RS4 Mini已验收状态。 历史：0.7.25显式App来源被动候选覆盖46源类型/43 getter视图，保留tag21碰撞、GPS整数截断、未知/重复和原始体；与旧型号原始TLV分开，不改04:05姿态/关节，无订阅/ACK或控制；本机布局、实际扩展、物理参考系/单位仍未验收",
       "officialAppAliases": [
         "SetPushPeripheralStatus"
       ],
       "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
       "trackPointResearch": "protocol/research/ronin-track-points-evidence.json",
-      "peripheralResearch": "protocol/research/ronin-peripheral-evidence.json"
+      "peripheralResearch": "protocol/research/ronin-peripheral-evidence.json",
+      "removedFromSdk": true,
+      "runtimeIntegrationEnabled": false
     },
     {
       "key": "0D:02",
@@ -503,11 +501,13 @@
         "python/rs4mini_sdk/app_user_parameters.py",
         "macos/RSControlCore.m"
       ],
-      "remaining": "0.7.12在显式App来源配置下被动解码未加密请求型固定布局17个getter，保留原始整数/未知字节；不少于74字节，不触发订阅。未知布局字段、型号/实机推送、活动预设、订阅和实际效果仍未验收，不与04:10的table_choice或ACK上下文混用",
+      "remaining": "0.7.39按用户要求移除App来源运行时缓存/事件/公开入口；当前仅保留离线纯codec、源向量和研究证据。旧型号实验区另有原始codec，不作为RS4 Mini已验收状态。 历史：0.7.12在显式App来源配置下被动解码未加密请求型固定布局17个getter，保留原始整数/未知字节；不少于74字节，不触发订阅。未知布局字段、型号/实机推送、活动预设、订阅和实际效果仍未验收，不与04:10的table_choice或ACK上下文混用",
       "officialAppAliases": [
         "GetPushUserParams"
       ],
-      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
+      "removedFromSdk": true,
+      "runtimeIntegrationEnabled": false
     },
     {
       "key": "04:25",
@@ -552,18 +552,17 @@
       "targetEvidence": "app-generic-code",
       "implementation": [
         "node/src/app-tutorial.js",
-        "node/src/app-commands.js",
         "python/rs4mini_sdk/app_tutorial.py",
-        "python/rs4mini_sdk/app_commands.py",
-        "macos/RSControlCore.m",
-        "macos/RSBleDevice.m"
+        "macos/RSControlCore.m"
       ],
-      "remaining": "0.7.32显式App来源被动5字节候选，9个数值标志、完整uint32/有符号视图、未知步骤/位/尾部及Java位移保留；未知步骤源fallback FINISH不当完成，不更新运动或其他状态。不发送查询/订阅/ACK/2C；HG724布局/真实通知、请求关联与物理完成未验收。",
+      "remaining": "0.7.39按用户要求移除App来源运行时缓存/事件/公开入口；当前仅保留离线纯codec、源向量和研究证据。旧型号实验区另有原始codec，不作为RS4 Mini已验收状态。 历史：0.7.32显式App来源被动5字节候选，9个数值标志、完整uint32/有符号视图、未知步骤/位/尾部及Java位移保留；未知步骤源fallback FINISH不当完成，不更新运动或其他状态。不发送查询/订阅/ACK/2C；HG724布局/真实通知、请求关联与物理完成未验收。",
       "officialAppAliases": [
         "GetPushTutorialStatus"
       ],
       "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
-      "tutorialResearch": "protocol/research/ronin-tutorial-evidence.json"
+      "tutorialResearch": "protocol/research/ronin-tutorial-evidence.json",
+      "removedFromSdk": true,
+      "runtimeIntegrationEnabled": false
     },
     {
       "key": "04:2C",
@@ -634,12 +633,14 @@
         "python/rs4mini_sdk/app_source_status.py",
         "macos/RSControlCore.m"
       ],
-      "remaining": "显式App来源下被动解码源字段/保留未知位与原值；仅通用类或MobileHandheld来源，无HG724布局/真实通知验收，不触发订阅或任何控制",
+      "remaining": "0.7.39按用户要求移除App来源运行时缓存/事件/公开入口；当前仅保留离线纯codec、源向量和研究证据。旧型号实验区另有原始codec，不作为RS4 Mini已验收状态。 历史：显式App来源下被动解码源字段/保留未知位与原值；仅通用类或MobileHandheld来源，无HG724布局/真实通知验收，不触发订阅或任何控制",
       "officialAppAliases": [
         "RobinPushBattery"
       ],
       "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
-      "sourceStatusResearch": "protocol/research/ronin-status-evidence.json"
+      "sourceStatusResearch": "protocol/research/ronin-status-evidence.json",
+      "removedFromSdk": true,
+      "runtimeIntegrationEnabled": false
     },
     {
       "key": "04:35",
@@ -864,12 +865,14 @@
         "python/rs4mini_sdk/app_external_device.py",
         "macos/RSControlCore.m"
       ],
-      "remaining": "0.7.27显式App来源下04:69被动TLV候选，tag2保留来源/三轴signed16原值、重复/未知/尾字节。独立帧不模拟源旧缓存，坏包整帧拒绝；无发送/订阅/自动ACK或控制。本机布局、单位、参考系与实际通知仍未验收。",
+      "remaining": "0.7.39按用户要求移除App来源运行时缓存/事件/公开入口；当前仅保留离线纯codec、源向量和研究证据。旧型号实验区另有原始codec，不作为RS4 Mini已验收状态。 历史：0.7.27显式App来源下04:69被动TLV候选，tag2保留来源/三轴signed16原值、重复/未知/尾字节。独立帧不模拟源旧缓存，坏包整帧拒绝；无发送/订阅/自动ACK或控制。本机布局、单位、参考系与实际通知仍未验收。",
       "officialAppAliases": [
         "GetPushExternalDeviceData"
       ],
       "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
-      "externalDeviceResearch": "protocol/research/ronin-external-device-evidence.json"
+      "externalDeviceResearch": "protocol/research/ronin-external-device-evidence.json",
+      "removedFromSdk": true,
+      "runtimeIntegrationEnabled": false
     },
     {
       "key": "04:57",
@@ -882,12 +885,14 @@
         "python/rs4mini_sdk/app_handheld_stick.py",
         "macos/RSControlCore.m"
       ],
-      "remaining": "显式App来源下被动解码signed X/Y、源状态位和未知原始字节；仅MobileHandheldController来源，HG724布局、单位/中心/轴映射及本机效果未验收",
+      "remaining": "0.7.39按用户要求移除App来源运行时缓存/事件/公开入口；当前仅保留离线纯codec、源向量和研究证据。旧型号实验区另有原始codec，不作为RS4 Mini已验收状态。 历史：显式App来源下被动解码signed X/Y、源状态位和未知原始字节；仅MobileHandheldController来源，HG724布局、单位/中心/轴映射及本机效果未验收",
       "officialAppAliases": [
         "GetPushHandheldStickState"
       ],
       "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
-      "stickResearch": "protocol/research/ronin-stick-evidence.json"
+      "stickResearch": "protocol/research/ronin-stick-evidence.json",
+      "removedFromSdk": true,
+      "runtimeIntegrationEnabled": false
     },
     {
       "key": "04:58",
@@ -1140,7 +1145,10 @@
       "python/rs4mini_sdk/app_handheld_stick.py",
       "macos/RSControlCore.m",
       "docs/APP_HANDHELD_STICK.md"
-    ]
+    ],
+    "removedFromSdk": true,
+    "runtimeIntegrationEnabled": false,
+    "retainedAs": "offline source codec and fixtures only"
   },
   "sourceStatusResearch": "protocol/research/ronin-status-evidence.json",
   "sourceStatusSdk": {
@@ -1153,6 +1161,12 @@
       "python/rs4mini_sdk/app_source_status.py",
       "macos/RSControlCore.m",
       "docs/APP_SOURCE_STATUS.md"
+    ],
+    "runtimeKinds": [
+      "abnormal"
+    ],
+    "removedRuntimeKinds": [
+      "battery"
     ]
   },
   "tutorialResearch": "protocol/research/ronin-tutorial-evidence.json",
@@ -1257,7 +1271,10 @@
     "targetDeviceVerified": false,
     "modelLayoutVerified": false,
     "referenceFrameVerified": false,
-    "fixtures": "node/test/fixtures/peripheral-status.json"
+    "fixtures": "node/test/fixtures/peripheral-status.json",
+    "removedFromSdk": true,
+    "runtimeIntegrationEnabled": false,
+    "retainedAs": "offline source codec and fixtures only"
   },
   "subscriptionCatalogResearch": "protocol/research/ronin-subscription-catalog.json",
   "subscriptionInitResearch": "protocol/research/ronin-subscription-init-evidence.json",
@@ -1291,7 +1308,10 @@
     "targetDeviceVerified": false,
     "modelLayoutVerified": false,
     "unitVerified": false,
-    "referenceFrameVerified": false
+    "referenceFrameVerified": false,
+    "removedFromSdk": true,
+    "runtimeIntegrationEnabled": false,
+    "retainedAs": "offline source codec and fixtures only"
   },
   "sensorCalibrationResearch": "protocol/research/ronin-sensor-calibration-evidence.json",
   "sensorCalibrationSdk": {
@@ -1325,7 +1345,10 @@
     "modelLayoutVerified": false,
     "requestAssociationVerified": false,
     "physicalCompletionVerified": false,
-    "documentation": "docs/APP_TUTORIAL_STATUS.md"
+    "documentation": "docs/APP_TUTORIAL_STATUS.md",
+    "removedFromSdk": true,
+    "runtimeIntegrationEnabled": false,
+    "retainedAs": "offline source codec and fixtures only"
   },
   "balanceAdjustResearch": "protocol/research/ronin-balance-adjust-evidence.json",
   "balanceEntryResearch": "protocol/research/ronin-balance-entry-evidence.json",
@@ -1407,5 +1430,36 @@
     "retainedHorizontalCalibrationMethod": "sendComponentCalibrationRequest",
     "retainedSourcePart": "AUTO",
     "balanceColorReadMappingVerified": false
+  },
+  "retiredUnverifiedSdk": {
+    "removedFromSdk": true,
+    "version": "0.7.39",
+    "experimentalQueryKinds": [
+      "position"
+    ],
+    "publicStatusProperties": [
+      "tutorialStatus",
+      "externalDeviceStatus",
+      "peripheralStatus",
+      "batteryStatus",
+      "handheldStickStatus",
+      "userParameterStatus"
+    ],
+    "runtimeEventsRemoved": [
+      "tutorial",
+      "externalDevice",
+      "peripheral",
+      "battery",
+      "handheldStick",
+      "userParameters"
+    ],
+    "retainedEvents": [
+      "calibration",
+      "sensorCalibration",
+      "abnormal",
+      "program"
+    ],
+    "pureCodecsRetainedForOfflineResearch": true,
+    "reason": "User requested removal of separately listed unaccepted items: position response timeout and six source-only passive states without observed target-device notifications."
   }
 }

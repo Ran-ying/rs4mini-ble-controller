@@ -27,7 +27,7 @@ class ProfileValueTests(unittest.IsolatedAsyncioTestCase):
    before=len([f for f in self.client.frames() if f['commandId']==15]);task=asyncio.create_task(write(**opts));await fixtures.until(lambda:len([f for f in self.client.frames() if f['commandId']==15])==before+1);r=sent(self.client,15);self.assertEqual(r['payload'][0],index)
    with self.assertRaises(Exception) as e:await self.gimbal.setVelocity(pan=.1)
    self.assertEqual(e.exception.code,'RS4MINI_BUSY');reply(self.client,r,[0]);result=await task;self.assertEqual(result['parameter'],kind);self.assertEqual(result['requestedRawValue'],2 if kind=='userProfile' else 3);self.assertFalse(result['activePresetVerified']);self.assertFalse(result['persistenceVerified']);self.assertFalse(result['physicalCompletionVerified'])
-  self.assertTrue(all(f['commandId'] in (1,15) for f in self.client.frames()));self.assertIsNone(self.gimbal.appCommands.userParameterStatus)
+  self.assertTrue(all(f['commandId'] in (1,15) for f in self.client.frames()));self.assertFalse(hasattr(self.gimbal.appCommands,"userParameterStatus"))
  async def test_profile_and_work_validation_before_any_frame(self):
   with self.assertRaises(ValueError):await self.gimbal.appCommands.sendUserProfileRequest(sourceProfileValue=2)
   self.gimbal.appCommands.useProfile('ronin-2.2.2')

@@ -63,7 +63,7 @@ class ExperimentalDevice:
 
     async def query(self, *, kind, timeoutMs=3000):
         self._require_profile()
-        commands = dict(version=(0, 1), position=(4, 2), controlStatus=(4, 0x0b), type=(4, 0x1c))
+        commands = dict(version=(0, 1), controlStatus=(4, 0x0b), type=(4, 0x1c))
         if kind not in commands:
             raise ValueError('invalid research query kind')
         return await self._query_command(kind, commands[kind], timeoutMs)

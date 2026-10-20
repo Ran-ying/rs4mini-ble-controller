@@ -13,7 +13,7 @@ const g = new BleDevice({ deviceId: process.env.RS4MINI_DEVICE_ID.replaceAll('-'
 const a = g.appCommands, rows = [], counts = { notification: 0, message: 0, telemetry: 0, disconnect: 0, errors: 0, status: {} };
 let passiveObserved = {};
 const decoderSessions = [];
-const caches = ['tutorialStatus', 'sensorCalibrationStatus', 'externalDeviceStatus', 'peripheralStatus', 'programStatus', 'abnormalStatus', 'batteryStatus', 'handheldStickStatus', 'userParameterStatus', 'calibrationStatus'];
+const caches = ['sensorCalibrationStatus', 'programStatus', 'abnormalStatus', 'calibrationStatus'];
 const startedAt = new Date().toISOString(), capture = new URL('../../node/captures/node-continuous-' + Date.now() + '.jsonl', import.meta.url);
 fs.mkdirSync(new URL('../../node/captures/', import.meta.url), { recursive: true });
 const save = (type, data) => fs.appendFileSync(capture, JSON.stringify({ at: Date.now(), type, data }) + '\n');
@@ -129,7 +129,7 @@ finally {
   try { await g.close(); assert.equal(g.connected, false); assert.equal(g.closed, true); rows.push({ name: 'close', ok: true }); }
   catch (e) { rows.push({ name: 'close', ok: false, code: e.code || e.name }); }
 }
-console.log(JSON.stringify({ port: 'node', sdkVersion: '0.7.38', entry: 'BleDevice', startedAt, finishedAt: new Date().toISOString(),
+console.log(JSON.stringify({ port: 'node', sdkVersion: '0.7.39', entry: 'BleDevice', startedAt, finishedAt: new Date().toISOString(),
   exclusions: ['autotune start/stop', 'horizontal calibration', 'fine tune already tested', 'recenter outside small sweep', 'nonzero motion not repeated', 'other-model experimental writes', 'unnegotiated CENTER source versions'],
   rows, counts, passiveObserved, decoderSessions }, null, 2));
 if (rows.some(r => !r.ok)) process.exitCode = 1;

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.7.39
+
+- Remove unresponsive experimental position query across SDK ports; normal attitude/joint feedback remains.
+- Remove six unverified App-source status getters, caches and events (tutorial, external device, peripheral, battery, handheld stick, user parameters), Python aliases and native GUI snapshot entries. Retain four tested status kinds and pure offline research codecs.
+- Add absence/no-send/raw-message regression checks and synchronize public TypeScript declarations.
+
 ## 0.7.36
 
 - Remove active getHandleSettings/queryCalibrationStatus APIs, Python aliases and native selectors/UI actions after target-device nonresponse; keep passive calibration progress.

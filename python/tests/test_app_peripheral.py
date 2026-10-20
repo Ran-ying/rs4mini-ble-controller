@@ -21,14 +21,5 @@ class PeripheralTests(unittest.IsolatedAsyncioTestCase):
   for n in range(128):
    m=message('');m['payload']=bytes([1,0,n])+bytes([255])*n;self.assertEqual(peripheral_notification(m)['records'][0]['sourceInt32'],0 if n==0 else 16777215 if n==3 else -1)
   self.assertEqual(peripheral_notification(message('01'))['records'],[])
- async def test_source_gate_copies_observer_and_cache_isolation(self):
-  self.incoming('0122020a00');self.assertIsNone(self.gimbal.app_commands.peripheral_status);self.gimbal.appCommands.useProfile('ronin-2.2.2')
-  def observer(s):
-   if s['kind']=='peripheral':s['records'][0]['sourceViews'][0]['value']=999;raise RuntimeError('observer')
-  self.gimbal.onAppStatus=observer;self.incoming('0122020a00');snapshot=self.gimbal.appCommands.peripheralStatus;self.assertEqual(snapshot['records'][0]['sourceViews'][0]['value'],1);snapshot['records'][0]['sourceTypes'].append('wrong');self.assertEqual(len(self.gimbal.appCommands.peripheralStatus['records'][0]['sourceTypes']),1);self.assertIsNone(self.gimbal.latestTelemetry);self.assertIsNone(self.gimbal.appCommands.programStatus);self.assertEqual(self.client.frames(),[])
  async def test_notification_does_not_complete_pending_query(self):
   self.gimbal.appCommands.useProfile('ronin-2.2.2');q=asyncio.create_task(self.gimbal.appCommands.getFollowSensitivity());await fixtures.until(lambda:any(f['commandId']==16 for f in self.client.frames()));r=next(f for f in self.client.frames() if f['commandId']==16);self.incoming('0122020a00',r['sequence'],flags=64);self.assertEqual(len(self.gimbal.experimental.pending),1);self.assertFalse(q.done());self.assertEqual(len(self.client.frames()),1);self.incoming('00960100',r['sequence'],16,128);self.assertEqual((await q)['mode'],0)
- async def test_bad_frame_retains_snapshot_and_nonrecord_flag_opaque(self):
-  self.gimbal.appCommands.useProfile('ronin-2.2.2');self.incoming('0122020a00');before=self.gimbal.appCommands.peripheralStatus;self.incoming('0122021400220200');self.assertEqual(self.gimbal.appCommands.peripheralStatus,before);self.incoming('002280');self.assertEqual(self.gimbal.appCommands.peripheralStatus['records'],[]);self.assertEqual(self.client.frames(),[])
- async def test_lifecycle_clears_without_subscription(self):
-  self.gimbal.appCommands.useProfile('ronin-2.2.2');self.incoming('0122020a00');self.gimbal.appCommands.useProfile('ronin-2.2.2');self.assertIsNone(self.gimbal.appCommands.peripheralStatus);self.incoming('0122020a00');self.gimbal.experimental.useProfile('rs3');self.assertIsNone(self.gimbal.appCommands.peripheralStatus);self.gimbal.appCommands.useProfile('ronin-2.2.2');self.incoming('0122020a00');await self.gimbal.disconnect();self.assertIsNone(self.gimbal.appCommands.peripheralStatus)

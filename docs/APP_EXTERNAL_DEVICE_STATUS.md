@@ -1,5 +1,7 @@
 # 外设数据被动候选（0.7.27 / 原生0.3.27 build30）
 
+> 0.7.39：本页对应的App来源公开状态入口、缓存和事件已移除。以下仅作历史协议研究；见[清理范围](SDK_UNVERIFIED_REMOVAL.md)。
+
 设备SDK接收04:69的完整业务体，以 `externalDeviceStatus` 暴露独立快照。仅显式选择 `ronin-2.2.2` 来源后生效；这不证明该布局适用于本机RS4Mini。固定源码依据见[外设数据审计](../tools/research/EXTERNAL_DEVICE.md)。
 
 ```js

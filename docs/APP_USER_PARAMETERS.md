@@ -1,5 +1,7 @@
 # 固定用户参数推送（0.7.12 / 原生0.3.12）
 
+> 0.7.39：本页对应的App来源公开状态入口、缓存和事件已移除。以下仅作历史协议研究；见[清理范围](SDK_UNVERIFIED_REMOVAL.md)。
+
 显式ronin-2.2.2配置下，已有RS4Mini/RSGimbal入口的设备SDK被动解码04:24。Node/Python/Web通过appCommands.userParameterStatus读取缓存，Python另有app_commands.user_parameter_status；原生为appUserParameterStatus。没有发送、主动查询、自动订阅、固件配置或高级任务。
 
 ## 消息与布局条件

@@ -1,4 +1,6 @@
-# Python SDK 0.7.38
+# Python SDK 0.7.39
+
+> 0.7.39 / macOS0.3.40 build43：已按用户要求移除实验区position查询和六类未验收状态的公开属性、缓存、事件及GUI显示；保留四类已实测状态。以下旧版本记录为历史。详见[本轮清理](../docs/SDK_UNVERIFIED_REMOVAL.md)。
 
 当前变更：移除手柄查询与主动调参状态查询；电机默认/筛选多项改为逐项读取后完整汇总，非原子快照，保留各次真实响应。被动进度通知保留。详见仓库docs/APP_MOTOR_TUNING.md；下文旧版本新增记录是历史。
 
@@ -73,7 +75,7 @@ timeoutMs 分别限制每段，停留不计入下段；snake_case 为 `move_thro
 `deviceConventionVerified=False`，不自动用于位置闭环。
 
 `gimbal.experimental.use_profile('rs3')` / `'rs3mini'` 开启显式研究配置。
-支持 `query(kind='version'|'position'|'controlStatus'|'type')`、`set_sleep(asleep=True)`，
+支持 `query(kind='version'|'controlStatus'|'type')`、`set_sleep(asleep=True)`，
 以及 rs3 配置下的 `absolute(pan=2,parameterByte=20,observeMs=3000)`、
 `rate_for(pan=2,duration_ms=500)`；含义及边界与 Node 实验接口一致，参见 `../node/API.md`。
 查询匹配连接、序号、端点、命令和响应位；超时取消排队写入，已经开始的帧有界完成。

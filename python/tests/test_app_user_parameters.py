@@ -19,15 +19,3 @@ class UserParameterTests(unittest.IsolatedAsyncioTestCase):
         for patch in (dict(sender=229),dict(receiver=4),dict(commandId=16),dict(payload=bytes(73)),dict(flags=None)):
             self.assertIsNone(user_parameter_notification(dict(message(),**patch)))
         b=bytearray(payload());b[2]=1;self.assertEqual(user_parameter_notification(message(b))['preset']['sourceEnum'],'CUSTOM_2')
-    async def test_profile_gating_copy_and_no_writes(self):
-        self.incoming();self.assertIsNone(self.gimbal.appCommands.userParameterStatus);self.gimbal.appCommands.useProfile('ronin-2.2.2');errors=[];self.gimbal.onError=errors.append
-        def observer(status):
-            status['values'].clear();status['preset']['rawValue']=99;raise ValueError('observer')
-        self.gimbal.onAppStatus=observer;self.incoming();r=self.gimbal.app_commands.user_parameter_status
-        self.assertEqual(len(r['values']),17);self.assertEqual(r['preset']['rawValue'],2);r['values'].clear();self.assertEqual(len(self.gimbal.appCommands.userParameterStatus['values']),17);self.assertEqual(len(errors),1);self.assertEqual(self.client.frames(),[]);self.assertIsNone(self.gimbal.appCommands.calibrationStatus)
-    async def test_invalid_push_retains_report_profile_reset_clears(self):
-        self.gimbal.appCommands.useProfile('ronin-2.2.2');self.incoming();before=self.gimbal.appCommands.userParameterStatus
-        self.incoming(bytes(73));self.incoming(flags=128);self.incoming(flags=1);self.assertEqual(self.gimbal.appCommands.userParameterStatus,before)
-        self.gimbal.appCommands.useProfile('ronin-2.2.2');self.assertIsNone(self.gimbal.appCommands.userParameterStatus);self.incoming();self.gimbal.experimental.useProfile('rs3');self.assertIsNone(self.gimbal.appCommands.userParameterStatus);self.incoming();self.assertIsNone(self.gimbal.appCommands.userParameterStatus);self.assertEqual(self.client.frames(),[])
-    async def test_disconnect_clears_without_subscription_request(self):
-        self.gimbal.appCommands.useProfile('ronin-2.2.2');self.incoming();await self.gimbal.disconnect();self.assertIsNone(self.gimbal.appCommands.userParameterStatus);self.assertFalse(any(f['commandId']==18 for f in self.client.frames()))

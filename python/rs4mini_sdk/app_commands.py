@@ -1,19 +1,14 @@
 from .app_center_info import center_info_spec,center_info_reply
-from .app_tutorial import tutorial_notification
 from .app_component_calibration import component_calibration_payload,component_calibration_reply
 from .app_sensor_calibration import sensor_calibration_notification
-from .app_external_device import external_device_notification
-from .app_peripheral import peripheral_notification
 from .app_program_request import program_status_request_spec,program_status_request_reply
 from .app_program_status import program_status_notification
 from .app_source_status import source_status_notification
-from .app_handheld_stick import handheld_stick_notification
 from .app_profile_values import profile_value_selection,profile_value_write,profile_value_reply
 from .app_smooth_track import smooth_track_selection,smooth_track_write,smooth_track_reply
 from .app_axis_mode import axis_mode_write,axis_mode_reply
 """Current-App device commands share the existing connection/queue/pending map."""
 from .app_fine_tune import fine_tune_spec
-from .app_user_parameters import user_parameter_notification
 from .app_standalone import standalone_selection,standalone_write,standalone_context,standalone_reply
 from .app_tuning import tuning_selection,tuning_write,tuning_reply
 from .app_motor import motor_selection, motor_write, motor_reply
@@ -31,86 +26,41 @@ class AppCommands:
     def __init__(self, owner):
         self.owner, self._profile = owner, None
         self._calibration_status = None
-        self._user_parameter_status = None
-        self._handheld_stick_status = None
         self._abnormal_status = None
-        self._battery_status = None
         self._program_status = None
-        self._peripheral_status = None
-        self._external_device_status = None
         self._sensor_calibration_status = None
-        self._tutorial_status = None
 
-    tutorialStatus = property(lambda self: copy.deepcopy(self._tutorial_status))
-    tutorial_status = tutorialStatus
     sensorCalibrationStatus = property(lambda self: copy.deepcopy(self._sensor_calibration_status))
     sensor_calibration_status = sensorCalibrationStatus
-    externalDeviceStatus = property(lambda self: copy.deepcopy(self._external_device_status))
-    external_device_status = externalDeviceStatus
-    peripheralStatus = property(lambda self: copy.deepcopy(self._peripheral_status))
-    peripheral_status = peripheralStatus
     programStatus = property(lambda self: copy.deepcopy(self._program_status))
     program_status = programStatus
     abnormalStatus = property(lambda self: copy.deepcopy(self._abnormal_status))
     abnormal_status = abnormalStatus
-    batteryStatus = property(lambda self: copy.deepcopy(self._battery_status))
-    battery_status = batteryStatus
-    handheldStickStatus = property(lambda self: copy.deepcopy(self._handheld_stick_status))
-    handheld_stick_status = handheldStickStatus
-    userParameterStatus = property(lambda self: copy.deepcopy(self._user_parameter_status))
-    user_parameter_status = userParameterStatus
     profile = property(lambda self: self._profile)
     calibrationStatus = property(lambda self: copy.deepcopy(self._calibration_status))
     calibration_status = calibrationStatus
 
     def _reset(self):
         self._calibration_status = None
-        self._user_parameter_status = None
-        self._handheld_stick_status = None
         self._abnormal_status = None
-        self._battery_status = None
         self._program_status = None
-        self._peripheral_status = None
-        self._external_device_status = None
         self._sensor_calibration_status = None
-        self._tutorial_status = None
 
     def _message(self, message):
         if not self._profile:
             return
-        tutorial=tutorial_notification(message)
-        if tutorial:
-            self._tutorial_status=tutorial
-            self.owner._emit('onAppStatus',copy.deepcopy(tutorial))
         sensor=sensor_calibration_notification(message)
         if sensor:
             self._sensor_calibration_status=sensor
             self.owner._emit('onAppStatus',copy.deepcopy(sensor))
-        external=external_device_notification(message)
-        if external:
-            self._external_device_status=external
-            self.owner._emit('onAppStatus',copy.deepcopy(external))
-        peripheral=peripheral_notification(message)
-        if peripheral:
-            self._peripheral_status=peripheral
-            self.owner._emit('onAppStatus',copy.deepcopy(peripheral))
         program=program_status_notification(message)
         if program:
             self._program_status=program
             self.owner._emit('onAppStatus',copy.deepcopy(program))
         source=source_status_notification(message)
-        if source:
-            if source['kind']=='abnormal':self._abnormal_status=source
-            else:self._battery_status=source
+        if source and source['kind']=='abnormal':
+            self._abnormal_status=source
             self.owner._emit('onAppStatus',copy.deepcopy(source))
-        stick=handheld_stick_notification(message)
-        if stick:
-            self._handheld_stick_status=stick
-            self.owner._emit('onAppStatus',copy.deepcopy(stick))
-        parameters=user_parameter_notification(message)
-        if parameters:
-            self._user_parameter_status=parameters
-            self.owner._emit('onAppStatus',copy.deepcopy(parameters))
         status = calibration_notification(message)
         if status:
             self._calibration_status = status

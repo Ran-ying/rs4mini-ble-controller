@@ -140,7 +140,7 @@ async function sourceSettingsTypes(gimbal: RS4Mini) {
 }
 
 async function calibrationTypes(gimbal: RS4Mini) {
-  gimbal.onAppStatus = status => { if(status.kind==='calibration') {const raw:number|null=status.rawState;console.log(raw);} else if(status.kind==='userParameters') {const raw:number=status.preset.rawValue;console.log(raw);} else if(status.kind==='handheldStick') {const x:number=status.sourceStickX;console.log(x,gimbal.appCommands.handheldStickStatus);} else if(status.kind==='abnormal') {const v:boolean|number=status.sourceValues.isGimbalLocked;console.log(v,gimbal.appCommands.abnormalStatus);} else if(status.kind==='battery') {const raw:number=status.rawCapacityValue;console.log(raw,gimbal.appCommands.batteryStatus);} else if(status.kind==='peripheral'){const value:number|boolean|undefined=status.records[0]?.sourceViews[0]?.value;console.log(value,gimbal.appCommands.peripheralStatus);} else if(status.kind==='sensorCalibration'){const raw:number=status.rawStatus;console.log(raw,gimbal.appCommands.sensorCalibrationStatus);} else if(status.kind==='tutorial'){const word:number=status.rawCompletionWord;console.log(word,gimbal.appCommands.tutorialStatus);} else if(status.kind==='externalDevice'){const records:number=status.records.length;console.log(records,gimbal.appCommands.externalDeviceStatus);} else {const records:number=status.records.length;console.log(records,gimbal.appCommands.programStatus);} };
+  gimbal.onAppStatus = status => { if(status.kind==='calibration') console.log(status.rawState); else if(status.kind==='abnormal') console.log(status.sourceValues); else if(status.kind==='sensorCalibration') console.log(status.rawStatus); else console.log(status.records); };
   const fine=await gimbal.appCommands.sendFineTuneRequest({axis:'pitch',adjustmentDegrees:-.1});
   const tenths:number=fine.encodedTenths;void tenths;
   // @ts-expect-error yaw source action is not established
@@ -149,7 +149,8 @@ async function calibrationTypes(gimbal: RS4Mini) {
   await gimbal.appCommands.getHandleSettings();
   // @ts-expect-error use passive calibrationStatus instead of removed active query
   await gimbal.appCommands.queryCalibrationStatus();
-  const parameters=gimbal.appCommands.userParameterStatus;void parameters;
+  // @ts-expect-error Unaccepted fixed-parameter cache removed.
+  void gimbal.appCommands.userParameterStatus;
   const sent = await gimbal.appCommands.sendAutoTuneRequest({start: false});
   const noAck: false = sent.acknowledged;
   // @ts-expect-error no numeric action or implicit coercion
@@ -223,21 +224,10 @@ async function programStatusRequestTypes(gimbal: import('../src/index.js').RS4Mi
 }
 
 
-function peripheralTypes(gimbal:RS4Mini) {
- const status=gimbal.appCommands.peripheralStatus;
- if(status){const v:number|boolean|undefined=status.records[0]?.sourceViews[0]?.value;const flag:false=status.referenceFrameVerified;void v;void flag;}
- // @ts-expect-error copied read-only status
- gimbal.appCommands.peripheralStatus=null;
-}
 
 
-function externalDeviceTypes(gimbal:RS4Mini){
- const status=gimbal.appCommands.externalDeviceStatus;
- if(status){const raw:number|undefined=status.records[0]?.speedControl?.sourcePitchSpeed;const unit:false=status.unitVerified;void raw;void unit;}
- // @ts-expect-error read-only copied status property
- gimbal.appCommands.externalDeviceStatus=null;
- gimbal.onAppStatus=s=>{if(s.kind==='externalDevice'){const records=s.records;void records;}};
-}
+
+
 
 function sensorCalibrationTypes(gimbal:RS4Mini){
  const status=gimbal.appCommands.sensorCalibrationStatus;
@@ -252,9 +242,7 @@ async function componentCalibrationTypes(gimbal: RS4Mini) { const reply=await gi
 await gimbal.appCommands.sendComponentCalibrationRequest({sourcePart:"GYRO"}); }
 
 
-function tutorialTypes(gimbal:RS4Mini){const s=gimbal.appCommands.tutorialStatus;if(s){const value:0|1=s.sourceFlags.getIsUnlock;const bit:boolean=s.sourceStepStatus.STEP_FINISH;void value;void bit;}
-// @ts-expect-error Copied read-only source status.
-gimbal.appCommands.tutorialStatus=null;}
+
 function centerInfoTypes(gimbal:RS4Mini){
  const q=gimbal.appCommands.getCenterActivationInfo({sourceVersion:'Ver1_1',timeoutMs:1000});
  q.then(r=>{const receiver:229=r.receiverByte;const valid:false=r.activationValidityVerified;const sn:string=r.sourceSerialNumber;void receiver;void valid;void sn;});
@@ -262,4 +250,21 @@ function centerInfoTypes(gimbal:RS4Mini){
  gimbal.appCommands.getCenterActivationInfo({});
  // @ts-expect-error OTHER is not a query format contract.
  gimbal.appCommands.getCenterActivationInfo({sourceVersion:'OTHER'});
+}
+
+function retiredStatusTypes(gimbal:RS4Mini) {
+  // @ts-expect-error Unaccepted public status removed.
+  void gimbal.appCommands.tutorialStatus;
+  // @ts-expect-error Unaccepted public status removed.
+  void gimbal.appCommands.externalDeviceStatus;
+  // @ts-expect-error Unaccepted public status removed.
+  void gimbal.appCommands.peripheralStatus;
+  // @ts-expect-error Unaccepted public status removed.
+  void gimbal.appCommands.batteryStatus;
+  // @ts-expect-error Unaccepted public status removed.
+  void gimbal.appCommands.handheldStickStatus;
+  // @ts-expect-error Unaccepted public status removed.
+  void gimbal.appCommands.userParameterStatus;
+  // @ts-expect-error Unresponsive experimental query removed.
+  void gimbal.experimental.query({kind:"position"});
 }

@@ -1,5 +1,7 @@
 # RS4 Mini Node API
 
+> 0.7.39 / macOS0.3.40 build43：已按用户要求移除实验区position查询和六类未验收状态的公开属性、缓存、事件及GUI显示；保留四类已实测状态。以下旧版本记录为历史。详见[本轮清理](../docs/SDK_UNVERIFIED_REMOVAL.md)。
+
 > 0.7.38 / macOS0.3.39：用户要求移除旧system_calc和旧平衡测试的启动/状态共4个公开方法，三端及GUI同步。保留已实测的电机自动调参、AUTO水平校准、Pitch/Roll手动微调。绿色平衡状态读取未实现；不计作当前SDK能力。详见[逐项验收](../docs/SDK_ACCEPTANCE_QUEUE.md)。
 
 
@@ -235,7 +237,7 @@ idle/waiting/connecting/restored/exhausted，`reconnectState` 为副本。重连
 `gimbal.experimental.useProfile('rs3')` 或 `'rs3mini'` 显式选择其他型号的研究配置。
 它不是 RS 4 Mini 支持声明，不在连接时自动启用。普通 `moveTo()` 不依赖这些命令。
 
-- `query({kind:'version'|'position'|'controlStatus'|'type',timeoutMs:3000})` 发送限定查询，
+- `query({kind:'version'|'controlStatus'|'type',timeoutMs:3000})` 发送限定查询，
   只匹配同一连接、sequence、反向端点、命令与响应位；返回原始完整消息。
   超时为 `RS4MINI_RESPONSE_TIMEOUT`，断线取消等待。允许与运动并行，未识别的命令不能借此发送。
 - `setSleep({asleep:true})` 先停止，再发送对应型号的休眠/唤醒字节；仅确认软件写入完成。

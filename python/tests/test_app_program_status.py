@@ -27,7 +27,7 @@ class ProgramStatusTests(unittest.IsolatedAsyncioTestCase):
   def observer(s):
    s['records'][0]['sourceValues']['status']=99
    raise ValueError('program observer')
-  self.gimbal.onAppStatus=observer;self.incoming();r=self.gimbal.app_commands.program_status;r['records'][0]['sourceValues']['status']=77;self.assertEqual(self.gimbal.appCommands.programStatus['records'][0]['sourceValues']['status'],1);self.assertEqual(len(errors),1);self.assertEqual(self.client.frames(),[]);self.assertIsNone(self.gimbal.appCommands.batteryStatus)
+  self.gimbal.onAppStatus=observer;self.incoming();r=self.gimbal.app_commands.program_status;r['records'][0]['sourceValues']['status']=77;self.assertEqual(self.gimbal.appCommands.programStatus['records'][0]['sourceValues']['status'],1);self.assertEqual(len(errors),1);self.assertEqual(self.client.frames(),[]);self.assertFalse(hasattr(self.gimbal.appCommands,"batteryStatus"))
  async def test_no_cross_frame_record_retention(self):
   self.gimbal.appCommands.useProfile('ronin-2.2.2');self.incoming();self.incoming(100,bytes.fromhex('feffff0080'));self.assertEqual(self.gimbal.appCommands.programStatus['records'],[]);self.assertEqual(self.gimbal.appCommands.programStatus['sourceValues']['currentPictures'],65535);self.incoming(107,bytes.fromhex('00fe00'));self.assertIsNone(self.gimbal.appCommands.programStatus['records'][0]['sourceValues'])
  async def test_invalid_keeps_cache_profile_disconnect_clear(self):

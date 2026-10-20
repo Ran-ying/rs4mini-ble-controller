@@ -39,8 +39,8 @@ export class ExperimentalDevice {
   async query(options = {}) {
     optionsOnly(options, ['kind', 'timeoutMs']); this._requireProfile();
     const { kind, timeoutMs = 3000 } = options;
-    const commands = { version: [0, 1], position: [4, 2], controlStatus: [4, 0x0b], type: [4, 0x1c] };
-    if (!Object.hasOwn(commands, kind)) throw new TypeError('query kind must be version, position, controlStatus or type');
+    const commands = { version: [0, 1], controlStatus: [4, 0x0b], type: [4, 0x1c] };
+    if (!Object.hasOwn(commands, kind)) throw new TypeError('query kind must be version, controlStatus or type');
     return this._queryCommand(kind, commands[kind], timeoutMs);
   }
   async _queryCommand(kind, command, timeoutMs = 3000) {

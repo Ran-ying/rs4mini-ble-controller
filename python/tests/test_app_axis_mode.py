@@ -21,7 +21,7 @@ class AxisModeTests(unittest.IsolatedAsyncioTestCase):
   with self.assertRaises(Exception) as e:await self.gimbal.setVelocity(pan=.1)
   self.assertEqual(e.exception.code,'RS4MINI_BUSY');reply(self.client,r,[0]);result=await task;self.assertEqual(result['requestedSourceMode'],'ThreeDRoll360');self.assertEqual(result['requestedRawValue'],24)
   for k in ['deviceVerified','physicalCompletionVerified','activePresetVerified','otherBitsPreservationVerified','persistenceVerified']:self.assertFalse(result[k])
-  self.assertTrue(all(f['commandId'] in (1,15) for f in self.client.frames()));self.assertIsNone(self.gimbal.appCommands.userParameterStatus)
+  self.assertTrue(all(f['commandId'] in (1,15) for f in self.client.frames()));self.assertFalse(hasattr(self.gimbal.appCommands,"userParameterStatus"))
  async def test_source_profile_named_modes_and_options_validation(self):
   with self.assertRaises(ValueError):await self.gimbal.appCommands.sendAxisModeRequest(sourceMode='ThreeAxis')
   self.gimbal.appCommands.useProfile('ronin-2.2.2')

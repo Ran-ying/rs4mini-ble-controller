@@ -51,6 +51,19 @@ gui_text='\n'.join((root/'macos'/name).read_text() for name in ['controller.m','
 gui_calls=set(re.findall(r'\[(?:\w+\.)?gimbal\s+(\w+)',gui_text))
 assert native_public <= gui_calls, 'native SDK methods missing from GUI: '+str(native_public-gui_calls)
 manifest = json.loads((root / 'protocol/COMMANDS.json').read_text())
+if manifest.get('retiredUnverifiedSdk'):
+    retired = manifest['retiredUnverifiedSdk']
+    assert retired['removedFromSdk'] and retired['pureCodecsRetainedForOfflineResearch']
+    assert set(retired['retainedEvents']) == {'calibration','sensorCalibration','abnormal','program'}
+    for name in retired['publicStatusProperties']:
+        assert not re.search(r'get\s+'+name+r'\s*\(', (js_root/'app-commands.js').read_text())
+        assert name not in (py_root/'app_commands.py').read_text()
+        assert not re.search(r'readonly\s+'+name+r'\s*:', (js_root/'types.d.ts').read_text())
+        native_name = 'app'+name[0].upper()+name[1:]
+        for path in ['macos/RSBleDevice.h','macos/RSBleDevice_Internal.h','macos/RSBleDevice.m','macos/RSSDKActions.m']:
+            assert native_name not in (root/path).read_text(), (path,native_name)
+    assert 'position: [4, 2]' not in (js_root/'experimental-device.js').read_text()
+    assert 'position=(4, 2)' not in (py_root/'experimental_device.py').read_text()
 center_sdk = manifest.get('centerInfoSdk',{}).get('implemented',False)
 assert manifest['inventoryComplete'] is False
 assert manifest['advancedDevelopment']['allowed'] is False

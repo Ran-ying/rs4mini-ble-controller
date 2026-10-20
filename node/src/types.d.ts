@@ -189,7 +189,7 @@ export interface ExperimentalGimbal {
   readonly profile: ResearchProfile | null;
   readonly status: Partial<Record<ResearchStatus["kind"], ResearchStatus>>;
   useProfile(profile: ResearchProfile): void;
-  query(options: { kind: "version" | "position" | "controlStatus" | "type"; timeoutMs?: number }): Promise<DumlMessage>;
+  query(options: { kind: "version" | "controlStatus" | "type"; timeoutMs?: number }): Promise<DumlMessage>;
   setSleep(options: { asleep: boolean }): Promise<ResearchWriteResult>;
   absolute(options: AxisValues & { parameterByte: number; observeMs?: number }): Promise<ResearchWriteResult>;
   /** Experimental native rates, in degrees/sec in the RS 3 research convention. */
@@ -229,12 +229,6 @@ export interface AppCalibrationStatus extends AppCalibrationRecords {
   kind: "calibration"; profile: "ronin-2.2.2"; timestamp: number;
   deviceVerified: false; physicalCompletionVerified: false;
 }
-export interface AppUserParameterStatus {
-  kind:'userParameters'; profile:'ronin-2.2.2'; timestamp:number;
-  values:Array<{sourceGetter:string;offset:number;size:1|2;rawValue:number;rawHex:string}>;
-  preset:{rawValue:number;sourceEnum:'CUSTOM_1'|'CUSTOM_2'|'FAST'|'MEDIUM'|'SLOW'|null};bodyHex:string;
-  deviceVerified:false;modelLayoutVerified:false;activePresetVerified:false;physicalCompletionVerified:false;
-}
 export interface AppSensorCalibrationStatus {
   kind:'sensorCalibration';profile:'ronin-2.2.2';commandId:48;timestamp:number;
   rawProgressValue:number;rawStatus:number;sourceStatus:'COMPLETE'|'PROCESSING'|'FAIL'|'OTHER';sourceStatusKnown:boolean;bodyHex:string;trailingHex:string;
@@ -244,22 +238,8 @@ export interface AppExternalDeviceRecord {
   rawTag:number;sourceSignedTag:number;length:number;payloadHex:string;
   speedControl?:{rawControlType:number;sourceControlType:'CommonStick'|'RockWheel'|'Sensor'|'Other';sourceControlTypeKnown:boolean;sourcePitchSpeed:number;sourceRollSpeed:number;sourceYawSpeed:number;trailingHex:string};
 }
-export interface AppExternalDeviceStatus {
-  kind:'externalDevice';profile:'ronin-2.2.2';commandId:105;timestamp:number;bodyHex:string;records:AppExternalDeviceRecord[];
-  deviceVerified:false;modelLayoutVerified:false;unitVerified:false;referenceFrameVerified:false;physicalCompletionVerified:false;
-}
-export interface AppHandheldStickStatus {
-  kind:'handheldStick';profile:'ronin-2.2.2';timestamp:number;
-  sourceStickX:number;sourceStickY:number;rawStateWord:number;unknownStateBits:number;
-  sourceTriggerPressed:boolean;sourceStickControlEnabled:boolean;bodyHex:string;
-  deviceVerified:false;modelLayoutVerified:false;axisMappingVerified:false;physicalCompletionVerified:false;
-}
 export interface AppAbnormalStatus {
   kind:'abnormal';profile:'ronin-2.2.2';timestamp:number;sourceValues:Record<string,boolean|number>;bodyHex:string;
-  deviceVerified:false;modelLayoutVerified:false;physicalCompletionVerified:false;
-}
-export interface AppBatteryStatus {
-  kind:'battery';profile:'ronin-2.2.2';timestamp:number;rawCapacityValue:number;sourceGetter:'getCapacityPercentage';bodyHex:string;
   deviceVerified:false;modelLayoutVerified:false;physicalCompletionVerified:false;
 }
 export type AppProgramName='track'|'timelapse'|'panorama';
@@ -280,14 +260,9 @@ export interface AppPeripheralRecord {
   rawTag:number;sourceSignedTag:number;length:number;payloadHex:string;sourceTypes:string[];ambiguous:boolean;sourceInt32:number|null;
   sourceViews:Array<{sourceType:string;sourceGetter:string;conversion:string;value:number|boolean}>;
 }
-export interface AppPeripheralStatus {
-  kind:'peripheral';profile:'ronin-2.2.2';commandId:102;timestamp:number;bodyHex:string;rawFlag:number;sourceRecordBranchSelected:boolean;records:AppPeripheralRecord[];
-  deviceVerified:false;modelLayoutVerified:false;referenceFrameVerified:false;physicalCompletionVerified:false;
-}
 export type AppTutorialStep = 'STEP_FINISH'|'STEP_START'|'STEP_UNLOCK_GIMBAL'|'STEP_HOLD_GIMBAL_UPRIGHT'|'STEP_FOLLOW'|'STEP_STICK'|'STEP_LOCK_DIRECTION'|'STEP_RECENTER'|'STEP_SELFIE'|'STEP_PUSH'|'STEP_APP_CONTROL';
 export type AppTutorialFlag = 'getIsUnlock'|'getIsUpright'|'getIsFollowFinish'|'getIsStickFinish'|'getIsLockDirectionFinish'|'getIsRecentFinish'|'getIsSelfieFinish'|'getIsHandlePushFinish'|'getIsAppControlFinish';
-export interface AppTutorialStatus {kind:'tutorial';profile:'ronin-2.2.2';commandId:43;timestamp:number;rawStep:number;knownSourceStepName:AppTutorialStep|null;sourceFindResult:AppTutorialStep;rawCompletionWord:number;sourceSignedCompletionWord:number;unknownCompletionBits:number;sourceFlags:Record<AppTutorialFlag,0|1>;sourceStepStatus:Record<AppTutorialStep,boolean>;bodyHex:string;trailingHex:string;deviceVerified:false;modelLayoutVerified:false;requestAssociationVerified:false;physicalCompletionVerified:false;}
-export type AppStatus = AppTutorialStatus | AppSensorCalibrationStatus | AppExternalDeviceStatus | AppPeripheralStatus | AppCalibrationStatus | AppUserParameterStatus | AppHandheldStickStatus | AppAbnormalStatus | AppBatteryStatus | AppProgramStatus;
+export type AppStatus = AppSensorCalibrationStatus | AppCalibrationStatus | AppAbnormalStatus | AppProgramStatus;
 export interface AppAutoTuneSent {
   profile: "ronin-2.2.2"; sent: true; requestedStart: boolean;
   acknowledgementRequested: false; acknowledged: false;
@@ -315,8 +290,6 @@ export interface AppMotorTuningBatchReply {
 }
 export interface AppCommands {
   readonly sensorCalibrationStatus:AppSensorCalibrationStatus|null;
-  readonly externalDeviceStatus:AppExternalDeviceStatus|null;
-  readonly peripheralStatus:AppPeripheralStatus|null;
   sendProgramStatusRequest(options:{program:AppProgramName;timeoutMs?:number}):Promise<AppProgramStatusRequestReply>;
   getCenterActivationInfo(options:{sourceVersion:'Ver1_0'|'Ver1_1'|'Ver1_3'|'Ver13';timeoutMs?:number}):Promise<AppCommandReply & {sourceVersion:string;receiverByte:229;sourceGetRequestByte:1|17;activeByte:number;sourceActiveBit:boolean;unknownActiveBits:number;dateRaw:{year:number;month:number;day:number;hour:number;minute:number;second:number};serialNumberRawHex:string;sourceSerialNumber:string;serialNumberLength:number;trailingBodyHex:string;dateValidityVerified:false;actualSessionVersionVerified:false;activationValidityVerified:false;modelLayoutVerified:false}>;
   getUserProfile(options?:{timeoutMs?:number}):Promise<AppParameterReply & {parameter:'userProfile';rawValue:number;withinSourceRange:boolean;sourceUiName:'M1'|'M2'|'M3'|null;modelLayoutVerified:false;activePresetVerified:false}>;
@@ -331,10 +304,6 @@ export interface AppCommands {
   sendFineTuneRequest(options:{axis:'pitch'|'roll';adjustmentDegrees:number;timeoutMs?:number}):Promise<AppCommandReply & {axis:'pitch'|'roll';requestedAdjustmentDegrees:number;encodedTenths:number;nominalAdjustmentDegrees:number;stabilizationStateVerified:false}>;
   readonly programStatus:AppProgramStatus|null;
   readonly abnormalStatus:AppAbnormalStatus|null;
-  readonly batteryStatus:AppBatteryStatus|null;
-  readonly tutorialStatus:AppTutorialStatus|null;
-  readonly handheldStickStatus:AppHandheldStickStatus|null;
-  readonly userParameterStatus:AppUserParameterStatus|null;
   getStandaloneTuning(options?:{axis?:MotorTuningAxis;parameter?:StandaloneParameter;timeoutMs?:number}):Promise<AppTuningReading & {inputSourceRaw:number}>;
   setStandaloneTuning(options:{inputSource:2;axis:MotorTuningAxis;parameter:StandaloneParameter;value:number;timeoutMs?:number}):Promise<AppCommandReply & {axis:MotorTuningAxis;parameter:StandaloneParameter;requestedValue:number;requestedInputSource:2;activePresetVerified:false}>;
   getFollowTuning(options?:{axis?:MotorTuningAxis;parameter?:FollowParameter;timeoutMs?:number}):Promise<AppTuningReading>;

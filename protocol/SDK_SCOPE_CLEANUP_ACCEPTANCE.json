@@ -1,0 +1,212 @@
+{
+  "date": "2026-10-20",
+  "sdkVersion": "0.7.39",
+  "nativeVersion": "0.3.40",
+  "nativeBuild": 43,
+  "scopeRemoval": {
+    "removedFromSdk": true,
+    "version": "0.7.39",
+    "experimentalQueryKinds": [
+      "position"
+    ],
+    "publicStatusProperties": [
+      "tutorialStatus",
+      "externalDeviceStatus",
+      "peripheralStatus",
+      "batteryStatus",
+      "handheldStickStatus",
+      "userParameterStatus"
+    ],
+    "runtimeEventsRemoved": [
+      "tutorial",
+      "externalDevice",
+      "peripheral",
+      "battery",
+      "handheldStick",
+      "userParameters"
+    ],
+    "retainedEvents": [
+      "calibration",
+      "sensorCalibration",
+      "abnormal",
+      "program"
+    ],
+    "pureCodecsRetainedForOfflineResearch": true,
+    "reason": "User requested removal of separately listed unaccepted items: position response timeout and six source-only passive states without observed target-device notifications."
+  },
+  "hardware": {
+    "nodeBasic": {
+      "passed": 24,
+      "total": 24,
+      "rows": [
+        {
+          "name": "connect",
+          "ok": true
+        },
+        {
+          "name": "deviceLayerOnly",
+          "ok": true
+        },
+        {
+          "name": "attitude",
+          "ok": true,
+          "elapsedMs": 194
+        },
+        {
+          "name": "joints",
+          "ok": true,
+          "elapsedMs": 1006
+        },
+        {
+          "name": "getFollowSensitivity",
+          "ok": true,
+          "elapsedMs": 30
+        },
+        {
+          "name": "getMotorSettings",
+          "ok": true,
+          "elapsedMs": 47
+        },
+        {
+          "name": "getCustomFollowSettings",
+          "ok": true,
+          "elapsedMs": 29
+        },
+        {
+          "name": "getAxisMode",
+          "ok": true,
+          "elapsedMs": 30
+        },
+        {
+          "name": "getUserProfile",
+          "ok": true,
+          "elapsedMs": 30
+        },
+        {
+          "name": "getWorkMode",
+          "ok": true,
+          "elapsedMs": 30
+        },
+        {
+          "name": "getSmoothTrackAxes",
+          "ok": true,
+          "elapsedMs": 30
+        },
+        {
+          "name": "getFollowTuning",
+          "ok": true,
+          "elapsedMs": 30
+        },
+        {
+          "name": "getRcTuning",
+          "ok": true,
+          "elapsedMs": 29
+        },
+        {
+          "name": "getStandaloneTuning",
+          "ok": true,
+          "elapsedMs": 31
+        },
+        {
+          "name": "follow.speed",
+          "ok": true,
+          "elapsedMs": 28
+        },
+        {
+          "name": "rc.speed",
+          "ok": true,
+          "elapsedMs": 32
+        },
+        {
+          "name": "motor.single",
+          "ok": true,
+          "elapsedMs": 30
+        },
+        {
+          "name": "motor.bulk",
+          "ok": true,
+          "elapsedMs": 360
+        },
+        {
+          "name": "motor.axis",
+          "ok": true,
+          "elapsedMs": 119
+        },
+        {
+          "name": "motor.parameter",
+          "ok": true,
+          "elapsedMs": 91
+        },
+        {
+          "name": "degreeInfo",
+          "ok": true,
+          "elapsedMs": 30
+        },
+        {
+          "name": "stop",
+          "ok": true,
+          "elapsedMs": 208
+        },
+        {
+          "name": "decoder",
+          "ok": true
+        },
+        {
+          "name": "close",
+          "ok": true,
+          "elapsedMs": 209
+        }
+      ]
+    },
+    "nodeRemainingQueries": {
+      "passed": 5,
+      "total": 5,
+      "rows": [
+        {
+          "name": "experimental.query.version",
+          "ok": true
+        },
+        {
+          "name": "experimental.query.controlStatus",
+          "ok": true
+        },
+        {
+          "name": "experimental.query.type",
+          "ok": true
+        },
+        {
+          "name": "decoder",
+          "ok": true
+        },
+        {
+          "name": "close",
+          "ok": true
+        }
+      ]
+    }
+  },
+  "offline": {
+    "node": 228,
+    "python38": 209,
+    "python312": 209,
+    "research": 558,
+    "nativeCore": 1562,
+    "nativeLifecycle": 236,
+    "nativeStandalone": 3,
+    "nativeGuiAdapter": 210,
+    "types": "passed",
+    "boundaries": "passed",
+    "signedBuild": "passed",
+    "installedTarball": 228,
+    "installedTarballTypes": "passed",
+    "installedWheel": 209
+  },
+  "priorRetainedHardwareEvidence": [
+    "protocol/SDK_NODE_CONTINUOUS_ACCEPTANCE.json",
+    "protocol/SDK_MAINTENANCE_ACCEPTANCE.json"
+  ],
+  "calibrationOrMotionExecutedThisCleanup": false,
+  "allClientsClosed": true,
+  "inventoryComplete": false,
+  "advancedDevelopmentAllowed": false
+}

@@ -1,5 +1,7 @@
 # 教程状态被动候选
 
+> 0.7.39：本页对应的App来源公开状态入口、缓存和事件已移除。以下仅作历史协议研究；见[清理范围](SDK_UNVERIFIED_REMOVAL.md)。
+
 0.7.32 / 原生0.3.32 build35。证据来自固定Ronin 2.2.2 APK的[既有28方法审计](../tools/research/TUTORIAL.md)及[指纹](../protocol/research/ronin-tutorial-evidence.json)。通用类的布局不等于HG724实际布局或固件支持；六段恢复视图未找到类外直接调用者，不据此判断不支持。
 
 ## 接收与入口

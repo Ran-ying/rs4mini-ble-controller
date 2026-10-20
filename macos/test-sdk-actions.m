@@ -52,7 +52,7 @@ int main(void){@autoreleasepool{
     fake.ready=YES;fake.busy=NO;fake.appProfile=@"ronin-2.2.2";
     for(NSNumber *timeout in @[@0,@60001,@(NAN)]){NSUInteger before=fake.calls.count;__block BOOL failed=NO;RSSDKDispatch((id)fake,@"handle.read",@{},timeout.doubleValue,^(NSDictionary *reply,NSError *error){failed=error!=nil;});Check(failed&&fake.calls.count==before,@"invalid timeout does not call SDK");}
     __block BOOL rejected=NO;NSUInteger before=fake.calls.count;RSSDKDispatch((id)fake,@"not-allowed",@{},3000,^(NSDictionary *reply,NSError *error){rejected=error!=nil;});Check(rejected&&fake.calls.count==before,@"unknown operation never dispatches");
-    NSDictionary *snapshot=RSSDKStatusSnapshot((id)fake);Check(snapshot.count==10&&snapshot[@"battery"]==NSNull.null,@"missing passive states remain null, not zero or success");
+    NSDictionary *snapshot=RSSDKStatusSnapshot((id)fake);Check(snapshot.count==4&&snapshot[@"sensorCalibration"]==NSNull.null,@"missing passive states remain null, not zero or success");
     NSString *json=RSSDKDisplay(@{@"body":[NSData dataWithBytes:(uint8_t[]){0,255} length:2],@"verified":@NO});Check([json containsString:@"00ff"]&&[json containsString:@"false"],@"binary response and evidence flags preserved for display");
     printf("Native SDK GUI adapter: %lu checks passed (no UI, no Bluetooth manager)\n",(unsigned long)assertions);
 }return 0;}

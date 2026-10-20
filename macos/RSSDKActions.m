@@ -114,7 +114,7 @@ void RSSDKDispatch(RSGimbal *gimbal, NSString *identifier, NSDictionary *strings
     else if ([identifier isEqual:@"raw.read"]) { [gimbal readAppParameters:@[@{@"index":p[@"index"],@"size":@([p[@"size"] intValue])}] timeoutMs:timeoutMs completion:completion]; }
     else if ([identifier isEqual:@"program.read"]) { [gimbal sendProgramStatusRequest:p timeoutMs:timeoutMs completion:completion]; }
 }
-NSDictionary *RSSDKStatusSnapshot(RSGimbal *g) { return @{@"calibration":g.appCalibrationStatus?:NSNull.null,@"userParameters":g.appUserParameterStatus?:NSNull.null,@"handheldStick":g.appHandheldStickStatus?:NSNull.null,@"abnormal":g.appAbnormalStatus?:NSNull.null,@"battery":g.appBatteryStatus?:NSNull.null,@"program":g.appProgramStatus?:NSNull.null,@"peripheral":g.appPeripheralStatus?:NSNull.null,@"externalDevice":g.appExternalDeviceStatus?:NSNull.null,@"sensorCalibration":g.appSensorCalibrationStatus?:NSNull.null,@"tutorial":g.appTutorialStatus?:NSNull.null}; }
+NSDictionary *RSSDKStatusSnapshot(RSGimbal *g) { return @{@"calibration":g.appCalibrationStatus?:NSNull.null,@"abnormal":g.appAbnormalStatus?:NSNull.null,@"program":g.appProgramStatus?:NSNull.null,@"sensorCalibration":g.appSensorCalibrationStatus?:NSNull.null}; }
 static id DisplayValue(id v) {
     if([v isKindOfClass:NSData.class]){NSMutableString *hex=[NSMutableString string];for(NSUInteger i=0;i<[v length];i++)[hex appendFormat:@"%02x",((const uint8_t *)[v bytes])[i]];return hex;}
     if([v isKindOfClass:NSDictionary.class]){NSMutableDictionary *d=[NSMutableDictionary dictionary];for(id k in v)d[[k description]]=DisplayValue(v[k]);return d;}

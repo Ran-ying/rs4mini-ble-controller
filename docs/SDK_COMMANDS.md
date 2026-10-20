@@ -1,5 +1,7 @@
 # 设备 SDK 命令审计与高级开发前置条件
 
+> 0.7.39 / macOS0.3.40 build43：已按用户要求移除实验区position查询和六类未验收状态的公开属性、缓存、事件及GUI显示；保留四类已实测状态。以下旧版本记录为历史。详见[本轮清理](SDK_UNVERIFIED_REMOVAL.md)。
+
 > 0.7.38 / macOS0.3.39：用户要求移除旧system_calc和旧平衡测试的启动/状态共4个公开方法，三端及GUI同步。保留已实测的电机自动调参、AUTO水平校准、Pitch/Roll手动微调。绿色平衡状态读取未实现；不计作当前SDK能力。详见[逐项验收](SDK_ACCEPTANCE_QUEUE.md)。
 
 

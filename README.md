@@ -1,5 +1,7 @@
 # rs4mini-ble-controller
 
+> 0.7.39 / macOS0.3.40 build43：已按用户要求移除实验区position查询和六类未验收状态的公开属性、缓存、事件及GUI显示；保留四类已实测状态。以下旧版本记录为历史。详见[本轮清理](docs/SDK_UNVERIFIED_REMOVAL.md)。
+
 > 2026-10-20：仅Node连续非校准实测，普通批次119/119、小幅速度与自动重连9/9通过；实验区position候选仍超时，15°偏离后回中及用户观察通过。[Node连续非校准验收](docs/SDK_NODE_CONTINUOUS_ACCEPTANCE.md)。运行时版本不变。
 
 > 0.7.38 / macOS0.3.39：用户要求移除旧system_calc和旧平衡测试的启动/状态共4个公开方法，三端及GUI同步。保留已实测的电机自动调参、AUTO水平校准、Pitch/Roll手动微调。绿色平衡状态读取未实现；不计作当前SDK能力。详见[逐项验收](docs/SDK_ACCEPTANCE_QUEUE.md)。
@@ -12,7 +14,7 @@
 
 研究接手入口：[当前研究方法与推进路线](docs/RESEARCH_ROADMAP.md)，包括证据门槛、下一步顺序和每项完成条件。
 
-通过电脑 BLE 直接控制 DJI RS 4 Mini 的非官方项目。Node.js **0.7.38** 为主实现；Python **0.7.38**、macOS 原生面板 **0.3.39** 提供三轴速度、姿态/机械关节反馈、低速定位、轨迹与路点、保存位置返回和显式自动重连。相机控制和视觉跟踪不属于当前范围。
+通过电脑 BLE 直接控制 DJI RS 4 Mini 的非官方项目。Node.js **0.7.39** 为主实现；Python **0.7.39**、macOS 原生面板 **0.3.40** 提供三轴速度、姿态/机械关节反馈、低速定位、轨迹与路点、保存位置返回和显式自动重连。相机控制和视觉跟踪不属于当前范围。
 
 macOS 0.3.39 提供[设备 SDK 面板](docs/MACOS_SDK_PANEL.md)：命名参数、校准请求、被动状态和 CENTER 只读信息均可从 GUI 调用。
 
@@ -96,7 +98,7 @@ RS4MINI_POSITION_AXIS=tilt RS4MINI_POSITION_DELTA=3 npm run example:position
 
 ## 各端状态
 
-| 功能 | Node 0.7.38 | Python 0.7.38 | macOS 面板 0.3.39 |
+| 功能 | Node 0.7.39 | Python 0.7.39 | macOS 面板 0.3.40 |
 |---|---|---|---|
 | 三轴速度 / 停止 / 三轴回中 | 有 | 有 | 有 |
 | 反馈解析与 CRC 重组 | 有 | 有 | 有 |

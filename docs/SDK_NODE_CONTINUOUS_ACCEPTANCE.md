@@ -1,5 +1,7 @@
 # Node 连续非校准验收（2026-10-20）
 
+> 0.7.39 / macOS0.3.40 build43：已按用户要求移除实验区position查询和六类未验收状态的公开属性、缓存、事件及GUI显示；保留四类已实测状态。以下旧版本记录为历史。详见[本轮清理](SDK_UNVERIFIED_REMOVAL.md)。
+
 SDK0.7.38 / 原生0.3.39 build42，运行时未改。本轮按用户要求只连接Node设备SDK `BleDevice`，跳过电机自动调参、AUTO水平校准和已验过的手动微调；未加载GUI或高级运动组合。机器记录：[SDK_NODE_CONTINUOUS_ACCEPTANCE.json](../protocol/SDK_NODE_CONTINUOUS_ACCEPTANCE.json)。
 
 | 批次 | 结果 | 覆盖 |

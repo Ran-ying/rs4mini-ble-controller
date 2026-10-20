@@ -11,7 +11,7 @@ g.onMessage = m => fs.appendFileSync(capture, JSON.stringify(m) + '\n');
 try {
   await g.connect({ timeoutMs: 15000, directConnectTimeoutMs: 8000 });
   g.experimental.useProfile('rs3');
-  for (const kind of ['version', 'position', 'controlStatus', 'type']) {
+  for (const kind of ['version', 'controlStatus', 'type']) {
     try {
       const r = await g.experimental.query({ kind, timeoutMs: 4000 });
       assert.equal(r.sender, 4); assert.equal(r.receiver, 2); assert.ok(r.flags & 128);
@@ -25,5 +25,5 @@ finally {
   try { await g.close(); assert.equal(g.connected, false); rows.push({ name: 'close', ok: true }); }
   catch (e) { rows.push({ name: 'close', ok: false, code: e.code || e.name }); }
 }
-console.log(JSON.stringify({ port: 'node', entry: 'BleDevice', sdkVersion: '0.7.38', sourceProfile: 'rs3', rows, targetModelLayoutVerified: false }, null, 2));
+console.log(JSON.stringify({ port: 'node', entry: 'BleDevice', sdkVersion: '0.7.39', sourceProfile: 'rs3', rows, targetModelLayoutVerified: false }, null, 2));
 if (rows.some(r => !r.ok)) process.exitCode = 1;

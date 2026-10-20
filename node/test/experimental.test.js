@@ -48,7 +48,7 @@ test('queries match sequence, endpoint, command and response bit without taking 
 });
 test('query timeout and disconnection dispose pending response state', async t => {
   const { gimbal, peripheral } = await connected(t); gimbal.experimental.useProfile('rs3');
-  await assert.rejects(gimbal.experimental.query({ kind: 'position', timeoutMs: 10 }), { code: 'RS4MINI_RESPONSE_TIMEOUT' });
+  await assert.rejects(gimbal.experimental.query({ kind: 'type', timeoutMs: 10 }), { code: 'RS4MINI_RESPONSE_TIMEOUT' });
   assert.equal(gimbal.experimental.pending.size, 0);
   const query = gimbal.experimental.query({ kind: 'version' });
   const rejected = assert.rejects(query, { code: 'RS4MINI_DISCONNECTED' });

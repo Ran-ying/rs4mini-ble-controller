@@ -58,7 +58,7 @@ class ExperimentalTests(unittest.IsolatedAsyncioTestCase):
     async def test_query_timeout_and_disconnect_clear_pending_waits(self):
         self.gimbal.experimental.useProfile('rs3')
         with self.assertRaises(Exception) as timeout:
-            await self.gimbal.experimental.query(kind='position', timeoutMs=10)
+            await self.gimbal.experimental.query(kind='type', timeoutMs=10)
         self.assertEqual(timeout.exception.code, 'RS4MINI_RESPONSE_TIMEOUT')
         task = asyncio.create_task(self.gimbal.experimental.query(kind='version'))
         await fixtures.until(lambda: self.gimbal.experimental.pending)

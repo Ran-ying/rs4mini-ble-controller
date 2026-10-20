@@ -20,14 +20,5 @@ class SourceStatusTests(unittest.IsolatedAsyncioTestCase):
   for command in (39,51):
    for patch in (dict(payload=bytes(4 if command==39 else 0)),dict(flags=128),dict(flags=1),dict(flags=True),dict(flags=256),dict(flags=-1),dict(sender=36),dict(receiver=4),dict(commandSet=0),dict(commandId=40),dict(payload=[])):
     self.assertIsNone(source_status_notification(dict(msg(command),**patch)))
- async def test_profile_cache_copies_observer_and_zero_sends(self):
-  self.incoming();self.assertIsNone(self.gimbal.appCommands.abnormalStatus);self.gimbal.appCommands.useProfile('ronin-2.2.2');errors=[];self.gimbal.onError=errors.append
-  def observer(s):
-   if s['kind']=='abnormal':s['sourceValues']['getSleepMode']=99
-   else:s['rawCapacityValue']=0
-   raise ValueError('observer')
-  self.gimbal.onAppStatus=observer;self.incoming();self.incoming(51,b'\xff');a=self.gimbal.app_commands.abnormal_status;self.assertEqual(a['sourceValues']['getSleepMode'],1);a['sourceValues']['isYawLocked']=False;self.assertTrue(self.gimbal.appCommands.abnormalStatus['sourceValues']['isYawLocked']);self.assertEqual(self.gimbal.app_commands.battery_status['rawCapacityValue'],255);self.assertEqual(len(errors),2);self.assertEqual(self.client.frames(),[]);self.assertIsNone(self.gimbal.appCommands.handheldStickStatus);self.assertIsNone(self.gimbal.appCommands.calibrationStatus)
- async def test_bad_frames_keep_cache_source_disconnect_clears(self):
-  self.gimbal.appCommands.useProfile('ronin-2.2.2');self.incoming();self.incoming(51,b'\xff');a=self.gimbal.appCommands.abnormalStatus;b=self.gimbal.appCommands.batteryStatus;self.incoming(payload=bytes(4));self.incoming(51,b'');self.incoming(flags=128);self.assertEqual(self.gimbal.appCommands.abnormalStatus,a);self.assertEqual(self.gimbal.appCommands.batteryStatus,b);self.gimbal.experimental.useProfile('rs3');self.assertIsNone(self.gimbal.appCommands.abnormalStatus);self.assertIsNone(self.gimbal.appCommands.batteryStatus);self.incoming();self.assertIsNone(self.gimbal.appCommands.abnormalStatus);self.gimbal.appCommands.useProfile('ronin-2.2.2');self.incoming();self.incoming(51,b'\x32');await self.gimbal.disconnect();self.assertIsNone(self.gimbal.appCommands.abnormalStatus);self.assertIsNone(self.gimbal.appCommands.batteryStatus);self.assertFalse(any(f['commandId'] in (18,39,51) for f in self.client.frames()))
  async def test_statuses_do_not_complete_pending_query(self):
   self.gimbal.appCommands.useProfile('ronin-2.2.2');q=asyncio.create_task(self.gimbal.appCommands.getWorkMode());await fixtures.until(lambda:any(f['commandId']==16 for f in self.client.frames()));r=next(f for f in self.client.frames() if f['commandId']==16);self.incoming();self.incoming(51,b'\xff');self.assertEqual(len(self.gimbal.experimental.pending),1);self.incoming(16,bytes([0,62,1,2]),128,r['sequence']);self.assertEqual((await q)['sourceMode'],'Fpv')

@@ -15,16 +15,3 @@ test('fixed push requires complete known layout and explicit unencrypted request
   for(const change of [{sender:0xe5},{receiver:4},{commandId:0x10},{commandSet:0},{payload:Buffer.alloc(73)},{flags:undefined}])assert.equal(userParameterNotification({...message(),...change}),null);
   const b=payload();b[2]=1;assert.equal(userParameterNotification(message(b)).preset.sourceEnum,'CUSTOM_2');
 });
-test('facade passive events require source selection, copy observers and never transmit',async t=>{
-  const {gimbal,peripheral:p}=await connected(t);incoming(p);assert.equal(gimbal.appCommands.userParameterStatus,null);gimbal.appCommands.useProfile('ronin-2.2.2');
-  const errors=[];gimbal.onError=e=>errors.push(e);gimbal.onAppStatus=status=>{assert.equal(status.kind,'userParameters');status.values.length=0;status.preset.rawValue=99;throw Error('observer');};
-  incoming(p);const result=gimbal.appCommands.userParameterStatus;assert.equal(result.values.length,17);assert.equal(result.preset.rawValue,2);result.values[0].rawHex='changed';assert.notEqual(gimbal.appCommands.userParameterStatus.values[0].rawHex,'changed');assert.equal(errors.length,1);assert.equal(p.frames().length,0);assert.equal(gimbal.latestTelemetry,null);assert.equal(gimbal.appCommands.calibrationStatus,null);
-});
-test('invalid notifications retain prior report and profile changes reset passive cache',async t=>{
-  const {gimbal,peripheral:p}=await connected(t);gimbal.appCommands.useProfile('ronin-2.2.2');incoming(p);const before=gimbal.appCommands.userParameterStatus;
-  incoming(p,Buffer.alloc(73));incoming(p,payload(),128);incoming(p,payload(),1);assert.deepEqual(gimbal.appCommands.userParameterStatus,before);
-  gimbal.appCommands.useProfile('ronin-2.2.2');assert.equal(gimbal.appCommands.userParameterStatus,null);incoming(p);gimbal.experimental.useProfile('rs3');assert.equal(gimbal.appCommands.userParameterStatus,null);incoming(p);assert.equal(gimbal.appCommands.userParameterStatus,null);assert.equal(p.frames().length,0);
-});
-test('disconnect clears fixed report with no synthetic stop or subscription request',async t=>{
-  const {gimbal,peripheral:p}=await connected(t);gimbal.appCommands.useProfile('ronin-2.2.2');incoming(p);await gimbal.disconnect();assert.equal(gimbal.appCommands.userParameterStatus,null);assert.equal(p.frames().filter(f=>f.commandId===0x12).length,0);
-});

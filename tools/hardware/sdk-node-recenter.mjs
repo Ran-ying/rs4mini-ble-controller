@@ -70,6 +70,6 @@ finally {
   try { await g.close(); assert.equal(g.connected, false); rows.push({ name: 'close', ok: true }); }
   catch (e) { rows.push({ name: 'close', ok: false, code: e.code || e.name }); }
 }
-console.log(JSON.stringify({ port: 'node', entry: 'BleDevice', sdkVersion: '0.7.38', startedAt, finishedAt: new Date().toISOString(), rows, samples,
+console.log(JSON.stringify({ port: 'node', entry: 'BleDevice', sdkVersion: '0.7.39', startedAt, finishedAt: new Date().toISOString(), rows, samples,
   offsetRequested, guardTrip, precisionGuarantee: false, physicalCompletionVerified: false, absoluteReferenceVerified: false, separateAxisCenteringVerified: false }, null, 2));
 if (rows.some(r => !r.ok)) process.exitCode = 1;

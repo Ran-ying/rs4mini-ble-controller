@@ -1,5 +1,7 @@
 # macOS 设备 SDK 面板（0.3.37 / build40）
 
+> 0.7.39 / macOS0.3.40 build43：已按用户要求移除实验区position查询和六类未验收状态的公开属性、缓存、事件及GUI显示；保留四类已实测状态。以下旧版本记录为历史。详见[本轮清理](SDK_UNVERIFIED_REMOVAL.md)。
+
 > 0.7.38 / macOS0.3.39：用户要求移除旧system_calc和旧平衡测试的启动/状态共4个公开方法，三端及GUI同步，当前32个公开App操作。保留已实测的电机自动调参、AUTO水平校准、Pitch/Roll手动微调。绿色平衡状态读取未实现；不计作当前SDK能力。详见[逐项验收](SDK_ACCEPTANCE_QUEUE.md)。
 
 
@@ -29,12 +31,12 @@ Node/Python当前0.7.36。本次完善现有能力的表单校验、命名入口
 | 读取与状态 | 灵敏度、CENTER显式版本GET、原始参数索引/已知宽度读取；原始degree-info按钮 |
 | 跟随与模式 | 跟随/RC档位、自定义跟随位、电机开关、轴模式、普通轴开关、用户配置、源工作模式的读取/设置 |
 | 数值参数 | 跟随/RC数值、12项命名电机参数、显式输入源2独立配置的读取/设置 |
-| 手柄与微调 | 手柄读取/三个命名单字段设置、摇杆开关、Pitch/Roll微调 |
-| 校准与维护 | 自动调参/系统校准/平衡状态查询及请求、AUTO部件校准、HG724恢复设置 |
-| 订阅与状态 | 152键目录与非空单次订阅、三个命名程序状态单次请求/推送启停 |
-| 被动缓存 | calibration、userParameters、handheldStick、abnormal、battery、program、peripheral、externalDevice、sensorCalibration、tutorial |
+| 手动微调 | Pitch/Roll微调 |
+| 校准与维护 | 电机自动调参、AUTO水平校准 |
+| 程序状态 | 三个命名程序状态单次请求 |
+| 被动缓存 | calibration、sensorCalibration、abnormal、program |
 
-43个操作对应43个不同的公开SDK方法，不是43项本机已验证能力。原有连接、三轴虚拟摇杆、中位停止、回中和反馈继续在左侧使用。原有其他型号实验接口仍通过明确标注的JSON入口，不混入当前App命名操作。
+32个命名操作对应32个不同的公开SDK方法。原有连接、三轴虚拟摇杆、中位停止、回中和反馈继续在左侧使用。原有其他型号实验接口仍通过明确标注的JSON入口，不混入当前App命名操作。
 
 ## 实现及验收边界
 

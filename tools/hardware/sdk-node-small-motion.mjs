@@ -75,6 +75,6 @@ finally {
   try { await g.close(); assert.equal(g.connected, false); assert.equal(g.closed, true); rows.push({ name: 'close', ok: true }); }
   catch (e) { rows.push({ name: 'close', ok: false, code: e.code || e.name }); }
 }
-console.log(JSON.stringify({ port: 'node', entry: 'BleDevice', sdkVersion: '0.7.38', startedAt, finishedAt: new Date().toISOString(), rows, samples, reconnectEvents, guardTrip, errors,
+console.log(JSON.stringify({ port: 'node', entry: 'BleDevice', sdkVersion: '0.7.39', startedAt, finishedAt: new Date().toISOString(), rows, samples, reconnectEvents, guardTrip, errors,
   exclusions: ['calibration', 'fine tune', 'recenter', 'composed motion', 'nonzero motion during link drop'] }, null, 2));
 if (rows.some(r => !r.ok)) process.exitCode = 1;

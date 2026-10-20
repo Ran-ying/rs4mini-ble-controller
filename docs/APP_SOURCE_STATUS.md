@@ -1,5 +1,7 @@
 # 异常与电量被动候选（0.7.21 / 原生0.3.21 build24）
 
+> 0.7.39：abnormal状态保留；battery候选的SDK属性、缓存和事件已移除，仅保留离线codec。见[清理范围](SDK_UNVERIFIED_REMOVAL.md)。
+
 显式ronin-2.2.2来源下，设备SDK被动解释04:27和04:33。应用入口仍只有RS4Mini/RSGimbal，
 没有新设备请求、订阅、轮询、自动告警/停机、状态驱动运动或高级任务。
 

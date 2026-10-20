@@ -22,7 +22,7 @@ class SmoothTrackTests(unittest.IsolatedAsyncioTestCase):
   with self.assertRaises(Exception) as e:await self.gimbal.setVelocity(pan=.1)
   self.assertEqual(e.exception.code,'RS4MINI_BUSY');reply(self.client,r,[0]);result=await task;self.assertEqual(result['requestedAxes'],dict(yaw=True,roll=False))
   for k in ['deviceVerified','physicalCompletionVerified','activePresetVerified','atomicApplicationVerified','persistenceVerified']:self.assertFalse(result[k])
-  self.assertIsNone(self.gimbal.appCommands.userParameterStatus);self.assertTrue(all(f['commandId'] in (1,15) for f in self.client.frames()))
+  self.assertFalse(hasattr(self.gimbal.appCommands,"userParameterStatus"));self.assertTrue(all(f['commandId'] in (1,15) for f in self.client.frames()))
  async def test_profile_empty_unknown_and_nonboolean_arguments(self):
   with self.assertRaises(ValueError):await self.gimbal.appCommands.sendSmoothTrackAxesRequest(axes=dict(yaw=True))
   self.gimbal.appCommands.useProfile('ronin-2.2.2')

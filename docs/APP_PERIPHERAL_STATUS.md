@@ -1,5 +1,7 @@
 # 外设状态被动源候选（0.7.25 / 原生0.3.25 build28）
 
+> 0.7.39：本页对应的App来源公开状态入口、缓存和事件已移除。以下仅作历史协议研究；见[清理范围](SDK_UNVERIFIED_REMOVAL.md)。
+
 显式App来源下四端新增peripheralStatus缓存及kind='peripheral'事件。对应04:66通用源目录46类型、43 getter视图；本机布局/参考系/实际通知未验收。
 它与旧rs3研究配置的原始TLV分开，不更新getAttitude/getJointAngles、原生轨迹、告警或运动完成判断。
 

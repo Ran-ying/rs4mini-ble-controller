@@ -5,14 +5,9 @@ typedef void (^TelemetryHandler)(NSDictionary *sample);
 typedef void (^RSAppCompletion)(NSDictionary *result, NSError *error);
 // Device layer: independent of RSGimbal and composed motion.
 @interface RSBleDevice : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>
-@property(nonatomic, readonly, copy) NSDictionary *appTutorialStatus;
 @property(nonatomic, readonly, copy) NSDictionary *appSensorCalibrationStatus;
-@property(nonatomic, readonly, copy) NSDictionary *appExternalDeviceStatus;
 @property(nonatomic, readonly, copy) NSDictionary *appProgramStatus;
-@property(nonatomic, readonly, copy) NSDictionary *appPeripheralStatus;
 @property(nonatomic, readonly, copy) NSDictionary *appAbnormalStatus;
-@property(nonatomic, readonly, copy) NSDictionary *appBatteryStatus;
-@property(nonatomic, readonly, copy) NSDictionary *appHandheldStickStatus;
 @property(nonatomic, readonly) BOOL ready;
 @property(nonatomic, readonly) BOOL connecting;
 @property(nonatomic, readonly) BOOL busy;
@@ -50,7 +45,6 @@ typedef void (^RSAppCompletion)(NSDictionary *result, NSError *error);
 - (void)setCustomFollowSettings:(NSDictionary *)settings timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion;
 - (void)setMotorSettings:(NSDictionary *)settings timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion;
 @property(nonatomic, readonly, copy) NSDictionary *appCalibrationStatus;
-@property(nonatomic, readonly, copy) NSDictionary *appUserParameterStatus;
 @property(nonatomic, copy) TelemetryHandler appStatusHandler;
 - (void)sendAutoTuneRequest:(NSNumber *)start completion:(RSAppCompletion)completion;
 - (void)getStandaloneTuning:(NSDictionary *)filters timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion;

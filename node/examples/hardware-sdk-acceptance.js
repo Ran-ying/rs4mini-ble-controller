@@ -24,7 +24,7 @@ try{
  }else if(action==='component'){
   await task('sendComponentCalibrationRequest.AUTO',()=>a.sendComponentCalibrationRequest({...t,sourcePart:'AUTO'}));await observe(60);
  }else if(action==='queries'){
-  g.experimental.useProfile('rs3');for(const kind of ['version','position','controlStatus','type'])await task('experimental.query.'+kind,()=>g.experimental.query({kind,timeoutMs:3000}));a.useProfile('ronin-2.2.2');
+  g.experimental.useProfile('rs3');for(const kind of ['version','controlStatus','type'])await task('experimental.query.'+kind,()=>g.experimental.query({kind,timeoutMs:3000}));a.useProfile('ronin-2.2.2');
  }else if(action==='recenter'){
   save('before',await g.getJointAngles({fresh:true}));await task('recenter',()=>g.recenter());await observe(10);save('after',await g.getJointAngles({fresh:true}));
  }

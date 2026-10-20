@@ -1,5 +1,7 @@
 # 手柄状态被动候选（0.7.20 / 原生0.3.20 build23）
 
+> 0.7.39：本页对应的App来源公开状态入口、缓存和事件已移除。以下仅作历史协议研究；见[清理范围](SDK_UNVERIFIED_REMOVAL.md)。
+
 显式ronin-2.2.2配置下，设备SDK被动解释04:57。应用仍只使用RS4Mini/RSGimbal高级入口。
 Node/Python/Web读appCommands.handheldStickStatus，Python另有app_commands.handheld_stick_status；
 原生读appHandheldStickStatus。没有主动查询、订阅或04:58发送，没有新高级动作或UI控制。

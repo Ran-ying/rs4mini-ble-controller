@@ -17,7 +17,7 @@ test('malformed records and source negative lengths never produce partial candid
 });
 test('program cache and observer are independent snapshots gated by explicit source',async t=>{
  const{gimbal,peripheral:p}=await connected(t);incoming(p);assert.equal(gimbal.appCommands.programStatus,null);gimbal.appCommands.useProfile('ronin-2.2.2');const errors=[];gimbal.onError=e=>errors.push(e);gimbal.onAppStatus=s=>{s.records[0].sourceValues.status=99;throw Error('program observer');};incoming(p);
- const r=gimbal.appCommands.programStatus;r.records[0].sourceValues.status=77;assert.equal(gimbal.appCommands.programStatus.records[0].sourceValues.status,1);assert.equal(errors.length,1);assert.equal(p.frames().length,0);assert.equal(gimbal.latestTelemetry,null);assert.equal(gimbal.appCommands.batteryStatus,null);
+ const r=gimbal.appCommands.programStatus;r.records[0].sourceValues.status=77;assert.equal(gimbal.appCommands.programStatus.records[0].sourceValues.status,1);assert.equal(errors.length,1);assert.equal(p.frames().length,0);assert.equal(gimbal.latestTelemetry,null);assert.equal('batteryStatus' in gimbal.appCommands,false);
 });
 test('one frame never retains records from older program frames',async t=>{
  const{gimbal,peripheral:p}=await connected(t);gimbal.appCommands.useProfile('ronin-2.2.2');incoming(p);incoming(p,100,Buffer.from('feffff0080','hex'));assert.equal(gimbal.appCommands.programStatus.records.length,0);assert.equal(gimbal.appCommands.programStatus.sourceValues.currentPictures,65535);

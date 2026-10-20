@@ -31,7 +31,7 @@ static BOOL Matches(NSString *name) {
 
 - (void)resetLink:(NSString *)message {
     [self finishApp:nil error:RSAppError(@"RS4MINI_DISCONNECTED", message ?: @"Disconnected", nil)];
-    self.awaitingDeviceQuery = NO; self.appCalibrationStatus = nil; self.appUserParameterStatus = nil; self.appHandheldStickStatus = nil; self.appAbnormalStatus = nil; self.appBatteryStatus = nil; self.appProgramStatus = nil; self.appPeripheralStatus = nil; self.appExternalDeviceStatus = nil; self.appSensorCalibrationStatus = nil; self.appTutorialStatus=nil;
+    self.awaitingDeviceQuery = NO; self.appCalibrationStatus = nil; self.appAbnormalStatus = nil; self.appProgramStatus = nil; self.appSensorCalibrationStatus = nil;
     BOOL recover = self.autoReconnectEnabled && (self.ready || self.retrying) && !self.disconnecting;
     [self.central stopScan]; [self.connectionTimer invalidate]; self.connectionTimer = nil;
     [self.tickTimer invalidate]; self.tickTimer = nil; [self cancelComposedMotion];
@@ -222,37 +222,17 @@ static BOOL Matches(NSString *name) {
             [self status:@"已收到 degree-info 原始响应，不代表反馈频率提高"];
         }
         if (self.appProfile) {
-            NSDictionary *tutorial=RSDecodeAppTutorialNotification(message);
-            if(tutorial){self.appTutorialStatus=tutorial;
-                @try{if(self.appStatusHandler)self.appStatusHandler(tutorial);}
-                @catch(NSException *exception){NSLog(@"App status observer exception: %@",exception.name);}}
             NSDictionary *sensor=RSDecodeAppSensorCalibrationNotification(message);
             if(sensor){self.appSensorCalibrationStatus=sensor;
                 @try{if(self.appStatusHandler)self.appStatusHandler(sensor);}
-                @catch(NSException *exception){NSLog(@"App status observer exception: %@",exception.name);}}
-            NSDictionary *external=RSDecodeAppExternalDeviceNotification(message);
-            if(external){self.appExternalDeviceStatus=external;
-                @try{if(self.appStatusHandler)self.appStatusHandler(external);}
-                @catch(NSException *exception){NSLog(@"App status observer exception: %@",exception.name);}}
-            NSDictionary *peripheralStatus=RSDecodeAppPeripheralNotification(message);
-            if(peripheralStatus){self.appPeripheralStatus=peripheralStatus;
-                @try{if(self.appStatusHandler)self.appStatusHandler(peripheralStatus);}
                 @catch(NSException *exception){NSLog(@"App status observer exception: %@",exception.name);}}
             NSDictionary *program=RSDecodeAppProgramStatusNotification(message);
             if(program) {self.appProgramStatus=program;
                 @try {if(self.appStatusHandler)self.appStatusHandler(program);}
                 @catch(NSException *exception){NSLog(@"App status observer exception: %@",exception.name);}}
             NSDictionary *source=RSDecodeAppSourceStatusNotification(message);
-            if(source) {if([source[@"kind"] isEqualToString:@"abnormal"])self.appAbnormalStatus=source;else self.appBatteryStatus=source;
+            if([source[@"kind"] isEqualToString:@"abnormal"]) {self.appAbnormalStatus=source;
                 @try {if(self.appStatusHandler)self.appStatusHandler(source);}
-                @catch(NSException *exception){NSLog(@"App status observer exception: %@",exception.name);}}
-            NSDictionary *stick=RSDecodeAppHandheldStickNotification(message);
-            if(stick) {self.appHandheldStickStatus=stick;
-                @try {if(self.appStatusHandler)self.appStatusHandler(stick);}
-                @catch(NSException *exception){NSLog(@"App status observer exception: %@",exception.name);}}
-            NSDictionary *parameters=RSDecodeAppUserParameterNotification(message);
-            if(parameters) {self.appUserParameterStatus=parameters;
-                @try {if(self.appStatusHandler)self.appStatusHandler(parameters);}
                 @catch(NSException *exception){NSLog(@"App status observer exception: %@",exception.name);}}
             NSDictionary *appStatus = RSDecodeAppCalibrationNotification(message);
             if (appStatus) {
@@ -395,6 +375,7 @@ static BOOL Matches(NSString *name) {
     NSString *kind = [command[@"command"] copy];
     NSDictionary *specific = @{@"observe": @[], @"query": @[@"kind", @"timeoutMs"], @"sleep": @[@"asleep"], @"absolute": @[@"pan", @"tilt", @"roll", @"parameterByte", @"observeMs"], @"rate": @[@"pan", @"tilt", @"roll", @"durationMs"]};
     if (![kind isKindOfClass:NSString.class] || !specific[kind]) { [self status:@"不支持此实验指令"]; return nil; }
+    if ([kind isEqualToString:@"query"] && ![@[@"version", @"controlStatus", @"type", @"degreeInfo"] containsObject:command[@"kind"]]) { [self status:@"不支持此查询种类"]; return nil; }
     NSMutableArray *allowed = [specific[kind] mutableCopy]; [allowed addObjectsFromArray:@[@"profile", @"command"]];
     for (NSString *key in command) if (![allowed containsObject:key]) { [self status:@"实验指令包含未知字段"]; return nil; }
     if (([kind isEqualToString:@"absolute"] || [kind isEqualToString:@"rate"]) && ![command[@"profile"] isEqualToString:@"rs3"]) { [self status:@"原生角度/速率仅有 rs3 研究配置"]; return nil; }
@@ -411,7 +392,7 @@ static BOOL Matches(NSString *name) {
     }
     if ([kind isEqualToString:@"sleep"] && (!job[@"asleep"] || CFGetTypeID((__bridge CFTypeRef)job[@"asleep"]) != CFBooleanGetTypeID())) { [self status:@"asleep 必须为布尔值"]; return nil; }
     if (![kind isEqualToString:@"observe"] && ![self researchFrame:job sequence:0]) { [self status:@"实验角度、速率或查询种类无效"]; return nil; }
-    self.appProfile = nil; self.appCalibrationStatus = nil; self.appUserParameterStatus = nil; self.appHandheldStickStatus = nil; self.appAbnormalStatus = nil; self.appBatteryStatus = nil; self.appProgramStatus = nil; self.appPeripheralStatus = nil; self.appExternalDeviceStatus = nil; self.appSensorCalibrationStatus = nil; self.appTutorialStatus=nil;
+    self.appProfile = nil; self.appCalibrationStatus = nil; self.appAbnormalStatus = nil; self.appProgramStatus = nil; self.appSensorCalibrationStatus = nil;
     return [job copy];
 }
 
@@ -427,7 +408,7 @@ static BOOL Matches(NSString *name) {
 }
 - (BOOL)useAppProfile:(NSString *)profile {
     if (![profile isEqualToString:@"ronin-2.2.2"] || self.busy) { [self status:@"必须在空闲时明确选择 ronin-2.2.2 协议来源"]; return NO; }
-    self.researchProfile = nil; self.researchStatus = nil; self.appProfile = [profile copy]; self.appCalibrationStatus = nil; self.appUserParameterStatus = nil; self.appHandheldStickStatus = nil; self.appAbnormalStatus = nil; self.appBatteryStatus = nil; self.appProgramStatus = nil; self.appPeripheralStatus = nil; self.appExternalDeviceStatus = nil; self.appSensorCalibrationStatus = nil; self.appTutorialStatus=nil; return YES;
+    self.researchProfile = nil; self.researchStatus = nil; self.appProfile = [profile copy]; self.appCalibrationStatus = nil; self.appAbnormalStatus = nil; self.appProgramStatus = nil; self.appSensorCalibrationStatus = nil; return YES;
 }
 - (void)finishApp:(NSDictionary *)result error:(NSError *)error {
     RSAppCompletion completion = self.appCompletion;

@@ -1,5 +1,7 @@
 # 0.6.0 开发与验收计划（历史阶段）
 
+> 范围更新（2026-10-20）：用户要求移除 Web 端，当前只维护 Node、Python 与 macOS。下文 Web 交付/测试记录为历史证据，对应旧提交，不属于当前构建或验收范围。
+
 本文件记录 0.6.0 阶段；当前状态见 [PROJECT_STATUS.md](PROJECT_STATUS.md)，后续扩展见 [EXPANSION_PLAN.md](EXPANSION_PLAN.md)。
 
 用户要求继续完成未完成代码，交付 Node 及其他现有版本。离家期间只运行离线测试；实机验证统一登记后等待用户回来。
@@ -26,7 +28,7 @@
 
 - 运动/连接回归：`node/test/controller.test.js`、`node/test/noble-adapter.test.js`。
 - Python：`python/tests/test_controller.py`，含协议重组、半步、取消、迟到连接及两种 Python 运行时验证。
-- Web：`web/test/`，含模拟 GATT 与真实页面事件处理器的假 DOM 测试。
+- Web：历史 Web 测试目录（已移除），含模拟 GATT 与真实页面事件处理器的假 DOM 测试。
 - 原生：`macos/test-core.m`、`macos/test-gimbal.m`，由 `macos/test.sh` 运行，不创建实际蓝牙管理器。
 - 类型、打包和统一检查入口：`node/examples/types-smoke.mts`、`tools/check-offline.sh`。
 - 已生成 Node tarball、Python wheel、原生应用 ZIP 和四端完整源码 ZIP；交付文件位于本聊天 outputs。

@@ -4,7 +4,6 @@ set -eu
 project_dir=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
 cd "$project_dir"
 npm --prefix node test
-npm --prefix web test
 (
   cd node
   npm exec --offline --yes --package typescript@5.9.3 -- tsc --noEmit --strict --target ES2022 --module NodeNext --moduleResolution NodeNext examples/types-smoke.mts

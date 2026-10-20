@@ -21,7 +21,7 @@
 |---|---|---|
 | 蓝牙设备 SDK | 连接/断开、通知、DUML 编解码和响应关联、设备命令、反馈解码、写入串行化和截止时间 | SDK 方法不必与一条固件命令一一对应；标明实际设备协议及证据 |
 | 运动组合层 | 根据时间、反馈和目标调用设备 SDK；限时运动、位置闭环、路点、关键帧、保存位置返回 | 运行在电脑；组合功能不是新增的固件 BLE 能力 |
-| 应用层 | Web/原生面板、文件选择、参数编辑、任务展示及应用策略 | 使用前两层；按钮存在不证明实机验收完成 |
+| 应用层 | 原生面板、文件选择、参数编辑、任务展示及应用策略 | 使用前两层；按钮存在不证明实机验收完成 |
 
 设备 SDK 可以包含必要的软件机制，例如重连、缓存、分片、持续发送和写入队列。
 归属取决于它是在提供可靠设备访问，还是在表达用户的运动目标和任务。
@@ -72,7 +72,7 @@
 3. 0.7.1 保持现有 `RS4Mini` 公共入口兼容，以继承复用设备 SDK 和共享操作协调器。
    基础方法由底层实现并通过上层对象提供；高级方法只调用底层命令契约，不构造或写 BLE 帧。
    不创建第二个连接或队列；新增 `requestDegreeInfo()` 只返回关联原始响应。
-4. Python/Web/原生使用相同能力边界，保留各端实现差异。设备协议与上层任务分别验收。
+4. Python/原生使用相同能力边界，保留各端实现差异。设备协议与上层任务分别验收。
    新增运动等待用户返回并要求测试后，按统一清单执行实机验证。
 
 ## 实际模块与应用入口（0.7.1 / 原生 0.3.1）
@@ -81,7 +81,6 @@
 |---|---|---|---|
 | Node | `node/src/device.js`、`experimental-device.js`；维护入口 `rs4mini-sdk/device` | 包根导出的 `RS4Mini` | `controller.js`、`experimental.js` |
 | Python | `rs4mini_sdk/device.py`、`reconnect.py`、`experimental_device.py` | `from rs4mini_sdk import RS4Mini` | `controller.py`、`expansion.py`、`experimental.py` |
-| Web | 共享 JS 设备 SDK 与 `web/adapter.js` | `web/rs4mini.js` 的 `RS4Mini` | 共享 JS 高级封装；页面使用该入口 |
 | 原生 | `RSBleDevice`、`RSDeviceProtocol.h`/`RSControlCore.m` | `RSGimbal` | `RSGimbal.m`、`RSMotionCore` |
 
 设备 SDK 可以单独加载/链接，且不包含位置、轨迹或保存位置操作。共享操作协调器属于底层协作契约，

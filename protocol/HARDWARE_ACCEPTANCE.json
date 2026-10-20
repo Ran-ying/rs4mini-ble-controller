@@ -323,9 +323,9 @@
       "id": "component.write",
       "title": "AUTO 部件校准请求",
       "write": true,
-      "state": "authorized_pending",
+      "state": "acknowledged_and_terminal_push_observed",
       "evidence": [
-        "Specific maintenance/state-change batch explicitly authorized by user"
+        "AUTO00 ACK statusCode0 with empty business body; calibration=null, businessComplete=false. 168 passive04:30 samples over17.13s:158 PROCESSING,10 COMPLETE; final rawProgress100/rawStatus0. 60s observation, clean close. Temporal association observed; no request ID or independent physical metrology."
       ]
     },
     {
@@ -393,15 +393,16 @@
     }
   ],
   "ports": {
-    "node": "in_progress",
-    "python": "Python3.12 default cached UUID connection/read/3-axis/cancel/home/trajectory/waypoints/close passed. Python3.8 real attempt exposed legacy BLEDevice required rssi; fixed with unknown RSSI and constructor compatibility tests. Offline258 each; fixed3.8 hardware retest pending user presence.",
-    "native": "0.3.35 connection/feedback/sensitivity/degree-info/disconnect hardware pass;0.3.36 requires single motor selectors,270 GUI adapter checks; new GUI hardware motion/single-motor retest pending physical reset",
-    "web": "Real chooser empty before/after authorized system disconnect; cancel/timeout UI restored; awaiting fresh advertising"
+    "node": "42 allowed App operations invoked, motion/reconnect samples recorded; functional failures and cleanup error remain.",
+    "python": "Python3.12 full small-motion session passed; fixed Python3.8.10 cached UUID default path real connect/fresh attitude/joints/sensitivity1/close passed, invalidFrames0.",
+    "native": "0.3.36 actual connection, Pitch/stiffness41 read, controls recovered, Pan90.47->target92.47/settled92.21->saved home90.57, disconnect passed.",
+    "web": "removed_by_user_2026-10-20; historical chooser failure retained in session docs; no unpairing"
   },
   "excluded": [
     "camera/vision",
     "activation writes",
-    "unknown commands not implemented in SDK"
+    "unknown commands not implemented in SDK",
+    "Web port removed by explicit user request"
   ],
   "coreMotion": {
     "node": {
@@ -419,15 +420,15 @@
         "moveThrough complete/hold cancellation",
         "Roll lower-speed settle",
         "disconnect/reconnect",
-        "autoReconnect static link drop"
+        "autoReconnect static link drop",
+        "motion link loss cancels active moveFor",
+        "three automatic reconnection rounds restore zero velocity"
       ],
       "remaining": [
-        "recenter large sweep review",
-        "motion link loss",
-        "repeated reconnection",
-        "cleanup error diagnosis"
+        "recenter would leave small-sweep scope (current yaw near90deg)",
+        "cleanup Unknown error after repeated reconnect"
       ],
-      "cleanup": "Notification unsubscribe reports Unknown error; connected=false and closed=true; not a clean shutdown pass"
+      "cleanup": "Final close after3 reconnect rounds reports Unknown error; decoder invalidFrames0/discardedBytes0; do not suppress or claim clean shutdown."
     }
   },
   "cleanupAfterSystemDisconnect": "Python full session and Node subscription/settings/autotune sessions close cleanly after authorized OS HID disconnect; do not suppress earlier unsubscribe errors",
@@ -441,22 +442,28 @@
   },
   "hardwareCoverage": {
     "appOperations": 43,
-    "attempted": 41,
-    "pending": [
-      "component.write"
-    ],
+    "attempted": 42,
+    "pending": [],
     "excludedByUser": [
       "reset.write"
     ],
     "allPassed": false,
     "notes": "Attempted includes timed out/stuck/partial/ACK-only; same-value writes prove transport/readback only, not setting effects or persistence.",
     "requiredAfterUserExclusions": 42,
-    "remainingToAttempt": 1
+    "remainingToAttempt": 0,
+    "attemptCoverageCompleteWithinUserScope": true
   },
-  "blockedBy": [
-    "Mac locked: native GUI/Web interaction unavailable; user must unlock",
-    "Awaiting second post-balance power-cycle/settled confirmation before component calibration or new motion",
-    "Awaiting user decision on removing only old DJI pairing for Web discovery"
-  ],
-  "appExecutionComplete": false
+  "blockedBy": [],
+  "appExecutionComplete": true,
+  "scopeUpdate": "User confirmed second power cycle/settled and Mac unlocked; remove Web, preserve Bluetooth pairing.",
+  "autoTuneStopWhileProcessing": {
+    "beforeStop": "Processing30",
+    "stopSent": true,
+    "firstCompleteAfterStopMs": 25,
+    "afterStopObservationSeconds": 40,
+    "finalState": "Complete100",
+    "firmwareAbortVerified": false,
+    "close": "Unknown error; connected=false, closed=true"
+  },
+  "appExecutionCompleteDefinition": "All42 user-permitted named App operations invoked; NOT allPassed/fullAcceptanceComplete."
 }

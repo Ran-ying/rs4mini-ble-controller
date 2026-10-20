@@ -2,9 +2,9 @@
 
 ## Active full hardware acceptance (2026-10-20)
 
-User insisted on testing all existing SDK methods. Worktree targets Node/Python/Web0.7.34, native0.3.36/build39. See docs/HARDWARE_FULL_ACCEPTANCE.md and protocol/HARDWARE_ACCEPTANCE.json before any hardware action. Explicit user authorizations: low-speed small motion while balanced/unlocked/clear and present; exact same-value ordinary/motor settings write/readback batch and sensitivity1->0->1 restore; stable-base auto-tune including stop, system calibration, AUTO component calibration and balance test; inputSource2/Pitch speed50, handle three named values0, stick enabled=true, Pitch/Roll fine-tune0 accepting state changes; OS disconnect of only DJI gimbal. User explicitly declined factory reset: do not run it. No camera, activation or unknown-command probing.
+User insisted on testing all existing SDK methods. Worktree targets Node/Python0.7.34, native0.3.36/build39. See docs/HARDWARE_FULL_ACCEPTANCE.md and protocol/HARDWARE_ACCEPTANCE.json before any hardware action. Explicit user authorizations: low-speed small motion while balanced/unlocked/clear and present; exact same-value ordinary/motor settings write/readback batch and sensitivity1->0->1 restore; stable-base auto-tune including stop, system calibration, AUTO component calibration and balance test; inputSource2/Pitch speed50, handle three named values0, stick enabled=true, Pitch/Roll fine-tune0 accepting state changes; OS disconnect of only DJI gimbal. User explicitly declined factory reset: do not run it. No camera, activation or unknown-command probing.
 
-System calibration ACK0 then30reads START1; user power-cycled and confirmed settled. Balance then ACK0 and30reads TESTING64 with null axis results. All SDK connections closed. Another physical restart/settled confirmation and permission to remove only old DJI OS pairing are pending user questions. CUA subsequently reports Mac locked/automatic unlock failed: user must manually unlock. Do not start component calibration or new motion before restart/presence reply. All test connections are closed; no autonomous hardware action while waiting. Auto-tune already reported Processing20..80->Complete100 in~28s, query6E still times out; prior stop was after completion, not firmware-abort proof. Python3.12 cached UUID bridge default path hardware-tested. Python3.8 real attempt found required legacy rssi; fixed by signature-aware constructor (unknown RSSI=None),258 offline each Python3.8/3.12 pass; fixed3.8 hardware retest pending. Final unified Node277/Web28/research558/native1562+301+3+270/types/boundaries/build pass; installed Node277+types/wheel258 pass. New opt-in hardware runners are never default tests. Full protocol/advanced gates remainfalse. Checkpoint commits preserve ongoing acceptance; inspect Git for exact current head. Hardware acceptance remains incomplete while physical restart/AUTO/Web prerequisites are pending.
+System calibration ACK0 then30reads START1; user power-cycled and confirmed settled. Balance then ACK0 and30reads TESTING64 with null axis results; user confirmed second restart/settled and Mac unlocked. AUTO component request ACK0/empty business body then168 passive04:30 samples PROCESSING->COMPLETE100 over17.13s;60s observation and clean close. All42 user-permitted App operations have now been attempted; factory reset excluded, failures remain. User requested Web removal instead of unpairing: Web runtime/tests/CI/offline entry removed, preserve old pairing and historical evidence. Python3.8.10 fixed cached UUID path actually connected/read attitude/joints/sensitivity/closed, invalidFrames0; Python3.12 full motion session already passed. Native0.3.36 actual Pitch/stiffness41 read, Pan90.47->target92.47/settled92.21->saved-home90.57 and disconnect passed. Three Node link-loss/reconnect rounds restore zero velocity; first active moveFor cancelled, displacement0.32deg; final close again reported CoreBluetooth Unknown error (not clean-close pass). Recenter not repeated because AUTO left Pan near90deg, outside small-motion sweep scope. Auto-tune stop sent at Processing30, passiveComplete100 arrived25ms later;40s observation no further progress, no independent abort flag. Final close again Unknown error with connected=false/closed=true. All control clients now closed. Unified current Node277/Python258/research558/native1562+301+3+270/types/boundaries/signed build passed after Web removal. Runtime versions unchanged (source-scope/docs change). Full protocol/advanced and full hardware acceptance remainfalse. New opt-in hardware runners never enter default tests.
 
 Current research method and next-task order: `docs/RESEARCH_ROADMAP.md`. Read it with `docs/PROJECT_STATUS.md` and `protocol/COMMANDS.json`; historical six-bank or metadata-only conclusions must not override current eight-bank evidence. Eight-bank direct-reference reviews (roadmap priorities 1–5) landed earlier; offline queue A–E tools **compute** status from PREFIX evidence (2026-10-20). A/B/C/E currently compute `statically_exhausted_needs_hardware` (not device-verified). Queue D uses substatuses: `bit_layout_established` plus call_values/camera_isolation/stop_semantics/model_entry that are needs-hardware only with recorded dynamic/session boundaries—do not claim isolation statically disproven. Program sends stay closed. See the roadmap queue and `QUEUE_*` docs (including `QUEUE_D_PROGRAM_ISOLATION.md` and `QUEUE_E_SESSION_VERSION.md`). A missing HG724-named caller is not proof that no inherited business entry exists. inventoryComplete remains false; activation writes stay closed. The user returned and explicitly authorized low-speed small hardware tests on 2026-10-20; see docs/HARDWARE_SESSION_2026-10-20.md. Keep new advanced features gated.
 
@@ -18,7 +18,7 @@ verification status changes.
 - Provide an unofficial, direct BLE controller for **DJI RS 4 Mini**, initially on macOS.
 - **Node.js is the authoritative implementation**; current worktree package version is `0.7.34`.
 - The user subsequently requested completion of all existing ports. Python is now
-  `0.7.34`, Web shares the JS core, and the native panel is `0.3.36`. Describe the
+  `0.7.34`, and the native panel is `0.3.36`. Describe the
   documented feature differences; do not claim identical APIs or hardware proof.
 - After that delivery, the user requested the remaining **non-camera** capabilities
   under the same autonomous/offline conditions. Expansion work is in progress;
@@ -62,7 +62,6 @@ All eight pinned business DEX banks now have named offline views via `tools/rese
 | `node/examples/` | Offline tests and separate explicit hardware demos |
 | `python/` | Bleak async controller, feedback/position API, aliases and regression tests |
 | `macos/` | Objective-C/AppKit/CoreBluetooth control panel and build script |
-| `web/` | Web Bluetooth adapter, shared core, feedback/position page and fake GATT tests |
 | `tools/ble-probe/` | macOS diagnostic probe used during original protocol research |
 | `docs/` | Protocol, development findings, verification history |
 
@@ -144,7 +143,7 @@ python -m unittest discover -s tests -v
 ```
 
 Unified offline checks: `sh tools/check-offline.sh` (TypeScript must be cached).
-Web: `npm --prefix web test`. Native: `sh macos/test.sh`.
+Native: `sh macos/test.sh`.
 Native macOS panel: `sh macos/build.sh`. Probe: `sh tools/ble-probe/build.sh`.
 Builds need Xcode Command Line Tools; generated apps/binaries are ignored.
 

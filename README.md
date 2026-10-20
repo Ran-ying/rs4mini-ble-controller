@@ -2,7 +2,7 @@
 
 研究接手入口：[当前研究方法与推进路线](docs/RESEARCH_ROADMAP.md)，包括证据门槛、下一步顺序和每项完成条件。
 
-通过电脑 BLE 直接控制 DJI RS 4 Mini 的非官方项目。Node.js **0.7.34** 为主实现；Python/Web **0.7.34**、macOS 原生面板 **0.3.36** 提供三轴速度、姿态/机械关节反馈、低速定位、轨迹与路点、保存位置返回和显式自动重连。相机控制和视觉跟踪不属于当前范围。
+通过电脑 BLE 直接控制 DJI RS 4 Mini 的非官方项目。Node.js **0.7.34** 为主实现；Python **0.7.34**、macOS 原生面板 **0.3.36** 提供三轴速度、姿态/机械关节反馈、低速定位、轨迹与路点、保存位置返回和显式自动重连。相机控制和视觉跟踪不属于当前范围。
 
 macOS 0.3.36 已加入[设备 SDK 面板](docs/MACOS_SDK_PANEL.md)：命名参数、校准请求、订阅、状态和 CENTER 只读信息均可从 GUI 调用。
 
@@ -48,7 +48,6 @@ sh tools/check-offline.sh
 
 ```sh
 npm --prefix node test
-npm --prefix web test
 python/.venv/bin/python -m unittest discover -s python/tests -v
 sh macos/test.sh
 ```
@@ -87,24 +86,24 @@ RS4MINI_POSITION_AXIS=tilt RS4MINI_POSITION_DELTA=3 npm run example:position
 
 ## 各端状态
 
-| 功能 | Node 0.7.31 | Python 0.7.31 | Web 0.7.31 | macOS 面板 0.3.31 |
-|---|---|---|---|---|
-| 三轴速度 / 停止 / 三轴回中 | 有 | 有 | 有 | 有 |
-| 反馈解析与 CRC 重组 | 有 | 有 | 共享 Node 核心 | 有 |
-| 关节目标位置 / 逐轴容差 | 可配置 | 可配置 | 可配置 + 页面输入 | 固定低速参数 + 面板输入 |
-| 限时运动 / 角速度换算 | 有 | 有 | 有 | 手动按住控制 |
-| 取消与停止阶段互斥 | 有 | 有 | 共享 Node 核心 | 有 |
-| 连接截止时间与清理 | 有 | 有 | 含设备选择等待 | 有，30 秒 |
-| 缓存 ID 重连 | 有 | 有 | 已授权设备在当前实例重用 | 检索系统连接与重新扫描 |
-| 失焦停止 | 由调用方实现 | 由调用方实现 | 隐藏/失焦/离开页面 | 失焦/退出 |
-| 有界自动重连，不恢复运动 | 显式启用 | 显式启用 | 当前已选设备 | 当前设备 ID，最多 5 次 |
-| 插值速度轨迹 / 关节路点与停留 | 有 | 有 | SDK + JSON 页面入口 | API + JSON 文件载入 |
-| 保存位置与选轴返回 | 有 | 有 | 有 | 有 |
-| 显式顺序四元数数学转换 | 有 | 有 | 有 | 有 |
-| 显式App来源的手柄状态候选 | 被动SDK快照 | 被动SDK快照 | 共享JS快照 | 被动SDK快照 |
-| 独立实验协议配置 | 有 | 有 | 有 | 有，查询独占操作槽 |
+| 功能 | Node 0.7.34 | Python 0.7.34 | macOS 面板 0.3.36 |
+|---|---|---|---|
+| 三轴速度 / 停止 / 三轴回中 | 有 | 有 | 有 |
+| 反馈解析与 CRC 重组 | 有 | 有 | 有 |
+| 关节目标位置 / 逐轴容差 | 可配置 | 可配置 | 固定低速参数 + 面板输入 |
+| 限时运动 / 角速度换算 | 有 | 有 | 手动按住控制 |
+| 取消与停止阶段互斥 | 有 | 有 | 有 |
+| 连接截止时间与清理 | 有 | 有 | 有，30 秒 |
+| 缓存 ID 重连 | 有 | 有 | 检索系统连接与重新扫描 |
+| 失焦停止 | 由调用方实现 | 由调用方实现 | 失焦/退出 |
+| 有界自动重连，不恢复运动 | 显式启用 | 显式启用 | 当前设备 ID，最多 5 次 |
+| 插值速度轨迹 / 关节路点与停留 | 有 | 有 | API + JSON 文件载入 |
+| 保存位置与选轴返回 | 有 | 有 | 有 |
+| 显式顺序四元数数学转换 | 有 | 有 | 有 |
+| 显式App来源的手柄状态候选 | 被动SDK快照 | 被动SDK快照 | 被动SDK快照 |
+| 独立实验协议配置 | 有 | 有 | 有，查询独占操作槽 |
 
-各端新代码均有离线验证；新运动行为尚待统一实机验证。历史 Node 单轴定位与 0.5.0 的连接采样证据见 [验证记录](docs/VALIDATION.md)，不能代替新版本的物理运动测试。
+当前三端已有实际连接/小幅运动样本，完整结果、失败和剩余项目见[全项实机记录](docs/HARDWARE_FULL_ACCEPTANCE.md)。历史 Node 单轴定位与 0.5.0 的连接采样证据见 [验证记录](docs/VALIDATION.md)，不能代替新版本的物理运动测试。
 
 ## 其他端启动
 
@@ -122,20 +121,14 @@ sh macos/build.sh
 open "macos/RS 4 Mini Control.app"
 ```
 
-Web 必须从仓库根目录提供服务，页面会加载 `node/src/` 内不依赖 Noble 的共享模块：
-
-```sh
-python3 -m http.server 8000 --bind 127.0.0.1
-```
-
-打开 `http://127.0.0.1:8000/web/`。使用支持 Web Bluetooth 的浏览器并从点击操作选择设备。
+Web 端已于2026-10-20按用户要求移除。当前维护 Node、Python SDK 与 macOS 原生界面；不需要浏览器或重新配对。
 
 **底层命令完整性尚未验收，暂不新增高级功能。** 已知命令、未知字段和本机证据分别列在 [设备命令审计](docs/SDK_COMMANDS.md)，机器清单为 `protocol/COMMANDS.json`。
 
 ## 文档和限制
 
 - [Node 使用说明](node/README.md)、[完整 API](node/API.md)、[版本记录](node/CHANGELOG.md)
-- [Python 说明](python/README.md)、[Web 说明](web/README.md)、[macOS 说明](macos/README.md)
+- [Python 说明](python/README.md)、[macOS 说明](macos/README.md)
 - [协议](docs/PROTOCOL.md)、[开发交接](AGENTS.md)、[开发背景](docs/DEVELOPMENT.md)
 - [统一实机清单](docs/HARDWARE_CHECKLIST.md)、[代码验收计划](docs/IMPLEMENTATION_PLAN.md)
 

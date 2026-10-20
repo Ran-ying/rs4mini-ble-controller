@@ -417,6 +417,7 @@ if manifest.get('inventoryPrefixResearch'):
     assert inv['allNonExcludedLiveEnumsPresentInCommandsJson'] is True
     assert inv['newlyDiscoveredGimbalWireCommands']==[]
     assert inv['priorTableComparison']['priorTableIsNotDiscoverySource'] is True
+    assert inv['eightBankPacketScan']['banksScanned']==list(range(8))
     assert inv['eightBankPacketScan']['literalCandidatesProveSend'] is False
     assert inv['inventoryCompleteRemainsFalse'] is True and inv['inventoryCompleteClaimed'] is False
     assert inv['activationOrBindingWriteOpened'] is False and inv['sessionVersionNegotiated'] is False

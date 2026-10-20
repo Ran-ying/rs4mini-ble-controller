@@ -6,6 +6,7 @@ from pathlib import Path
 from unittest.mock import patch
 from ronin_inventory_prefix_trace import (
     PREFIX_BANKS, CMD_ENUM, extract_cmdid_gimbal_entries, discover_missing_from_commands, scan,
+    synthetic_gimbal_orphan_operations,
 )
 
 
@@ -73,3 +74,38 @@ class InventoryPrefixTraceTests(unittest.TestCase):
         self.assertGreaterEqual(len(r['bank01ActivationMethods']), 1)
         for flag in ['appCodeExecuted', 'liveUiExecuted', 'targetDeviceVerified', 'sdkSendAdded', 'sdkReceiveAdded']:
             self.assertFalse(r[flag])
+
+    def test_full_scan_finds_synthetic_orphan_wire_200_in_every_bank_00_through_07(self):
+        """End-to-end: inject orphan into each bank through scan(); banks 00-04 must not be skipped."""
+        import sys
+        root = Path(__file__).resolve().parents[2]
+        apk = root / 'work/research/dji-ronin-2.2.2.apk'
+        bank_dir = root / 'work/research/prefix-restored-final-b'
+        if not apk.is_file() or not bank_dir.is_dir():
+            self.skipTest('pinned APK/PREFIX banks unavailable')
+        for site in sorted(root.glob('work/research/analysis-venv/lib/python*/site-packages')):
+            if str(site) not in sys.path:
+                sys.path.insert(0, str(site))
+            break
+        else:
+            self.skipTest('analysis venv (androguard/loguru) unavailable')
+        try:
+            import loguru  # noqa: F401
+            import androguard  # noqa: F401
+        except ImportError:
+            self.skipTest('androguard/loguru not importable')
+        extras = {bank: [synthetic_gimbal_orphan_operations(200)] for bank in PREFIX_BANKS}
+        result = scan(apk, bank_dir, synthetic_operations_by_bank=extras)
+        orphans = result['eightBankPacketScan']['orphanGimbalLiteralCandidatesOutsideExtractedEnum']
+        self.assertEqual(result['eightBankPacketScan']['banksScanned'], list(PREFIX_BANKS))
+        by_bank = {}
+        for row in orphans:
+            if row.get('className') == 'Lsynthetic/InjectedPacketProbe;' and row.get('commandId') == 200:
+                by_bank.setdefault(row['segment'], []).append(row)
+        self.assertEqual(set(by_bank), set(PREFIX_BANKS), 'missing synthetic orphans in banks: %r' % (set(PREFIX_BANKS) - set(by_bank)))
+        for bank in PREFIX_BANKS:
+            self.assertGreaterEqual(len(by_bank[bank]), 1)
+
+    def test_evidence_packet_scan_lists_all_eight_banks(self):
+        r = self.evidence()
+        self.assertEqual(r['eightBankPacketScan']['banksScanned'], list(range(8)))

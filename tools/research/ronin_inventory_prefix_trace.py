@@ -126,7 +126,28 @@ def orphan_gimbal_literal_candidates(operations, known_ids, gimbal_value=4):
     return found
 
 
-def scan(apk, bank_dir):
+def synthetic_gimbal_orphan_operations(command_id=200):
+    """Minimal linear SendPack ops with cmdSet=GIMBAL and an unknown cmdId (for tests)."""
+    if type(command_id) is not int or not 0 <= command_id <= 255:
+        raise ValueError('uint8 command id required')
+    return [
+        ('new-instance', 'v0, ' + PACK),
+        ('sget-object', 'v1, ' + CMDSET + '->GIMBAL ' + CMDSET),
+        ('invoke-virtual', 'v1, ' + CMDSET + '->value()I'),
+        ('move-result', 'v1'),
+        ('iput', 'v1, v0, ' + PACK + '->cmdSet I'),
+        ('const/16', 'v2, %d' % command_id),
+        ('iput', 'v2, v0, ' + PACK + '->cmdId I'),
+        ('return-void', ''),
+    ]
+
+
+def scan(apk, bank_dir, synthetic_operations_by_bank=None):
+    """Extract CmdIdGimbal from bank05 first, then packet-scan all eight PREFIX banks.
+
+    synthetic_operations_by_bank: optional {bank: [operations, ...]} injected into the
+    full scan path after real methods (tests only).
+    """
     if hashlib.sha256(apk.read_bytes()).hexdigest() != APK_SHA256:
         raise ValueError('APK hash mismatch')
     images = []
@@ -146,36 +167,39 @@ def scan(apk, bank_dir):
     logger.disable('androguard')
     from androguard.core.dex import DEX
 
+    # Phase 1: extract enum from bank05 before any packet scan.
+    bank05_raw = next(raw for bank, raw in images if bank == 5)
+    bank05_classes = {c.get_name(): c for c in DEX(bank05_raw).get_classes()}
+    if CMD_ENUM not in bank05_classes or CMDSET not in bank05_classes:
+        raise ValueError('CmdIdGimbal or CmdSet missing from PREFIX bank05')
+    enum_m = next(m for m in bank05_classes[CMD_ENUM].get_methods() if m.get_name() == '<clinit>' and m.get_code())
+    cmdset_m = next(m for m in bank05_classes[CMDSET].get_methods() if m.get_name() == '<clinit>' and m.get_code())
+    extracted = extract_cmdid_gimbal_entries([(i.get_name(), i.get_output()) for i in enum_m.get_instructions()])
+    gimbal_set = gimbal_command_set_value([(i.get_name(), i.get_output()) for i in cmdset_m.get_instructions()])
+    if gimbal_set != 4:
+        raise ValueError('gimbal command set changed')
+    enum_fingerprint = dict(
+        bank=5, className=CMD_ENUM, method='<clinit>', descriptor=enum_m.get_descriptor(),
+        codeOffset=enum_m.get_code_off(),
+        instructionSha256=hashlib.sha256(enum_m.get_code().get_bc().get_raw()).hexdigest(),
+        extractedEntryCount=len(extracted),
+    )
+    known_ids = {row['commandId'] for row in extracted if not row['excluded']}
+    extras = synthetic_operations_by_bank or {}
+
     banks = []
     activation = []
     methods = {}
     orphan_literals = []
     known_enum_packet_hits = 0
-    extracted = None
-    gimbal_set = None
-    enum_fingerprint = None
+    banks_packet_scanned = []
 
+    # Phase 2: packet-scan every PREFIX bank with the extracted enum in hand.
     for bank, raw in images:
-        dex = DEX(raw)
-        classes = {c.get_name(): c for c in dex.get_classes()}
+        dex = DEX(raw) if bank != 5 else DEX(bank05_raw)
+        classes = bank05_classes if bank == 5 else {c.get_name(): c for c in dex.get_classes()}
         coded = total = instructions = 0
-        if bank == 5:
-            if CMD_ENUM not in classes or CMDSET not in classes:
-                raise ValueError('CmdIdGimbal or CmdSet missing from PREFIX bank05')
-            enum_m = next(m for m in classes[CMD_ENUM].get_methods() if m.get_name() == '<clinit>' and m.get_code())
-            cmdset_m = next(m for m in classes[CMDSET].get_methods() if m.get_name() == '<clinit>' and m.get_code())
-            enum_ops = [(i.get_name(), i.get_output()) for i in enum_m.get_instructions()]
-            extracted = extract_cmdid_gimbal_entries(enum_ops)
-            gimbal_set = gimbal_command_set_value([(i.get_name(), i.get_output()) for i in cmdset_m.get_instructions()])
-            if gimbal_set != 4:
-                raise ValueError('gimbal command set changed')
-            enum_fingerprint = dict(
-                bank=5, className=CMD_ENUM, method='<clinit>', descriptor=enum_m.get_descriptor(),
-                codeOffset=enum_m.get_code_off(),
-                instructionSha256=hashlib.sha256(enum_m.get_code().get_bc().get_raw()).hexdigest(),
-                extractedEntryCount=len(extracted),
-            )
-        known_ids = {row['commandId'] for row in (extracted or []) if not row['excluded']} if extracted else set()
+        banks_packet_scanned.append(bank)
         for owner, cls in classes.items():
             for method in cls.get_methods():
                 total += 1
@@ -184,17 +208,19 @@ def scan(apk, bank_dir):
                 coded += 1
                 operations = [(i.get_name(), i.get_output()) for i in method.get_instructions()]
                 instructions += len(operations)
-                if extracted is not None:
-                    known_enum_packet_hits += len(literal_packet_candidates(operations, known_ids, gimbal_set))
-                    for hit in orphan_gimbal_literal_candidates(operations, known_ids, gimbal_set):
-                        orphan_literals.append(dict(segment=bank, className=owner, method=method.get_name(), descriptor=method.get_descriptor(), **hit))
+                known_enum_packet_hits += len(literal_packet_candidates(operations, known_ids, gimbal_set))
+                for hit in orphan_gimbal_literal_candidates(operations, known_ids, gimbal_set):
+                    orphan_literals.append(dict(
+                        segment=bank, className=owner, method=method.get_name(),
+                        descriptor=method.get_descriptor(), **hit,
+                    ))
                 if bank == 1 and owner.startswith('Lcom/dji/activate/active/Active'):
                     texts = []
                     off = 0
                     for op, text in operations:
                         if op.startswith('invoke-') and any(t in text for t in (GIMBAL_ACTIVE, CENTER_ACTIVE, 'DataBatteryActiveStatus', 'ActiveHttpApi', 'postToServer')):
                             texts.append(dict(operation=op, instructionByteOffset=off, text=text[:160]))
-                        # approximate offset advance is not needed for listing; keep invoke text only
+                        # byte-offset fix is a separate commit; keep index for now
                         off += 1
                     if texts:
                         key = (owner, method.get_name(), method.get_descriptor())
@@ -205,11 +231,21 @@ def scan(apk, bank_dir):
                             activationRelatedInvokes=texts,
                         )
                         activation.append(methods[key])
+        for index, operations in enumerate(extras.get(bank, [])):
+            known_enum_packet_hits += len(literal_packet_candidates(operations, known_ids, gimbal_set))
+            for hit in orphan_gimbal_literal_candidates(operations, known_ids, gimbal_set):
+                orphan_literals.append(dict(
+                    segment=bank,
+                    className='Lsynthetic/InjectedPacketProbe;',
+                    method='probe%d' % index,
+                    descriptor='()V',
+                    **hit,
+                ))
         banks.append(dict(segment=bank, derivedSha256=PREFIX_BANKS[bank], methodCount=total, methodWithCodeCount=coded, instructionCount=instructions))
         print('bank%02d: %d coded' % (bank, coded), flush=True)
 
-    if extracted is None:
-        raise ValueError('PREFIX bank05 enum extraction failed')
+    if banks_packet_scanned != list(PREFIX_BANKS):
+        raise ValueError('eight-bank packet scan incomplete: %r' % banks_packet_scanned)
 
     newly = discover_missing_from_commands(extracted, cmd_keys)
     prior_by_name = {row['name']: row['commandId'] for row in prior['commands']}
@@ -274,6 +310,7 @@ def scan(apk, bank_dir):
             priorTableIsNotDiscoverySource=True,
         ),
         eightBankPacketScan=dict(
+            banksScanned=banks_packet_scanned,
             knownEnumLiteralCandidateHits=known_enum_packet_hits,
             orphanGimbalLiteralCandidatesOutsideExtractedEnum=orphan_literals,
             literalResolutionComplete=False,

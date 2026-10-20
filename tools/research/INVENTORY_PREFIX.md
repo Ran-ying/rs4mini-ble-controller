@@ -12,7 +12,7 @@
 - `newlyDiscoveredGimbalWireCommands` = 现场提取到、但 COMMANDS 中尚无对应键的非排除 wire（由提取结果计算，不是写死的空列表）。
 - 当前 APK 提取 40 个非排除条目，该列表为空，表示 **“旧表中的那 40 个非排除枚举均已登记”**，**不是**全固件命令穷尽或 `inventoryComplete=true`。
 
-另在八段上对线性 `SendPack`（cmdSet=GIMBAL）做语法扫描：已知枚举 wire 命中与 **枚举外** orphan 字面量分别计数；orphan 为空仍不是反射/native/动态路径已排除的证明。
+先从 bank05 提取枚举，再对 **全部八段**（00–07）做线性 `SendPack`（cmdSet=GIMBAL）语法扫描：已知枚举 wire 命中与 **枚举外** orphan 字面量分别计数；证据字段 `eightBankPacketScan.banksScanned` 必须为 `[0..7]`。orphan 为空仍不是反射/native/动态路径已排除的证明。
 
 排除相机/哨兵：`FocusControl`、`NotiFyCameraId`、`Other`。
 

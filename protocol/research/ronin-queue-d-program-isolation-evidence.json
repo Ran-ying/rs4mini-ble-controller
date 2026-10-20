@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
   "bankSha256": {
     "0": "2229f1f19aa8fe8d819c7b3cecbd844928da817e2bc9cfddfda1c0e120e4cc59",
@@ -72,11 +72,83 @@
     },
     {
       "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "method": "setControlExternalDevice",
+      "descriptor": "(Z)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "codeOffset": 4883804,
+      "instructionSha256": "be7da48253f891fc511ad9d689b1aba96e93f8100845735824a936c516c56e24"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "method": "setISPreview",
+      "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "codeOffset": 4883840,
+      "instructionSha256": "e9d385c759c396889daf655e8a99b5281703c9b04f2b2a8ef32aa286c8480648"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "method": "setIsTripod",
+      "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "codeOffset": 4883880,
+      "instructionSha256": "53049c1becd6ac655d0ac82df4f51c7b5d5a2e6838bf5b53f6782cb4984e5ae9"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "method": "setMode",
+      "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "codeOffset": 4883920,
+      "instructionSha256": "142b33f79bfca19028611775de1ed119cf62110c93cc56a9d6a51d0cf4fec014"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "method": "setStartOrStop",
+      "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "codeOffset": 4883956,
+      "instructionSha256": "baad1a1fbabe9ea29c72e2fad7534649ea29ef61a89599ef753514d83054133a"
+    },
+    {
+      "bank": 5,
       "className": "Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;",
       "method": "doPack",
       "descriptor": "()V",
       "codeOffset": 4961012,
       "instructionSha256": "ef6eae04effd5c60cadfc92cb8b630cd7a8fb9298e42efec7e374049c769c4ca"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;",
+      "method": "setIsTripod",
+      "descriptor": "(I)Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;",
+      "codeOffset": 4961332,
+      "instructionSha256": "589d31f016ab026b71670c5a8edab857ed20e85740913c4fdf706603028b65cd"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;",
+      "method": "setMode",
+      "descriptor": "(I)Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;",
+      "codeOffset": 4961372,
+      "instructionSha256": "d2ef82639478e6aa4f64ac267c329bc9cced39ea2476dbbaae9087163260bd66"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;",
+      "method": "setStartOrPreview",
+      "descriptor": "(I)Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;",
+      "codeOffset": 4961408,
+      "instructionSha256": "129e66932ecadea5b5b2c5f8e22f0f3f81f2e24e91dad6ceffff228af44f1c73"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;",
+      "method": "setStartOrStop",
+      "descriptor": "(I)Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;",
+      "codeOffset": 4961448,
+      "instructionSha256": "444447e3cccad0877b883ed9cb6e2f5dd831373a57f6c93424fe5f18acc3fab0"
     },
     {
       "bank": 5,
@@ -96,6 +168,7 @@
     }
   ],
   "status": "statically_exhausted_needs_hardware",
+  "statusComputedBy": "compute_status(info_byte_maps, commands, reliable_stop, model_entry)",
   "commands": {
     "25": {
       "key": "04:25",
@@ -111,96 +184,84 @@
           "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
           "method": "stopFixDelayPreviewWork",
           "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
-          "createUi": true,
-          "cameraName": true
+          "createUi": true
         },
         {
           "bank": 3,
           "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
           "method": "stopPathDelayPreviewWork",
           "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
-          "createUi": true,
-          "cameraName": true
+          "createUi": true
         },
         {
           "bank": 3,
           "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
           "method": "stopTrackingTimeLapseWork",
           "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
-          "createUi": true,
-          "cameraName": false
+          "createUi": true
         },
         {
           "bank": 3,
           "className": "Lcom/dji/ronin/ui/create/follow/CreateFollowActivity;",
           "method": "<init>",
           "descriptor": "()V",
-          "createUi": true,
-          "cameraName": false
+          "createUi": true
         },
         {
           "bank": 3,
           "className": "Lcom/dji/ronin/ui/create/follow/CreateFollowActivity;",
           "method": "startTimeLapse",
           "descriptor": "()V",
-          "createUi": true,
-          "cameraName": false
+          "createUi": true
         },
         {
           "bank": 3,
           "className": "Lcom/dji/ronin/ui/create/follow/CreateFollowActivity;",
           "method": "stopTimeLapse",
           "descriptor": "()V",
-          "createUi": true,
-          "cameraName": false
+          "createUi": true
         },
         {
           "bank": 3,
           "className": "Lcom/dji/ronin/ui/create/tapgo/CreateFixDelayView;",
           "method": "<init>",
           "descriptor": "(Landroid/content/Context; Landroid/util/AttributeSet;)V",
-          "createUi": true,
-          "cameraName": false
+          "createUi": true
         },
         {
           "bank": 3,
           "className": "Lcom/dji/ronin/ui/create/tapgo/CreateFixDelayView;",
           "method": "sendToDeviceStart",
           "descriptor": "(I)V",
-          "createUi": true,
-          "cameraName": false
+          "createUi": true
         },
         {
           "bank": 3,
           "className": "Lcom/dji/ronin/ui/create/tapgo/CreateFixDelayView;",
           "method": "sendToDeviceStop",
           "descriptor": "()V",
-          "createUi": true,
-          "cameraName": false
+          "createUi": true
         },
         {
           "bank": 3,
           "className": "Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;",
           "method": "<init>",
           "descriptor": "(Landroid/content/Context; Landroid/util/AttributeSet;)V",
-          "createUi": true,
-          "cameraName": false
+          "createUi": true
         },
         {
           "bank": 3,
           "className": "Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;",
           "method": "sendToDeviceStart",
           "descriptor": "(I)V",
-          "createUi": true,
-          "cameraName": false
+          "createUi": true
         },
         {
           "bank": 3,
           "className": "Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;",
           "method": "sendToDeviceStop",
           "descriptor": "()V",
-          "createUi": true,
-          "cameraName": false
+          "createUi": true
         }
       ],
       "allExternalCallersInCreateUi": true,
@@ -222,24 +283,21 @@
           "className": "Lcom/dji/ronin/ui/create/timelapse/CreateTimelapseView;",
           "method": "<init>",
           "descriptor": "(Landroid/content/Context; Landroid/util/AttributeSet;)V",
-          "createUi": true,
-          "cameraName": false
+          "createUi": true
         },
         {
           "bank": 3,
           "className": "Lcom/dji/ronin/ui/create/timelapse/CreateTimelapseView;",
           "method": "sendToDeviceStart",
           "descriptor": "(I)V",
-          "createUi": true,
-          "cameraName": false
+          "createUi": true
         },
         {
           "bank": 3,
           "className": "Lcom/dji/ronin/ui/create/timelapse/CreateTimelapseView;",
           "method": "sendToDeviceStop",
           "descriptor": "()V",
-          "createUi": true,
-          "cameraName": false
+          "createUi": true
         }
       ],
       "allExternalCallersInCreateUi": true,
@@ -264,96 +322,84 @@
           "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
           "method": "stopTrackPreviewWork",
           "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
-          "createUi": true,
-          "cameraName": true
+          "createUi": true
         },
         {
           "bank": 3,
           "className": "Lcom/dji/ronin/ui/create/ronin2/CreateKeyPointView;",
           "method": "<init>",
           "descriptor": "(Landroid/content/Context; Landroid/util/AttributeSet;)V",
-          "createUi": true,
-          "cameraName": false
+          "createUi": true
         },
         {
           "bank": 3,
           "className": "Lcom/dji/ronin/ui/create/ronin2/CreateKeyPointView;",
           "method": "sendToDeviceStart",
           "descriptor": "(I Ldji/midware/interfaces/DJIDataCallBack;)V",
-          "createUi": true,
-          "cameraName": false
+          "createUi": true
         },
         {
           "bank": 3,
           "className": "Lcom/dji/ronin/ui/create/ronin2/CreateKeyPointView;",
           "method": "sendToDeviceStop",
           "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
-          "createUi": true,
-          "cameraName": false
+          "createUi": true
         },
         {
           "bank": 3,
           "className": "Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;",
           "method": "<init>",
           "descriptor": "(Landroid/content/Context; Landroid/util/AttributeSet;)V",
-          "createUi": true,
-          "cameraName": false
+          "createUi": true
         },
         {
           "bank": 3,
           "className": "Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;",
           "method": "previewToggle",
           "descriptor": "()V",
-          "createUi": true,
-          "cameraName": true
+          "createUi": true
         },
         {
           "bank": 3,
           "className": "Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;",
           "method": "sendToDeviceStart",
           "descriptor": "(I Ldji/midware/interfaces/DJIDataCallBack;)V",
-          "createUi": true,
-          "cameraName": false
+          "createUi": true
         },
         {
           "bank": 3,
           "className": "Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;",
           "method": "sendToDeviceStop",
           "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
-          "createUi": true,
-          "cameraName": false
+          "createUi": true
         },
         {
           "bank": 3,
           "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
           "method": "<init>",
           "descriptor": "(Landroid/content/Context; Landroid/util/AttributeSet;)V",
-          "createUi": true,
-          "cameraName": false
+          "createUi": true
         },
         {
           "bank": 3,
           "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
           "method": "previewToggle",
           "descriptor": "()V",
-          "createUi": true,
-          "cameraName": true
+          "createUi": true
         },
         {
           "bank": 3,
           "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
           "method": "sendToDeviceStart",
           "descriptor": "(I Ldji/midware/interfaces/DJIDataCallBack;)V",
-          "createUi": true,
-          "cameraName": false
+          "createUi": true
         },
         {
           "bank": 3,
           "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
           "method": "sendToDeviceStop",
           "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
-          "createUi": true,
-          "cameraName": false
+          "createUi": true
         }
       ],
       "allExternalCallersInCreateUi": true,
@@ -382,32 +428,28 @@
           "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
           "method": "stopPanoPreviewWork",
           "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
-          "createUi": true,
-          "cameraName": true
+          "createUi": true
         },
         {
           "bank": 3,
           "className": "Lcom/dji/ronin/ui/create/panorama/CreatePanoramaView;",
           "method": "<init>",
           "descriptor": "(Landroid/content/Context; Landroid/util/AttributeSet;)V",
-          "createUi": true,
-          "cameraName": false
+          "createUi": true
         },
         {
           "bank": 3,
           "className": "Lcom/dji/ronin/ui/create/panorama/CreatePanoramaView;",
           "method": "sendToDeviceStart",
           "descriptor": "(I)V",
-          "createUi": true,
-          "cameraName": false
+          "createUi": true
         },
         {
           "bank": 3,
           "className": "Lcom/dji/ronin/ui/create/panorama/CreatePanoramaView;",
           "method": "sendToDeviceStop",
           "descriptor": "()V",
-          "createUi": true,
-          "cameraName": false
+          "createUi": true
         }
       ],
       "allExternalCallersInCreateUi": true,
@@ -415,20 +457,182 @@
       "doPackCodeOffset": 4885228
     }
   },
+  "infoByteMaps": {
+    "25": {
+      "field": "mInfoByte",
+      "setters": [
+        {
+          "method": "setControlExternalDevice",
+          "descriptor": "(Z)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "bitIndex": 7,
+          "lowBitMask": null,
+          "cameraOrPreviewOrExternalName": true,
+          "instructionSha256": "be7da48253f891fc511ad9d689b1aba96e93f8100845735824a936c516c56e24"
+        },
+        {
+          "method": "setISPreview",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "bitIndex": 3,
+          "lowBitMask": 1,
+          "cameraOrPreviewOrExternalName": true,
+          "instructionSha256": "e9d385c759c396889daf655e8a99b5281703c9b04f2b2a8ef32aa286c8480648"
+        },
+        {
+          "method": "setIsTripod",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "bitIndex": 1,
+          "lowBitMask": 1,
+          "cameraOrPreviewOrExternalName": false,
+          "instructionSha256": "53049c1becd6ac655d0ac82df4f51c7b5d5a2e6838bf5b53f6782cb4984e5ae9"
+        },
+        {
+          "method": "setMode",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "bitIndex": 0,
+          "lowBitMask": 1,
+          "cameraOrPreviewOrExternalName": false,
+          "instructionSha256": "142b33f79bfca19028611775de1ed119cf62110c93cc56a9d6a51d0cf4fec014"
+        },
+        {
+          "method": "setStartOrStop",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "bitIndex": 2,
+          "lowBitMask": 1,
+          "cameraOrPreviewOrExternalName": false,
+          "instructionSha256": "baad1a1fbabe9ea29c72e2fad7534649ea29ef61a89599ef753514d83054133a"
+        }
+      ],
+      "bitIndexes": [
+        0,
+        1,
+        2,
+        3,
+        7
+      ],
+      "cameraPreviewOrExternalBits": [
+        {
+          "method": "setControlExternalDevice",
+          "descriptor": "(Z)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "bitIndex": 7,
+          "lowBitMask": null,
+          "cameraOrPreviewOrExternalName": true,
+          "instructionSha256": "be7da48253f891fc511ad9d689b1aba96e93f8100845735824a936c516c56e24"
+        },
+        {
+          "method": "setISPreview",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "bitIndex": 3,
+          "lowBitMask": 1,
+          "cameraOrPreviewOrExternalName": true,
+          "instructionSha256": "e9d385c759c396889daf655e8a99b5281703c9b04f2b2a8ef32aa286c8480648"
+        }
+      ],
+      "bitsResolved": true
+    },
+    "37": {
+      "field": "mInfoByte",
+      "setters": [
+        {
+          "method": "setIsTripod",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;",
+          "bitIndex": 1,
+          "lowBitMask": 1,
+          "cameraOrPreviewOrExternalName": false,
+          "instructionSha256": "589d31f016ab026b71670c5a8edab857ed20e85740913c4fdf706603028b65cd"
+        },
+        {
+          "method": "setMode",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;",
+          "bitIndex": 0,
+          "lowBitMask": 1,
+          "cameraOrPreviewOrExternalName": false,
+          "instructionSha256": "d2ef82639478e6aa4f64ac267c329bc9cced39ea2476dbbaae9087163260bd66"
+        },
+        {
+          "method": "setStartOrPreview",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;",
+          "bitIndex": 3,
+          "lowBitMask": 1,
+          "cameraOrPreviewOrExternalName": true,
+          "instructionSha256": "129e66932ecadea5b5b2c5f8e22f0f3f81f2e24e91dad6ceffff228af44f1c73"
+        },
+        {
+          "method": "setStartOrStop",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;",
+          "bitIndex": 2,
+          "lowBitMask": 1,
+          "cameraOrPreviewOrExternalName": false,
+          "instructionSha256": "444447e3cccad0877b883ed9cb6e2f5dd831373a57f6c93424fe5f18acc3fab0"
+        }
+      ],
+      "bitIndexes": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "cameraPreviewOrExternalBits": [
+        {
+          "method": "setStartOrPreview",
+          "descriptor": "(I)Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;",
+          "bitIndex": 3,
+          "lowBitMask": 1,
+          "cameraOrPreviewOrExternalName": true,
+          "instructionSha256": "129e66932ecadea5b5b2c5f8e22f0f3f81f2e24e91dad6ceffff228af44f1c73"
+        }
+      ],
+      "bitsResolved": true
+    }
+  },
+  "infoByteSetterCallers": [
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/follow/CreateFollowActivity;",
+      "method": "startTimeLapse",
+      "target": "setISPreview"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/tapgo/CreateFixDelayView;",
+      "method": "sendToDeviceStart",
+      "target": "setISPreview"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;",
+      "method": "sendToDeviceStart",
+      "target": "setControlExternalDevice"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;",
+      "method": "sendToDeviceStart",
+      "target": "setISPreview"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;",
+      "method": "sendToDeviceStop",
+      "target": "setISPreview"
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/timelapse/CreateTimelapseView;",
+      "method": "sendToDeviceStart",
+      "target": "setStartOrPreview"
+    }
+  ],
   "hg724NamedProgramMethods": [],
   "panoramaHasExposureField": true,
   "trackHasRecordOrPreviewField": true,
-  "timelapsePackedInfoBytesUnresolvedForCameraIsolation": {
-    "25": "mInfoByte present; camera/exposure bits not fully decoded in this audit \u2014 not treated as camera-free",
-    "37": "mInfoByte present; camera/exposure bits not fully decoded in this audit \u2014 not treated as camera-free"
-  },
   "cameraFieldsInterleavedWithPanorama": true,
   "trackRecordPreviewInterleaved": true,
+  "timelapseInfoBytePreviewOrExternalBitsInterleaved": true,
   "reliableStopWithCameraIsolationEstablished": false,
   "pureGimbalProgramPrimitiveOpenable": false,
   "hg724ModelSpecificProgramEntryEstablished": false,
   "missingHg724NamedCallerDoesNotProveNoInheritedEntry": true,
-  "reasonNotClosed": "PREFIX reconfirms Create UI-only external callers, panorama mExposure and track mRecordOrPreview interleaved with gimbal program packs, and no HG724-named program methods. That does not isolate a pure-gimbal primitive or prove model/component gates for RS 4 Mini. Program execution stays closed.",
+  "reasonNotClosed": "mInfoByte bit maps are resolved: 04:25 packs preview (bit3) and controlExternalDevice (bit7) beside mode/tripod/start-stop; 04:37 packs startOrPreview (bit3) beside the same. Named panorama mExposure and track mRecordOrPreview remain interleaved. Create UI callers invoke those setters. Isolation is statically disproven for a pure gimbal primitive; RS 4 Mini model/component reachability and a camera-free stop path still need hardware or a different source entry.",
   "remaining": [
     "Do not open 04:25/37/62/63 sends.",
     "Do not treat missing HG724-named program methods as no inherited entry."

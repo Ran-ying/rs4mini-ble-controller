@@ -2,7 +2,7 @@
 
 2026-10-20。工具 [ronin_queue_a_semantics_trace.py](ronin_queue_a_semantics_trace.py)，证据 [ronin-queue-a-semantics-evidence.json](../../protocol/research/ronin-queue-a-semantics-evidence.json)。接续 [ROTATE_EYE_TRANSPORT.md](ROTATE_EYE_TRANSPORT.md)、[ANGLE_CONTEXT.md](ANGLE_CONTEXT.md)、[CALIBRATION_TRANSPORT.md](CALIBRATION_TRANSPORT.md)。
 
-四项状态均为 **`statically_exhausted_needs_hardware`**：静态能证的已证完；完成条件中的本机/直连验证未满足，故不标完成。
+四项状态由 `compute_substatus(...)` **计算**（静态事实齐且本机未证 → `statically_exhausted_needs_hardware`；非硬编码常量）。静态能证的已证完；完成条件中的本机/直连验证未满足，故不标完成。
 
 ## EYE/SINGLE 对直连 BLE 是否必须
 

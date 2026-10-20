@@ -1,5 +1,6 @@
 {
   "schemaVersion": 1,
+  "status": "statically_exhausted_needs_hardware",
   "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
   "bankSha256": {
     "0": "2229f1f19aa8fe8d819c7b3cecbd844928da817e2bc9cfddfda1c0e120e4cc59",
@@ -102,7 +103,6 @@
       "instructionSha256": "5416211661f4c1434aa1f6790b05bb912736d8c02b88626074d8e59667a37bc4"
     }
   ],
-  "status": "statically_exhausted_needs_hardware",
   "rotateCompletion": {
     "usesAbsStartNoCallback": true,
     "absStartCallbackOverloadExistsButUnusedByRotate": true,

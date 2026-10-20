@@ -2,7 +2,7 @@
 
 2026-10-20。工具 [ronin_queue_e_session_version_trace.py](ronin_queue_e_session_version_trace.py)，证据 [ronin-queue-e-session-version-evidence.json](../../protocol/research/ronin-queue-e-session-version-evidence.json)。接续 [ACTIVATION_RECEIVE.md](ACTIVATION_RECEIVE.md)、[ACTIVATION_ENTRY.md](ACTIVATION_ENTRY.md)。
 
-状态：**`statically_exhausted_needs_hardware`**。
+状态由 `compute_status(...)` **计算**（当前为 **`statically_exhausted_needs_hardware`**，非硬编码常量）。
 
 ## 静态已证
 

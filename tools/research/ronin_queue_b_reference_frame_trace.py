@@ -12,7 +12,18 @@ from ronin_static import APK_SHA256
 from ronin_prefix_restore import PREFIX_BANKS
 from ronin_subscription_trace import constructor_records
 
-STATUS = 'statically_exhausted_needs_hardware'
+STATUS_EXHAUSTED = 'statically_exhausted_needs_hardware'
+STATUS = STATUS_EXHAUSTED  # compat for tests expecting exhausted outcome when facts hold
+STATUS_UNRESOLVED = 'statically_unresolved'
+
+
+def compute_status(*, distinct_tags, no_bytecode_equality, physical_verified):
+    if physical_verified:
+        return 'device_verified'
+    if distinct_tags and no_bytecode_equality:
+        return STATUS_EXHAUSTED
+    return STATUS_UNRESOLVED
+
 PER = 'Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;'
 DTYPE = PER[:-1] + '$DataType;'
 ABS = 'Ldji/midware/data/model/P3/DataGimbalAbsAngleControl;'
@@ -150,7 +161,11 @@ def scan(apk, bank_dir):
         sdkSendAdded=False,
         banks=banks_meta,
         methods=sorted(methods.values(), key=lambda r: (r['bank'], r['className'], r['method'])),
-        status=STATUS,
+        status=compute_status(
+            distinct_tags=actual_tags.isdisjoint(motor_tags),
+            no_bytecode_equality=(unique_cross == []),
+            physical_verified=False,
+        ),
         peripheralDataTypeTags=tags,
         sourceActualPoseDistinctFromMotorAngle=True,
         absAngleControl=dict(

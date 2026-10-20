@@ -1,5 +1,6 @@
 {
   "schemaVersion": 1,
+  "status": "statically_exhausted_needs_hardware",
   "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
   "bankSha256": {
     "0": "2229f1f19aa8fe8d819c7b3cecbd844928da817e2bc9cfddfda1c0e120e4cc59",
@@ -103,7 +104,6 @@
       "instructionSha256": "a7d04f3c2a54fbf6d015e2c7ab9c9ca28dffe473ddd236e9833e80698eed0940"
     }
   ],
-  "status": "statically_exhausted_needs_hardware",
   "getVer": {
     "doPackUsesTypeGetVer": true,
     "setRecDataUpdatesGimbalActiveStatusVersion": true,

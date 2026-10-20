@@ -23,7 +23,17 @@ ENC = 'Ldji/midware/data/manager/P3/DJIEncryManager;'
 CMDSET = 'Ldji/midware/data/config/P3/CmdSet;'
 EYE = 'Ldji/midware/data/config/P3/CmdIdEYE$CmdIdType;'
 STATUS_EXHAUSTED = 'statically_exhausted_needs_hardware'
+STATUS_UNRESOLVED = 'statically_unresolved'
 STATUS_STATIC_DONE = 'static_contract_established'
+
+
+def compute_substatus(*, static_facts_complete, device_verified_flag):
+    """Status from evidence flags, not a hard-coded exhausted constant."""
+    if device_verified_flag:
+        return STATUS_STATIC_DONE
+    if static_facts_complete:
+        return STATUS_EXHAUSTED
+    return STATUS_UNRESOLVED
 
 
 def _ops(method):
@@ -317,6 +327,28 @@ def scan(apk, bank_dir):
         ),
     )
 
+    eye_need['status'] = compute_substatus(
+        static_facts_complete=eye_need['appRotateAlwaysCallsJustSendPauseDataOnSpeedAndAbsBranches']
+        and eye_need['noStaticModelOrComponentSkipInsideHelper']
+        and eye_need['hg724OverridesPauseOrRotate'] == [],
+        device_verified_flag=eye_need['directBleMustEmitEyeAppStateVerified'],
+    )
+    index_address['status'] = compute_substatus(
+        static_facts_complete=index_address['ctorDefaultIndex'] == 0
+        and index_address['initStoresSecondIntParameterAsIndex'],
+        device_verified_flag=index_address['liveDeviceIndexVerified'],
+    )
+    encrypt_path['status'] = compute_substatus(
+        static_facts_complete=encrypt_path['eyeAppState']['sourceIsNeedEncrypt']
+        and encrypt_path['gimbalAbsAngle']['sourceIsNeedEncrypt'],
+        device_verified_flag=encrypt_path['finalBlePlaintextVerified'],
+    )
+    dynamic_capability['status'] = compute_substatus(
+        static_facts_complete=dynamic_capability['rotateAbsoluteBranchReadsCapabilityAtCallTime']
+        and dynamic_capability['hg724InheritsRonin2'],
+        device_verified_flag=dynamic_capability['liveDynamicCapabilityChangesVerified'],
+    )
+
     return dict(
         schemaVersion=1,
         apkSha256=APK_SHA256,
@@ -339,10 +371,10 @@ def scan(apk, bank_dir):
         dynamicCapability=dynamic_capability,
         protocolGimbalIdSamples={str(k): v for k, v in samples.items()},
         queueItemStatuses=dict(
-            eyeDirectBleNecessity=STATUS_EXHAUSTED,
-            liveIndexAddress=STATUS_EXHAUSTED,
-            finalEncryptPath=STATUS_EXHAUSTED,
-            dynamicCapability=STATUS_EXHAUSTED,
+            eyeDirectBleNecessity=eye_need['status'],
+            liveIndexAddress=index_address['status'],
+            finalEncryptPath=encrypt_path['status'],
+            dynamicCapability=dynamic_capability['status'],
         ),
         remaining=[
             'Do not open EYE AppState or 04:14 sends based on this audit.',

@@ -9,7 +9,18 @@ from pathlib import Path
 from ronin_static import APK_SHA256
 from ronin_prefix_restore import PREFIX_BANKS
 
-STATUS = 'statically_exhausted_needs_hardware'
+STATUS_EXHAUSTED = 'statically_exhausted_needs_hardware'
+STATUS_UNRESOLVED = 'statically_unresolved'
+STATUS = STATUS_EXHAUSTED
+
+
+def compute_status(*, rotate_no_callback_success, firmware_verified):
+    if firmware_verified:
+        return 'device_verified'
+    if rotate_no_callback_success:
+        return STATUS_EXHAUSTED
+    return STATUS_UNRESOLVED
+
 ROOT = 'Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;'
 ABS = 'Ldji/midware/data/model/P3/DataGimbalAbsAngleControl;'
 TRACK = 'Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;'
@@ -116,8 +127,16 @@ def scan(apk, bank_dir):
     if not any(op.startswith('iput') and 'mStartOrStop' in t for op, t in set_ops):
         raise ValueError('setStartOrStop does not write mStartOrStop')
 
+    status = compute_status(
+        rotate_no_callback_success=any(ABS + '->start()V' in t for _, t in rotate)
+        and any('CallbackUtils;->onSuccess' in t for _, t in rotate)
+        and not any(CB in t and ABS + '->start' in t for _, t in rotate),
+        firmware_verified=False,
+    )
+
     return dict(
         schemaVersion=1,
+        status=status,
         apkSha256=APK_SHA256,
         bankSha256={str(b): p for b, p in PREFIX_BANKS.items()},
         scannedBanks=list(PREFIX_BANKS),
@@ -128,7 +147,6 @@ def scan(apk, bank_dir):
         sdkSendAdded=False,
         banks=banks_meta,
         methods=sorted(methods.values(), key=lambda r: (r['bank'], r['className'], r['method'], r['descriptor'])),
-        status=STATUS,
         rotateCompletion=dict(
             usesAbsStartNoCallback=True,
             absStartCallbackOverloadExistsButUnusedByRotate=True,

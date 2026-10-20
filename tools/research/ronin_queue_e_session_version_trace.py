@@ -10,7 +10,18 @@ from ronin_static import APK_SHA256
 from ronin_prefix_restore import PREFIX_BANKS
 from ronin_activation_receive import activation_version_ack_view
 
-STATUS = 'statically_exhausted_needs_hardware'
+STATUS_EXHAUSTED = 'statically_exhausted_needs_hardware'
+STATUS_UNRESOLVED = 'statically_unresolved'
+STATUS = STATUS_EXHAUSTED
+
+
+def compute_status(*, getver_mutates_activation, live_session_verified):
+    if live_session_verified:
+        return 'device_verified'
+    if getver_mutates_activation:
+        return STATUS_EXHAUSTED
+    return STATUS_UNRESOLVED
+
 GETVER = 'Ldji/midware/data/model/common/DataCommonActiveGetVer;'
 BASE = 'Ldji/midware/data/model/common/DataAbstractGetPushActiveStatus;'
 GIMBAL_ACTIVE = 'Ldji/midware/data/model/P3/DataGimbalActiveStatus;'
@@ -124,8 +135,14 @@ def scan(apk, bank_dir):
                 pass
             samples.append(dict(payloadHex=payload_hex, versionName=row.get('versionName'), success=row['sourceCallbackReportsSuccess'], businessComplete=row.get('businessComplete')))
 
+    status = compute_status(
+        getver_mutates_activation=any(GIMBAL_ACTIVE + '->setVersion(' in t for _, t in setrec),
+        live_session_verified=False,
+    )
+
     return dict(
         schemaVersion=1,
+        status=status,
         apkSha256=APK_SHA256,
         bankSha256={str(b): p for b, p in PREFIX_BANKS.items()},
         scannedBanks=list(PREFIX_BANKS),
@@ -137,7 +154,6 @@ def scan(apk, bank_dir):
         activationWriteOpened=False,
         banks=banks_meta,
         methods=sorted(methods.values(), key=lambda r: (r['bank'], r['className'], r['method'])),
-        status=STATUS,
         getVer=dict(
             doPackUsesTypeGetVer=True,
             setRecDataUpdatesGimbalActiveStatusVersion=True,

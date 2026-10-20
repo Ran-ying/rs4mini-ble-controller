@@ -2,7 +2,7 @@
 
 2026-10-20。工具 [ronin_queue_c_completion_abort_trace.py](ronin_queue_c_completion_abort_trace.py)，证据 [ronin-queue-c-completion-abort-evidence.json](../../protocol/research/ronin-queue-c-completion-abort-evidence.json)。
 
-状态：**`statically_exhausted_needs_hardware`**。
+状态由 `compute_status(...)` **计算**（当前为 **`statically_exhausted_needs_hardware`**，非硬编码常量）。
 
 ## 静态已证
 

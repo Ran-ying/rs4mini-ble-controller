@@ -1,6 +1,6 @@
 # 当前研究方法与推进路线
 
-更新：2026-10-20。此页是后续研究的集中入口；专题文档保留各自提交时的历史范围。当前运行时 Node/Python/Web 0.7.33、macOS 0.3.33。优先级1–4 已完成；程序执行因相机隔离不足保持关闭；下一项为全清单与设备管理缺口。版本和提交以 [项目状态](PROJECT_STATUS.md) 与 Git 历史为准。
+更新：2026-10-20。此页是后续研究的集中入口；专题文档保留各自提交时的历史范围。当前运行时 Node/Python/Web 0.7.33、macOS 0.3.33。优先级1–5 离线项已完成；inventoryComplete 仍 false；下一项为用户回家后的实机验收（优先级6）。版本和提交以 [项目状态](PROJECT_STATUS.md) 与 Git 历史为准。
 
 [命令清单](../protocol/COMMANDS.json) 当前有49项已知命令或缺口，**不是49项已完成设备能力**；`inventoryComplete=false`、`advancedDevelopment.allowed=false`。设备 SDK 与主机组合遵循 [架构](ARCHITECTURE.md)，`moveTo()` 不计作固件命令。底层验收完成前不增加高级组合。
 
@@ -26,7 +26,7 @@
 | 2 ✓ | 04:0D、04:2C、04:0A：[八段缺口重审](../tools/research/GAP_PREFIX.md) | 已用 PREFIX_BANKS 重审定义/外部调用/枚举外引用；01/07 无增量 | 2026-10-20 完成：0D 仍无实现类、2C 仍无外部调用、0A 仍仅 DT501 UVC；均不开放发送 |
 | 3 ✓ | 04:14/0C/4C：[八段运动重审](../tools/research/MOTION_PREFIX.md) | 已补 0C 当前 App 布局与 UI 调用、14/4C 八段调用面；仍缺本机地址/EYE/完成与按轴回中 | 2026-10-20：不开放 14/0C 发送；不替换 04:01；无按轴回中；FE01 保留 |
 | 4 ✓ | 04:25/37/62/63：[八段程序重审](../tools/research/PROGRAM_PREFIX.md) | 已确认仅 Create UI 调用、无 HG724 具名入口；全景曝光与轨迹录制字段仍交织 | 2026-10-20：纯稳定器原语不可独立开放；程序执行保持关闭 |
-| 5 | 全清单与设备管理缺口：[SDK 覆盖](SDK_COMMANDS.md)、[CENTER GET](APP_CENTER_INFO.md) | 逐项复核 remaining，继续找遗漏命令/别名；补会话版本、设备身份、状态请求关联等证据 | 清单完整性和每条目标验收独立判断；00:32 GET 不升级为激活/绑定/版本协商，不为了凑全覆盖开放激活写入 |
+| 5 ✓ | 全清单与设备管理缺口：[八段清单复核](../tools/research/INVENTORY_PREFIX.md) | 40 个非排除云台枚举均已在 COMMANDS；无新 wire；bank01 激活控制器仍为缺口 | 2026-10-20：inventoryComplete 保持 false；不开放激活写入；00:32 保持只读 |
 | 6 | 用户回家后的实机验收：[清单](HARDWARE_CHECKLIST.md) | 在用户确认现场条件后记录设备/固件/载荷，按清单先只读、再逐项受控动作和停止测试 | 记录真实收发、效果及失败恢复；当前研究期间不扫描、连接或移动设备，不执行厂商 APK/Java/JNI/native 代码或实时 UI |
 
 完成底层全命令门槛之后，才重新规划高级组合；不能把静态研究完成或包构建成功当作该门槛通过。

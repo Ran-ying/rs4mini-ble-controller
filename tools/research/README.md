@@ -10,6 +10,8 @@
 
 程序 25/37/62/63 八段重审：[PROGRAM_PREFIX.md](PROGRAM_PREFIX.md)。
 
+全清单/设备管理八段复核：[INVENTORY_PREFIX.md](INVENTORY_PREFIX.md)。
+
 早期代码恢复进展：[CODE_RESTORATION.md](CODE_RESTORATION.md) 记录当前 APK 内部代码备份的离线恢复，已读到 HG724 灵敏度 setter 和参数加载逻辑；下面原有工具仍是 metadata-only 视图。
 
 此工具只读 ZIP/DEX 元数据，不安装或运行 APK，不使用 Frida、不连接设备。SDK 与默认测试不依赖可选分析库。

@@ -2,6 +2,10 @@
 
 研究方法、证据等级、下一步顺序与完成条件见 [研究路线图](RESEARCH_ROADMAP.md)。
 
+## 最新研究：全清单八段复核与设备管理缺口
+
+2026-10-20。ronin_inventory_prefix_trace.py：40 个非排除 CmdIdGimbal 均已在 COMMANDS，无新 wire；bank01 激活控制器触达云台/CENTER/HTTP 路径但不开放写入；inventoryComplete 保持 false。见 [INVENTORY_PREFIX.md](../tools/research/INVENTORY_PREFIX.md)。离线路程图 1–5 完成；实机验收仍待用户回家。
+
 ## 最新研究：程序 25/37/62/63 八段重审
 
 2026-10-20。ronin_program_prefix_trace.py：四类协议仅 Create UI 类外调用，无 HG724 具名入口；全景含 mExposure，轨迹含 setRecordOrPreview。纯稳定器原语不可开放，程序执行保持关闭。见 [PROGRAM_PREFIX.md](../tools/research/PROGRAM_PREFIX.md)。

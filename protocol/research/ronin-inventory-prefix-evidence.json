@@ -1,0 +1,594 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "bankSha256": {
+    "0": "2229f1f19aa8fe8d819c7b3cecbd844928da817e2bc9cfddfda1c0e120e4cc59",
+    "1": "0083e9f9e0e615602470ea148cfd581a0c7413a012ef5494b613242d55754f99",
+    "2": "f75800c8edb40823c72afdd0eee575135e995440da9a5fd9bfb3e5b3e9e6fe68",
+    "3": "861be662ee36ce3b195c0c1aa179642e34793df3a88e933fa1dfe2a7202a9528",
+    "4": "2fd9aa02f5c9f4217e7e6ef75d724a1ce64efa7c1f365ddb20c93be1fef85f77",
+    "5": "f78b34474816ca253b4133bdbd79ebcbf725f52d58ac00b63f921ff7082470d2",
+    "6": "4da9764901f753190e0c88b5a142a4f9cf1eed9b1b9214bdf97a21f00edcb990",
+    "7": "3fc2c4adccd59794f5c28b898d577ed414758875cadb7ce7f6782ffd5b64b723"
+  },
+  "appCodeExecuted": false,
+  "liveUiExecuted": false,
+  "targetDeviceVerified": false,
+  "wholeProtocolRecovered": false,
+  "researchToolProvidesSdkInterface": false,
+  "sdkSendAdded": false,
+  "sdkReceiveAdded": false,
+  "scannedBanks": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "banks": [
+    {
+      "segment": 0,
+      "derivedSha256": "2229f1f19aa8fe8d819c7b3cecbd844928da817e2bc9cfddfda1c0e120e4cc59",
+      "methodCount": 53828,
+      "methodWithCodeCount": 50517,
+      "instructionCount": 682926
+    },
+    {
+      "segment": 1,
+      "derivedSha256": "0083e9f9e0e615602470ea148cfd581a0c7413a012ef5494b613242d55754f99",
+      "methodCount": 12143,
+      "methodWithCodeCount": 11452,
+      "instructionCount": 132775
+    },
+    {
+      "segment": 2,
+      "derivedSha256": "f75800c8edb40823c72afdd0eee575135e995440da9a5fd9bfb3e5b3e9e6fe68",
+      "methodCount": 15931,
+      "methodWithCodeCount": 15446,
+      "instructionCount": 249001
+    },
+    {
+      "segment": 3,
+      "derivedSha256": "861be662ee36ce3b195c0c1aa179642e34793df3a88e933fa1dfe2a7202a9528",
+      "methodCount": 38674,
+      "methodWithCodeCount": 36349,
+      "instructionCount": 559947
+    },
+    {
+      "segment": 4,
+      "derivedSha256": "2fd9aa02f5c9f4217e7e6ef75d724a1ce64efa7c1f365ddb20c93be1fef85f77",
+      "methodCount": 56720,
+      "methodWithCodeCount": 53246,
+      "instructionCount": 587995
+    },
+    {
+      "segment": 5,
+      "derivedSha256": "f78b34474816ca253b4133bdbd79ebcbf725f52d58ac00b63f921ff7082470d2",
+      "methodCount": 55055,
+      "methodWithCodeCount": 53173,
+      "instructionCount": 677878
+    },
+    {
+      "segment": 6,
+      "derivedSha256": "4da9764901f753190e0c88b5a142a4f9cf1eed9b1b9214bdf97a21f00edcb990",
+      "methodCount": 48024,
+      "methodWithCodeCount": 45737,
+      "instructionCount": 705675
+    },
+    {
+      "segment": 7,
+      "derivedSha256": "3fc2c4adccd59794f5c28b898d577ed414758875cadb7ce7f6782ffd5b64b723",
+      "methodCount": 3240,
+      "methodWithCodeCount": 2977,
+      "instructionCount": 36394
+    }
+  ],
+  "gimbalEnumCommands": [
+    {
+      "name": "Control",
+      "commandId": 1,
+      "commandsKey": "04:01",
+      "excluded": false
+    },
+    {
+      "name": "GetPushParams",
+      "commandId": 5,
+      "commandsKey": "04:05",
+      "excluded": false
+    },
+    {
+      "name": "RollFinetune",
+      "commandId": 7,
+      "commandsKey": "04:07",
+      "excluded": false
+    },
+    {
+      "name": "AutoCalibration",
+      "commandId": 8,
+      "commandsKey": "04:08",
+      "excluded": false
+    },
+    {
+      "name": "SetAngle",
+      "commandId": 10,
+      "commandsKey": "04:0A",
+      "excluded": false
+    },
+    {
+      "name": "SetOnOrOff",
+      "commandId": 13,
+      "commandsKey": "04:0D",
+      "excluded": false
+    },
+    {
+      "name": "SpeedControl",
+      "commandId": 12,
+      "commandsKey": "04:0C",
+      "excluded": false
+    },
+    {
+      "name": "AngleControl",
+      "commandId": 10,
+      "commandsKey": "04:0A",
+      "excluded": false
+    },
+    {
+      "name": "SetUserParams",
+      "commandId": 15,
+      "commandsKey": "04:0F",
+      "excluded": false
+    },
+    {
+      "name": "GetUserParams",
+      "commandId": 16,
+      "commandsKey": "04:10",
+      "excluded": false
+    },
+    {
+      "name": "SaveUserParams",
+      "commandId": 17,
+      "commandsKey": "04:11",
+      "excluded": false
+    },
+    {
+      "name": "SubscribeGimbalParams",
+      "commandId": 18,
+      "commandsKey": "04:12",
+      "excluded": false
+    },
+    {
+      "name": "ResetUserParams",
+      "commandId": 19,
+      "commandsKey": "04:13",
+      "excluded": false
+    },
+    {
+      "name": "AbsAngleControl",
+      "commandId": 20,
+      "commandsKey": "04:14",
+      "excluded": false
+    },
+    {
+      "name": "GetPushType",
+      "commandId": 28,
+      "commandsKey": "04:1C",
+      "excluded": false
+    },
+    {
+      "name": "GetPushUserParams",
+      "commandId": 36,
+      "commandsKey": "04:24",
+      "excluded": false
+    },
+    {
+      "name": "SetDelayTimelapseParams",
+      "commandId": 37,
+      "commandsKey": "04:25",
+      "excluded": false
+    },
+    {
+      "name": "GetPushAbnormalStatus",
+      "commandId": 39,
+      "commandsKey": "04:27",
+      "excluded": false
+    },
+    {
+      "name": "GetPushTutorialStatus",
+      "commandId": 43,
+      "commandsKey": "04:2B",
+      "excluded": false
+    },
+    {
+      "name": "SetTutorialStep",
+      "commandId": 44,
+      "commandsKey": "04:2C",
+      "excluded": false
+    },
+    {
+      "name": "GetPushSensorCalibrationStatus",
+      "commandId": 48,
+      "commandsKey": "04:30",
+      "excluded": false
+    },
+    {
+      "name": "RoninSetParams",
+      "commandId": 49,
+      "commandsKey": "04:31",
+      "excluded": false
+    },
+    {
+      "name": "RoninGetParams",
+      "commandId": 50,
+      "commandsKey": "04:32",
+      "excluded": false
+    },
+    {
+      "name": "RobinPushBattery",
+      "commandId": 51,
+      "commandsKey": "04:33",
+      "excluded": false
+    },
+    {
+      "name": "SetHandleParams",
+      "commandId": 53,
+      "commandsKey": "04:35",
+      "excluded": false
+    },
+    {
+      "name": "GetHandleParams",
+      "commandId": 54,
+      "commandsKey": "04:36",
+      "excluded": false
+    },
+    {
+      "name": "SetTimelapseParams",
+      "commandId": 55,
+      "commandsKey": "04:37",
+      "excluded": false
+    },
+    {
+      "name": "GetPushTimelapseStatus",
+      "commandId": 56,
+      "commandsKey": "04:38",
+      "excluded": false
+    },
+    {
+      "name": "BalanceAdjust",
+      "commandId": 64,
+      "commandsKey": "04:40",
+      "excluded": false
+    },
+    {
+      "name": "SetCalibration",
+      "commandId": 106,
+      "commandsKey": "04:6A",
+      "excluded": false
+    },
+    {
+      "name": "SetTrack",
+      "commandId": 98,
+      "commandsKey": "04:62",
+      "excluded": false
+    },
+    {
+      "name": "SetPanorama",
+      "commandId": 99,
+      "commandsKey": "04:63",
+      "excluded": false
+    },
+    {
+      "name": "GetPushPanorama",
+      "commandId": 100,
+      "commandsKey": "04:64",
+      "excluded": false
+    },
+    {
+      "name": "GetPushTrackAndTimelapse",
+      "commandId": 107,
+      "commandsKey": "04:6B",
+      "excluded": false
+    },
+    {
+      "name": "GetPushCalibration",
+      "commandId": 110,
+      "commandsKey": "04:6E",
+      "excluded": false
+    },
+    {
+      "name": "SetPushPeripheralStatus",
+      "commandId": 102,
+      "commandsKey": "04:66",
+      "excluded": false
+    },
+    {
+      "name": "GetPushExternalDeviceData",
+      "commandId": 105,
+      "commandsKey": "04:69",
+      "excluded": false
+    },
+    {
+      "name": "GetPushHandheldStickState",
+      "commandId": 87,
+      "commandsKey": "04:57",
+      "excluded": false
+    },
+    {
+      "name": "SetHandheldStickControlEnabled",
+      "commandId": 88,
+      "commandsKey": "04:58",
+      "excluded": false
+    },
+    {
+      "name": "ResetAndSetMode",
+      "commandId": 76,
+      "commandsKey": "04:4C",
+      "excluded": false
+    }
+  ],
+  "excludedCameraOrSentinel": [
+    "FocusControl",
+    "NotiFyCameraId",
+    "Other"
+  ],
+  "allNonExcludedGimbalEnumsPresentInCommandsJson": true,
+  "newlyDiscoveredGimbalWireCommands": [],
+  "inventoryCompleteClaimed": false,
+  "inventoryCompleteRemainsFalse": true,
+  "commandsJsonEntryCount": 49,
+  "openUnknownRequestKeys": [
+    "unknown:follow-mode",
+    "unknown:motor-calibration",
+    "unknown:firmware-program",
+    "unknown:device-management",
+    "04:0A",
+    "04:0D",
+    "04:11",
+    "04:25",
+    "04:2C",
+    "04:37",
+    "04:40",
+    "04:62",
+    "04:63"
+  ],
+  "deviceManagementGapKey": "unknown:device-management",
+  "bank01ActivationMethods": [
+    {
+      "bank": 1,
+      "className": "Lcom/dji/activate/active/ActiveDeviceController;",
+      "method": "<init>",
+      "descriptor": "(Landroid/content/Context; Lcom/dji/activate/active/ActiveDeviceController$DJIActiveDeviceListener;)V",
+      "instructionSha256": "aea9c5dfc47bacce13ed5f4ba3af740e0e9c5b52f7d3c28db8a91f2d57d3319f",
+      "activationRelatedInvokes": [
+        {
+          "operation": "invoke-static",
+          "instructionByteOffset": 70,
+          "text": "Ldji/midware/data/model/P3/DataBatteryActiveStatus;->getInstance()Ldji/midware/data/model/P3/DataBatteryActiveStatus;"
+        },
+        {
+          "operation": "invoke-static",
+          "instructionByteOffset": 82,
+          "text": "Ldji/midware/data/model/P3/DataGimbalActiveStatus;->getInstance()Ldji/midware/data/model/P3/DataGimbalActiveStatus;"
+        }
+      ]
+    },
+    {
+      "bank": 1,
+      "className": "Lcom/dji/activate/active/ActiveDeviceController;",
+      "method": "activeBattery",
+      "descriptor": "(Ljava/lang/String;)V",
+      "instructionSha256": "d7c84ff40cca1935841734fbc2e1ec0287209b93fcbc50dcb5276ea081d914d7",
+      "activationRelatedInvokes": [
+        {
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 16,
+          "text": "v2, v0, Ldji/midware/data/model/P3/DataBatteryActiveStatus;->setIndexMultiBattery(I)Ldji/midware/data/model/P3/DataBatteryActiveStatus;"
+        },
+        {
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 28,
+          "text": "v2, v0, Ldji/midware/data/model/P3/DataBatteryActiveStatus;->setType(Ldji/midware/data/model/common/DataAbstractGetPushActiveStatus$TYPE;)Ldji/midware/data/mode"
+        }
+      ]
+    },
+    {
+      "bank": 1,
+      "className": "Lcom/dji/activate/active/ActiveDeviceController;",
+      "method": "activeGimbal",
+      "descriptor": "(Ljava/lang/String;)V",
+      "instructionSha256": "0f5e3f74ce16aa242fcce19236676888acf8dd65a84461cefd15ae4b6ce26c4b",
+      "activationRelatedInvokes": [
+        {
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 8,
+          "text": "v0, v1, Ldji/midware/data/model/P3/DataGimbalActiveStatus;->setType(Ldji/midware/data/model/common/DataAbstractGetPushActiveStatus$TYPE;)Ldji/midware/data/model"
+        }
+      ]
+    },
+    {
+      "bank": 1,
+      "className": "Lcom/dji/activate/active/ActiveWebController$3;",
+      "method": "onFailure",
+      "descriptor": "(Ldji/midware/data/config/P3/Ccode;)V",
+      "instructionSha256": "d137c5003245100b84e0d744c4566b8f403efcd90277adf5e94880db3588cb08",
+      "activationRelatedInvokes": [
+        {
+          "operation": "invoke-static",
+          "instructionByteOffset": 30,
+          "text": "v0, v4, v1, v2, Lcom/dji/activate/active/ActiveWebController;->-$$Nest$mpostToServer(Lcom/dji/activate/active/ActiveWebController; Ljava/lang/String; Ljava/lang"
+        }
+      ]
+    },
+    {
+      "bank": 1,
+      "className": "Lcom/dji/activate/active/ActiveWebController$3;",
+      "method": "onSuccess",
+      "descriptor": "(Ljava/lang/Object;)V",
+      "instructionSha256": "e314d6c268780d6289e1a43d53342a960f1dbb88d5def185e76e27f8168a4a79",
+      "activationRelatedInvokes": [
+        {
+          "operation": "invoke-static",
+          "instructionByteOffset": 68,
+          "text": "v0, v4, v1, v2, Lcom/dji/activate/active/ActiveWebController;->-$$Nest$mpostToServer(Lcom/dji/activate/active/ActiveWebController; Ljava/lang/String; Ljava/lang"
+        }
+      ]
+    },
+    {
+      "bank": 1,
+      "className": "Lcom/dji/activate/active/ActiveWebController;",
+      "method": "-$$Nest$mpostToServer",
+      "descriptor": "(Lcom/dji/activate/active/ActiveWebController; Ljava/lang/String; Ljava/lang/String; Ljava/lang/String;)V",
+      "instructionSha256": "d8a249ac0e628840bc723315cafa9bbc81227e79e2d58bdf33fd899877009536",
+      "activationRelatedInvokes": [
+        {
+          "operation": "invoke-direct",
+          "instructionByteOffset": 0,
+          "text": "v0, v1, v2, v3, Lcom/dji/activate/active/ActiveWebController;->postToServer(Ljava/lang/String; Ljava/lang/String; Ljava/lang/String;)V"
+        }
+      ]
+    },
+    {
+      "bank": 1,
+      "className": "Lcom/dji/activate/active/ActiveWebController;",
+      "method": "<init>",
+      "descriptor": "(Landroid/content/Context; Lcom/dji/activate/active/ActiveWebController$DJIActiveWebListener;)V",
+      "instructionSha256": "7e59ecf393dfba4aa550cbb1d6f2e64e10c7a745f2ab7fa9b386547494d3d38a",
+      "activationRelatedInvokes": [
+        {
+          "operation": "invoke-static",
+          "instructionByteOffset": 40,
+          "text": "Ldji/midware/data/model/P3/DataGimbalActiveStatus;->getInstance()Ldji/midware/data/model/P3/DataGimbalActiveStatus;"
+        }
+      ]
+    },
+    {
+      "bank": 1,
+      "className": "Lcom/dji/activate/active/ActiveWebController;",
+      "method": "generateParams",
+      "descriptor": "(Ljava/lang/String;)Ljava/util/Map;",
+      "instructionSha256": "f596e94d66cfe1d36c334cd9c4f3834cdca72f08559dc0c544a65c411a238208",
+      "activationRelatedInvokes": [
+        {
+          "operation": "invoke-static",
+          "instructionByteOffset": 342,
+          "text": "Lcom/dji/api/ActiveHttpApi;->getActivateKey()Ljava/lang/String;"
+        }
+      ]
+    },
+    {
+      "bank": 1,
+      "className": "Lcom/dji/activate/active/ActiveWebController;",
+      "method": "getServerStatus",
+      "descriptor": "()V",
+      "instructionSha256": "05f192ab7f0f9f6a6958600bb8aa5d2257eb06646d2c2f1f6a309dde845ffbea",
+      "activationRelatedInvokes": [
+        {
+          "operation": "invoke-static",
+          "instructionByteOffset": 80,
+          "text": "Lcom/dji/api/ActiveHttpApi;->getActiveVerifyUrl()Ljava/lang/String;"
+        }
+      ]
+    },
+    {
+      "bank": 1,
+      "className": "Lcom/dji/activate/active/ActiveWebController;",
+      "method": "postErrorLog",
+      "descriptor": "(Ljava/lang/String; I)V",
+      "instructionSha256": "9f9756ca2e4458e1af25c8d5bd60edb0bb184d1683b46094c5d2f2b42a3393ab",
+      "activationRelatedInvokes": [
+        {
+          "operation": "invoke-static",
+          "instructionByteOffset": 200,
+          "text": "Lcom/dji/api/ActiveHttpApi;->getPostErrorLogUrl()Ljava/lang/String;"
+        }
+      ]
+    },
+    {
+      "bank": 1,
+      "className": "Lcom/dji/activate/active/ActiveWebController;",
+      "method": "postToServer",
+      "descriptor": "(Ljava/lang/String; Ljava/lang/String; Ljava/lang/String;)V",
+      "instructionSha256": "180acd26cc1d55ea2657aadc4aba63b3aa78155e5d513b10775e3bfec5c6fff4",
+      "activationRelatedInvokes": [
+        {
+          "operation": "invoke-static",
+          "instructionByteOffset": 10,
+          "text": "Lcom/dji/api/ActiveHttpApi;->getActiveVerifyUrl()Ljava/lang/String;"
+        }
+      ]
+    }
+  ],
+  "bank01ActiveGimbalRelatedMethods": [
+    {
+      "className": "Lcom/dji/activate/active/ActiveDeviceController;",
+      "method": "<init>",
+      "descriptor": "(Landroid/content/Context; Lcom/dji/activate/active/ActiveDeviceController$DJIActiveDeviceListener;)V"
+    },
+    {
+      "className": "Lcom/dji/activate/active/ActiveDeviceController;",
+      "method": "activeGimbal",
+      "descriptor": "(Ljava/lang/String;)V"
+    },
+    {
+      "className": "Lcom/dji/activate/active/ActiveWebController;",
+      "method": "<init>",
+      "descriptor": "(Landroid/content/Context; Lcom/dji/activate/active/ActiveWebController$DJIActiveWebListener;)V"
+    }
+  ],
+  "bank01ActiveCenterRelatedMethods": [],
+  "bank01ActiveWebOrHttpRelatedMethods": [
+    {
+      "className": "Lcom/dji/activate/active/ActiveWebController$3;",
+      "method": "onFailure",
+      "descriptor": "(Ldji/midware/data/config/P3/Ccode;)V"
+    },
+    {
+      "className": "Lcom/dji/activate/active/ActiveWebController$3;",
+      "method": "onSuccess",
+      "descriptor": "(Ljava/lang/Object;)V"
+    },
+    {
+      "className": "Lcom/dji/activate/active/ActiveWebController;",
+      "method": "-$$Nest$mpostToServer",
+      "descriptor": "(Lcom/dji/activate/active/ActiveWebController; Ljava/lang/String; Ljava/lang/String; Ljava/lang/String;)V"
+    },
+    {
+      "className": "Lcom/dji/activate/active/ActiveWebController;",
+      "method": "<init>",
+      "descriptor": "(Landroid/content/Context; Lcom/dji/activate/active/ActiveWebController$DJIActiveWebListener;)V"
+    },
+    {
+      "className": "Lcom/dji/activate/active/ActiveWebController;",
+      "method": "generateParams",
+      "descriptor": "(Ljava/lang/String;)Ljava/util/Map;"
+    },
+    {
+      "className": "Lcom/dji/activate/active/ActiveWebController;",
+      "method": "postToServer",
+      "descriptor": "(Ljava/lang/String; Ljava/lang/String; Ljava/lang/String;)V"
+    },
+    {
+      "className": "Lcom/dji/activate/active/ActiveWebController;",
+      "method": "getServerStatus",
+      "descriptor": "()V"
+    },
+    {
+      "className": "Lcom/dji/activate/active/ActiveWebController;",
+      "method": "postErrorLog",
+      "descriptor": "(Ljava/lang/String; I)V"
+    }
+  ],
+  "centerReadOnlyGetAlreadySeparated": true,
+  "activationOrBindingWriteOpened": false,
+  "sessionVersionNegotiated": false,
+  "deviceIdentityVerified": false,
+  "statusRequestAssociationFullyVerified": false,
+  "remaining": [
+    "All 40 non-excluded CmdIdGimbal enum wires already appear in protocol/COMMANDS.json; eight-bank scan added no new gimbal wire IDs.",
+    "Bank01 ActiveDeviceController/ActiveWebController still call gimbal/center active-status and HTTP activate paths; treat as device-management gap, not HG724 BLE binding proof, and do not open writes.",
+    "00:32 CENTER GET remains read-only and is not activation, binding, or version negotiation.",
+    "inventoryComplete stays false: unknown codecs, unverified sessions/identity, and hardware acceptance remain."
+  ]
+}

@@ -409,6 +409,16 @@ if manifest.get('profileValueSdk',{}).get('implemented'):
     modes={r['name']:r['value'] for r in profiles['workModeSourceEnums']}
     objc_modes=(root/'macos/RSControlCore.m').read_text().split('NSDictionary *RSAppProfileValueSpec(',1)[1]
     assert json.loads(re.search(r'const workModes=(\{.*?\});',js).group(1))==py['WORK_MODES']==json.loads(re.search(r'NSDictionary \*modes=(@\{.*?\});',objc_modes).group(1).replace('@',''))==modes
+if manifest.get('inventoryPrefixResearch'):
+    inv=json.loads((root/manifest['inventoryPrefixResearch']).read_text())
+    assert inv['apkSha256']==controls['apkSha256'] and inv['scannedBanks']==list(range(8))
+    assert inv['allNonExcludedGimbalEnumsPresentInCommandsJson'] is True
+    assert inv['newlyDiscoveredGimbalWireCommands']==[]
+    assert inv['inventoryCompleteRemainsFalse'] is True and inv['inventoryCompleteClaimed'] is False
+    assert inv['activationOrBindingWriteOpened'] is False and inv['sessionVersionNegotiated'] is False
+    assert manifest['inventoryComplete'] is False
+    row=next(row for row in manifest['commands'] if row['key']=='unknown:device-management')
+    assert row['inventoryPrefixResearch']==manifest['inventoryPrefixResearch']
 if manifest.get('programPrefixResearch'):
     prog=json.loads((root/manifest['programPrefixResearch']).read_text())
     assert prog['apkSha256']==controls['apkSha256'] and prog['scannedBanks']==list(range(8))

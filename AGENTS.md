@@ -1,6 +1,6 @@
 # AI developer handoff — rs4mini-ble-controller
 
-Current research method and next-task order: `docs/RESEARCH_ROADMAP.md`. Read it with `docs/PROJECT_STATUS.md` and `protocol/COMMANDS.json`; historical six-bank or metadata-only conclusions must not override current eight-bank evidence. Priorities 1–4 completed 2026-10-20; program execution stays closed (no camera-isolated pure gimbal primitive). Next is inventory/device-management gaps. Remaining audits are planned, not already completed. No hardware or new advanced features under current gates.
+Current research method and next-task order: `docs/RESEARCH_ROADMAP.md`. Read it with `docs/PROJECT_STATUS.md` and `protocol/COMMANDS.json`; historical six-bank or metadata-only conclusions must not override current eight-bank evidence. Priorities 1–5 (offline roadmap) completed 2026-10-20; inventoryComplete remains false and activation writes stay closed. Next is hardware checklist after the user returns. No hardware under current gates. No hardware or new advanced features under current gates.
 
 Read this file first, then `README.md`, `node/API.md`, `docs/PROTOCOL.md`, and
 `docs/DEVELOPMENT.md`. This document is intended to make development possible

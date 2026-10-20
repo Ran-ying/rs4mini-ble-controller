@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
   "bankSha256": {
     "0": "2229f1f19aa8fe8d819c7b3cecbd844928da817e2bc9cfddfda1c0e120e4cc59",
@@ -86,255 +86,711 @@
       "instructionCount": 36394
     }
   ],
+  "extraction": {
+    "source": "PREFIX bank05 CmdIdGimbal$CmdIdType <clinit> via constructor_records",
+    "gimbalCommandSet": 4,
+    "enumClinit": {
+      "bank": 5,
+      "className": "Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 4652020,
+      "instructionSha256": "89d7e5d4c317f54eb541d186eff2e608a50e62f9387974ef9c74a54543aa6609",
+      "extractedEntryCount": 43
+    },
+    "extractedEntryCount": 43,
+    "nonExcludedEntryCount": 40,
+    "excludedNames": [
+      "FocusControl",
+      "NotiFyCameraId",
+      "Other"
+    ]
+  },
   "gimbalEnumCommands": [
     {
       "name": "Control",
+      "ordinal": 0,
       "commandId": 1,
-      "commandsKey": "04:01",
+      "constructorDescriptor": "(Ljava/lang/String; I I)V",
+      "hasExplicitClassArgument": false,
+      "boundClass": null,
       "excluded": false
     },
     {
       "name": "GetPushParams",
+      "ordinal": 1,
       "commandId": 5,
-      "commandsKey": "04:05",
+      "constructorDescriptor": "(Ljava/lang/String; I I Z Ljava/lang/Class;)V",
+      "hasExplicitClassArgument": true,
+      "boundClass": "Ldji/midware/data/model/P3/DataGimbalGetPushParams;",
       "excluded": false
     },
     {
       "name": "RollFinetune",
+      "ordinal": 2,
       "commandId": 7,
-      "commandsKey": "04:07",
+      "constructorDescriptor": "(Ljava/lang/String; I I)V",
+      "hasExplicitClassArgument": false,
+      "boundClass": null,
       "excluded": false
     },
     {
       "name": "AutoCalibration",
+      "ordinal": 3,
       "commandId": 8,
-      "commandsKey": "04:08",
-      "excluded": false
-    },
-    {
-      "name": "SetAngle",
-      "commandId": 10,
-      "commandsKey": "04:0A",
-      "excluded": false
-    },
-    {
-      "name": "SetOnOrOff",
-      "commandId": 13,
-      "commandsKey": "04:0D",
-      "excluded": false
-    },
-    {
-      "name": "SpeedControl",
-      "commandId": 12,
-      "commandsKey": "04:0C",
+      "constructorDescriptor": "(Ljava/lang/String; I I Z Z Ljava/lang/Class;)V",
+      "hasExplicitClassArgument": true,
+      "boundClass": "Ldji/midware/data/model/P3/DataGimbalAutoCalibration;",
       "excluded": false
     },
     {
       "name": "AngleControl",
+      "ordinal": 7,
       "commandId": 10,
-      "commandsKey": "04:0A",
+      "constructorDescriptor": "(Ljava/lang/String; I I)V",
+      "hasExplicitClassArgument": false,
+      "boundClass": null,
+      "excluded": false
+    },
+    {
+      "name": "SetAngle",
+      "ordinal": 4,
+      "commandId": 10,
+      "constructorDescriptor": "(Ljava/lang/String; I I)V",
+      "hasExplicitClassArgument": false,
+      "boundClass": null,
+      "excluded": false
+    },
+    {
+      "name": "SpeedControl",
+      "ordinal": 6,
+      "commandId": 12,
+      "constructorDescriptor": "(Ljava/lang/String; I I)V",
+      "hasExplicitClassArgument": false,
+      "boundClass": null,
+      "excluded": false
+    },
+    {
+      "name": "SetOnOrOff",
+      "ordinal": 5,
+      "commandId": 13,
+      "constructorDescriptor": "(Ljava/lang/String; I I)V",
+      "hasExplicitClassArgument": false,
+      "boundClass": null,
       "excluded": false
     },
     {
       "name": "SetUserParams",
+      "ordinal": 8,
       "commandId": 15,
-      "commandsKey": "04:0F",
+      "constructorDescriptor": "(Ljava/lang/String; I I)V",
+      "hasExplicitClassArgument": false,
+      "boundClass": null,
       "excluded": false
     },
     {
       "name": "GetUserParams",
+      "ordinal": 9,
       "commandId": 16,
-      "commandsKey": "04:10",
+      "constructorDescriptor": "(Ljava/lang/String; I I Z Z Ljava/lang/Class;)V",
+      "hasExplicitClassArgument": true,
+      "boundClass": "Ldji/midware/data/model/P3/DataGimbalGetUserParams;",
       "excluded": false
     },
     {
       "name": "SaveUserParams",
+      "ordinal": 10,
       "commandId": 17,
-      "commandsKey": "04:11",
+      "constructorDescriptor": "(Ljava/lang/String; I I)V",
+      "hasExplicitClassArgument": false,
+      "boundClass": null,
       "excluded": false
     },
     {
       "name": "SubscribeGimbalParams",
+      "ordinal": 11,
       "commandId": 18,
-      "commandsKey": "04:12",
+      "constructorDescriptor": "(Ljava/lang/String; I I Z Ljava/lang/Class;)V",
+      "hasExplicitClassArgument": true,
+      "boundClass": "Ldji/midware/data/model/P3/DataGimbalSubscribeParams;",
       "excluded": false
     },
     {
       "name": "ResetUserParams",
+      "ordinal": 12,
       "commandId": 19,
-      "commandsKey": "04:13",
+      "constructorDescriptor": "(Ljava/lang/String; I I)V",
+      "hasExplicitClassArgument": false,
+      "boundClass": null,
       "excluded": false
     },
     {
       "name": "AbsAngleControl",
+      "ordinal": 13,
       "commandId": 20,
-      "commandsKey": "04:14",
+      "constructorDescriptor": "(Ljava/lang/String; I I)V",
+      "hasExplicitClassArgument": false,
+      "boundClass": null,
       "excluded": false
     },
     {
       "name": "GetPushType",
+      "ordinal": 14,
       "commandId": 28,
-      "commandsKey": "04:1C",
+      "constructorDescriptor": "(Ljava/lang/String; I I Z Ljava/lang/Class;)V",
+      "hasExplicitClassArgument": true,
+      "boundClass": "Ldji/midware/data/model/P3/DataGimbalGetPushType;",
       "excluded": false
     },
     {
       "name": "GetPushUserParams",
+      "ordinal": 15,
       "commandId": 36,
-      "commandsKey": "04:24",
+      "constructorDescriptor": "(Ljava/lang/String; I I Z Ljava/lang/Class;)V",
+      "hasExplicitClassArgument": true,
+      "boundClass": "Ldji/midware/data/model/P3/DataGimbalGetPushUserParams;",
       "excluded": false
     },
     {
       "name": "SetDelayTimelapseParams",
+      "ordinal": 16,
       "commandId": 37,
-      "commandsKey": "04:25",
+      "constructorDescriptor": "(Ljava/lang/String; I I)V",
+      "hasExplicitClassArgument": false,
+      "boundClass": null,
       "excluded": false
     },
     {
       "name": "GetPushAbnormalStatus",
+      "ordinal": 17,
       "commandId": 39,
-      "commandsKey": "04:27",
+      "constructorDescriptor": "(Ljava/lang/String; I I Z Ljava/lang/Class;)V",
+      "hasExplicitClassArgument": true,
+      "boundClass": "Ldji/midware/data/model/P3/DataGimbalGetPushAbnormalStatus;",
       "excluded": false
     },
     {
       "name": "GetPushTutorialStatus",
+      "ordinal": 18,
       "commandId": 43,
-      "commandsKey": "04:2B",
+      "constructorDescriptor": "(Ljava/lang/String; I I Z Ljava/lang/Class;)V",
+      "hasExplicitClassArgument": true,
+      "boundClass": "Ldji/midware/data/model/P3/DataGimbalGetPushTutorialStatus;",
       "excluded": false
     },
     {
       "name": "SetTutorialStep",
+      "ordinal": 19,
       "commandId": 44,
-      "commandsKey": "04:2C",
+      "constructorDescriptor": "(Ljava/lang/String; I I)V",
+      "hasExplicitClassArgument": false,
+      "boundClass": null,
       "excluded": false
     },
     {
+      "name": "FocusControl",
+      "ordinal": 20,
+      "commandId": 47,
+      "constructorDescriptor": "(Ljava/lang/String; I I Z Z Ljava/lang/Class;)V",
+      "hasExplicitClassArgument": true,
+      "boundClass": "Ldji/midware/data/model/P3/DataGimbalFocusControl;",
+      "excluded": true
+    },
+    {
       "name": "GetPushSensorCalibrationStatus",
+      "ordinal": 21,
       "commandId": 48,
-      "commandsKey": "04:30",
+      "constructorDescriptor": "(Ljava/lang/String; I I Z Ljava/lang/Class;)V",
+      "hasExplicitClassArgument": true,
+      "boundClass": "Ldji/midware/data/model/P3/DataGimbalGetPushSensorCalibrateStatus;",
       "excluded": false
     },
     {
       "name": "RoninSetParams",
+      "ordinal": 22,
       "commandId": 49,
-      "commandsKey": "04:31",
+      "constructorDescriptor": "(Ljava/lang/String; I I)V",
+      "hasExplicitClassArgument": false,
+      "boundClass": null,
       "excluded": false
     },
     {
       "name": "RoninGetParams",
+      "ordinal": 23,
       "commandId": 50,
-      "commandsKey": "04:32",
+      "constructorDescriptor": "(Ljava/lang/String; I I Z Z Ljava/lang/Class;)V",
+      "hasExplicitClassArgument": true,
+      "boundClass": "Ldji/midware/data/model/P3/DataGimbalRoninGetUserParams;",
       "excluded": false
     },
     {
       "name": "RobinPushBattery",
+      "ordinal": 24,
       "commandId": 51,
-      "commandsKey": "04:33",
+      "constructorDescriptor": "(Ljava/lang/String; I I Z Ljava/lang/Class;)V",
+      "hasExplicitClassArgument": true,
+      "boundClass": "Ldji/midware/data/model/P3/DataGimbalPushBatteryInfo;",
       "excluded": false
     },
     {
       "name": "SetHandleParams",
+      "ordinal": 25,
       "commandId": 53,
-      "commandsKey": "04:35",
+      "constructorDescriptor": "(Ljava/lang/String; I I)V",
+      "hasExplicitClassArgument": false,
+      "boundClass": null,
       "excluded": false
     },
     {
       "name": "GetHandleParams",
+      "ordinal": 26,
       "commandId": 54,
-      "commandsKey": "04:36",
+      "constructorDescriptor": "(Ljava/lang/String; I I)V",
+      "hasExplicitClassArgument": false,
+      "boundClass": null,
       "excluded": false
     },
     {
       "name": "SetTimelapseParams",
+      "ordinal": 27,
       "commandId": 55,
-      "commandsKey": "04:37",
+      "constructorDescriptor": "(Ljava/lang/String; I I)V",
+      "hasExplicitClassArgument": false,
+      "boundClass": null,
       "excluded": false
     },
     {
       "name": "GetPushTimelapseStatus",
+      "ordinal": 28,
       "commandId": 56,
-      "commandsKey": "04:38",
+      "constructorDescriptor": "(Ljava/lang/String; I I Z Ljava/lang/Class;)V",
+      "hasExplicitClassArgument": true,
+      "boundClass": "Ldji/midware/data/model/P3/DataGimbalGetPushTimelapseStatus;",
       "excluded": false
     },
     {
       "name": "BalanceAdjust",
+      "ordinal": 29,
       "commandId": 64,
-      "commandsKey": "04:40",
-      "excluded": false
-    },
-    {
-      "name": "SetCalibration",
-      "commandId": 106,
-      "commandsKey": "04:6A",
-      "excluded": false
-    },
-    {
-      "name": "SetTrack",
-      "commandId": 98,
-      "commandsKey": "04:62",
-      "excluded": false
-    },
-    {
-      "name": "SetPanorama",
-      "commandId": 99,
-      "commandsKey": "04:63",
-      "excluded": false
-    },
-    {
-      "name": "GetPushPanorama",
-      "commandId": 100,
-      "commandsKey": "04:64",
-      "excluded": false
-    },
-    {
-      "name": "GetPushTrackAndTimelapse",
-      "commandId": 107,
-      "commandsKey": "04:6B",
-      "excluded": false
-    },
-    {
-      "name": "GetPushCalibration",
-      "commandId": 110,
-      "commandsKey": "04:6E",
-      "excluded": false
-    },
-    {
-      "name": "SetPushPeripheralStatus",
-      "commandId": 102,
-      "commandsKey": "04:66",
-      "excluded": false
-    },
-    {
-      "name": "GetPushExternalDeviceData",
-      "commandId": 105,
-      "commandsKey": "04:69",
-      "excluded": false
-    },
-    {
-      "name": "GetPushHandheldStickState",
-      "commandId": 87,
-      "commandsKey": "04:57",
-      "excluded": false
-    },
-    {
-      "name": "SetHandheldStickControlEnabled",
-      "commandId": 88,
-      "commandsKey": "04:58",
+      "constructorDescriptor": "(Ljava/lang/String; I I Z Z Ljava/lang/Class;)V",
+      "hasExplicitClassArgument": true,
+      "boundClass": "Ldji/midware/data/model/P3/DataGimbalGetBalanceAdjustPushInfo;",
       "excluded": false
     },
     {
       "name": "ResetAndSetMode",
+      "ordinal": 41,
       "commandId": 76,
-      "commandsKey": "04:4C",
+      "constructorDescriptor": "(Ljava/lang/String; I I)V",
+      "hasExplicitClassArgument": false,
+      "boundClass": null,
       "excluded": false
+    },
+    {
+      "name": "NotiFyCameraId",
+      "ordinal": 36,
+      "commandId": 86,
+      "constructorDescriptor": "(Ljava/lang/String; I I)V",
+      "hasExplicitClassArgument": false,
+      "boundClass": null,
+      "excluded": true
+    },
+    {
+      "name": "GetPushHandheldStickState",
+      "ordinal": 39,
+      "commandId": 87,
+      "constructorDescriptor": "(Ljava/lang/String; I I Z Ljava/lang/Class;)V",
+      "hasExplicitClassArgument": true,
+      "boundClass": "Ldji/midware/data/model/P3/DataGimbalGetPushHandheldStickState;",
+      "excluded": false
+    },
+    {
+      "name": "SetHandheldStickControlEnabled",
+      "ordinal": 40,
+      "commandId": 88,
+      "constructorDescriptor": "(Ljava/lang/String; I I)V",
+      "hasExplicitClassArgument": false,
+      "boundClass": null,
+      "excluded": false
+    },
+    {
+      "name": "SetTrack",
+      "ordinal": 31,
+      "commandId": 98,
+      "constructorDescriptor": "(Ljava/lang/String; I I)V",
+      "hasExplicitClassArgument": false,
+      "boundClass": null,
+      "excluded": false
+    },
+    {
+      "name": "SetPanorama",
+      "ordinal": 32,
+      "commandId": 99,
+      "constructorDescriptor": "(Ljava/lang/String; I I)V",
+      "hasExplicitClassArgument": false,
+      "boundClass": null,
+      "excluded": false
+    },
+    {
+      "name": "GetPushPanorama",
+      "ordinal": 33,
+      "commandId": 100,
+      "constructorDescriptor": "(Ljava/lang/String; I I Z Ljava/lang/Class;)V",
+      "hasExplicitClassArgument": true,
+      "boundClass": "Ldji/midware/data/model/P3/DataGimbalGetPushPanoramaStatus;",
+      "excluded": false
+    },
+    {
+      "name": "SetPushPeripheralStatus",
+      "ordinal": 37,
+      "commandId": 102,
+      "constructorDescriptor": "(Ljava/lang/String; I I Z Ljava/lang/Class;)V",
+      "hasExplicitClassArgument": true,
+      "boundClass": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "excluded": false
+    },
+    {
+      "name": "GetPushExternalDeviceData",
+      "ordinal": 38,
+      "commandId": 105,
+      "constructorDescriptor": "(Ljava/lang/String; I I Z Z Ljava/lang/Class;)V",
+      "hasExplicitClassArgument": true,
+      "boundClass": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalDeviceData;",
+      "excluded": false
+    },
+    {
+      "name": "SetCalibration",
+      "ordinal": 30,
+      "commandId": 106,
+      "constructorDescriptor": "(Ljava/lang/String; I I)V",
+      "hasExplicitClassArgument": false,
+      "boundClass": null,
+      "excluded": false
+    },
+    {
+      "name": "GetPushTrackAndTimelapse",
+      "ordinal": 34,
+      "commandId": 107,
+      "constructorDescriptor": "(Ljava/lang/String; I I Z Z Ljava/lang/Class;)V",
+      "hasExplicitClassArgument": true,
+      "boundClass": "Ldji/midware/data/model/P3/DataGimbalGetPushExternalStatus;",
+      "excluded": false
+    },
+    {
+      "name": "GetPushCalibration",
+      "ordinal": 35,
+      "commandId": 110,
+      "constructorDescriptor": "(Ljava/lang/String; I I Z Z Ljava/lang/Class;)V",
+      "hasExplicitClassArgument": true,
+      "boundClass": "Ldji/midware/data/model/P3/DataGimbalGetPushCalibrationStatus;",
+      "excluded": false
+    },
+    {
+      "name": "Other",
+      "ordinal": 42,
+      "commandId": 511,
+      "constructorDescriptor": "(Ljava/lang/String; I I)V",
+      "hasExplicitClassArgument": false,
+      "boundClass": null,
+      "excluded": true
     }
   ],
-  "excludedCameraOrSentinel": [
-    "FocusControl",
-    "NotiFyCameraId",
-    "Other"
+  "nonExcludedEnumsRegisteredInCommandsJson": [
+    {
+      "name": "Control",
+      "commandId": 1,
+      "ordinal": 0,
+      "commandsKey": "04:01",
+      "presentInCommandsJson": true
+    },
+    {
+      "name": "GetPushParams",
+      "commandId": 5,
+      "ordinal": 1,
+      "commandsKey": "04:05",
+      "presentInCommandsJson": true
+    },
+    {
+      "name": "RollFinetune",
+      "commandId": 7,
+      "ordinal": 2,
+      "commandsKey": "04:07",
+      "presentInCommandsJson": true
+    },
+    {
+      "name": "AutoCalibration",
+      "commandId": 8,
+      "ordinal": 3,
+      "commandsKey": "04:08",
+      "presentInCommandsJson": true
+    },
+    {
+      "name": "AngleControl",
+      "commandId": 10,
+      "ordinal": 7,
+      "commandsKey": "04:0A",
+      "presentInCommandsJson": true
+    },
+    {
+      "name": "SetAngle",
+      "commandId": 10,
+      "ordinal": 4,
+      "commandsKey": "04:0A",
+      "presentInCommandsJson": true
+    },
+    {
+      "name": "SpeedControl",
+      "commandId": 12,
+      "ordinal": 6,
+      "commandsKey": "04:0C",
+      "presentInCommandsJson": true
+    },
+    {
+      "name": "SetOnOrOff",
+      "commandId": 13,
+      "ordinal": 5,
+      "commandsKey": "04:0D",
+      "presentInCommandsJson": true
+    },
+    {
+      "name": "SetUserParams",
+      "commandId": 15,
+      "ordinal": 8,
+      "commandsKey": "04:0F",
+      "presentInCommandsJson": true
+    },
+    {
+      "name": "GetUserParams",
+      "commandId": 16,
+      "ordinal": 9,
+      "commandsKey": "04:10",
+      "presentInCommandsJson": true
+    },
+    {
+      "name": "SaveUserParams",
+      "commandId": 17,
+      "ordinal": 10,
+      "commandsKey": "04:11",
+      "presentInCommandsJson": true
+    },
+    {
+      "name": "SubscribeGimbalParams",
+      "commandId": 18,
+      "ordinal": 11,
+      "commandsKey": "04:12",
+      "presentInCommandsJson": true
+    },
+    {
+      "name": "ResetUserParams",
+      "commandId": 19,
+      "ordinal": 12,
+      "commandsKey": "04:13",
+      "presentInCommandsJson": true
+    },
+    {
+      "name": "AbsAngleControl",
+      "commandId": 20,
+      "ordinal": 13,
+      "commandsKey": "04:14",
+      "presentInCommandsJson": true
+    },
+    {
+      "name": "GetPushType",
+      "commandId": 28,
+      "ordinal": 14,
+      "commandsKey": "04:1C",
+      "presentInCommandsJson": true
+    },
+    {
+      "name": "GetPushUserParams",
+      "commandId": 36,
+      "ordinal": 15,
+      "commandsKey": "04:24",
+      "presentInCommandsJson": true
+    },
+    {
+      "name": "SetDelayTimelapseParams",
+      "commandId": 37,
+      "ordinal": 16,
+      "commandsKey": "04:25",
+      "presentInCommandsJson": true
+    },
+    {
+      "name": "GetPushAbnormalStatus",
+      "commandId": 39,
+      "ordinal": 17,
+      "commandsKey": "04:27",
+      "presentInCommandsJson": true
+    },
+    {
+      "name": "GetPushTutorialStatus",
+      "commandId": 43,
+      "ordinal": 18,
+      "commandsKey": "04:2B",
+      "presentInCommandsJson": true
+    },
+    {
+      "name": "SetTutorialStep",
+      "commandId": 44,
+      "ordinal": 19,
+      "commandsKey": "04:2C",
+      "presentInCommandsJson": true
+    },
+    {
+      "name": "GetPushSensorCalibrationStatus",
+      "commandId": 48,
+      "ordinal": 21,
+      "commandsKey": "04:30",
+      "presentInCommandsJson": true
+    },
+    {
+      "name": "RoninSetParams",
+      "commandId": 49,
+      "ordinal": 22,
+      "commandsKey": "04:31",
+      "presentInCommandsJson": true
+    },
+    {
+      "name": "RoninGetParams",
+      "commandId": 50,
+      "ordinal": 23,
+      "commandsKey": "04:32",
+      "presentInCommandsJson": true
+    },
+    {
+      "name": "RobinPushBattery",
+      "commandId": 51,
+      "ordinal": 24,
+      "commandsKey": "04:33",
+      "presentInCommandsJson": true
+    },
+    {
+      "name": "SetHandleParams",
+      "commandId": 53,
+      "ordinal": 25,
+      "commandsKey": "04:35",
+      "presentInCommandsJson": true
+    },
+    {
+      "name": "GetHandleParams",
+      "commandId": 54,
+      "ordinal": 26,
+      "commandsKey": "04:36",
+      "presentInCommandsJson": true
+    },
+    {
+      "name": "SetTimelapseParams",
+      "commandId": 55,
+      "ordinal": 27,
+      "commandsKey": "04:37",
+      "presentInCommandsJson": true
+    },
+    {
+      "name": "GetPushTimelapseStatus",
+      "commandId": 56,
+      "ordinal": 28,
+      "commandsKey": "04:38",
+      "presentInCommandsJson": true
+    },
+    {
+      "name": "BalanceAdjust",
+      "commandId": 64,
+      "ordinal": 29,
+      "commandsKey": "04:40",
+      "presentInCommandsJson": true
+    },
+    {
+      "name": "ResetAndSetMode",
+      "commandId": 76,
+      "ordinal": 41,
+      "commandsKey": "04:4C",
+      "presentInCommandsJson": true
+    },
+    {
+      "name": "GetPushHandheldStickState",
+      "commandId": 87,
+      "ordinal": 39,
+      "commandsKey": "04:57",
+      "presentInCommandsJson": true
+    },
+    {
+      "name": "SetHandheldStickControlEnabled",
+      "commandId": 88,
+      "ordinal": 40,
+      "commandsKey": "04:58",
+      "presentInCommandsJson": true
+    },
+    {
+      "name": "SetTrack",
+      "commandId": 98,
+      "ordinal": 31,
+      "commandsKey": "04:62",
+      "presentInCommandsJson": true
+    },
+    {
+      "name": "SetPanorama",
+      "commandId": 99,
+      "ordinal": 32,
+      "commandsKey": "04:63",
+      "presentInCommandsJson": true
+    },
+    {
+      "name": "GetPushPanorama",
+      "commandId": 100,
+      "ordinal": 33,
+      "commandsKey": "04:64",
+      "presentInCommandsJson": true
+    },
+    {
+      "name": "SetPushPeripheralStatus",
+      "commandId": 102,
+      "ordinal": 37,
+      "commandsKey": "04:66",
+      "presentInCommandsJson": true
+    },
+    {
+      "name": "GetPushExternalDeviceData",
+      "commandId": 105,
+      "ordinal": 38,
+      "commandsKey": "04:69",
+      "presentInCommandsJson": true
+    },
+    {
+      "name": "SetCalibration",
+      "commandId": 106,
+      "ordinal": 30,
+      "commandsKey": "04:6A",
+      "presentInCommandsJson": true
+    },
+    {
+      "name": "GetPushTrackAndTimelapse",
+      "commandId": 107,
+      "ordinal": 34,
+      "commandsKey": "04:6B",
+      "presentInCommandsJson": true
+    },
+    {
+      "name": "GetPushCalibration",
+      "commandId": 110,
+      "ordinal": 35,
+      "commandsKey": "04:6E",
+      "presentInCommandsJson": true
+    }
   ],
-  "allNonExcludedGimbalEnumsPresentInCommandsJson": true,
+  "allNonExcludedLiveEnumsPresentInCommandsJson": true,
   "newlyDiscoveredGimbalWireCommands": [],
+  "priorTableComparison": {
+    "priorEvidence": "protocol/research/ronin-command-references.json",
+    "differences": [],
+    "priorTableIsNotDiscoverySource": true
+  },
+  "eightBankPacketScan": {
+    "knownEnumLiteralCandidateHits": 0,
+    "orphanGimbalLiteralCandidatesOutsideExtractedEnum": [],
+    "literalResolutionComplete": false,
+    "literalCandidatesProveSend": false,
+    "scope": "linear SendPack syntax with branch resets; not full CFG/reflection/native proof"
+  },
   "inventoryCompleteClaimed": false,
   "inventoryCompleteRemainsFalse": true,
   "commandsJsonEntryCount": 49,
@@ -364,12 +820,12 @@
       "activationRelatedInvokes": [
         {
           "operation": "invoke-static",
-          "instructionByteOffset": 70,
+          "instructionByteOffset": 17,
           "text": "Ldji/midware/data/model/P3/DataBatteryActiveStatus;->getInstance()Ldji/midware/data/model/P3/DataBatteryActiveStatus;"
         },
         {
           "operation": "invoke-static",
-          "instructionByteOffset": 82,
+          "instructionByteOffset": 20,
           "text": "Ldji/midware/data/model/P3/DataGimbalActiveStatus;->getInstance()Ldji/midware/data/model/P3/DataGimbalActiveStatus;"
         }
       ]
@@ -383,12 +839,12 @@
       "activationRelatedInvokes": [
         {
           "operation": "invoke-virtual",
-          "instructionByteOffset": 16,
+          "instructionByteOffset": 4,
           "text": "v2, v0, Ldji/midware/data/model/P3/DataBatteryActiveStatus;->setIndexMultiBattery(I)Ldji/midware/data/model/P3/DataBatteryActiveStatus;"
         },
         {
           "operation": "invoke-virtual",
-          "instructionByteOffset": 28,
+          "instructionByteOffset": 7,
           "text": "v2, v0, Ldji/midware/data/model/P3/DataBatteryActiveStatus;->setType(Ldji/midware/data/model/common/DataAbstractGetPushActiveStatus$TYPE;)Ldji/midware/data/mode"
         }
       ]
@@ -402,7 +858,7 @@
       "activationRelatedInvokes": [
         {
           "operation": "invoke-virtual",
-          "instructionByteOffset": 8,
+          "instructionByteOffset": 2,
           "text": "v0, v1, Ldji/midware/data/model/P3/DataGimbalActiveStatus;->setType(Ldji/midware/data/model/common/DataAbstractGetPushActiveStatus$TYPE;)Ldji/midware/data/model"
         }
       ]
@@ -416,7 +872,7 @@
       "activationRelatedInvokes": [
         {
           "operation": "invoke-static",
-          "instructionByteOffset": 30,
+          "instructionByteOffset": 6,
           "text": "v0, v4, v1, v2, Lcom/dji/activate/active/ActiveWebController;->-$$Nest$mpostToServer(Lcom/dji/activate/active/ActiveWebController; Ljava/lang/String; Ljava/lang"
         }
       ]
@@ -430,7 +886,7 @@
       "activationRelatedInvokes": [
         {
           "operation": "invoke-static",
-          "instructionByteOffset": 68,
+          "instructionByteOffset": 15,
           "text": "v0, v4, v1, v2, Lcom/dji/activate/active/ActiveWebController;->-$$Nest$mpostToServer(Lcom/dji/activate/active/ActiveWebController; Ljava/lang/String; Ljava/lang"
         }
       ]
@@ -458,7 +914,7 @@
       "activationRelatedInvokes": [
         {
           "operation": "invoke-static",
-          "instructionByteOffset": 40,
+          "instructionByteOffset": 9,
           "text": "Ldji/midware/data/model/P3/DataGimbalActiveStatus;->getInstance()Ldji/midware/data/model/P3/DataGimbalActiveStatus;"
         }
       ]
@@ -472,7 +928,7 @@
       "activationRelatedInvokes": [
         {
           "operation": "invoke-static",
-          "instructionByteOffset": 342,
+          "instructionByteOffset": 73,
           "text": "Lcom/dji/api/ActiveHttpApi;->getActivateKey()Ljava/lang/String;"
         }
       ]
@@ -486,7 +942,7 @@
       "activationRelatedInvokes": [
         {
           "operation": "invoke-static",
-          "instructionByteOffset": 80,
+          "instructionByteOffset": 18,
           "text": "Lcom/dji/api/ActiveHttpApi;->getActiveVerifyUrl()Ljava/lang/String;"
         }
       ]
@@ -500,7 +956,7 @@
       "activationRelatedInvokes": [
         {
           "operation": "invoke-static",
-          "instructionByteOffset": 200,
+          "instructionByteOffset": 46,
           "text": "Lcom/dji/api/ActiveHttpApi;->getPostErrorLogUrl()Ljava/lang/String;"
         }
       ]
@@ -514,7 +970,7 @@
       "activationRelatedInvokes": [
         {
           "operation": "invoke-static",
-          "instructionByteOffset": 10,
+          "instructionByteOffset": 2,
           "text": "Lcom/dji/api/ActiveHttpApi;->getActiveVerifyUrl()Ljava/lang/String;"
         }
       ]
@@ -586,9 +1042,9 @@
   "deviceIdentityVerified": false,
   "statusRequestAssociationFullyVerified": false,
   "remaining": [
-    "All 40 non-excluded CmdIdGimbal enum wires already appear in protocol/COMMANDS.json; eight-bank scan added no new gimbal wire IDs.",
-    "Bank01 ActiveDeviceController/ActiveWebController still call gimbal/center active-status and HTTP activate paths; treat as device-management gap, not HG724 BLE binding proof, and do not open writes.",
-    "00:32 CENTER GET remains read-only and is not activation, binding, or version negotiation.",
-    "inventoryComplete stays false: unknown codecs, unverified sessions/identity, and hardware acceptance remain."
+    "Live PREFIX bank05 enum extraction is the discovery source; the prior six-bank JSON is comparison-only.",
+    "newlyDiscoveredGimbalWireCommands lists live non-excluded wires absent from COMMANDS.json (empty means coverage of the extracted set, not whole-firmware completeness).",
+    "Orphan gimbal SendPack literals outside the extracted enum remain syntactic candidates only; banks may still hide reflection/native/dynamic paths.",
+    "Bank01 ActiveDeviceController/ActiveWebController remain a device-management gap; do not open activation writes. inventoryComplete stays false."
   ]
 }

@@ -412,8 +412,12 @@ if manifest.get('profileValueSdk',{}).get('implemented'):
 if manifest.get('inventoryPrefixResearch'):
     inv=json.loads((root/manifest['inventoryPrefixResearch']).read_text())
     assert inv['apkSha256']==controls['apkSha256'] and inv['scannedBanks']==list(range(8))
-    assert inv['allNonExcludedGimbalEnumsPresentInCommandsJson'] is True
+    assert inv['schemaVersion']==2
+    assert inv['extraction']['nonExcludedEntryCount']==40 and inv['extraction']['gimbalCommandSet']==4
+    assert inv['allNonExcludedLiveEnumsPresentInCommandsJson'] is True
     assert inv['newlyDiscoveredGimbalWireCommands']==[]
+    assert inv['priorTableComparison']['priorTableIsNotDiscoverySource'] is True
+    assert inv['eightBankPacketScan']['literalCandidatesProveSend'] is False
     assert inv['inventoryCompleteRemainsFalse'] is True and inv['inventoryCompleteClaimed'] is False
     assert inv['activationOrBindingWriteOpened'] is False and inv['sessionVersionNegotiated'] is False
     assert manifest['inventoryComplete'] is False

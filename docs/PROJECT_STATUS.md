@@ -4,7 +4,7 @@
 
 ## 最新研究：全清单八段复核与设备管理缺口
 
-2026-10-20。ronin_inventory_prefix_trace.py：40 个非排除 CmdIdGimbal 均已在 COMMANDS，无新 wire；bank01 激活控制器触达云台/CENTER/HTTP 路径但不开放写入；inventoryComplete 保持 false。见 [INVENTORY_PREFIX.md](../tools/research/INVENTORY_PREFIX.md)。离线路程图 1–5 完成；实机验收仍待用户回家。
+2026-10-20。ronin_inventory_prefix_trace.py 从 PREFIX bank05 **现场提取** CmdIdGimbal 注册并与 COMMANDS 比对（旧六段表仅对比）；当前 40 个非排除条目均已登记，`newlyDiscovered` 由提取计算为空。bank01 激活控制器仍为缺口、不开放写入；inventoryComplete 保持 false。见 [INVENTORY_PREFIX.md](../tools/research/INVENTORY_PREFIX.md)。
 
 ## 最新研究：程序 25/37/62/63 八段重审
 

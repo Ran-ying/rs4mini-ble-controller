@@ -1,0 +1,383 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "bankSha256": {
+    "0": "2229f1f19aa8fe8d819c7b3cecbd844928da817e2bc9cfddfda1c0e120e4cc59",
+    "1": "0083e9f9e0e615602470ea148cfd581a0c7413a012ef5494b613242d55754f99",
+    "2": "f75800c8edb40823c72afdd0eee575135e995440da9a5fd9bfb3e5b3e9e6fe68",
+    "3": "861be662ee36ce3b195c0c1aa179642e34793df3a88e933fa1dfe2a7202a9528",
+    "4": "2fd9aa02f5c9f4217e7e6ef75d724a1ce64efa7c1f365ddb20c93be1fef85f77",
+    "5": "f78b34474816ca253b4133bdbd79ebcbf725f52d58ac00b63f921ff7082470d2",
+    "6": "4da9764901f753190e0c88b5a142a4f9cf1eed9b1b9214bdf97a21f00edcb990",
+    "7": "3fc2c4adccd59794f5c28b898d577ed414758875cadb7ce7f6782ffd5b64b723"
+  },
+  "appCodeExecuted": false,
+  "liveUiExecuted": false,
+  "targetDeviceVerified": false,
+  "wholeProtocolRecovered": false,
+  "wholeAppRecovered": false,
+  "allScannedBodiesRecovered": false,
+  "indirectReflectionResolved": false,
+  "researchToolProvidesSdkInterface": false,
+  "sdkSendAdded": false,
+  "sdkReceiveAdded": false,
+  "scannedBanks": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "previousSixBankEvidence": {
+    "0D": "protocol/research/ronin-command-references.json",
+    "2C": "protocol/research/ronin-tutorial-evidence.json",
+    "0A": "protocol/research/ronin-angles-evidence.json"
+  },
+  "scope": "eight PREFIX_BANKS named views; class presence, external invoke, and enum-outside references for 0D/2C/0A",
+  "banks": [
+    {
+      "segment": 0,
+      "derivedSha256": "2229f1f19aa8fe8d819c7b3cecbd844928da817e2bc9cfddfda1c0e120e4cc59",
+      "classCount": 7119,
+      "methodCount": 53828,
+      "methodWithCodeCount": 50517,
+      "instructionCount": 682926
+    },
+    {
+      "segment": 1,
+      "derivedSha256": "0083e9f9e0e615602470ea148cfd581a0c7413a012ef5494b613242d55754f99",
+      "classCount": 2297,
+      "methodCount": 12143,
+      "methodWithCodeCount": 11452,
+      "instructionCount": 132775
+    },
+    {
+      "segment": 2,
+      "derivedSha256": "f75800c8edb40823c72afdd0eee575135e995440da9a5fd9bfb3e5b3e9e6fe68",
+      "classCount": 2110,
+      "methodCount": 15931,
+      "methodWithCodeCount": 15446,
+      "instructionCount": 249001
+    },
+    {
+      "segment": 3,
+      "derivedSha256": "861be662ee36ce3b195c0c1aa179642e34793df3a88e933fa1dfe2a7202a9528",
+      "classCount": 6683,
+      "methodCount": 38674,
+      "methodWithCodeCount": 36349,
+      "instructionCount": 559947
+    },
+    {
+      "segment": 4,
+      "derivedSha256": "2fd9aa02f5c9f4217e7e6ef75d724a1ce64efa7c1f365ddb20c93be1fef85f77",
+      "classCount": 6696,
+      "methodCount": 56720,
+      "methodWithCodeCount": 53246,
+      "instructionCount": 587995
+    },
+    {
+      "segment": 5,
+      "derivedSha256": "f78b34474816ca253b4133bdbd79ebcbf725f52d58ac00b63f921ff7082470d2",
+      "classCount": 8571,
+      "methodCount": 55055,
+      "methodWithCodeCount": 53173,
+      "instructionCount": 677878
+    },
+    {
+      "segment": 6,
+      "derivedSha256": "4da9764901f753190e0c88b5a142a4f9cf1eed9b1b9214bdf97a21f00edcb990",
+      "classCount": 7647,
+      "methodCount": 48024,
+      "methodWithCodeCount": 45737,
+      "instructionCount": 705675
+    },
+    {
+      "segment": 7,
+      "derivedSha256": "3fc2c4adccd59794f5c28b898d577ed414758875cadb7ce7f6782ffd5b64b723",
+      "classCount": 641,
+      "methodCount": 3240,
+      "methodWithCodeCount": 2977,
+      "instructionCount": 36394
+    }
+  ],
+  "classDefinitions": {
+    "DataGimbalSetOnOrOffHypothesized": [],
+    "DataGimbalSetTutorialStep": [
+      5
+    ],
+    "DataGimbalGetPushTutorialStatus": [
+      5
+    ],
+    "DataGimbalSetAngle": [
+      5
+    ],
+    "DataGimbalAngleControl": [
+      5
+    ],
+    "CmdIdGimbalCmdIdType": [
+      5
+    ]
+  },
+  "command0D": {
+    "key": "04:0D",
+    "enumName": "SetOnOrOff",
+    "enumRegistration": {
+      "instructionByteOffset": 140,
+      "wireCommandId": 13,
+      "constructorBindsRequestClass": false,
+      "threeArgConstructorWithoutClass": true,
+      "hypothesizedClassDefinedInScannedBanks": false,
+      "hypothesizedClassName": "Ldji/midware/data/model/P3/DataGimbalSetOnOrOff;"
+    },
+    "externalDirectCallers": [],
+    "enumOutsideReferences": [],
+    "hypothesizedClassDefined": false,
+    "hg724BusinessEntryEstablished": false,
+    "equatedToMotorSpecialCmdOrParam35": false,
+    "sendOpened": false
+  },
+  "command2C": {
+    "key": "04:2C",
+    "modelClass": "Ldji/midware/data/model/P3/DataGimbalSetTutorialStep;",
+    "pushClass": "Ldji/midware/data/model/P3/DataGimbalGetPushTutorialStatus;",
+    "externalDirectCallers": [],
+    "enumOutsideReferences": [
+      {
+        "segment": 5,
+        "className": "Ldji/midware/data/model/P3/DataGimbalSetTutorialStep;",
+        "method": "start",
+        "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+        "enumName": "SetTutorialStep"
+      }
+    ],
+    "classesDefinedInBanks": [
+      5
+    ],
+    "hg724BusinessEntryEstablished": false,
+    "effectOrRecoveryVerified": false,
+    "sendOpened": false
+  },
+  "command0A": {
+    "key": "04:0A",
+    "setAngleClass": "Ldji/midware/data/model/P3/DataGimbalSetAngle;",
+    "angleControlClass": "Ldji/midware/data/model/P3/DataGimbalAngleControl;",
+    "externalDirectCallers": [
+      {
+        "segment": 5,
+        "className": "Ldji/sdksharedlib/hardware/abstractions/monitor/DJIDT501Abstraction;",
+        "method": "<init>",
+        "descriptor": "()V",
+        "target": "Ldji/midware/data/model/P3/DataGimbalSetAngle;"
+      },
+      {
+        "segment": 5,
+        "className": "Ldji/sdksharedlib/hardware/abstractions/monitor/DJIDT501Abstraction;",
+        "method": "setUvcCameraGimbalMotion",
+        "descriptor": "(Ldji/midware/data/model/P3/GimbalControlRYPData; Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+        "target": "Ldji/midware/data/model/P3/DataGimbalSetAngle;"
+      }
+    ],
+    "enumOutsideReferences": [
+      {
+        "segment": 5,
+        "className": "Ldji/midware/data/model/P3/DataGimbalAngleControl;",
+        "method": "start",
+        "descriptor": "()V",
+        "enumName": "AngleControl"
+      },
+      {
+        "segment": 5,
+        "className": "Ldji/midware/data/model/P3/DataGimbalAngleControl;",
+        "method": "start",
+        "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+        "enumName": "AngleControl"
+      },
+      {
+        "segment": 5,
+        "className": "Ldji/midware/data/model/P3/DataGimbalSetAngle;",
+        "method": "start",
+        "descriptor": "(I I Ldji/midware/interfaces/DJIDataCallBack;)V",
+        "enumName": "SetAngle"
+      },
+      {
+        "segment": 5,
+        "className": "Ldji/midware/data/model/P3/DataGimbalSetAngle;",
+        "method": "start",
+        "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+        "enumName": "SetAngle"
+      }
+    ],
+    "externalCallerClasses": [
+      "Ldji/sdksharedlib/hardware/abstractions/monitor/DJIDT501Abstraction;"
+    ],
+    "onlyDt501UvcExternalCallersInScan": true,
+    "hg724BusinessEntryEstablished": false,
+    "cameraUvcInCurrentScope": false,
+    "sendOpened": false
+  },
+  "newBanks01And07": {
+    "classDefinitions": {
+      "OnOffHypothesis": [],
+      "SetTutorialStep": [],
+      "SetAngle": [],
+      "AngleControl": []
+    },
+    "externalDirectCallers": [],
+    "enumOutsideReferences": []
+  },
+  "methods": [
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalAngleControl;",
+      "method": "start",
+      "descriptor": "()V",
+      "codeOffset": 4856052,
+      "instructionSha256": "7dff3ec0718f0d959005eb9f411576b8a2d65375256913e308547020121736bd",
+      "mentionsHg724": false,
+      "references": [],
+      "enumOutsideReferences": [
+        {
+          "kind": "enum-outside-reference",
+          "enumName": "AngleControl",
+          "operation": "sget-object",
+          "instructionByteOffset": 106
+        }
+      ]
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalAngleControl;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4856200,
+      "instructionSha256": "77d54347103ad78ab4ab410b482066ca82613a3241023a381710f9fbfc9c3d4d",
+      "mentionsHg724": false,
+      "references": [],
+      "enumOutsideReferences": [
+        {
+          "kind": "enum-outside-reference",
+          "enumName": "AngleControl",
+          "operation": "sget-object",
+          "instructionByteOffset": 106
+        }
+      ]
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetAngle;",
+      "method": "start",
+      "descriptor": "(I I Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4882896,
+      "instructionSha256": "aa7fdf2eeaa9ea321cef9c8164b1ebd3f6b2a5d64d5d729fbe08373d554de97b",
+      "mentionsHg724": false,
+      "references": [],
+      "enumOutsideReferences": [
+        {
+          "kind": "enum-outside-reference",
+          "enumName": "SetAngle",
+          "operation": "sget-object",
+          "instructionByteOffset": 106
+        }
+      ]
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetAngle;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4883052,
+      "instructionSha256": "21a71c2a98d85b4f297efbf2aeca7415f397bb5600b573a01af8c30387fe2e13",
+      "mentionsHg724": false,
+      "references": [],
+      "enumOutsideReferences": [
+        {
+          "kind": "enum-outside-reference",
+          "enumName": "SetAngle",
+          "operation": "sget-object",
+          "instructionByteOffset": 114
+        }
+      ]
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetTutorialStep;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4889308,
+      "instructionSha256": "766d313217c9b75f865b735fcf2f8cfd027d98d1ac89889d24f751a2496b26d9",
+      "mentionsHg724": false,
+      "references": [],
+      "enumOutsideReferences": [
+        {
+          "kind": "enum-outside-reference",
+          "enumName": "SetTutorialStep",
+          "operation": "sget-object",
+          "instructionByteOffset": 106
+        }
+      ]
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/monitor/DJIDT501Abstraction;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "codeOffset": 6391552,
+      "instructionSha256": "79698099b28d1d8d0ac1a40b45b0362742b21fb7cb7b095c7820783f0efca598",
+      "mentionsHg724": false,
+      "references": [
+        {
+          "kind": "external-direct-invoke",
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetAngle;",
+          "operation": "invoke-direct",
+          "instructionByteOffset": 94
+        }
+      ],
+      "enumOutsideReferences": []
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/monitor/DJIDT501Abstraction;",
+      "method": "setUvcCameraGimbalMotion",
+      "descriptor": "(Ldji/midware/data/model/P3/GimbalControlRYPData; Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback;)V",
+      "codeOffset": 6398648,
+      "instructionSha256": "311ee39e9bf1d69d87828a5eb9c01d238c2f8148babea2fc4d2fcec654b20029",
+      "mentionsHg724": false,
+      "references": [
+        {
+          "kind": "external-direct-invoke",
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetAngle;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 24
+        },
+        {
+          "kind": "external-direct-invoke",
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetAngle;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 40
+        },
+        {
+          "kind": "external-direct-invoke",
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetAngle;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 56
+        },
+        {
+          "kind": "external-direct-invoke",
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetAngle;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 78
+        }
+      ],
+      "enumOutsideReferences": []
+    }
+  ],
+  "remaining": [
+    "Eight-bank scan still finds no DataGimbalSetOnOrOff definition and no SetOnOrOff enum-outside references.",
+    "Tutorial SetTutorialStep still has no external direct callers across eight banks; prior body narrowing evidence is unchanged and send stays closed.",
+    "SetAngle external callers remain DT501 UVC only; AngleControl has no external direct callers; HG724 0A path not established.",
+    "Absence of references is not firmware unsupported proof; reflection/native/dynamic paths remain unruled-out."
+  ]
+}

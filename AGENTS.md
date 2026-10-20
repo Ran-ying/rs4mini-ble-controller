@@ -1,6 +1,6 @@
 # AI developer handoff — rs4mini-ble-controller
 
-Current research method and next-task order: `docs/RESEARCH_ROADMAP.md`. Read it with `docs/PROJECT_STATUS.md` and `protocol/COMMANDS.json`; historical six-bank or metadata-only conclusions must not override current eight-bank evidence. Priority 1 (eight-bank 04:11 save-call audit) completed 2026-10-20 without opening saveSettings; next are 0D/2C/0A. Remaining audits are planned, not already completed. No hardware or new advanced features under current gates.
+Current research method and next-task order: `docs/RESEARCH_ROADMAP.md`. Read it with `docs/PROJECT_STATUS.md` and `protocol/COMMANDS.json`; historical six-bank or metadata-only conclusions must not override current eight-bank evidence. Priorities 1–2 (04:11 save and 0D/2C/0A eight-bank gap audits) completed 2026-10-20 without opening sends; next are 14/0C/4C. Remaining audits are planned, not already completed. No hardware or new advanced features under current gates.
 
 Read this file first, then `README.md`, `node/API.md`, `docs/PROTOCOL.md`, and
 `docs/DEVELOPMENT.md`. This document is intended to make development possible

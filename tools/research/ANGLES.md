@@ -87,3 +87,7 @@ python/.venv/bin/python -m unittest discover -s tools/research -p test_ronin_ang
 
 
 后续[角度能力与包上下文研究](ANGLE_CONTEXT.md)核对初始化覆盖、接收ID传递及EYE两个不同重载；本机地址、依赖适用性/恢复与物理完成仍未验收，没有新增发送。
+
+## 后续：八段 PREFIX 重审（2026-10-20）
+
+04:0A 类外调用结论见 [GAP_PREFIX.md](GAP_PREFIX.md)；两种布局证据仍有效，发送仍关闭。

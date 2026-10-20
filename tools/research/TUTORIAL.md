@@ -68,3 +68,7 @@ python/.venv/bin/python -m unittest discover -s tools/research -p test_ronin_tut
 
 
 0.7.32被动SDK接入见[教程状态契约](../../docs/APP_TUTORIAL_STATUS.md)。既有28方法静态证据保持原样；04:2C仍未开放发送，源fallback不代表设备或运动完成。
+
+## 后续：八段 PREFIX 重审（2026-10-20）
+
+04:2C 类外调用结论见 [GAP_PREFIX.md](GAP_PREFIX.md)；本页编码证据仍有效，发送仍关闭。

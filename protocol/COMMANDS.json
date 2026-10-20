@@ -375,13 +375,14 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "两种10字节源布局/不同标志已区分；六段类外直接调用仅DT501 UVC，未定位HG724调用；单位/响应/本机兼容性未验收，不开放发送",
+      "remaining": "两种 10 字节源布局/不同标志已区分；八段 PREFIX 重审类外直接调用仍仅 DT501 UVC→SetAngle（2 方法），AngleControl 无类外调用，01/07 无增量。未定位 HG724 调用；单位/响应/本机兼容性未验收，不开放发送。",
       "officialAppAliases": [
         "SetAngle",
         "AngleControl"
       ],
       "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
-      "angleResearch": "protocol/research/ronin-angles-evidence.json"
+      "angleResearch": "protocol/research/ronin-angles-evidence.json",
+      "gapPrefixResearch": "protocol/research/ronin-gap-prefix-evidence.json"
     },
     {
       "key": "04:0D",
@@ -390,11 +391,12 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "六段扫描仅见枚举定义/自身引用，未见枚举外引用或已识别的字面量SendPack候选；猜测的同名类没有定义。ordinal5不是wire0D，三参枚举构造不带Class不证明无实现；请求体/用途/ACK/HG724分支仍未知，未开放SDK，不与0F参数35电机位等同。",
+      "remaining": "八段 PREFIX 重审仍仅见枚举定义（wire13/ordinal5、三参无Class），假设 DataGimbalSetOnOrOff 在八段无定义，无枚举外引用或类外调用。请求体/用途/ACK/HG724 分支仍未知，未开放 SDK，不与 0F 参数35 电机位等同。",
       "officialAppAliases": [
         "SetOnOrOff"
       ],
-      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
+      "gapPrefixResearch": "protocol/research/ronin-gap-prefix-evidence.json"
     },
     {
       "key": "04:10",
@@ -557,12 +559,13 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "通用Java int窄化成一字节及ACK请求已离线核对；六段无外部直接调用，无HG724入口/作用/恢复证据，SDK不开放发送",
+      "remaining": "通用 Java int 窄化成一字节及 ACK 请求已离线核对；八段 PREFIX 重审仍无类外直接调用（仅自身 start 枚举引用），01/07 无增量。无 HG724 入口/作用/恢复证据，SDK 不开放发送。",
       "officialAppAliases": [
         "SetTutorialStep"
       ],
       "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
-      "tutorialResearch": "protocol/research/ronin-tutorial-evidence.json"
+      "tutorialResearch": "protocol/research/ronin-tutorial-evidence.json",
+      "gapPrefixResearch": "protocol/research/ronin-gap-prefix-evidence.json"
     },
     {
       "key": "04:31",
@@ -923,7 +926,8 @@
     "tools/research/ronin_activation_receive.py",
     "tools/research/ronin_activation_formats.py",
     "tools/research/ronin_activation_entry.py",
-    "tools/research/ronin_save_prefix_trace.py"
+    "tools/research/ronin_save_prefix_trace.py",
+    "tools/research/ronin_gap_prefix_trace.py"
   ],
   "modelIdentityResearch": "protocol/research/ronin-hg724-evidence.json",
   "codeRestorationResearch": "protocol/research/ronin-code-restoration-evidence.json",
@@ -1340,5 +1344,6 @@
     "fixtures": "node/test/fixtures/center-info.json",
     "documentation": "docs/APP_CENTER_INFO.md"
   },
-  "savePrefixCallerResearch": "protocol/research/ronin-save-prefix-callers-evidence.json"
+  "savePrefixCallerResearch": "protocol/research/ronin-save-prefix-callers-evidence.json",
+  "gapPrefixResearch": "protocol/research/ronin-gap-prefix-evidence.json"
 }

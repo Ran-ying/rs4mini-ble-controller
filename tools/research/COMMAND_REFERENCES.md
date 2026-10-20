@@ -70,3 +70,7 @@ PYTHONPATH=work/research/analysis-libs work/python312/bin/python tools/research/
 ```
 
 11项新测试覆盖枚举字段与字符串分离、同对象/别名、GIMBAL构造和取value、未知/宽寄存器覆盖、分支、错误命令集/ID以及哈希先验。没有新增SDK发送或高级功能，不提供0D试探接口，全部命令和本机验收仍未完成。
+
+## 后续：八段 PREFIX 重审（2026-10-20）
+
+见 [GAP_PREFIX.md](GAP_PREFIX.md)。本页六段矩阵保留历史范围。

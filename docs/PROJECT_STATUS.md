@@ -2,6 +2,10 @@
 
 研究方法、证据等级、下一步顺序与完成条件见 [研究路线图](RESEARCH_ROADMAP.md)。
 
+## 最新研究：04:0D/2C/0A 八段缺口重审
+
+2026-10-20。ronin_gap_prefix_trace.py 对 PREFIX_BANKS 重审类定义、类外 invoke 与枚举外引用。0D 假设类仍不存在、无枚举外引用；2C 仍无类外调用；0A 类外调用仍仅 DT501 UVC→SetAngle。01/07 无增量。均不开放发送。见 [GAP_PREFIX.md](../tools/research/GAP_PREFIX.md)。运行时仍 0.7.33/0.3.33。
+
 ## 最新研究：04:11 八段保存引用重审
 
 2026-10-20。新工具 ronin_save_prefix_trace.py 固定 APK 与 PREFIX_BANKS 八段视图，分类调用/分配/字段/枚举注册；独立提取两次一致。八段合计 283615 方法 / 268897 带 code / 3632591 指令；仅 bank05 的 4 个方法命中，01/07 为 0，外部直接调用与外部分配均为 0。源 doPack 空体、start 需 ACK、枚举 wire17 三参无 Class 绑定。仍无 HG724 业务/持久化路径，不开放 saveSettings。见 [SAVE_PREFIX.md](../tools/research/SAVE_PREFIX.md)。运行时仍 0.7.33/0.3.33，无硬件或高级新增。

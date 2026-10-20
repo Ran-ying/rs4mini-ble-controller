@@ -409,6 +409,19 @@ if manifest.get('profileValueSdk',{}).get('implemented'):
     modes={r['name']:r['value'] for r in profiles['workModeSourceEnums']}
     objc_modes=(root/'macos/RSControlCore.m').read_text().split('NSDictionary *RSAppProfileValueSpec(',1)[1]
     assert json.loads(re.search(r'const workModes=(\{.*?\});',js).group(1))==py['WORK_MODES']==json.loads(re.search(r'NSDictionary \*modes=(@\{.*?\});',objc_modes).group(1).replace('@',''))==modes
+if manifest.get('gapPrefixResearch'):
+    gap=json.loads((root/manifest['gapPrefixResearch']).read_text())
+    assert gap['apkSha256']==controls['apkSha256'] and gap['scannedBanks']==list(range(8)) and len(gap['bankSha256'])==8
+    for flag in ['appCodeExecuted','liveUiExecuted','targetDeviceVerified','wholeProtocolRecovered','wholeAppRecovered','allScannedBodiesRecovered','indirectReflectionResolved','researchToolProvidesSdkInterface','sdkSendAdded','sdkReceiveAdded']:
+        assert gap[flag] is False
+    assert gap['command0D']['hypothesizedClassDefined'] is False and gap['command0D']['enumRegistration']['wireCommandId']==13
+    assert gap['command0D']['enumOutsideReferences']==[] and gap['command0D']['sendOpened'] is False
+    assert gap['command2C']['externalDirectCallers']==[] and gap['command2C']['sendOpened'] is False
+    assert gap['command0A']['onlyDt501UvcExternalCallersInScan'] is True and len(gap['command0A']['externalDirectCallers'])==2
+    assert gap['command0A']['sendOpened'] is False and gap['newBanks01And07']['externalDirectCallers']==[]
+    for key in ['04:0D','04:2C','04:0A']:
+        row=next(row for row in manifest['commands'] if row['key']==key)
+        assert row['gapPrefixResearch']==manifest['gapPrefixResearch'] and row['requestCodec']=='unknown' and not row['implementation']
 if manifest.get('commandReferenceResearch'):
     refs=json.loads((root/manifest['commandReferenceResearch']).read_text())
     assert refs['apkSha256']==controls['apkSha256'] and refs['gimbalCommandSet']==4

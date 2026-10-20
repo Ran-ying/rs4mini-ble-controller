@@ -433,6 +433,11 @@ if manifest.get('programPrefixResearch'):
     for key in ['04:25','04:37','04:62','04:63']:
         row=next(row for row in manifest['commands'] if row['key']==key)
         assert row['programPrefixResearch']==manifest['programPrefixResearch'] and not row['implementation']
+if manifest.get('queueBReferenceFrameResearch'):
+    qb=json.loads((root/manifest['queueBReferenceFrameResearch']).read_text())
+    assert qb['apkSha256']==controls['apkSha256'] and qb['status']=='statically_exhausted_needs_hardware'
+    assert qb['sourceActualPoseDistinctFromMotorAngle'] is True and qb['physicalReferenceFrameVerified'] is False
+    assert qb['methodsReferencingBothActualPoseAndPushParams04_05']==[] and qb['sendOpened'] is False
 if manifest.get('queueASemanticsResearch'):
     qa=json.loads((root/manifest['queueASemanticsResearch']).read_text())
     assert qa['apkSha256']==controls['apkSha256'] and qa['scannedBanks']==list(range(8))

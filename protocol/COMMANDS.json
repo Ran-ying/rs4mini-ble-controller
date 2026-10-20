@@ -1363,5 +1363,6 @@
   "programPrefixResearch": "protocol/research/ronin-program-prefix-evidence.json",
   "inventoryPrefixResearch": "protocol/research/ronin-inventory-prefix-evidence.json",
   "rotateEyeTransportResearch": "protocol/research/ronin-rotate-eye-transport-evidence.json",
-  "queueASemanticsResearch": "protocol/research/ronin-queue-a-semantics-evidence.json"
+  "queueASemanticsResearch": "protocol/research/ronin-queue-a-semantics-evidence.json",
+  "queueBReferenceFrameResearch": "protocol/research/ronin-queue-b-reference-frame-evidence.json"
 }

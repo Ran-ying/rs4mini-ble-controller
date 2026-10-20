@@ -2,6 +2,10 @@
 
 研究方法、证据等级、下一步顺序与完成条件见 [研究路线图](RESEARCH_ROADMAP.md)。**八段直接引用重审已完成；剩余离线静态队列（能力/EYE、参考系、完成/中止、程序与相机隔离、会话版本关联）仍开放，见路线图。**
 
+## 最新研究：离线队列 B 参考系静态耗尽
+
+2026-10-20。ActualPose/MotorAngle 标签分离；无与 04:05 的源码等式；物理参考系未证。见 [QUEUE_B_REFERENCE_FRAME.md](../tools/research/QUEUE_B_REFERENCE_FRAME.md)。
+
 ## 最新研究：离线队列 A 静态耗尽
 
 2026-10-20。EYE/直连必要性、index/地址、加密终态、动态能力四子项均为 `statically_exhausted_needs_hardware`。见 [QUEUE_A_SEMANTICS.md](../tools/research/QUEUE_A_SEMANTICS.md)。

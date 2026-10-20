@@ -1,0 +1,178 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "bankSha256": {
+    "0": "2229f1f19aa8fe8d819c7b3cecbd844928da817e2bc9cfddfda1c0e120e4cc59",
+    "1": "0083e9f9e0e615602470ea148cfd581a0c7413a012ef5494b613242d55754f99",
+    "2": "f75800c8edb40823c72afdd0eee575135e995440da9a5fd9bfb3e5b3e9e6fe68",
+    "3": "861be662ee36ce3b195c0c1aa179642e34793df3a88e933fa1dfe2a7202a9528",
+    "4": "2fd9aa02f5c9f4217e7e6ef75d724a1ce64efa7c1f365ddb20c93be1fef85f77",
+    "5": "f78b34474816ca253b4133bdbd79ebcbf725f52d58ac00b63f921ff7082470d2",
+    "6": "4da9764901f753190e0c88b5a142a4f9cf1eed9b1b9214bdf97a21f00edcb990",
+    "7": "3fc2c4adccd59794f5c28b898d577ed414758875cadb7ce7f6782ffd5b64b723"
+  },
+  "scannedBanks": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "analysisBank": 5,
+  "appCodeExecuted": false,
+  "targetDeviceVerified": false,
+  "sendOpened": false,
+  "sdkSendAdded": false,
+  "banks": [
+    {
+      "segment": 0,
+      "derivedSha256": "2229f1f19aa8fe8d819c7b3cecbd844928da817e2bc9cfddfda1c0e120e4cc59"
+    },
+    {
+      "segment": 1,
+      "derivedSha256": "0083e9f9e0e615602470ea148cfd581a0c7413a012ef5494b613242d55754f99"
+    },
+    {
+      "segment": 2,
+      "derivedSha256": "f75800c8edb40823c72afdd0eee575135e995440da9a5fd9bfb3e5b3e9e6fe68"
+    },
+    {
+      "segment": 3,
+      "derivedSha256": "861be662ee36ce3b195c0c1aa179642e34793df3a88e933fa1dfe2a7202a9528"
+    },
+    {
+      "segment": 4,
+      "derivedSha256": "2fd9aa02f5c9f4217e7e6ef75d724a1ce64efa7c1f365ddb20c93be1fef85f77"
+    },
+    {
+      "segment": 5,
+      "derivedSha256": "f78b34474816ca253b4133bdbd79ebcbf725f52d58ac00b63f921ff7082470d2"
+    },
+    {
+      "segment": 6,
+      "derivedSha256": "4da9764901f753190e0c88b5a142a4f9cf1eed9b1b9214bdf97a21f00edcb990"
+    },
+    {
+      "segment": 7,
+      "derivedSha256": "3fc2c4adccd59794f5c28b898d577ed414758875cadb7ce7f6782ffd5b64b723"
+    }
+  ],
+  "methods": [
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalAbsAngleControl;",
+      "method": "doPack",
+      "descriptor": "()V",
+      "codeOffset": 4854632,
+      "instructionSha256": "54d2ef252d489d6b68176fb528acc0fbab5463ba405d23ddfbdbaa917ff17ee8"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getPActualPose",
+      "descriptor": "()F",
+      "codeOffset": 4886884,
+      "instructionSha256": "69bf30046fd3cd58efa93c03da3a788b8ae85d9dfca85cdf2b296912a326f976"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getPMotorAngle",
+      "descriptor": "()F",
+      "codeOffset": 4887004,
+      "instructionSha256": "17d75b4807d7b91e57804cbc53de98cf05fe643499d64095212d4431343fa6fa"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getRActualPose",
+      "descriptor": "()F",
+      "codeOffset": 4887248,
+      "instructionSha256": "26994ae2e8459af9fa824fdf2d0c8954652536f1cfd0f1ed983c71d9434f1163"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getRMotorAngle",
+      "descriptor": "()F",
+      "codeOffset": 4887368,
+      "instructionSha256": "15a7fd2414273c383bee6af54e3f709091a3ac8ebeec046405af0c2458fdf974"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getYActualPose",
+      "descriptor": "()F",
+      "codeOffset": 4887612,
+      "instructionSha256": "49f60149039a80a46845b4be7ee43243f16c869ab553b60b9158e1f088ef202a"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSetPushPeripheralStatus;",
+      "method": "getYMotorAngle",
+      "descriptor": "()F",
+      "codeOffset": 4887732,
+      "instructionSha256": "0319ddb5ba1dccd8e6793d70dada6abf0528dcc34254bfb451325723e6c580d4"
+    },
+    {
+      "bank": 5,
+      "className": "Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalAbstraction;",
+      "method": "rotate",
+      "descriptor": "(Ldji/sdksharedlib/hardware/abstractions/DJISDKCacheHWAbstraction$InnerCallback; Ldji/common/gimbal/Rotation;)V",
+      "codeOffset": 5248528,
+      "instructionSha256": "5416211661f4c1434aa1f6790b05bb912736d8c02b88626074d8e59667a37bc4"
+    }
+  ],
+  "status": "statically_exhausted_needs_hardware",
+  "peripheralDataTypeTags": {
+    "PActualPose": {
+      "ordinal": 33,
+      "wireTag": 34
+    },
+    "RActualPose": {
+      "ordinal": 34,
+      "wireTag": 35
+    },
+    "YActualPose": {
+      "ordinal": 35,
+      "wireTag": 36
+    },
+    "PMotorAngle": {
+      "ordinal": 15,
+      "wireTag": 16
+    },
+    "RMotorAngle": {
+      "ordinal": 16,
+      "wireTag": 17
+    },
+    "YMotorAngle": {
+      "ordinal": 17,
+      "wireTag": 18
+    }
+  },
+  "sourceActualPoseDistinctFromMotorAngle": true,
+  "absAngleControl": {
+    "bodyBytes": 8,
+    "axisOrder": [
+      "yaw",
+      "roll",
+      "pitch"
+    ],
+    "hasControlModeBooleanBit": true,
+    "controlModeIsAbsoluteVersusRelativeNotPhysicalFrame": true,
+    "namedReferenceFrameFieldInDoPack": false
+  },
+  "rotateUsesAbsAngleControlNotPeripheralActualPose": true,
+  "methodsReferencingBothActualPoseAndPushParams04_05": [],
+  "bytecodeEqualityBetweenActualPoseAnd0405AttitudeOrJointsProven": false,
+  "physicalReferenceFrameVerified": false,
+  "hostJointAnglesMaySubstituteFirmwareTrackAngles": false,
+  "reasonNotClosed": "PREFIX reconfirms ActualPose tags 34/35/36 are distinct from MotorAngle 16/17/18; 04:14 packs yaw/roll/pitch + controlMode/invalid bits without a named reference-frame field; rotate does not read peripheral ActualPose. No bytecode proof equates ActualPose to host 04:05 attitude/joint fields. Physical frame, zero, and axis sense need hardware.",
+  "remaining": [
+    "Do not map getJointAngles()/getAttitude() onto ActualPose or 04:62 road points.",
+    "Do not treat controlMode absolute as earth-frame proof."
+  ]
+}

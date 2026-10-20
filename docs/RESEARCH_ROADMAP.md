@@ -1,6 +1,6 @@
 # 当前研究方法与推进路线
 
-更新：2026-10-20。此页是后续研究的集中入口；专题文档保留各自提交时的历史范围。当前运行时 Node/Python/Web 0.7.33、macOS 0.3.33。优先级1–5 离线项已完成；inventoryComplete 仍 false；下一项为用户回家后的实机验收（优先级6）。版本和提交以 [项目状态](PROJECT_STATUS.md) 与 Git 历史为准。
+更新：2026-10-20。此页是后续研究的集中入口；专题文档保留各自提交时的历史范围。当前运行时 Node/Python/Web 0.7.33、macOS 0.3.33。**八段直接引用重审（表中优先级 1–5）已完成**；这不等于全部离线语义已关闭。仍开放的静态项见下方「剩余离线队列」；inventoryComplete 仍 false。实机验收（原优先级 6）仍在用户回家之后，且不因缺少 HG724 具名调用者就断定无继承业务入口。版本和提交以 [项目状态](PROJECT_STATUS.md) 与 Git 历史为准。
 
 [命令清单](../protocol/COMMANDS.json) 当前有49项已知命令或缺口，**不是49项已完成设备能力**；`inventoryComplete=false`、`advancedDevelopment.allowed=false`。设备 SDK 与主机组合遵循 [架构](ARCHITECTURE.md)，`moveTo()` 不计作固件命令。底层验收完成前不增加高级组合。
 
@@ -18,18 +18,30 @@
 
 ## 下一步顺序与完成条件
 
-以下是计划，尚未完成的八段重审不能因写入本页而视作已执行。每项结果回填命令清单及对应专题；若发现更强的新线索，可调整顺序并记录原因。
+以下是计划。表中优先级 1–5 仅表示 **PREFIX_BANKS 八段直接引用 / 定义面重审** 已落档；**不是**「全部静态语义已关闭」。缺少 HG724 具名调用者只说明该名字路径未命中，**不能**写成「无继承业务入口」或「设备不支持」。每项结果回填命令清单及对应专题；若发现更强的新线索，可调整顺序并记录原因。
 
-| 优先级 | 任务与现有入口 | 下一步具体问题 | 本阶段完成条件及保留边界 |
+| 优先级 | 任务与现有入口 | 本阶段范围（已完成） | 保留边界 |
 |---|---|---|---|
-| 1 ✓ | 04:11 保存：[八段重审](../tools/research/SAVE_PREFIX.md)（历史[六段](../tools/research/SAVE_CALLERS.md)） | 已用 PREFIX_BANKS 重做调用/分配/字段/枚举注册分类；01/07无命中，无外部直接调用 | 2026-10-20 完成：新工具+证据+测试；仍无 HG724 链，不开放 saveSettings；不把参数写入等同持久化 |
-| 2 ✓ | 04:0D、04:2C、04:0A：[八段缺口重审](../tools/research/GAP_PREFIX.md) | 已用 PREFIX_BANKS 重审定义/外部调用/枚举外引用；01/07 无增量 | 2026-10-20 完成：0D 仍无实现类、2C 仍无外部调用、0A 仍仅 DT501 UVC；均不开放发送 |
-| 3 ✓ | 04:14/0C/4C：[八段运动重审](../tools/research/MOTION_PREFIX.md) | 已补 0C 当前 App 布局与 UI 调用、14/4C 八段调用面；仍缺本机地址/EYE/完成与按轴回中 | 2026-10-20：不开放 14/0C 发送；不替换 04:01；无按轴回中；FE01 保留 |
-| 4 ✓ | 04:25/37/62/63：[八段程序重审](../tools/research/PROGRAM_PREFIX.md) | 已确认仅 Create UI 调用、无 HG724 具名入口；全景曝光与轨迹录制字段仍交织 | 2026-10-20：纯稳定器原语不可独立开放；程序执行保持关闭 |
-| 5 ✓ | 全清单与设备管理缺口：[八段清单复核](../tools/research/INVENTORY_PREFIX.md) | 40 个非排除云台枚举均已在 COMMANDS；无新 wire；bank01 激活控制器仍为缺口 | 2026-10-20：inventoryComplete 保持 false；不开放激活写入；00:32 保持只读 |
-| 6 | 用户回家后的实机验收：[清单](HARDWARE_CHECKLIST.md) | 在用户确认现场条件后记录设备/固件/载荷，按清单先只读、再逐项受控动作和停止测试 | 记录真实收发、效果及失败恢复；当前研究期间不扫描、连接或移动设备，不执行厂商 APK/Java/JNI/native 代码或实时 UI |
+| 1 ✓ 八段重审 | 04:11 保存：[SAVE_PREFIX](../tools/research/SAVE_PREFIX.md) | PREFIX_BANKS 调用/分配/字段/枚举注册分类；01/07 无命中；无外部直接调用 | 仍无已证实的 HG724 持久化链；不开放 saveSettings；参数写入 ≠ 持久化 |
+| 2 ✓ 八段重审 | 04:0D/2C/0A：[GAP_PREFIX](../tools/research/GAP_PREFIX.md) | 定义/外部调用/枚举外引用重审；01/07 无增量 | 0D 无实现类、2C 无外部调用、0A 仍仅 DT501；均不开放发送 |
+| 3 ✓ 八段重审 | 04:14/0C/4C：[MOTION_PREFIX](../tools/research/MOTION_PREFIX.md) | 0C 布局与 UI 调用、14/4C 八段调用面 | **不**关闭：动态能力/索引地址/EYE、完成与中止、参考系、按轴回中；不开放 14/0C；不替换 04:01 |
+| 4 ✓ 八段重审 | 04:25/37/62/63：[PROGRAM_PREFIX](../tools/research/PROGRAM_PREFIX.md) | 类外调用面；无 HG724 **具名**入口 | **不**关闭：程序型号路径、相机/曝光/录制隔离；纯稳定器原语与程序执行仍关闭 |
+| 5 ✓ 八段重审 | 全清单：[INVENTORY_PREFIX](../tools/research/INVENTORY_PREFIX.md) | bank05 现场提取 CmdIdGimbal 与 COMMANDS 比对；40 非排除均已登记 | inventoryComplete 保持 false；bank01 激活控制器仍缺口；不开放激活写入 |
+| HW | 实机验收：[HARDWARE_CHECKLIST](HARDWARE_CHECKLIST.md) | （待用户回家） | 研究期间不扫描/连接/移动设备，不执行厂商 APK/Java/JNI/native 或实时 UI |
 
-完成底层全命令门槛之后，才重新规划高级组合；不能把静态研究完成或包构建成功当作该门槛通过。
+### 剩余离线队列（静态语义，仍开放）
+
+在实机验收之前，优先用固定 PREFIX 输入与自写工具推进下列项。每项单独成专题/提交；结论必须区分「静态已证实」与「需硬件确认」。
+
+| 序号 | 主题 | 具体未决 | 入口线索 |
+|---|---|---|---|
+| A | 动态能力 / 索引地址 / EYE | 04:14 rotate 与 pause、AppState EYE、能力位/索引地址如何选路；静态能追到哪些条件与返回 | [MOTION_PREFIX](../tools/research/MOTION_PREFIX.md)、rotate→pause/EYE 端到端专题（待补） |
+| B | 参考系 | 姿态/关节/电机角与业务「参考系」字段的静态绑定；不能把现有 04:05 关节直接当作固件轨迹角 | [TRACK_POINTS](../tools/research/TRACK_POINTS.md)、运动专题 |
+| C | 完成 / 中止 | 动作完成通知、abort/cancel 路径、与会话/ACK 的关联；静态只记源码契约 | 程序状态 / 运动控制类 |
+| D | 程序型号与相机隔离 | 全景曝光、轨迹录制字段与纯云台原语的边界；型号/组件条件 | [PROGRAM_PREFIX](../tools/research/PROGRAM_PREFIX.md) |
+| E | 会话版本 / 状态关联 | 查询版本、激活/CENTER 状态缓存与会话关联；不能把版本查询混入激活缓存 | [ACTIVATION](../tools/research/ACTIVATION.md)、[ACTIVATION_RECEIVE](../tools/research/ACTIVATION_RECEIVE.md) |
+
+完成底层全命令门槛之后，才重新规划高级组合；不能把八段直接引用重审完成或包构建成功当作该门槛通过。
 
 ## 复现与接手
 

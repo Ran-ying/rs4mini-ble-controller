@@ -1,6 +1,6 @@
 # AI developer handoff — rs4mini-ble-controller
 
-Current research method and next-task order: `docs/RESEARCH_ROADMAP.md`. Read it with `docs/PROJECT_STATUS.md` and `protocol/COMMANDS.json`; historical six-bank or metadata-only conclusions must not override current eight-bank evidence. Priorities 1–5 (offline roadmap) completed 2026-10-20; inventoryComplete remains false and activation writes stay closed. Next is hardware checklist after the user returns. No hardware under current gates. No hardware or new advanced features under current gates.
+Current research method and next-task order: `docs/RESEARCH_ROADMAP.md`. Read it with `docs/PROJECT_STATUS.md` and `protocol/COMMANDS.json`; historical six-bank or metadata-only conclusions must not override current eight-bank evidence. Eight-bank direct-reference reviews (roadmap priorities 1–5) landed 2026-10-20; that does **not** close remaining static semantics (dynamic capability/index/EYE, reference frame, completion/abort, program model and camera isolation, session version/status correlation)—see the offline queue in the roadmap. A missing HG724-named caller is not proof that no inherited business entry exists. inventoryComplete remains false; activation writes stay closed. Hardware checklist stays after the user returns. No hardware or new advanced features under current gates.
 
 Read this file first, then `README.md`, `node/API.md`, `docs/PROTOCOL.md`, and
 `docs/DEVELOPMENT.md`. This document is intended to make development possible

@@ -151,21 +151,23 @@ async function calibrationTypes(gimbal: RS4Mini) {
   const tenths:number=fine.encodedTenths;void tenths;
   // @ts-expect-error yaw source action is not established
   await gimbal.appCommands.sendFineTuneRequest({axis:'yaw',adjustmentDegrees:.1});
-  const handle=await gimbal.appCommands.getHandleSettings();
-  const handleRaw:number=handle.values[0].rawValue;void handleRaw;
+  // @ts-expect-error removed after target-device query failures
+  await gimbal.appCommands.getHandleSettings();
+  // @ts-expect-error use passive calibrationStatus instead of removed active query
+  await gimbal.appCommands.queryCalibrationStatus();
   const parameters=gimbal.appCommands.userParameterStatus;void parameters;
   const sent = await gimbal.appCommands.sendAutoTuneRequest({start: false});
   const noAck: false = sent.acknowledged;
-  const status = await gimbal.appCommands.queryCalibrationStatus();
-  const percent: number | null = status.calibration.percent;
   // @ts-expect-error no numeric action or implicit coercion
   await gimbal.appCommands.sendAutoTuneRequest({start: 1});
+  const percent:number|null=gimbal.appCommands.calibrationStatus?.percent??null;
   return [noAck, percent];
 }
 
 async function motorTuningTypes(gimbal: RS4Mini) {
   const read=await gimbal.appCommands.getMotorTuning({axis:'yaw'});
   const raw: number=read.values[0].rawValue;
+  if(read.readMode==='sequential'){const nonAtomic:false=read.atomic;const count:number=read.replies.length;void nonAtomic;void count;}else{const sequence:number=read.message.sequence;void sequence;}
   await gimbal.appCommands.setMotorTuning({axis:'roll',parameter:'stiffness',value:50});
   // @ts-expect-error motor axis names are source pitch/roll/yaw, not virtual-stick pan
   await gimbal.appCommands.getMotorTuning({axis:'pan'});

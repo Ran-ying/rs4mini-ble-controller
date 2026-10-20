@@ -13,8 +13,10 @@ async def main():
   try:
    r=await fn();rows.append(dict(name=name,ok=True,elapsedMs=round((time.monotonic()-start)*1000),value=r));return r
   except Exception as e:rows.append(dict(name=name,ok=False,elapsedMs=round((time.monotonic()-start)*1000),code=getattr(e,'code','ERROR')))
- async def reading(fn):
-  r=await fn();return {k:r[k] for k in ['rawValue','mode','sourceMode','sourceProfile','sourceWorkMode','inputSource','values','settings'] if k in r}
+ async def reading(fn,name=None):
+  r=await fn();expected={'motor.single':1,'motor.bulk':12,'motor.axis':4,'motor.parameter':3}.get(name)
+  if expected and (len(r['values'])!=expected or (expected>1 and len(r.get('replies',[]))!=expected)):raise RuntimeError('Motor result incomplete')
+  return {k:r[k] for k in ['readMode','atomic','rawValue','mode','sourceMode','sourceProfile','sourceWorkMode','inputSource','values','settings'] if k in r}
  try:
   await g.connect(timeoutMs=15000,directConnectTimeoutMs=8000);rows.append(dict(name='connect',ok=g.connected));rows.append(dict(name='deviceLayerOnly',ok=not hasattr(g,'moveTo')))
   await check('attitude',lambda:g.getAttitude(fresh=True,timeoutMs=3000));await check('joints',lambda:g.getJointAngles(fresh=True,timeoutMs=3000));a.useProfile('ronin-2.2.2')
@@ -30,8 +32,8 @@ async def main():
     if r['rawValue']!=baseline:raise RuntimeError('Readback mismatch')
     return dict(rawValue=r['rawValue'])
    await check('sensitivity.sameValueWrite',write_same);await check('sensitivity.sameValueReadback',readback)
-  for name,fn in [('follow.speed',lambda:a.getFollowSettings(parameter='speed',timeoutMs=3000)),('rc.speed',lambda:a.getRcSettings(parameter='speed',timeoutMs=3000)),('motor.single',lambda:a.getMotorTuning(axis='pitch',parameter='stiffness',timeoutMs=3000)),('motor.bulk',lambda:a.getMotorTuning(timeoutMs=3000)),('handle',lambda:a.getHandleSettings(timeoutMs=3000)),('calibration.query',lambda:a.queryCalibrationStatus(timeoutMs=3000))]:
-   await check(name,lambda fn=fn:reading(fn))
+  for name,fn in [('follow.speed',lambda:a.getFollowSettings(parameter='speed',timeoutMs=3000)),('rc.speed',lambda:a.getRcSettings(parameter='speed',timeoutMs=3000)),('motor.single',lambda:a.getMotorTuning(axis='pitch',parameter='stiffness',timeoutMs=3000)),('motor.bulk',lambda:a.getMotorTuning(timeoutMs=3000)),('motor.axis',lambda:a.getMotorTuning(axis='yaw',timeoutMs=3000)),('motor.parameter',lambda:a.getMotorTuning(parameter='stiffness',timeoutMs=3000))]:
+   await check(name,lambda fn=fn,name=name:reading(fn,name))
   async def degree():
    r=await g.requestDegreeInfo(timeoutMs=3000);return dict(payloadHex=bytes(r.get('payload',r.get('message',{}).get('payload',[]))).hex())
   await check('degreeInfo',degree);await check('stop',g.stop);rows.append(dict(name='decoder',ok=g.decoder.invalidFrames==0 and g.decoder.discardedBytes==0,value=dict(invalidFrames=g.decoder.invalidFrames,discardedBytes=g.decoder.discardedBytes)))

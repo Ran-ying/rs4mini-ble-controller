@@ -1,5 +1,11 @@
 # RS4 Mini Node API
 
+## 当前变更：0.7.36
+
+`getHandleSettings()`与`queryCalibrationStatus()`已移除；使用被动`calibrationStatus`观察已有通知，不把缓存当主动查询。Python相应别名和原生查询selector同步移除。
+
+`getMotorTuning()`默认逐项请求12个参数，按轴4项、按参数3项。单项返回原AppParameterReply加`readMode:'single'`；多项返回`readMode:'sequential',atomic:false,values,parameters,replies`，每个replies元素都是本次真实单项响应。多项顶层没有message/bodyHex/statusCode合成ACK；需要原始报文时读取各replies。总timeoutMs覆盖整个读取循环，取消/失败不返回部分数据，不发余下请求。多项独占操作槽并停止原连续主机运动，单项保持已有有限查询语义。详见[电机接口](../docs/APP_MOTOR_TUNING.md)。下文旧版本入口记录为历史。
+
 `RS4Mini` 是应用唯一入口；0.7.1 已将其下的设备 SDK 与电脑端组合运动拆成模块。
 基础操作继承自设备 SDK，高级方法使用同一个设备连接和操作协调器。
 `setVelocity()`、三轴 `recenter()` 与反馈读取封装设备协议；`moveTo()`、`moveFor()`、

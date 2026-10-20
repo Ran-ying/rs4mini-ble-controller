@@ -1,29 +1,22 @@
-# 三端 SDK 直接可用性验收
+# 三端 SDK 直接可用性验收：0.7.36
 
-本轮按用户要求只测试SDK，不使用GUI，也不重复研究未知协议或启动维护。Node/Python直接创建BleDevice；macOS无界面进程直接创建RSBleDevice，未链接RSGimbal、RSMotionCore、控制面板或AppKit。复现入口见[仅SDK测试](../tools/hardware/README.md)，机器结果见protocol/SDK_ONLY_ACCEPTANCE.json。
+Node/Python0.7.36，原生0.3.37/build40。按用户决定移除手柄查询、主动调参状态查询及Python别名/原生selector/对应面板入口；被动calibrationStatus保留。电机多项改为逐项请求并完整汇总。
 
-范围包括连接、新姿态/机械关节反馈、跟随灵敏度、电机设置位、自定义跟随、轴模式、用户配置、工作模式、跟随轴开关、跟随/RC档位与数值、独立配置、电机单项/批量、手柄、调参状态查询、degree-info、停止和关闭。另沿用已授权批次，读取灵敏度后写回相同值并回读；不切模式、不改变其他设置。没有物理定位精度、GUI点击或固件任务完成验收。
+本轮只测试SDK：Node/Python直接创建BleDevice；macOS无界面进程只链接RSBleDevice、RSControlCore、Foundation/CoreBluetooth，没有RSGimbal、运动模块或AppKit。入口见[仅SDK测试](../tools/hardware/README.md)，机器结果为`protocol/SDK_ONLY_ACCEPTANCE.json`。
 
-当前结论：三端设备SDK均能独立连接和收发，基础功能可用；电机批量读取、手柄查询、主动调参状态查询尚不能作为本机可用接口交付。不能以这三项失败否定所有SDK能力，也不能以基础通过宣称全部接口通过。完整协议和高级新增门槛仍false。
-
-本次检查：Node23/26通过，Python3.8和3.12各23/26通过，macOS24/27通过；失败均为下列同三个接口。原生多了蓝牙就绪/显式来源探针，未暴露Node/Python的解码器计数，所以总数不同，不能当成接口数量或覆盖率排名。所有客户端已结束并关闭/断开。
-
-## 可用范围
-
-- 直接SDK连接、持续新姿态/关节反馈、命名参数读取；跨端当前灵敏度1、电机位0、轴模式0、用户配置0、工作模式源值1等可对照。
-- 灵敏度原值1写回1，关联成功ACK及本次新回读一致；这只证明SDK写入/ACK/回读链，不证明切换效果或持久化。
-- Pitch刚度单项当前6；跟随/RC数值、独立配置等读取返回完整请求上下文。
-- degree-info有原始响应（Node/Python00），不把它解释为频率或角度布局承诺。
-- 停止及本地关闭/断开正常；macOS原生没有close方法，检验公开disconnect后的ready/connecting/busy状态。
-
-## 仍不可用的接口
-
-| 接口 | Node/Python/macOS结果 | 使用约束 |
+| 运行环境 | 检查项 | 全量/按轴/按参数/单项电机读取 |
 |---|---|---|
-| getMotorTuning不指定轴/参数 | 多项请求仅返回首项，协议完整性检查拒绝 | 使用轴＋参数明确的单项读取 |
-| getHandleSettings | 等待关联响应超时 | 不宣称手柄状态可读 |
-| queryCalibrationStatus | 等待关联响应超时 | 被动calibrationStatus是另一接口，不能拿旧缓存替代本次查询 |
+| Node | 24/24通过 | 12 / 4 / 3 / 1，完整 |
+| Python3.8 | 24/24通过 | 12 / 4 / 3 / 1，完整 |
+| Python3.12 | 24/24通过 | 12 / 4 / 3 / 1，完整 |
+| macOS原生SDK | 25/25通过 | 12 / 4 / 3 / 1，完整 |
 
-三端同样失败，不代表已经证明固件不支持；本机请求适用性/初始化/路由仍有待证据。没有放宽ACK关联、修改设备地址或拼造默认结果来通过测试。原生对查询有中位停止前置，Node/Python部分读取可与运动共存，因此总检查项数不同。
+连接、新姿态/机械关节、命名参数读取、degree-info、停止和关闭/断开均通过。检查数量包含生命周期/层隔离探针，不是SDK方法总数。原生额外检测蓝牙就绪/显式来源，而Node/Python检查解码器计数，因此数量略有差异。原生没有close方法，检验的是公开disconnect后的状态。
 
-本轮不修改SDK运行时：Node/Python0.7.35、原生0.3.36/build39继续使用既有包。历史运动/写入/维护测试见HARDWARE_FULL_ACCEPTANCE.md，与这里的基础SDK入口可用性分开。
+电机读取每次只请求一个索引并严格匹配ACK。单项保留真实AppParameterReply，增加readMode:'single'；多项完整返回readMode:'sequential',atomic:false,values,parameters,replies，不制造顶层ACK/message/bodyHex，也不在中途失败时返回部分数据。总timeoutMs覆盖整个循环；取消/NACK/超时立即停止后续项。详见[电机契约](APP_MOTOR_TUNING.md)。
+
+本轮没有设置写入、运动、校准、平衡或恢复设置，也不验GUI。0.7.35三端灵敏度1写回1/ACK/回读通过作为历史证据保留，不能把它计入本次只读检查。两个退役查询的失败证据保留在Git历史和研究文档，不再是当前SDK可调用能力。
+
+结论：当前这组直接SDK可用性检查全部通过；完整未知协议、其余所有写操作、固件任务物理完成、跨负载运动精度仍是独立验收范围，fullAcceptanceComplete与高级新增门槛仍false。所有控制客户端已关闭/断开。
+
+离线回归：Node279、Python3.8/3.12各260、研究558、原生1562核心+317生命周期+3独立SDK+260表单适配，以及严格类型/边界/签名构建通过。实际安装tarball279+类型、wheel260通过，导入路径核对；Node113文件、wheel40模块、原生ZIP3文件与交付源码/签名构建逐字节一致。本轮未启动GUI，原生表单检查只是离线编译回归。

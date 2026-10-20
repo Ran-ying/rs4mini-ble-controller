@@ -16,8 +16,10 @@ static NSDictionary *Check(NSString *name, void (^start)(RSAppCompletion)) {
     __block BOOL done=NO;__block NSError *failure=nil;__block NSDictionary *result=nil;
     start(^(NSDictionary *r,NSError *e){result=r;failure=e;done=YES;});
     BOOL completed=Wait(^BOOL{return done;},7);
+    NSNumber *expected=@{@"motor.single":@1,@"motor.bulk":@12,@"motor.axis":@4,@"motor.parameter":@3}[name];
+    if(!failure&&expected&&([result[@"values"] count]!=expected.unsignedIntegerValue||(expected.intValue>1&&[result[@"replies"] count]!=expected.unsignedIntegerValue)))failure=[NSError errorWithDomain:@"SDK_TEST_MOTOR_INCOMPLETE" code:1 userInfo:nil];
     NSMutableDictionary *safe=[NSMutableDictionary dictionary];
-    for(NSString *key in @[@"rawValue",@"mode",@"sourceMode",@"sourceProfile",@"sourceWorkMode",@"inputSource",@"values",@"settings"])
+    for(NSString *key in @[@"readMode",@"atomic",@"rawValue",@"mode",@"sourceMode",@"sourceProfile",@"sourceWorkMode",@"inputSource",@"values",@"settings"])
         if(result[key])safe[key]=result[key];
     if(failure)safe[@"code"]=failure.userInfo[@"code"]?:failure.domain;
     if(!completed)safe[@"code"]=@"HARNESS_DEADLINE";
@@ -61,8 +63,8 @@ int main(int argc,const char *argv[]) {
       Check(@"rc.speed",^(RSAppCompletion c){[g getRcSettings:@"speed" timeoutMs:3000 completion:c];});
       Check(@"motor.single",^(RSAppCompletion c){[g getMotorTuning:@{@"axis":@"pitch",@"parameter":@"stiffness"} timeoutMs:3000 completion:c];});
       Check(@"motor.bulk",^(RSAppCompletion c){[g getMotorTuning:@{} timeoutMs:3000 completion:c];});
-      Check(@"handle",^(RSAppCompletion c){[g getHandleSettingsWithTimeoutMs:3000 completion:c];});
-      Check(@"calibration.query",^(RSAppCompletion c){[g queryCalibrationStatusWithTimeoutMs:3000 completion:c];});
+      Check(@"motor.axis",^(RSAppCompletion c){[g getMotorTuning:@{@"axis":@"yaw"} timeoutMs:3000 completion:c];});
+      Check(@"motor.parameter",^(RSAppCompletion c){[g getMotorTuning:@{@"parameter":@"stiffness"} timeoutMs:3000 completion:c];});
       [g requestDegreeInfo];Row(@"degreeInfo",Wait(^BOOL{return degree&&!g.busy;},5),nil);
       [g stop];Row(@"stop",Wait(^BOOL{return !g.busy;},5),nil);
      }

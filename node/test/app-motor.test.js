@@ -7,23 +7,43 @@ function reply(p,request,body,id=request.commandId) {
   const packet=frame(request.sequence,4,id,Buffer.from(body),0x80); packet[4]=4;packet[5]=2;
   packet.writeUInt16LE(crc16(packet.subarray(0,-2)),packet.length-2);p.rx.emit('data',packet,true);
 }
-test('motor query uses32 namespace, complete named order and explicit metadata widths',async t=>{
-  const {gimbal,peripheral:p}=await connected(t);gimbal.appCommands.useProfile('ronin-2.2.2');
-  const read=gimbal.appCommands.getMotorTuning(); await until(()=>sent(p,0x32).length);
-  const request=sent(p,0x32).at(-1);assert.equal(request.payload.toString('hex'),'000102030405060708090a0b');
-  let done=false;read.then(()=>{done=true;});reply(p,request,[0,0,1,50],0x10);
-  await new Promise(resolve=>setImmediate(resolve));assert.equal(done,false);
-  reply(p,request,[0,...Array.from({length:12},(_,index)=>[index,9,index===0?255:index]).flat()]);
-  const result=await read;assert.equal(result.values.length,12);assert.equal(result.values[0].parameter,'stiffness');
-  assert.equal(result.values[0].rawValue,255);assert.equal(result.values[0].withinSourceRange,false);
-  assert.equal(result.values[0].headerByte,9);assert.equal(result.values[11].parameter,'preControl');assert.equal(result.values[11].axis,'yaw');
+test('motor full read sends twelve individual queries and retains real replies',async t=>{
+ const {gimbal,peripheral:p}=await connected(t);gimbal.appCommands.useProfile('ronin-2.2.2');
+ const read=gimbal.appCommands.getMotorTuning();let done=false;read.then(()=>done=true);
+ for(let index=0;index<12;index++){
+  await until(()=>sent(p,0x32).length===index+1);const request=sent(p,0x32).at(-1);
+  assert.deepEqual([...request.payload],[index]);assert.equal(done,false);
+  if(index===0){reply(p,request,[0,0,1,50],0x10);await new Promise(r=>setImmediate(r));assert.equal(sent(p,0x32).length,1);}
+  reply(p,request,[0,index,9,index===0?255:index]);
+ }
+ const r=await read;assert.equal(r.values.length,12);assert.equal(r.replies.length,12);assert.equal(r.readMode,'sequential');assert.equal(r.atomic,false);assert.equal(r.message,undefined);
+ assert.equal(r.values[0].rawValue,255);assert.equal(r.values[0].withinSourceRange,false);assert.equal(r.values[11].parameter,'preControl');assert.equal(r.values[11].axis,'yaw');
+ assert.equal(new Set(r.replies.map(x=>x.message.sequence)).size,12);
 });
-test('motor filter selection is copied before awaiting and uses source parameter names',async t=>{
-  const {gimbal,peripheral:p}=await connected(t);gimbal.appCommands.useProfile('ronin-2.2.2');
-  const options={axis:'yaw'},read=gimbal.appCommands.getMotorTuning(options);options.axis='pitch';
-  await until(()=>sent(p,0x32).length);const request=sent(p,0x32).at(-1);assert.equal(request.payload.toString('hex'),'0205080b');
-  reply(p,request,[0,2,1,20,5,1,30,8,1,0,11,1,100]);const result=await read;
-  assert.deepEqual(result.values.map(v=>v.axis),Array(4).fill('yaw'));
+test('motor selection snapshot keeps order with one request in flight',async t=>{
+ const {gimbal,peripheral:p}=await connected(t);gimbal.appCommands.useProfile('ronin-2.2.2');
+ const options={axis:'yaw'},read=gimbal.appCommands.getMotorTuning(options);options.axis='pitch';
+ for(const [i,index] of [2,5,8,11].entries()){await until(()=>sent(p,0x32).length===i+1);const request=sent(p,0x32).at(-1);assert.deepEqual([...request.payload],[index]);reply(p,request,[0,index,1,20]);}
+ const result=await read;assert.deepEqual(result.values.map(v=>v.axis),Array(4).fill('yaw'));assert.equal(result.replies.length,4);
+});
+test('motor batch cancellation cannot issue remaining requests or return partial values',async t=>{
+ const {gimbal,peripheral:p}=await connected(t);gimbal.appCommands.useProfile('ronin-2.2.2');
+ const fail=assert.rejects(gimbal.appCommands.getMotorTuning(),{code:'RS4MINI_OPERATION_CANCELLED'});
+ await until(()=>sent(p,0x32).length===1);reply(p,sent(p,0x32)[0],[0,0,1,10]);await until(()=>sent(p,0x32).length===2);
+ await assert.rejects(gimbal.setVelocity({pan:.1}),{code:'RS4MINI_BUSY'});await gimbal.stop();await fail;
+ assert.equal(sent(p,0x32).length,2);assert.equal(gimbal.experimental.pending.size,0);assert.equal(gimbal.activeOperation,null);
+});
+test('motor batch rejects an intermediate NACK with no third request',async t=>{
+ const {gimbal,peripheral:p}=await connected(t);gimbal.appCommands.useProfile('ronin-2.2.2');
+ const fail=assert.rejects(gimbal.appCommands.getMotorTuning(),{code:'RS4MINI_DEVICE_ERROR'});
+ await until(()=>sent(p,0x32).length===1);reply(p,sent(p,0x32)[0],[0,0,1,10]);await until(()=>sent(p,0x32).length===2);reply(p,sent(p,0x32)[1],[7]);await fail;assert.equal(sent(p,0x32).length,2);
+});
+test('motor batch carries a decreasing total timeout across responses',async t=>{
+ const {gimbal,peripheral:p}=await connected(t);gimbal.appCommands.useProfile('ronin-2.2.2');const budgets=[];
+ const original=gimbal.experimental._queryPayloadCommand.bind(gimbal.experimental);gimbal.experimental._queryPayloadCommand=(name,cmd,body,timeout,options)=>{budgets.push(timeout);return original(name,cmd,body,timeout,options);};
+ const fail=assert.rejects(gimbal.appCommands.getMotorTuning({timeoutMs:80}),{code:'RS4MINI_RESPONSE_TIMEOUT'});
+ await until(()=>sent(p,0x32).length===1);await new Promise(r=>setTimeout(r,15));reply(p,sent(p,0x32)[0],[0,0,1,10]);await fail;
+ assert.equal(sent(p,0x32).length,2);assert.ok(budgets[1]<budgets[0]-10);assert.equal(gimbal.experimental.pending.size,0);
 });
 test('named motor setter sends31 with correct value snapshot and waits for ACK',async t=>{
   const {gimbal,peripheral:p}=await connected(t);gimbal.appCommands.useProfile('ronin-2.2.2');

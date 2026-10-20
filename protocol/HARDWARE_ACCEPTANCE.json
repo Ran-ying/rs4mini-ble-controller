@@ -2,7 +2,7 @@
   "sessionDate": "2026-10-20",
   "scope": "existing SDK methods, distinct from unknown protocol inventory",
   "fullAcceptanceComplete": false,
-  "sourceVersion": "Node/Python0.7.35 / native0.3.36",
+  "sourceVersion": "Node/Python0.7.36 / native0.3.37",
   "operations": [
     {
       "id": "sensitivity.read",
@@ -206,11 +206,12 @@
       "id": "motorTuning.read",
       "title": "读取电机数值",
       "write": false,
-      "state": "partial",
+      "state": "sequential_read_passed",
       "evidence": [
         "12 filtered single reads pass; default bulk returns first record only",
         "Retest single Pitch/stiffness succeeds; axis4/parameter3/all12 selections each return only first record, strict parser rejects incomplete context.",
-        "Independent Python3.12/Bleak reproduced same failure while before/after sensitivity reads pass; cleanup fixed and verified separately."
+        "Independent Python3.12/Bleak reproduced same failure while before/after sensitivity reads pass; cleanup fixed and verified separately.",
+        "0.7.36 direct Node/Python3.8/Python3.12/macOS SDK: single1/full12/axis4/parameter3 complete; one index per correlated response; non-atomic aggregate; clean stop/teardown."
       ]
     },
     {
@@ -244,11 +245,12 @@
       "id": "handle.read",
       "title": "读取手柄参数",
       "write": false,
-      "state": "failed_timeout",
+      "state": "removed_from_sdk_by_user",
       "evidence": [
         "No correlated response with 1.8s then 6s deadlines",
         "Retest:10s no response; same-session before/after sensitivity read succeeds; raw capture contains no reply with this command ID.",
-        "Independent Python3.12/Bleak reproduced same failure while before/after sensitivity reads pass; cleanup fixed and verified separately."
+        "Independent Python3.12/Bleak reproduced same failure while before/after sensitivity reads pass; cleanup fixed and verified separately.",
+        "0.7.36 active SDK/API alias/native/UI entry removed; prior timeout evidence retained as history."
       ]
     },
     {
@@ -282,11 +284,12 @@
       "id": "tune.read",
       "title": "读取自动调参状态",
       "write": false,
-      "state": "failed_timeout_push_available",
+      "state": "removed_from_sdk_by_user",
       "evidence": [
         "Explicit6E queries timed out before/during/after run; passive6E progress and Complete100 arrive",
         "Retest:10s no response; same-session before/after sensitivity read succeeds; raw capture contains no reply with this command ID.",
-        "Independent Python3.12/Bleak reproduced same failure while before/after sensitivity reads pass; cleanup fixed and verified separately."
+        "Independent Python3.12/Bleak reproduced same failure while before/after sensitivity reads pass; cleanup fixed and verified separately.",
+        "0.7.36 active SDK/API alias/native/UI entry removed; prior timeout evidence retained as history."
       ]
     },
     {
@@ -441,7 +444,7 @@
     }
   },
   "cleanupAfterSystemDisconnect": "Python full session and Node subscription/settings/autotune sessions close cleanly after authorized OS HID disconnect; do not suppress earlier unsubscribe errors",
-  "targetRelease": "Node/Python0.7.35 / native0.3.36",
+  "targetRelease": "Node/Python0.7.36 / native0.3.37",
   "experimental": {
     "query.version": "raw response received",
     "query.position": "RS4MINI_RESPONSE_TIMEOUT",
@@ -515,5 +518,18 @@
       "ok": true
     }
   },
-  "sdkOnlyAcceptance": "protocol/SDK_ONLY_ACCEPTANCE.json: direct BleDevice/RSBleDevice tests, no GUI/advanced linkage; basic usability pass, same three candidate failures across ports; prior physical/task acceptance remains separate."
+  "sdkOnlyAcceptance": "protocol/SDK_ONLY_ACCEPTANCE.json: current direct SDK checks all pass; two prior failed active queries removed; full protocol/physical/task acceptance remains separate.",
+  "currentAppOperationCount": 41,
+  "currentCoverage": {
+    "sdkAppOperations": 41,
+    "excludedByUser": [
+      "reset.write"
+    ],
+    "removedSdkOperations": [
+      "handle.read",
+      "tune.read"
+    ],
+    "historical43EntryLedgerRetained": true,
+    "currentRequiredAfterUserExclusions": 40
+  }
 }

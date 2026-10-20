@@ -11,30 +11,54 @@ class AppMotorTests(unittest.IsolatedAsyncioTestCase):
     async def test_motor_namespace_and_full_context(self):
         self.gimbal.appCommands.useProfile('ronin-2.2.2')
         task=asyncio.create_task(self.gimbal.app_commands.get_motor_tuning())
-        await fixtures.until(lambda:sent(self.client,0x32))
-        request=sent(self.client,0x32)
-        self.assertEqual(request['payload'],bytes(range(12)))
-        reply(self.client,dict(request,commandId=0x10),[0,0,1,50])
-        await asyncio.sleep(0)
-        self.assertFalse(task.done())
-        payload=[0]
-        for index in range(12):payload.extend((index,9,255 if index==0 else index))
-        reply(self.client,request,payload)
+        for index in range(12):
+            await fixtures.until(lambda:len([f for f in self.client.frames() if f['commandId']==0x32])==index+1)
+            request=sent(self.client,0x32)
+            self.assertEqual(request['payload'],bytes([index]))
+            self.assertFalse(task.done())
+            if index==0:
+                reply(self.client,dict(request,commandId=0x10),[0,0,1,50]);await asyncio.sleep(0);self.assertFalse(task.done())
+            reply(self.client,request,[0,index,9,255 if index==0 else index])
         result=await task
-        self.assertEqual(len(result['values']),12)
-        self.assertEqual(result['values'][0]['rawValue'],255)
-        self.assertFalse(result['values'][0]['withinSourceRange'])
+        self.assertEqual(len(result['values']),12);self.assertEqual(len(result['replies']),12)
+        self.assertEqual(result['readMode'],'sequential');self.assertFalse(result['atomic']);self.assertNotIn('message',result)
+        self.assertEqual(result['values'][0]['rawValue'],255);self.assertFalse(result['values'][0]['withinSourceRange'])
         self.assertEqual(result['values'][11]['parameter'],'preControl')
-        self.assertEqual(result['values'][11]['axis'],'yaw')
+        self.assertEqual(len({r['message']['sequence'] for r in result['replies']}),12)
 
     async def test_filtered_query_uses_distinct_named_fields(self):
         self.gimbal.appCommands.useProfile('ronin-2.2.2')
         task=asyncio.create_task(self.gimbal.appCommands.getMotorTuning(axis='yaw'))
-        await fixtures.until(lambda:sent(self.client,0x32))
-        request=sent(self.client,0x32)
-        self.assertEqual(request['payload'].hex(),'0205080b')
-        reply(self.client,request,[0,2,1,20,5,1,30,8,1,0,11,1,100])
+        for n,index in enumerate([2,5,8,11]):
+            await fixtures.until(lambda:len([f for f in self.client.frames() if f['commandId']==0x32])==n+1)
+            request=sent(self.client,0x32);self.assertEqual(request['payload'],bytes([index]));reply(self.client,request,[0,index,1,20])
         self.assertEqual([r['axis'] for r in (await task)['values']],['yaw']*4)
+
+    async def test_batch_stop_prevents_later_queries(self):
+        self.gimbal.appCommands.useProfile('ronin-2.2.2');task=asyncio.create_task(self.gimbal.appCommands.getMotorTuning())
+        await fixtures.until(lambda:sent(self.client,0x32));reply(self.client,sent(self.client,0x32),[0,0,1,10])
+        await fixtures.until(lambda:len([f for f in self.client.frames() if f['commandId']==0x32])==2)
+        await self.gimbal.stop()
+        with self.assertRaises(Exception) as error:await task
+        self.assertEqual(error.exception.code,'RS4MINI_OPERATION_CANCELLED')
+        self.assertEqual(len([f for f in self.client.frames() if f['commandId']==0x32]),2);self.assertFalse(self.gimbal.experimental.pending)
+
+    async def test_batch_nack_does_not_publish_partial(self):
+        self.gimbal.appCommands.useProfile('ronin-2.2.2');task=asyncio.create_task(self.gimbal.appCommands.getMotorTuning())
+        await fixtures.until(lambda:sent(self.client,0x32));reply(self.client,sent(self.client,0x32),[0,0,1,10])
+        await fixtures.until(lambda:len([f for f in self.client.frames() if f['commandId']==0x32])==2);reply(self.client,sent(self.client,0x32),[7])
+        with self.assertRaises(Exception) as error:await task
+        self.assertEqual(error.exception.code,'RS4MINI_DEVICE_ERROR');self.assertEqual(len([f for f in self.client.frames() if f['commandId']==0x32]),2)
+
+    async def test_batch_decreases_total_timeout(self):
+        self.gimbal.appCommands.useProfile('ronin-2.2.2');budgets=[];original=self.gimbal.experimental._query_payload_command
+        async def observe(name,command,body,timeout,*args,**kwargs):
+            budgets.append(timeout);return await original(name,command,body,timeout,*args,**kwargs)
+        self.gimbal.experimental._query_payload_command=observe
+        task=asyncio.create_task(self.gimbal.appCommands.getMotorTuning(timeoutMs=80))
+        await fixtures.until(lambda:sent(self.client,0x32));await asyncio.sleep(.015);reply(self.client,sent(self.client,0x32),[0,0,1,10])
+        with self.assertRaises(Exception) as error:await task
+        self.assertEqual(error.exception.code,'RS4MINI_RESPONSE_TIMEOUT');self.assertEqual(len(budgets),2);self.assertLess(budgets[1],budgets[0]-10)
 
     async def test_named_write_waits_for_ack_in_motor_namespace(self):
         self.gimbal.appCommands.useProfile('ronin-2.2.2')

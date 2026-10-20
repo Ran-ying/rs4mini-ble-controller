@@ -1,5 +1,7 @@
 # 手柄参数只读查询（0.7.13 / 原生0.3.13）
 
+> 0.7.36范围更新：主动getHandleSettings/queryCalibrationStatus及三端等价入口已按用户要求移除。以下主动查询描述保留为历史研究，当前不可调用；被动calibrationStatus进度、自动调参开始/停止请求及其他独立接口保留。
+
 统一RS4Mini/RSGimbal对象下的设备SDK提供getHandleSettings({timeoutMs})，Python另有get_handle_settings(timeoutMs=...)；原生为getHandleSettingsWithTimeoutMs:completion:。必须显式选择ronin-2.2.2来源配置，复用原连接/序号/队列。没有手柄写入、参数保存/重置或相机控制接口新增。
 
 ```js

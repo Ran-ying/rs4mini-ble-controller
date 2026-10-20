@@ -167,6 +167,29 @@ static BOOL Matches(NSString *name) {
             else if(self.appCommandId==8) result=RSDecodeAppComponentCalibrationReply(message,self.appSettingsBefore.unsignedCharValue,&appError);
             else result = self.appCommandId == 0x6e ? RSDecodeAppCalibrationReply(message, &appError) : RSDecodeAppReply(message, self.appCommandId, self.appParameters, &appError);
             if (appError) [self failApp:appError];
+            else if ([self.appSettingsKind isEqualToString:@"motorRead"]) {
+                NSDictionary *row=self.appMotorSelection[self.appMotorReplies.count];
+                NSError *decodeError=nil;NSDictionary *part=RSDecodeAppMotorReply(message,@[row],&decodeError);
+                if(decodeError)[self failApp:decodeError];
+                else {
+                    [self.appMotorReplies addObject:part];
+                    if(self.appMotorReplies.count<self.appMotorSelection.count){
+                        if(Clock()>=self.deviceQueryDeadline)[self failApp:RSAppError(@"RS4MINI_RESPONSE_TIMEOUT",@"Motor read total deadline expired",nil)];
+                        else {
+                            NSDictionary *next=self.appMotorSelection[self.appMotorReplies.count];
+                            self.appParameters=@[@{@"index":next[@"index"],@"size":@1}];self.deviceQuerySequence=[self reserveSequence];
+                            [self writeFrame:RSAppMotorReadFrame(self.deviceQuerySequence,self.appParameters)];
+                        }
+                    }else if(self.appMotorReplies.count==1){
+                        NSMutableDictionary *one=[part mutableCopy];one[@"readMode"]=@"single";[self finishApp:[one copy] error:nil];
+                    }else {
+                        NSMutableArray *parameters=[NSMutableArray array],*values=[NSMutableArray array];
+                        for(NSDictionary *r in self.appMotorReplies){[parameters addObjectsFromArray:r[@"parameters"]];[values addObjectsFromArray:r[@"values"]];}
+                        NSDictionary *batch=@{@"profile":self.appProfile,@"deviceVerified":@NO,@"physicalCompletionVerified":@NO,@"readMode":@"sequential",@"atomic":@NO,@"replies":[self.appMotorReplies copy],@"parameters":[parameters copy],@"values":[values copy]};
+                        [self finishApp:batch error:nil];
+                    }
+                }
+            }
             else if ([self.appSettingsKind isEqualToString:@"componentCalibration"] && self.appCommandId==16) {
                 NSDictionary *before=RSDecodeAppSettings(result,@"motor");
                 if(![before[@"settings"][@"enabled"] boolValue])[self failApp:RSAppError(@"RS4MINI_MOTOR_DISABLED",@"Source MotorEnabled precondition is false; no calibration sent",nil)];
@@ -411,6 +434,7 @@ static BOOL Matches(NSString *name) {
     if (!completion) return;
     self.appCompletion = nil; self.appParameters = nil; self.awaitingDeviceQuery = NO;
     self.appNoAckPending = NO; self.appRequestedStart = nil;
+    self.appMotorSelection=nil; self.appMotorReplies=nil;
     self.appCenterInfoVersion = nil; self.appSettingsKind = nil; self.appSettingsPatch = nil; self.appSettingsBefore = nil; self.appSettingsRequested = nil;
     if (self.ready && !self.disconnecting && !self.stopping && ![error.userInfo[@"code"] isEqual:@"RS4MINI_DISCONNECTED"])
         [self status:error ? @"App 请求失败或取消，详情见请求结果" : @"App 请求已结束（不代表设备动作完成）"];
@@ -442,8 +466,6 @@ static BOOL Matches(NSString *name) {
         case 7: return RSAppFineTuneFrame(sequence,context,mode);
         case 0x13: return context || mode ? nil : RSAppFactoryResetFrame(sequence,@"HG724");
         case 0x35: return RSAppHandleWriteFrame(sequence,context,mode);
-        case 0x36: return context || mode ? nil : RSAppHandleQueryFrame(sequence);
-        case 0x6e: return RSAppCalibrationQueryFrame(sequence);
         case 0x6b: return context ? nil : [mode isKindOfClass:NSDictionary.class] ? RSAppProgramStatusSubscriptionFrame(sequence,mode) : RSAppProgramStatusRequestFrame(sequence,mode);
         case 0x31: return RSAppMotorWriteFrame(sequence,context,mode);
         case 0x32: return RSAppMotorReadFrame(sequence,context);
@@ -557,12 +579,6 @@ static BOOL Matches(NSString *name) {
         if(completion)completion(result?[result copy]:nil,error);
     }];
 }
-- (void)getHandleSettingsWithTimeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
-    [self startAppCommand:0x36 parameters:nil mode:nil settingsKind:nil settingsPatch:nil timeoutMs:timeoutMs completion:^(NSDictionary *reply,NSError *error) {
-        if(error){if(completion)completion(nil,error);return;}NSError *decodeError=nil;
-        NSDictionary *result=RSDecodeAppHandleReply(reply[@"message"],&decodeError);if(completion)completion(result,decodeError);
-    }];
-}
 - (void)getStandaloneTuning:(NSDictionary *)filters timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
     NSArray *selection=RSAppStandaloneSelection(filters);
     if(!selection){if(completion)dispatch_async(dispatch_get_main_queue(), ^{completion(nil,RSAppError(@"RS4MINI_INVALID_ARGUMENT",@"Invalid standalone selection",nil));});return;}
@@ -612,13 +628,8 @@ static BOOL Matches(NSString *name) {
 - (void)getMotorTuning:(NSDictionary *)filters timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
     NSArray *selection=RSAppMotorSelection(filters);
     if (!selection) { if (completion) dispatch_async(dispatch_get_main_queue(), ^{ completion(nil,RSAppError(@"RS4MINI_INVALID_ARGUMENT",@"Invalid motor selection",nil)); }); return; }
-    NSMutableArray *context=[NSMutableArray array];
-    for (NSDictionary *row in selection) [context addObject:@{@"index":row[@"index"],@"size":@1}];
-    [self startAppCommand:0x32 parameters:context mode:nil settingsKind:nil settingsPatch:nil timeoutMs:timeoutMs completion:^(NSDictionary *reply,NSError *error) {
-        if (error) { if (completion) completion(nil,error); return; }
-        NSError *decodeError=nil; NSDictionary *result=RSDecodeAppMotorReply(reply[@"message"],selection,&decodeError);
-        if (completion) completion(result,decodeError);
-    }];
+    NSDictionary *first=selection.firstObject;
+    [self startAppCommand:0x32 parameters:@[@{@"index":first[@"index"],@"size":@1}] mode:selection settingsKind:@"motorRead" settingsPatch:nil timeoutMs:timeoutMs completion:completion];
 }
 - (void)setMotorTuning:(NSDictionary *)spec timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
     NSDictionary *row=RSAppMotorWriteSpec(spec);
@@ -660,9 +671,6 @@ static BOOL Matches(NSString *name) {
         if(completion)completion([result copy],nil);
     }];
 }
-- (void)queryCalibrationStatusWithTimeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
-    [self startAppCommand:0x6e parameters:nil mode:nil settingsKind:nil settingsPatch:nil timeoutMs:timeoutMs completion:completion];
-}
 - (void)sendAutoTuneRequest:(NSNumber *)start completion:(RSAppCompletion)completion {
     [self startAppCommand:0x6a parameters:nil mode:[start copy] settingsKind:nil settingsPatch:nil timeoutMs:3000 completion:completion];
 }
@@ -685,6 +693,8 @@ static BOOL Matches(NSString *name) {
     if (!error && !(centerVersion ? RSAppCenterInfoFrame(0,centerVersion) : [self appCommandFrame:command sequence:0 context:context mode:mode]))
         error = RSAppError(@"RS4MINI_INVALID_ARGUMENT", @"Invalid App command arguments", nil);
     if (error) { if (completion) dispatch_async(dispatch_get_main_queue(), ^{ completion(nil, error); }); return; }
+    self.appMotorSelection=[settingsKind isEqualToString:@"motorRead"] ? [mode copy] : nil;
+    self.appMotorReplies=self.appMotorSelection ? [NSMutableArray array] : nil;
     self.appCenterInfoVersion = [centerVersion copy]; self.appSettingsKind = settingsKind; self.appSettingsPatch = settingsPatch;
     self.appParameters = (command == 0x10 || command == 0x32) ? context : nil; self.appCommandId = command; self.appCompletion = completion ?: ^(NSDictionary *result, NSError *error) {};
     NSUInteger token = ++self.appToken; __weak typeof(self) weak = self;

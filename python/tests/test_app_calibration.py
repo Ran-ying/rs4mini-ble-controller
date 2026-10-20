@@ -32,24 +32,6 @@ class AppCalibrationTests(unittest.IsolatedAsyncioTestCase):
                 await self.gimbal.appCommands.sendAutoTuneRequest(start=start)
         self.assertEqual(len(self.client.frames()),count)
 
-    async def test_query_status_and_no_synthetic_progress_on_empty_ack(self):
-        self.gimbal.appCommands.useProfile('ronin-2.2.2')
-        task=asyncio.create_task(self.gimbal.app_commands.query_calibration_status())
-        await fixtures.until(lambda: sent(self.client,0x6e))
-        request=sent(self.client,0x6e)
-        self.assertEqual(request['flags'],0x40)
-        self.assertEqual(request['payload'],b'')
-        reply(self.client,request,[0,0,2,1,40])
-        result=await task
-        self.assertEqual(result['calibration']['state'],'Processing')
-        self.assertEqual(result['calibration']['percent'],40)
-        self.assertIsNone(self.gimbal.appCommands.calibration_status)
-        count=len(self.client.frames())
-        task=asyncio.create_task(self.gimbal.appCommands.queryCalibrationStatus())
-        await fixtures.until(lambda: len(self.client.frames())>count)
-        reply(self.client,sent(self.client,0x6e),[0])
-        self.assertIsNone((await task)['calibration']['rawState'])
-
     async def test_notifications_copy_unknown_fields_and_reset_across_profiles(self):
         self.gimbal.appCommands.useProfile('ronin-2.2.2')
         errors=[]
@@ -83,21 +65,6 @@ class AppCalibrationTests(unittest.IsolatedAsyncioTestCase):
         self.incoming([0,2,1,60])
         await self.client.disconnect()
         self.assertIsNone(self.gimbal.appCommands.calibrationStatus)
-
-    async def test_query_malformed_nack_and_timeout_cleanup(self):
-        self.gimbal.appCommands.useProfile('ronin-2.2.2')
-        for payload,code in [([0,0,1,2],'RS4MINI_PROTOCOL_ERROR'),([7],'RS4MINI_DEVICE_ERROR')]:
-            count=len(self.client.frames())
-            task=asyncio.create_task(self.gimbal.appCommands.queryCalibrationStatus())
-            await fixtures.until(lambda:len(self.client.frames())>count)
-            reply(self.client,sent(self.client,0x6e),payload)
-            with self.assertRaises(Exception) as error:
-                await task
-            self.assertEqual(error.exception.code,code)
-        with self.assertRaises(Exception) as timeout:
-            await self.gimbal.appCommands.queryCalibrationStatus(timeoutMs=5)
-        self.assertEqual(timeout.exception.code,'RS4MINI_RESPONSE_TIMEOUT')
-        self.assertFalse(self.gimbal.experimental.pending)
 
     async def test_no_ack_inflight_write_cancel_does_not_replay(self):
         self.gimbal.appCommands.useProfile('ronin-2.2.2')

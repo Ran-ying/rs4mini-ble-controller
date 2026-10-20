@@ -1,4 +1,6 @@
-# Python SDK 0.7.35
+# Python SDK 0.7.36
+
+当前变更：移除手柄查询与主动调参状态查询；电机默认/筛选多项改为逐项读取后完整汇总，非原子快照，保留各次真实响应。被动进度通知保留。详见仓库docs/APP_MOTOR_TUNING.md；下文旧版本新增记录是历史。
 
 Python 3.8+、Bleak 后端。保留早期 camelCase 和 snake_case 调用，同时补充反馈、低速位置闭环、缓存 ID、停止取消和 `close()`。
 

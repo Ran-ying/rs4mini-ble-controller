@@ -33,7 +33,7 @@ int main(void){@autoreleasepool{
         NSMutableDictionary *bad=Samples(op);bad[@"arbitraryFrame"]=@"55";Check(!RSSDKParseForm(identifier,bad,nil),@"no arbitrary GUI command fields");
         if([op[@"fields"] count]){NSDictionary *field=[op[@"fields"] firstObject];bad=Samples(op);bad[field[@"key"]]=@"NaN / unknown";Check(!RSSDKParseForm(identifier,bad,nil),@"malformed GUI fields rejected");}
     }
-    Check(ids.count==43&&selectors.count==43,@"43 GUI actions map to 43 distinct public methods");
+    Check(ids.count==41&&selectors.count==41,@"41 GUI actions map to 41 distinct public methods");
     NSDictionary *bools=RSSDKParseForm(@"smooth.write",@{@"axes.yaw":@"false"},nil);Check(CFGetTypeID((__bridge CFTypeRef)bools[@"axes"][@"yaw"])==CFBooleanGetTypeID(),@"false is genuine boolean, preserved in nested axis patch");
     Check([bools[@"axes"] count]==1,@"unspecified axes omitted");
     Check(!RSSDKParseForm(@"smooth.write",@{},nil),@"empty patch rejected before SDK");
@@ -41,14 +41,14 @@ int main(void){@autoreleasepool{
     Check(!RSSDKParseForm(@"rc.tuning.write",@{@"axis":@"pitch",@"parameter":@"smoothing",@"value":@"31"},nil),@"source parameter-specific limits reused");
     Check(!RSSDKParseForm(@"follow.tuning.write",@{@"axis":@"pitch",@"parameter":@"speed",@"value":@"0"},nil),@"source speed minimum reused");
     Check(!RSSDKParseForm(@"motorTuning.write",@{@"axis":@"pitch",@"parameter":@"stiffness",@"value":@"4"},nil),@"source motor minimum reused");
-    Check(!RSSDKParseForm(@"motorTuning.read",@{},nil),@"GUI cannot invoke known-incompatible bulk motor read");
+    Check(!RSSDKParseForm(@"motorTuning.read",@{},nil),@"GUI motor form retains explicit selectors; SDK batch available programmatically");
     Check(!RSSDKParseForm(@"motorTuning.read",@{@"axis":@"pitch"},nil),@"motor read requires both source selectors");
     Check(RSSDKParseForm(@"motorTuning.read",@{@"axis":@"pitch",@"parameter":@"stiffness"},nil)!=nil,@"single motor read remains available through public SDK");
     Check(!RSSDKParseForm(@"parameter.subscribe",@{@"keys":@"MotorEnabled,MotorEnabled"},nil),@"duplicate subscriptions rejected");
     Check(!RSSDKParseForm(@"parameter.subscribe",@{@"keys":@"NotAKnownKey"},nil),@"unknown subscription key rejected");
     Check(!RSSDKParseForm(@"raw.read",@{@"index":@"1.2",@"size":@"1"},nil),@"fractional integer rejected");
     Check(!RSSDKParseForm(@"fine.write",@{@"axis":@"roll",@"adjustmentDegrees":@"nan"},nil),@"nonfinite rejected");
-    for(NSString *mode in @[@"disconnected",@"busy",@"profile"]){fake.ready=![mode isEqual:@"disconnected"];fake.busy=[mode isEqual:@"busy"];fake.appProfile=[mode isEqual:@"profile"]?nil:@"ronin-2.2.2";NSUInteger before=fake.calls.count;__block BOOL failed=NO;RSSDKDispatch((id)fake,@"handle.read",@{},3000,^(NSDictionary *reply,NSError *err){failed=err!=nil;});Check(failed&&fake.calls.count==before,@"lifecycle/source gate prevents SDK invocation");}
+    for(NSString *mode in @[@"disconnected",@"busy",@"profile"]){fake.ready=![mode isEqual:@"disconnected"];fake.busy=[mode isEqual:@"busy"];fake.appProfile=[mode isEqual:@"profile"]?nil:@"ronin-2.2.2";NSUInteger before=fake.calls.count;__block BOOL failed=NO;RSSDKDispatch((id)fake,@"sensitivity.read",@{},3000,^(NSDictionary *reply,NSError *err){failed=err!=nil;});Check(failed&&fake.calls.count==before,@"lifecycle/source gate prevents SDK invocation");}
     fake.ready=YES;fake.busy=NO;fake.appProfile=@"ronin-2.2.2";
     for(NSNumber *timeout in @[@0,@60001,@(NAN)]){NSUInteger before=fake.calls.count;__block BOOL failed=NO;RSSDKDispatch((id)fake,@"handle.read",@{},timeout.doubleValue,^(NSDictionary *reply,NSError *error){failed=error!=nil;});Check(failed&&fake.calls.count==before,@"invalid timeout does not call SDK");}
     __block BOOL rejected=NO;NSUInteger before=fake.calls.count;RSSDKDispatch((id)fake,@"not-allowed",@{},3000,^(NSDictionary *reply,NSError *error){rejected=error!=nil;});Check(rejected&&fake.calls.count==before,@"unknown operation never dispatches");

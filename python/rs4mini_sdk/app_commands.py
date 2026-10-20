@@ -14,7 +14,7 @@ from .app_smooth_track import smooth_track_selection,smooth_track_write,smooth_t
 from .app_axis_mode import axis_mode_write,axis_mode_reply
 """Current-App device commands share the existing connection/queue/pending map."""
 from .app_fine_tune import fine_tune_spec
-from .app_handle import handle_reply,handle_write_spec
+from .app_handle import handle_write_spec
 from .app_user_parameters import user_parameter_notification
 from .app_standalone import standalone_selection,standalone_write,standalone_context,standalone_reply
 from .app_tuning import tuning_selection,tuning_write,tuning_reply
@@ -24,7 +24,7 @@ from .app_balance import balance_reply
 import time
 import copy
 from .protocol import frame
-from .app_calibration import auto_tune_payload, calibration_reply, calibration_notification
+from .app_calibration import auto_tune_payload, calibration_notification
 from .app_settings import mode_kind, SCHEMAS, settings_patch, decode_settings, settings_write
 from .app_protocol import app_profile, parameter_context, parameter_request, sensitivity_payload, factory_reset_spec, app_reply, parameter_reply
 from .experimental_device import _duration
@@ -287,12 +287,6 @@ class AppCommands:
         return await self.owner._run('sendHandleSettingRequest',work,False)
     send_handle_setting_request=sendHandleSettingRequest
 
-    async def getHandleSettings(self, *, timeoutMs=3000):
-        self._require_profile()
-        message=await self.owner.experimental._query_payload_command('App handle query',(4,0x36),b'',timeoutMs)
-        return handle_reply(message)
-
-    get_handle_settings=getHandleSettings
 
     async def readParameters(self, *, parameters, timeoutMs=3000):
         self._require_profile()
@@ -406,9 +400,23 @@ class AppCommands:
     async def getMotorTuning(self, *, axis=None, parameter=None, timeoutMs=3000):
         self._require_profile()
         selection=motor_selection(axis,parameter)
-        context=[dict(index=row['index'],size=1) for row in selection]
-        response=await self.owner.experimental._query_payload_command('App motor tuning',(4,0x32),parameter_request(context),timeoutMs)
-        return motor_reply(response,selection)
+        _duration(timeoutMs,'timeoutMs',False)
+        async def read(row, remaining, operation=None):
+            response=await self.owner.experimental._query_payload_command('App motor tuning',(4,0x32),parameter_request([dict(index=row['index'],size=1)]),remaining,external_operation=operation,epoch=self.owner._epoch if operation else None)
+            return motor_reply(response,[row])
+        if len(selection)==1:
+            return dict(await read(selection[0],timeoutMs),readMode='single')
+        async def body(operation):
+            deadline=time.monotonic()+timeoutMs/1000
+            replies=[]
+            for row in selection:
+                self.owner._check(operation)
+                remaining=(deadline-time.monotonic())*1000
+                if remaining<=0:raise RS4MiniError('RS4MINI_RESPONSE_TIMEOUT','Motor read total deadline expired')
+                replies.append(await read(row,remaining,operation))
+            self.owner._check(operation)
+            return dict(profile=self._profile,deviceVerified=False,physicalCompletionVerified=False,readMode='sequential',atomic=False,replies=replies,parameters=[p for r in replies for p in r['parameters']],values=[v for r in replies for v in r['values']])
+        return await self.owner._run('getMotorTuning',body,False)
 
     get_motor_tuning=getMotorTuning
 
@@ -425,12 +433,6 @@ class AppCommands:
 
     set_motor_tuning=setMotorTuning
 
-    async def queryCalibrationStatus(self, *, timeoutMs=3000):
-        self._require_profile()
-        response = await self.owner.experimental._query_payload_command('App calibration status', (4, 0x6e), b'', timeoutMs)
-        return calibration_reply(response)
-
-    query_calibration_status = queryCalibrationStatus
 
     async def sendAutoTuneRequest(self, *, start):
         self._require_profile()

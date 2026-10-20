@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.7.36
+
+- Remove active getHandleSettings/queryCalibrationStatus APIs, Python aliases and native selectors/UI actions after target-device nonresponse; keep passive calibration progress.
+- Read motor parameters one at a time using a single total timeout and cancellable operation ownership. Return complete non-atomic multi-read results with each real reply; preserve the single-read response, adding readMode. No fabricated ACK, partial success, retry or motion feature.
+
 ## 0.7.35
 
 - On macOS Noble, close the local CoreBluetooth connection without a redundant notification-disable write that the tested DJI characteristic rejects. Local listeners are removed, disconnect stays bounded, and real disconnect/stop errors still propagate. Other adapters retain explicit unsubscribe.

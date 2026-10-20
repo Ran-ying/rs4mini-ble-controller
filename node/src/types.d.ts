@@ -326,6 +326,12 @@ export interface AppParameterSubscriptionSent {
   acknowledgementRequested:false;acknowledged:false;sourceAppInitializationVerified:false;targetRoutingVerified:false;
   notificationStreamVerified:false;remoteSubscriptionStateVerified:false;freshStatusVerified:false;deviceVerified:false;physicalCompletionVerified:false;
 }
+export type AppMotorTuningSingleReply = AppParameterReply & {readMode:'single';values:MotorTuningReading[]};
+export interface AppMotorTuningBatchReply {
+  profile:'ronin-2.2.2';deviceVerified:false;physicalCompletionVerified:false;
+  readMode:'sequential';atomic:false;replies:Array<AppParameterReply & {values:MotorTuningReading[]}>;
+  parameters:AppParameterReply['parameters'];values:MotorTuningReading[];
+}
 export interface AppCommands {
   readonly parameterSubscriptionKeys:AppParameterSubscriptionKey[];
   sendParameterSubscriptionRequest(options:{keys:readonly AppParameterSubscriptionKey[]}):Promise<AppParameterSubscriptionSent>;
@@ -348,7 +354,6 @@ export interface AppCommands {
   sendHandheldStickControlRequest(options:{enabled:boolean;timeoutMs?:number}):Promise<AppHandheldStickControlReply>;
   sendComponentCalibrationRequest(options:{sourcePart:'AUTO';timeoutMs?:number}):Promise<AppComponentCalibrationReply>;
   sendFineTuneRequest(options:{axis:'pitch'|'roll';adjustmentDegrees:number;timeoutMs?:number}):Promise<AppCommandReply & {axis:'pitch'|'roll';requestedAdjustmentDegrees:number;encodedTenths:number;nominalAdjustmentDegrees:number;stabilizationStateVerified:false}>;
-  getHandleSettings(options?:{timeoutMs?:number}):Promise<AppCommandReply & {modelLayoutVerified:false;values:Array<{sourceGetter:string;offset:number;size:1;rawValue:number;sourceBit0:boolean|null}>}>;
   readonly programStatus:AppProgramStatus|null;
   readonly abnormalStatus:AppAbnormalStatus|null;
   readonly batteryStatus:AppBatteryStatus|null;
@@ -371,9 +376,8 @@ export interface AppCommands {
   sendBalanceTestRequest(options?: {timeoutMs?:number}):Promise<AppCommandReply & {requestedValue:64}>;
   readonly profile: "ronin-2.2.2" | null;
   readonly calibrationStatus: AppCalibrationStatus | null;
-  getMotorTuning(options?: {axis?: MotorTuningAxis; parameter?: MotorTuningParameter; timeoutMs?: number}): Promise<AppParameterReply & {values: MotorTuningReading[]}>;
+  getMotorTuning(options?: {axis?: MotorTuningAxis; parameter?: MotorTuningParameter; timeoutMs?: number}): Promise<AppMotorTuningSingleReply | AppMotorTuningBatchReply>;
   setMotorTuning(options: {axis: MotorTuningAxis; parameter: MotorTuningParameter; value: number; timeoutMs?: number}): Promise<AppCommandReply & {axis: MotorTuningAxis; parameter: MotorTuningParameter; requestedValue: number}>;
-  queryCalibrationStatus(options?: { timeoutMs?: number }): Promise<AppCommandReply & {calibration: AppCalibrationRecords}>;
   sendAutoTuneRequest(options: {start: boolean}): Promise<AppAutoTuneSent>;
   getCustomFollowSettings(options?: { timeoutMs?: number }): Promise<AppSettingsReading<CustomFollowSettings>>;
   getMotorSettings(options?: { timeoutMs?: number }): Promise<AppSettingsReading<MotorSettings>>;

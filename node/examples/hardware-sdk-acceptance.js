@@ -23,14 +23,11 @@ try{
  }else if(action==='settings'){
   save('standaloneBefore',await a.getStandaloneTuning(t));await task('setStandaloneTuning.input2.pitch.speed50',()=>a.setStandaloneTuning({...t,inputSource:2,axis:'pitch',parameter:'speed',value:50}));await task('standalone.readback',()=>a.getStandaloneTuning(t));
   for(const setting of ['dualChannelMode','tiltDirection','panDirection'])await task('handle.'+setting+'.0',()=>a.sendHandleSettingRequest({...t,setting,value:0}));
-  await task('handle.readback',()=>a.getHandleSettings(t));
   await task('stick.enabled',()=>a.sendHandheldStickControlRequest({...t,enabled:true}));
   for(const axis of ['pitch','roll'])await task('fine.'+axis+'.0',()=>a.sendFineTuneRequest({...t,axis,adjustmentDegrees:0}));await observe(5);
  }else if(action==='autotune'){
   await task('sendAutoTuneRequest.start',()=>a.sendAutoTuneRequest({start:true}));await observe(30);
-  await task('queryCalibrationStatus.afterStart',()=>a.queryCalibrationStatus(t));
   await task('sendAutoTuneRequest.stop',()=>a.sendAutoTuneRequest({start:false}));await observe(10);
-  await task('queryCalibrationStatus.afterStop',()=>a.queryCalibrationStatus(t));
  }else if(action==='system'||action==='balance'){
   const isSystem=action==='system',send=isSystem?'sendAutoCalibrationRequest':'sendBalanceTestRequest',read=isSystem?'getAutoCalibrationStatus':'getBalanceTestStatus';
   const ack=await task(send,()=>a[send](t));

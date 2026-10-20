@@ -39,18 +39,6 @@ test('no-ACK request owns in-flight write; stop cancels host work without replay
   const stopping=gimbal.stop(); blocked.resolve(); await stopping; await rejected;
   assert.equal(requests(p).length,1); assert.equal(gimbal.experimental.pending.size,0); assert.equal(gimbal.activeOperation,null);
 });
-test('calibration query separates status code from records and checks correlation', async t => {
-  const { gimbal, peripheral:p }=await connected(t); gimbal.appCommands.useProfile('ronin-2.2.2');
-  const read=gimbal.appCommands.queryCalibrationStatus(); await until(()=>queries(p).length);
-  const request=queries(p).at(-1); assert.equal(request.flags,0x40); assert.equal(request.payload.length,0);
-  let done=false; read.then(()=>{done=true;});
-  incoming(p,request.sequence+1,0x80,[0,0,2,1,40]);
-  incoming(p,request.sequence,0x80,[0,0,2,1,40],data=>{data[4]=0x24;});
-  await new Promise(resolve=>setImmediate(resolve)); assert.equal(done,false);
-  incoming(p,request.sequence,0x80,[0,0,2,1,40]); const result=await read;
-  assert.equal(result.calibration.state,'Processing'); assert.equal(result.calibration.percent,40);
-  assert.equal(gimbal.appCommands.calibrationStatus,null); // Query ACK does not populate an unsequenced notification cache.
-});
 test('passive records keep unknown fields, clone state, and isolate observer failure', async t => {
   const { gimbal, peripheral:p }=await connected(t); gimbal.appCommands.useProfile('ronin-2.2.2');
   const errors=[]; gimbal.onError=error=>errors.push(error);
@@ -73,17 +61,6 @@ test('malformed, wrong-endpoint, ACK and unknown-only packets do not reset passi
   incoming(p,5,0,[0,2,1,50]); assert.equal(gimbal.appCommands.calibrationStatus,null);
   gimbal.appCommands.useProfile('ronin-2.2.2'); incoming(p,6,0,[0,2,1,60]);
   p.emit('disconnect'); assert.equal(gimbal.appCommands.calibrationStatus,null);
-});
-test('query ACK-only success is empty, malformed/NACK/timeouts reject without synthetic completion', async t => {
-  const { gimbal, peripheral:p }=await connected(t); gimbal.appCommands.useProfile('ronin-2.2.2');
-  for (const [payload,code] of [[[0],null],[[0,0,1,2],'RS4MINI_PROTOCOL_ERROR'],[[7],'RS4MINI_DEVICE_ERROR']]) {
-    const count=queries(p).length, read=gimbal.appCommands.queryCalibrationStatus();
-    const checked=code ? assert.rejects(read,{code}) : read;
-    await until(()=>queries(p).length>count); incoming(p,queries(p).at(-1).sequence,0x80,payload);
-    const result=await checked; if(!code) { assert.equal(result.calibration.rawState,null); assert.equal(result.calibration.percent,null); }
-  }
-  await assert.rejects(gimbal.appCommands.queryCalibrationStatus({timeoutMs:5}),{code:'RS4MINI_RESPONSE_TIMEOUT'});
-  assert.equal(gimbal.experimental.pending.size,0);
 });
 test('record decoder uses last complete status and never invents a default for unknown-only body',()=>{
   const result=calibrationRecords(Buffer.from([0,2,1,10,0,2,3,20]));

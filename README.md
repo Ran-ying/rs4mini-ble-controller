@@ -1,12 +1,12 @@
 # rs4mini-ble-controller
 
-当前可用性：[Node / Python / macOS 独立 SDK 实机验收](docs/SDK_ONLY_ACCEPTANCE.md)，逐项列出可用接口与三个未通过接口。
+当前可用性：[Node / Python / macOS 独立 SDK 实机验收](docs/SDK_ONLY_ACCEPTANCE.md)，电机已改逐项读取；两项无响应查询已从SDK移除。
 
 研究接手入口：[当前研究方法与推进路线](docs/RESEARCH_ROADMAP.md)，包括证据门槛、下一步顺序和每项完成条件。
 
-通过电脑 BLE 直接控制 DJI RS 4 Mini 的非官方项目。Node.js **0.7.35** 为主实现；Python **0.7.35**、macOS 原生面板 **0.3.36** 提供三轴速度、姿态/机械关节反馈、低速定位、轨迹与路点、保存位置返回和显式自动重连。相机控制和视觉跟踪不属于当前范围。
+通过电脑 BLE 直接控制 DJI RS 4 Mini 的非官方项目。Node.js **0.7.36** 为主实现；Python **0.7.36**、macOS 原生面板 **0.3.37** 提供三轴速度、姿态/机械关节反馈、低速定位、轨迹与路点、保存位置返回和显式自动重连。相机控制和视觉跟踪不属于当前范围。
 
-macOS 0.3.36 已加入[设备 SDK 面板](docs/MACOS_SDK_PANEL.md)：命名参数、校准请求、订阅、状态和 CENTER 只读信息均可从 GUI 调用。
+macOS 0.3.37 提供[设备 SDK 面板](docs/MACOS_SDK_PANEL.md)：命名参数、校准请求、订阅、状态和 CENTER 只读信息均可从 GUI 调用。
 
 当前[全项实机验收记录](docs/HARDWARE_FULL_ACCEPTANCE.md)与[逐项清单](protocol/HARDWARE_ACCEPTANCE.json)区分已测通过、失败、未完成及用户排除项目；接口存在和ACK不能代替设备效果。
 
@@ -88,7 +88,7 @@ RS4MINI_POSITION_AXIS=tilt RS4MINI_POSITION_DELTA=3 npm run example:position
 
 ## 各端状态
 
-| 功能 | Node 0.7.35 | Python 0.7.35 | macOS 面板 0.3.36 |
+| 功能 | Node 0.7.36 | Python 0.7.36 | macOS 面板 0.3.37 |
 |---|---|---|---|
 | 三轴速度 / 停止 / 三轴回中 | 有 | 有 | 有 |
 | 反馈解析与 CRC 重组 | 有 | 有 | 有 |

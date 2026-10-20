@@ -1,4 +1,6 @@
-# RS 4 Mini Control 0.3.36
+# RS 4 Mini Control 0.3.37
+
+当前变更：移除手柄查询与主动调参状态查询；电机默认/筛选多项改为逐项读取后完整汇总，非原子快照，保留各次真实响应。被动进度通知保留。详见仓库docs/APP_MOTOR_TUNING.md；下文旧版本新增记录是历史。
 
 新增右侧「设备 SDK」面板：43 个命名 App 来源操作、10 类被动状态、原始 degree-info 查询，复用同一个 RSGimbal。使用与验证范围见 [面板说明](../docs/MACOS_SDK_PANEL.md)。
 

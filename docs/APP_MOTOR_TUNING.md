@@ -1,6 +1,6 @@
-# 命名电机数值参数（0.7.6 / 原生0.3.6）
+# 命名电机数值参数（0.7.36 / 原生0.3.37）
 
-应用仍只创建 `RS4Mini` / `RSGimbal`，通过设备 SDK 复用同一个连接、队列和操作槽。新接口要求显式 `ronin-2.2.2` 来源配置，未进行实机调参，不包含高级运动功能。
+应用仍只创建 `RS4Mini` / `RSGimbal`，通过设备 SDK 复用同一个连接、队列和操作槽。接口要求显式 `ronin-2.2.2` 来源配置，本次只做读取，不触发调参或高级运动。
 
 ## 命令空间与来源
 
@@ -17,7 +17,7 @@
 
 这些是厂商原始数值；不换算成角度、速度、百分比或物理增益。范围用于拒绝超出源码的请求，不能视为机械安全范围或负载推荐值。继承路径不证明每个固件或 App UI 都启用了这些字段。
 
-## Node / Web
+## Node
 
 ```js
 // gimbal 为应用已有且已连接的对象；以下调用会访问硬件，不属于默认离线测试。
@@ -28,7 +28,7 @@ const one = await gimbal.appCommands.getMotorTuning({ axis: 'roll', parameter: '
 const ack = await gimbal.appCommands.setMotorTuning({ axis: 'roll', parameter: 'stiffness', value: 50 });
 ```
 
-`getMotorTuning({axis?,parameter?,timeoutMs?})` 默认读取12项，可按一个轴或一种参数筛选。轴使用源码 `pitch/roll/yaw` 命名，和虚拟摇杆 `pan/tilt` 选项分开。返回 AppParameterReply，另含 `values` 数组，每项为：
+`getMotorTuning({axis?,parameter?,timeoutMs?})` 默认读取12项，可按一个轴或一种参数筛选。轴使用源码 `pitch/roll/yaw` 命名，和虚拟摇杆 `pan/tilt` 选项分开。单项返回 AppParameterReply 加 `readMode:'single'`；多项逐项读取完成后返回非原子汇总（下述契约），均含 `values` 数组，每项为：
 
 ```js
 { axis:'roll', parameter:'stiffness', index:1, size:1,
@@ -37,9 +37,21 @@ const ack = await gimbal.appCommands.setMotorTuning({ axis: 'roll', parameter: '
 
 选择顺序为上表逐行、每行Pitch/Roll/Yaw；不依赖返回索引自动猜字段。未知数值如255保留原值和十六进制，`withinSourceRange:false`；不夹取、不填入默认值。
 
+多项读取每次只发送一个索引并等待严格关联的04:32 ACK，依选定顺序完成后返回：
+
+```js
+{ profile:'ronin-2.2.2', deviceVerified:false, physicalCompletionVerified:false,
+  readMode:'sequential', atomic:false, values:[/*全部所选值*/],
+  parameters:[/*全部已验证记录*/], replies:[/*每次真实单项响应，含message/bodyHex*/] }
+```
+
+不合成顶层ACK、message、bodyHex或statusCode。这个结果不是同一时刻快照；前后参数可能在读取期间变化。任何一项失败、超时、取消或断线均整体拒绝，无部分成功、默认补值、重发或断线重放。timeoutMs是整个读取循环共用的总预算，不能每项重新获得完整超时。多项在前置停止后独占操作槽到完成/错误；Node/Python单项保留原有限查询语义，原生继续独占且先停止主机运动。
+
+三端实机已通过默认12项、按轴4项、按参数3项及单项1项，SDK只发原已验证的单项请求。历史多索引一次请求只收到首条，当前不再发送该形式。
+
 `setMotorTuning({axis,parameter,value,timeoutMs?})` 每次写一项，拒绝其他名字、任意索引、布尔/浮点值和越界值。参数先验证并复制，再停止主机连续运动并取得操作槽，发送 `04:31`、等待关联的状态 ACK。成功返回 AppCommandReply，加 `axis/parameter/requestedValue`；不把请求值写入反馈缓存，不自动重发。
 
-`timeoutMs` 默认3000，范围大于0且不超过60000ms；写操作的响应截止时间从停止前置步骤之后开始，I/O和清理沿用已有截止时间。读取可与Node/Python运动共存；写入独占，支持stop/断连/Web失焦取消。已发送的值不承诺回滚或持久化。ACK和源码范围均不能代替写后回读与实际效果验收，结果仍为 `deviceVerified:false`、`physicalCompletionVerified:false`。
+`timeoutMs` 默认3000，范围大于0且不超过60000ms；写操作的响应截止时间从停止前置步骤之后开始，I/O和清理沿用已有截止时间。单项读取可与Node/Python运动共存，多项独占；写入独占，支持stop/断连取消。已发送的值不承诺回滚或持久化。ACK和源码范围均不能代替写后回读与实际效果验收，结果仍为 `deviceVerified:false`、`physicalCompletionVerified:false`。
 
 ## Python 与原生
 
@@ -50,11 +62,11 @@ Python提供相同 camelCase 方法，以及 `get_motor_tuning()`、`set_motor_t
 - `getMotorTuning:timeoutMs:completion:`：筛选字典只接受axis/parameter，空字典或nil读取全部。
 - `setMotorTuning:timeoutMs:completion:`：字典须含axis/parameter/value，数值拒绝布尔NSNumber。
 
-原生查询/写入均独占操作槽并先发送中位停止，completion沿用主队列异步回调；详细差异与错误码见 [APP_COMMANDS.md](APP_COMMANDS.md)。面板没有新增调参按钮，程序使用上述SDK接口；没有启动UI或操作硬件。
+原生查询/写入均独占操作槽并先发送中位停止，completion沿用主队列异步回调；详细差异与错误码见 [APP_COMMANDS.md](APP_COMMANDS.md)。面板删除两项已退役查询，仍提供单项电机表单；本次只实测无GUI SDK，未做实时UI验收。
 
 ## 编解码与复现
 
-读取请求只含索引，如Yaw为 `02 05 08 0b`；写Roll刚度50为 `01 01 32`，命令31，flags40。查询响应先分离Ccode；业务体按请求上下文读取“索引、原始头字节、外部宽度指定的原始值”，第二头字节保持raw，不假定它等于宽度。截断、错序、尾部剩余或非0返回码均拒绝。查询命令32不能被同序号的命令10响应满足。
+读取请求每次只含一个索引，如Yaw依次发 `02`、`05`、`08`、`0b`；写Roll刚度50为 `01 01 32`，命令31，flags40。查询响应先分离Ccode；业务体按请求上下文读取“索引、原始头字节、外部宽度指定的原始值”，第二头字节保持raw，不假定它等于宽度。截断、错序、尾部剩余或非0返回码均拒绝。查询命令32不能被同序号的命令10响应满足。
 
 当前记录全部为typeID0/INT08U、size1。已核对枚举、合成switch映射、单项/数组两条doPack分支、Number.intValue和BytesUtil.getBytes(int)低字节在前的实现，不只根据资源宽度猜写入载荷。
 

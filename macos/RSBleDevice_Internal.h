@@ -17,6 +17,8 @@
 @property(nonatomic) BOOL appNoAckPending;
 @property(nonatomic, copy) NSNumber *appRequestedStart;
 @property(nonatomic, strong) NSArray *appParameters;
+@property(nonatomic, copy) NSArray *appMotorSelection;
+@property(nonatomic, strong) NSMutableArray *appMotorReplies;
 @property(nonatomic, copy) NSString *appSettingsKind;
 @property(nonatomic, copy) NSDictionary *appSettingsPatch;
 @property(nonatomic, strong) NSNumber *appSettingsBefore;

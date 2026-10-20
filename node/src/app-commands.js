@@ -13,7 +13,7 @@ import {profileValueSelection,profileValueWrite,profileValueReply} from './app-p
 import {smoothTrackSelection,smoothTrackWrite,smoothTrackReply} from './app-smooth-track.js';
 import {axisModeWrite,axisModeReply} from './app-axis-mode.js';
 import { fineTuneSpec } from './app-fine-tune.js';
-import { handleReply, handleWriteSpec } from './app-handle.js';
+import { handleWriteSpec } from './app-handle.js';
 import { userParameterNotification } from './app-user-parameters.js';
 import { standaloneSelection, standaloneWrite, standaloneContext, standaloneReply } from './app-standalone.js';
 import { tuningSelection, tuningWrite, tuningReply } from './app-tuning.js';
@@ -23,7 +23,7 @@ import { balanceStartPayload, balanceReply } from './app-balance.js';
 import { appProfile, parameterContext, parameterRequest, sensitivityPayload, factoryResetSpec, appReply, parameterReply } from './app-protocol.js';
 import { motorSelection, motorWrite, motorReply } from './app-motor.js';
 import { frame } from './protocol.js';
-import { autoTunePayload, calibrationReply, calibrationNotification } from './app-calibration.js';
+import { autoTunePayload, calibrationNotification } from './app-calibration.js';
 import { modeKind, settingsSchema, settingsPatch, decodeSettings, settingsWrite } from './app-settings.js';
 import { failure, check, now } from './async.js';
 function optionsOnly(options, keys) {
@@ -202,11 +202,6 @@ export class AppCommands {
       const {payload,...requested}=spec;return {...appReply(message,0x35),...requested,unspecifiedByteSemanticsVerified:false,readbackVerified:false,persistenceVerified:false};
     },false);
   }
-  async getHandleSettings(options={}) {
-    optionsOnly(options,['timeoutMs']);this._requireProfile();
-    const message=await this.owner.experimental._queryPayloadCommand('App handle query',[4,0x36],new Uint8Array(0),options.timeoutMs??3000);
-    return handleReply(message);
-  }
   async readParameters(options = {}) {
     optionsOnly(options, ['parameters', 'timeoutMs']); this._requireProfile();
     const parameters = parameterContext(options.parameters);
@@ -289,9 +284,23 @@ export class AppCommands {
   async getMotorTuning(options = {}) {
     optionsOnly(options, ['axis','parameter','timeoutMs']); this._requireProfile();
     const {timeoutMs = 3000, ...filters}=options, selection=motorSelection(filters);
-    const context=selection.map(({index,size})=>({index,size}));
-    const response=await this.owner.experimental._queryPayloadCommand('App motor tuning',[4,0x32],parameterRequest(context),timeoutMs);
-    return motorReply(response,selection);
+    if (!Number.isFinite(timeoutMs) || timeoutMs<=0 || timeoutMs>60000) throw new RangeError('timeoutMs must be >0..60000');
+    const read = async (row, remaining, context={}) => {
+      const response=await this.owner.experimental._queryPayloadCommand('App motor tuning',[4,0x32],parameterRequest([{index:row.index,size:row.size}]),remaining,context);
+      return motorReply(response,[row]);
+    };
+    if(selection.length===1)return {...await read(selection[0],timeoutMs),readMode:'single'};
+    return this.owner._run('getMotorTuning',async operation=>{
+      const deadline=now()+timeoutMs,replies=[];
+      for(const row of selection){
+        check(operation.controller.signal);const remaining=deadline-now();
+        if(remaining<=0)throw failure('RS4MINI_RESPONSE_TIMEOUT','Motor read total deadline expired');
+        replies.push(await read(row,remaining,{signal:operation.controller.signal,epoch:this.owner.motionEpoch}));
+      }
+      check(operation.controller.signal);
+      return {profile:this._profile,deviceVerified:false,physicalCompletionVerified:false,readMode:'sequential',atomic:false,
+        replies,parameters:replies.flatMap(r=>r.parameters),values:replies.flatMap(r=>r.values)};
+    },false);
   }
   async setMotorTuning(options = {}) {
     optionsOnly(options, ['axis','parameter','value','timeoutMs']); this._requireProfile();
@@ -303,11 +312,6 @@ export class AppCommands {
       const {payload,...requested}=spec;
       return {...appReply(response,0x31),...requested};
     },false);
-  }
-  async queryCalibrationStatus(options = {}) {
-    optionsOnly(options, ['timeoutMs']); this._requireProfile();
-    const response = await this.owner.experimental._queryPayloadCommand('App calibration status', [4, 0x6e], undefined, options.timeoutMs ?? 3000);
-    return calibrationReply(response);
   }
   async sendAutoTuneRequest(options = {}) {
     optionsOnly(options, ['start']); this._requireProfile();

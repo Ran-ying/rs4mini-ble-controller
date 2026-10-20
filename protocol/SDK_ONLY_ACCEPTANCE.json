@@ -1,15 +1,22 @@
 {
   "date": "2026-10-20",
-  "scope": "device SDK only; no GUI or advanced motion layer",
-  "runtime": {
-    "node": "0.7.35",
-    "python": "0.7.35",
-    "native": "0.3.36/build39"
+  "scope": "direct device SDK, no GUI/advanced motion, read-only plus neutral stop",
+  "versions": {
+    "node": "0.7.36",
+    "python": "0.7.36",
+    "native": "0.3.37/build40"
   },
-  "hardware": "same user-authorized RS4Mini, sequential clients",
-  "settingsWrite": "read sensitivity then write same value1 and fresh readback1; preauthorized",
-  "fullAcceptanceComplete": false,
+  "allTestedMethodsPassed": true,
   "basicSdkUsable": true,
+  "fullAcceptanceComplete": false,
+  "removedApis": [
+    "getHandleSettings",
+    "get_handle_settings",
+    "queryCalibrationStatus",
+    "query_calibration_status",
+    "native equivalent selectors"
+  ],
+  "motorReadContract": "one index per request; single actual reply or full non-atomic aggregate with actual replies; total timeout/cancellation; no partial success",
   "reports": {
     "node": {
       "port": "node",
@@ -26,7 +33,7 @@
         {
           "name": "attitude",
           "ok": true,
-          "elapsedMs": 300,
+          "elapsedMs": 462,
           "value": {
             "pitch": -180,
             "roll": 0,
@@ -36,9 +43,9 @@
         {
           "name": "joints",
           "ok": true,
-          "elapsedMs": 995,
+          "elapsedMs": 999,
           "value": {
-            "pitch": -1,
+            "pitch": -0.9,
             "roll": -1.2,
             "yaw": 90.65
           }
@@ -46,7 +53,7 @@
         {
           "name": "getFollowSensitivity",
           "ok": true,
-          "elapsedMs": 23,
+          "elapsedMs": 24,
           "value": {
             "rawValue": 1,
             "mode": 1
@@ -63,7 +70,7 @@
         {
           "name": "getCustomFollowSettings",
           "ok": true,
-          "elapsedMs": 22,
+          "elapsedMs": 23,
           "value": {
             "rawValue": 0
           }
@@ -71,7 +78,7 @@
         {
           "name": "getAxisMode",
           "ok": true,
-          "elapsedMs": 23,
+          "elapsedMs": 34,
           "value": {
             "rawValue": 0,
             "sourceMode": "ThreeAxis"
@@ -88,7 +95,7 @@
         {
           "name": "getWorkMode",
           "ok": true,
-          "elapsedMs": 23,
+          "elapsedMs": 22,
           "value": {
             "rawValue": 1,
             "sourceMode": "Flower"
@@ -97,7 +104,7 @@
         {
           "name": "getSmoothTrackAxes",
           "ok": true,
-          "elapsedMs": 22,
+          "elapsedMs": 23,
           "value": {
             "valueCount": 3
           }
@@ -121,27 +128,9 @@
         {
           "name": "getStandaloneTuning",
           "ok": true,
-          "elapsedMs": 24,
+          "elapsedMs": 22,
           "value": {
             "valueCount": 6
-          }
-        },
-        {
-          "name": "sensitivity.sameValueWrite",
-          "ok": true,
-          "elapsedMs": 223,
-          "value": {
-            "statusCode": 0,
-            "acknowledged": true,
-            "requestedMode": 1
-          }
-        },
-        {
-          "name": "sensitivity.sameValueReadback",
-          "ok": true,
-          "elapsedMs": 23,
-          "value": {
-            "rawValue": 1
           }
         },
         {
@@ -163,33 +152,46 @@
         {
           "name": "motor.single",
           "ok": true,
-          "elapsedMs": 22,
+          "elapsedMs": 23,
           "value": {
+            "readMode": "single",
             "valueCount": 1
           }
         },
         {
           "name": "motor.bulk",
-          "ok": false,
-          "elapsedMs": 23,
-          "code": "RS4MINI_PROTOCOL_ERROR"
+          "ok": true,
+          "elapsedMs": 270,
+          "value": {
+            "readMode": "sequential",
+            "atomic": false,
+            "valueCount": 12
+          }
         },
         {
-          "name": "handle",
-          "ok": false,
-          "elapsedMs": 3003,
-          "code": "RS4MINI_RESPONSE_TIMEOUT"
+          "name": "motor.axis",
+          "ok": true,
+          "elapsedMs": 90,
+          "value": {
+            "readMode": "sequential",
+            "atomic": false,
+            "valueCount": 4
+          }
         },
         {
-          "name": "calibration.query",
-          "ok": false,
-          "elapsedMs": 3003,
-          "code": "RS4MINI_RESPONSE_TIMEOUT"
+          "name": "motor.parameter",
+          "ok": true,
+          "elapsedMs": 80,
+          "value": {
+            "readMode": "sequential",
+            "atomic": false,
+            "valueCount": 3
+          }
         },
         {
           "name": "degreeInfo",
           "ok": true,
-          "elapsedMs": 25,
+          "elapsedMs": 21,
           "value": {
             "payloadHex": "00"
           }
@@ -197,7 +199,7 @@
         {
           "name": "stop",
           "ok": true,
-          "elapsedMs": 208
+          "elapsedMs": 202
         },
         {
           "name": "decoder",
@@ -210,7 +212,7 @@
         {
           "name": "close",
           "ok": true,
-          "elapsedMs": 206,
+          "elapsedMs": 203,
           "value": {
             "connected": false,
             "closed": true
@@ -234,11 +236,11 @@
         {
           "name": "attitude",
           "ok": true,
-          "elapsedMs": 755,
+          "elapsedMs": 528,
           "value": {
             "pitch": -180.0,
             "roll": 0.0,
-            "yaw": 0.0
+            "yaw": -0.1
           }
         },
         {
@@ -246,7 +248,7 @@
           "ok": true,
           "elapsedMs": 1001,
           "value": {
-            "pitch": -1.0,
+            "pitch": -0.9,
             "roll": -1.2,
             "yaw": 90.65
           }
@@ -263,7 +265,7 @@
         {
           "name": "getMotorSettings",
           "ok": true,
-          "elapsedMs": 22,
+          "elapsedMs": 33,
           "value": {
             "rawValue": 0
           }
@@ -279,7 +281,7 @@
         {
           "name": "getAxisMode",
           "ok": true,
-          "elapsedMs": 22,
+          "elapsedMs": 23,
           "value": {
             "rawValue": 0,
             "sourceMode": "ThreeAxis"
@@ -288,7 +290,7 @@
         {
           "name": "getUserProfile",
           "ok": true,
-          "elapsedMs": 24,
+          "elapsedMs": 22,
           "value": {
             "rawValue": 0
           }
@@ -296,7 +298,7 @@
         {
           "name": "getWorkMode",
           "ok": true,
-          "elapsedMs": 21,
+          "elapsedMs": 22,
           "value": {
             "rawValue": 1,
             "sourceMode": "Flower"
@@ -313,7 +315,7 @@
         {
           "name": "getFollowTuning",
           "ok": true,
-          "elapsedMs": 21,
+          "elapsedMs": 23,
           "value": {
             "valueCount": 9
           }
@@ -321,7 +323,7 @@
         {
           "name": "getRcTuning",
           "ok": true,
-          "elapsedMs": 25,
+          "elapsedMs": 22,
           "value": {
             "valueCount": 9
           }
@@ -329,33 +331,15 @@
         {
           "name": "getStandaloneTuning",
           "ok": true,
-          "elapsedMs": 21,
+          "elapsedMs": 22,
           "value": {
             "valueCount": 6
           }
         },
         {
-          "name": "sensitivity.sameValueWrite",
-          "ok": true,
-          "elapsedMs": 245,
-          "value": {
-            "statusCode": 0,
-            "acknowledged": true,
-            "requestedMode": 1
-          }
-        },
-        {
-          "name": "sensitivity.sameValueReadback",
-          "ok": true,
-          "elapsedMs": 24,
-          "value": {
-            "rawValue": 1
-          }
-        },
-        {
           "name": "follow.speed",
           "ok": true,
-          "elapsedMs": 23,
+          "elapsedMs": 33,
           "value": {
             "rawValue": 252
           }
@@ -363,7 +347,7 @@
         {
           "name": "rc.speed",
           "ok": true,
-          "elapsedMs": 22,
+          "elapsedMs": 24,
           "value": {
             "rawValue": 84
           }
@@ -371,33 +355,46 @@
         {
           "name": "motor.single",
           "ok": true,
-          "elapsedMs": 23,
+          "elapsedMs": 22,
           "value": {
+            "readMode": "single",
             "valueCount": 1
           }
         },
         {
           "name": "motor.bulk",
-          "ok": false,
-          "elapsedMs": 23,
-          "code": "RS4MINI_PROTOCOL_ERROR"
+          "ok": true,
+          "elapsedMs": 270,
+          "value": {
+            "readMode": "sequential",
+            "atomic": false,
+            "valueCount": 12
+          }
         },
         {
-          "name": "handle",
-          "ok": false,
-          "elapsedMs": 3002,
-          "code": "RS4MINI_RESPONSE_TIMEOUT"
+          "name": "motor.axis",
+          "ok": true,
+          "elapsedMs": 90,
+          "value": {
+            "readMode": "sequential",
+            "atomic": false,
+            "valueCount": 4
+          }
         },
         {
-          "name": "calibration.query",
-          "ok": false,
-          "elapsedMs": 3003,
-          "code": "RS4MINI_RESPONSE_TIMEOUT"
+          "name": "motor.parameter",
+          "ok": true,
+          "elapsedMs": 68,
+          "value": {
+            "readMode": "sequential",
+            "atomic": false,
+            "valueCount": 3
+          }
         },
         {
           "name": "degreeInfo",
           "ok": true,
-          "elapsedMs": 25,
+          "elapsedMs": 22,
           "value": {
             "payloadHex": "00"
           }
@@ -405,7 +402,7 @@
         {
           "name": "stop",
           "ok": true,
-          "elapsedMs": 209,
+          "elapsedMs": 204,
           "value": null
         },
         {
@@ -419,7 +416,7 @@
         {
           "name": "close",
           "ok": true,
-          "elapsedMs": 213,
+          "elapsedMs": 206,
           "value": {
             "connected": false,
             "closed": true
@@ -443,19 +440,19 @@
         {
           "name": "attitude",
           "ok": true,
-          "elapsedMs": 708,
+          "elapsedMs": 653,
           "value": {
             "pitch": -180.0,
             "roll": 0.0,
-            "yaw": 0.0
+            "yaw": -0.1
           }
         },
         {
           "name": "joints",
           "ok": true,
-          "elapsedMs": 1000,
+          "elapsedMs": 990,
           "value": {
-            "pitch": -1.0,
+            "pitch": -0.9,
             "roll": -1.3,
             "yaw": 90.65
           }
@@ -514,7 +511,7 @@
         {
           "name": "getSmoothTrackAxes",
           "ok": true,
-          "elapsedMs": 24,
+          "elapsedMs": 23,
           "value": {
             "valueCount": 3
           }
@@ -544,27 +541,9 @@
           }
         },
         {
-          "name": "sensitivity.sameValueWrite",
-          "ok": true,
-          "elapsedMs": 225,
-          "value": {
-            "statusCode": 0,
-            "acknowledged": true,
-            "requestedMode": 1
-          }
-        },
-        {
-          "name": "sensitivity.sameValueReadback",
-          "ok": true,
-          "elapsedMs": 22,
-          "value": {
-            "rawValue": 1
-          }
-        },
-        {
           "name": "follow.speed",
           "ok": true,
-          "elapsedMs": 24,
+          "elapsedMs": 23,
           "value": {
             "rawValue": 252
           }
@@ -580,33 +559,46 @@
         {
           "name": "motor.single",
           "ok": true,
-          "elapsedMs": 22,
+          "elapsedMs": 23,
           "value": {
+            "readMode": "single",
             "valueCount": 1
           }
         },
         {
           "name": "motor.bulk",
-          "ok": false,
-          "elapsedMs": 23,
-          "code": "RS4MINI_PROTOCOL_ERROR"
+          "ok": true,
+          "elapsedMs": 293,
+          "value": {
+            "readMode": "sequential",
+            "atomic": false,
+            "valueCount": 12
+          }
         },
         {
-          "name": "handle",
-          "ok": false,
-          "elapsedMs": 3002,
-          "code": "RS4MINI_RESPONSE_TIMEOUT"
+          "name": "motor.axis",
+          "ok": true,
+          "elapsedMs": 101,
+          "value": {
+            "readMode": "sequential",
+            "atomic": false,
+            "valueCount": 4
+          }
         },
         {
-          "name": "calibration.query",
-          "ok": false,
-          "elapsedMs": 3002,
-          "code": "RS4MINI_RESPONSE_TIMEOUT"
+          "name": "motor.parameter",
+          "ok": true,
+          "elapsedMs": 68,
+          "value": {
+            "readMode": "sequential",
+            "atomic": false,
+            "valueCount": 3
+          }
         },
         {
           "name": "degreeInfo",
           "ok": true,
-          "elapsedMs": 26,
+          "elapsedMs": 22,
           "value": {
             "payloadHex": "00"
           }
@@ -614,7 +606,7 @@
         {
           "name": "stop",
           "ok": true,
-          "elapsedMs": 208,
+          "elapsedMs": 204,
           "value": null
         },
         {
@@ -628,7 +620,7 @@
         {
           "name": "close",
           "ok": true,
-          "elapsedMs": 210,
+          "elapsedMs": 208,
           "value": {
             "connected": false,
             "closed": true
@@ -663,7 +655,7 @@
         {
           "name": "joints",
           "value": {
-            "pitch": -1,
+            "pitch": -0.9,
             "roll": -1.2,
             "yaw": 90.65
           },
@@ -747,18 +739,6 @@
           "ok": true
         },
         {
-          "name": "sensitivity.sameValueWrite",
-          "ok": true
-        },
-        {
-          "name": "sensitivity.sameValueReadback",
-          "value": {
-            "rawValue": 1,
-            "mode": 1
-          },
-          "ok": true
-        },
-        {
           "name": "follow.speed",
           "value": {
             "rawValue": 252
@@ -775,24 +755,37 @@
         {
           "name": "motor.single",
           "value": {
+            "readMode": "single",
             "valueCount": 1
           },
           "ok": true
         },
         {
           "name": "motor.bulk",
-          "ok": false,
-          "code": "RS4MINI_PROTOCOL_ERROR"
+          "value": {
+            "readMode": "sequential",
+            "atomic": false,
+            "valueCount": 12
+          },
+          "ok": true
         },
         {
-          "name": "handle",
-          "ok": false,
-          "code": "RS4MINI_RESPONSE_TIMEOUT"
+          "name": "motor.axis",
+          "value": {
+            "readMode": "sequential",
+            "atomic": false,
+            "valueCount": 4
+          },
+          "ok": true
         },
         {
-          "name": "calibration.query",
-          "ok": false,
-          "code": "RS4MINI_RESPONSE_TIMEOUT"
+          "name": "motor.parameter",
+          "value": {
+            "readMode": "sequential",
+            "atomic": false,
+            "valueCount": 3
+          },
+          "ok": true
         },
         {
           "name": "degreeInfo",
@@ -810,10 +803,5 @@
       "port": "macos"
     }
   },
-  "methodFailures": [
-    "motor.bulk",
-    "handle",
-    "calibration.query"
-  ],
-  "claims": "Basic tested connection/read/same-value write/stop/teardown only; not all command or motion/firmware-task acceptance."
+  "note": "No settings writes or calibration/task launches in this release test; prior0.7.35 same-value write/readback evidence retained in history."
 }

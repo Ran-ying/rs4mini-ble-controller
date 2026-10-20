@@ -991,6 +991,292 @@
         }
       ],
       "targetModelLayoutVerified": false
+    },
+    "recenterInitialRun": {
+      "port": "node",
+      "entry": "BleDevice",
+      "sdkVersion": "0.7.38",
+      "startedAt": "2026-10-20T19:23:10.035Z",
+      "finishedAt": "2026-10-20T19:23:14.974Z",
+      "rows": [
+        {
+          "name": "recenter.write",
+          "ok": true
+        },
+        {
+          "name": "session",
+          "ok": false,
+          "code": "ERR_ASSERTION",
+          "message": "Yaw did not settle near centered reference"
+        },
+        {
+          "name": "close",
+          "ok": true
+        }
+      ],
+      "samples": [
+        {
+          "pitch": 3.8,
+          "roll": -0.5,
+          "yaw": 90.71,
+          "unit": "deg",
+          "raw": {
+            "pitch": 38,
+            "roll": -5,
+            "yaw": 9071
+          },
+          "timestamp": 1792524190776
+        },
+        {
+          "pitch": -0.5,
+          "roll": -0.5,
+          "yaw": 91.6,
+          "unit": "deg",
+          "raw": {
+            "pitch": -5,
+            "roll": -5,
+            "yaw": 9160
+          },
+          "timestamp": 1792524191766
+        },
+        {
+          "pitch": -0.8,
+          "roll": -0.5,
+          "yaw": 91.6,
+          "unit": "deg",
+          "raw": {
+            "pitch": -8,
+            "roll": -5,
+            "yaw": 9160
+          },
+          "timestamp": 1792524192770
+        },
+        {
+          "pitch": -0.8,
+          "roll": -0.5,
+          "yaw": 91.6,
+          "unit": "deg",
+          "raw": {
+            "pitch": -8,
+            "roll": -5,
+            "yaw": 9160
+          },
+          "timestamp": 1792524193776
+        },
+        {
+          "pitch": -0.8,
+          "roll": -0.5,
+          "yaw": 91.6,
+          "unit": "deg",
+          "raw": {
+            "pitch": -8,
+            "roll": -5,
+            "yaw": 9160
+          },
+          "timestamp": 1792524194765
+        }
+      ],
+      "precisionGuarantee": false,
+      "separateAxisCenteringVerified": false
+    },
+    "recenterOffset15": {
+      "port": "node",
+      "entry": "BleDevice",
+      "sdkVersion": "0.7.38",
+      "startedAt": "2026-10-20T19:25:27.779Z",
+      "finishedAt": "2026-10-20T19:25:40.113Z",
+      "rows": [
+        {
+          "name": "yaw.offsetMeasured",
+          "ok": true,
+          "offsetDegrees": 15.769999999999982
+        },
+        {
+          "name": "recenter.write",
+          "ok": true
+        },
+        {
+          "name": "recenter.measuredSettledFeedback",
+          "ok": true
+        },
+        {
+          "name": "recenter.returnMeasuredBaseline",
+          "ok": true,
+          "yawErrorDegrees": 0.009999999999990905
+        },
+        {
+          "name": "decoder",
+          "ok": true
+        },
+        {
+          "name": "close",
+          "ok": true
+        }
+      ],
+      "samples": [
+        {
+          "pitch": -0.8,
+          "roll": -0.5,
+          "yaw": 91.6,
+          "unit": "deg",
+          "raw": {
+            "pitch": -8,
+            "roll": -5,
+            "yaw": 9160
+          },
+          "timestamp": 1792524327907
+        },
+        {
+          "pitch": -0.8,
+          "roll": -0.5,
+          "yaw": 93.16,
+          "unit": "deg",
+          "raw": {
+            "pitch": -8,
+            "roll": -5,
+            "yaw": 9316
+          },
+          "timestamp": 1792524328912
+        },
+        {
+          "pitch": -0.8,
+          "roll": -0.5,
+          "yaw": 95.13,
+          "unit": "deg",
+          "raw": {
+            "pitch": -8,
+            "roll": -5,
+            "yaw": 9513
+          },
+          "timestamp": 1792524329903
+        },
+        {
+          "pitch": -0.8,
+          "roll": -0.5,
+          "yaw": 97.09,
+          "unit": "deg",
+          "raw": {
+            "pitch": -8,
+            "roll": -5,
+            "yaw": 9709
+          },
+          "timestamp": 1792524330908
+        },
+        {
+          "pitch": -0.9,
+          "roll": -0.5,
+          "yaw": 99.05,
+          "unit": "deg",
+          "raw": {
+            "pitch": -9,
+            "roll": -5,
+            "yaw": 9905
+          },
+          "timestamp": 1792524331912
+        },
+        {
+          "pitch": -0.9,
+          "roll": -0.4,
+          "yaw": 101.02,
+          "unit": "deg",
+          "raw": {
+            "pitch": -9,
+            "roll": -4,
+            "yaw": 10102
+          },
+          "timestamp": 1792524332901
+        },
+        {
+          "pitch": -0.9,
+          "roll": -0.5,
+          "yaw": 102.98,
+          "unit": "deg",
+          "raw": {
+            "pitch": -9,
+            "roll": -5,
+            "yaw": 10298
+          },
+          "timestamp": 1792524333906
+        },
+        {
+          "pitch": -0.9,
+          "roll": -0.4,
+          "yaw": 104.95,
+          "unit": "deg",
+          "raw": {
+            "pitch": -9,
+            "roll": -4,
+            "yaw": 10495
+          },
+          "timestamp": 1792524334911
+        },
+        {
+          "pitch": -0.9,
+          "roll": -0.4,
+          "yaw": 106.91,
+          "unit": "deg",
+          "raw": {
+            "pitch": -9,
+            "roll": -4,
+            "yaw": 10691
+          },
+          "timestamp": 1792524335931
+        },
+        {
+          "pitch": -0.9,
+          "roll": -0.4,
+          "yaw": 107.37,
+          "unit": "deg",
+          "raw": {
+            "pitch": -9,
+            "roll": -4,
+            "yaw": 10737
+          },
+          "timestamp": 1792524336906
+        },
+        {
+          "pitch": -0.9,
+          "roll": -0.5,
+          "yaw": 91.61,
+          "unit": "deg",
+          "raw": {
+            "pitch": -9,
+            "roll": -5,
+            "yaw": 9161
+          },
+          "timestamp": 1792524337911
+        },
+        {
+          "pitch": -0.8,
+          "roll": -0.5,
+          "yaw": 91.61,
+          "unit": "deg",
+          "raw": {
+            "pitch": -8,
+            "roll": -5,
+            "yaw": 9161
+          },
+          "timestamp": 1792524338918
+        },
+        {
+          "pitch": -0.8,
+          "roll": -0.5,
+          "yaw": 91.61,
+          "unit": "deg",
+          "raw": {
+            "pitch": -8,
+            "roll": -5,
+            "yaw": 9161
+          },
+          "timestamp": 1792524339907
+        }
+      ],
+      "offsetRequested": true,
+      "guardTrip": false,
+      "precisionGuarantee": false,
+      "physicalCompletionVerified": false,
+      "absoluteReferenceVerified": false,
+      "separateAxisCenteringVerified": false
     }
   },
   "offline": {
@@ -1008,7 +1294,7 @@
   "limits": {
     "calibration": "excluded by user this round; earlier three-port completion evidence retained",
     "fineTune": "earlier measured plus user-observed evidence; not repeated",
-    "recenter": "pending explicit authorization for current yaw near90deg, beyond small sweep",
+    "recenter": "15.77degree yaw offset then FE01 returned measured baseline91.60->107.37->91.61; user clearly observed return/no abnormality; no general precision or joint-zero-reference claim",
     "experimentalPosition": "repeat RS4MINI_RESPONSE_TIMEOUT; raw other-model candidate, not supported target position query",
     "experimentalOtherQueries": "correlated raw replies only, target layout not verified",
     "experimentalWrites": "sleep/other-model motion excluded; no new send unlock",
@@ -1091,7 +1377,7 @@
       {
         "name": "recenter",
         "kind": "method",
-        "evidence": "pending_full_motion_authorization"
+        "evidence": "controlled_15degree_offset_return_and_user_observation_passed"
       },
       {
         "name": "disconnect",
@@ -1353,5 +1639,16 @@
         "evidence": "other_model_write_excluded_no_target_support_proof"
       }
     ]
+  },
+  "recenterReview": {
+    "authorization": "user explicitly permitted one full recenter with environment ready",
+    "writeCompleted": true,
+    "feedbackSettled": true,
+    "closed": true,
+    "physicalObservedByUser": "User: initial gimbal already centered; subsequent15.77degree offset and return clearly observed, no abnormality",
+    "initialRunnerError": "Invalid test oracle assumed mechanical joint Yaw must become0 and large yaw change. Target recenter reference is not verified. Preserve original failed run; corrected future runner checks settling only and requires separate observation.",
+    "motionRepeatedAfterCorrection": true,
+    "repeatAuthorization": "User explicitly requested larger movement after first centered test; fixed15degree yaw case executed",
+    "firstRunClassification": "invalid zero-reference test oracle, not proof of SDK failure; original raw result preserved"
   }
 }

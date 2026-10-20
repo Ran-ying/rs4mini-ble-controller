@@ -1,6 +1,6 @@
 # rs4mini-ble-controller
 
-> 2026-10-20：仅Node连续非校准实测，普通批次119/119、小幅速度与自动重连9/9通过；实验区position候选仍超时，完整回中待授权。[Node连续非校准验收](docs/SDK_NODE_CONTINUOUS_ACCEPTANCE.md)。运行时版本不变。
+> 2026-10-20：仅Node连续非校准实测，普通批次119/119、小幅速度与自动重连9/9通过；实验区position候选仍超时，15°偏离后回中及用户观察通过。[Node连续非校准验收](docs/SDK_NODE_CONTINUOUS_ACCEPTANCE.md)。运行时版本不变。
 
 > 0.7.38 / macOS0.3.39：用户要求移除旧system_calc和旧平衡测试的启动/状态共4个公开方法，三端及GUI同步。保留已实测的电机自动调参、AUTO水平校准、Pitch/Roll手动微调。绿色平衡状态读取未实现；不计作当前SDK能力。详见[逐项验收](docs/SDK_ACCEPTANCE_QUEUE.md)。
 

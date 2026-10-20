@@ -1,6 +1,6 @@
 # 当前研究方法与推进路线
 
-更新：2026-10-20。此页是后续研究的集中入口；专题文档保留各自提交时的历史范围。当前运行时 Node/Python/Web 0.7.33、macOS 0.3.33。**八段直接引用重审（表中优先级 1–5）已完成**；这不等于全部离线语义已关闭。仍开放的静态项见下方「剩余离线队列」；inventoryComplete 仍 false。实机验收（原优先级 6）仍在用户回家之后，且不因缺少 HG724 具名调用者就断定无继承业务入口。版本和提交以 [项目状态](PROJECT_STATUS.md) 与 Git 历史为准。
+更新：2026-10-20。此页是后续研究的集中入口；专题文档保留各自提交时的历史范围。当前运行时 Node/Python/Web 0.7.33、macOS 0.3.33。**八段直接引用重审（表中优先级 1–5）已完成**；这不等于全部离线语义已关闭。离线队列 A–E 均为 **静态耗尽 / 需硬件**（见下表）；本机验证仍开放；inventoryComplete 仍 false。实机验收（原优先级 6）仍在用户回家之后，且不因缺少 HG724 具名调用者就断定无继承业务入口。版本和提交以 [项目状态](PROJECT_STATUS.md) 与 Git 历史为准。
 
 [命令清单](../protocol/COMMANDS.json) 当前有49项已知命令或缺口，**不是49项已完成设备能力**；`inventoryComplete=false`、`advancedDevelopment.allowed=false`。设备 SDK 与主机组合遵循 [架构](ARCHITECTURE.md)，`moveTo()` 不计作固件命令。底层验收完成前不增加高级组合。
 
@@ -29,9 +29,9 @@
 | 5 ✓ 八段重审 | 全清单：[INVENTORY_PREFIX](../tools/research/INVENTORY_PREFIX.md) | bank05 现场提取 CmdIdGimbal 与 COMMANDS 比对；40 非排除均已登记 | inventoryComplete 保持 false；bank01 激活控制器仍缺口；不开放激活写入 |
 | HW | 实机验收：[HARDWARE_CHECKLIST](HARDWARE_CHECKLIST.md) | （待用户回家） | 研究期间不扫描/连接/移动设备，不执行厂商 APK/Java/JNI/native 或实时 UI |
 
-### 剩余离线队列（静态语义，仍开放）
+### 离线队列 A–E（静态语义：已耗尽，本机仍开放）
 
-在实机验收之前，优先用固定 PREFIX 输入与自写工具推进下列项。每项单独成专题/提交；结论必须区分「静态已证实」与「需硬件确认」。
+固定 PREFIX 输入下 A–E 能证尽的已落档，状态均为 `statically_exhausted_needs_hardware`。下表保留子项结论；**不能**把静态耗尽当成硬件完成或开放发送。
 
 | 序号 | 主题 | 具体未决 | 入口线索 |
 |---|---|---|---|

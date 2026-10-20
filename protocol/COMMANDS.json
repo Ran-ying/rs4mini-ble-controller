@@ -41,7 +41,8 @@
       "remaining": "0.7.33显式App来源、显式sourceVersion的CENTER/id7只读GET与严格关联ACK/完整本次业务体已四端封装，不沿用源getPushSN旧缓存。只读请求不是激活/绑定/版本协商，源日期/active/SN字段不当合法激活或实机布局证明。实际设备版本/路由/加密扩展/固件接受及写入、V13/V14流程未验收。",
       "activationReceiveResearch": "protocol/research/ronin-activation-receive-evidence.json",
       "activationFormatsResearch": "protocol/research/ronin-activation-formats-evidence.json",
-      "activationEntryResearch": "protocol/research/ronin-activation-entry-evidence.json"
+      "activationEntryResearch": "protocol/research/ronin-activation-entry-evidence.json",
+      "queueESessionVersionResearch": "protocol/research/ronin-queue-e-session-version-evidence.json"
     },
     {
       "key": "04:01",
@@ -354,7 +355,8 @@
       "remaining": "八段复核确认 bank01 ActiveDeviceController/ActiveWebController 触达云台/CENTER 激活状态类与 HTTP 激活路径，仍非 HG724 BLE 激活/绑定协议证明，不开放写入。00:32 CENTER 只读 GET 已分离，不表示设备管理覆盖完成。连接成功不证明设备管理命令已全覆盖。",
       "prefixNewCallers": "protocol/research/ronin-prefix-new-callers.json",
       "activationResearch": "protocol/research/ronin-activation-evidence.json",
-      "inventoryPrefixResearch": "protocol/research/ronin-inventory-prefix-evidence.json"
+      "inventoryPrefixResearch": "protocol/research/ronin-inventory-prefix-evidence.json",
+      "queueESessionVersionResearch": "protocol/research/ronin-queue-e-session-version-evidence.json"
     },
     {
       "key": "04:07",
@@ -1366,5 +1368,6 @@
   "queueASemanticsResearch": "protocol/research/ronin-queue-a-semantics-evidence.json",
   "queueBReferenceFrameResearch": "protocol/research/ronin-queue-b-reference-frame-evidence.json",
   "queueCCompletionAbortResearch": "protocol/research/ronin-queue-c-completion-abort-evidence.json",
-  "queueDProgramIsolationResearch": "protocol/research/ronin-queue-d-program-isolation-evidence.json"
+  "queueDProgramIsolationResearch": "protocol/research/ronin-queue-d-program-isolation-evidence.json",
+  "queueESessionVersionResearch": "protocol/research/ronin-queue-e-session-version-evidence.json"
 }

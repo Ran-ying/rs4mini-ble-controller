@@ -433,6 +433,11 @@ if manifest.get('programPrefixResearch'):
     for key in ['04:25','04:37','04:62','04:63']:
         row=next(row for row in manifest['commands'] if row['key']==key)
         assert row['programPrefixResearch']==manifest['programPrefixResearch'] and not row['implementation']
+if manifest.get('queueESessionVersionResearch'):
+    qe=json.loads((root/manifest['queueESessionVersionResearch']).read_text())
+    assert qe['status']=='statically_exhausted_needs_hardware'
+    assert qe['getVer']['setRecDataUpdatesGimbalActiveStatusVersion'] is True
+    assert qe['liveSessionTableAndCorrelationVerified'] is False and qe['activationWriteOpened'] is False
 if manifest.get('queueDProgramIsolationResearch'):
     qd=json.loads((root/manifest['queueDProgramIsolationResearch']).read_text())
     assert qd['status']=='statically_exhausted_needs_hardware' and qd['pureGimbalProgramPrimitiveOpenable'] is False

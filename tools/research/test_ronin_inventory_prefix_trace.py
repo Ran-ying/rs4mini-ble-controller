@@ -106,6 +106,22 @@ class InventoryPrefixTraceTests(unittest.TestCase):
         for bank in PREFIX_BANKS:
             self.assertGreaterEqual(len(by_bank[bank]), 1)
 
+
+    def test_active_device_controller_ctor_first_getInstance_byte_offset_is_70(self):
+        """Regression: instructionByteOffset must accumulate get_length(), not instruction index."""
+        r = self.evidence()
+        ctor = next(
+            m for m in r['bank01ActivationMethods']
+            if m['className'] == 'Lcom/dji/activate/active/ActiveDeviceController;'
+            and m['method'] == '<init>'
+            and m['instructionSha256'].startswith('aea9c5df')
+        )
+        self.assertEqual(ctor['instructionSha256'], 'aea9c5dfc47bacce13ed5f4ba3af740e0e9c5b52f7d3c28db8a91f2d57d3319f')
+        first = ctor['activationRelatedInvokes'][0]
+        self.assertIn('DataBatteryActiveStatus;->getInstance()', first['text'])
+        self.assertEqual(first['instructionByteOffset'], 70)
+        self.assertNotEqual(first['instructionByteOffset'], 17)
+
     def test_evidence_packet_scan_lists_all_eight_banks(self):
         r = self.evidence()
         self.assertEqual(r['eightBankPacketScan']['banksScanned'], list(range(8)))

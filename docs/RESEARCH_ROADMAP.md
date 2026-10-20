@@ -1,6 +1,6 @@
 # 当前研究方法与推进路线
 
-更新：2026-10-19。此页是后续研究的集中入口；专题文档保留各自提交时的历史范围。当前运行时 Node/Python/Web 0.7.33、macOS 0.3.33，最新新增为显式版本的 CENTER 只读信息 GET。版本和提交以 [项目状态](PROJECT_STATUS.md) 与 Git 历史为准。
+更新：2026-10-20。此页是后续研究的集中入口；专题文档保留各自提交时的历史范围。当前运行时 Node/Python/Web 0.7.33、macOS 0.3.33。优先级1（04:11 八段保存重审）已完成且仍不开放 saveSettings；下一项为 0D/2C/0A。版本和提交以 [项目状态](PROJECT_STATUS.md) 与 Git 历史为准。
 
 [命令清单](../protocol/COMMANDS.json) 当前有49项已知命令或缺口，**不是49项已完成设备能力**；`inventoryComplete=false`、`advancedDevelopment.allowed=false`。设备 SDK 与主机组合遵循 [架构](ARCHITECTURE.md)，`moveTo()` 不计作固件命令。底层验收完成前不增加高级组合。
 
@@ -22,7 +22,7 @@
 
 | 优先级 | 任务与现有入口 | 下一步具体问题 | 本阶段完成条件及保留边界 |
 |---|---|---|---|
-| 1 | 04:11 保存：[六段扫描](../tools/research/SAVE_CALLERS.md) | 以八段 PREFIX_BANKS 重做实际调用/分配/字段/注册引用分类；重点检查新增01/07是否有业务入口及持久化路径 | 新工具、八段计数/指纹、独立重复提取与测试；未找到 HG724 链仍不开放 saveSettings，不把参数写入等同持久化 |
+| 1 ✓ | 04:11 保存：[八段重审](../tools/research/SAVE_PREFIX.md)（历史[六段](../tools/research/SAVE_CALLERS.md)） | 已用 PREFIX_BANKS 重做调用/分配/字段/枚举注册分类；01/07无命中，无外部直接调用 | 2026-10-20 完成：新工具+证据+测试；仍无 HG724 链，不开放 saveSettings；不把参数写入等同持久化 |
 | 2 | 04:0D、04:2C、04:0A：[教程](../tools/research/TUTORIAL.md)、[角度](../tools/research/ANGLES.md)及命令清单 | 逐项将旧六段引用结论重审为八段；0D 查实际定义/打包或字面量包，2C 查 HG724 入口/恢复，0A 区分两种10字节布局与 DT501 UVC 调用 | 明确每项定义、外部调用、型号路径、载荷/ACK 的已知与缺失；不把0D等同参数35电机位、不把通用类当本机支持 |
 | 3 | 04:14/0C/4C：[角度上下文](../tools/research/ANGLE_CONTEXT.md)、[复位路由](../tools/research/RESET_ROUTES.md) | 补动态能力、实际 index/接收地址、EYE 条件、参考系/单位、完成/中止；工作模式及按轴回中分别追源 | 源请求/响应和条件可以完整说明后再评估 App SDK；保留其他型号实验配置边界，不沿用旧 MSDK 轴枚举或把 ACK 当到位 |
 | 4 | 04:25/37/62/63：[程序](../tools/research/PROGRAMS.md)、[入口](../tools/research/PROGRAM_ENTRY.md)、[路点](../tools/research/TRACK_POINTS.md) | 补 HG724 入口、ActualPose 与 MotorAngle/04:05 的关系、首点规则、执行/停止及相机字段隔离 | 先决定哪些纯稳定器原语可独立开放；相机曝光/拍摄与视觉功能不在当前范围；没有可靠停止与相机隔离证据不开放程序执行 |

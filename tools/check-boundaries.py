@@ -354,6 +354,20 @@ if manifest.get('saveCallerResearch'):
     assert save['externalDirectCallers']==[] and len(save['methods'])==4
     assert all(b['methodCount']>=b['methodWithCodeCount']>0 and b['instructionCount']>0 for b in save['banks'])
     assert not any(r['kind']=='external-direct-invoke' for m in save['methods'] for r in m['references'])
+if manifest.get('savePrefixCallerResearch'):
+    save=json.loads((root/manifest['savePrefixCallerResearch']).read_text())
+    assert save['apkSha256']==controls['apkSha256'] and save['scannedBanks']==list(range(8)) and len(save['bankSha256'])==8
+    for key in ['appCodeExecuted','liveUiExecuted','targetDeviceVerified','wholeProtocolRecovered','wholeAppRecovered','allScannedBodiesRecovered','indirectReflectionResolved','targetModelCallPathEstablished','hg724BusinessEntryEstablished','persistencePathEstablished','researchToolProvidesSdkInterface','sdkSendAdded','sdkReceiveAdded','saveSettingsOpened','parameterWriteEquatedToPersistence']:
+        assert save[key] is False
+    tree=ast.parse((root/'tools/research/ronin_prefix_restore.py').read_text())
+    pins=ast.literal_eval(next(n.value for n in tree.body if isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and t.id=='PREFIX_BANKS' for t in n.targets)))
+    assert {int(k):v for k,v in save['bankSha256'].items()}==pins=={b['segment']:b['derivedSha256'] for b in save['banks']}
+    assert save['externalDirectCallers']==[] and save['externalAllocations']==[] and save['newBanks01And07ReferenceMethods']==[]
+    assert len(save['methods'])==4 and all(m['segment']==5 for m in save['methods'])
+    assert save['enumRegistration']['wireCommandId']==17 and save['sourceDoPack']['emptyBody'] is True
+    assert save['sourceStartPack']['allMentionsPresent'] is True and save['sourceStartPack']['finalTransportEncryptionVerified'] is False
+    row=next(row for row in manifest['commands'] if row['key']=='04:11')
+    assert row['savePrefixCallerResearch']==manifest['savePrefixCallerResearch'] and row['requestCodec']=='unknown' and not row['implementation']
 if manifest.get('axisModeSdk',{}).get('implemented'):
     sdk=manifest['axisModeSdk']
     assert sdk['index']==34 and sdk['size']==1 and sdk['targetDeviceVerified'] is False and sdk['activePresetVerified'] is False and sdk['otherBitsPreservationVerified'] is False

@@ -431,11 +431,13 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "源保存类为空体并需ACK；既有六段扫描仅4个内部/枚举引用方法、无外部直接调用者。新增01/07现已有具名视图，但此条尚未八段重审；反射/动态或固件路径未排除，不证明本机不支持。缺HG724业务调用与持久化证据，未开放SDK。",
+      "remaining": "源保存类为空体并需ACK；八段PREFIX_BANKS重审仍仅bank05的4个内部/枚举/字段/注册引用方法，01/07无命中，无外部直接调用或外部分配。枚举wire17三参无Class绑定。反射/动态或固件路径未排除，不证明本机不支持。缺HG724业务调用与持久化证据，未开放SDK。",
       "officialAppAliases": [
         "SaveUserParams"
       ],
-      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
+      "savePrefixCallerResearch": "protocol/research/ronin-save-prefix-callers-evidence.json",
+      "saveCallerResearch": "protocol/research/ronin-save-callers-evidence.json"
     },
     {
       "key": "04:12",
@@ -920,7 +922,8 @@
     "tools/research/ronin_activation_trace.py",
     "tools/research/ronin_activation_receive.py",
     "tools/research/ronin_activation_formats.py",
-    "tools/research/ronin_activation_entry.py"
+    "tools/research/ronin_activation_entry.py",
+    "tools/research/ronin_save_prefix_trace.py"
   ],
   "modelIdentityResearch": "protocol/research/ronin-hg724-evidence.json",
   "codeRestorationResearch": "protocol/research/ronin-code-restoration-evidence.json",
@@ -1336,5 +1339,6 @@
     "activationValidityVerified": false,
     "fixtures": "node/test/fixtures/center-info.json",
     "documentation": "docs/APP_CENTER_INFO.md"
-  }
+  },
+  "savePrefixCallerResearch": "protocol/research/ronin-save-prefix-callers-evidence.json"
 }

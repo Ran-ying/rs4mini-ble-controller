@@ -24,3 +24,7 @@ PYTHONPATH=work/research/analysis-libs work/python312/bin/python tools/research/
 ```
 
 证据中wholeAppRecovered/allScannedBodiesRecovered/indirectReflectionResolved/targetModelCallPathEstablished/targetDeviceVerified均false。命令清单关联新证据并保留04:11缺口；后续继续其他调用链和协议，禁止将负面检索结果写成目标设备不支持。没有操作硬件或新增高级功能。
+
+## 后续：八段 PREFIX_BANKS 重审（2026-10-20）
+
+已用新工具 [ronin_save_prefix_trace.py](ronin_save_prefix_trace.py) 对八段具名视图重做调用/分配/字段/枚举注册分类；结果见 [SAVE_PREFIX.md](SAVE_PREFIX.md) 与 [ronin-save-prefix-callers-evidence.json](../../protocol/research/ronin-save-prefix-callers-evidence.json)。本页六段结论保留为历史范围，不能改写冒充八段重审。

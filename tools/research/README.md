@@ -2,6 +2,8 @@
 
 当前统一入口：[研究方法与推进路线](../../docs/RESEARCH_ROADMAP.md)。八段具名恢复以 [PREFIX_RESTORATION.md](PREFIX_RESTORATION.md) 为准；下面各批记录保留其当时范围，不代表当前仍只有元数据或六段视图。
 
+保存命令八段重审：[SAVE_PREFIX.md](SAVE_PREFIX.md)，工具 `ronin_save_prefix_trace.py`；历史六段见 [SAVE_CALLERS.md](SAVE_CALLERS.md)。仍不开放 saveSettings。
+
 早期代码恢复进展：[CODE_RESTORATION.md](CODE_RESTORATION.md) 记录当前 APK 内部代码备份的离线恢复，已读到 HG724 灵敏度 setter 和参数加载逻辑；下面原有工具仍是 metadata-only 视图。
 
 此工具只读 ZIP/DEX 元数据，不安装或运行 APK，不使用 Frida、不连接设备。SDK 与默认测试不依赖可选分析库。

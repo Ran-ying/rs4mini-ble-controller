@@ -1,0 +1,323 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "bankSha256": {
+    "0": "2229f1f19aa8fe8d819c7b3cecbd844928da817e2bc9cfddfda1c0e120e4cc59",
+    "1": "0083e9f9e0e615602470ea148cfd581a0c7413a012ef5494b613242d55754f99",
+    "2": "f75800c8edb40823c72afdd0eee575135e995440da9a5fd9bfb3e5b3e9e6fe68",
+    "3": "861be662ee36ce3b195c0c1aa179642e34793df3a88e933fa1dfe2a7202a9528",
+    "4": "2fd9aa02f5c9f4217e7e6ef75d724a1ce64efa7c1f365ddb20c93be1fef85f77",
+    "5": "f78b34474816ca253b4133bdbd79ebcbf725f52d58ac00b63f921ff7082470d2",
+    "6": "4da9764901f753190e0c88b5a142a4f9cf1eed9b1b9214bdf97a21f00edcb990",
+    "7": "3fc2c4adccd59794f5c28b898d577ed414758875cadb7ce7f6782ffd5b64b723"
+  },
+  "appCodeExecuted": false,
+  "liveUiExecuted": false,
+  "targetDeviceVerified": false,
+  "wholeProtocolRecovered": false,
+  "wholeAppRecovered": false,
+  "allScannedBodiesRecovered": false,
+  "indirectReflectionResolved": false,
+  "targetModelCallPathEstablished": false,
+  "hg724BusinessEntryEstablished": false,
+  "persistencePathEstablished": false,
+  "researchToolProvidesSdkInterface": false,
+  "sdkSendAdded": false,
+  "sdkReceiveAdded": false,
+  "saveSettingsOpened": false,
+  "parameterWriteEquatedToPersistence": false,
+  "scannedBanks": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "previousSixBankHistoricalEvidence": "protocol/research/ronin-save-callers-evidence.json",
+  "scope": "instruction references across eight PREFIX_BANKS named views; not whole-App, firmware, or reflection proof",
+  "banks": [
+    {
+      "segment": 0,
+      "derivedSha256": "2229f1f19aa8fe8d819c7b3cecbd844928da817e2bc9cfddfda1c0e120e4cc59",
+      "classCount": 7119,
+      "methodCount": 53828,
+      "methodWithCodeCount": 50517,
+      "instructionCount": 682926,
+      "stringTableMatches": [],
+      "saveReferenceMethodCount": 0
+    },
+    {
+      "segment": 1,
+      "derivedSha256": "0083e9f9e0e615602470ea148cfd581a0c7413a012ef5494b613242d55754f99",
+      "classCount": 2297,
+      "methodCount": 12143,
+      "methodWithCodeCount": 11452,
+      "instructionCount": 132775,
+      "stringTableMatches": [],
+      "saveReferenceMethodCount": 0
+    },
+    {
+      "segment": 2,
+      "derivedSha256": "f75800c8edb40823c72afdd0eee575135e995440da9a5fd9bfb3e5b3e9e6fe68",
+      "classCount": 2110,
+      "methodCount": 15931,
+      "methodWithCodeCount": 15446,
+      "instructionCount": 249001,
+      "stringTableMatches": [],
+      "saveReferenceMethodCount": 0
+    },
+    {
+      "segment": 3,
+      "derivedSha256": "861be662ee36ce3b195c0c1aa179642e34793df3a88e933fa1dfe2a7202a9528",
+      "classCount": 6683,
+      "methodCount": 38674,
+      "methodWithCodeCount": 36349,
+      "instructionCount": 559947,
+      "stringTableMatches": [],
+      "saveReferenceMethodCount": 0
+    },
+    {
+      "segment": 4,
+      "derivedSha256": "2fd9aa02f5c9f4217e7e6ef75d724a1ce64efa7c1f365ddb20c93be1fef85f77",
+      "classCount": 6696,
+      "methodCount": 56720,
+      "methodWithCodeCount": 53246,
+      "instructionCount": 587995,
+      "stringTableMatches": [],
+      "saveReferenceMethodCount": 0
+    },
+    {
+      "segment": 5,
+      "derivedSha256": "f78b34474816ca253b4133bdbd79ebcbf725f52d58ac00b63f921ff7082470d2",
+      "classCount": 8571,
+      "methodCount": 55055,
+      "methodWithCodeCount": 53173,
+      "instructionCount": 677878,
+      "stringTableMatches": [
+        "DataGimbalSaveUserParams.java",
+        "Ldji/midware/data/model/P3/DataGimbalSaveUserParams;",
+        "SaveUserParams"
+      ],
+      "saveReferenceMethodCount": 4
+    },
+    {
+      "segment": 6,
+      "derivedSha256": "4da9764901f753190e0c88b5a142a4f9cf1eed9b1b9214bdf97a21f00edcb990",
+      "classCount": 7647,
+      "methodCount": 48024,
+      "methodWithCodeCount": 45737,
+      "instructionCount": 705675,
+      "stringTableMatches": [],
+      "saveReferenceMethodCount": 0
+    },
+    {
+      "segment": 7,
+      "derivedSha256": "3fc2c4adccd59794f5c28b898d577ed414758875cadb7ce7f6782ffd5b64b723",
+      "classCount": 641,
+      "methodCount": 3240,
+      "methodWithCodeCount": 2977,
+      "instructionCount": 36394,
+      "stringTableMatches": [],
+      "saveReferenceMethodCount": 0
+    }
+  ],
+  "methods": [
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+      "method": "$values",
+      "descriptor": "()[Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+      "codeOffset": 4651820,
+      "instructionSha256": "baab9b742889abcd0c7f9e1e30f763657f24807e61a65807c17bd891cb7fc98d",
+      "references": [
+        {
+          "kind": "command-enum-reference",
+          "operation": "sget-object",
+          "instructionByteOffset": 40
+        }
+      ],
+      "mentionsHg724Abstraction": false
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;",
+      "method": "<clinit>",
+      "descriptor": "()V",
+      "codeOffset": 4652020,
+      "instructionSha256": "89d7e5d4c317f54eb541d186eff2e608a50e62f9387974ef9c74a54543aa6609",
+      "references": [
+        {
+          "kind": "string-literal-not-proven-reflection",
+          "operation": "const-string/jumbo",
+          "instructionByteOffset": 276
+        },
+        {
+          "kind": "enum-registration",
+          "operation": "sput-object",
+          "instructionByteOffset": 292
+        }
+      ],
+      "mentionsHg724Abstraction": false
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSaveUserParams;",
+      "method": "getInstance",
+      "descriptor": "()Ldji/midware/data/model/P3/DataGimbalSaveUserParams;",
+      "codeOffset": 4882108,
+      "instructionSha256": "18bc934a490780e90c9d0fc008144f9d67a4ae24292033aac37d907c7e235e64",
+      "references": [
+        {
+          "kind": "class-literal",
+          "operation": "const-class",
+          "instructionByteOffset": 0
+        },
+        {
+          "kind": "field-reference",
+          "operation": "sget-object",
+          "instructionByteOffset": 6
+        },
+        {
+          "kind": "allocation",
+          "operation": "new-instance",
+          "instructionByteOffset": 14
+        },
+        {
+          "kind": "internal-invoke",
+          "operation": "invoke-direct",
+          "instructionByteOffset": 18
+        },
+        {
+          "kind": "field-reference",
+          "operation": "sput-object",
+          "instructionByteOffset": 24
+        },
+        {
+          "kind": "field-reference",
+          "operation": "sget-object",
+          "instructionByteOffset": 28
+        }
+      ],
+      "mentionsHg724Abstraction": false
+    },
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSaveUserParams;",
+      "method": "start",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "codeOffset": 4882208,
+      "instructionSha256": "4bdc21c5c11b5c113b6c183ded3397e5b0e6c5992f43966cb5b9d96c16858568",
+      "references": [
+        {
+          "kind": "command-enum-reference",
+          "operation": "sget-object",
+          "instructionByteOffset": 106
+        },
+        {
+          "kind": "internal-invoke",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 122
+        }
+      ],
+      "mentionsHg724Abstraction": false
+    }
+  ],
+  "externalDirectCallers": [],
+  "externalAllocations": [],
+  "fieldReferenceMethods": [
+    {
+      "segment": 5,
+      "className": "Ldji/midware/data/model/P3/DataGimbalSaveUserParams;",
+      "method": "getInstance",
+      "descriptor": "()Ldji/midware/data/model/P3/DataGimbalSaveUserParams;",
+      "references": [
+        {
+          "kind": "class-literal",
+          "operation": "const-class",
+          "instructionByteOffset": 0
+        },
+        {
+          "kind": "field-reference",
+          "operation": "sget-object",
+          "instructionByteOffset": 6
+        },
+        {
+          "kind": "allocation",
+          "operation": "new-instance",
+          "instructionByteOffset": 14
+        },
+        {
+          "kind": "internal-invoke",
+          "operation": "invoke-direct",
+          "instructionByteOffset": 18
+        },
+        {
+          "kind": "field-reference",
+          "operation": "sput-object",
+          "instructionByteOffset": 24
+        },
+        {
+          "kind": "field-reference",
+          "operation": "sget-object",
+          "instructionByteOffset": 28
+        }
+      ]
+    }
+  ],
+  "referenceKindCounts": {
+    "command-enum-reference": 2,
+    "string-literal-not-proven-reflection": 1,
+    "enum-registration": 1,
+    "class-literal": 1,
+    "field-reference": 3,
+    "allocation": 1,
+    "internal-invoke": 2
+  },
+  "newBanks01And07ReferenceMethods": [],
+  "sourceDoPack": {
+    "instructionSha256": "7a2a7c0a81d1bd595dff09b918f8ecb5b5e8493654a4f83496956ed8eb017674",
+    "operations": [
+      "return-void"
+    ],
+    "emptyBody": true
+  },
+  "sourceStartPack": {
+    "instructionSha256": "4bdc21c5c11b5c113b6c183ded3397e5b0e6c5992f43966cb5b9d96c16858568",
+    "senderType": "APP",
+    "receiverType": "GIMBAL",
+    "cmdType": "REQUEST",
+    "needAck": "YES",
+    "businessEncrypt": "NO",
+    "cmdSet": "GIMBAL",
+    "cmdIdEnum": "SaveUserParams",
+    "packsEmptyDoPackBody": true,
+    "mentions": [
+      "DeviceType;->APP ",
+      "DeviceType;->GIMBAL ",
+      "CMDTYPE;->REQUEST ",
+      "NEEDACK;->YES ",
+      "EncryptType;->NO ",
+      "CmdSet;->GIMBAL ",
+      "Ldji/midware/data/config/P3/CmdIdGimbal$CmdIdType;->SaveUserParams "
+    ],
+    "allMentionsPresent": true,
+    "finalTransportEncryptionVerified": false
+  },
+  "enumRegistration": {
+    "instructionByteOffset": 276,
+    "wireCommandId": 17,
+    "constructorDescriptor": "(Ljava/lang/String; I I)V",
+    "constructorBindsRequestClass": false,
+    "threeArgConstructorWithoutClass": true,
+    "note": "Enum registers wire 17 without Class binding; DataGimbalSaveUserParams exists separately."
+  },
+  "remaining": [
+    "Eight-bank instruction scan still finds no external direct SaveUserParams callers, including banks 01/07.",
+    "Empty doPack plus ACK and enum wire 17 prove the class can build a request; they are not an HG724 business or persistence path.",
+    "Enum 3-arg registration without Class binding is not a missing-command proof and not a model support proof.",
+    "Reflection, dynamic loading, native, and firmware-side persistence remain unruled-out; do not open saveSettings."
+  ]
+}

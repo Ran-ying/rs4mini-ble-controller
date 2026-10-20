@@ -38,7 +38,7 @@
 | A ✓ 静态耗尽 | 动态能力 / 索引地址 / EYE | 端到端链 + 四子项静态耗尽：App rotate 无条件发 EYE；index 默认0/映射；EYE/GIMBAL `isNeedEncrypt=true`；Ronin2 参数能力路径存在。**本机/直连验证未做** | [QUEUE_A_SEMANTICS](../tools/research/QUEUE_A_SEMANTICS.md)、[ROTATE_EYE_TRANSPORT](../tools/research/ROTATE_EYE_TRANSPORT.md) |
 | B ✓ 静态耗尽 | 参考系 | ActualPose≠MotorAngle；无源码等式绑定 04:05；04:14 controlMode≠物理参考系。**物理系未证** | [QUEUE_B_REFERENCE_FRAME](../tools/research/QUEUE_B_REFERENCE_FRAME.md)、[TRACK_POINTS](../tools/research/TRACK_POINTS.md) |
 | C ✓ 静态耗尽 | 完成 / 中止 | rotate 无回调 start + 立即 onSuccess；ACK 重载存在但未用；程序 stop 相位≠运动 abort。**物理完成未证** | [QUEUE_C_COMPLETION_ABORT](../tools/research/QUEUE_C_COMPLETION_ABORT.md) |
-| D | 程序型号与相机隔离 | 全景曝光、轨迹录制字段与纯云台原语的边界；型号/组件条件 | [PROGRAM_PREFIX](../tools/research/PROGRAM_PREFIX.md) |
+| D ✓ 静态耗尽 | 程序型号与相机隔离 | 全景 mExposure、轨迹 mRecordOrPreview 交织；25/37 info 字节未解完；无纯云台原语。**型号可达未证** | [QUEUE_D_PROGRAM_ISOLATION](../tools/research/QUEUE_D_PROGRAM_ISOLATION.md)、[PROGRAM_PREFIX](../tools/research/PROGRAM_PREFIX.md) |
 | E | 会话版本 / 状态关联 | 查询版本、激活/CENTER 状态缓存与会话关联；不能把版本查询混入激活缓存 | [ACTIVATION](../tools/research/ACTIVATION.md)、[ACTIVATION_RECEIVE](../tools/research/ACTIVATION_RECEIVE.md) |
 
 完成底层全命令门槛之后，才重新规划高级组合；不能把八段直接引用重审完成或包构建成功当作该门槛通过。

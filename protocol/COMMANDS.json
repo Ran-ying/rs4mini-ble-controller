@@ -1365,5 +1365,6 @@
   "rotateEyeTransportResearch": "protocol/research/ronin-rotate-eye-transport-evidence.json",
   "queueASemanticsResearch": "protocol/research/ronin-queue-a-semantics-evidence.json",
   "queueBReferenceFrameResearch": "protocol/research/ronin-queue-b-reference-frame-evidence.json",
-  "queueCCompletionAbortResearch": "protocol/research/ronin-queue-c-completion-abort-evidence.json"
+  "queueCCompletionAbortResearch": "protocol/research/ronin-queue-c-completion-abort-evidence.json",
+  "queueDProgramIsolationResearch": "protocol/research/ronin-queue-d-program-isolation-evidence.json"
 }

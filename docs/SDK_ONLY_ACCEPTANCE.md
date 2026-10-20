@@ -1,5 +1,7 @@
 # 三端 SDK 直接可用性验收：0.7.36
 
+维护能力本轮进展：[逐项实机验收](RETAINED_MAINTENANCE_ACCEPTANCE.md)。AUTO完成已由用户确认；系统校准和平衡测试均无设备反应，未通过。微调正核对可见效果。
+
 Node/Python0.7.36，原生0.3.37/build40。按用户决定移除手柄查询、主动调参状态查询及Python别名/原生selector/对应面板入口；被动calibrationStatus保留。电机多项改为逐项请求并完整汇总。
 
 本轮只测试SDK：Node/Python直接创建BleDevice；macOS无界面进程只链接RSBleDevice、RSControlCore、Foundation/CoreBluetooth，没有RSGimbal、运动模块或AppKit。入口见[仅SDK测试](../tools/hardware/README.md)，机器结果为`protocol/SDK_ONLY_ACCEPTANCE.json`。

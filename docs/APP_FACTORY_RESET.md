@@ -1,3 +1,5 @@
+> 已退出公开SDK：用户于2026-10-20要求移除此发送能力。本文保留历史协议证据，示例不再适用于当前SDK。
+
 # 恢复设置请求（0.7.16 / 原生0.3.16 build19）
 
 四端统一RS4Mini/RSGimbal入口的设备SDK新增sendFactorySettingsResetRequest；Python有send_factory_settings_reset_request别名，原生sendFactorySettingsResetRequest:timeoutMs:completion:。它是原生04:13源请求封装，不是高级运动组合。

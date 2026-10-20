@@ -8,3 +8,7 @@ test('removed active queries are absent while passive calibration remains',async
  assert.equal(gimbal.appCommands.calibrationStatus,null);
  assert.equal(p.frames().length,0);
 });
+test('retired subscription handle stick and reset SDK entries are absent',async t=>{
+ const {gimbal}=await connected(t);
+ for(const name of ['sendParameterSubscriptionRequest','sendProgramStatusSubscriptionRequest','sendHandleSettingRequest','sendHandheldStickControlRequest','sendFactorySettingsResetRequest','parameterSubscriptionKeys'])assert.equal(gimbal.appCommands[name],undefined);
+});

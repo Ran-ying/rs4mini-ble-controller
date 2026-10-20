@@ -3,24 +3,23 @@ import {tutorialNotification} from './app-tutorial.js';
 import {componentCalibrationPayload,componentCalibrationReply} from './app-component-calibration.js';
 import {sensorCalibrationNotification} from './app-sensor-calibration.js';
 import {externalDeviceNotification} from './app-external-device.js';
-import {parameterSubscriptionKeys,parameterSubscriptionSpec,parameterSubscriptionFrame,parameterSubscriptionSent} from './app-parameter-subscription.js';
 import {peripheralNotification} from './app-peripheral.js';
-import {programStatusRequestSpec,programStatusRequestReply,programStatusSubscriptionSpec,programStatusSubscriptionReply} from './app-program-request.js';
+import {programStatusRequestSpec,programStatusRequestReply} from './app-program-request.js';
 import {programStatusNotification} from './app-program-status.js';
 import {sourceStatusNotification} from './app-source-status.js';
-import {handheldStickNotification,handheldStickControlPayload,handheldStickControlReply} from './app-handheld-stick.js';
+import {handheldStickNotification} from './app-handheld-stick.js';
 import {profileValueSelection,profileValueWrite,profileValueReply} from './app-profile-values.js';
 import {smoothTrackSelection,smoothTrackWrite,smoothTrackReply} from './app-smooth-track.js';
 import {axisModeWrite,axisModeReply} from './app-axis-mode.js';
 import { fineTuneSpec } from './app-fine-tune.js';
-import { handleWriteSpec } from './app-handle.js';
+
 import { userParameterNotification } from './app-user-parameters.js';
 import { standaloneSelection, standaloneWrite, standaloneContext, standaloneReply } from './app-standalone.js';
 import { tuningSelection, tuningWrite, tuningReply } from './app-tuning.js';
 import { systemCalibrationPayload, systemCalibrationReply } from './app-system-calibration.js';
 import { balanceStartPayload, balanceReply } from './app-balance.js';
 // Device SDK facade: single owner/queue/pending map, no composed motion.
-import { appProfile, parameterContext, parameterRequest, sensitivityPayload, factoryResetSpec, appReply, parameterReply } from './app-protocol.js';
+import { appProfile, parameterContext, parameterRequest, sensitivityPayload, appReply, parameterReply } from './app-protocol.js';
 import { motorSelection, motorWrite, motorReply } from './app-motor.js';
 import { frame } from './protocol.js';
 import { autoTunePayload, calibrationNotification } from './app-calibration.js';
@@ -31,7 +30,6 @@ function optionsOnly(options, keys) {
 }
 export class AppCommands {
   constructor(owner) { this.owner = owner; this._profile = null; this._calibrationStatus = null; this._userParameterStatus = null; this._handheldStickStatus = null; this._abnormalStatus = null; this._batteryStatus = null; this._programStatus = null; this._peripheralStatus = null; this._externalDeviceStatus = null; this._sensorCalibrationStatus = null; this._tutorialStatus=null; }
-  get parameterSubscriptionKeys(){return parameterSubscriptionKeys();}
   get tutorialStatus(){return structuredClone(this._tutorialStatus);}
   get sensorCalibrationStatus() { return structuredClone(this._sensorCalibrationStatus); }
   get externalDeviceStatus() { return structuredClone(this._externalDeviceStatus); }
@@ -72,41 +70,17 @@ export class AppCommands {
     this._profile = profile; this._reset();
   }
   _requireProfile() { appProfile(this._profile); }
-  async sendParameterSubscriptionRequest(options={}){
-    optionsOnly(options,['keys']);this._requireProfile();const spec=parameterSubscriptionSpec(options.keys);
-    return this.owner._run('sendParameterSubscriptionRequest',async operation=>{
-      await this.owner._stop();check(operation.controller.signal);
-      await this.owner._enqueue(parameterSubscriptionFrame(this.owner._nextSequence(),spec),{signal:operation.controller.signal,epoch:this.owner.motionEpoch});
-      return parameterSubscriptionSent(spec);
-    },false);
-  }
   async getCenterActivationInfo(options={}) {
     optionsOnly(options,['sourceVersion','timeoutMs']);this._requireProfile();
     const spec=centerInfoSpec(options.sourceVersion);
     const reply=await this.owner.experimental._queryPayloadCommand('App CENTER activation information',[0,50],spec.payload,options.timeoutMs??3000,{receiver:229});
     return centerInfoReply(reply,spec.sourceVersion);
   }
-  async sendProgramStatusSubscriptionRequest(options={}) {
-    optionsOnly(options,['program','enabled','timeoutMs']);this._requireProfile();
-    const spec=programStatusSubscriptionSpec(options.program,options.enabled);
-    const response=await this.owner.experimental._queryPayloadCommand('App program status subscription request',[4,0x6b],spec.payload,options.timeoutMs??3000);
-    return programStatusSubscriptionReply(response,spec.requestedProgram,spec.requestedEnabled);
-  }
   async sendProgramStatusRequest(options={}) {
     optionsOnly(options,['program','timeoutMs']);this._requireProfile();
     const spec=programStatusRequestSpec(options.program);
     const response=await this.owner.experimental._queryPayloadCommand('App single program status request',[4,0x6b],spec.payload,options.timeoutMs??3000);
     return programStatusRequestReply(response,spec.requestedProgram);
-  }
-  async sendHandheldStickControlRequest(options={}) {
-    optionsOnly(options,['enabled','timeoutMs']);this._requireProfile();
-    const enabled=options.enabled,payload=handheldStickControlPayload(enabled),timeoutMs=options.timeoutMs??3000;
-    if(!Number.isFinite(timeoutMs)||timeoutMs<=0||timeoutMs>60000)throw new RangeError('timeoutMs must be >0..60000');
-    return this.owner._run('sendHandheldStickControlRequest',async operation=>{
-      await this.owner._stop();check(operation.controller.signal);
-      const reply=await this.owner.experimental._queryPayloadCommand('App handheld stick control',[4,0x58],payload,timeoutMs,{signal:operation.controller.signal,epoch:this.owner.motionEpoch});
-      return handheldStickControlReply(reply,enabled);
-    },false);
   }
   async sendComponentCalibrationRequest(options={}) {
     optionsOnly(options,['sourcePart','timeoutMs']);this._requireProfile();
@@ -180,26 +154,6 @@ export class AppCommands {
       await this.owner._stop();check(operation.controller.signal);
       const message=await this.owner.experimental._queryPayloadCommand('App axis mode',[4,0x0f],spec.payload,timeoutMs,{signal:operation.controller.signal,epoch:this.owner.motionEpoch});
       const {payload,...requested}=spec;return {...appReply(message,0x0f),...requested,activePresetVerified:false,otherBitsPreservationVerified:false,persistenceVerified:false};
-    },false);
-  }
-  async sendFactorySettingsResetRequest(options={}) {
-    optionsOnly(options,['sourcePlatform','timeoutMs']);this._requireProfile();
-    const spec=factoryResetSpec(options),timeoutMs=options.timeoutMs??3000;
-    if(!Number.isFinite(timeoutMs)||timeoutMs<=0||timeoutMs>60000)throw new RangeError('timeoutMs must be >0..60000');
-    return this.owner._run('sendFactorySettingsResetRequest',async operation=>{
-      await this.owner._stop();check(operation.controller.signal);
-      const message=await this.owner.experimental._queryPayloadCommand('App factory settings reset',[4,0x13],spec.payload,timeoutMs,{signal:operation.controller.signal,epoch:this.owner.motionEpoch});
-      return {...appReply(message,0x13),requestedSourcePlatform:spec.requestedSourcePlatform,targetResetScopeVerified:false,persistenceVerified:false};
-    },false);
-  }
-  async sendHandleSettingRequest(options={}) {
-    optionsOnly(options,['setting','value','timeoutMs']);this._requireProfile();
-    const spec=handleWriteSpec(options),timeoutMs=options.timeoutMs??3000;
-    if(!Number.isFinite(timeoutMs)||timeoutMs<=0||timeoutMs>60000)throw new RangeError('timeoutMs must be >0..60000');
-    return this.owner._run('sendHandleSettingRequest',async operation=>{
-      await this.owner._stop();check(operation.controller.signal);
-      const message=await this.owner.experimental._queryPayloadCommand('App handle setting',[4,0x35],spec.payload,timeoutMs,{signal:operation.controller.signal,epoch:this.owner.motionEpoch});
-      const {payload,...requested}=spec;return {...appReply(message,0x35),...requested,unspecifiedByteSemanticsVerified:false,readbackVerified:false,persistenceVerified:false};
     },false);
   }
   async readParameters(options = {}) {

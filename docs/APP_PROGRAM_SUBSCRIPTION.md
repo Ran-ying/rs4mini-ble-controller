@@ -1,3 +1,5 @@
+> 已退出公开SDK：用户于2026-10-20要求移除此发送能力。本文保留历史协议证据，示例不再适用于当前SDK。
+
 # 程序状态推送启停请求（0.7.24 / 原生0.3.24 build27）
 
 设备SDK提供显式App来源 `sendProgramStatusSubscriptionRequest`，封装源04:6B的StartContinuePush/StopContinuePush请求。

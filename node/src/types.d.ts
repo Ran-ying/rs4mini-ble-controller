@@ -209,7 +209,6 @@ export interface AppCommandReply {
   message: DumlMessage;
 }
 export interface AppComponentCalibrationReply extends AppCommandReply { requestedSourcePart:'AUTO';motorPreflightRawValue:number;motorPreflightEnabled:boolean;businessComplete:boolean;calibration:null|{rawPart:number;sourcePart:string;sourcePartKnown:boolean;rawStatus:number;sourceStatus:'FAIL'|'SUCCESS'|'PROCESSING';sourceStatusKnown:boolean;bodyHex:string;trailingHex:string};responsePartMatchesRequested:boolean|null;modelLayoutVerified:false;motorStatePhysicalVerified:false;businessRequestAssociationVerified:false;firmwareAbortVerified:false; }
-export interface AppHandheldStickControlReply extends AppCommandReply {sourceSetting:'StickGimbalControlEnabled';requestedEnabled:boolean;modelLayoutVerified:false;readbackVerified:false;persistenceVerified:false;notificationAssociationVerified:false;}
 export interface AppParameterReply extends AppCommandReply {
   parameters: Array<AppParameterContext & { headerByte: number; rawHex: string }>;
 }
@@ -268,10 +267,6 @@ export interface AppProgramStatusRequestReply extends AppCommandReply {
   requestedProgram:AppProgramName;requestedProgramCommandId:98|55|99;requestType:'RequestSinglePush';
   freshStatusVerified:false;programCorrelationVerified:false;modelLayoutVerified:false;
 }
-export interface AppProgramStatusSubscriptionReply extends Omit<AppProgramStatusRequestReply,'requestType'> {
-  requestedEnabled:boolean;requestType:'StartContinuePush'|'StopContinuePush';
-  notificationStreamVerified:false;remoteSubscriptionStateVerified:false;
-}
 export interface AppProgramRecord {
   rawTag:number;sourceSignedTag:number;length:number;payloadHex:string;sourceValues:Record<string,number>|null;
 }
@@ -318,14 +313,6 @@ export interface AppTuningReading extends AppParameterReply {
 export type StandaloneParameter='speed'|'smoothing';
 export type AppSourceAxisMode='ThreeAxis'|'TwoAxis'|'Roll360'|'ThreeDRoll360';
 export type AppSourceWorkMode='Free'|'Flower'|'Fpv'|'Center';
-export type AppParameterSubscriptionKey = "AutoTunePercent"|"AutoTuneProgress"|"BalanceTestStatus"|"Channel1MapState"|"Channel1Val"|"Channel2MapState"|"Channel2Val"|"Channel3MapState"|"Channel3Val"|"Channel4MapState"|"Channel4Val"|"Channel5MapState"|"Channel5Val"|"Channel6MapState"|"Channel6Val"|"ControlParamMode"|"ControllerMaxSpeedPitch"|"ControllerMaxSpeedRoll"|"ControllerMaxSpeedYaw"|"CustomFollowModePitchEnabled"|"CustomFollowModeRollEnabled"|"CustomFollowModeYawEnabled"|"FollowAcceMode"|"FollowDeadZoneMode"|"FollowModeSensitivity"|"FollowSpeedMode"|"ForbidRoll360Switch"|"ForbidTriggerSelfie"|"ForbidVerticalShootingSwitch"|"GimbalAutoMovement"|"GimbalAxisMode"|"GimbalControlState"|"GimbalCreateMaxSpeedPitch"|"GimbalCreateMaxSpeedRoll"|"GimbalCreateMaxSpeedYaw"|"GimbalCreateSmoothPitch"|"GimbalCreateSmoothRoll"|"GimbalCreateSmoothYaw"|"GimbalFoldMode"|"GimbalGamepadMaxSpeedPitch"|"GimbalGamepadMaxSpeedRoll"|"GimbalGamepadMaxSpeedYaw"|"GimbalGamepadSmoothPitch"|"GimbalGamepadSmoothRoll"|"GimbalGamepadSmoothYaw"|"GimbalHoldType"|"GimbalInputSource"|"GimbalMotionMaxSpeedPitch"|"GimbalMotionMaxSpeedRoll"|"GimbalMotionMaxSpeedYaw"|"GimbalMotionSmoothPitch"|"GimbalMotionSmoothRoll"|"GimbalMotionSmoothYaw"|"GimbalWorkMode"|"IsAutoTune"|"IsChannel1Rev"|"IsChannel2Rev"|"IsChannel3Rev"|"IsChannel4Rev"|"IsChannel5Rev"|"IsChannel6Rev"|"IsCustomFollowMode"|"IsTestingBalance"|"MotorBlockUpTime"|"MotorEnabled"|"PeripheralAnglePitch"|"PeripheralAngleRoll"|"PeripheralAngleYaw"|"PeripheralGpsEastAcceSpeed"|"PeripheralGpsEastSpeed"|"PeripheralGpsLat"|"PeripheralGpsLng"|"PeripheralGpsNorthAcceSpeed"|"PeripheralGpsNorthSpeed"|"PeripheralGpsNum"|"PeripheralGyroAccePitch"|"PeripheralGyroAcceRoll"|"PeripheralGyroAcceYaw"|"PeripheralGyroBiasPitch"|"PeripheralGyroBiasRoll"|"PeripheralGyroBiasYaw"|"PeripheralGyroOutPitch"|"PeripheralGyroOutRoll"|"PeripheralGyroOutYaw"|"PeripheralHandDeviceAngle"|"PeripheralPosPitch"|"PeripheralPosPitchBias"|"PeripheralPosRoll"|"PeripheralPosRollBias"|"PeripheralPosYaw"|"PeripheralPosYawBias"|"PeripheralPowerPitch"|"PeripheralPowerRoll"|"PeripheralPowerYaw"|"PeripheralTargetPosPitch"|"PeripheralTargetPosRoll"|"PeripheralTargetPosYaw"|"PeripheralTempPitch"|"PeripheralTempRoll"|"PeripheralTempYaw"|"PitchControllerDeadband"|"PitchControllerSmoothingFactor"|"PitchFineTuning"|"PitchMotorControlGyroFilteringFactor"|"PitchMotorControlPreControl"|"PitchMotorControlStiffness"|"PitchMotorControlStrength"|"PitchSmoothTrackAcceleration"|"PitchSmoothTrackDeadband"|"PitchSmoothTrackEnabled"|"PitchSmoothTrackSpeed"|"PitchTestResult"|"PushEnablePitch"|"PushEnableRoll"|"PushEnableYaw"|"RcDeadZoneMode"|"RcSmoothMode"|"RcSpeedMode"|"RollControllerDeadband"|"RollControllerSmoothingFactor"|"RollMotorControlGyroFilteringFactor"|"RollMotorControlPreControl"|"RollMotorControlStiffness"|"RollMotorControlStrength"|"RollSmoothTrackAcceleration"|"RollSmoothTrackDeadband"|"RollSmoothTrackEnabled"|"RollSmoothTrackSpeed"|"RollTestResult"|"Ronin2MaxAnglePitch"|"Ronin2MaxAngleRoll"|"Ronin2MaxAngleYaw"|"Ronin2MinAnglePitch"|"Ronin2MinAngleRoll"|"Ronin2MinAngleYaw"|"SilentMode"|"StartBalanceTest"|"TrackingOrientationVertical"|"TrackingSpeed"|"UserProfile"|"YawControllerDeadband"|"YawControllerSmoothingFactor"|"YawFineTuning"|"YawMotorControlGyroFilteringFactor"|"YawMotorControlPreControl"|"YawMotorControlStiffness"|"YawMotorControlStrength"|"YawSmoothTrackAcceleration"|"YawSmoothTrackDeadband"|"YawSmoothTrackEnabled"|"YawSmoothTrackSpeed"|"YawTestResult";
-export interface AppParameterSubscriptionSent {
-  profile:'ronin-2.2.2';sent:true;receiverByte:229;sourceCase:'pinned-db-present/HG724';requestBodyHex:string;
-  requestedKeys:AppParameterSubscriptionKey[];metadataConditionalKeys:AppParameterSubscriptionKey[];modelConditionalKeys:AppParameterSubscriptionKey[];
-  sourceGroups:Array<{commandId:16|50|102;channels:number[];highestChannelIndex:number;bitmapHex:string}>;
-  acknowledgementRequested:false;acknowledged:false;sourceAppInitializationVerified:false;targetRoutingVerified:false;
-  notificationStreamVerified:false;remoteSubscriptionStateVerified:false;freshStatusVerified:false;deviceVerified:false;physicalCompletionVerified:false;
-}
 export type AppMotorTuningSingleReply = AppParameterReply & {readMode:'single';values:MotorTuningReading[]};
 export interface AppMotorTuningBatchReply {
   profile:'ronin-2.2.2';deviceVerified:false;physicalCompletionVerified:false;
@@ -333,12 +320,9 @@ export interface AppMotorTuningBatchReply {
   parameters:AppParameterReply['parameters'];values:MotorTuningReading[];
 }
 export interface AppCommands {
-  readonly parameterSubscriptionKeys:AppParameterSubscriptionKey[];
-  sendParameterSubscriptionRequest(options:{keys:readonly AppParameterSubscriptionKey[]}):Promise<AppParameterSubscriptionSent>;
   readonly sensorCalibrationStatus:AppSensorCalibrationStatus|null;
   readonly externalDeviceStatus:AppExternalDeviceStatus|null;
   readonly peripheralStatus:AppPeripheralStatus|null;
-  sendProgramStatusSubscriptionRequest(options:{program:AppProgramName;enabled:boolean;timeoutMs?:number}):Promise<AppProgramStatusSubscriptionReply>;
   sendProgramStatusRequest(options:{program:AppProgramName;timeoutMs?:number}):Promise<AppProgramStatusRequestReply>;
   getCenterActivationInfo(options:{sourceVersion:'Ver1_0'|'Ver1_1'|'Ver1_3'|'Ver13';timeoutMs?:number}):Promise<AppCommandReply & {sourceVersion:string;receiverByte:229;sourceGetRequestByte:1|17;activeByte:number;sourceActiveBit:boolean;unknownActiveBits:number;dateRaw:{year:number;month:number;day:number;hour:number;minute:number;second:number};serialNumberRawHex:string;sourceSerialNumber:string;serialNumberLength:number;trailingBodyHex:string;dateValidityVerified:false;actualSessionVersionVerified:false;activationValidityVerified:false;modelLayoutVerified:false}>;
   getUserProfile(options?:{timeoutMs?:number}):Promise<AppParameterReply & {parameter:'userProfile';rawValue:number;withinSourceRange:boolean;sourceUiName:'M1'|'M2'|'M3'|null;modelLayoutVerified:false;activePresetVerified:false}>;
@@ -349,9 +333,6 @@ export interface AppCommands {
   sendSmoothTrackAxesRequest(options:{axes:Partial<Record<'yaw'|'pitch'|'roll',boolean>>;timeoutMs?:number}):Promise<AppCommandReply & {requestedAxes:Partial<Record<'yaw'|'pitch'|'roll',boolean>>;activePresetVerified:false;atomicApplicationVerified:false;persistenceVerified:false}>;
   getAxisMode(options?:{timeoutMs?:number}):Promise<AppParameterReply & {rawValue:number;sourceModeValue:number;sourceMode:AppSourceAxisMode;unknownBits:number;modelLayoutVerified:false;activePresetVerified:false}>;
   sendAxisModeRequest(options:{sourceMode:AppSourceAxisMode;timeoutMs?:number}):Promise<AppCommandReply & {requestedSourceMode:AppSourceAxisMode;requestedRawValue:number;activePresetVerified:false;otherBitsPreservationVerified:false;persistenceVerified:false}>;
-  sendFactorySettingsResetRequest(options:{sourcePlatform:'HG724';timeoutMs?:number}):Promise<AppCommandReply & {requestedSourcePlatform:'HG724';targetResetScopeVerified:false;persistenceVerified:false}>;
-  sendHandleSettingRequest(options:{setting:'dualChannelMode'|'tiltDirection'|'panDirection';value:0|1;timeoutMs?:number}):Promise<AppCommandReply & {setting:'dualChannelMode'|'tiltDirection'|'panDirection';requestedValue:0|1;unspecifiedByteSemanticsVerified:false;readbackVerified:false;persistenceVerified:false}>;
-  sendHandheldStickControlRequest(options:{enabled:boolean;timeoutMs?:number}):Promise<AppHandheldStickControlReply>;
   sendComponentCalibrationRequest(options:{sourcePart:'AUTO';timeoutMs?:number}):Promise<AppComponentCalibrationReply>;
   sendFineTuneRequest(options:{axis:'pitch'|'roll';adjustmentDegrees:number;timeoutMs?:number}):Promise<AppCommandReply & {axis:'pitch'|'roll';requestedAdjustmentDegrees:number;encodedTenths:number;nominalAdjustmentDegrees:number;stabilizationStateVerified:false}>;
   readonly programStatus:AppProgramStatus|null;

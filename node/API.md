@@ -1,5 +1,8 @@
 # RS4 Mini Node API
 
+> 当前变更：用户已要求移除参数/程序连续订阅、手柄/摇杆写入和恢复设置的公开SDK入口及GUI动作。下文相关旧版本描述为历史；被动状态和程序状态单次查询保留。维护功能正在逐项核对实机效果，完整验收尚未完成。
+
+
 ## 当前变更：0.7.36
 
 `getHandleSettings()`与`queryCalibrationStatus()`已移除；使用被动`calibrationStatus`观察已有通知，不把缓存当主动查询。Python相应别名和原生查询selector同步移除。

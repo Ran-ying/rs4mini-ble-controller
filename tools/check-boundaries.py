@@ -700,7 +700,11 @@ assert request['profile']=='ronin-2.2.2'
 assert request['sourceRequestType']==2 and request['sourceRequestTypeName']=='RequestSinglePush'
 assert request['allowedProgramCommands']==[98,55,99]
 assert request['singleRequestSendEnabled'] is True and request['ackBodyOpaque'] is True
-assert request['continuousSubscriptionSendEnabled'] is True
+assert request['continuousSubscriptionSendEnabled'] is False
+for retired in ('handleWriteSdk','factoryResetSdk','programStatusSubscriptionSdk','parameterSubscriptionSdk'):
+    assert manifest[retired]['removedFromSdk'] is True
+    assert manifest[retired]['sendEnabled'] is False
+    assert manifest[retired]['implemented'] is False
 for flag in ('programExecutionSendEnabled','freshStatusVerified','programCorrelationVerified','modelSpecificPathVerified','targetDeviceVerified','physicalCompletionVerified'):
     assert request[flag] is False
 for source in request['files']:

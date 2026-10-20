@@ -1,3 +1,5 @@
+> 已退出公开SDK：用户于2026-10-20要求移除此发送能力。本文保留历史协议证据，示例不再适用于当前SDK。
+
 # 手柄命名设置请求（0.7.15 / 原生0.3.15）
 
 统一RS4Mini/RSGimbal入口下新增设备SDK方法sendHandleSettingRequest；Python提供send_handle_setting_request别名，原生sendHandleSettingRequest:timeoutMs:completion:。必须显式选择ronin-2.2.2来源。不是上层运动组合，也不新增相机或手机传感器控制。

@@ -3,10 +3,10 @@ import {RS4Mini} from '../src/index.js';import fs from 'node:fs';
 // Explicit real-device runner: never imported by default tests or CI.
 if(process.argv.includes('--help')){console.log('Requires RS4MINI_DEVICE_ID and explicit session authorization. See docs/HARDWARE_FULL_ACCEPTANCE.md.');process.exit(0);}
 if(!process.env.RS4MINI_DEVICE_ID)throw Error('Explicit RS4MINI_DEVICE_ID required');
-if(!['queries','subscriptions'].includes(process.argv[2])&&process.env.RS4MINI_ALLOW_MAINTENANCE!=='yes')throw Error('Explicit approval for selected maintenance case required');
+if(!['queries'].includes(process.argv[2])&&process.env.RS4MINI_ALLOW_MAINTENANCE!=='yes')throw Error('Explicit approval for selected maintenance case required');
 fs.mkdirSync(new URL('../captures/',import.meta.url),{recursive:true});
 
-const action=process.argv[2];if(!['subscriptions','settings','autotune','system','component','balance','queries','recenter'].includes(action))throw Error('Explicit named case required');
+const action=process.argv[2];if(!['settings','autotune','system','component','balance','queries','recenter'].includes(action))throw Error('Explicit named case required');
 const id=process.env.RS4MINI_DEVICE_ID.replaceAll('-','').toLowerCase(),g=new RS4Mini({deviceId:id}),a=g.appCommands,t={timeoutMs:5000},file=fileURLToPath(new URL('../captures/full-',import.meta.url))+action+'-'+Date.now()+'.jsonl';
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));let counts={},jointSamples=[];
 function save(type,data){fs.appendFileSync(file,JSON.stringify({at:Date.now(),type,data})+'\n');}
@@ -15,15 +15,8 @@ async function task(name,fn){try{const r=await fn();save(name,{ok:true,result:r}
 async function observe(seconds){for(let i=0;i<seconds;i++){await sleep(1000);if((i+1)%10===0)console.log('OBSERVE',i+1,JSON.stringify(counts));}save('observation',{seconds,counts,joints:jointSamples.slice(-5)});}
 try{
  await g.connect({timeoutMs:15000,directConnectTimeoutMs:8000});a.useProfile('ronin-2.2.2');console.log('CONNECTED',action);save('motorBefore',await a.getMotorSettings(t));
- if(action==='subscriptions'){
-  const keys=['MotorEnabled','FollowModeSensitivity','PitchMotorControlStiffness','PeripheralPosPitch','PeripheralPosRoll','PeripheralPosYaw'];
-  await task('sendParameterSubscriptionRequest',()=>a.sendParameterSubscriptionRequest({keys}));await observe(8);
-  for(const program of ['track','timelapse','panorama']){try{await task('program.'+program+'.start',()=>a.sendProgramStatusSubscriptionRequest({...t,program,enabled:true}));await observe(3);}finally{await task('program.'+program+'.stop',()=>a.sendProgramStatusSubscriptionRequest({...t,program,enabled:false}));await observe(2);}}
-  save('cache-snapshot',Object.fromEntries(['calibrationStatus','userParameterStatus','handheldStickStatus','abnormalStatus','batteryStatus','programStatus','peripheralStatus','externalDeviceStatus','sensorCalibrationStatus','tutorialStatus'].map(k=>[k,a[k]])));
- }else if(action==='settings'){
+ if(action==='settings'){
   save('standaloneBefore',await a.getStandaloneTuning(t));await task('setStandaloneTuning.input2.pitch.speed50',()=>a.setStandaloneTuning({...t,inputSource:2,axis:'pitch',parameter:'speed',value:50}));await task('standalone.readback',()=>a.getStandaloneTuning(t));
-  for(const setting of ['dualChannelMode','tiltDirection','panDirection'])await task('handle.'+setting+'.0',()=>a.sendHandleSettingRequest({...t,setting,value:0}));
-  await task('stick.enabled',()=>a.sendHandheldStickControlRequest({...t,enabled:true}));
   for(const axis of ['pitch','roll'])await task('fine.'+axis+'.0',()=>a.sendFineTuneRequest({...t,axis,adjustmentDegrees:0}));await observe(5);
  }else if(action==='autotune'){
   await task('sendAutoTuneRequest.start',()=>a.sendAutoTuneRequest({start:true}));await observe(30);

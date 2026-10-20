@@ -460,13 +460,9 @@ static BOOL Matches(NSString *name) {
                 return nil;
             }
             return RSAppSensitivityFrame(sequence, mode);
-        case 18: return context ? nil : RSAppParameterSubscriptionFrame(sequence,mode);
         case 0x6a: return RSAppAutoTuneFrame(sequence, mode);
-        case 0x58: return context ? nil : RSAppHandheldStickControlFrame(sequence,mode);
         case 7: return RSAppFineTuneFrame(sequence,context,mode);
-        case 0x13: return context || mode ? nil : RSAppFactoryResetFrame(sequence,@"HG724");
-        case 0x35: return RSAppHandleWriteFrame(sequence,context,mode);
-        case 0x6b: return context ? nil : [mode isKindOfClass:NSDictionary.class] ? RSAppProgramStatusSubscriptionFrame(sequence,mode) : RSAppProgramStatusRequestFrame(sequence,mode);
+        case 0x6b: return context ? nil : RSAppProgramStatusRequestFrame(sequence,mode);
         case 0x31: return RSAppMotorWriteFrame(sequence,context,mode);
         case 0x32: return RSAppMotorReadFrame(sequence,context);
         default: return nil;
@@ -492,16 +488,6 @@ static BOOL Matches(NSString *name) {
     [self startAppCommand:0x0f parameters:@[@{@"index":@37,@"size":@1}] mode:nil settingsKind:nil settingsPatch:nil timeoutMs:timeoutMs completion:^(NSDictionary *reply,NSError *error) {
         NSMutableDictionary *result=[reply mutableCopy]; if (result) result[@"requestedValue"]=@64;
         if (completion) completion(result?[result copy]:nil,error);
-    }];
-}
-- (void)sendHandheldStickControlRequest:(NSDictionary *)spec timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
-    if(![spec isKindOfClass:NSDictionary.class]||spec.count!=1||!RSAppHandheldStickControlFrame(0,spec[@"enabled"])) {
-        if(completion)dispatch_async(dispatch_get_main_queue(), ^{completion(nil,RSAppError(@"RS4MINI_INVALID_ARGUMENT",@"Explicit boolean enabled required",nil));});return;
-    }
-    NSNumber *enabled=[spec[@"enabled"] copy];
-    [self startAppCommand:0x58 parameters:nil mode:enabled settingsKind:nil settingsPatch:nil timeoutMs:timeoutMs completion:^(NSDictionary *reply,NSError *error){
-        if(error){if(completion)completion(nil,error);return;}
-        NSError *decodeError=nil;NSDictionary *result=RSDecodeAppHandheldStickControlReply(reply[@"message"],enabled,&decodeError);if(completion)completion(result,decodeError);
     }];
 }
 - (void)sendComponentCalibrationRequest:(NSDictionary *)spec timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
@@ -560,22 +546,6 @@ static BOOL Matches(NSString *name) {
     if(!request){if(completion)dispatch_async(dispatch_get_main_queue(), ^{completion(nil,RSAppError(@"RS4MINI_INVALID_ARGUMENT",@"Named source axis mode required",nil));});return;}
     [self startAppCommand:0x0f parameters:@[@{@"index":@34,@"size":@1}] mode:request[@"requestedRawValue"] settingsKind:nil settingsPatch:nil timeoutMs:timeoutMs completion:^(NSDictionary *reply,NSError *error) {
         NSMutableDictionary *result=[reply mutableCopy];if(result){[result addEntriesFromDictionary:request];result[@"activePresetVerified"]=@NO;result[@"otherBitsPreservationVerified"]=@NO;result[@"persistenceVerified"]=@NO;}
-        if(completion)completion(result?[result copy]:nil,error);
-    }];
-}
-- (void)sendFactorySettingsResetRequest:(NSDictionary *)spec timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
-    NSDictionary *request=RSAppFactoryResetSpec(spec);
-    if(!request){if(completion)dispatch_async(dispatch_get_main_queue(), ^{completion(nil,RSAppError(@"RS4MINI_INVALID_ARGUMENT",@"Explicit sourcePlatform HG724 required",nil));});return;}
-    [self startAppCommand:0x13 parameters:nil mode:nil settingsKind:nil settingsPatch:nil timeoutMs:timeoutMs completion:^(NSDictionary *reply,NSError *error) {
-        NSMutableDictionary *result=[reply mutableCopy];if(result){result[@"requestedSourcePlatform"]=request[@"requestedSourcePlatform"];result[@"targetResetScopeVerified"]=@NO;result[@"persistenceVerified"]=@NO;}
-        if(completion)completion(result?[result copy]:nil,error);
-    }];
-}
-- (void)sendHandleSettingRequest:(NSDictionary *)spec timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
-    NSDictionary *request=RSAppHandleWriteSpec(spec);
-    if(!request){if(completion)dispatch_async(dispatch_get_main_queue(), ^{completion(nil,RSAppError(@"RS4MINI_INVALID_ARGUMENT",@"Named handle setting and integer value0/1 required",nil));});return;}
-    [self startAppCommand:0x35 parameters:@[@{@"index":request[@"offset"],@"size":@1}] mode:request[@"requestedValue"] settingsKind:nil settingsPatch:nil timeoutMs:timeoutMs completion:^(NSDictionary *reply,NSError *error) {
-        NSMutableDictionary *result=[reply mutableCopy];if(result){result[@"setting"]=request[@"setting"];result[@"requestedValue"]=request[@"requestedValue"];result[@"unspecifiedByteSemanticsVerified"]=@NO;result[@"readbackVerified"]=@NO;result[@"persistenceVerified"]=@NO;}
         if(completion)completion(result?[result copy]:nil,error);
     }];
 }
@@ -643,24 +613,6 @@ static BOOL Matches(NSString *name) {
     }];
 }
 
-- (NSArray *)appParameterSubscriptionKeys{return RSAppParameterSubscriptionKeys();}
-- (void)sendParameterSubscriptionRequest:(NSDictionary *)spec completion:(RSAppCompletion)completion{
-    NSDictionary *selection=RSAppParameterSubscriptionSpec(spec);
-    if(!selection){if(completion)dispatch_async(dispatch_get_main_queue(), ^{completion(nil,RSAppError(@"RS4MINI_INVALID_ARGUMENT",@"Nonempty known subscription keys required",nil));});return;}
-    NSDictionary *snapshot=@{@"keys":selection[@"requestedKeys"]};
-    [self startAppCommand:18 parameters:nil mode:snapshot settingsKind:nil settingsPatch:nil timeoutMs:3000 completion:^(NSDictionary *reply,NSError *error){if(completion)completion(error?nil:RSAppParameterSubscriptionSent(selection),error);}];
-}
-- (void)sendProgramStatusSubscriptionRequest:(NSDictionary *)spec timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
-    NSDictionary *selection=RSAppProgramStatusSubscriptionSelection(spec);
-    if(!selection){if(completion)dispatch_async(dispatch_get_main_queue(), ^{completion(nil,RSAppError(@"RS4MINI_INVALID_ARGUMENT",@"Named program and boolean enabled required",nil));});return;}
-    NSDictionary *snapshot=@{@"program":selection[@"requestedProgram"],@"enabled":selection[@"requestedEnabled"]};
-    [self startAppCommand:0x6b parameters:nil mode:snapshot settingsKind:nil settingsPatch:nil timeoutMs:timeoutMs completion:^(NSDictionary *reply,NSError *error){
-        if(error){if(completion)completion(nil,error);return;}
-        NSMutableDictionary *result=[reply mutableCopy];[result addEntriesFromDictionary:selection];
-        [result addEntriesFromDictionary:@{@"freshStatusVerified":@NO,@"programCorrelationVerified":@NO,@"modelLayoutVerified":@NO,@"notificationStreamVerified":@NO,@"remoteSubscriptionStateVerified":@NO}];
-        if(completion)completion([result copy],nil);
-    }];
-}
 - (void)sendProgramStatusRequest:(NSDictionary *)spec timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
     NSDictionary *selection=RSAppProgramStatusSelection(spec);
     if(!selection){if(completion)dispatch_async(dispatch_get_main_queue(), ^{completion(nil,RSAppError(@"RS4MINI_INVALID_ARGUMENT",@"program must be track, timelapse or panorama",nil));});return;}

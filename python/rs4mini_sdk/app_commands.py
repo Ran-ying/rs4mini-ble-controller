@@ -3,18 +3,16 @@ from .app_tutorial import tutorial_notification
 from .app_component_calibration import component_calibration_payload,component_calibration_reply
 from .app_sensor_calibration import sensor_calibration_notification
 from .app_external_device import external_device_notification
-from .app_parameter_subscription import parameter_subscription_keys,parameter_subscription_spec,parameter_subscription_frame,parameter_subscription_sent
 from .app_peripheral import peripheral_notification
-from .app_program_request import program_status_request_spec,program_status_request_reply,program_status_subscription_spec,program_status_subscription_reply
+from .app_program_request import program_status_request_spec,program_status_request_reply
 from .app_program_status import program_status_notification
 from .app_source_status import source_status_notification
-from .app_handheld_stick import handheld_stick_notification,handheld_stick_control_payload,handheld_stick_control_reply
+from .app_handheld_stick import handheld_stick_notification
 from .app_profile_values import profile_value_selection,profile_value_write,profile_value_reply
 from .app_smooth_track import smooth_track_selection,smooth_track_write,smooth_track_reply
 from .app_axis_mode import axis_mode_write,axis_mode_reply
 """Current-App device commands share the existing connection/queue/pending map."""
 from .app_fine_tune import fine_tune_spec
-from .app_handle import handle_write_spec
 from .app_user_parameters import user_parameter_notification
 from .app_standalone import standalone_selection,standalone_write,standalone_context,standalone_reply
 from .app_tuning import tuning_selection,tuning_write,tuning_reply
@@ -26,7 +24,7 @@ import copy
 from .protocol import frame
 from .app_calibration import auto_tune_payload, calibration_notification
 from .app_settings import mode_kind, SCHEMAS, settings_patch, decode_settings, settings_write
-from .app_protocol import app_profile, parameter_context, parameter_request, sensitivity_payload, factory_reset_spec, app_reply, parameter_reply
+from .app_protocol import app_profile, parameter_context, parameter_request, sensitivity_payload, app_reply, parameter_reply
 from .experimental_device import _duration
 from .errors import RS4MiniError
 
@@ -45,8 +43,6 @@ class AppCommands:
         self._sensor_calibration_status = None
         self._tutorial_status = None
 
-    parameterSubscriptionKeys = property(lambda self: parameter_subscription_keys())
-    parameter_subscription_keys = parameterSubscriptionKeys
     tutorialStatus = property(lambda self: copy.deepcopy(self._tutorial_status))
     tutorial_status = tutorialStatus
     sensorCalibrationStatus = property(lambda self: copy.deepcopy(self._sensor_calibration_status))
@@ -136,15 +132,6 @@ class AppCommands:
     def _require_profile(self):
         app_profile(self._profile)
 
-    async def sendParameterSubscriptionRequest(self, *, keys):
-        self._require_profile();spec=parameter_subscription_spec(keys)
-        async def body(operation):
-            await self.owner._halt();self.owner._check(operation)
-            await self.owner._enqueue(parameter_subscription_frame(self.owner._next_sequence(),spec),operation=operation,epoch=self.owner._epoch)
-            return parameter_subscription_sent(spec)
-        return await self.owner._run('sendParameterSubscriptionRequest',body,False)
-
-    send_parameter_subscription_request = sendParameterSubscriptionRequest
 
     async def getCenterActivationInfo(self, *, sourceVersion, timeoutMs=3000):
         self._require_profile()
@@ -154,13 +141,6 @@ class AppCommands:
 
     get_center_activation_info=getCenterActivationInfo
 
-    async def sendProgramStatusSubscriptionRequest(self, *, program, enabled, timeoutMs=3000):
-        self._require_profile()
-        spec=program_status_subscription_spec(program,enabled)
-        response=await self.owner.experimental._query_payload_command('App program status subscription request',(4,0x6b),spec['payload'],timeoutMs)
-        return program_status_subscription_reply(response,spec['requestedProgram'],spec['requestedEnabled'])
-
-    send_program_status_subscription_request = sendProgramStatusSubscriptionRequest
 
     async def sendProgramStatusRequest(self, *, program, timeoutMs=3000):
         self._require_profile()
@@ -170,18 +150,6 @@ class AppCommands:
 
     send_program_status_request = sendProgramStatusRequest
 
-    async def sendHandheldStickControlRequest(self, *, enabled, timeoutMs=3000):
-        self._require_profile()
-        payload=handheld_stick_control_payload(enabled)
-        _duration(timeoutMs,'timeoutMs',False)
-        async def work(operation):
-            await self.owner._halt()
-            self.owner._check(operation)
-            response=await self.owner.experimental._query_payload_command('App handheld stick control',(4,0x58),payload,timeoutMs,external_operation=operation,epoch=self.owner._epoch)
-            return handheld_stick_control_reply(response,enabled)
-        return await self.owner._run('sendHandheldStickControlRequest',work,False)
-
-    send_handheld_stick_control_request=sendHandheldStickControlRequest
 
     async def sendComponentCalibrationRequest(self, *, sourcePart, timeoutMs=3000):
         self._require_profile()
@@ -269,23 +237,7 @@ class AppCommands:
         return await self.owner._run('sendAxisModeRequest',work,False)
     send_axis_mode_request=sendAxisModeRequest
 
-    async def sendFactorySettingsResetRequest(self,*,sourcePlatform,timeoutMs=3000):
-        self._require_profile();spec=factory_reset_spec(sourcePlatform);_duration(timeoutMs,'timeoutMs',False)
-        async def work(operation):
-            await self.owner._halt();self.owner._check(operation)
-            message=await self.owner.experimental._query_payload_command('App factory settings reset',(4,0x13),spec['payload'],timeoutMs,external_operation=operation,epoch=self.owner._epoch)
-            return dict(app_reply(message,0x13),requestedSourcePlatform=spec['requestedSourcePlatform'],targetResetScopeVerified=False,persistenceVerified=False)
-        return await self.owner._run('sendFactorySettingsResetRequest',work,False)
-    send_factory_settings_reset_request=sendFactorySettingsResetRequest
 
-    async def sendHandleSettingRequest(self,*,setting,value,timeoutMs=3000):
-        self._require_profile();spec=handle_write_spec(setting,value);_duration(timeoutMs,'timeoutMs',False)
-        async def work(operation):
-            await self.owner._halt();self.owner._check(operation)
-            message=await self.owner.experimental._query_payload_command('App handle setting',(4,0x35),spec['payload'],timeoutMs,external_operation=operation,epoch=self.owner._epoch)
-            return dict(app_reply(message,0x35),**{k:v for k,v in spec.items() if k!='payload'},unspecifiedByteSemanticsVerified=False,readbackVerified=False,persistenceVerified=False)
-        return await self.owner._run('sendHandleSettingRequest',work,False)
-    send_handle_setting_request=sendHandleSettingRequest
 
 
     async def readParameters(self, *, parameters, timeoutMs=3000):

@@ -2,7 +2,7 @@
   "sessionDate": "2026-10-20",
   "scope": "existing SDK methods, distinct from unknown protocol inventory",
   "fullAcceptanceComplete": false,
-  "sourceVersion": "Node/Python0.7.36 / native0.3.37",
+  "sourceVersion": "Node/Python0.7.37 / native0.3.38",
   "operations": [
     {
       "id": "sensitivity.read",
@@ -257,27 +257,30 @@
       "id": "handle.write",
       "title": "设置手柄单字段",
       "write": true,
-      "state": "failed_timeout_execution_unknown",
+      "state": "removed_from_sdk_by_user",
       "evidence": [
-        "Explicit user-approved named values sent once; no correlated ACK in5s, handle readback timed out"
+        "Explicit user-approved named values sent once; no correlated ACK in5s, handle readback timed out",
+        "2026-10-20 user requested removal; no remaining public SDK sender or GUI action."
       ]
     },
     {
       "id": "stick.write",
       "title": "设置手柄摇杆开关",
       "write": true,
-      "state": "failed_timeout_execution_unknown",
+      "state": "removed_from_sdk_by_user",
       "evidence": [
-        "Explicit user-approved named values sent once; no correlated ACK in5s, handle readback timed out"
+        "Explicit user-approved named values sent once; no correlated ACK in5s, handle readback timed out",
+        "2026-10-20 user requested removal; no remaining public SDK sender or GUI action."
       ]
     },
     {
       "id": "fine.write",
       "title": "Pitch / Roll 微调",
       "write": true,
-      "state": "acknowledged_effect_unverified",
+      "state": "ack_and_measured_effect_passed_visual_roll_confirmed",
       "evidence": [
-        "Pitch0 and Roll0 ACK0; no original-offset getter; no claim of physical offset calibration"
+        "Pitch0 and Roll0 ACK0; no original-offset getter; no claim of physical offset calibration",
+        "Both axes±0.2 and±1.0 ACK0/fresh joint effect/clean close. Pitch−0.9->0->−0.9 visually unclear; Roll−0.5->0.7->−0.4 user confirmed visible change/no abnormality. No general precision/persistence or absolute-vs-increment claim."
       ]
     },
     {
@@ -324,38 +327,42 @@
       "id": "system.write",
       "title": "系统校准请求",
       "write": true,
-      "state": "acknowledged_stuck_start",
+      "state": "no_observable_device_effect",
       "evidence": [
         "ACK0,30successive source status START1, no completion; user explicitly power-cycled and confirmed settled before further maintenance",
-        "After confirmed power cycle and later AUTO completion, parameter remains START1; persistent/request-echo hypothesis, not proof ongoing task."
+        "After confirmed power cycle and later AUTO completion, parameter remains START1; persistent/request-echo hypothesis, not proof ongoing task.",
+        "Current retest ACK0,60 sequential polls START1; user saw no screen/mechanical response; clean close."
       ]
     },
     {
       "id": "component.write",
       "title": "AUTO 部件校准请求",
       "write": true,
-      "state": "acknowledged_and_terminal_push_observed",
+      "state": "physical_completion_observed",
       "evidence": [
-        "AUTO00 ACK statusCode0 with empty business body; calibration=null, businessComplete=false. 168 passive04:30 samples over17.13s:158 PROCESSING,10 COMPLETE; final rawProgress100/rawStatus0. 60s observation, clean close. Temporal association observed; no request ID or independent physical metrology."
+        "AUTO00 ACK statusCode0 with empty business body; calibration=null, businessComplete=false. 168 passive04:30 samples over17.13s:158 PROCESSING,10 COMPLETE; final rawProgress100/rawStatus0. 60s observation, clean close. Temporal association observed; no request ID or independent physical metrology.",
+        "Current retest04:30 PROCESSING->COMPLETE100; user confirmed calibration completed and returned to normal screen; manual acknowledgement outside SDK."
       ]
     },
     {
       "id": "balance.write",
       "title": "启动平衡测试请求",
       "write": true,
-      "state": "acknowledged_stuck_testing",
+      "state": "no_observable_device_effect",
       "evidence": [
         "ACK0,30successive TESTING64 with empty axis results; no completion/physical report; awaiting user power-cycle before next maintenance",
-        "User later confirmed second power cycle/settled. Subsequent read still TESTING64/null axes, so do not infer active task from register alone."
+        "User later confirmed second power cycle/settled. Subsequent read still TESTING64/null axes, so do not infer active task from register alone.",
+        "Current retest ACK0,60 sequential polls TESTING64; three axis results null; user saw no response; clean close."
       ]
     },
     {
       "id": "reset.write",
       "title": "恢复设置请求（HG724）",
       "write": true,
-      "state": "excluded_by_user",
+      "state": "removed_from_sdk_by_user",
       "evidence": [
-        "User explicitly chose not to execute factory reset"
+        "User explicitly chose not to execute factory reset",
+        "2026-10-20 user requested removal; no remaining public SDK sender or GUI action."
       ]
     },
     {
@@ -380,10 +387,11 @@
       "id": "parameter.subscribe",
       "title": "单次命名参数订阅请求",
       "write": true,
-      "state": "sent_no_new_requested_stream",
+      "state": "removed_from_sdk_by_user",
       "evidence": [
         "6 non-camera names across3source groups sent; 8s no new parameter/peripheral stream; transport send is not remote subscription proof",
-        "Retest isolated single-key MotorEnabled then PeripheralPosPitch,10s each: no new corresponding stream, only existing abnormal/program statuses; close clean."
+        "Retest isolated single-key MotorEnabled then PeripheralPosPitch,10s each: no new corresponding stream, only existing abnormal/program statuses; close clean.",
+        "2026-10-20 user requested removal; no remaining public SDK sender or GUI action."
       ]
     },
     {
@@ -399,9 +407,10 @@
       "id": "program.subscribe",
       "title": "程序状态推送启停请求",
       "write": true,
-      "state": "acknowledged_remote_effect_unverified",
+      "state": "removed_from_sdk_by_user",
       "evidence": [
-        "3programs each start/stop status push ACK0; existing38/64 notifications persisted; no program execution"
+        "3programs each start/stop status push ACK0; existing38/64 notifications persisted; no program execution",
+        "2026-10-20 user requested removal; no remaining public SDK sender or GUI action."
       ]
     }
   ],
@@ -531,5 +540,6 @@
     ],
     "historical43EntryLedgerRetained": true,
     "currentRequiredAfterUserExclusions": 40
-  }
+  },
+  "retainedMaintenanceReport": "docs/RETAINED_MAINTENANCE_ACCEPTANCE.md"
 }

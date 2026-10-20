@@ -461,12 +461,14 @@
         "macos/RSControlCore.m",
         "macos/RSBleDevice.m"
       ],
-      "remaining": "0.7.26显式App来源、固定DB已加载/HG724静态分支，152命名键的非空单次订阅请求已封装；CENTER/id7无ACK。无后台刷新、空集停止、反向请求或重连重放；真实路由、通知布局/新鲜度、远端订阅/停止及本机支持未验收。",
+      "remaining": "用户于2026-10-20移除公开发送入口；保留离线协议研究，不表示当前SDK能力。0.7.26显式App来源、固定DB已加载/HG724静态分支，152命名键的非空单次订阅请求已封装；CENTER/id7无ACK。无后台刷新、空集停止、反向请求或重连重放；真实路由、通知布局/新鲜度、远端订阅/停止及本机支持未验收。",
       "officialAppAliases": [
         "SubscribeGimbalParams"
       ],
       "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
-      "subscriptionCatalogResearch": "protocol/research/ronin-subscription-catalog.json"
+      "subscriptionCatalogResearch": "protocol/research/ronin-subscription-catalog.json",
+      "sdkSendEnabled": false,
+      "removedFromSdk": true
     },
     {
       "key": "04:13",
@@ -482,11 +484,13 @@
         "macos/RSControlCore.m",
         "macos/RSBleDevice.m"
       ],
-      "remaining": "0.7.16显式App来源与sourcePlatform HG724的010001恢复设置请求及关联ACK已封装；不是其他平台空体或类型枚举103。取消/超时/断线不重发，无自动保存/回读/回滚，恢复范围/实际效果/重启或持久化未实机验收。",
+      "remaining": "用户于2026-10-20移除公开发送入口；保留离线协议研究，不表示当前SDK能力。0.7.16显式App来源与sourcePlatform HG724的010001恢复设置请求及关联ACK已封装；不是其他平台空体或类型枚举103。取消/超时/断线不重发，无自动保存/回读/回滚，恢复范围/实际效果/重启或持久化未实机验收。",
       "officialAppAliases": [
         "ResetUserParams"
       ],
-      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json"
+      "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
+      "sdkSendEnabled": false,
+      "removedFromSdk": true
     },
     {
       "key": "04:24",
@@ -651,12 +655,14 @@
         "macos/RSControlCore.m",
         "macos/RSBleDevice.m"
       ],
-      "remaining": "0.7.15显式App来源封装三个命名非相机设置的单字段0/1请求；其他字节为源默认FF，ACK不代表保持未指定字段、生效或持久化。NACK直接失败，无缓存成功回退/自动回读/重放。其他手柄字段及本机验收未完成。",
+      "remaining": "用户于2026-10-20移除公开发送入口；保留离线协议研究，不表示当前SDK能力。0.7.15显式App来源封装三个命名非相机设置的单字段0/1请求；其他字节为源默认FF，ACK不代表保持未指定字段、生效或持久化。NACK直接失败，无缓存成功回退/自动回读/重放。其他手柄字段及本机验收未完成。",
       "officialAppAliases": [
         "SetHandleParams"
       ],
       "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
-      "offlineResearchEvidence": "protocol/research/msdk-4.18-evidence.json"
+      "offlineResearchEvidence": "protocol/research/msdk-4.18-evidence.json",
+      "sdkSendEnabled": false,
+      "removedFromSdk": true
     },
     {
       "key": "04:36",
@@ -897,13 +903,15 @@
         "macos/RSControlCore.m",
         "macos/RSBleDevice.m"
       ],
-      "remaining": "0.7.31显式来源bool00/01请求与严格ACK，额外业务体不透明保留；不据ACK更新57、订阅或回滚。实际会话/平台/固件开关效果、持久化、57通知关联和运动交互仍待验收。",
+      "remaining": "用户于2026-10-20移除公开发送入口；保留离线协议研究，不表示当前SDK能力。0.7.31显式来源bool00/01请求与严格ACK，额外业务体不透明保留；不据ACK更新57、订阅或回滚。实际会话/平台/固件开关效果、持久化、57通知关联和运动交互仍待验收。",
       "officialAppAliases": [
         "SetHandheldStickControlEnabled"
       ],
       "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
       "stickResearch": "protocol/research/ronin-stick-evidence.json",
-      "handheldBindingEvidence": "protocol/research/ronin-handheld-binding-evidence.json"
+      "handheldBindingEvidence": "protocol/research/ronin-handheld-binding-evidence.json",
+      "sdkSendEnabled": false,
+      "removedFromSdk": true
     }
   ],
   "researchEvidence": [
@@ -1038,7 +1046,7 @@
     ]
   },
   "handleWriteSdk": {
-    "implemented": true,
+    "implemented": false,
     "source": "protocol/research/ronin-controls-evidence.json",
     "allowedValues": [
       0,
@@ -1053,10 +1061,13 @@
       "python/rs4mini_sdk/app_handle.py",
       "macos/RSControlCore.m",
       "docs/APP_HANDLE_WRITE.md"
-    ]
+    ],
+    "sendEnabled": false,
+    "removedFromSdk": true,
+    "removalReason": "User removed subscriptions, handle/stick writes and factory reset on 2026-10-20; offline codecs remain research only."
   },
   "factoryResetSdk": {
-    "implemented": true,
+    "implemented": false,
     "sourcePlatform": "HG724",
     "targetDeviceVerified": false,
     "targetResetScopeVerified": false,
@@ -1066,7 +1077,10 @@
       "python/rs4mini_sdk/app_protocol.py",
       "macos/RSControlCore.m",
       "docs/APP_FACTORY_RESET.md"
-    ]
+    ],
+    "sendEnabled": false,
+    "removedFromSdk": true,
+    "removalReason": "User removed subscriptions, handle/stick writes and factory reset on 2026-10-20; offline codecs remain research only."
   },
   "saveCallerResearch": "protocol/research/ronin-save-callers-evidence.json",
   "axisModeSdk": {
@@ -1176,7 +1190,7 @@
       99
     ],
     "singleRequestSendEnabled": true,
-    "continuousSubscriptionSendEnabled": true,
+    "continuousSubscriptionSendEnabled": false,
     "programExecutionSendEnabled": false,
     "ackBodyOpaque": true,
     "freshStatusVerified": false,
@@ -1219,7 +1233,11 @@
       "python/rs4mini_sdk/app_program_request.py",
       "macos/RSControlCore.m",
       "docs/APP_PROGRAM_SUBSCRIPTION.md"
-    ]
+    ],
+    "implemented": false,
+    "sendEnabled": false,
+    "removedFromSdk": true,
+    "removalReason": "User removed subscriptions, handle/stick writes and factory reset on 2026-10-20; offline codecs remain research only."
   },
   "trackPointResearch": "protocol/research/ronin-track-points-evidence.json",
   "peripheralResearch": "protocol/research/ronin-peripheral-evidence.json",
@@ -1253,7 +1271,11 @@
     "notificationStreamVerified": false,
     "remoteSubscriptionStateVerified": false,
     "targetDeviceVerified": false,
-    "fixtures": "node/test/fixtures/parameter-subscription.json"
+    "fixtures": "node/test/fixtures/parameter-subscription.json",
+    "implemented": false,
+    "sendEnabled": false,
+    "removedFromSdk": true,
+    "removalReason": "User removed subscriptions, handle/stick writes and factory reset on 2026-10-20; offline codecs remain research only."
   },
   "externalDeviceResearch": "protocol/research/ronin-external-device-evidence.json",
   "externalDeviceSdk": {

@@ -13,7 +13,7 @@ export class RS4Mini {
   readonly velocity: Velocity;
   closed: boolean;
   readonly moveToActive: boolean;
-  readonly activeOperation: "sendUserProfileRequest" | "sendWorkModeRequest" | "sendSmoothTrackAxesRequest" | "sendAxisModeRequest" | "sendFactorySettingsResetRequest" | "sendHandleSettingRequest" | "sendFineTuneRequest" | "sendAutoCalibrationRequest" | "sendBalanceTestRequest" | "setMotorTuning" | "sendAutoTuneRequest" | "setFollowSensitivity" | "setCustomFollowSettings" | "setMotorSettings" | "setFollowSettings" | "setRcSettings" | "setFollowTuning" | "setRcTuning" | "setStandaloneTuning" | "setVelocity" | "moveFor" | "moveTo" | "recenter" | "runTrajectory" | "moveThrough" | "experimentalAbsolute" | "experimentalRate" | "experimentalSleep" | "stop" | null;
+  readonly activeOperation: "sendUserProfileRequest" | "sendWorkModeRequest" | "sendSmoothTrackAxesRequest" | "sendAxisModeRequest" | "sendFineTuneRequest" | "sendAutoCalibrationRequest" | "sendBalanceTestRequest" | "setMotorTuning" | "sendAutoTuneRequest" | "setFollowSensitivity" | "setCustomFollowSettings" | "setMotorSettings" | "setFollowSettings" | "setRcSettings" | "setFollowTuning" | "setRcTuning" | "setStandaloneTuning" | "setVelocity" | "moveFor" | "moveTo" | "recenter" | "runTrajectory" | "moveThrough" | "experimentalAbsolute" | "experimentalRate" | "experimentalSleep" | "stop" | null;
   readonly latestTelemetry: GimbalTelemetry | null;
   readonly decoder: DumlStreamDecoder;
   readonly reconnectState: ReconnectState;

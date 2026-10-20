@@ -46,7 +46,7 @@ static NSScrollView *Viewer(NSTextView **output) {
     NSStackView *buttons=[NSStackView new];buttons.spacing=12;
     self.execute=[NSButton buttonWithTitle:@"执行所选操作" target:self action:@selector(run:)];[buttons addArrangedSubview:self.execute];
     NSButton *stop=[NSButton buttonWithTitle:@"停止 / 取消主机任务" target:self action:@selector(stop:)];[buttons addArrangedSubview:stop];
-    NSButton *keys=[NSButton buttonWithTitle:@"查看订阅键" target:self action:@selector(showKeys:)];[buttons addArrangedSubview:keys];self.degreeButton=[NSButton buttonWithTitle:@"原始 degree-info" target:self action:@selector(degreeInfo:)];[buttons addArrangedSubview:self.degreeButton];[stack addArrangedSubview:buttons];
+    self.degreeButton=[NSButton buttonWithTitle:@"原始 degree-info" target:self action:@selector(degreeInfo:)];[buttons addArrangedSubview:self.degreeButton];[stack addArrangedSubview:buttons];
     self.tabs=[NSTabView new];NSTextView *result,*status;
     NSTabViewItem *ri=[[NSTabViewItem alloc]initWithIdentifier:@"results"];ri.label=@"请求与结果";ri.view=Viewer(&result);self.results=result;[self.tabs addTabViewItem:ri];
     NSTabViewItem *si=[[NSTabViewItem alloc]initWithIdentifier:@"statuses"];si.label=@"被动状态";si.view=Viewer(&status);self.statuses=status;[self.tabs addTabViewItem:si];
@@ -114,6 +114,5 @@ static NSScrollView *Viewer(NSTextView **output) {
 - (void)degreeInfo:(id)sender { if(!self.gimbal.ready||self.gimbal.busy||self.pending)return;[self append:@"发起原始 degree-info 查询（固定3秒截止；字段含义待验）。"];[self.gimbal requestDegreeInfo];[self refresh]; }
 - (void)receiveMessage:(NSDictionary *)message { if([message[@"commandSet"] intValue]==4&&[message[@"commandId"] intValue]==30)[self append:[@"收到4:1E原始消息（非业务字段验收）：\n" stringByAppendingString:RSSDKDisplay(message)]]; }
 - (void)stop:(id)sender { [self.gimbal stop];self.allowWrite.state=NSControlStateValueOff;[self append:@"已请求停止主机任务并发送中位；不等同固件校准/程序中止。"];[self refresh]; }
-- (void)showKeys:(id)sender { [self append:[@"可用命名订阅键（查看不发送）：\n" stringByAppendingString:[self.gimbal.appParameterSubscriptionKeys componentsJoinedByString:@", "]]];[self.tabs selectTabViewItemAtIndex:0]; }
 - (void)receiveStatus:(NSDictionary *)status { [self refresh]; }
 @end

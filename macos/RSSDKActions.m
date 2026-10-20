@@ -29,8 +29,6 @@ NSArray *RSSDKOperations(void) { return @[@{@"id":@"sensitivity.read",@"title":@
 @{@"id":@"motorTuning.write",@"title":@"设置电机数值",@"group":@"数值参数",@"fields":@[@{@"key":@"axis",@"label":@"轴",@"kind":@"enum",@"required":@YES,@"choices":@[@"pitch",@"roll",@"yaw"],@"sample":@"pitch"},@{@"key":@"parameter",@"label":@"参数",@"kind":@"enum",@"required":@YES,@"choices":@[@"stiffness",@"strength",@"gyroFiltering",@"preControl"],@"sample":@"stiffness"},@{@"key":@"value",@"label":@"源整数值",@"kind":@"integer",@"required":@YES,@"min":@0,@"max":@100,@"sample":@"5"}],@"write":@YES,@"confirm":@YES,@"detail":@"源范围由 SDK 校验；写入电机参数的效果尚未实机验收。"},
 @{@"id":@"standalone.read",@"title":@"读取独立配置",@"group":@"数值参数",@"fields":@[@{@"key":@"axis",@"label":@"轴",@"kind":@"enum",@"required":@NO,@"choices":@[@"pitch",@"roll",@"yaw"],@"sample":@"pitch"},@{@"key":@"parameter",@"label":@"参数",@"kind":@"enum",@"required":@NO,@"choices":@[@"speed",@"smoothing"],@"sample":@"speed"}],@"write":@NO,@"confirm":@NO,@"detail":@"显式查询；本机响应与字段布局仍待验收。"},
 @{@"id":@"standalone.write",@"title":@"设置独立配置（输入源2）",@"group":@"数值参数",@"fields":@[@{@"key":@"axis",@"label":@"轴",@"kind":@"enum",@"required":@YES,@"choices":@[@"pitch",@"roll",@"yaw"],@"sample":@"pitch"},@{@"key":@"parameter",@"label":@"参数",@"kind":@"enum",@"required":@YES,@"choices":@[@"speed",@"smoothing"],@"sample":@"speed"},@{@"key":@"value",@"label":@"源整数值",@"kind":@"integer",@"required":@YES,@"min":@0,@"max":@100,@"sample":@"20"},@{@"key":@"inputSource",@"label":@"输入源（显式）",@"kind":@"enum",@"required":@YES,@"choices":@[@"2"],@"sample":@"2"}],@"write":@YES,@"confirm":@NO,@"detail":@"输入源2与数值同包写入；不自动恢复输入源，不代表活动预设确认。"},
-@{@"id":@"handle.write",@"title":@"设置手柄单字段",@"group":@"手柄与微调",@"fields":@[@{@"key":@"setting",@"label":@"字段",@"kind":@"enum",@"required":@YES,@"choices":@[@"dualChannelMode",@"tiltDirection",@"panDirection"],@"sample":@"dualChannelMode"},@{@"key":@"value",@"label":@"源整数值（0/1）",@"kind":@"integer",@"required":@YES,@"min":@0,@"max":@1,@"sample":@"0"}],@"write":@YES,@"confirm":@NO,@"detail":@"未指定字节为源 FF，是否保持其他字段仍待实机确认。"},
-@{@"id":@"stick.write",@"title":@"设置手柄摇杆开关",@"group":@"手柄与微调",@"fields":@[@{@"key":@"enabled",@"label":@"启用摇杆",@"kind":@"bool",@"required":@YES,@"sample":@"false"}],@"write":@YES,@"confirm":@NO,@"detail":@"仅发送请求；ACK 不代表生效、持久化或物理完成。"},
 @{@"id":@"fine.write",@"title":@"Pitch / Roll 微调",@"group":@"手柄与微调",@"fields":@[@{@"key":@"axis",@"label":@"轴",@"kind":@"enum",@"required":@YES,@"choices":@[@"pitch",@"roll"],@"sample":@"pitch"},@{@"key":@"adjustmentDegrees",@"label":@"调整量（度，-2..2）",@"kind":@"number",@"required":@YES,@"min":@-2,@"max":@2,@"sample":@"0.1"}],@"write":@YES,@"confirm":@NO,@"detail":@"这是源微调请求；SDK不自动暂停稳定器或回滚。"},
 @{@"id":@"system.read",@"title":@"读取系统校准状态",@"group":@"校准与维护",@"fields":@[],@"write":@NO,@"confirm":@NO,@"detail":@"显式查询；本机响应与字段布局仍待验收。"},
 @{@"id":@"balance.read",@"title":@"读取平衡测试状态",@"group":@"校准与维护",@"fields":@[],@"write":@NO,@"confirm":@NO,@"detail":@"显式查询；本机响应与字段布局仍待验收。"},
@@ -38,12 +36,9 @@ NSArray *RSSDKOperations(void) { return @[@{@"id":@"sensitivity.read",@"title":@
 @{@"id":@"system.write",@"title":@"系统校准请求",@"group":@"校准与维护",@"fields":@[],@"write":@YES,@"confirm":@YES,@"detail":@"与 AUTO 部件校准不同；型号/UI关系与完成、中止仍待验。"},
 @{@"id":@"component.write",@"title":@"AUTO 部件校准请求",@"group":@"校准与维护",@"fields":@[@{@"key":@"sourcePart",@"label":@"源部件",@"kind":@"enum",@"required":@YES,@"choices":@[@"AUTO"],@"sample":@"AUTO"}],@"write":@YES,@"confirm":@YES,@"detail":@"SDK先新鲜读取电机门槛；不自动开启电机。ACK不代表校准完成。"},
 @{@"id":@"balance.write",@"title":@"启动平衡测试请求",@"group":@"校准与维护",@"fields":@[],@"write":@YES,@"confirm":@YES,@"detail":@"使用参数 balance_test，不是04:40旧平衡调整。"},
-@{@"id":@"reset.write",@"title":@"恢复设置请求（HG724）",@"group":@"校准与维护",@"fields":@[@{@"key":@"sourcePlatform",@"label":@"显式平台",@"kind":@"enum",@"required":@YES,@"choices":@[@"HG724"],@"sample":@"HG724"}],@"write":@YES,@"confirm":@YES,@"detail":@"恢复范围与重启持久化未实机确认；可能改变现有配置。"},
 @{@"id":@"center.read",@"title":@"CENTER 只读信息",@"group":@"读取与状态",@"fields":@[@{@"key":@"sourceVersion",@"label":@"显式源版本",@"kind":@"enum",@"required":@YES,@"choices":@[@"Ver1_0",@"Ver1_1",@"Ver1_3",@"Ver13"],@"sample":@"Ver1_0"}],@"write":@NO,@"confirm":@NO,@"detail":@"只读GET；需要显式格式版本，不协商、不激活、不绑定。"},
 @{@"id":@"raw.read",@"title":@"原始参数读取",@"group":@"读取与状态",@"fields":@[@{@"key":@"index",@"label":@"源参数索引（0–255）",@"kind":@"integer",@"required":@YES,@"min":@0,@"max":@255,@"sample":@"35"},@{@"key":@"size",@"label":@"已知响应宽度",@"kind":@"enum",@"required":@YES,@"choices":@[@"1",@"2",@"4",@"8"],@"sample":@"1"}],@"write":@NO,@"confirm":@NO,@"detail":@"仅当已知索引及宽度时使用；不猜测参数名称，不提供原始写入。"},
-@{@"id":@"parameter.subscribe",@"title":@"单次命名参数订阅请求",@"group":@"订阅与状态",@"fields":@[@{@"key":@"keys",@"label":@"订阅键（逗号分隔）",@"kind":@"keys",@"required":@YES,@"sample":@"MotorEnabled"}],@"write":@YES,@"confirm":@NO,@"detail":@"非空命名键请求，无 ACK；无后台刷新、空集停止或重连重放。"},
-@{@"id":@"program.read",@"title":@"单次程序状态请求",@"group":@"订阅与状态",@"fields":@[@{@"key":@"program",@"label":@"程序",@"kind":@"enum",@"required":@YES,@"choices":@[@"track",@"timelapse",@"panorama"],@"sample":@"track"}],@"write":@NO,@"confirm":@NO,@"detail":@"仅状态请求，不执行程序；ACK不保证收到新状态。"},
-@{@"id":@"program.subscribe",@"title":@"程序状态推送启停请求",@"group":@"订阅与状态",@"fields":@[@{@"key":@"program",@"label":@"程序",@"kind":@"enum",@"required":@YES,@"choices":@[@"track",@"timelapse",@"panorama"],@"sample":@"track"},@{@"key":@"enabled",@"label":@"请求推送",@"kind":@"bool",@"required":@YES,@"sample":@"false"}],@"write":@YES,@"confirm":@NO,@"detail":@"停止推送不是停止程序；不自动续订或重连恢复。"}]; }
+@{@"id":@"program.read",@"title":@"单次程序状态请求",@"group":@"订阅与状态",@"fields":@[@{@"key":@"program",@"label":@"程序",@"kind":@"enum",@"required":@YES,@"choices":@[@"track",@"timelapse",@"panorama"],@"sample":@"track"}],@"write":@NO,@"confirm":@NO,@"detail":@"仅状态请求，不执行程序；ACK不保证收到新状态。"}]; }
 NSDictionary *RSSDKOperation(NSString *identifier) { for (NSDictionary *row in RSSDKOperations()) if ([row[@"id"] isEqual:identifier]) return row; return nil; }
 NSDictionary *RSSDKParseForm(NSString *identifier, NSDictionary *strings, NSError **error) {
     NSDictionary *op=RSSDKOperation(identifier);
@@ -78,11 +73,9 @@ NSDictionary *RSSDKParseForm(NSString *identifier, NSDictionary *strings, NSErro
     else if([identifier isEqual:@"motorTuning.write"])valid=RSAppMotorWriteSpec(result)!=nil;
     else if([identifier isEqual:@"smooth.write"])valid=RSAppSmoothTrackSpec(result)!=nil;
     else if([identifier isEqual:@"fine.write"])valid=RSAppFineTuneSpec(result)!=nil;
-    else if([identifier isEqual:@"handle.write"])valid=RSAppHandleWriteSpec(result)!=nil;
     else if([identifier isEqual:@"axisMode.write"])valid=RSAppAxisModeSpec(result)!=nil;
     else if([identifier isEqual:@"profile.write"])valid=RSAppProfileValueSpec(@"userProfile",result)!=nil;
     else if([identifier isEqual:@"workMode.write"])valid=RSAppProfileValueSpec(@"workMode",result)!=nil;
-    else if([identifier isEqual:@"parameter.subscribe"])valid=RSAppParameterSubscriptionSpec(result)!=nil;
     if(!valid){if(error)*error=FormError(@"输入不符合SDK的命名参数/范围要求；至少指定一个要修改的字段。");return nil;}
     return [result copy];
 }
@@ -118,8 +111,6 @@ void RSSDKDispatch(RSGimbal *gimbal, NSString *identifier, NSDictionary *strings
     else if ([identifier isEqual:@"motorTuning.write"]) { [gimbal setMotorTuning:p timeoutMs:timeoutMs completion:completion]; }
     else if ([identifier isEqual:@"standalone.read"]) { [gimbal getStandaloneTuning:p timeoutMs:timeoutMs completion:completion]; }
     else if ([identifier isEqual:@"standalone.write"]) { p[@"inputSource"]=@2; [gimbal setStandaloneTuning:p timeoutMs:timeoutMs completion:completion]; }
-    else if ([identifier isEqual:@"handle.write"]) { [gimbal sendHandleSettingRequest:p timeoutMs:timeoutMs completion:completion]; }
-    else if ([identifier isEqual:@"stick.write"]) { [gimbal sendHandheldStickControlRequest:p timeoutMs:timeoutMs completion:completion]; }
     else if ([identifier isEqual:@"fine.write"]) { [gimbal sendFineTuneRequest:p timeoutMs:timeoutMs completion:completion]; }
     else if ([identifier isEqual:@"system.read"]) { [gimbal getAutoCalibrationStatusWithTimeoutMs:timeoutMs completion:completion]; }
     else if ([identifier isEqual:@"balance.read"]) { [gimbal getBalanceTestStatusWithTimeoutMs:timeoutMs completion:completion]; }
@@ -127,12 +118,9 @@ void RSSDKDispatch(RSGimbal *gimbal, NSString *identifier, NSDictionary *strings
     else if ([identifier isEqual:@"system.write"]) { [gimbal sendAutoCalibrationRequestWithTimeoutMs:timeoutMs completion:completion]; }
     else if ([identifier isEqual:@"component.write"]) { [gimbal sendComponentCalibrationRequest:p timeoutMs:timeoutMs completion:completion]; }
     else if ([identifier isEqual:@"balance.write"]) { [gimbal sendBalanceTestRequestWithTimeoutMs:timeoutMs completion:completion]; }
-    else if ([identifier isEqual:@"reset.write"]) { [gimbal sendFactorySettingsResetRequest:p timeoutMs:timeoutMs completion:completion]; }
     else if ([identifier isEqual:@"center.read"]) { [gimbal getCenterActivationInfo:p timeoutMs:timeoutMs completion:completion]; }
     else if ([identifier isEqual:@"raw.read"]) { [gimbal readAppParameters:@[@{@"index":p[@"index"],@"size":@([p[@"size"] intValue])}] timeoutMs:timeoutMs completion:completion]; }
-    else if ([identifier isEqual:@"parameter.subscribe"]) { [gimbal sendParameterSubscriptionRequest:p completion:completion]; }
     else if ([identifier isEqual:@"program.read"]) { [gimbal sendProgramStatusRequest:p timeoutMs:timeoutMs completion:completion]; }
-    else if ([identifier isEqual:@"program.subscribe"]) { [gimbal sendProgramStatusSubscriptionRequest:p timeoutMs:timeoutMs completion:completion]; }
 }
 NSDictionary *RSSDKStatusSnapshot(RSGimbal *g) { return @{@"calibration":g.appCalibrationStatus?:NSNull.null,@"userParameters":g.appUserParameterStatus?:NSNull.null,@"handheldStick":g.appHandheldStickStatus?:NSNull.null,@"abnormal":g.appAbnormalStatus?:NSNull.null,@"battery":g.appBatteryStatus?:NSNull.null,@"program":g.appProgramStatus?:NSNull.null,@"peripheral":g.appPeripheralStatus?:NSNull.null,@"externalDevice":g.appExternalDeviceStatus?:NSNull.null,@"sensorCalibration":g.appSensorCalibrationStatus?:NSNull.null,@"tutorial":g.appTutorialStatus?:NSNull.null}; }
 static id DisplayValue(id v) {

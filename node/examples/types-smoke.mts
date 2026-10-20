@@ -176,22 +176,7 @@ async function motorTuningTypes(gimbal: RS4Mini) {
   return raw;
 }
 
-async function handleWriteTypes(gimbal: RS4Mini) {
-void gimbal.appCommands.sendHandleSettingRequest({setting:'panDirection',value:1});
-// @ts-expect-error excluded raw value
-void gimbal.appCommands.sendHandleSettingRequest({setting:'panDirection',value:255});
-// @ts-expect-error excluded camera setting
-void gimbal.appCommands.sendHandleSettingRequest({setting:'zoom2Speed',value:1});
 
-}
-
-async function resetTypes(gimbal: RS4Mini) {
-  await gimbal.appCommands.sendFactorySettingsResetRequest({sourcePlatform:'HG724'});
-  // @ts-expect-error live type enum is not source platform
-  await gimbal.appCommands.sendFactorySettingsResetRequest({sourcePlatform:103});
-  // @ts-expect-error source platform must be explicit
-  await gimbal.appCommands.sendFactorySettingsResetRequest({});
-}
 
 async function axisModeTypes(gimbal: RS4Mini) {
   const r=await gimbal.appCommands.getAxisMode();const bits:number=r.unknownBits;
@@ -243,17 +228,6 @@ async function programStatusRequestTypes(gimbal: import('../src/index.js').RS4Mi
  await gimbal.appCommands.sendProgramStatusRequest({program:'track',requestType:0});
 }
 
-async function programSubscriptionTypes(gimbal: RS4Mini) {
- const reply=await gimbal.appCommands.sendProgramStatusSubscriptionRequest({program:'track',enabled:true});
- const remote:false=reply.remoteSubscriptionStateVerified;const type:'StartContinuePush'|'StopContinuePush'=reply.requestType;void remote;void type;
- await gimbal.appCommands.sendProgramStatusSubscriptionRequest({program:'panorama',enabled:false});
- // @ts-expect-error boolean required
- await gimbal.appCommands.sendProgramStatusSubscriptionRequest({program:'track',enabled:1});
- // @ts-expect-error raw request type not public
- await gimbal.appCommands.sendProgramStatusSubscriptionRequest({program:'track',enabled:true,requestType:0});
- // @ts-expect-error enabled must be explicit
- await gimbal.appCommands.sendProgramStatusSubscriptionRequest({program:'track'});
-}
 
 function peripheralTypes(gimbal:RS4Mini) {
  const status=gimbal.appCommands.peripheralStatus;
@@ -262,15 +236,6 @@ function peripheralTypes(gimbal:RS4Mini) {
  gimbal.appCommands.peripheralStatus=null;
 }
 
-async function parameterSubscriptionTypes(gimbal:RS4Mini){
- const keys=gimbal.appCommands.parameterSubscriptionKeys;
- const sent=await gimbal.appCommands.sendParameterSubscriptionRequest({keys:['UserProfile','ControllerMaxSpeedYaw'] as const});
- const verified:false=sent.targetRoutingVerified;void verified;void keys;
- // @ts-expect-error no raw channel names
- await gimbal.appCommands.sendParameterSubscriptionRequest({keys:['raw:41']});
- // @ts-expect-error no empty stop toggle or subscription manager
- await gimbal.appCommands.sendParameterSubscriptionRequest({keys:['UserProfile'],enabled:false});
-}
 
 function externalDeviceTypes(gimbal:RS4Mini){
  const status=gimbal.appCommands.externalDeviceStatus;
@@ -292,9 +257,6 @@ async function componentCalibrationTypes(gimbal: RS4Mini) { const reply=await gi
 // @ts-expect-error Only the source-qualified AUTO action is available.
 await gimbal.appCommands.sendComponentCalibrationRequest({sourcePart:"GYRO"}); }
 
-async function handheldStickControlTypes(gimbal: RS4Mini) {const reply=await gimbal.appCommands.sendHandheldStickControlRequest({enabled:false});const requested:boolean=reply.requestedEnabled;const setting:'StickGimbalControlEnabled'=reply.sourceSetting;void requested;void setting;
-// @ts-expect-error Boolean only, not numeric wire byte.
-await gimbal.appCommands.sendHandheldStickControlRequest({enabled:1});}
 
 function tutorialTypes(gimbal:RS4Mini){const s=gimbal.appCommands.tutorialStatus;if(s){const value:0|1=s.sourceFlags.getIsUnlock;const bit:boolean=s.sourceStepStatus.STEP_FINISH;void value;void bit;}
 // @ts-expect-error Copied read-only source status.

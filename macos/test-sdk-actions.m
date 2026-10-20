@@ -33,7 +33,7 @@ int main(void){@autoreleasepool{
         NSMutableDictionary *bad=Samples(op);bad[@"arbitraryFrame"]=@"55";Check(!RSSDKParseForm(identifier,bad,nil),@"no arbitrary GUI command fields");
         if([op[@"fields"] count]){NSDictionary *field=[op[@"fields"] firstObject];bad=Samples(op);bad[field[@"key"]]=@"NaN / unknown";Check(!RSSDKParseForm(identifier,bad,nil),@"malformed GUI fields rejected");}
     }
-    Check(ids.count==36&&selectors.count==36,@"36 GUI actions map to 36 distinct public methods");
+    Check(ids.count==32&&selectors.count==32,@"32 GUI actions map to 32 distinct public methods");
     NSDictionary *bools=RSSDKParseForm(@"smooth.write",@{@"axes.yaw":@"false"},nil);Check(CFGetTypeID((__bridge CFTypeRef)bools[@"axes"][@"yaw"])==CFBooleanGetTypeID(),@"false is genuine boolean, preserved in nested axis patch");
     Check([bools[@"axes"] count]==1,@"unspecified axes omitted");
     Check(!RSSDKParseForm(@"smooth.write",@{},nil),@"empty patch rejected before SDK");

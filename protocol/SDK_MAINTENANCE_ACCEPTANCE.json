@@ -1,0 +1,218 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-20",
+  "sdkVersion": "0.7.37",
+  "nativeVersion": "0.3.38/build41",
+  "scope": "Direct device SDK maintenance and acceleration write/readback; no GUI or advanced composition",
+  "fullSdkAcceptanceComplete": false,
+  "allProtocolCommandsComplete": false,
+  "ports": {
+    "python312": {
+      "fine": {
+        "port": "python",
+        "runtime": "3.12.13",
+        "action": "fine-tune",
+        "completed": true,
+        "physicalObservedByUser": null,
+        "effects": [
+          {
+            "axis": "pitch",
+            "before": -0.8,
+            "afterPlus": 0.0,
+            "afterMinus": -0.8,
+            "plusStatus": 0,
+            "minusStatus": 0,
+            "directionMatched": true
+          },
+          {
+            "axis": "roll",
+            "before": -1.5,
+            "afterPlus": -0.8,
+            "afterMinus": -1.5,
+            "plusStatus": 0,
+            "minusStatus": 0,
+            "directionMatched": true
+          }
+        ],
+        "invalidFrames": 0,
+        "closed": true
+      },
+      "autotune": {
+        "port": "python",
+        "runtime": "3.12.13",
+        "action": "autotune",
+        "completed": true,
+        "physicalObservedByUser": null,
+        "terminal": "Complete",
+        "invalidFrames": 0,
+        "closed": true
+      },
+      "horizontal": {
+        "port": "python",
+        "runtime": "3.12.13",
+        "action": "horizontal",
+        "completed": true,
+        "physicalObservedByUser": null,
+        "terminal": "COMPLETE",
+        "invalidFrames": 0,
+        "closed": true
+      },
+      "acceleration": {
+        "port": "python",
+        "runtime": "3.12.13",
+        "action": "acceleration-echo",
+        "completed": true,
+        "physicalObservedByUser": null,
+        "values": [
+          {
+            "axis": "pitch",
+            "rawValue": 1
+          },
+          {
+            "axis": "roll",
+            "rawValue": 1
+          },
+          {
+            "axis": "yaw",
+            "rawValue": 1
+          }
+        ],
+        "levelsUnchanged": true,
+        "invalidFrames": 0,
+        "closed": true
+      }
+    },
+    "macos": {
+      "fine": {
+        "entry": "RSBleDevice",
+        "action": "fine-tune",
+        "checks": 19,
+        "passed": 19,
+        "disconnected": true,
+        "effects": {
+          "pitch.measuredDirection": {
+            "afterPlus": 0,
+            "before": -0.9,
+            "afterMinus": -0.9
+          },
+          "roll.measuredDirection": {
+            "afterPlus": 0.7,
+            "before": -0.5,
+            "afterMinus": -0.5
+          }
+        }
+      },
+      "autotune": {
+        "entry": "RSBleDevice",
+        "action": "autotune",
+        "checks": 11,
+        "passed": 11,
+        "disconnected": true,
+        "effects": {}
+      },
+      "horizontal": {
+        "entry": "RSBleDevice",
+        "action": "horizontal",
+        "checks": 9,
+        "passed": 9,
+        "disconnected": true,
+        "effects": {}
+      },
+      "acceleration": {
+        "entry": "RSBleDevice",
+        "action": "acceleration-echo",
+        "checks": 17,
+        "passed": 17,
+        "disconnected": true,
+        "effects": {}
+      }
+    }
+  },
+  "nodeSupplement": {
+    "runningStop": {
+      "stopAtSourcePercent": 40,
+      "stopInvocationAfterStartMs": 4798,
+      "terminalAfterStopInvocationMs": 222,
+      "sourceTerminal": "Complete100",
+      "userObservedVibrationThenStopped": true,
+      "resultAcknowledgedAndNormalScreen": true,
+      "closed": true
+    },
+    "pitch": {
+      "requestDegrees": [
+        2,
+        -2
+      ],
+      "jointReadings": [
+        -0.9,
+        1.0,
+        -0.9
+      ],
+      "rollStable": true,
+      "userObservedOppositeDirectionsWithoutAnomaly": true,
+      "closed": true
+    },
+    "acceleration": {
+      "axes": [
+        "pitch",
+        "roll",
+        "yaw"
+      ],
+      "before": [
+        0,
+        0,
+        0
+      ],
+      "after": [
+        1,
+        1,
+        1
+      ],
+      "levels": [
+        "low",
+        "low",
+        "low"
+      ],
+      "restoredToZero": false,
+      "userAcceptedNonRestoration": true,
+      "closed": true
+    }
+  },
+  "humanConfirmation": {
+    "pythonAutotune": "正常; normal screen confirmed",
+    "pythonHorizontal": "returned to normal screen",
+    "macosAutotune": "normal, returned",
+    "macosHorizontal": "normal, returned"
+  },
+  "laterUserInstruction": "Subsequent tuning runs finish at100; do not repeat intermediate stops",
+  "legacyCandidatesRemoved": true,
+  "legacyCandidateRepeat": {
+    "system": {
+      "before": "START1",
+      "startStatusCode": 0,
+      "polls": 60,
+      "allReads": "START1",
+      "userObservedChange": false,
+      "closed": true
+    },
+    "balance": {
+      "before": "TESTING64",
+      "startStatusCode": 0,
+      "polls": 60,
+      "allReads": "TESTING64",
+      "axisResultsValid": false,
+      "userObservedChange": false,
+      "closed": true
+    }
+  },
+  "balanceDisplayObservation": "User reports per-motor green indicators; no BLE color mapping proved",
+  "rawCapturesPublished": false,
+  "deliverySdkVersion": "0.7.38",
+  "deliveryNativeVersion": "0.3.39/build42",
+  "removedMethods": [
+    "sendAutoCalibrationRequest",
+    "getAutoCalibrationStatus",
+    "sendBalanceTestRequest",
+    "getBalanceTestStatus"
+  ]
+}

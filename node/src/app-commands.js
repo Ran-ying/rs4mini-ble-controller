@@ -16,8 +16,6 @@ import { fineTuneSpec } from './app-fine-tune.js';
 import { userParameterNotification } from './app-user-parameters.js';
 import { standaloneSelection, standaloneWrite, standaloneContext, standaloneReply } from './app-standalone.js';
 import { tuningSelection, tuningWrite, tuningReply } from './app-tuning.js';
-import { systemCalibrationPayload, systemCalibrationReply } from './app-system-calibration.js';
-import { balanceStartPayload, balanceReply } from './app-balance.js';
 // Device SDK facade: single owner/queue/pending map, no composed motion.
 import { appProfile, parameterContext, parameterRequest, sensitivityPayload, appReply, parameterReply } from './app-protocol.js';
 import { motorSelection, motorWrite, motorReply } from './app-motor.js';
@@ -167,34 +165,6 @@ export class AppCommands {
     const result = await this.readParameters({ parameters: [{ index: 150, size: 1 }], timeoutMs: options.timeoutMs ?? 3000 });
     const rawValue = parseInt(result.parameters[0].rawHex, 16);
     return { ...result, rawValue, mode: [0, 1].includes(rawValue) ? rawValue : null };
-  }
-  async getAutoCalibrationStatus(options = {}) {
-    optionsOnly(options, ['timeoutMs']);
-    return systemCalibrationReply(await this.readParameters({parameters:[{index:36,size:1}],timeoutMs:options.timeoutMs ?? 3000}));
-  }
-  async sendAutoCalibrationRequest(options = {}) {
-    optionsOnly(options, ['timeoutMs']); this._requireProfile();
-    const timeoutMs=options.timeoutMs ?? 3000;
-    if (!Number.isFinite(timeoutMs) || timeoutMs<=0 || timeoutMs>60000) throw new RangeError('timeoutMs must be >0..60000');
-    return this.owner._run('sendAutoCalibrationRequest',async operation=>{
-      await this.owner._stop(); check(operation.controller.signal);
-      const response=await this.owner.experimental._queryPayloadCommand('App system calibration start',[4,0x0f],systemCalibrationPayload(),timeoutMs,{signal:operation.controller.signal,epoch:this.owner.motionEpoch});
-      return {...appReply(response,0x0f),requestedValue:1};
-    },false);
-  }
-  async getBalanceTestStatus(options = {}) {
-    optionsOnly(options, ['timeoutMs']);
-    return balanceReply(await this.readParameters({parameters:[{index:37,size:1}],timeoutMs:options.timeoutMs ?? 3000}));
-  }
-  async sendBalanceTestRequest(options = {}) {
-    optionsOnly(options, ['timeoutMs']); this._requireProfile();
-    const timeoutMs=options.timeoutMs ?? 3000;
-    if (!Number.isFinite(timeoutMs) || timeoutMs<=0 || timeoutMs>60000) throw new RangeError('timeoutMs must be >0..60000');
-    return this.owner._run('sendBalanceTestRequest',async operation=>{
-      await this.owner._stop(); check(operation.controller.signal);
-      const response=await this.owner.experimental._queryPayloadCommand('App balance start',[4,0x0f],balanceStartPayload(),timeoutMs,{signal:operation.controller.signal,epoch:this.owner.motionEpoch});
-      return {...appReply(response,0x0f),requestedValue:64};
-    },false);
   }
   async getStandaloneTuning(options={}) {
     optionsOnly(options,['axis','parameter','timeoutMs']);this._requireProfile();

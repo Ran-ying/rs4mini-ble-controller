@@ -1,3 +1,5 @@
+> 已退出公开SDK（0.7.38）：Node复测无实际功能效果后，用户要求移除启动和状态方法。本文只保留历史协议研究，以下示例不适用于当前SDK。水平校准请使用现有sendComponentCalibrationRequest(sourcePart:AUTO)。
+
 # system_calc 自动校准接口（0.7.8 / 原生0.3.8）
 
 本接口沿App的 `startGimbalAutoCalibration()` 路径封装，和已有的电机自动调参 `sendAutoTuneRequest()` 分开。应用仍只创建RS4Mini/RSGimbal，设备SDK复用同一连接/队列/操作协调器，要求显式ronin-2.2.2来源配置。

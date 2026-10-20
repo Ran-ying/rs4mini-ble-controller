@@ -455,8 +455,6 @@ static BOOL Matches(NSString *name) {
                 if (mode && context.count==1 && [context[0][@"index"] intValue]==34) return RSAppAxisModeWriteFrame(sequence,context,mode);
                 if (mode) return context.count==2 ? RSAppStandaloneWriteFrame(sequence,context,mode) : RSAppTuningWriteFrame(sequence,context,mode);
                 if (context.count!=1 || [context[0][@"size"] intValue]!=1) return nil;
-                if ([context[0][@"index"] intValue]==37) return RSAppBalanceStartFrame(sequence);
-                if ([context[0][@"index"] intValue]==36) return RSAppSystemCalibrationStartFrame(sequence);
                 return nil;
             }
             return RSAppSensitivityFrame(sequence, mode);
@@ -467,28 +465,6 @@ static BOOL Matches(NSString *name) {
         case 0x32: return RSAppMotorReadFrame(sequence,context);
         default: return nil;
     }
-}
-- (void)getAutoCalibrationStatusWithTimeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
-    [self readAppParameters:@[@{@"index":@36,@"size":@1}] timeoutMs:timeoutMs completion:^(NSDictionary *reply,NSError *error) {
-        if (completion) completion(error?nil:RSDecodeAppSystemCalibrationReply(reply),error);
-    }];
-}
-- (void)sendAutoCalibrationRequestWithTimeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
-    [self startAppCommand:0x0f parameters:@[@{@"index":@36,@"size":@1}] mode:nil settingsKind:nil settingsPatch:nil timeoutMs:timeoutMs completion:^(NSDictionary *reply,NSError *error) {
-        NSMutableDictionary *result=[reply mutableCopy];if (result) result[@"requestedValue"]=@1;
-        if (completion) completion(result?[result copy]:nil,error);
-    }];
-}
-- (void)getBalanceTestStatusWithTimeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
-    [self readAppParameters:@[@{@"index":@37,@"size":@1}] timeoutMs:timeoutMs completion:^(NSDictionary *reply,NSError *error) {
-        if (completion) completion(error?nil:RSDecodeAppBalanceReply(reply),error);
-    }];
-}
-- (void)sendBalanceTestRequestWithTimeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
-    [self startAppCommand:0x0f parameters:@[@{@"index":@37,@"size":@1}] mode:nil settingsKind:nil settingsPatch:nil timeoutMs:timeoutMs completion:^(NSDictionary *reply,NSError *error) {
-        NSMutableDictionary *result=[reply mutableCopy]; if (result) result[@"requestedValue"]=@64;
-        if (completion) completion(result?[result copy]:nil,error);
-    }];
 }
 - (void)sendComponentCalibrationRequest:(NSDictionary *)spec timeoutMs:(double)timeoutMs completion:(RSAppCompletion)completion {
     if(![spec isKindOfClass:NSDictionary.class]||spec.count!=1||!RSAppComponentCalibrationFrame(0,spec[@"sourcePart"])) {

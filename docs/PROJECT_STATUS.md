@@ -1,6 +1,9 @@
 # 项目状态与接手入口
 
-当前源码SDK0.7.37 / 原生0.3.38 build41：已移除用户指定三类接口，36项App操作可由GUI调用；维护实测未全部通过，见[逐项证据](RETAINED_MAINTENANCE_ACCEPTANCE.md)。无实时GUI验收。
+> 0.7.38 / macOS0.3.39：用户要求移除旧system_calc和旧平衡测试的启动/状态共4个公开方法，三端及GUI同步。保留已实测的电机自动调参、AUTO水平校准、Pitch/Roll手动微调。绿色平衡状态读取未实现；不计作当前SDK能力。详见[逐项验收](SDK_ACCEPTANCE_QUEUE.md)。
+
+
+前一检查点SDK0.7.37 / 原生0.3.38 build41：已移除用户指定三类接口，36项App操作可由GUI调用；维护实测未全部通过，见[逐项证据](RETAINED_MAINTENANCE_ACCEPTANCE.md)。无实时GUI验收。
 
 维护能力本轮进展：[逐项实机验收](RETAINED_MAINTENANCE_ACCEPTANCE.md)。AUTO完成已由用户确认；系统校准和平衡测试均无设备反应，未通过。微调正核对可见效果。
 

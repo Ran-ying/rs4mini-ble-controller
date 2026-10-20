@@ -995,3 +995,11 @@ if center_sdk:
     for flag in ['sourceCacheFallbackEnabled','automaticRetryEnabled','versionNegotiationEnabled','activationWriteEnabled','targetDeviceVerified','modelLayoutVerified','actualSessionVersionVerified','activationValidityVerified']:
         assert sdk[flag] is False
     assert (root/sdk['fixtures']).is_file() and (root/sdk['documentation']).is_file()
+
+# Retired task candidates are offline codecs, never public SDK send/read helpers.
+retired=manifest["retiredMaintenanceSdk"]
+assert retired["removedFromSdk"] is True and retired["sendEnabled"] is False
+for name in retired["publicMethods"]:
+    assert name+"(" not in (root/"node/src/app-commands.js").read_text()
+    assert name+"(" not in (root/"python/rs4mini_sdk/app_commands.py").read_text()
+    assert name+"WithTimeoutMs:" not in (root/"macos/RSBleDevice.h").read_text()

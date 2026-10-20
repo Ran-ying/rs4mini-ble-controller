@@ -47,20 +47,14 @@ async function sampleConsumer() {
   gimbal.decoder.reset();
   await gimbal.close();
   return value;
-const balanceStatus = await gimbal.appCommands.getBalanceTestStatus();
-const balanceResult: 'PASS'|'MARGINAL'|'FAIL'|null = balanceStatus.balance.axisResults.yaw.result;
-await gimbal.appCommands.sendBalanceTestRequest({timeoutMs:3000});
-// @ts-expect-error balance stop value is not a documented operation
-await gimbal.appCommands.sendBalanceTestRequest({value:0});
-void balanceResult;
-
-  const systemCalibration=await gimbal.appCommands.getAutoCalibrationStatus();
-  const systemState:'DEFAULT'|'START'|'FAIL'|'SUCCESS'|null=systemCalibration.systemCalibration.state;
-  await gimbal.appCommands.sendAutoCalibrationRequest();
-  // @ts-expect-error no inferred abort or numeric action
-  await gimbal.appCommands.sendAutoCalibrationRequest({start:false});
-  void systemState;
-
+  // @ts-expect-error removed ineffective legacy SDK entry
+  gimbal.appCommands.getAutoCalibrationStatus();
+  // @ts-expect-error removed ineffective legacy SDK entry
+  gimbal.appCommands.sendAutoCalibrationRequest();
+  // @ts-expect-error removed ineffective legacy SDK entry
+  gimbal.appCommands.getBalanceTestStatus();
+  // @ts-expect-error removed ineffective legacy SDK entry
+  gimbal.appCommands.sendBalanceTestRequest();
   await gimbal.appCommands.setFollowSettings({parameter:'speed',yaw:'low'});
   await gimbal.appCommands.getRcSettings({parameter:'smoothing'});
   // @ts-expect-error axis update is required

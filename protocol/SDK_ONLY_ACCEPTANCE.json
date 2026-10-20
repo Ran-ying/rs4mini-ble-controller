@@ -2,9 +2,9 @@
   "date": "2026-10-20",
   "scope": "direct device SDK, no GUI/advanced motion, read-only plus neutral stop",
   "versions": {
-    "node": "0.7.36",
-    "python": "0.7.36",
-    "native": "0.3.37/build40"
+    "node": "0.7.38",
+    "python": "0.7.38",
+    "native": "0.3.39/build42"
   },
   "allTestedMethodsPassed": true,
   "basicSdkUsable": true,
@@ -14,7 +14,16 @@
     "get_handle_settings",
     "queryCalibrationStatus",
     "query_calibration_status",
-    "native equivalent selectors"
+    "native equivalent selectors",
+    "sendAutoCalibrationRequest",
+    "getAutoCalibrationStatus",
+    "sendBalanceTestRequest",
+    "getBalanceTestStatus",
+    "sendParameterSubscriptionRequest",
+    "sendProgramStatusSubscriptionRequest",
+    "sendHandleSettingRequest",
+    "sendHandheldStickControlRequest",
+    "sendFactorySettingsResetRequest"
   ],
   "motorReadContract": "one index per request; single actual reply or full non-atomic aggregate with actual replies; total timeout/cancellation; no partial success",
   "reports": {
@@ -33,21 +42,36 @@
         {
           "name": "attitude",
           "ok": true,
-          "elapsedMs": 462,
+          "elapsedMs": 990,
           "value": {
-            "pitch": -180,
+            "pitch": -175.2,
             "roll": 0,
-            "yaw": -0.1
+            "yaw": -0.7,
+            "unit": "deg",
+            "wrap": 180,
+            "raw": {
+              "pitch": -1752,
+              "roll": 0,
+              "yaw": -7
+            },
+            "timestamp": 1792521578244
           }
         },
         {
           "name": "joints",
           "ok": true,
-          "elapsedMs": 999,
+          "elapsedMs": 1012,
           "value": {
-            "pitch": -0.9,
-            "roll": -1.2,
-            "yaw": 90.65
+            "pitch": 3.8,
+            "roll": -0.5,
+            "yaw": 90.68,
+            "unit": "deg",
+            "raw": {
+              "pitch": 38,
+              "roll": -5,
+              "yaw": 9068
+            },
+            "timestamp": 1792521579257
           }
         },
         {
@@ -64,7 +88,13 @@
           "ok": true,
           "elapsedMs": 22,
           "value": {
-            "rawValue": 0
+            "rawValue": 0,
+            "settings": {
+              "enabled": true,
+              "forbidSelfie": false,
+              "forbidVertical": false,
+              "roll360": false
+            }
           }
         },
         {
@@ -72,13 +102,19 @@
           "ok": true,
           "elapsedMs": 23,
           "value": {
-            "rawValue": 0
+            "rawValue": 0,
+            "settings": {
+              "enabled": false,
+              "pitch": false,
+              "roll": false,
+              "yaw": false
+            }
           }
         },
         {
           "name": "getAxisMode",
           "ok": true,
-          "elapsedMs": 34,
+          "elapsedMs": 22,
           "value": {
             "rawValue": 0,
             "sourceMode": "ThreeAxis"
@@ -87,7 +123,7 @@
         {
           "name": "getUserProfile",
           "ok": true,
-          "elapsedMs": 22,
+          "elapsedMs": 23,
           "value": {
             "rawValue": 0
           }
@@ -95,7 +131,7 @@
         {
           "name": "getWorkMode",
           "ok": true,
-          "elapsedMs": 22,
+          "elapsedMs": 21,
           "value": {
             "rawValue": 1,
             "sourceMode": "Flower"
@@ -104,25 +140,241 @@
         {
           "name": "getSmoothTrackAxes",
           "ok": true,
-          "elapsedMs": 23,
+          "elapsedMs": 24,
           "value": {
-            "valueCount": 3
+            "values": [
+              {
+                "index": 17,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "01",
+                "axis": "yaw",
+                "rawValue": 1,
+                "withinSourceRange": true,
+                "sourceEnabled": true,
+                "enabled": true
+              },
+              {
+                "index": 18,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "00",
+                "axis": "pitch",
+                "rawValue": 0,
+                "withinSourceRange": true,
+                "sourceEnabled": false,
+                "enabled": false
+              },
+              {
+                "index": 19,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "00",
+                "axis": "roll",
+                "rawValue": 0,
+                "withinSourceRange": true,
+                "sourceEnabled": false,
+                "enabled": false
+              }
+            ]
           }
         },
         {
           "name": "getFollowTuning",
           "ok": true,
-          "elapsedMs": 23,
+          "elapsedMs": 22,
           "value": {
-            "valueCount": 9
+            "values": [
+              {
+                "index": 3,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "0300",
+                "axis": "pitch",
+                "parameter": "speed",
+                "rawValue": 3,
+                "withinSourceRange": true
+              },
+              {
+                "index": 12,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "0300",
+                "axis": "roll",
+                "parameter": "speed",
+                "rawValue": 3,
+                "withinSourceRange": true
+              },
+              {
+                "index": 2,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "0300",
+                "axis": "yaw",
+                "parameter": "speed",
+                "rawValue": 3,
+                "withinSourceRange": true
+              },
+              {
+                "index": 15,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "0100",
+                "axis": "pitch",
+                "parameter": "acceleration",
+                "rawValue": 1,
+                "withinSourceRange": true
+              },
+              {
+                "index": 16,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "0100",
+                "axis": "roll",
+                "parameter": "acceleration",
+                "rawValue": 1,
+                "withinSourceRange": true
+              },
+              {
+                "index": 14,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "0100",
+                "axis": "yaw",
+                "parameter": "acceleration",
+                "rawValue": 1,
+                "withinSourceRange": true
+              },
+              {
+                "index": 5,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "0000",
+                "axis": "pitch",
+                "parameter": "deadZone",
+                "rawValue": 0,
+                "withinSourceRange": true
+              },
+              {
+                "index": 13,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "0000",
+                "axis": "roll",
+                "parameter": "deadZone",
+                "rawValue": 0,
+                "withinSourceRange": true
+              },
+              {
+                "index": 4,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "0000",
+                "axis": "yaw",
+                "parameter": "deadZone",
+                "rawValue": 0,
+                "withinSourceRange": true
+              }
+            ]
           }
         },
         {
           "name": "getRcTuning",
           "ok": true,
-          "elapsedMs": 22,
+          "elapsedMs": 23,
           "value": {
-            "valueCount": 9
+            "values": [
+              {
+                "index": 42,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "2d00",
+                "axis": "pitch",
+                "parameter": "speed",
+                "rawValue": 45,
+                "withinSourceRange": true
+              },
+              {
+                "index": 43,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "2d00",
+                "axis": "roll",
+                "parameter": "speed",
+                "rawValue": 45,
+                "withinSourceRange": true
+              },
+              {
+                "index": 41,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "2d00",
+                "axis": "yaw",
+                "parameter": "speed",
+                "rawValue": 45,
+                "withinSourceRange": true
+              },
+              {
+                "index": 27,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "1e",
+                "axis": "pitch",
+                "parameter": "deadZone",
+                "rawValue": 30,
+                "withinSourceRange": true
+              },
+              {
+                "index": 40,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "1e",
+                "axis": "roll",
+                "parameter": "deadZone",
+                "rawValue": 30,
+                "withinSourceRange": true
+              },
+              {
+                "index": 26,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "1e",
+                "axis": "yaw",
+                "parameter": "deadZone",
+                "rawValue": 30,
+                "withinSourceRange": true
+              },
+              {
+                "index": 9,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "0f00",
+                "axis": "pitch",
+                "parameter": "smoothing",
+                "rawValue": 15,
+                "withinSourceRange": true
+              },
+              {
+                "index": 39,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "0f00",
+                "axis": "roll",
+                "parameter": "smoothing",
+                "rawValue": 15,
+                "withinSourceRange": true
+              },
+              {
+                "index": 8,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "0f00",
+                "axis": "yaw",
+                "parameter": "smoothing",
+                "rawValue": 15,
+                "withinSourceRange": true
+              }
+            ]
           }
         },
         {
@@ -130,7 +382,68 @@
           "ok": true,
           "elapsedMs": 22,
           "value": {
-            "valueCount": 6
+            "values": [
+              {
+                "index": 80,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "3200",
+                "axis": "pitch",
+                "parameter": "speed",
+                "rawValue": 50,
+                "withinSourceRange": true
+              },
+              {
+                "index": 79,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "1e00",
+                "axis": "roll",
+                "parameter": "speed",
+                "rawValue": 30,
+                "withinSourceRange": true
+              },
+              {
+                "index": 81,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "1e00",
+                "axis": "yaw",
+                "parameter": "speed",
+                "rawValue": 30,
+                "withinSourceRange": true
+              },
+              {
+                "index": 77,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "0800",
+                "axis": "pitch",
+                "parameter": "smoothing",
+                "rawValue": 8,
+                "withinSourceRange": true
+              },
+              {
+                "index": 76,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "0800",
+                "axis": "roll",
+                "parameter": "smoothing",
+                "rawValue": 8,
+                "withinSourceRange": true
+              },
+              {
+                "index": 78,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "0800",
+                "axis": "yaw",
+                "parameter": "smoothing",
+                "rawValue": 8,
+                "withinSourceRange": true
+              }
+            ]
           }
         },
         {
@@ -138,24 +451,45 @@
           "ok": true,
           "elapsedMs": 23,
           "value": {
-            "rawValue": 252
+            "rawValue": 252,
+            "settings": {
+              "pitch": "high",
+              "roll": "high",
+              "yaw": "high"
+            }
           }
         },
         {
           "name": "rc.speed",
           "ok": true,
-          "elapsedMs": 22,
+          "elapsedMs": 21,
           "value": {
-            "rawValue": 84
+            "rawValue": 84,
+            "settings": {
+              "pitch": "low",
+              "roll": "low",
+              "yaw": "low"
+            }
           }
         },
         {
           "name": "motor.single",
           "ok": true,
-          "elapsedMs": 23,
+          "elapsedMs": 24,
           "value": {
             "readMode": "single",
-            "valueCount": 1
+            "values": [
+              {
+                "index": 0,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "2a",
+                "axis": "pitch",
+                "parameter": "stiffness",
+                "rawValue": 42,
+                "withinSourceRange": true
+              }
+            ]
           }
         },
         {
@@ -165,7 +499,128 @@
           "value": {
             "readMode": "sequential",
             "atomic": false,
-            "valueCount": 12
+            "values": [
+              {
+                "index": 0,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "2a",
+                "axis": "pitch",
+                "parameter": "stiffness",
+                "rawValue": 42,
+                "withinSourceRange": true
+              },
+              {
+                "index": 1,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "20",
+                "axis": "roll",
+                "parameter": "stiffness",
+                "rawValue": 32,
+                "withinSourceRange": true
+              },
+              {
+                "index": 2,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "29",
+                "axis": "yaw",
+                "parameter": "stiffness",
+                "rawValue": 41,
+                "withinSourceRange": true
+              },
+              {
+                "index": 3,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "04",
+                "axis": "pitch",
+                "parameter": "strength",
+                "rawValue": 4,
+                "withinSourceRange": true
+              },
+              {
+                "index": 4,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "05",
+                "axis": "roll",
+                "parameter": "strength",
+                "rawValue": 5,
+                "withinSourceRange": true
+              },
+              {
+                "index": 5,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "06",
+                "axis": "yaw",
+                "parameter": "strength",
+                "rawValue": 6,
+                "withinSourceRange": true
+              },
+              {
+                "index": 6,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "2d",
+                "axis": "pitch",
+                "parameter": "gyroFiltering",
+                "rawValue": 45,
+                "withinSourceRange": true
+              },
+              {
+                "index": 7,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "2d",
+                "axis": "roll",
+                "parameter": "gyroFiltering",
+                "rawValue": 45,
+                "withinSourceRange": true
+              },
+              {
+                "index": 8,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "1e",
+                "axis": "yaw",
+                "parameter": "gyroFiltering",
+                "rawValue": 30,
+                "withinSourceRange": true
+              },
+              {
+                "index": 9,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "0a",
+                "axis": "pitch",
+                "parameter": "preControl",
+                "rawValue": 10,
+                "withinSourceRange": true
+              },
+              {
+                "index": 10,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "0a",
+                "axis": "roll",
+                "parameter": "preControl",
+                "rawValue": 10,
+                "withinSourceRange": true
+              },
+              {
+                "index": 11,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "0a",
+                "axis": "yaw",
+                "parameter": "preControl",
+                "rawValue": 10,
+                "withinSourceRange": true
+              }
+            ]
           }
         },
         {
@@ -175,23 +630,95 @@
           "value": {
             "readMode": "sequential",
             "atomic": false,
-            "valueCount": 4
+            "values": [
+              {
+                "index": 2,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "29",
+                "axis": "yaw",
+                "parameter": "stiffness",
+                "rawValue": 41,
+                "withinSourceRange": true
+              },
+              {
+                "index": 5,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "06",
+                "axis": "yaw",
+                "parameter": "strength",
+                "rawValue": 6,
+                "withinSourceRange": true
+              },
+              {
+                "index": 8,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "1e",
+                "axis": "yaw",
+                "parameter": "gyroFiltering",
+                "rawValue": 30,
+                "withinSourceRange": true
+              },
+              {
+                "index": 11,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "0a",
+                "axis": "yaw",
+                "parameter": "preControl",
+                "rawValue": 10,
+                "withinSourceRange": true
+              }
+            ]
           }
         },
         {
           "name": "motor.parameter",
           "ok": true,
-          "elapsedMs": 80,
+          "elapsedMs": 77,
           "value": {
             "readMode": "sequential",
             "atomic": false,
-            "valueCount": 3
+            "values": [
+              {
+                "index": 0,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "2a",
+                "axis": "pitch",
+                "parameter": "stiffness",
+                "rawValue": 42,
+                "withinSourceRange": true
+              },
+              {
+                "index": 1,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "20",
+                "axis": "roll",
+                "parameter": "stiffness",
+                "rawValue": 32,
+                "withinSourceRange": true
+              },
+              {
+                "index": 2,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "29",
+                "axis": "yaw",
+                "parameter": "stiffness",
+                "rawValue": 41,
+                "withinSourceRange": true
+              }
+            ]
           }
         },
         {
           "name": "degreeInfo",
           "ok": true,
-          "elapsedMs": 21,
+          "elapsedMs": 23,
           "value": {
             "payloadHex": "00"
           }
@@ -212,7 +739,7 @@
         {
           "name": "close",
           "ok": true,
-          "elapsedMs": 203,
+          "elapsedMs": 205,
           "value": {
             "connected": false,
             "closed": true
@@ -236,21 +763,36 @@
         {
           "name": "attitude",
           "ok": true,
-          "elapsedMs": 528,
+          "elapsedMs": 630,
           "value": {
-            "pitch": -180.0,
+            "pitch": -175.2,
             "roll": 0.0,
-            "yaw": -0.1
+            "yaw": -0.6,
+            "unit": "deg",
+            "raw": {
+              "pitch": -1752,
+              "roll": 0,
+              "yaw": -6
+            },
+            "wrap": 180,
+            "timestamp": 1792521584253
           }
         },
         {
           "name": "joints",
           "ok": true,
-          "elapsedMs": 1001,
+          "elapsedMs": 1000,
           "value": {
-            "pitch": -0.9,
-            "roll": -1.2,
-            "yaw": 90.65
+            "pitch": 3.8,
+            "roll": -0.4,
+            "yaw": 90.68,
+            "unit": "deg",
+            "raw": {
+              "pitch": 38,
+              "roll": -4,
+              "yaw": 9068
+            },
+            "timestamp": 1792521585252
           }
         },
         {
@@ -265,17 +807,29 @@
         {
           "name": "getMotorSettings",
           "ok": true,
-          "elapsedMs": 33,
+          "elapsedMs": 23,
           "value": {
-            "rawValue": 0
+            "rawValue": 0,
+            "settings": {
+              "enabled": true,
+              "forbidSelfie": false,
+              "forbidVertical": false,
+              "roll360": false
+            }
           }
         },
         {
           "name": "getCustomFollowSettings",
           "ok": true,
-          "elapsedMs": 23,
+          "elapsedMs": 22,
           "value": {
-            "rawValue": 0
+            "rawValue": 0,
+            "settings": {
+              "enabled": false,
+              "pitch": false,
+              "roll": false,
+              "yaw": false
+            }
           }
         },
         {
@@ -298,7 +852,7 @@
         {
           "name": "getWorkMode",
           "ok": true,
-          "elapsedMs": 22,
+          "elapsedMs": 23,
           "value": {
             "rawValue": 1,
             "sourceMode": "Flower"
@@ -307,25 +861,241 @@
         {
           "name": "getSmoothTrackAxes",
           "ok": true,
-          "elapsedMs": 23,
+          "elapsedMs": 22,
           "value": {
-            "valueCount": 3
+            "values": [
+              {
+                "index": 17,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "01",
+                "axis": "yaw",
+                "rawValue": 1,
+                "withinSourceRange": true,
+                "sourceEnabled": true,
+                "enabled": true
+              },
+              {
+                "index": 18,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "00",
+                "axis": "pitch",
+                "rawValue": 0,
+                "withinSourceRange": true,
+                "sourceEnabled": false,
+                "enabled": false
+              },
+              {
+                "index": 19,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "00",
+                "axis": "roll",
+                "rawValue": 0,
+                "withinSourceRange": true,
+                "sourceEnabled": false,
+                "enabled": false
+              }
+            ]
           }
         },
         {
           "name": "getFollowTuning",
           "ok": true,
-          "elapsedMs": 23,
+          "elapsedMs": 34,
           "value": {
-            "valueCount": 9
+            "values": [
+              {
+                "index": 3,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "0300",
+                "axis": "pitch",
+                "parameter": "speed",
+                "rawValue": 3,
+                "withinSourceRange": true
+              },
+              {
+                "index": 12,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "0300",
+                "axis": "roll",
+                "parameter": "speed",
+                "rawValue": 3,
+                "withinSourceRange": true
+              },
+              {
+                "index": 2,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "0300",
+                "axis": "yaw",
+                "parameter": "speed",
+                "rawValue": 3,
+                "withinSourceRange": true
+              },
+              {
+                "index": 15,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "0100",
+                "axis": "pitch",
+                "parameter": "acceleration",
+                "rawValue": 1,
+                "withinSourceRange": true
+              },
+              {
+                "index": 16,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "0100",
+                "axis": "roll",
+                "parameter": "acceleration",
+                "rawValue": 1,
+                "withinSourceRange": true
+              },
+              {
+                "index": 14,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "0100",
+                "axis": "yaw",
+                "parameter": "acceleration",
+                "rawValue": 1,
+                "withinSourceRange": true
+              },
+              {
+                "index": 5,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "0000",
+                "axis": "pitch",
+                "parameter": "deadZone",
+                "rawValue": 0,
+                "withinSourceRange": true
+              },
+              {
+                "index": 13,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "0000",
+                "axis": "roll",
+                "parameter": "deadZone",
+                "rawValue": 0,
+                "withinSourceRange": true
+              },
+              {
+                "index": 4,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "0000",
+                "axis": "yaw",
+                "parameter": "deadZone",
+                "rawValue": 0,
+                "withinSourceRange": true
+              }
+            ]
           }
         },
         {
           "name": "getRcTuning",
           "ok": true,
-          "elapsedMs": 22,
+          "elapsedMs": 23,
           "value": {
-            "valueCount": 9
+            "values": [
+              {
+                "index": 42,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "2d00",
+                "axis": "pitch",
+                "parameter": "speed",
+                "rawValue": 45,
+                "withinSourceRange": true
+              },
+              {
+                "index": 43,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "2d00",
+                "axis": "roll",
+                "parameter": "speed",
+                "rawValue": 45,
+                "withinSourceRange": true
+              },
+              {
+                "index": 41,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "2d00",
+                "axis": "yaw",
+                "parameter": "speed",
+                "rawValue": 45,
+                "withinSourceRange": true
+              },
+              {
+                "index": 27,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "1e",
+                "axis": "pitch",
+                "parameter": "deadZone",
+                "rawValue": 30,
+                "withinSourceRange": true
+              },
+              {
+                "index": 40,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "1e",
+                "axis": "roll",
+                "parameter": "deadZone",
+                "rawValue": 30,
+                "withinSourceRange": true
+              },
+              {
+                "index": 26,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "1e",
+                "axis": "yaw",
+                "parameter": "deadZone",
+                "rawValue": 30,
+                "withinSourceRange": true
+              },
+              {
+                "index": 9,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "0f00",
+                "axis": "pitch",
+                "parameter": "smoothing",
+                "rawValue": 15,
+                "withinSourceRange": true
+              },
+              {
+                "index": 39,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "0f00",
+                "axis": "roll",
+                "parameter": "smoothing",
+                "rawValue": 15,
+                "withinSourceRange": true
+              },
+              {
+                "index": 8,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "0f00",
+                "axis": "yaw",
+                "parameter": "smoothing",
+                "rawValue": 15,
+                "withinSourceRange": true
+              }
+            ]
           }
         },
         {
@@ -333,42 +1103,245 @@
           "ok": true,
           "elapsedMs": 22,
           "value": {
-            "valueCount": 6
+            "values": [
+              {
+                "index": 80,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "3200",
+                "axis": "pitch",
+                "parameter": "speed",
+                "rawValue": 50,
+                "withinSourceRange": true
+              },
+              {
+                "index": 79,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "1e00",
+                "axis": "roll",
+                "parameter": "speed",
+                "rawValue": 30,
+                "withinSourceRange": true
+              },
+              {
+                "index": 81,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "1e00",
+                "axis": "yaw",
+                "parameter": "speed",
+                "rawValue": 30,
+                "withinSourceRange": true
+              },
+              {
+                "index": 77,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "0800",
+                "axis": "pitch",
+                "parameter": "smoothing",
+                "rawValue": 8,
+                "withinSourceRange": true
+              },
+              {
+                "index": 76,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "0800",
+                "axis": "roll",
+                "parameter": "smoothing",
+                "rawValue": 8,
+                "withinSourceRange": true
+              },
+              {
+                "index": 78,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "0800",
+                "axis": "yaw",
+                "parameter": "smoothing",
+                "rawValue": 8,
+                "withinSourceRange": true
+              }
+            ]
           }
         },
         {
           "name": "follow.speed",
           "ok": true,
-          "elapsedMs": 33,
+          "elapsedMs": 22,
           "value": {
-            "rawValue": 252
+            "rawValue": 252,
+            "settings": {
+              "pitch": "high",
+              "roll": "high",
+              "yaw": "high"
+            }
           }
         },
         {
           "name": "rc.speed",
           "ok": true,
-          "elapsedMs": 24,
+          "elapsedMs": 23,
           "value": {
-            "rawValue": 84
+            "rawValue": 84,
+            "settings": {
+              "pitch": "low",
+              "roll": "low",
+              "yaw": "low"
+            }
           }
         },
         {
           "name": "motor.single",
           "ok": true,
-          "elapsedMs": 22,
+          "elapsedMs": 23,
           "value": {
             "readMode": "single",
-            "valueCount": 1
+            "values": [
+              {
+                "index": 0,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "2a",
+                "axis": "pitch",
+                "parameter": "stiffness",
+                "rawValue": 42,
+                "withinSourceRange": true
+              }
+            ]
           }
         },
         {
           "name": "motor.bulk",
           "ok": true,
-          "elapsedMs": 270,
+          "elapsedMs": 281,
           "value": {
             "readMode": "sequential",
             "atomic": false,
-            "valueCount": 12
+            "values": [
+              {
+                "index": 0,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "2a",
+                "axis": "pitch",
+                "parameter": "stiffness",
+                "rawValue": 42,
+                "withinSourceRange": true
+              },
+              {
+                "index": 1,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "20",
+                "axis": "roll",
+                "parameter": "stiffness",
+                "rawValue": 32,
+                "withinSourceRange": true
+              },
+              {
+                "index": 2,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "29",
+                "axis": "yaw",
+                "parameter": "stiffness",
+                "rawValue": 41,
+                "withinSourceRange": true
+              },
+              {
+                "index": 3,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "04",
+                "axis": "pitch",
+                "parameter": "strength",
+                "rawValue": 4,
+                "withinSourceRange": true
+              },
+              {
+                "index": 4,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "05",
+                "axis": "roll",
+                "parameter": "strength",
+                "rawValue": 5,
+                "withinSourceRange": true
+              },
+              {
+                "index": 5,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "06",
+                "axis": "yaw",
+                "parameter": "strength",
+                "rawValue": 6,
+                "withinSourceRange": true
+              },
+              {
+                "index": 6,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "2d",
+                "axis": "pitch",
+                "parameter": "gyroFiltering",
+                "rawValue": 45,
+                "withinSourceRange": true
+              },
+              {
+                "index": 7,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "2d",
+                "axis": "roll",
+                "parameter": "gyroFiltering",
+                "rawValue": 45,
+                "withinSourceRange": true
+              },
+              {
+                "index": 8,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "1e",
+                "axis": "yaw",
+                "parameter": "gyroFiltering",
+                "rawValue": 30,
+                "withinSourceRange": true
+              },
+              {
+                "index": 9,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "0a",
+                "axis": "pitch",
+                "parameter": "preControl",
+                "rawValue": 10,
+                "withinSourceRange": true
+              },
+              {
+                "index": 10,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "0a",
+                "axis": "roll",
+                "parameter": "preControl",
+                "rawValue": 10,
+                "withinSourceRange": true
+              },
+              {
+                "index": 11,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "0a",
+                "axis": "yaw",
+                "parameter": "preControl",
+                "rawValue": 10,
+                "withinSourceRange": true
+              }
+            ]
           }
         },
         {
@@ -378,23 +1351,95 @@
           "value": {
             "readMode": "sequential",
             "atomic": false,
-            "valueCount": 4
+            "values": [
+              {
+                "index": 2,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "29",
+                "axis": "yaw",
+                "parameter": "stiffness",
+                "rawValue": 41,
+                "withinSourceRange": true
+              },
+              {
+                "index": 5,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "06",
+                "axis": "yaw",
+                "parameter": "strength",
+                "rawValue": 6,
+                "withinSourceRange": true
+              },
+              {
+                "index": 8,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "1e",
+                "axis": "yaw",
+                "parameter": "gyroFiltering",
+                "rawValue": 30,
+                "withinSourceRange": true
+              },
+              {
+                "index": 11,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "0a",
+                "axis": "yaw",
+                "parameter": "preControl",
+                "rawValue": 10,
+                "withinSourceRange": true
+              }
+            ]
           }
         },
         {
           "name": "motor.parameter",
           "ok": true,
-          "elapsedMs": 68,
+          "elapsedMs": 67,
           "value": {
             "readMode": "sequential",
             "atomic": false,
-            "valueCount": 3
+            "values": [
+              {
+                "index": 0,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "2a",
+                "axis": "pitch",
+                "parameter": "stiffness",
+                "rawValue": 42,
+                "withinSourceRange": true
+              },
+              {
+                "index": 1,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "20",
+                "axis": "roll",
+                "parameter": "stiffness",
+                "rawValue": 32,
+                "withinSourceRange": true
+              },
+              {
+                "index": 2,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "29",
+                "axis": "yaw",
+                "parameter": "stiffness",
+                "rawValue": 41,
+                "withinSourceRange": true
+              }
+            ]
           }
         },
         {
           "name": "degreeInfo",
           "ok": true,
-          "elapsedMs": 22,
+          "elapsedMs": 23,
           "value": {
             "payloadHex": "00"
           }
@@ -402,7 +1447,7 @@
         {
           "name": "stop",
           "ok": true,
-          "elapsedMs": 204,
+          "elapsedMs": 203,
           "value": null
         },
         {
@@ -416,7 +1461,7 @@
         {
           "name": "close",
           "ok": true,
-          "elapsedMs": 206,
+          "elapsedMs": 204,
           "value": {
             "connected": false,
             "closed": true
@@ -440,27 +1485,42 @@
         {
           "name": "attitude",
           "ok": true,
-          "elapsedMs": 653,
+          "elapsedMs": 629,
           "value": {
-            "pitch": -180.0,
+            "pitch": -175.2,
             "roll": 0.0,
-            "yaw": -0.1
+            "yaw": -0.6,
+            "unit": "deg",
+            "raw": {
+              "pitch": -1752,
+              "roll": 0,
+              "yaw": -6
+            },
+            "wrap": 180,
+            "timestamp": 1792521581248
           }
         },
         {
           "name": "joints",
           "ok": true,
-          "elapsedMs": 990,
+          "elapsedMs": 1001,
           "value": {
-            "pitch": -0.9,
-            "roll": -1.3,
-            "yaw": 90.65
+            "pitch": 3.8,
+            "roll": -0.5,
+            "yaw": 90.68,
+            "unit": "deg",
+            "raw": {
+              "pitch": 38,
+              "roll": -5,
+              "yaw": 9068
+            },
+            "timestamp": 1792521582249
           }
         },
         {
           "name": "getFollowSensitivity",
           "ok": true,
-          "elapsedMs": 24,
+          "elapsedMs": 22,
           "value": {
             "rawValue": 1,
             "mode": 1
@@ -469,23 +1529,35 @@
         {
           "name": "getMotorSettings",
           "ok": true,
-          "elapsedMs": 22,
+          "elapsedMs": 24,
           "value": {
-            "rawValue": 0
+            "rawValue": 0,
+            "settings": {
+              "enabled": true,
+              "forbidSelfie": false,
+              "forbidVertical": false,
+              "roll360": false
+            }
           }
         },
         {
           "name": "getCustomFollowSettings",
           "ok": true,
-          "elapsedMs": 23,
+          "elapsedMs": 34,
           "value": {
-            "rawValue": 0
+            "rawValue": 0,
+            "settings": {
+              "enabled": false,
+              "pitch": false,
+              "roll": false,
+              "yaw": false
+            }
           }
         },
         {
           "name": "getAxisMode",
           "ok": true,
-          "elapsedMs": 22,
+          "elapsedMs": 23,
           "value": {
             "rawValue": 0,
             "sourceMode": "ThreeAxis"
@@ -511,17 +1583,142 @@
         {
           "name": "getSmoothTrackAxes",
           "ok": true,
-          "elapsedMs": 23,
+          "elapsedMs": 22,
           "value": {
-            "valueCount": 3
+            "values": [
+              {
+                "index": 17,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "01",
+                "axis": "yaw",
+                "rawValue": 1,
+                "withinSourceRange": true,
+                "sourceEnabled": true,
+                "enabled": true
+              },
+              {
+                "index": 18,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "00",
+                "axis": "pitch",
+                "rawValue": 0,
+                "withinSourceRange": true,
+                "sourceEnabled": false,
+                "enabled": false
+              },
+              {
+                "index": 19,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "00",
+                "axis": "roll",
+                "rawValue": 0,
+                "withinSourceRange": true,
+                "sourceEnabled": false,
+                "enabled": false
+              }
+            ]
           }
         },
         {
           "name": "getFollowTuning",
           "ok": true,
-          "elapsedMs": 22,
+          "elapsedMs": 23,
           "value": {
-            "valueCount": 9
+            "values": [
+              {
+                "index": 3,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "0300",
+                "axis": "pitch",
+                "parameter": "speed",
+                "rawValue": 3,
+                "withinSourceRange": true
+              },
+              {
+                "index": 12,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "0300",
+                "axis": "roll",
+                "parameter": "speed",
+                "rawValue": 3,
+                "withinSourceRange": true
+              },
+              {
+                "index": 2,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "0300",
+                "axis": "yaw",
+                "parameter": "speed",
+                "rawValue": 3,
+                "withinSourceRange": true
+              },
+              {
+                "index": 15,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "0100",
+                "axis": "pitch",
+                "parameter": "acceleration",
+                "rawValue": 1,
+                "withinSourceRange": true
+              },
+              {
+                "index": 16,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "0100",
+                "axis": "roll",
+                "parameter": "acceleration",
+                "rawValue": 1,
+                "withinSourceRange": true
+              },
+              {
+                "index": 14,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "0100",
+                "axis": "yaw",
+                "parameter": "acceleration",
+                "rawValue": 1,
+                "withinSourceRange": true
+              },
+              {
+                "index": 5,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "0000",
+                "axis": "pitch",
+                "parameter": "deadZone",
+                "rawValue": 0,
+                "withinSourceRange": true
+              },
+              {
+                "index": 13,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "0000",
+                "axis": "roll",
+                "parameter": "deadZone",
+                "rawValue": 0,
+                "withinSourceRange": true
+              },
+              {
+                "index": 4,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "0000",
+                "axis": "yaw",
+                "parameter": "deadZone",
+                "rawValue": 0,
+                "withinSourceRange": true
+              }
+            ]
           }
         },
         {
@@ -529,7 +1726,98 @@
           "ok": true,
           "elapsedMs": 23,
           "value": {
-            "valueCount": 9
+            "values": [
+              {
+                "index": 42,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "2d00",
+                "axis": "pitch",
+                "parameter": "speed",
+                "rawValue": 45,
+                "withinSourceRange": true
+              },
+              {
+                "index": 43,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "2d00",
+                "axis": "roll",
+                "parameter": "speed",
+                "rawValue": 45,
+                "withinSourceRange": true
+              },
+              {
+                "index": 41,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "2d00",
+                "axis": "yaw",
+                "parameter": "speed",
+                "rawValue": 45,
+                "withinSourceRange": true
+              },
+              {
+                "index": 27,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "1e",
+                "axis": "pitch",
+                "parameter": "deadZone",
+                "rawValue": 30,
+                "withinSourceRange": true
+              },
+              {
+                "index": 40,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "1e",
+                "axis": "roll",
+                "parameter": "deadZone",
+                "rawValue": 30,
+                "withinSourceRange": true
+              },
+              {
+                "index": 26,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "1e",
+                "axis": "yaw",
+                "parameter": "deadZone",
+                "rawValue": 30,
+                "withinSourceRange": true
+              },
+              {
+                "index": 9,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "0f00",
+                "axis": "pitch",
+                "parameter": "smoothing",
+                "rawValue": 15,
+                "withinSourceRange": true
+              },
+              {
+                "index": 39,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "0f00",
+                "axis": "roll",
+                "parameter": "smoothing",
+                "rawValue": 15,
+                "withinSourceRange": true
+              },
+              {
+                "index": 8,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "0f00",
+                "axis": "yaw",
+                "parameter": "smoothing",
+                "rawValue": 15,
+                "withinSourceRange": true
+              }
+            ]
           }
         },
         {
@@ -537,7 +1825,68 @@
           "ok": true,
           "elapsedMs": 22,
           "value": {
-            "valueCount": 6
+            "values": [
+              {
+                "index": 80,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "3200",
+                "axis": "pitch",
+                "parameter": "speed",
+                "rawValue": 50,
+                "withinSourceRange": true
+              },
+              {
+                "index": 79,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "1e00",
+                "axis": "roll",
+                "parameter": "speed",
+                "rawValue": 30,
+                "withinSourceRange": true
+              },
+              {
+                "index": 81,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "1e00",
+                "axis": "yaw",
+                "parameter": "speed",
+                "rawValue": 30,
+                "withinSourceRange": true
+              },
+              {
+                "index": 77,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "0800",
+                "axis": "pitch",
+                "parameter": "smoothing",
+                "rawValue": 8,
+                "withinSourceRange": true
+              },
+              {
+                "index": 76,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "0800",
+                "axis": "roll",
+                "parameter": "smoothing",
+                "rawValue": 8,
+                "withinSourceRange": true
+              },
+              {
+                "index": 78,
+                "size": 2,
+                "headerByte": 2,
+                "rawHex": "0800",
+                "axis": "yaw",
+                "parameter": "smoothing",
+                "rawValue": 8,
+                "withinSourceRange": true
+              }
+            ]
           }
         },
         {
@@ -545,15 +1894,25 @@
           "ok": true,
           "elapsedMs": 23,
           "value": {
-            "rawValue": 252
+            "rawValue": 252,
+            "settings": {
+              "pitch": "high",
+              "roll": "high",
+              "yaw": "high"
+            }
           }
         },
         {
           "name": "rc.speed",
           "ok": true,
-          "elapsedMs": 22,
+          "elapsedMs": 33,
           "value": {
-            "rawValue": 84
+            "rawValue": 84,
+            "settings": {
+              "pitch": "low",
+              "roll": "low",
+              "yaw": "low"
+            }
           }
         },
         {
@@ -562,27 +1921,200 @@
           "elapsedMs": 23,
           "value": {
             "readMode": "single",
-            "valueCount": 1
+            "values": [
+              {
+                "index": 0,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "2a",
+                "axis": "pitch",
+                "parameter": "stiffness",
+                "rawValue": 42,
+                "withinSourceRange": true
+              }
+            ]
           }
         },
         {
           "name": "motor.bulk",
           "ok": true,
-          "elapsedMs": 293,
+          "elapsedMs": 270,
           "value": {
             "readMode": "sequential",
             "atomic": false,
-            "valueCount": 12
+            "values": [
+              {
+                "index": 0,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "2a",
+                "axis": "pitch",
+                "parameter": "stiffness",
+                "rawValue": 42,
+                "withinSourceRange": true
+              },
+              {
+                "index": 1,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "20",
+                "axis": "roll",
+                "parameter": "stiffness",
+                "rawValue": 32,
+                "withinSourceRange": true
+              },
+              {
+                "index": 2,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "29",
+                "axis": "yaw",
+                "parameter": "stiffness",
+                "rawValue": 41,
+                "withinSourceRange": true
+              },
+              {
+                "index": 3,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "04",
+                "axis": "pitch",
+                "parameter": "strength",
+                "rawValue": 4,
+                "withinSourceRange": true
+              },
+              {
+                "index": 4,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "05",
+                "axis": "roll",
+                "parameter": "strength",
+                "rawValue": 5,
+                "withinSourceRange": true
+              },
+              {
+                "index": 5,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "06",
+                "axis": "yaw",
+                "parameter": "strength",
+                "rawValue": 6,
+                "withinSourceRange": true
+              },
+              {
+                "index": 6,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "2d",
+                "axis": "pitch",
+                "parameter": "gyroFiltering",
+                "rawValue": 45,
+                "withinSourceRange": true
+              },
+              {
+                "index": 7,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "2d",
+                "axis": "roll",
+                "parameter": "gyroFiltering",
+                "rawValue": 45,
+                "withinSourceRange": true
+              },
+              {
+                "index": 8,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "1e",
+                "axis": "yaw",
+                "parameter": "gyroFiltering",
+                "rawValue": 30,
+                "withinSourceRange": true
+              },
+              {
+                "index": 9,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "0a",
+                "axis": "pitch",
+                "parameter": "preControl",
+                "rawValue": 10,
+                "withinSourceRange": true
+              },
+              {
+                "index": 10,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "0a",
+                "axis": "roll",
+                "parameter": "preControl",
+                "rawValue": 10,
+                "withinSourceRange": true
+              },
+              {
+                "index": 11,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "0a",
+                "axis": "yaw",
+                "parameter": "preControl",
+                "rawValue": 10,
+                "withinSourceRange": true
+              }
+            ]
           }
         },
         {
           "name": "motor.axis",
           "ok": true,
-          "elapsedMs": 101,
+          "elapsedMs": 90,
           "value": {
             "readMode": "sequential",
             "atomic": false,
-            "valueCount": 4
+            "values": [
+              {
+                "index": 2,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "29",
+                "axis": "yaw",
+                "parameter": "stiffness",
+                "rawValue": 41,
+                "withinSourceRange": true
+              },
+              {
+                "index": 5,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "06",
+                "axis": "yaw",
+                "parameter": "strength",
+                "rawValue": 6,
+                "withinSourceRange": true
+              },
+              {
+                "index": 8,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "1e",
+                "axis": "yaw",
+                "parameter": "gyroFiltering",
+                "rawValue": 30,
+                "withinSourceRange": true
+              },
+              {
+                "index": 11,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "0a",
+                "axis": "yaw",
+                "parameter": "preControl",
+                "rawValue": 10,
+                "withinSourceRange": true
+              }
+            ]
           }
         },
         {
@@ -592,7 +2124,38 @@
           "value": {
             "readMode": "sequential",
             "atomic": false,
-            "valueCount": 3
+            "values": [
+              {
+                "index": 0,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "2a",
+                "axis": "pitch",
+                "parameter": "stiffness",
+                "rawValue": 42,
+                "withinSourceRange": true
+              },
+              {
+                "index": 1,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "20",
+                "axis": "roll",
+                "parameter": "stiffness",
+                "rawValue": 32,
+                "withinSourceRange": true
+              },
+              {
+                "index": 2,
+                "size": 1,
+                "headerByte": 1,
+                "rawHex": "29",
+                "axis": "yaw",
+                "parameter": "stiffness",
+                "rawValue": 41,
+                "withinSourceRange": true
+              }
+            ]
           }
         },
         {
@@ -606,7 +2169,7 @@
         {
           "name": "stop",
           "ok": true,
-          "elapsedMs": 204,
+          "elapsedMs": 203,
           "value": null
         },
         {
@@ -620,7 +2183,7 @@
         {
           "name": "close",
           "ok": true,
-          "elapsedMs": 208,
+          "elapsedMs": 204,
           "value": {
             "connected": false,
             "closed": true
@@ -646,18 +2209,18 @@
         {
           "name": "attitude",
           "value": {
-            "pitch": -180,
+            "pitch": -175.2,
             "roll": 0,
-            "yaw": -0.1
+            "yaw": -0.6
           },
           "ok": true
         },
         {
           "name": "joints",
           "value": {
-            "pitch": -0.9,
-            "roll": -1.2,
-            "yaw": 90.65
+            "pitch": 3.8,
+            "roll": -0.5,
+            "yaw": 90.68
           },
           "ok": true
         },
@@ -676,14 +2239,26 @@
         {
           "name": "getMotorSettings",
           "value": {
-            "rawValue": 0
+            "rawValue": 0,
+            "settings": {
+              "forbidVertical": 0,
+              "enabled": 1,
+              "forbidSelfie": 0,
+              "roll360": 0
+            }
           },
           "ok": true
         },
         {
           "name": "getCustomFollowSettings",
           "value": {
-            "rawValue": 0
+            "rawValue": 0,
+            "settings": {
+              "yaw": 0,
+              "enabled": 0,
+              "pitch": 0,
+              "roll": 0
+            }
           },
           "ok": true
         },
@@ -713,77 +2288,568 @@
         {
           "name": "getSmoothTrackAxes",
           "value": {
-            "valueCount": 3
+            "values": [
+              {
+                "rawHex": "01",
+                "enabled": 1,
+                "sourceEnabled": 1,
+                "size": 1,
+                "axis": "yaw",
+                "headerByte": 1,
+                "rawValue": 1,
+                "withinSourceRange": 1,
+                "index": 17
+              },
+              {
+                "rawHex": "00",
+                "enabled": 0,
+                "sourceEnabled": 0,
+                "size": 1,
+                "axis": "pitch",
+                "headerByte": 1,
+                "rawValue": 0,
+                "withinSourceRange": 1,
+                "index": 18
+              },
+              {
+                "rawHex": "00",
+                "enabled": 0,
+                "sourceEnabled": 0,
+                "size": 1,
+                "axis": "roll",
+                "headerByte": 1,
+                "rawValue": 0,
+                "withinSourceRange": 1,
+                "index": 19
+              }
+            ]
           },
           "ok": true
         },
         {
           "name": "getFollowTuning",
           "value": {
-            "valueCount": 9
+            "values": [
+              {
+                "rawHex": "0300",
+                "parameter": "speed",
+                "size": 2,
+                "axis": "pitch",
+                "headerByte": 2,
+                "rawValue": 3,
+                "withinSourceRange": 1,
+                "index": 3
+              },
+              {
+                "rawHex": "0300",
+                "parameter": "speed",
+                "size": 2,
+                "axis": "roll",
+                "headerByte": 2,
+                "rawValue": 3,
+                "withinSourceRange": 1,
+                "index": 12
+              },
+              {
+                "rawHex": "0300",
+                "parameter": "speed",
+                "size": 2,
+                "axis": "yaw",
+                "headerByte": 2,
+                "rawValue": 3,
+                "withinSourceRange": 1,
+                "index": 2
+              },
+              {
+                "rawHex": "0100",
+                "parameter": "acceleration",
+                "size": 2,
+                "axis": "pitch",
+                "headerByte": 2,
+                "rawValue": 1,
+                "withinSourceRange": 1,
+                "index": 15
+              },
+              {
+                "rawHex": "0100",
+                "parameter": "acceleration",
+                "size": 2,
+                "axis": "roll",
+                "headerByte": 2,
+                "rawValue": 1,
+                "withinSourceRange": 1,
+                "index": 16
+              },
+              {
+                "rawHex": "0100",
+                "parameter": "acceleration",
+                "size": 2,
+                "axis": "yaw",
+                "headerByte": 2,
+                "rawValue": 1,
+                "withinSourceRange": 1,
+                "index": 14
+              },
+              {
+                "rawHex": "0000",
+                "parameter": "deadZone",
+                "size": 2,
+                "axis": "pitch",
+                "headerByte": 2,
+                "rawValue": 0,
+                "withinSourceRange": 1,
+                "index": 5
+              },
+              {
+                "rawHex": "0000",
+                "parameter": "deadZone",
+                "size": 2,
+                "axis": "roll",
+                "headerByte": 2,
+                "rawValue": 0,
+                "withinSourceRange": 1,
+                "index": 13
+              },
+              {
+                "rawHex": "0000",
+                "parameter": "deadZone",
+                "size": 2,
+                "axis": "yaw",
+                "headerByte": 2,
+                "rawValue": 0,
+                "withinSourceRange": 1,
+                "index": 4
+              }
+            ]
           },
           "ok": true
         },
         {
           "name": "getRcTuning",
           "value": {
-            "valueCount": 9
+            "values": [
+              {
+                "rawHex": "2d00",
+                "parameter": "speed",
+                "size": 2,
+                "axis": "pitch",
+                "headerByte": 2,
+                "rawValue": 45,
+                "withinSourceRange": 1,
+                "index": 42
+              },
+              {
+                "rawHex": "2d00",
+                "parameter": "speed",
+                "size": 2,
+                "axis": "roll",
+                "headerByte": 2,
+                "rawValue": 45,
+                "withinSourceRange": 1,
+                "index": 43
+              },
+              {
+                "rawHex": "2d00",
+                "parameter": "speed",
+                "size": 2,
+                "axis": "yaw",
+                "headerByte": 2,
+                "rawValue": 45,
+                "withinSourceRange": 1,
+                "index": 41
+              },
+              {
+                "rawHex": "1e",
+                "parameter": "deadZone",
+                "size": 1,
+                "axis": "pitch",
+                "headerByte": 1,
+                "rawValue": 30,
+                "withinSourceRange": 1,
+                "index": 27
+              },
+              {
+                "rawHex": "1e",
+                "parameter": "deadZone",
+                "size": 1,
+                "axis": "roll",
+                "headerByte": 1,
+                "rawValue": 30,
+                "withinSourceRange": 1,
+                "index": 40
+              },
+              {
+                "rawHex": "1e",
+                "parameter": "deadZone",
+                "size": 1,
+                "axis": "yaw",
+                "headerByte": 1,
+                "rawValue": 30,
+                "withinSourceRange": 1,
+                "index": 26
+              },
+              {
+                "rawHex": "0f00",
+                "parameter": "smoothing",
+                "size": 2,
+                "axis": "pitch",
+                "headerByte": 2,
+                "rawValue": 15,
+                "withinSourceRange": 1,
+                "index": 9
+              },
+              {
+                "rawHex": "0f00",
+                "parameter": "smoothing",
+                "size": 2,
+                "axis": "roll",
+                "headerByte": 2,
+                "rawValue": 15,
+                "withinSourceRange": 1,
+                "index": 39
+              },
+              {
+                "rawHex": "0f00",
+                "parameter": "smoothing",
+                "size": 2,
+                "axis": "yaw",
+                "headerByte": 2,
+                "rawValue": 15,
+                "withinSourceRange": 1,
+                "index": 8
+              }
+            ]
           },
           "ok": true
         },
         {
           "name": "getStandaloneTuning",
           "value": {
-            "valueCount": 6
+            "values": [
+              {
+                "rawHex": "3200",
+                "parameter": "speed",
+                "size": 2,
+                "axis": "pitch",
+                "headerByte": 2,
+                "rawValue": 50,
+                "withinSourceRange": 1,
+                "index": 80
+              },
+              {
+                "rawHex": "1e00",
+                "parameter": "speed",
+                "size": 2,
+                "axis": "roll",
+                "headerByte": 2,
+                "rawValue": 30,
+                "withinSourceRange": 1,
+                "index": 79
+              },
+              {
+                "rawHex": "1e00",
+                "parameter": "speed",
+                "size": 2,
+                "axis": "yaw",
+                "headerByte": 2,
+                "rawValue": 30,
+                "withinSourceRange": 1,
+                "index": 81
+              },
+              {
+                "rawHex": "0800",
+                "parameter": "smoothing",
+                "size": 2,
+                "axis": "pitch",
+                "headerByte": 2,
+                "rawValue": 8,
+                "withinSourceRange": 1,
+                "index": 77
+              },
+              {
+                "rawHex": "0800",
+                "parameter": "smoothing",
+                "size": 2,
+                "axis": "roll",
+                "headerByte": 2,
+                "rawValue": 8,
+                "withinSourceRange": 1,
+                "index": 76
+              },
+              {
+                "rawHex": "0800",
+                "parameter": "smoothing",
+                "size": 2,
+                "axis": "yaw",
+                "headerByte": 2,
+                "rawValue": 8,
+                "withinSourceRange": 1,
+                "index": 78
+              }
+            ]
           },
           "ok": true
         },
         {
           "name": "follow.speed",
           "value": {
-            "rawValue": 252
+            "rawValue": 252,
+            "settings": {
+              "pitch": "high",
+              "roll": "high",
+              "yaw": "high"
+            }
           },
           "ok": true
         },
         {
           "name": "rc.speed",
           "value": {
-            "rawValue": 84
+            "rawValue": 84,
+            "settings": {
+              "pitch": "low",
+              "roll": "low",
+              "yaw": "low"
+            }
           },
           "ok": true
         },
         {
           "name": "motor.single",
           "value": {
-            "readMode": "single",
-            "valueCount": 1
+            "values": [
+              {
+                "rawHex": "2a",
+                "parameter": "stiffness",
+                "size": 1,
+                "axis": "pitch",
+                "headerByte": 1,
+                "rawValue": 42,
+                "withinSourceRange": 1,
+                "index": 0
+              }
+            ],
+            "readMode": "single"
           },
           "ok": true
         },
         {
           "name": "motor.bulk",
           "value": {
-            "readMode": "sequential",
+            "values": [
+              {
+                "rawHex": "2a",
+                "parameter": "stiffness",
+                "size": 1,
+                "axis": "pitch",
+                "headerByte": 1,
+                "rawValue": 42,
+                "withinSourceRange": 1,
+                "index": 0
+              },
+              {
+                "rawHex": "20",
+                "parameter": "stiffness",
+                "size": 1,
+                "axis": "roll",
+                "headerByte": 1,
+                "rawValue": 32,
+                "withinSourceRange": 1,
+                "index": 1
+              },
+              {
+                "rawHex": "29",
+                "parameter": "stiffness",
+                "size": 1,
+                "axis": "yaw",
+                "headerByte": 1,
+                "rawValue": 41,
+                "withinSourceRange": 1,
+                "index": 2
+              },
+              {
+                "rawHex": "04",
+                "parameter": "strength",
+                "size": 1,
+                "axis": "pitch",
+                "headerByte": 1,
+                "rawValue": 4,
+                "withinSourceRange": 1,
+                "index": 3
+              },
+              {
+                "rawHex": "05",
+                "parameter": "strength",
+                "size": 1,
+                "axis": "roll",
+                "headerByte": 1,
+                "rawValue": 5,
+                "withinSourceRange": 1,
+                "index": 4
+              },
+              {
+                "rawHex": "06",
+                "parameter": "strength",
+                "size": 1,
+                "axis": "yaw",
+                "headerByte": 1,
+                "rawValue": 6,
+                "withinSourceRange": 1,
+                "index": 5
+              },
+              {
+                "rawHex": "2d",
+                "parameter": "gyroFiltering",
+                "size": 1,
+                "axis": "pitch",
+                "headerByte": 1,
+                "rawValue": 45,
+                "withinSourceRange": 1,
+                "index": 6
+              },
+              {
+                "rawHex": "2d",
+                "parameter": "gyroFiltering",
+                "size": 1,
+                "axis": "roll",
+                "headerByte": 1,
+                "rawValue": 45,
+                "withinSourceRange": 1,
+                "index": 7
+              },
+              {
+                "rawHex": "1e",
+                "parameter": "gyroFiltering",
+                "size": 1,
+                "axis": "yaw",
+                "headerByte": 1,
+                "rawValue": 30,
+                "withinSourceRange": 1,
+                "index": 8
+              },
+              {
+                "rawHex": "0a",
+                "parameter": "preControl",
+                "size": 1,
+                "axis": "pitch",
+                "headerByte": 1,
+                "rawValue": 10,
+                "withinSourceRange": 1,
+                "index": 9
+              },
+              {
+                "rawHex": "0a",
+                "parameter": "preControl",
+                "size": 1,
+                "axis": "roll",
+                "headerByte": 1,
+                "rawValue": 10,
+                "withinSourceRange": 1,
+                "index": 10
+              },
+              {
+                "rawHex": "0a",
+                "parameter": "preControl",
+                "size": 1,
+                "axis": "yaw",
+                "headerByte": 1,
+                "rawValue": 10,
+                "withinSourceRange": 1,
+                "index": 11
+              }
+            ],
             "atomic": false,
-            "valueCount": 12
+            "readMode": "sequential"
           },
           "ok": true
         },
         {
           "name": "motor.axis",
           "value": {
-            "readMode": "sequential",
+            "values": [
+              {
+                "rawHex": "29",
+                "parameter": "stiffness",
+                "size": 1,
+                "axis": "yaw",
+                "headerByte": 1,
+                "rawValue": 41,
+                "withinSourceRange": 1,
+                "index": 2
+              },
+              {
+                "rawHex": "06",
+                "parameter": "strength",
+                "size": 1,
+                "axis": "yaw",
+                "headerByte": 1,
+                "rawValue": 6,
+                "withinSourceRange": 1,
+                "index": 5
+              },
+              {
+                "rawHex": "1e",
+                "parameter": "gyroFiltering",
+                "size": 1,
+                "axis": "yaw",
+                "headerByte": 1,
+                "rawValue": 30,
+                "withinSourceRange": 1,
+                "index": 8
+              },
+              {
+                "rawHex": "0a",
+                "parameter": "preControl",
+                "size": 1,
+                "axis": "yaw",
+                "headerByte": 1,
+                "rawValue": 10,
+                "withinSourceRange": 1,
+                "index": 11
+              }
+            ],
             "atomic": false,
-            "valueCount": 4
+            "readMode": "sequential"
           },
           "ok": true
         },
         {
           "name": "motor.parameter",
           "value": {
-            "readMode": "sequential",
+            "values": [
+              {
+                "rawHex": "2a",
+                "parameter": "stiffness",
+                "size": 1,
+                "axis": "pitch",
+                "headerByte": 1,
+                "rawValue": 42,
+                "withinSourceRange": 1,
+                "index": 0
+              },
+              {
+                "rawHex": "20",
+                "parameter": "stiffness",
+                "size": 1,
+                "axis": "roll",
+                "headerByte": 1,
+                "rawValue": 32,
+                "withinSourceRange": 1,
+                "index": 1
+              },
+              {
+                "rawHex": "29",
+                "parameter": "stiffness",
+                "size": 1,
+                "axis": "yaw",
+                "headerByte": 1,
+                "rawValue": 41,
+                "withinSourceRange": 1,
+                "index": 2
+              }
+            ],
             "atomic": false,
-            "valueCount": 3
+            "readMode": "sequential"
           },
           "ok": true
         },
@@ -803,5 +2869,6 @@
       "port": "macos"
     }
   },
-  "note": "No settings writes or calibration/task launches in this release test; prior0.7.35 same-value write/readback evidence retained in history."
+  "note": "No settings writes or calibration/task launches in this release test; prior0.7.35 same-value write/readback evidence retained in history.",
+  "maintenanceEvidence": "protocol/SDK_MAINTENANCE_ACCEPTANCE.json"
 }

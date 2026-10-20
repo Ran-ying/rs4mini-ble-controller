@@ -12,3 +12,5 @@ test('retired subscription handle stick and reset SDK entries are absent',async 
  const {gimbal}=await connected(t);
  for(const name of ['sendParameterSubscriptionRequest','sendProgramStatusSubscriptionRequest','sendHandleSettingRequest','sendHandheldStickControlRequest','sendFactorySettingsResetRequest','parameterSubscriptionKeys'])assert.equal(gimbal.appCommands[name],undefined);
 });
+
+test("ineffective legacy calibration and balance entries are absent",async t=>{const {gimbal}=await connected(t);for(const name of ["getAutoCalibrationStatus", "sendAutoCalibrationRequest", "getBalanceTestStatus", "sendBalanceTestRequest"])assert.equal(gimbal.appCommands[name],undefined);});

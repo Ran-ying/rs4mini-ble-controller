@@ -296,12 +296,6 @@ export interface AppAutoTuneSent {
 export type MotorTuningAxis = "pitch" | "roll" | "yaw";
 export type MotorTuningParameter = "stiffness" | "strength" | "gyroFiltering" | "preControl";
 export interface MotorTuningReading extends AppParameterContext { axis: MotorTuningAxis; parameter: MotorTuningParameter; headerByte: number; rawHex: string; rawValue: number; withinSourceRange: boolean; }
-export interface AppBalanceState {
-  rawValue:number; stateCode:number; state:'DEFAULT'|'TESTING'|'FINISH'|'ERROR';
-  axisResults:Record<'roll'|'pitch'|'yaw',{rawValue:number; result:'PASS'|'MARGINAL'|'FAIL'|null}>;
-  axisFieldsValid:boolean;
-}
-export interface AppSystemCalibrationState {rawValue:number; state:'DEFAULT'|'START'|'FAIL'|'SUCCESS'|null;}
 export type AppAxisMode = 'custom'|'low'|'middle'|'high';
 export interface AppAxisModes {pitch:AppAxisMode;roll:AppAxisMode;yaw:AppAxisMode;}
 export type FollowParameter = 'speed'|'acceleration'|'deadZone';
@@ -351,10 +345,6 @@ export interface AppCommands {
   setFollowSettings(options:SettingsUpdate<AppAxisModes> & {parameter:FollowParameter}):Promise<AppSettingsWriteResult<AppAxisModes>>;
   getRcSettings(options:{parameter:RcParameter;timeoutMs?:number}):Promise<AppSettingsReading<AppAxisModes>>;
   setRcSettings(options:SettingsUpdate<AppAxisModes> & {parameter:RcParameter}):Promise<AppSettingsWriteResult<AppAxisModes>>;
-  getAutoCalibrationStatus(options?: {timeoutMs?:number}):Promise<AppParameterReply & {systemCalibration:AppSystemCalibrationState}>;
-  sendAutoCalibrationRequest(options?: {timeoutMs?:number}):Promise<AppCommandReply & {requestedValue:1}>;
-  getBalanceTestStatus(options?: {timeoutMs?:number}):Promise<AppParameterReply & {balance:AppBalanceState}>;
-  sendBalanceTestRequest(options?: {timeoutMs?:number}):Promise<AppCommandReply & {requestedValue:64}>;
   readonly profile: "ronin-2.2.2" | null;
   readonly calibrationStatus: AppCalibrationStatus | null;
   getMotorTuning(options?: {axis?: MotorTuningAxis; parameter?: MotorTuningParameter; timeoutMs?: number}): Promise<AppMotorTuningSingleReply | AppMotorTuningBatchReply>;

@@ -2,7 +2,7 @@
   "sessionDate": "2026-10-20",
   "scope": "existing SDK methods, distinct from unknown protocol inventory",
   "fullAcceptanceComplete": false,
-  "sourceVersion": "Node/Python0.7.37 / native0.3.38",
+  "sourceVersion": "Node/Python0.7.38 / native0.3.39",
   "operations": [
     {
       "id": "sensitivity.read",
@@ -53,9 +53,10 @@
       "id": "follow.tuning.write",
       "title": "设置跟随数值",
       "write": true,
-      "state": "partial",
+      "state": "source_valid_values_write_readback_passed",
       "evidence": [
-        "3 speed and3 deadZone same-value writes read back; 3 acceleration values0 rejected before send by source range min1"
+        "3 speed and3 deadZone same-value writes read back; 3 acceleration values0 rejected before send by source range min1",
+        "User specifically approved pitch/roll/yaw acceleration0->1 accepting non-restoration. Node all3 writes/readback1, Low unchanged. Python3.12/macOS native1->1 readback all3/Low unchanged. All closed. Existing speed/deadZone same-value evidence retained; not a full range or active-preset proof."
       ]
     },
     {
@@ -277,10 +278,11 @@
       "id": "fine.write",
       "title": "Pitch / Roll 微调",
       "write": true,
-      "state": "ack_and_measured_effect_passed_visual_roll_confirmed",
+      "state": "ack_measured_effect_and_user_observation_passed",
       "evidence": [
         "Pitch0 and Roll0 ACK0; no original-offset getter; no claim of physical offset calibration",
-        "Both axes±0.2 and±1.0 ACK0/fresh joint effect/clean close. Pitch−0.9->0->−0.9 visually unclear; Roll−0.5->0.7->−0.4 user confirmed visible change/no abnormality. No general precision/persistence or absolute-vs-increment claim."
+        "Both axes±0.2 and±1.0 ACK0/fresh joint effect/clean close. Pitch−0.9->0->−0.9 visually unclear; Roll−0.5->0.7->−0.4 user confirmed visible change/no abnormality. No general precision/persistence or absolute-vs-increment claim.",
+        "Node controlledPitch±2deg after user authorization:−0.9->1.0->−0.9, Roll unchanged; user saw opposite up/down changes/no anomaly. Prior±1 long sample involved user touching/moving device, not a controlled static sample."
       ]
     },
     {
@@ -299,39 +301,43 @@
       "id": "system.read",
       "title": "读取系统校准状态",
       "write": false,
-      "state": "response_parsed",
+      "state": "removed_from_sdk_by_user",
       "evidence": [
-        "2026-10-20 initial Node read session; source semantics/physical association remain separate"
+        "2026-10-20 initial Node read session; source semantics/physical association remain separate",
+        "User requested Node repeat: before1/64, ACK0,60polls unchanged, no device change, clean close. User then explicitly requested removal of all4 public methods; no further activation through SDK."
       ]
     },
     {
       "id": "balance.read",
       "title": "读取平衡测试状态",
       "write": false,
-      "state": "response_parsed",
+      "state": "removed_from_sdk_by_user",
       "evidence": [
-        "2026-10-20 initial Node read session; source semantics/physical association remain separate"
+        "2026-10-20 initial Node read session; source semantics/physical association remain separate",
+        "User requested Node repeat: before1/64, ACK0,60polls unchanged, no device change, clean close. User then explicitly requested removal of all4 public methods; no further activation through SDK."
       ]
     },
     {
       "id": "tune.write",
       "title": "自动调参开始 / 取消请求",
       "write": true,
-      "state": "device_progress_complete_observed",
+      "state": "device_progress_complete_and_running_stop_observed",
       "evidence": [
         "Start/stop sent; source6E Processing20..80 then Complete100 after~28s; stop after completion, firmware-abort test pending",
-        "Subsequent stop at Processing30 observed Complete10025ms later;40s observation; no independent abort flag."
+        "Subsequent stop at Processing30 observed Complete10025ms later;40s observation; no independent abort flag.",
+        "NodeProcessing40 stop at4798ms; Complete222ms after stop invocation, invalidFrames0, clean close. User confirmed vibration before stop, stopped at completion, acknowledged and normal screen. Later user requested subsequent cross-port tests run fully to100, no further intermediate stops."
       ]
     },
     {
       "id": "system.write",
       "title": "系统校准请求",
       "write": true,
-      "state": "no_observable_device_effect",
+      "state": "removed_from_sdk_by_user",
       "evidence": [
         "ACK0,30successive source status START1, no completion; user explicitly power-cycled and confirmed settled before further maintenance",
         "After confirmed power cycle and later AUTO completion, parameter remains START1; persistent/request-echo hypothesis, not proof ongoing task.",
-        "Current retest ACK0,60 sequential polls START1; user saw no screen/mechanical response; clean close."
+        "Current retest ACK0,60 sequential polls START1; user saw no screen/mechanical response; clean close.",
+        "User requested Node repeat: before1/64, ACK0,60polls unchanged, no device change, clean close. User then explicitly requested removal of all4 public methods; no further activation through SDK."
       ]
     },
     {
@@ -349,11 +355,12 @@
       "id": "balance.write",
       "title": "启动平衡测试请求",
       "write": true,
-      "state": "no_observable_device_effect",
+      "state": "removed_from_sdk_by_user",
       "evidence": [
         "ACK0,30successive TESTING64 with empty axis results; no completion/physical report; awaiting user power-cycle before next maintenance",
         "User later confirmed second power cycle/settled. Subsequent read still TESTING64/null axes, so do not infer active task from register alone.",
-        "Current retest ACK0,60 sequential polls TESTING64; three axis results null; user saw no response; clean close."
+        "Current retest ACK0,60 sequential polls TESTING64; three axis results null; user saw no response; clean close.",
+        "User requested Node repeat: before1/64, ACK0,60polls unchanged, no device change, clean close. User then explicitly requested removal of all4 public methods; no further activation through SDK."
       ]
     },
     {
@@ -542,5 +549,6 @@
     "historical43EntryLedgerRetained": true,
     "currentRequiredAfterUserExclusions": 40
   },
-  "retainedMaintenanceReport": "docs/RETAINED_MAINTENANCE_ACCEPTANCE.md"
+  "retainedMaintenanceReport": "docs/RETAINED_MAINTENANCE_ACCEPTANCE.md",
+  "acceptanceQueue": "docs/SDK_ACCEPTANCE_QUEUE.md"
 }

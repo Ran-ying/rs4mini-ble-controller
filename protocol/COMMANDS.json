@@ -329,7 +329,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "none",
       "implementation": [],
-      "remaining": "自动调参请求/状态、十二个电机数值、平衡测试及system_calc自动校准请求/状态已封装；system_calc与水平校准的型号/UI身份仍未确认；其他字段、实机接受/效果/持久化和固件中止仍待完成"
+      "remaining": "保留6A自动调参、08/AUTO00水平校准、十二电机数值和07手动微调；三端有本次实机记录。用户移除system_calc与旧平衡测试4个公开方法；绿色电机平衡状态的BLE映射仍未确认。全协议/所有负载精度/持久化不因此完成。"
     },
     {
       "key": "unknown:firmware-program",
@@ -1393,5 +1393,19 @@
   "queueBReferenceFrameResearch": "protocol/research/ronin-queue-b-reference-frame-evidence.json",
   "queueCCompletionAbortResearch": "protocol/research/ronin-queue-c-completion-abort-evidence.json",
   "queueDProgramIsolationResearch": "protocol/research/ronin-queue-d-program-isolation-evidence.json",
-  "queueESessionVersionResearch": "protocol/research/ronin-queue-e-session-version-evidence.json"
+  "queueESessionVersionResearch": "protocol/research/ronin-queue-e-session-version-evidence.json",
+  "retiredMaintenanceSdk": {
+    "removedFromSdk": true,
+    "sendEnabled": false,
+    "publicMethods": [
+      "sendAutoCalibrationRequest",
+      "getAutoCalibrationStatus",
+      "sendBalanceTestRequest",
+      "getBalanceTestStatus"
+    ],
+    "reason": "Repeated Node ACK0 but60unchanged START1/TESTING64 reads and no user-observed effect; user requested removal. Source codecs retained for offline research only.",
+    "retainedHorizontalCalibrationMethod": "sendComponentCalibrationRequest",
+    "retainedSourcePart": "AUTO",
+    "balanceColorReadMappingVerified": false
+  }
 }

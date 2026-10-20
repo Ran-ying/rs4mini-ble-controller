@@ -6,7 +6,7 @@ if(!process.env.RS4MINI_DEVICE_ID)throw Error('Explicit RS4MINI_DEVICE_ID requir
 if(!['queries'].includes(process.argv[2])&&process.env.RS4MINI_ALLOW_MAINTENANCE!=='yes')throw Error('Explicit approval for selected maintenance case required');
 fs.mkdirSync(new URL('../captures/',import.meta.url),{recursive:true});
 
-const action=process.argv[2];if(!['settings','autotune','system','component','balance','queries','recenter'].includes(action))throw Error('Explicit named case required');
+const action=process.argv[2];if(!['settings','autotune','component','queries','recenter'].includes(action))throw Error('Explicit named case required');
 const id=process.env.RS4MINI_DEVICE_ID.replaceAll('-','').toLowerCase(),g=new RS4Mini({deviceId:id}),a=g.appCommands,t={timeoutMs:5000},file=fileURLToPath(new URL('../captures/full-',import.meta.url))+action+'-'+Date.now()+'.jsonl';
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));let counts={},jointSamples=[];
 function save(type,data){fs.appendFileSync(file,JSON.stringify({at:Date.now(),type,data})+'\n');}
@@ -21,11 +21,6 @@ try{
  }else if(action==='autotune'){
   await task('sendAutoTuneRequest.start',()=>a.sendAutoTuneRequest({start:true}));await observe(30);
   await task('sendAutoTuneRequest.stop',()=>a.sendAutoTuneRequest({start:false}));await observe(10);
- }else if(action==='system'||action==='balance'){
-  const isSystem=action==='system',send=isSystem?'sendAutoCalibrationRequest':'sendBalanceTestRequest',read=isSystem?'getAutoCalibrationStatus':'getBalanceTestStatus';
-  const ack=await task(send,()=>a[send](t));
-  for(let i=0;i<30;i++){await sleep(1000);const r=await task(read+'.'+i,()=>a[read](t));if(r&&((isSystem&&['SUCCESS','FAIL'].includes(r.systemCalibration?.state))||(!isSystem&&['FINISH','ERROR'].includes(r.balance?.state))))break;if(!g.connected)break;}
-  await observe(5);
  }else if(action==='component'){
   await task('sendComponentCalibrationRequest.AUTO',()=>a.sendComponentCalibrationRequest({...t,sourcePart:'AUTO'}));await observe(60);
  }else if(action==='queries'){

@@ -14,8 +14,20 @@ class MotionPrefixTraceTests(unittest.TestCase):
         self.assertEqual(source_speed_body(10, 20, 30, permission=True, multi_control=False).hex(), '0a0014001e0080')
         self.assertEqual(source_speed_body(0, 0, 0, permission=False, multi_control=True).hex(), '00000000000001')
         self.assertEqual(source_speed_units(1.9), 10)
+        self.assertEqual(source_speed_units(1.99999999), 20)
+        self.assertEqual(source_speed_units(-1.99999999), -20)
+        self.assertEqual(source_speed_units(float('nan')), 0)
+        self.assertEqual(source_speed_units(float('inf')), -10)  # MAX_INT * 10 wraps
+        self.assertEqual(source_speed_units(float('-inf')), 0)  # MIN_INT * 10 wraps
+        self.assertEqual(source_speed_units(2147483647), -10)
+        self.assertEqual(source_speed_units(-2147483648), 0)
         with self.assertRaises(ValueError):
             source_speed_body(True, 0, 0, permission=True, multi_control=False)
+
+    def test_source_speed_units_float32_before_float_to_int(self):
+        # Python int(1.99999999)==1 would wrongly yield 10; float32 rounds to 2.0 first.
+        self.assertNotEqual(int(1.99999999) * 10, 20)
+        self.assertEqual(source_speed_units(1.99999999), 20)
 
     def test_wrong_apk_and_each_bank_hash_rejected_before_parser(self):
         with tempfile.TemporaryDirectory() as t:

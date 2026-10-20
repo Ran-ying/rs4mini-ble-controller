@@ -12,7 +12,7 @@
 
 ## 最新研究：04:14/0C/4C 八段运动重审
 
-2026-10-20。ronin_motion_prefix_trace.py：0C 当前 App 为 yaw/roll/pitch uint16 LE+标志；UI send 无 roll、stop 不清零；14 仍仅基础 rotate；4C 八段 8 个类外调用、无按轴回中。均不开放新发送。见 [MOTION_PREFIX.md](../tools/research/MOTION_PREFIX.md)。
+2026-10-20。ronin_motion_prefix_trace.py：0C 当前 App 为 yaw/roll/pitch uint16 LE+标志；SPEED 轴值为 float32→Java float-to-int→int32×10（1.99999999→20）；UI send 无 roll、stop 不清零；14 仍仅基础 rotate；4C 八段 8 个类外调用、无按轴回中。均不开放新发送。见 [MOTION_PREFIX.md](../tools/research/MOTION_PREFIX.md)。
 
 ## 最新研究：04:0D/2C/0A 八段缺口重审
 

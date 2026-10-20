@@ -8,7 +8,7 @@
 
 `DataGimbalSpeedControl.doPack`：7 字节，**yaw / roll / pitch** 各 uint16 LE（int 低 16 位），字节6：`permission<<7 | multiControl`。
 
-基础 `rotate` 的 SPEED 分支：各轴 `float-to-int` 后再 `*10`（不是 float32×10），并仍调用 `justSendPauseData`（EYE/SINGLE 依赖未对直连 BLE 解决）。
+基础 `rotate` 的 SPEED 分支：各轴先收窄为 **float32**，再 Java `float-to-int`（向零；NaN→0；±Inf 饱和到 int32），再 `mul-int/lit8` ×10（int32 环绕）。**不是** float32×10。例：`1.99999999` → 20，`1.9` → 10。并仍调用 `justSendPauseData`（EYE/SINGLE 依赖未对直连 BLE 解决）。
 
 Ronin UI `RoninGimbalControler`：`send` 写 permission+yaw+pitch（**不写 roll**）后 `start()`；`stop` 仅 permission+`start()`，**扫描体内不先清零三轴**，先前字段可能残留。
 

@@ -3,6 +3,7 @@
 import argparse
 import hashlib
 import json
+import math
 import struct
 from pathlib import Path
 from ronin_static import APK_SHA256
@@ -35,11 +36,26 @@ def source_speed_body(yaw, roll, pitch, *, permission, multi_control):
 
 
 def source_speed_units(value):
-    """rotate SPEED path: float-to-int then multiply by 10 (not float32*10)."""
+    """rotate SPEED path: float32 narrow, Java float-to-int, then int32 *10 wrap.
+
+    Bytecode: getPitch/Roll/Yaw()F → float-to-int → mul-int/lit8 ..., 10.
+    Not float32×10. NaN→0; ±Inf saturate to int32 bounds before multiply.
+    """
     if type(value) not in (float, int):
         raise ValueError('numeric source speed required')
-    number = int(value)  # Java float-to-int toward zero for finite values in checked tests
-    return number * 10
+    try:
+        single = struct.unpack('<f', struct.pack('<f', float(value)))[0]
+    except (OverflowError, struct.error):
+        single = float('inf') if float(value) > 0 else float('-inf')
+    if math.isnan(single):
+        number = 0
+    elif single == float('inf') or single >= 2147483647.0:
+        number = 2147483647
+    elif single == float('-inf') or single <= -2147483648.0:
+        number = -2147483648
+    else:
+        number = max(-2147483648, min(2147483647, math.trunc(single)))
+    return ((number * 10) + 2147483648) % 4294967296 - 2147483648
 
 
 def scan(apk, bank_dir):
@@ -229,7 +245,11 @@ def scan(apk, bank_dir):
                 'yaw10roll20pitch30': source_speed_body(10, 20, 30, permission=True, multi_control=False).hex(),
                 'multiControl': source_speed_body(0, 0, 0, permission=False, multi_control=True).hex(),
             },
-            unitScaleExample=dict(inputFloat=1.9, floatToIntThenMul10=source_speed_units(1.9)),
+            unitScaleExample=dict(
+                inputFloat=1.9, floatToIntThenMul10=source_speed_units(1.9),
+                inputNearTwo=1.99999999, float32RoundsThenMul10=source_speed_units(1.99999999),
+                path='float32 then Java float-to-int then int32*10 wrap; not float32*10',
+            ),
             currentAppSourceLayoutEstablished=True,
             hg724DedicatedEntryEstablished=False,
             eyeOrPauseDependencyResolvedForDirectBle=False,

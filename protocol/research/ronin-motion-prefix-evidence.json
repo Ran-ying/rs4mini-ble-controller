@@ -247,7 +247,10 @@
     },
     "unitScaleExample": {
       "inputFloat": 1.9,
-      "floatToIntThenMul10": 10
+      "floatToIntThenMul10": 10,
+      "inputNearTwo": 1.99999999,
+      "float32RoundsThenMul10": 20,
+      "path": "float32 then Java float-to-int then int32*10 wrap; not float32*10"
     },
     "currentAppSourceLayoutEstablished": true,
     "hg724DedicatedEntryEstablished": false,

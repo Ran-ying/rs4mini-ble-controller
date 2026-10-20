@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """Offline queue D: program model path and camera/exposure/record isolation.
 
-Status is computed from traced evidence (mInfoByte bit maps, named fields, callers).
-PREFIX only. No sends / vendor execution / hardware.
+Substatuses are computed from PREFIX evidence. Overall status depends on those
+inputs (not a hard-coded exhausted constant). PREFIX only. No sends / vendor
+execution / hardware.
 """
 import argparse
 import hashlib
+import itertools
 import json
 import re
 from pathlib import Path
@@ -14,8 +16,9 @@ from ronin_static import APK_SHA256
 from ronin_prefix_restore import PREFIX_BANKS
 
 STATUS_UNRESOLVED = 'statically_unresolved'
-STATUS_EXHAUSTED = 'statically_exhausted_needs_hardware'
-STATUS = STATUS_EXHAUSTED  # compat: expected when bit maps + interleave facts hold
+STATUS_NEEDS_HW = 'statically_exhausted_needs_hardware'
+BIT_LAYOUT_ESTABLISHED = 'bit_layout_established'
+STATUS = STATUS_UNRESOLVED  # compat default: overall stays unresolved until a HW boundary is recorded
 HG724 = 'Ldji/sdksharedlib/hardware/abstractions/gimbal/DJIGimbalHG724Abstraction;'
 MODELS = {
     '25': 'Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;',
@@ -28,6 +31,11 @@ INFO_SETTERS = {
     '25': ('setControlExternalDevice', 'setISPreview', 'setIsTripod', 'setMode', 'setStartOrStop'),
     '37': ('setIsTripod', 'setMode', 'setStartOrPreview', 'setStartOrStop'),
 }
+INFO_SETTER_NAMES = set(INFO_SETTERS['25']) | set(INFO_SETTERS['37']) | {
+    'setRecordOrPreview', 'setStopStartOrPreview', 'setExposure',
+}
+STOP_METHOD_HINT = re.compile(r'(stop|Stop|previewToggle)', re.I)
+CREATE_HINT = re.compile(r'/create/', re.I)
 
 
 def _ops(method):
@@ -56,66 +64,208 @@ def _fields_from_dopack(classes, owner):
 def _parse_info_byte_setter(owner, method):
     """Extract OR-into-mInfoByte shift/mask from a linear setter body."""
     ops = _ops(method)
-    texts = [t for _, t in ops]
     if not any(owner + '->mInfoByte B' in t and op.startswith('iput') for op, t in ops):
         return None
     shift = None
     mask = None
+    clears_other_bits = False
     for op, text in ops:
         if op == 'and-int/lit8' and ', 1' in text:
             mask = 1
-        if op.startswith('shl-int'):
-            # shl-int/lit8 v2, v2, N  or shl-int/lit8 v2, v2, 7
+        if op == 'shl-int/lit8':
+            parts = text.split(', ')
+            if len(parts) == 3 and parts[2].lstrip('-').isdigit():
+                shift = int(parts[2])
+        elif op.startswith('shl-int'):
             parts = text.split(', ')
             if len(parts) >= 3 and parts[-1].lstrip('-').isdigit():
                 shift = int(parts[-1])
-            elif len(parts) == 2 and 'lit8' in op:
-                # shl-int/lit8 v2, v2, 7 form sometimes as last
-                pass
-        if op == 'shl-int/lit8':
-            parts = text.split(', ')
-            if len(parts) == 3:
-                shift = int(parts[2])
-    # setMode uses or without shift (bit 0)
+        # clearing inverse mask before OR (typical: and with ~bit then or)
+        if op == 'and-int/lit8' and ', 1' not in text:
+            clears_other_bits = True
     if shift is None and any(op == 'or-int/2addr' for op, _ in ops):
         shift = 0
     if shift is None:
         return None
-    camera_or_preview = bool(CAMERAISH.search(method.get_name()))
     return dict(
         method=method.get_name(),
         descriptor=method.get_descriptor(),
         bitIndex=shift,
         lowBitMask=mask,
-        cameraOrPreviewOrExternalName=camera_or_preview,
+        orAccumulatesIntoExistingByte=True,
+        clearsInverseBitBeforeOr=clears_other_bits,
+        cameraOrPreviewOrExternalName=bool(CAMERAISH.search(method.get_name())),
         instructionSha256=hashlib.sha256(method.get_code().get_bc().get_raw()).hexdigest(),
     )
 
 
-def compute_status(info_byte_maps, commands, reliable_stop, model_entry):
-    """Derive queue-D status from traced facts; never a hard-coded constant.
+def _parse_descriptor_params(descriptor):
+    """Return list of param type chars/names inside (...); excludes return."""
+    inner = descriptor[descriptor.find('(') + 1:descriptor.find(')')]
+    params = []
+    i = 0
+    while i < len(inner):
+        c = inner[i]
+        if c in 'ZBCSIJFD':
+            params.append(c)
+            i += 1
+        elif c == 'L':
+            end = inner.find(';', i)
+            params.append(inner[i:end + 1])
+            i = end + 1
+        elif c == '[':
+            i += 1
+            continue
+        else:
+            i += 1
+    return params
 
-    - statically_unresolved: 25/37 mInfoByte bit maps incomplete, or no camera/
-      preview/external interleave evidence yet.
-    - statically_exhausted_needs_hardware: bit maps resolved and interleave
-      proven (named exposure/record fields and/or preview/external info bits),
-      while camera-isolated stop and RS 4 Mini model/component entry remain
-      unproven (reliable_stop/model_entry stay false offline).
-    """
-    required = ('25', '37')
-    if any(k not in info_byte_maps or not info_byte_maps[k].get('bitsResolved') for k in required):
-        return STATUS_UNRESOLVED
-    named_camera = bool(commands.get('63', {}).get('cameraOrRecordFieldsInDoPack')) or bool(
-        commands.get('62', {}).get('cameraOrRecordFieldsInDoPack')
+
+def _resolve_arg_before_invoke(ops, invoke_index, arg_reg):
+    """Walk backward from invoke to classify arg_reg as const, param, field, or unknown."""
+    # Track simple copies into arg_reg
+    target = arg_reg
+    for j in range(invoke_index - 1, max(-1, invoke_index - 40), -1):
+        op, text = ops[j]
+        parts = [p.strip() for p in text.split(',')]
+        if op.startswith('const') and parts and parts[0] == target:
+            # const/4 vN, value
+            lit = parts[-1] if len(parts) >= 2 else None
+            try:
+                value = int(lit, 0) if lit is not None else None
+            except ValueError:
+                value = None
+            return dict(kind='const', register=arg_reg, value=value, atIndex=j)
+        if op in ('move', 'move/from16', 'move-object', 'move-object/from16') and parts and parts[0] == target:
+            target = parts[1]
+            continue
+        if op.startswith('iget') and parts and parts[0] == target:
+            field = text.split('->', 1)[1] if '->' in text else text
+            return dict(kind='instance_field', register=arg_reg, field=field.strip(), atIndex=j)
+        if op.startswith('sget') and parts and parts[0] == target:
+            field = text.split('->', 1)[1] if '->' in text else text
+            return dict(kind='static_field', register=arg_reg, field=field.strip(), atIndex=j)
+        if op.startswith('invoke') and 'move-result' not in op:
+            # result may land later; keep scanning
+            pass
+        if op.startswith('move-result') and parts and parts[0] == target:
+            return dict(kind='invoke_result', register=arg_reg, atIndex=j)
+    # Dalvik: in non-static method, first params after `this` start at v(total-regs - param-words)
+    return dict(kind='unresolved_or_param', register=arg_reg, atIndex=None)
+
+
+def _analyze_create_method(bank, owner, method, model_owners):
+    """Extract setter invokes with resolved args, instance source, and branch role."""
+    if not method.get_code():
+        return []
+    ops = _ops(method)
+    desc = method.get_descriptor()
+    params = _parse_descriptor_params(desc)
+    # Approximate: last N registers are params (this + args). androguard doesn't give register count easily;
+    # mark kind unresolved_or_param when backward scan fails; refine if register matches pN naming in output.
+    rows = []
+    instance_source = None
+    for idx, (op, text) in enumerate(ops):
+        if op.startswith('iget-object') and '->mSetter' in text:
+            instance_source = dict(kind='instance_field_mSetter', text=text.strip())
+        if op.startswith('invoke') and '->getInstance()' in text and any(m in text for m in model_owners):
+            instance_source = dict(kind='getInstance_singleton', text=text.strip())
+        if not op.startswith('invoke'):
+            continue
+        if not any(m + '->' in text for m in model_owners):
+            continue
+        setter = None
+        for name in INFO_SETTER_NAMES:
+            if '->' + name + '(' in text:
+                setter = name
+                break
+        if setter is None and '->start(' not in text and '->addRoadPosition' not in text and '->clearPoint' not in text:
+            # other model methods still recorded lightly
+            setter = text.split('->', 1)[1].split('(')[0] if '->' in text else None
+        if setter is None:
+            continue
+        # invoke-virtual vA, vB, ... Owner;->name
+        regs = []
+        head = text.split(', L', 1)[0] if ', L' in text else text.split(',')[0]
+        # better: split on ', ' until we hit L...
+        chunks = text.split(', ')
+        for ch in chunks:
+            if ch.startswith('L') or ch.startswith('['):
+                break
+            if re.fullmatch(r'v\d+', ch):
+                regs.append(ch)
+        # regs[0]=instance, regs[1:]=args
+        arg_regs = regs[1:] if len(regs) > 1 else []
+        args = []
+        for ar in arg_regs:
+            resolved = _resolve_arg_before_invoke(ops, idx, ar)
+            # If still unresolved, check if register is a known param slot by name pN (rare in androguard output)
+            if resolved['kind'] == 'unresolved_or_param' and params:
+                resolved = dict(resolved, likelyMethodParameter=True, methodDescriptor=desc)
+            args.append(resolved)
+        role = 'stop' if STOP_METHOD_HINT.search(method.get_name() or '') else (
+            'preview_branch' if 'preview' in (method.get_name() or '').lower() else 'start_or_other'
+        )
+        rows.append(dict(
+            bank=bank,
+            className=owner,
+            method=method.get_name(),
+            descriptor=desc,
+            createUi=bool(CREATE_HINT.search(owner)),
+            setter=setter,
+            invokeText=text[:200],
+            argumentRegisters=arg_regs,
+            arguments=args,
+            instanceSource=instance_source,
+            controlFlowRole=role,
+            cameraOrPreviewOrExternalSetter=bool(CAMERAISH.search(setter or '')),
+        ))
+    return rows
+
+
+def compute_substatuses(
+    *,
+    bit_layout_established,
+    call_values_has_dynamic_boundary,
+    camera_isolation_has_dynamic_boundary,
+    stop_semantics_has_dynamic_boundary,
+    model_entry_has_dynamic_boundary,
+):
+    """Map evidence flags to per-facet statuses. Inputs must affect outputs."""
+    bit_layout = BIT_LAYOUT_ESTABLISHED if bit_layout_established else STATUS_UNRESOLVED
+    call_values = STATUS_NEEDS_HW if call_values_has_dynamic_boundary else STATUS_UNRESOLVED
+    camera_isolation = STATUS_NEEDS_HW if camera_isolation_has_dynamic_boundary else STATUS_UNRESOLVED
+    stop_semantics = STATUS_NEEDS_HW if stop_semantics_has_dynamic_boundary else STATUS_UNRESOLVED
+    model_entry = STATUS_NEEDS_HW if model_entry_has_dynamic_boundary else STATUS_UNRESOLVED
+    return dict(
+        bit_layout=bit_layout,
+        call_values=call_values,
+        camera_isolation=camera_isolation,
+        stop_semantics=stop_semantics,
+        model_entry=model_entry,
     )
-    info_camera = any(info_byte_maps[k].get('cameraPreviewOrExternalBits') for k in required)
-    if not named_camera and not info_camera:
-        return STATUS_UNRESOLVED
-    if reliable_stop and model_entry:
-        # Offline tool never establishes these; reserved if a later source does.
-        return STATUS_EXHAUSTED
-    return STATUS_EXHAUSTED
 
+
+def compute_overall(substatuses):
+    """Overall status depends on substatus inputs.
+
+    - bit_layout not established → statically_unresolved
+    - any other facet needs_hardware → statically_exhausted_needs_hardware
+    - otherwise → statically_unresolved (static facets still open; not an exhaustion claim)
+    """
+    if substatuses.get('bit_layout') != BIT_LAYOUT_ESTABLISHED:
+        return STATUS_UNRESOLVED
+    facets = ('call_values', 'camera_isolation', 'stop_semantics', 'model_entry')
+    if any(substatuses.get(k) == STATUS_NEEDS_HW for k in facets):
+        return STATUS_NEEDS_HW
+    return STATUS_UNRESOLVED
+
+
+def iter_status_combinations():
+    """All bit_layout × four facet boundary flag combinations for tests."""
+    for bit_ok in (False, True):
+        for flags in itertools.product((False, True), repeat=4):
+            yield (bit_ok,) + flags
 
 
 def scan(apk, bank_dir):
@@ -134,10 +284,14 @@ def scan(apk, bank_dir):
     banks_meta = []
     external = {k: [] for k in MODELS}
     hg724_program = []
-    info_setter_callers = []
+    create_setter_traces = []
+    stop_chain_traces = []
+    model_owners = list(MODELS.values())
     bank05 = None
+    bank_classes = {}
     for bank, raw in images:
         classes = {c.get_name(): c for c in DEX(raw).get_classes()}
+        bank_classes[bank] = classes
         banks_meta.append(dict(segment=bank, derivedSha256=PREFIX_BANKS[bank]))
         if bank == 5:
             bank05 = classes
@@ -150,6 +304,14 @@ def scan(apk, bank_dir):
             for method in cls.get_methods():
                 if not method.get_code():
                     continue
+                traces = _analyze_create_method(bank, owner, method, model_owners)
+                for row in traces:
+                    if row['createUi'] or CREATE_HINT.search(owner):
+                        create_setter_traces.append(row)
+                    if row['controlFlowRole'] == 'stop' or (
+                        owner.endswith('CreateUtils;') and STOP_METHOD_HINT.search(method.get_name() or '')
+                    ):
+                        stop_chain_traces.append(row)
                 for instruction in method.get_instructions():
                     if not instruction.get_name().startswith('invoke'):
                         continue
@@ -161,11 +323,6 @@ def scan(apk, bank_dir):
                                 descriptor=method.get_descriptor(),
                                 createUi='create' in owner.lower(),
                             ))
-                            if any(s in text for s in ('setISPreview', 'setControlExternalDevice', 'setStartOrPreview')):
-                                info_setter_callers.append(dict(
-                                    bank=bank, className=owner, method=method.get_name(),
-                                    target=text.split('->')[1].split('(')[0] if '->' in text else text[:80],
-                                ))
         print('bank%02d' % bank, flush=True)
 
     classes = bank05
@@ -216,6 +373,7 @@ def scan(apk, bank_dir):
                 bitIndexes=bit_indexes,
                 cameraPreviewOrExternalBits=camera_bits,
                 bitsResolved=len(bits) == len(INFO_SETTERS[key]) and len(bit_indexes) == len(bits),
+                orAccumulationIntoSharedByte=all(b.get('orAccumulatesIntoExistingByte') for b in bits),
             )
 
     if 'mExposure' not in commands['63']['doPackFields']:
@@ -225,13 +383,155 @@ def scan(apk, bank_dir):
     if 'mInfoByte' not in commands['25']['doPackFields'] or 'mInfoByte' not in commands['37']['doPackFields']:
         raise ValueError('timelapse mInfoByte missing from doPack fields')
 
-    reliable_stop = False
-    model_entry = False
-    status = compute_status(info_byte_maps, commands, reliable_stop, model_entry)
-    pure_openable = False
+    bit_layout_ok = all(info_byte_maps[k]['bitsResolved'] for k in ('25', '37'))
+
+    # Call-value dynamic boundaries: preview/external args that are not compile-time consts
+    dynamic_call_sites = []
+    const_camera_sites = []
+    for row in create_setter_traces:
+        if not row.get('cameraOrPreviewOrExternalSetter'):
+            continue
+        for arg in row.get('arguments') or []:
+            if arg.get('kind') == 'const':
+                const_camera_sites.append(dict(row, resolvedArgument=arg))
+            elif arg.get('kind') in ('instance_field', 'static_field', 'invoke_result', 'unresolved_or_param'):
+                dynamic_call_sites.append(dict(
+                    className=row['className'], method=row['method'], setter=row['setter'],
+                    argument=arg, boundaryKind=arg.get('kind'),
+                ))
+
+    # Instance init/reuse: mSetter field vs getInstance at call site
+    instance_reuse = []
+    seen_inst = set()
+    for row in create_setter_traces:
+        src = row.get('instanceSource') or {}
+        key = (row['className'], row['method'], src.get('kind'))
+        if key in seen_inst:
+            continue
+        seen_inst.add(key)
+        if src.get('kind'):
+            instance_reuse.append(dict(
+                className=row['className'], method=row['method'],
+                instanceSourceKind=src.get('kind'), detail=src.get('text', '')[:160],
+                impliesSharedSingletonOrFieldReuse=src.get('kind') in (
+                    'getInstance_singleton', 'instance_field_mSetter',
+                ),
+            ))
+
+    # Stop chains: CreateUtils + Create* stop methods with const args where visible
+    stop_summary = []
+    seen_stop = set()
+    for row in stop_chain_traces:
+        key = (row['className'], row['method'], row['setter'])
+        if key in seen_stop:
+            continue
+        seen_stop.add(key)
+        stop_summary.append(dict(
+            className=row['className'], method=row['method'], setter=row['setter'],
+            arguments=row.get('arguments'), clearsPreviewBitExplicitly=row['setter'] in (
+                'setISPreview', 'setStartOrPreview', 'setRecordOrPreview', 'setStopStartOrPreview',
+            ),
+        ))
+
+    # Model/component reachability: no HG724-named program methods; Create uses midware singletons
+    model_reachability = dict(
+        hg724NamedProgramMethods=hg724_program,
+        missingHg724NamedCallerDoesNotProveNoInheritedEntry=True,
+        createUiUsesMidwareGetInstanceOrField=any(
+            r.get('impliesSharedSingletonOrFieldReuse') for r in instance_reuse
+        ),
+        productTypeGateInCreateUiResolved=False,
+        dynamicBoundary='RS 4 Mini product/component map and whether Create program midware paths are bound for HG724 are not fixed in PREFIX bytecode alone',
+        hardwareMeasurementsNeeded=[
+            'Confirm whether RS 4 Mini / HG724 session exposes Create timelapse/track/panorama midware commands',
+            'Capture whether UIViewManager Create* entries are offered for the connected product type',
+        ],
+    )
+
+    call_values_boundary = bool(dynamic_call_sites)
+    # Camera isolation: packing can include camera bits; some Create paths use const 0 preview,
+    # others pass runtime preview/external. Firmware effect of those bits is the HW boundary —
+    # do NOT claim isolation statically disproven or established.
+    camera_isolation_boundary = bool(
+        commands['63']['cameraOrRecordFieldsInDoPack']
+        or commands['62']['cameraOrRecordFieldsInDoPack']
+        or any(info_byte_maps[k]['cameraPreviewOrExternalBits'] for k in ('25', '37'))
+    )
+    # Stop semantics: chains traced with consts in CreateUtils, but device effect + singleton
+    # uncleared bits remain dynamic.
+    stop_boundary = bool(stop_summary)
+    model_boundary = True  # product/component reachability always needs session evidence here
+
+    boundaries = []
+    if call_values_boundary:
+        boundaries.append(dict(
+            facet='call_values',
+            kind='dynamic_register_or_field_argument',
+            detail='Create setter args include method parameters, instance fields, or invoke results (e.g. setISPreview from sendToDeviceStart(I), setControlExternalDevice from mFocusMotorConnected)',
+            examples=dynamic_call_sites[:12],
+            hardwareMeasurementsNeeded=[
+                'Log actual setISPreview / setControlExternalDevice / setStartOrPreview values on device for start and stop',
+                'Correlate UI preview toggle and focus-motor state with packed mInfoByte bits',
+            ],
+        ))
+    if camera_isolation_boundary:
+        boundaries.append(dict(
+            facet='camera_isolation',
+            kind='firmware_interpretation_of_packed_camera_bits',
+            detail=(
+                'Wire layout can pack preview/external/exposure/record fields beside gimbal controls; '
+                'CreateFollowActivity.startTimeLapse uses const preview=0, while other Create paths pass '
+                'runtime preview/external. Whether a camera-free gimbal program primitive exists is not '
+                'settled by layout alone.'
+            ),
+            hardwareMeasurementsNeeded=[
+                'Send or observe preview=0 vs preview=1 program packets on RS 4 Mini and check camera/side effects',
+                'Observe panorama mExposure and track mRecordOrPreview influence on device behavior',
+            ],
+        ))
+    if stop_boundary:
+        boundaries.append(dict(
+            facet='stop_semantics',
+            kind='device_effect_of_traced_stop_packets',
+            detail=(
+                'CreateUtils stop* and Create* stop methods set startOrStop (and sometimes record/preview) '
+                'then start(callback); several stop paths omit an explicit preview-bit clear on the shared '
+                'getInstance/mSetter singleton, so OR-accumulated bits may persist across calls.'
+            ),
+            tracedStops=stop_summary[:20],
+            hardwareMeasurementsNeeded=[
+                'Verify stop packets halt motion on RS 4 Mini',
+                'Check whether uncleared preview/external bits on the singleton affect stop or next start',
+            ],
+        ))
+    if model_boundary:
+        boundaries.append(dict(
+            facet='model_entry',
+            kind='product_component_session_binding',
+            detail=model_reachability['dynamicBoundary'],
+            hardwareMeasurementsNeeded=model_reachability['hardwareMeasurementsNeeded'],
+        ))
+
+    substatuses = compute_substatuses(
+        bit_layout_established=bit_layout_ok,
+        call_values_has_dynamic_boundary=call_values_boundary,
+        camera_isolation_has_dynamic_boundary=camera_isolation_boundary,
+        stop_semantics_has_dynamic_boundary=stop_boundary,
+        model_entry_has_dynamic_boundary=model_boundary,
+    )
+    status = compute_overall(substatuses)
+
+    reason = (
+        'mInfoByte bit layout is established for 04:25/37. Create call sites, stop chains, and '
+        'shared getInstance/mSetter reuse are traced, but call-argument values, camera isolation, '
+        'stop effects, and RS 4 Mini model/component reachability each still hit a recorded dynamic '
+        'or session boundary (see dynamicBoundaries). Program sends stay closed.'
+        if status == STATUS_NEEDS_HW else
+        'Bit layout and/or remaining facets are still statically_unresolved; no hardware boundary recorded yet.'
+    )
 
     return dict(
-        schemaVersion=2,
+        schemaVersion=3,
         apkSha256=APK_SHA256,
         bankSha256={str(b): p for b, p in PREFIX_BANKS.items()},
         scannedBanks=list(PREFIX_BANKS),
@@ -244,35 +544,36 @@ def scan(apk, bank_dir):
         banks=banks_meta,
         methods=methods,
         status=status,
-        statusComputedBy='compute_status(info_byte_maps, commands, reliable_stop, model_entry)',
+        substatuses=substatuses,
+        statusComputedBy='compute_overall(compute_substatuses(...))',
         commands=commands,
         infoByteMaps=info_byte_maps,
-        infoByteSetterCallers=info_setter_callers,
+        createSetterTraces=create_setter_traces,
+        constCameraOrPreviewSetterSites=[
+            dict(className=r['className'], method=r['method'], setter=r['setter'], value=r['resolvedArgument'].get('value'))
+            for r in const_camera_sites[:30]
+        ],
+        dynamicCallValueSites=dynamic_call_sites[:40],
+        instanceInitAndReuse=instance_reuse,
+        stopCallChains=stop_summary,
+        modelReachability=model_reachability,
+        dynamicBoundaries=boundaries,
         hg724NamedProgramMethods=hg724_program,
         panoramaHasExposureField=True,
         trackHasRecordOrPreviewField=True,
-        cameraFieldsInterleavedWithPanorama=True,
-        trackRecordPreviewInterleaved=True,
-        timelapseInfoBytePreviewOrExternalBitsInterleaved=any(
+        cameraFieldsPresentInPanoramaAndTrackDoPack=True,
+        timelapseInfoByteHasPreviewOrExternalBits=any(
             info_byte_maps[k]['cameraPreviewOrExternalBits'] for k in ('25', '37')
         ),
-        reliableStopWithCameraIsolationEstablished=reliable_stop,
-        pureGimbalProgramPrimitiveOpenable=pure_openable,
-        hg724ModelSpecificProgramEntryEstablished=model_entry,
+        reliableStopWithCameraIsolationEstablished=False,
+        pureGimbalProgramPrimitiveOpenable=False,
+        hg724ModelSpecificProgramEntryEstablished=False,
         missingHg724NamedCallerDoesNotProveNoInheritedEntry=True,
-        reasonNotClosed=(
-            'mInfoByte bit maps are resolved: 04:25 packs preview (bit3) and controlExternalDevice (bit7) '
-            'beside mode/tripod/start-stop; 04:37 packs startOrPreview (bit3) beside the same. '
-            'Named panorama mExposure and track mRecordOrPreview remain interleaved. '
-            'Create UI callers invoke those setters. Isolation is statically disproven for a pure '
-            'gimbal primitive; RS 4 Mini model/component reachability and a camera-free stop path '
-            'still need hardware or a different source entry.'
-            if status == STATUS_EXHAUSTED else
-            'mInfoByte or named camera fields are not fully resolved; status stays statically_unresolved.'
-        ),
+        reasonNotClosed=reason,
         remaining=[
             'Do not open 04:25/37/62/63 sends.',
             'Do not treat missing HG724-named program methods as no inherited entry.',
+            'Do not claim camera isolation is statically established or statically disproven from layout alone.',
         ],
     )
 
@@ -285,7 +586,12 @@ def main():
     args = parser.parse_args()
     result = scan(args.apk, args.bank_dir)
     args.output.write_text(json.dumps(result, indent=2) + '\n')
-    print('queue-D:', result['status'], 'bits25', result['infoByteMaps']['25']['bitIndexes'], flush=True)
+    print(
+        'queue-D:', result['status'],
+        'subs', result['substatuses'],
+        'bits25', result['infoByteMaps']['25']['bitIndexes'],
+        flush=True,
+    )
 
 
 if __name__ == '__main__':

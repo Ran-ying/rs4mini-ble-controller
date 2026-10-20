@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
   "bankSha256": {
     "0": "2229f1f19aa8fe8d819c7b3cecbd844928da817e2bc9cfddfda1c0e120e4cc59",
@@ -168,7 +168,14 @@
     }
   ],
   "status": "statically_exhausted_needs_hardware",
-  "statusComputedBy": "compute_status(info_byte_maps, commands, reliable_stop, model_entry)",
+  "substatuses": {
+    "bit_layout": "bit_layout_established",
+    "call_values": "statically_exhausted_needs_hardware",
+    "camera_isolation": "statically_exhausted_needs_hardware",
+    "stop_semantics": "statically_exhausted_needs_hardware",
+    "model_entry": "statically_exhausted_needs_hardware"
+  },
+  "statusComputedBy": "compute_overall(compute_substatuses(...))",
   "commands": {
     "25": {
       "key": "04:25",
@@ -466,6 +473,8 @@
           "descriptor": "(Z)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
           "bitIndex": 7,
           "lowBitMask": null,
+          "orAccumulatesIntoExistingByte": true,
+          "clearsInverseBitBeforeOr": false,
           "cameraOrPreviewOrExternalName": true,
           "instructionSha256": "be7da48253f891fc511ad9d689b1aba96e93f8100845735824a936c516c56e24"
         },
@@ -474,6 +483,8 @@
           "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
           "bitIndex": 3,
           "lowBitMask": 1,
+          "orAccumulatesIntoExistingByte": true,
+          "clearsInverseBitBeforeOr": false,
           "cameraOrPreviewOrExternalName": true,
           "instructionSha256": "e9d385c759c396889daf655e8a99b5281703c9b04f2b2a8ef32aa286c8480648"
         },
@@ -482,6 +493,8 @@
           "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
           "bitIndex": 1,
           "lowBitMask": 1,
+          "orAccumulatesIntoExistingByte": true,
+          "clearsInverseBitBeforeOr": false,
           "cameraOrPreviewOrExternalName": false,
           "instructionSha256": "53049c1becd6ac655d0ac82df4f51c7b5d5a2e6838bf5b53f6782cb4984e5ae9"
         },
@@ -490,6 +503,8 @@
           "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
           "bitIndex": 0,
           "lowBitMask": 1,
+          "orAccumulatesIntoExistingByte": true,
+          "clearsInverseBitBeforeOr": false,
           "cameraOrPreviewOrExternalName": false,
           "instructionSha256": "142b33f79bfca19028611775de1ed119cf62110c93cc56a9d6a51d0cf4fec014"
         },
@@ -498,6 +513,8 @@
           "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
           "bitIndex": 2,
           "lowBitMask": 1,
+          "orAccumulatesIntoExistingByte": true,
+          "clearsInverseBitBeforeOr": false,
           "cameraOrPreviewOrExternalName": false,
           "instructionSha256": "baad1a1fbabe9ea29c72e2fad7534649ea29ef61a89599ef753514d83054133a"
         }
@@ -515,6 +532,8 @@
           "descriptor": "(Z)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
           "bitIndex": 7,
           "lowBitMask": null,
+          "orAccumulatesIntoExistingByte": true,
+          "clearsInverseBitBeforeOr": false,
           "cameraOrPreviewOrExternalName": true,
           "instructionSha256": "be7da48253f891fc511ad9d689b1aba96e93f8100845735824a936c516c56e24"
         },
@@ -523,11 +542,14 @@
           "descriptor": "(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
           "bitIndex": 3,
           "lowBitMask": 1,
+          "orAccumulatesIntoExistingByte": true,
+          "clearsInverseBitBeforeOr": false,
           "cameraOrPreviewOrExternalName": true,
           "instructionSha256": "e9d385c759c396889daf655e8a99b5281703c9b04f2b2a8ef32aa286c8480648"
         }
       ],
-      "bitsResolved": true
+      "bitsResolved": true,
+      "orAccumulationIntoSharedByte": true
     },
     "37": {
       "field": "mInfoByte",
@@ -537,6 +559,8 @@
           "descriptor": "(I)Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;",
           "bitIndex": 1,
           "lowBitMask": 1,
+          "orAccumulatesIntoExistingByte": true,
+          "clearsInverseBitBeforeOr": false,
           "cameraOrPreviewOrExternalName": false,
           "instructionSha256": "589d31f016ab026b71670c5a8edab857ed20e85740913c4fdf706603028b65cd"
         },
@@ -545,6 +569,8 @@
           "descriptor": "(I)Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;",
           "bitIndex": 0,
           "lowBitMask": 1,
+          "orAccumulatesIntoExistingByte": true,
+          "clearsInverseBitBeforeOr": false,
           "cameraOrPreviewOrExternalName": false,
           "instructionSha256": "d2ef82639478e6aa4f64ac267c329bc9cced39ea2476dbbaae9087163260bd66"
         },
@@ -553,6 +579,8 @@
           "descriptor": "(I)Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;",
           "bitIndex": 3,
           "lowBitMask": 1,
+          "orAccumulatesIntoExistingByte": true,
+          "clearsInverseBitBeforeOr": false,
           "cameraOrPreviewOrExternalName": true,
           "instructionSha256": "129e66932ecadea5b5b2c5f8e22f0f3f81f2e24e91dad6ceffff228af44f1c73"
         },
@@ -561,6 +589,8 @@
           "descriptor": "(I)Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;",
           "bitIndex": 2,
           "lowBitMask": 1,
+          "orAccumulatesIntoExistingByte": true,
+          "clearsInverseBitBeforeOr": false,
           "cameraOrPreviewOrExternalName": false,
           "instructionSha256": "444447e3cccad0877b883ed9cb6e2f5dd831373a57f6c93424fe5f18acc3fab0"
         }
@@ -577,64 +607,3594 @@
           "descriptor": "(I)Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;",
           "bitIndex": 3,
           "lowBitMask": 1,
+          "orAccumulatesIntoExistingByte": true,
+          "clearsInverseBitBeforeOr": false,
           "cameraOrPreviewOrExternalName": true,
           "instructionSha256": "129e66932ecadea5b5b2c5f8e22f0f3f81f2e24e91dad6ceffff228af44f1c73"
         }
       ],
-      "bitsResolved": true
+      "bitsResolved": true,
+      "orAccumulationIntoSharedByte": true
     }
   },
-  "infoByteSetterCallers": [
+  "createSetterTraces": [
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "stopFixDelayPreviewWork",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "createUi": true,
+      "setter": "getInstance",
+      "invokeText": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "argumentRegisters": [],
+      "arguments": [],
+      "instanceSource": {
+        "kind": "getInstance_singleton",
+        "text": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+      },
+      "controlFlowRole": "stop",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "stopFixDelayPreviewWork",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "createUi": true,
+      "setter": "setMode",
+      "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setMode(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "argumentRegisters": [
+        "v1"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 1,
+          "atIndex": 2
+        }
+      ],
+      "instanceSource": {
+        "kind": "getInstance_singleton",
+        "text": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+      },
+      "controlFlowRole": "stop",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "stopFixDelayPreviewWork",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "createUi": true,
+      "setter": "setIsTripod",
+      "invokeText": "v0, v2, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setIsTripod(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "argumentRegisters": [
+        "v2"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v2",
+          "value": 0,
+          "atIndex": 5
+        }
+      ],
+      "instanceSource": {
+        "kind": "getInstance_singleton",
+        "text": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+      },
+      "controlFlowRole": "stop",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "stopFixDelayPreviewWork",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "createUi": true,
+      "setter": "setStartOrStop",
+      "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setStartOrStop(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "argumentRegisters": [
+        "v1"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 1,
+          "atIndex": 2
+        }
+      ],
+      "instanceSource": {
+        "kind": "getInstance_singleton",
+        "text": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+      },
+      "controlFlowRole": "stop",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "stopPanoPreviewWork",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "createUi": true,
+      "setter": "getInstance",
+      "invokeText": "Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;",
+      "argumentRegisters": [],
+      "arguments": [],
+      "instanceSource": {
+        "kind": "getInstance_singleton",
+        "text": "Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;"
+      },
+      "controlFlowRole": "stop",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "stopPanoPreviewWork",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "createUi": true,
+      "setter": "setStopStartOrPreview",
+      "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;->setStopStartOrPreview(I)Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;",
+      "argumentRegisters": [
+        "v1"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 0,
+          "atIndex": 2
+        }
+      ],
+      "instanceSource": {
+        "kind": "getInstance_singleton",
+        "text": "Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;"
+      },
+      "controlFlowRole": "stop",
+      "cameraOrPreviewOrExternalSetter": true
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "stopPathDelayPreviewWork",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "createUi": true,
+      "setter": "getInstance",
+      "invokeText": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "argumentRegisters": [],
+      "arguments": [],
+      "instanceSource": {
+        "kind": "getInstance_singleton",
+        "text": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+      },
+      "controlFlowRole": "stop",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "stopPathDelayPreviewWork",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "createUi": true,
+      "setter": "setMode",
+      "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setMode(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "argumentRegisters": [
+        "v1"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 0,
+          "atIndex": 2
+        }
+      ],
+      "instanceSource": {
+        "kind": "getInstance_singleton",
+        "text": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+      },
+      "controlFlowRole": "stop",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "stopPathDelayPreviewWork",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "createUi": true,
+      "setter": "setIsTripod",
+      "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setIsTripod(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "argumentRegisters": [
+        "v1"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 0,
+          "atIndex": 2
+        }
+      ],
+      "instanceSource": {
+        "kind": "getInstance_singleton",
+        "text": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+      },
+      "controlFlowRole": "stop",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "stopPathDelayPreviewWork",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "createUi": true,
+      "setter": "setStartOrStop",
+      "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setStartOrStop(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "argumentRegisters": [
+        "v1"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 1,
+          "atIndex": 7
+        }
+      ],
+      "instanceSource": {
+        "kind": "getInstance_singleton",
+        "text": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+      },
+      "controlFlowRole": "stop",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "stopTrackPreviewWork",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "createUi": true,
+      "setter": "getInstance",
+      "invokeText": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "argumentRegisters": [],
+      "arguments": [],
+      "instanceSource": {
+        "kind": "getInstance_singleton",
+        "text": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+      },
+      "controlFlowRole": "stop",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "stopTrackPreviewWork",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "createUi": true,
+      "setter": "setRecordOrPreview",
+      "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setRecordOrPreview(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "argumentRegisters": [
+        "v1"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 1,
+          "atIndex": 2
+        }
+      ],
+      "instanceSource": {
+        "kind": "getInstance_singleton",
+        "text": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+      },
+      "controlFlowRole": "stop",
+      "cameraOrPreviewOrExternalSetter": true
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "stopTrackPreviewWork",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "createUi": true,
+      "setter": "setStartOrStop",
+      "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setStartOrStop(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "argumentRegisters": [
+        "v1"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 1,
+          "atIndex": 2
+        }
+      ],
+      "instanceSource": {
+        "kind": "getInstance_singleton",
+        "text": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+      },
+      "controlFlowRole": "stop",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "stopTrackingTimeLapseWork",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "createUi": true,
+      "setter": "getInstance",
+      "invokeText": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "argumentRegisters": [],
+      "arguments": [],
+      "instanceSource": {
+        "kind": "getInstance_singleton",
+        "text": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+      },
+      "controlFlowRole": "stop",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "stopTrackingTimeLapseWork",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "createUi": true,
+      "setter": "setMode",
+      "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setMode(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "argumentRegisters": [
+        "v1"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 1,
+          "atIndex": 2
+        }
+      ],
+      "instanceSource": {
+        "kind": "getInstance_singleton",
+        "text": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+      },
+      "controlFlowRole": "stop",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "stopTrackingTimeLapseWork",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "createUi": true,
+      "setter": "setIsTripod",
+      "invokeText": "v0, v2, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setIsTripod(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "argumentRegisters": [
+        "v2"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v2",
+          "value": 0,
+          "atIndex": 5
+        }
+      ],
+      "instanceSource": {
+        "kind": "getInstance_singleton",
+        "text": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+      },
+      "controlFlowRole": "stop",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "stopTrackingTimeLapseWork",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "createUi": true,
+      "setter": "setStartOrStop",
+      "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setStartOrStop(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "argumentRegisters": [
+        "v1"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 1,
+          "atIndex": 2
+        }
+      ],
+      "instanceSource": {
+        "kind": "getInstance_singleton",
+        "text": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+      },
+      "controlFlowRole": "stop",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/follow/CreateFollowActivity;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "createUi": true,
+      "setter": "getInstance",
+      "invokeText": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "argumentRegisters": [],
+      "arguments": [],
+      "instanceSource": {
+        "kind": "getInstance_singleton",
+        "text": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+      },
+      "controlFlowRole": "start_or_other",
+      "cameraOrPreviewOrExternalSetter": false
+    },
     {
       "bank": 3,
       "className": "Lcom/dji/ronin/ui/create/follow/CreateFollowActivity;",
       "method": "startTimeLapse",
-      "target": "setISPreview"
+      "descriptor": "()V",
+      "createUi": true,
+      "setter": "setMode",
+      "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setMode(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "argumentRegisters": [
+        "v1"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 1,
+          "atIndex": 15
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v0, v11, Lcom/dji/ronin/ui/create/follow/CreateFollowActivity;->mSetter Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+      },
+      "controlFlowRole": "start_or_other",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/follow/CreateFollowActivity;",
+      "method": "startTimeLapse",
+      "descriptor": "()V",
+      "createUi": true,
+      "setter": "setIsTripod",
+      "invokeText": "v0, v2, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setIsTripod(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "argumentRegisters": [
+        "v2"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v2",
+          "value": 0,
+          "atIndex": 4
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v0, v11, Lcom/dji/ronin/ui/create/follow/CreateFollowActivity;->mSetter Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+      },
+      "controlFlowRole": "start_or_other",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/follow/CreateFollowActivity;",
+      "method": "startTimeLapse",
+      "descriptor": "()V",
+      "createUi": true,
+      "setter": "setISPreview",
+      "invokeText": "v0, v2, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setISPreview(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "argumentRegisters": [
+        "v2"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v2",
+          "value": 0,
+          "atIndex": 4
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v0, v11, Lcom/dji/ronin/ui/create/follow/CreateFollowActivity;->mSetter Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+      },
+      "controlFlowRole": "start_or_other",
+      "cameraOrPreviewOrExternalSetter": true
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/follow/CreateFollowActivity;",
+      "method": "startTimeLapse",
+      "descriptor": "()V",
+      "createUi": true,
+      "setter": "setStartOrStop",
+      "invokeText": "v0, v2, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setStartOrStop(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "argumentRegisters": [
+        "v2"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v2",
+          "value": 0,
+          "atIndex": 4
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v0, v11, Lcom/dji/ronin/ui/create/follow/CreateFollowActivity;->mSetter Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+      },
+      "controlFlowRole": "start_or_other",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/follow/CreateFollowActivity;",
+      "method": "stopTimeLapse",
+      "descriptor": "()V",
+      "createUi": true,
+      "setter": "setMode",
+      "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setMode(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "argumentRegisters": [
+        "v1"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 1,
+          "atIndex": 1
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v0, v3, Lcom/dji/ronin/ui/create/follow/CreateFollowActivity;->mSetter Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+      },
+      "controlFlowRole": "stop",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/follow/CreateFollowActivity;",
+      "method": "stopTimeLapse",
+      "descriptor": "()V",
+      "createUi": true,
+      "setter": "setIsTripod",
+      "invokeText": "v0, v2, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setIsTripod(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "argumentRegisters": [
+        "v2"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v2",
+          "value": 0,
+          "atIndex": 4
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v0, v3, Lcom/dji/ronin/ui/create/follow/CreateFollowActivity;->mSetter Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+      },
+      "controlFlowRole": "stop",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/follow/CreateFollowActivity;",
+      "method": "stopTimeLapse",
+      "descriptor": "()V",
+      "createUi": true,
+      "setter": "setStartOrStop",
+      "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setStartOrStop(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "argumentRegisters": [
+        "v1"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 1,
+          "atIndex": 1
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v0, v3, Lcom/dji/ronin/ui/create/follow/CreateFollowActivity;->mSetter Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+      },
+      "controlFlowRole": "stop",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/tapgo/CreateFixDelayView;",
+      "method": "<init>",
+      "descriptor": "(Landroid/content/Context; Landroid/util/AttributeSet;)V",
+      "createUi": true,
+      "setter": "getInstance",
+      "invokeText": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "argumentRegisters": [],
+      "arguments": [],
+      "instanceSource": {
+        "kind": "getInstance_singleton",
+        "text": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+      },
+      "controlFlowRole": "start_or_other",
+      "cameraOrPreviewOrExternalSetter": false
     },
     {
       "bank": 3,
       "className": "Lcom/dji/ronin/ui/create/tapgo/CreateFixDelayView;",
       "method": "sendToDeviceStart",
-      "target": "setISPreview"
+      "descriptor": "(I)V",
+      "createUi": true,
+      "setter": "setMode",
+      "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setMode(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "argumentRegisters": [
+        "v1"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 1,
+          "atIndex": 1
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v0, v10, Lcom/dji/ronin/ui/create/tapgo/CreateFixDelayView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+      },
+      "controlFlowRole": "start_or_other",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/tapgo/CreateFixDelayView;",
+      "method": "sendToDeviceStart",
+      "descriptor": "(I)V",
+      "createUi": true,
+      "setter": "setIsTripod",
+      "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setIsTripod(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "argumentRegisters": [
+        "v1"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 1,
+          "atIndex": 1
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v0, v10, Lcom/dji/ronin/ui/create/tapgo/CreateFixDelayView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+      },
+      "controlFlowRole": "start_or_other",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/tapgo/CreateFixDelayView;",
+      "method": "sendToDeviceStart",
+      "descriptor": "(I)V",
+      "createUi": true,
+      "setter": "setISPreview",
+      "invokeText": "v0, v11, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setISPreview(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "argumentRegisters": [
+        "v11"
+      ],
+      "arguments": [
+        {
+          "kind": "unresolved_or_param",
+          "register": "v11",
+          "atIndex": null,
+          "likelyMethodParameter": true,
+          "methodDescriptor": "(I)V"
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v0, v10, Lcom/dji/ronin/ui/create/tapgo/CreateFixDelayView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+      },
+      "controlFlowRole": "start_or_other",
+      "cameraOrPreviewOrExternalSetter": true
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/tapgo/CreateFixDelayView;",
+      "method": "sendToDeviceStart",
+      "descriptor": "(I)V",
+      "createUi": true,
+      "setter": "setStartOrStop",
+      "invokeText": "v11, v0, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setStartOrStop(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "argumentRegisters": [
+        "v0"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v0",
+          "value": 0,
+          "atIndex": 8
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v0, v10, Lcom/dji/ronin/ui/create/tapgo/CreateFixDelayView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+      },
+      "controlFlowRole": "start_or_other",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/tapgo/CreateFixDelayView;",
+      "method": "sendToDeviceStop",
+      "descriptor": "()V",
+      "createUi": true,
+      "setter": "setMode",
+      "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setMode(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "argumentRegisters": [
+        "v1"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 1,
+          "atIndex": 1
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v0, v3, Lcom/dji/ronin/ui/create/tapgo/CreateFixDelayView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+      },
+      "controlFlowRole": "stop",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/tapgo/CreateFixDelayView;",
+      "method": "sendToDeviceStop",
+      "descriptor": "()V",
+      "createUi": true,
+      "setter": "setIsTripod",
+      "invokeText": "v0, v2, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setIsTripod(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "argumentRegisters": [
+        "v2"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v2",
+          "value": 0,
+          "atIndex": 4
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v0, v3, Lcom/dji/ronin/ui/create/tapgo/CreateFixDelayView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+      },
+      "controlFlowRole": "stop",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/tapgo/CreateFixDelayView;",
+      "method": "sendToDeviceStop",
+      "descriptor": "()V",
+      "createUi": true,
+      "setter": "setStartOrStop",
+      "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setStartOrStop(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "argumentRegisters": [
+        "v1"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 1,
+          "atIndex": 1
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v0, v3, Lcom/dji/ronin/ui/create/tapgo/CreateFixDelayView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+      },
+      "controlFlowRole": "stop",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/ronin2/CreateKeyPointView;",
+      "method": "<init>",
+      "descriptor": "(Landroid/content/Context; Landroid/util/AttributeSet;)V",
+      "createUi": true,
+      "setter": "getInstance",
+      "invokeText": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "argumentRegisters": [],
+      "arguments": [],
+      "instanceSource": {
+        "kind": "getInstance_singleton",
+        "text": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+      },
+      "controlFlowRole": "start_or_other",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/ronin2/CreateKeyPointView;",
+      "method": "sendToDeviceStart",
+      "descriptor": "(I Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "createUi": true,
+      "setter": "setRecordOrPreview",
+      "invokeText": "v0, v8, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setRecordOrPreview(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "argumentRegisters": [
+        "v8"
+      ],
+      "arguments": [
+        {
+          "kind": "unresolved_or_param",
+          "register": "v8",
+          "atIndex": null,
+          "likelyMethodParameter": true,
+          "methodDescriptor": "(I Ldji/midware/interfaces/DJIDataCallBack;)V"
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v0, v7, Lcom/dji/ronin/ui/create/ronin2/CreateKeyPointView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+      },
+      "controlFlowRole": "start_or_other",
+      "cameraOrPreviewOrExternalSetter": true
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/ronin2/CreateKeyPointView;",
+      "method": "sendToDeviceStart",
+      "descriptor": "(I Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "createUi": true,
+      "setter": "setStartOrStop",
+      "invokeText": "v8, v0, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setStartOrStop(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "argumentRegisters": [
+        "v0"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v0",
+          "value": 0,
+          "atIndex": 3
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v0, v7, Lcom/dji/ronin/ui/create/ronin2/CreateKeyPointView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+      },
+      "controlFlowRole": "start_or_other",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/ronin2/CreateKeyPointView;",
+      "method": "sendToDeviceStart",
+      "descriptor": "(I Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "createUi": true,
+      "setter": "setIsTripod",
+      "invokeText": "v8, v0, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setIsTripod(Z)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "argumentRegisters": [
+        "v0"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v0",
+          "value": 1,
+          "atIndex": 6
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v0, v7, Lcom/dji/ronin/ui/create/ronin2/CreateKeyPointView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+      },
+      "controlFlowRole": "start_or_other",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/ronin2/CreateKeyPointView;",
+      "method": "sendToDeviceStart",
+      "descriptor": "(I Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "createUi": true,
+      "setter": "addRoadPoint",
+      "invokeText": "v1 ... v6, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->addRoadPoint(F F F F F)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "argumentRegisters": [],
+      "arguments": [],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v1, v7, Lcom/dji/ronin/ui/create/ronin2/CreateKeyPointView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+      },
+      "controlFlowRole": "start_or_other",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/ronin2/CreateKeyPointView;",
+      "method": "sendToDeviceStop",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "createUi": true,
+      "setter": "setStartOrStop",
+      "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setStartOrStop(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "argumentRegisters": [
+        "v1"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 1,
+          "atIndex": 1
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v0, v2, Lcom/dji/ronin/ui/create/ronin2/CreateKeyPointView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+      },
+      "controlFlowRole": "stop",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/panorama/CreatePanoramaView;",
+      "method": "<init>",
+      "descriptor": "(Landroid/content/Context; Landroid/util/AttributeSet;)V",
+      "createUi": true,
+      "setter": "getInstance",
+      "invokeText": "Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;",
+      "argumentRegisters": [],
+      "arguments": [],
+      "instanceSource": {
+        "kind": "getInstance_singleton",
+        "text": "Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;"
+      },
+      "controlFlowRole": "start_or_other",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/panorama/CreatePanoramaView;",
+      "method": "sendToDeviceStart",
+      "descriptor": "(I)V",
+      "createUi": true,
+      "setter": "setPictures",
+      "invokeText": "v2, v3, v0, Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;->setPictures(I I)Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;",
+      "argumentRegisters": [
+        "v3",
+        "v0"
+      ],
+      "arguments": [
+        {
+          "kind": "invoke_result",
+          "register": "v3",
+          "atIndex": 14
+        },
+        {
+          "kind": "invoke_result",
+          "register": "v0",
+          "atIndex": 18
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v2, v5, Lcom/dji/ronin/ui/create/panorama/CreatePanoramaView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;"
+      },
+      "controlFlowRole": "start_or_other",
+      "cameraOrPreviewOrExternalSetter": true
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/panorama/CreatePanoramaView;",
+      "method": "sendToDeviceStart",
+      "descriptor": "(I)V",
+      "createUi": true,
+      "setter": "setRange",
+      "invokeText": "v0, v2, v3, v4, v1, Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;->setRange(I I I I)Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;",
+      "argumentRegisters": [
+        "v2",
+        "v3",
+        "v4",
+        "v1"
+      ],
+      "arguments": [
+        {
+          "kind": "instance_field",
+          "register": "v2",
+          "field": "left I",
+          "atIndex": 21
+        },
+        {
+          "kind": "instance_field",
+          "register": "v3",
+          "field": "top I",
+          "atIndex": 22
+        },
+        {
+          "kind": "instance_field",
+          "register": "v4",
+          "field": "right I",
+          "atIndex": 23
+        },
+        {
+          "kind": "instance_field",
+          "register": "v1",
+          "field": "bottom I",
+          "atIndex": 24
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v2, v5, Lcom/dji/ronin/ui/create/panorama/CreatePanoramaView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;"
+      },
+      "controlFlowRole": "start_or_other",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/panorama/CreatePanoramaView;",
+      "method": "sendToDeviceStart",
+      "descriptor": "(I)V",
+      "createUi": true,
+      "setter": "setStopStartOrPreview",
+      "invokeText": "v0, v6, Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;->setStopStartOrPreview(I)Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;",
+      "argumentRegisters": [
+        "v6"
+      ],
+      "arguments": [
+        {
+          "kind": "unresolved_or_param",
+          "register": "v6",
+          "atIndex": null,
+          "likelyMethodParameter": true,
+          "methodDescriptor": "(I)V"
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v2, v5, Lcom/dji/ronin/ui/create/panorama/CreatePanoramaView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;"
+      },
+      "controlFlowRole": "start_or_other",
+      "cameraOrPreviewOrExternalSetter": true
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/panorama/CreatePanoramaView;",
+      "method": "sendToDeviceStart",
+      "descriptor": "(I)V",
+      "createUi": true,
+      "setter": "setExposureTime",
+      "invokeText": "v6, v0, Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;->setExposureTime(I)Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;",
+      "argumentRegisters": [
+        "v0"
+      ],
+      "arguments": [
+        {
+          "kind": "instance_field",
+          "register": "v0",
+          "field": "mCurDelay I",
+          "atIndex": 29
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v2, v5, Lcom/dji/ronin/ui/create/panorama/CreatePanoramaView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;"
+      },
+      "controlFlowRole": "start_or_other",
+      "cameraOrPreviewOrExternalSetter": true
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/panorama/CreatePanoramaView;",
+      "method": "sendToDeviceStop",
+      "descriptor": "()V",
+      "createUi": true,
+      "setter": "setStopStartOrPreview",
+      "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;->setStopStartOrPreview(I)Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;",
+      "argumentRegisters": [
+        "v1"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 0,
+          "atIndex": 5
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v0, v2, Lcom/dji/ronin/ui/create/panorama/CreatePanoramaView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;"
+      },
+      "controlFlowRole": "stop",
+      "cameraOrPreviewOrExternalSetter": true
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;",
+      "method": "<init>",
+      "descriptor": "(Landroid/content/Context; Landroid/util/AttributeSet;)V",
+      "createUi": true,
+      "setter": "getInstance",
+      "invokeText": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "argumentRegisters": [],
+      "arguments": [],
+      "instanceSource": {
+        "kind": "getInstance_singleton",
+        "text": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+      },
+      "controlFlowRole": "start_or_other",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;",
+      "method": "previewToggle",
+      "descriptor": "()V",
+      "createUi": true,
+      "setter": "setRecordOrPreview",
+      "invokeText": "v0, v2, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setRecordOrPreview(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "argumentRegisters": [
+        "v2"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v2",
+          "value": 1,
+          "atIndex": 14
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v0, v8, Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+      },
+      "controlFlowRole": "stop",
+      "cameraOrPreviewOrExternalSetter": true
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;",
+      "method": "previewToggle",
+      "descriptor": "()V",
+      "createUi": true,
+      "setter": "setStartOrStop",
+      "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setStartOrStop(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "argumentRegisters": [
+        "v1"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 0,
+          "atIndex": 19
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v0, v8, Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+      },
+      "controlFlowRole": "stop",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;",
+      "method": "previewToggle",
+      "descriptor": "()V",
+      "createUi": true,
+      "setter": "setIsTripod",
+      "invokeText": "v0, v2, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setIsTripod(Z)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "argumentRegisters": [
+        "v2"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v2",
+          "value": 1,
+          "atIndex": 14
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v0, v8, Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+      },
+      "controlFlowRole": "stop",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;",
+      "method": "previewToggle",
+      "descriptor": "()V",
+      "createUi": true,
+      "setter": "addRoadPoint",
+      "invokeText": "v2 ... v7, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->addRoadPoint(F F F F F)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "argumentRegisters": [],
+      "arguments": [],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v2, v8, Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+      },
+      "controlFlowRole": "stop",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;",
+      "method": "previewToggle",
+      "descriptor": "()V",
+      "createUi": true,
+      "setter": "setRecordOrPreview",
+      "invokeText": "v0, v2, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setRecordOrPreview(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "argumentRegisters": [
+        "v2"
+      ],
+      "arguments": [
+        {
+          "kind": "instance_field",
+          "register": "v2",
+          "field": "mBottomBar Lcom/dji/ronin/ui/create/CreateBottomBar;",
+          "atIndex": 53
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v0, v8, Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+      },
+      "controlFlowRole": "stop",
+      "cameraOrPreviewOrExternalSetter": true
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;",
+      "method": "previewToggle",
+      "descriptor": "()V",
+      "createUi": true,
+      "setter": "setStartOrStop",
+      "invokeText": "v0, v2, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setStartOrStop(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "argumentRegisters": [
+        "v2"
+      ],
+      "arguments": [
+        {
+          "kind": "instance_field",
+          "register": "v2",
+          "field": "mBottomBar Lcom/dji/ronin/ui/create/CreateBottomBar;",
+          "atIndex": 53
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v0, v8, Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+      },
+      "controlFlowRole": "stop",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;",
+      "method": "sendToDeviceStart",
+      "descriptor": "(I Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "createUi": true,
+      "setter": "setRecordOrPreview",
+      "invokeText": "v0, v12, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setRecordOrPreview(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "argumentRegisters": [
+        "v12"
+      ],
+      "arguments": [
+        {
+          "kind": "unresolved_or_param",
+          "register": "v12",
+          "atIndex": null,
+          "likelyMethodParameter": true,
+          "methodDescriptor": "(I Ldji/midware/interfaces/DJIDataCallBack;)V"
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v0, v11, Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+      },
+      "controlFlowRole": "start_or_other",
+      "cameraOrPreviewOrExternalSetter": true
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;",
+      "method": "sendToDeviceStart",
+      "descriptor": "(I Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "createUi": true,
+      "setter": "setStartOrStop",
+      "invokeText": "v12, v0, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setStartOrStop(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "argumentRegisters": [
+        "v0"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v0",
+          "value": 0,
+          "atIndex": 3
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v0, v11, Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+      },
+      "controlFlowRole": "start_or_other",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;",
+      "method": "sendToDeviceStart",
+      "descriptor": "(I Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "createUi": true,
+      "setter": "setIsTripod",
+      "invokeText": "v12, v1, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setIsTripod(Z)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "argumentRegisters": [
+        "v1"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 1,
+          "atIndex": 6
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v0, v11, Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+      },
+      "controlFlowRole": "start_or_other",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;",
+      "method": "sendToDeviceStart",
+      "descriptor": "(I Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "createUi": true,
+      "setter": "addRoadPoint",
+      "invokeText": "v5 ... v10, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->addRoadPoint(F F F F F)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "argumentRegisters": [],
+      "arguments": [],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v5, v11, Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+      },
+      "controlFlowRole": "start_or_other",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;",
+      "method": "sendToDeviceStop",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "createUi": true,
+      "setter": "setStartOrStop",
+      "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setStartOrStop(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "argumentRegisters": [
+        "v1"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 1,
+          "atIndex": 2
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v0, v2, Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+      },
+      "controlFlowRole": "stop",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;",
+      "method": "<init>",
+      "descriptor": "(Landroid/content/Context; Landroid/util/AttributeSet;)V",
+      "createUi": true,
+      "setter": "getInstance",
+      "invokeText": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "argumentRegisters": [],
+      "arguments": [],
+      "instanceSource": {
+        "kind": "getInstance_singleton",
+        "text": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+      },
+      "controlFlowRole": "start_or_other",
+      "cameraOrPreviewOrExternalSetter": false
     },
     {
       "bank": 3,
       "className": "Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;",
       "method": "sendToDeviceStart",
-      "target": "setControlExternalDevice"
+      "descriptor": "(I)V",
+      "createUi": true,
+      "setter": "setMode",
+      "invokeText": "v3, v0, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setMode(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "argumentRegisters": [
+        "v0"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v0",
+          "value": 0,
+          "atIndex": 4
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v3, v14, Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+      },
+      "controlFlowRole": "start_or_other",
+      "cameraOrPreviewOrExternalSetter": false
     },
     {
       "bank": 3,
       "className": "Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;",
       "method": "sendToDeviceStart",
-      "target": "setISPreview"
+      "descriptor": "(I)V",
+      "createUi": true,
+      "setter": "setControlExternalDevice",
+      "invokeText": "v0, v3, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setControlExternalDevice(Z)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "argumentRegisters": [
+        "v3"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v3",
+          "value": 0,
+          "atIndex": 4
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v3, v14, Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+      },
+      "controlFlowRole": "start_or_other",
+      "cameraOrPreviewOrExternalSetter": true
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;",
+      "method": "sendToDeviceStart",
+      "descriptor": "(I)V",
+      "createUi": true,
+      "setter": "setIsTripod",
+      "invokeText": "v0, v2, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setIsTripod(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "argumentRegisters": [
+        "v2"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v2",
+          "value": 1,
+          "atIndex": 5
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v3, v14, Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+      },
+      "controlFlowRole": "start_or_other",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;",
+      "method": "sendToDeviceStart",
+      "descriptor": "(I)V",
+      "createUi": true,
+      "setter": "setISPreview",
+      "invokeText": "v0, v15, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setISPreview(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "argumentRegisters": [
+        "v15"
+      ],
+      "arguments": [
+        {
+          "kind": "unresolved_or_param",
+          "register": "v15",
+          "atIndex": null,
+          "likelyMethodParameter": true,
+          "methodDescriptor": "(I)V"
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v3, v14, Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+      },
+      "controlFlowRole": "start_or_other",
+      "cameraOrPreviewOrExternalSetter": true
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;",
+      "method": "sendToDeviceStart",
+      "descriptor": "(I)V",
+      "createUi": true,
+      "setter": "setStartOrStop",
+      "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setStartOrStop(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "argumentRegisters": [
+        "v1"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 0,
+          "atIndex": 4
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v3, v14, Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+      },
+      "controlFlowRole": "start_or_other",
+      "cameraOrPreviewOrExternalSetter": false
     },
     {
       "bank": 3,
       "className": "Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;",
       "method": "sendToDeviceStop",
-      "target": "setISPreview"
+      "descriptor": "()V",
+      "createUi": true,
+      "setter": "setMode",
+      "invokeText": "v3, v0, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setMode(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "argumentRegisters": [
+        "v0"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v0",
+          "value": 0,
+          "atIndex": 4
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v3, v4, Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+      },
+      "controlFlowRole": "stop",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;",
+      "method": "sendToDeviceStop",
+      "descriptor": "()V",
+      "createUi": true,
+      "setter": "setIsTripod",
+      "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setIsTripod(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "argumentRegisters": [
+        "v1"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 0,
+          "atIndex": 4
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v3, v4, Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+      },
+      "controlFlowRole": "stop",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;",
+      "method": "sendToDeviceStop",
+      "descriptor": "()V",
+      "createUi": true,
+      "setter": "setISPreview",
+      "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setISPreview(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "argumentRegisters": [
+        "v1"
+      ],
+      "arguments": [
+        {
+          "kind": "instance_field",
+          "register": "v1",
+          "field": "mIsPreviewing Z",
+          "atIndex": 17
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v3, v4, Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+      },
+      "controlFlowRole": "stop",
+      "cameraOrPreviewOrExternalSetter": true
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;",
+      "method": "sendToDeviceStop",
+      "descriptor": "()V",
+      "createUi": true,
+      "setter": "setStartOrStop",
+      "invokeText": "v0, v2, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setStartOrStop(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "argumentRegisters": [
+        "v2"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v2",
+          "value": 1,
+          "atIndex": 5
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v3, v4, Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+      },
+      "controlFlowRole": "stop",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/timelapse/CreateTimelapseView;",
+      "method": "<init>",
+      "descriptor": "(Landroid/content/Context; Landroid/util/AttributeSet;)V",
+      "createUi": true,
+      "setter": "<init>",
+      "invokeText": "v1, Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;-><init>()V",
+      "argumentRegisters": [],
+      "arguments": [],
+      "instanceSource": null,
+      "controlFlowRole": "start_or_other",
+      "cameraOrPreviewOrExternalSetter": false
     },
     {
       "bank": 3,
       "className": "Lcom/dji/ronin/ui/create/timelapse/CreateTimelapseView;",
       "method": "sendToDeviceStart",
-      "target": "setStartOrPreview"
+      "descriptor": "(I)V",
+      "createUi": true,
+      "setter": "setMode",
+      "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;->setMode(I)Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;",
+      "argumentRegisters": [
+        "v1"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 1,
+          "atIndex": 6
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v0, v7, Lcom/dji/ronin/ui/create/timelapse/CreateTimelapseView;->mSetter Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;"
+      },
+      "controlFlowRole": "start_or_other",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/timelapse/CreateTimelapseView;",
+      "method": "sendToDeviceStart",
+      "descriptor": "(I)V",
+      "createUi": true,
+      "setter": "setIsTripod",
+      "invokeText": "v0, v4, Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;->setIsTripod(I)Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;",
+      "argumentRegisters": [
+        "v4"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v4",
+          "value": 1,
+          "atIndex": 6
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v0, v7, Lcom/dji/ronin/ui/create/timelapse/CreateTimelapseView;->mSetter Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;"
+      },
+      "controlFlowRole": "start_or_other",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/timelapse/CreateTimelapseView;",
+      "method": "sendToDeviceStart",
+      "descriptor": "(I)V",
+      "createUi": true,
+      "setter": "setStartOrPreview",
+      "invokeText": "v0, v8, Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;->setStartOrPreview(I)Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;",
+      "argumentRegisters": [
+        "v8"
+      ],
+      "arguments": [
+        {
+          "kind": "unresolved_or_param",
+          "register": "v8",
+          "atIndex": null,
+          "likelyMethodParameter": true,
+          "methodDescriptor": "(I)V"
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v0, v7, Lcom/dji/ronin/ui/create/timelapse/CreateTimelapseView;->mSetter Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;"
+      },
+      "controlFlowRole": "start_or_other",
+      "cameraOrPreviewOrExternalSetter": true
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/timelapse/CreateTimelapseView;",
+      "method": "sendToDeviceStart",
+      "descriptor": "(I)V",
+      "createUi": true,
+      "setter": "setStartOrStop",
+      "invokeText": "v8, v3, Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;->setStartOrStop(I)Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;",
+      "argumentRegisters": [
+        "v3"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v3",
+          "value": 0,
+          "atIndex": 5
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v0, v7, Lcom/dji/ronin/ui/create/timelapse/CreateTimelapseView;->mSetter Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;"
+      },
+      "controlFlowRole": "start_or_other",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/timelapse/CreateTimelapseView;",
+      "method": "sendToDeviceStart",
+      "descriptor": "(I)V",
+      "createUi": true,
+      "setter": "setDuration",
+      "invokeText": "v8, v0, v1, Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;->setDuration(J)Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;",
+      "argumentRegisters": [
+        "v0",
+        "v1"
+      ],
+      "arguments": [
+        {
+          "kind": "instance_field",
+          "register": "v0",
+          "field": "mDuration J",
+          "atIndex": 19
+        },
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 1,
+          "atIndex": 6
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v0, v7, Lcom/dji/ronin/ui/create/timelapse/CreateTimelapseView;->mSetter Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;"
+      },
+      "controlFlowRole": "start_or_other",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/timelapse/CreateTimelapseView;",
+      "method": "sendToDeviceStop",
+      "descriptor": "()V",
+      "createUi": true,
+      "setter": "setMode",
+      "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;->setMode(I)Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;",
+      "argumentRegisters": [
+        "v1"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 1,
+          "atIndex": 1
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v0, v2, Lcom/dji/ronin/ui/create/timelapse/CreateTimelapseView;->mSetter Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;"
+      },
+      "controlFlowRole": "stop",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/timelapse/CreateTimelapseView;",
+      "method": "sendToDeviceStop",
+      "descriptor": "()V",
+      "createUi": true,
+      "setter": "setStartOrStop",
+      "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;->setStartOrStop(I)Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;",
+      "argumentRegisters": [
+        "v1"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 1,
+          "atIndex": 1
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v0, v2, Lcom/dji/ronin/ui/create/timelapse/CreateTimelapseView;->mSetter Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;"
+      },
+      "controlFlowRole": "stop",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "<init>",
+      "descriptor": "(Landroid/content/Context; Landroid/util/AttributeSet;)V",
+      "createUi": true,
+      "setter": "getInstance",
+      "invokeText": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "argumentRegisters": [],
+      "arguments": [],
+      "instanceSource": {
+        "kind": "getInstance_singleton",
+        "text": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+      },
+      "controlFlowRole": "start_or_other",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "previewToggle",
+      "descriptor": "()V",
+      "createUi": true,
+      "setter": "setRecordOrPreview",
+      "invokeText": "v0, v2, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setRecordOrPreview(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "argumentRegisters": [
+        "v2"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v2",
+          "value": 1,
+          "atIndex": 14
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v0, v8, Lcom/dji/ronin/ui/create/track/CreateTrackView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+      },
+      "controlFlowRole": "stop",
+      "cameraOrPreviewOrExternalSetter": true
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "previewToggle",
+      "descriptor": "()V",
+      "createUi": true,
+      "setter": "setStartOrStop",
+      "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setStartOrStop(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "argumentRegisters": [
+        "v1"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 0,
+          "atIndex": 19
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v0, v8, Lcom/dji/ronin/ui/create/track/CreateTrackView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+      },
+      "controlFlowRole": "stop",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "previewToggle",
+      "descriptor": "()V",
+      "createUi": true,
+      "setter": "setIsTripod",
+      "invokeText": "v0, v2, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setIsTripod(Z)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "argumentRegisters": [
+        "v2"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v2",
+          "value": 1,
+          "atIndex": 14
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v0, v8, Lcom/dji/ronin/ui/create/track/CreateTrackView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+      },
+      "controlFlowRole": "stop",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "previewToggle",
+      "descriptor": "()V",
+      "createUi": true,
+      "setter": "addRoadPoint",
+      "invokeText": "v2 ... v7, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->addRoadPoint(F F F F F)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "argumentRegisters": [],
+      "arguments": [],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v2, v8, Lcom/dji/ronin/ui/create/track/CreateTrackView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+      },
+      "controlFlowRole": "stop",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "previewToggle",
+      "descriptor": "()V",
+      "createUi": true,
+      "setter": "setRecordOrPreview",
+      "invokeText": "v0, v2, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setRecordOrPreview(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "argumentRegisters": [
+        "v2"
+      ],
+      "arguments": [
+        {
+          "kind": "instance_field",
+          "register": "v2",
+          "field": "mBottomBar Lcom/dji/ronin/ui/create/CreateBottomBar;",
+          "atIndex": 53
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v0, v8, Lcom/dji/ronin/ui/create/track/CreateTrackView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+      },
+      "controlFlowRole": "stop",
+      "cameraOrPreviewOrExternalSetter": true
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "previewToggle",
+      "descriptor": "()V",
+      "createUi": true,
+      "setter": "setStartOrStop",
+      "invokeText": "v0, v2, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setStartOrStop(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "argumentRegisters": [
+        "v2"
+      ],
+      "arguments": [
+        {
+          "kind": "instance_field",
+          "register": "v2",
+          "field": "mBottomBar Lcom/dji/ronin/ui/create/CreateBottomBar;",
+          "atIndex": 53
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v0, v8, Lcom/dji/ronin/ui/create/track/CreateTrackView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+      },
+      "controlFlowRole": "stop",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "sendToDeviceStart",
+      "descriptor": "(I Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "createUi": true,
+      "setter": "setRecordOrPreview",
+      "invokeText": "v0, v13, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setRecordOrPreview(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "argumentRegisters": [
+        "v13"
+      ],
+      "arguments": [
+        {
+          "kind": "unresolved_or_param",
+          "register": "v13",
+          "atIndex": null,
+          "likelyMethodParameter": true,
+          "methodDescriptor": "(I Ldji/midware/interfaces/DJIDataCallBack;)V"
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v0, v12, Lcom/dji/ronin/ui/create/track/CreateTrackView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+      },
+      "controlFlowRole": "start_or_other",
+      "cameraOrPreviewOrExternalSetter": true
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "sendToDeviceStart",
+      "descriptor": "(I Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "createUi": true,
+      "setter": "setStartOrStop",
+      "invokeText": "v13, v0, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setStartOrStop(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "argumentRegisters": [
+        "v0"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v0",
+          "value": 0,
+          "atIndex": 4
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v0, v12, Lcom/dji/ronin/ui/create/track/CreateTrackView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+      },
+      "controlFlowRole": "start_or_other",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "sendToDeviceStart",
+      "descriptor": "(I Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "createUi": true,
+      "setter": "setIsTripod",
+      "invokeText": "v13, v1, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setIsTripod(Z)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "argumentRegisters": [
+        "v1"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 1,
+          "atIndex": 7
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v0, v12, Lcom/dji/ronin/ui/create/track/CreateTrackView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+      },
+      "controlFlowRole": "start_or_other",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "sendToDeviceStart",
+      "descriptor": "(I Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "createUi": true,
+      "setter": "addRoadPoint",
+      "invokeText": "v6 ... v11, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->addRoadPoint(F F F F F)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "argumentRegisters": [],
+      "arguments": [],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v6, v12, Lcom/dji/ronin/ui/create/track/CreateTrackView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+      },
+      "controlFlowRole": "start_or_other",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "sendToDeviceStart",
+      "descriptor": "(I Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "createUi": true,
+      "setter": "addRoadPoint",
+      "invokeText": "v2 ... v7, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->addRoadPoint(F F F F F)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "argumentRegisters": [],
+      "arguments": [],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v2, v12, Lcom/dji/ronin/ui/create/track/CreateTrackView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+      },
+      "controlFlowRole": "start_or_other",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "sendToDeviceStart",
+      "descriptor": "(I Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "createUi": true,
+      "setter": "addRoadPoint",
+      "invokeText": "v1 ... v6, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->addRoadPoint(F F F F F)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "argumentRegisters": [],
+      "arguments": [],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v1, v12, Lcom/dji/ronin/ui/create/track/CreateTrackView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+      },
+      "controlFlowRole": "start_or_other",
+      "cameraOrPreviewOrExternalSetter": false
+    },
+    {
+      "bank": 3,
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "sendToDeviceStop",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "createUi": true,
+      "setter": "setStartOrStop",
+      "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setStartOrStop(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "argumentRegisters": [
+        "v1"
+      ],
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 1,
+          "atIndex": 3
+        }
+      ],
+      "instanceSource": {
+        "kind": "instance_field_mSetter",
+        "text": "v0, v2, Lcom/dji/ronin/ui/create/track/CreateTrackView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+      },
+      "controlFlowRole": "stop",
+      "cameraOrPreviewOrExternalSetter": false
+    }
+  ],
+  "constCameraOrPreviewSetterSites": [
+    {
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "stopPanoPreviewWork",
+      "setter": "setStopStartOrPreview",
+      "value": 0
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "stopTrackPreviewWork",
+      "setter": "setRecordOrPreview",
+      "value": 1
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/follow/CreateFollowActivity;",
+      "method": "startTimeLapse",
+      "setter": "setISPreview",
+      "value": 0
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/panorama/CreatePanoramaView;",
+      "method": "sendToDeviceStop",
+      "setter": "setStopStartOrPreview",
+      "value": 0
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;",
+      "method": "previewToggle",
+      "setter": "setRecordOrPreview",
+      "value": 1
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;",
+      "method": "sendToDeviceStart",
+      "setter": "setControlExternalDevice",
+      "value": 0
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "previewToggle",
+      "setter": "setRecordOrPreview",
+      "value": 1
+    }
+  ],
+  "dynamicCallValueSites": [
+    {
+      "className": "Lcom/dji/ronin/ui/create/tapgo/CreateFixDelayView;",
+      "method": "sendToDeviceStart",
+      "setter": "setISPreview",
+      "argument": {
+        "kind": "unresolved_or_param",
+        "register": "v11",
+        "atIndex": null,
+        "likelyMethodParameter": true,
+        "methodDescriptor": "(I)V"
+      },
+      "boundaryKind": "unresolved_or_param"
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/ronin2/CreateKeyPointView;",
+      "method": "sendToDeviceStart",
+      "setter": "setRecordOrPreview",
+      "argument": {
+        "kind": "unresolved_or_param",
+        "register": "v8",
+        "atIndex": null,
+        "likelyMethodParameter": true,
+        "methodDescriptor": "(I Ldji/midware/interfaces/DJIDataCallBack;)V"
+      },
+      "boundaryKind": "unresolved_or_param"
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/panorama/CreatePanoramaView;",
+      "method": "sendToDeviceStart",
+      "setter": "setPictures",
+      "argument": {
+        "kind": "invoke_result",
+        "register": "v3",
+        "atIndex": 14
+      },
+      "boundaryKind": "invoke_result"
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/panorama/CreatePanoramaView;",
+      "method": "sendToDeviceStart",
+      "setter": "setPictures",
+      "argument": {
+        "kind": "invoke_result",
+        "register": "v0",
+        "atIndex": 18
+      },
+      "boundaryKind": "invoke_result"
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/panorama/CreatePanoramaView;",
+      "method": "sendToDeviceStart",
+      "setter": "setStopStartOrPreview",
+      "argument": {
+        "kind": "unresolved_or_param",
+        "register": "v6",
+        "atIndex": null,
+        "likelyMethodParameter": true,
+        "methodDescriptor": "(I)V"
+      },
+      "boundaryKind": "unresolved_or_param"
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/panorama/CreatePanoramaView;",
+      "method": "sendToDeviceStart",
+      "setter": "setExposureTime",
+      "argument": {
+        "kind": "instance_field",
+        "register": "v0",
+        "field": "mCurDelay I",
+        "atIndex": 29
+      },
+      "boundaryKind": "instance_field"
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;",
+      "method": "previewToggle",
+      "setter": "setRecordOrPreview",
+      "argument": {
+        "kind": "instance_field",
+        "register": "v2",
+        "field": "mBottomBar Lcom/dji/ronin/ui/create/CreateBottomBar;",
+        "atIndex": 53
+      },
+      "boundaryKind": "instance_field"
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;",
+      "method": "sendToDeviceStart",
+      "setter": "setRecordOrPreview",
+      "argument": {
+        "kind": "unresolved_or_param",
+        "register": "v12",
+        "atIndex": null,
+        "likelyMethodParameter": true,
+        "methodDescriptor": "(I Ldji/midware/interfaces/DJIDataCallBack;)V"
+      },
+      "boundaryKind": "unresolved_or_param"
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;",
+      "method": "sendToDeviceStart",
+      "setter": "setISPreview",
+      "argument": {
+        "kind": "unresolved_or_param",
+        "register": "v15",
+        "atIndex": null,
+        "likelyMethodParameter": true,
+        "methodDescriptor": "(I)V"
+      },
+      "boundaryKind": "unresolved_or_param"
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;",
+      "method": "sendToDeviceStop",
+      "setter": "setISPreview",
+      "argument": {
+        "kind": "instance_field",
+        "register": "v1",
+        "field": "mIsPreviewing Z",
+        "atIndex": 17
+      },
+      "boundaryKind": "instance_field"
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/timelapse/CreateTimelapseView;",
+      "method": "sendToDeviceStart",
+      "setter": "setStartOrPreview",
+      "argument": {
+        "kind": "unresolved_or_param",
+        "register": "v8",
+        "atIndex": null,
+        "likelyMethodParameter": true,
+        "methodDescriptor": "(I)V"
+      },
+      "boundaryKind": "unresolved_or_param"
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "previewToggle",
+      "setter": "setRecordOrPreview",
+      "argument": {
+        "kind": "instance_field",
+        "register": "v2",
+        "field": "mBottomBar Lcom/dji/ronin/ui/create/CreateBottomBar;",
+        "atIndex": 53
+      },
+      "boundaryKind": "instance_field"
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "sendToDeviceStart",
+      "setter": "setRecordOrPreview",
+      "argument": {
+        "kind": "unresolved_or_param",
+        "register": "v13",
+        "atIndex": null,
+        "likelyMethodParameter": true,
+        "methodDescriptor": "(I Ldji/midware/interfaces/DJIDataCallBack;)V"
+      },
+      "boundaryKind": "unresolved_or_param"
+    }
+  ],
+  "instanceInitAndReuse": [
+    {
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "stopFixDelayPreviewWork",
+      "instanceSourceKind": "getInstance_singleton",
+      "detail": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "impliesSharedSingletonOrFieldReuse": true
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "stopPanoPreviewWork",
+      "instanceSourceKind": "getInstance_singleton",
+      "detail": "Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;",
+      "impliesSharedSingletonOrFieldReuse": true
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "stopPathDelayPreviewWork",
+      "instanceSourceKind": "getInstance_singleton",
+      "detail": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "impliesSharedSingletonOrFieldReuse": true
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "stopTrackPreviewWork",
+      "instanceSourceKind": "getInstance_singleton",
+      "detail": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "impliesSharedSingletonOrFieldReuse": true
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "stopTrackingTimeLapseWork",
+      "instanceSourceKind": "getInstance_singleton",
+      "detail": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "impliesSharedSingletonOrFieldReuse": true
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/follow/CreateFollowActivity;",
+      "method": "<init>",
+      "instanceSourceKind": "getInstance_singleton",
+      "detail": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "impliesSharedSingletonOrFieldReuse": true
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/follow/CreateFollowActivity;",
+      "method": "startTimeLapse",
+      "instanceSourceKind": "instance_field_mSetter",
+      "detail": "v0, v11, Lcom/dji/ronin/ui/create/follow/CreateFollowActivity;->mSetter Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "impliesSharedSingletonOrFieldReuse": true
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/follow/CreateFollowActivity;",
+      "method": "stopTimeLapse",
+      "instanceSourceKind": "instance_field_mSetter",
+      "detail": "v0, v3, Lcom/dji/ronin/ui/create/follow/CreateFollowActivity;->mSetter Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "impliesSharedSingletonOrFieldReuse": true
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/tapgo/CreateFixDelayView;",
+      "method": "<init>",
+      "instanceSourceKind": "getInstance_singleton",
+      "detail": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "impliesSharedSingletonOrFieldReuse": true
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/tapgo/CreateFixDelayView;",
+      "method": "sendToDeviceStart",
+      "instanceSourceKind": "instance_field_mSetter",
+      "detail": "v0, v10, Lcom/dji/ronin/ui/create/tapgo/CreateFixDelayView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "impliesSharedSingletonOrFieldReuse": true
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/tapgo/CreateFixDelayView;",
+      "method": "sendToDeviceStop",
+      "instanceSourceKind": "instance_field_mSetter",
+      "detail": "v0, v3, Lcom/dji/ronin/ui/create/tapgo/CreateFixDelayView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "impliesSharedSingletonOrFieldReuse": true
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/ronin2/CreateKeyPointView;",
+      "method": "<init>",
+      "instanceSourceKind": "getInstance_singleton",
+      "detail": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "impliesSharedSingletonOrFieldReuse": true
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/ronin2/CreateKeyPointView;",
+      "method": "sendToDeviceStart",
+      "instanceSourceKind": "instance_field_mSetter",
+      "detail": "v0, v7, Lcom/dji/ronin/ui/create/ronin2/CreateKeyPointView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "impliesSharedSingletonOrFieldReuse": true
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/ronin2/CreateKeyPointView;",
+      "method": "sendToDeviceStop",
+      "instanceSourceKind": "instance_field_mSetter",
+      "detail": "v0, v2, Lcom/dji/ronin/ui/create/ronin2/CreateKeyPointView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "impliesSharedSingletonOrFieldReuse": true
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/panorama/CreatePanoramaView;",
+      "method": "<init>",
+      "instanceSourceKind": "getInstance_singleton",
+      "detail": "Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;",
+      "impliesSharedSingletonOrFieldReuse": true
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/panorama/CreatePanoramaView;",
+      "method": "sendToDeviceStart",
+      "instanceSourceKind": "instance_field_mSetter",
+      "detail": "v2, v5, Lcom/dji/ronin/ui/create/panorama/CreatePanoramaView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;",
+      "impliesSharedSingletonOrFieldReuse": true
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/panorama/CreatePanoramaView;",
+      "method": "sendToDeviceStop",
+      "instanceSourceKind": "instance_field_mSetter",
+      "detail": "v0, v2, Lcom/dji/ronin/ui/create/panorama/CreatePanoramaView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;",
+      "impliesSharedSingletonOrFieldReuse": true
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;",
+      "method": "<init>",
+      "instanceSourceKind": "getInstance_singleton",
+      "detail": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "impliesSharedSingletonOrFieldReuse": true
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;",
+      "method": "previewToggle",
+      "instanceSourceKind": "instance_field_mSetter",
+      "detail": "v0, v8, Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "impliesSharedSingletonOrFieldReuse": true
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;",
+      "method": "sendToDeviceStart",
+      "instanceSourceKind": "instance_field_mSetter",
+      "detail": "v0, v11, Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "impliesSharedSingletonOrFieldReuse": true
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;",
+      "method": "sendToDeviceStop",
+      "instanceSourceKind": "instance_field_mSetter",
+      "detail": "v0, v2, Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "impliesSharedSingletonOrFieldReuse": true
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;",
+      "method": "<init>",
+      "instanceSourceKind": "getInstance_singleton",
+      "detail": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "impliesSharedSingletonOrFieldReuse": true
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;",
+      "method": "sendToDeviceStart",
+      "instanceSourceKind": "instance_field_mSetter",
+      "detail": "v3, v14, Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "impliesSharedSingletonOrFieldReuse": true
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;",
+      "method": "sendToDeviceStop",
+      "instanceSourceKind": "instance_field_mSetter",
+      "detail": "v3, v4, Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "impliesSharedSingletonOrFieldReuse": true
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/timelapse/CreateTimelapseView;",
+      "method": "sendToDeviceStart",
+      "instanceSourceKind": "instance_field_mSetter",
+      "detail": "v0, v7, Lcom/dji/ronin/ui/create/timelapse/CreateTimelapseView;->mSetter Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;",
+      "impliesSharedSingletonOrFieldReuse": true
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/timelapse/CreateTimelapseView;",
+      "method": "sendToDeviceStop",
+      "instanceSourceKind": "instance_field_mSetter",
+      "detail": "v0, v2, Lcom/dji/ronin/ui/create/timelapse/CreateTimelapseView;->mSetter Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;",
+      "impliesSharedSingletonOrFieldReuse": true
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "<init>",
+      "instanceSourceKind": "getInstance_singleton",
+      "detail": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "impliesSharedSingletonOrFieldReuse": true
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "previewToggle",
+      "instanceSourceKind": "instance_field_mSetter",
+      "detail": "v0, v8, Lcom/dji/ronin/ui/create/track/CreateTrackView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "impliesSharedSingletonOrFieldReuse": true
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "sendToDeviceStart",
+      "instanceSourceKind": "instance_field_mSetter",
+      "detail": "v0, v12, Lcom/dji/ronin/ui/create/track/CreateTrackView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "impliesSharedSingletonOrFieldReuse": true
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "sendToDeviceStop",
+      "instanceSourceKind": "instance_field_mSetter",
+      "detail": "v0, v2, Lcom/dji/ronin/ui/create/track/CreateTrackView;->mSetter Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "impliesSharedSingletonOrFieldReuse": true
+    }
+  ],
+  "stopCallChains": [
+    {
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "stopFixDelayPreviewWork",
+      "setter": "getInstance",
+      "arguments": [],
+      "clearsPreviewBitExplicitly": false
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "stopFixDelayPreviewWork",
+      "setter": "setMode",
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 1,
+          "atIndex": 2
+        }
+      ],
+      "clearsPreviewBitExplicitly": false
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "stopFixDelayPreviewWork",
+      "setter": "setIsTripod",
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v2",
+          "value": 0,
+          "atIndex": 5
+        }
+      ],
+      "clearsPreviewBitExplicitly": false
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "stopFixDelayPreviewWork",
+      "setter": "setStartOrStop",
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 1,
+          "atIndex": 2
+        }
+      ],
+      "clearsPreviewBitExplicitly": false
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "stopPanoPreviewWork",
+      "setter": "getInstance",
+      "arguments": [],
+      "clearsPreviewBitExplicitly": false
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "stopPanoPreviewWork",
+      "setter": "setStopStartOrPreview",
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 0,
+          "atIndex": 2
+        }
+      ],
+      "clearsPreviewBitExplicitly": true
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "stopPathDelayPreviewWork",
+      "setter": "getInstance",
+      "arguments": [],
+      "clearsPreviewBitExplicitly": false
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "stopPathDelayPreviewWork",
+      "setter": "setMode",
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 0,
+          "atIndex": 2
+        }
+      ],
+      "clearsPreviewBitExplicitly": false
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "stopPathDelayPreviewWork",
+      "setter": "setIsTripod",
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 0,
+          "atIndex": 2
+        }
+      ],
+      "clearsPreviewBitExplicitly": false
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "stopPathDelayPreviewWork",
+      "setter": "setStartOrStop",
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 1,
+          "atIndex": 7
+        }
+      ],
+      "clearsPreviewBitExplicitly": false
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "stopTrackPreviewWork",
+      "setter": "getInstance",
+      "arguments": [],
+      "clearsPreviewBitExplicitly": false
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "stopTrackPreviewWork",
+      "setter": "setRecordOrPreview",
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 1,
+          "atIndex": 2
+        }
+      ],
+      "clearsPreviewBitExplicitly": true
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "stopTrackPreviewWork",
+      "setter": "setStartOrStop",
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 1,
+          "atIndex": 2
+        }
+      ],
+      "clearsPreviewBitExplicitly": false
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "stopTrackingTimeLapseWork",
+      "setter": "getInstance",
+      "arguments": [],
+      "clearsPreviewBitExplicitly": false
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "stopTrackingTimeLapseWork",
+      "setter": "setMode",
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 1,
+          "atIndex": 2
+        }
+      ],
+      "clearsPreviewBitExplicitly": false
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "stopTrackingTimeLapseWork",
+      "setter": "setIsTripod",
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v2",
+          "value": 0,
+          "atIndex": 5
+        }
+      ],
+      "clearsPreviewBitExplicitly": false
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "stopTrackingTimeLapseWork",
+      "setter": "setStartOrStop",
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 1,
+          "atIndex": 2
+        }
+      ],
+      "clearsPreviewBitExplicitly": false
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/follow/CreateFollowActivity;",
+      "method": "stopTimeLapse",
+      "setter": "setMode",
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 1,
+          "atIndex": 1
+        }
+      ],
+      "clearsPreviewBitExplicitly": false
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/follow/CreateFollowActivity;",
+      "method": "stopTimeLapse",
+      "setter": "setIsTripod",
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v2",
+          "value": 0,
+          "atIndex": 4
+        }
+      ],
+      "clearsPreviewBitExplicitly": false
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/follow/CreateFollowActivity;",
+      "method": "stopTimeLapse",
+      "setter": "setStartOrStop",
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 1,
+          "atIndex": 1
+        }
+      ],
+      "clearsPreviewBitExplicitly": false
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/tapgo/CreateFixDelayView;",
+      "method": "sendToDeviceStop",
+      "setter": "setMode",
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 1,
+          "atIndex": 1
+        }
+      ],
+      "clearsPreviewBitExplicitly": false
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/tapgo/CreateFixDelayView;",
+      "method": "sendToDeviceStop",
+      "setter": "setIsTripod",
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v2",
+          "value": 0,
+          "atIndex": 4
+        }
+      ],
+      "clearsPreviewBitExplicitly": false
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/tapgo/CreateFixDelayView;",
+      "method": "sendToDeviceStop",
+      "setter": "setStartOrStop",
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 1,
+          "atIndex": 1
+        }
+      ],
+      "clearsPreviewBitExplicitly": false
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/ronin2/CreateKeyPointView;",
+      "method": "sendToDeviceStop",
+      "setter": "setStartOrStop",
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 1,
+          "atIndex": 1
+        }
+      ],
+      "clearsPreviewBitExplicitly": false
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/panorama/CreatePanoramaView;",
+      "method": "sendToDeviceStop",
+      "setter": "setStopStartOrPreview",
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 0,
+          "atIndex": 5
+        }
+      ],
+      "clearsPreviewBitExplicitly": true
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;",
+      "method": "previewToggle",
+      "setter": "setRecordOrPreview",
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v2",
+          "value": 1,
+          "atIndex": 14
+        }
+      ],
+      "clearsPreviewBitExplicitly": true
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;",
+      "method": "previewToggle",
+      "setter": "setStartOrStop",
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 0,
+          "atIndex": 19
+        }
+      ],
+      "clearsPreviewBitExplicitly": false
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;",
+      "method": "previewToggle",
+      "setter": "setIsTripod",
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v2",
+          "value": 1,
+          "atIndex": 14
+        }
+      ],
+      "clearsPreviewBitExplicitly": false
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;",
+      "method": "previewToggle",
+      "setter": "addRoadPoint",
+      "arguments": [],
+      "clearsPreviewBitExplicitly": false
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;",
+      "method": "sendToDeviceStop",
+      "setter": "setStartOrStop",
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 1,
+          "atIndex": 2
+        }
+      ],
+      "clearsPreviewBitExplicitly": false
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;",
+      "method": "sendToDeviceStop",
+      "setter": "setMode",
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v0",
+          "value": 0,
+          "atIndex": 4
+        }
+      ],
+      "clearsPreviewBitExplicitly": false
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;",
+      "method": "sendToDeviceStop",
+      "setter": "setIsTripod",
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 0,
+          "atIndex": 4
+        }
+      ],
+      "clearsPreviewBitExplicitly": false
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;",
+      "method": "sendToDeviceStop",
+      "setter": "setISPreview",
+      "arguments": [
+        {
+          "kind": "instance_field",
+          "register": "v1",
+          "field": "mIsPreviewing Z",
+          "atIndex": 17
+        }
+      ],
+      "clearsPreviewBitExplicitly": true
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;",
+      "method": "sendToDeviceStop",
+      "setter": "setStartOrStop",
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v2",
+          "value": 1,
+          "atIndex": 5
+        }
+      ],
+      "clearsPreviewBitExplicitly": false
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/timelapse/CreateTimelapseView;",
+      "method": "sendToDeviceStop",
+      "setter": "setMode",
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 1,
+          "atIndex": 1
+        }
+      ],
+      "clearsPreviewBitExplicitly": false
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/timelapse/CreateTimelapseView;",
+      "method": "sendToDeviceStop",
+      "setter": "setStartOrStop",
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 1,
+          "atIndex": 1
+        }
+      ],
+      "clearsPreviewBitExplicitly": false
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "previewToggle",
+      "setter": "setRecordOrPreview",
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v2",
+          "value": 1,
+          "atIndex": 14
+        }
+      ],
+      "clearsPreviewBitExplicitly": true
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "previewToggle",
+      "setter": "setStartOrStop",
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 0,
+          "atIndex": 19
+        }
+      ],
+      "clearsPreviewBitExplicitly": false
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "previewToggle",
+      "setter": "setIsTripod",
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v2",
+          "value": 1,
+          "atIndex": 14
+        }
+      ],
+      "clearsPreviewBitExplicitly": false
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "previewToggle",
+      "setter": "addRoadPoint",
+      "arguments": [],
+      "clearsPreviewBitExplicitly": false
+    },
+    {
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "sendToDeviceStop",
+      "setter": "setStartOrStop",
+      "arguments": [
+        {
+          "kind": "const",
+          "register": "v1",
+          "value": 1,
+          "atIndex": 3
+        }
+      ],
+      "clearsPreviewBitExplicitly": false
+    }
+  ],
+  "modelReachability": {
+    "hg724NamedProgramMethods": [],
+    "missingHg724NamedCallerDoesNotProveNoInheritedEntry": true,
+    "createUiUsesMidwareGetInstanceOrField": true,
+    "productTypeGateInCreateUiResolved": false,
+    "dynamicBoundary": "RS 4 Mini product/component map and whether Create program midware paths are bound for HG724 are not fixed in PREFIX bytecode alone",
+    "hardwareMeasurementsNeeded": [
+      "Confirm whether RS 4 Mini / HG724 session exposes Create timelapse/track/panorama midware commands",
+      "Capture whether UIViewManager Create* entries are offered for the connected product type"
+    ]
+  },
+  "dynamicBoundaries": [
+    {
+      "facet": "call_values",
+      "kind": "dynamic_register_or_field_argument",
+      "detail": "Create setter args include method parameters, instance fields, or invoke results (e.g. setISPreview from sendToDeviceStart(I), setControlExternalDevice from mFocusMotorConnected)",
+      "examples": [
+        {
+          "className": "Lcom/dji/ronin/ui/create/tapgo/CreateFixDelayView;",
+          "method": "sendToDeviceStart",
+          "setter": "setISPreview",
+          "argument": {
+            "kind": "unresolved_or_param",
+            "register": "v11",
+            "atIndex": null,
+            "likelyMethodParameter": true,
+            "methodDescriptor": "(I)V"
+          },
+          "boundaryKind": "unresolved_or_param"
+        },
+        {
+          "className": "Lcom/dji/ronin/ui/create/ronin2/CreateKeyPointView;",
+          "method": "sendToDeviceStart",
+          "setter": "setRecordOrPreview",
+          "argument": {
+            "kind": "unresolved_or_param",
+            "register": "v8",
+            "atIndex": null,
+            "likelyMethodParameter": true,
+            "methodDescriptor": "(I Ldji/midware/interfaces/DJIDataCallBack;)V"
+          },
+          "boundaryKind": "unresolved_or_param"
+        },
+        {
+          "className": "Lcom/dji/ronin/ui/create/panorama/CreatePanoramaView;",
+          "method": "sendToDeviceStart",
+          "setter": "setPictures",
+          "argument": {
+            "kind": "invoke_result",
+            "register": "v3",
+            "atIndex": 14
+          },
+          "boundaryKind": "invoke_result"
+        },
+        {
+          "className": "Lcom/dji/ronin/ui/create/panorama/CreatePanoramaView;",
+          "method": "sendToDeviceStart",
+          "setter": "setPictures",
+          "argument": {
+            "kind": "invoke_result",
+            "register": "v0",
+            "atIndex": 18
+          },
+          "boundaryKind": "invoke_result"
+        },
+        {
+          "className": "Lcom/dji/ronin/ui/create/panorama/CreatePanoramaView;",
+          "method": "sendToDeviceStart",
+          "setter": "setStopStartOrPreview",
+          "argument": {
+            "kind": "unresolved_or_param",
+            "register": "v6",
+            "atIndex": null,
+            "likelyMethodParameter": true,
+            "methodDescriptor": "(I)V"
+          },
+          "boundaryKind": "unresolved_or_param"
+        },
+        {
+          "className": "Lcom/dji/ronin/ui/create/panorama/CreatePanoramaView;",
+          "method": "sendToDeviceStart",
+          "setter": "setExposureTime",
+          "argument": {
+            "kind": "instance_field",
+            "register": "v0",
+            "field": "mCurDelay I",
+            "atIndex": 29
+          },
+          "boundaryKind": "instance_field"
+        },
+        {
+          "className": "Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;",
+          "method": "previewToggle",
+          "setter": "setRecordOrPreview",
+          "argument": {
+            "kind": "instance_field",
+            "register": "v2",
+            "field": "mBottomBar Lcom/dji/ronin/ui/create/CreateBottomBar;",
+            "atIndex": 53
+          },
+          "boundaryKind": "instance_field"
+        },
+        {
+          "className": "Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;",
+          "method": "sendToDeviceStart",
+          "setter": "setRecordOrPreview",
+          "argument": {
+            "kind": "unresolved_or_param",
+            "register": "v12",
+            "atIndex": null,
+            "likelyMethodParameter": true,
+            "methodDescriptor": "(I Ldji/midware/interfaces/DJIDataCallBack;)V"
+          },
+          "boundaryKind": "unresolved_or_param"
+        },
+        {
+          "className": "Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;",
+          "method": "sendToDeviceStart",
+          "setter": "setISPreview",
+          "argument": {
+            "kind": "unresolved_or_param",
+            "register": "v15",
+            "atIndex": null,
+            "likelyMethodParameter": true,
+            "methodDescriptor": "(I)V"
+          },
+          "boundaryKind": "unresolved_or_param"
+        },
+        {
+          "className": "Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;",
+          "method": "sendToDeviceStop",
+          "setter": "setISPreview",
+          "argument": {
+            "kind": "instance_field",
+            "register": "v1",
+            "field": "mIsPreviewing Z",
+            "atIndex": 17
+          },
+          "boundaryKind": "instance_field"
+        },
+        {
+          "className": "Lcom/dji/ronin/ui/create/timelapse/CreateTimelapseView;",
+          "method": "sendToDeviceStart",
+          "setter": "setStartOrPreview",
+          "argument": {
+            "kind": "unresolved_or_param",
+            "register": "v8",
+            "atIndex": null,
+            "likelyMethodParameter": true,
+            "methodDescriptor": "(I)V"
+          },
+          "boundaryKind": "unresolved_or_param"
+        },
+        {
+          "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+          "method": "previewToggle",
+          "setter": "setRecordOrPreview",
+          "argument": {
+            "kind": "instance_field",
+            "register": "v2",
+            "field": "mBottomBar Lcom/dji/ronin/ui/create/CreateBottomBar;",
+            "atIndex": 53
+          },
+          "boundaryKind": "instance_field"
+        }
+      ],
+      "hardwareMeasurementsNeeded": [
+        "Log actual setISPreview / setControlExternalDevice / setStartOrPreview values on device for start and stop",
+        "Correlate UI preview toggle and focus-motor state with packed mInfoByte bits"
+      ]
+    },
+    {
+      "facet": "camera_isolation",
+      "kind": "firmware_interpretation_of_packed_camera_bits",
+      "detail": "Wire layout can pack preview/external/exposure/record fields beside gimbal controls; CreateFollowActivity.startTimeLapse uses const preview=0, while other Create paths pass runtime preview/external. Whether a camera-free gimbal program primitive exists is not settled by layout alone.",
+      "hardwareMeasurementsNeeded": [
+        "Send or observe preview=0 vs preview=1 program packets on RS 4 Mini and check camera/side effects",
+        "Observe panorama mExposure and track mRecordOrPreview influence on device behavior"
+      ]
+    },
+    {
+      "facet": "stop_semantics",
+      "kind": "device_effect_of_traced_stop_packets",
+      "detail": "CreateUtils stop* and Create* stop methods set startOrStop (and sometimes record/preview) then start(callback); several stop paths omit an explicit preview-bit clear on the shared getInstance/mSetter singleton, so OR-accumulated bits may persist across calls.",
+      "tracedStops": [
+        {
+          "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+          "method": "stopFixDelayPreviewWork",
+          "setter": "getInstance",
+          "arguments": [],
+          "clearsPreviewBitExplicitly": false
+        },
+        {
+          "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+          "method": "stopFixDelayPreviewWork",
+          "setter": "setMode",
+          "arguments": [
+            {
+              "kind": "const",
+              "register": "v1",
+              "value": 1,
+              "atIndex": 2
+            }
+          ],
+          "clearsPreviewBitExplicitly": false
+        },
+        {
+          "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+          "method": "stopFixDelayPreviewWork",
+          "setter": "setIsTripod",
+          "arguments": [
+            {
+              "kind": "const",
+              "register": "v2",
+              "value": 0,
+              "atIndex": 5
+            }
+          ],
+          "clearsPreviewBitExplicitly": false
+        },
+        {
+          "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+          "method": "stopFixDelayPreviewWork",
+          "setter": "setStartOrStop",
+          "arguments": [
+            {
+              "kind": "const",
+              "register": "v1",
+              "value": 1,
+              "atIndex": 2
+            }
+          ],
+          "clearsPreviewBitExplicitly": false
+        },
+        {
+          "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+          "method": "stopPanoPreviewWork",
+          "setter": "getInstance",
+          "arguments": [],
+          "clearsPreviewBitExplicitly": false
+        },
+        {
+          "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+          "method": "stopPanoPreviewWork",
+          "setter": "setStopStartOrPreview",
+          "arguments": [
+            {
+              "kind": "const",
+              "register": "v1",
+              "value": 0,
+              "atIndex": 2
+            }
+          ],
+          "clearsPreviewBitExplicitly": true
+        },
+        {
+          "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+          "method": "stopPathDelayPreviewWork",
+          "setter": "getInstance",
+          "arguments": [],
+          "clearsPreviewBitExplicitly": false
+        },
+        {
+          "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+          "method": "stopPathDelayPreviewWork",
+          "setter": "setMode",
+          "arguments": [
+            {
+              "kind": "const",
+              "register": "v1",
+              "value": 0,
+              "atIndex": 2
+            }
+          ],
+          "clearsPreviewBitExplicitly": false
+        },
+        {
+          "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+          "method": "stopPathDelayPreviewWork",
+          "setter": "setIsTripod",
+          "arguments": [
+            {
+              "kind": "const",
+              "register": "v1",
+              "value": 0,
+              "atIndex": 2
+            }
+          ],
+          "clearsPreviewBitExplicitly": false
+        },
+        {
+          "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+          "method": "stopPathDelayPreviewWork",
+          "setter": "setStartOrStop",
+          "arguments": [
+            {
+              "kind": "const",
+              "register": "v1",
+              "value": 1,
+              "atIndex": 7
+            }
+          ],
+          "clearsPreviewBitExplicitly": false
+        },
+        {
+          "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+          "method": "stopTrackPreviewWork",
+          "setter": "getInstance",
+          "arguments": [],
+          "clearsPreviewBitExplicitly": false
+        },
+        {
+          "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+          "method": "stopTrackPreviewWork",
+          "setter": "setRecordOrPreview",
+          "arguments": [
+            {
+              "kind": "const",
+              "register": "v1",
+              "value": 1,
+              "atIndex": 2
+            }
+          ],
+          "clearsPreviewBitExplicitly": true
+        },
+        {
+          "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+          "method": "stopTrackPreviewWork",
+          "setter": "setStartOrStop",
+          "arguments": [
+            {
+              "kind": "const",
+              "register": "v1",
+              "value": 1,
+              "atIndex": 2
+            }
+          ],
+          "clearsPreviewBitExplicitly": false
+        },
+        {
+          "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+          "method": "stopTrackingTimeLapseWork",
+          "setter": "getInstance",
+          "arguments": [],
+          "clearsPreviewBitExplicitly": false
+        },
+        {
+          "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+          "method": "stopTrackingTimeLapseWork",
+          "setter": "setMode",
+          "arguments": [
+            {
+              "kind": "const",
+              "register": "v1",
+              "value": 1,
+              "atIndex": 2
+            }
+          ],
+          "clearsPreviewBitExplicitly": false
+        },
+        {
+          "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+          "method": "stopTrackingTimeLapseWork",
+          "setter": "setIsTripod",
+          "arguments": [
+            {
+              "kind": "const",
+              "register": "v2",
+              "value": 0,
+              "atIndex": 5
+            }
+          ],
+          "clearsPreviewBitExplicitly": false
+        },
+        {
+          "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+          "method": "stopTrackingTimeLapseWork",
+          "setter": "setStartOrStop",
+          "arguments": [
+            {
+              "kind": "const",
+              "register": "v1",
+              "value": 1,
+              "atIndex": 2
+            }
+          ],
+          "clearsPreviewBitExplicitly": false
+        },
+        {
+          "className": "Lcom/dji/ronin/ui/create/follow/CreateFollowActivity;",
+          "method": "stopTimeLapse",
+          "setter": "setMode",
+          "arguments": [
+            {
+              "kind": "const",
+              "register": "v1",
+              "value": 1,
+              "atIndex": 1
+            }
+          ],
+          "clearsPreviewBitExplicitly": false
+        },
+        {
+          "className": "Lcom/dji/ronin/ui/create/follow/CreateFollowActivity;",
+          "method": "stopTimeLapse",
+          "setter": "setIsTripod",
+          "arguments": [
+            {
+              "kind": "const",
+              "register": "v2",
+              "value": 0,
+              "atIndex": 4
+            }
+          ],
+          "clearsPreviewBitExplicitly": false
+        },
+        {
+          "className": "Lcom/dji/ronin/ui/create/follow/CreateFollowActivity;",
+          "method": "stopTimeLapse",
+          "setter": "setStartOrStop",
+          "arguments": [
+            {
+              "kind": "const",
+              "register": "v1",
+              "value": 1,
+              "atIndex": 1
+            }
+          ],
+          "clearsPreviewBitExplicitly": false
+        }
+      ],
+      "hardwareMeasurementsNeeded": [
+        "Verify stop packets halt motion on RS 4 Mini",
+        "Check whether uncleared preview/external bits on the singleton affect stop or next start"
+      ]
+    },
+    {
+      "facet": "model_entry",
+      "kind": "product_component_session_binding",
+      "detail": "RS 4 Mini product/component map and whether Create program midware paths are bound for HG724 are not fixed in PREFIX bytecode alone",
+      "hardwareMeasurementsNeeded": [
+        "Confirm whether RS 4 Mini / HG724 session exposes Create timelapse/track/panorama midware commands",
+        "Capture whether UIViewManager Create* entries are offered for the connected product type"
+      ]
     }
   ],
   "hg724NamedProgramMethods": [],
   "panoramaHasExposureField": true,
   "trackHasRecordOrPreviewField": true,
-  "cameraFieldsInterleavedWithPanorama": true,
-  "trackRecordPreviewInterleaved": true,
-  "timelapseInfoBytePreviewOrExternalBitsInterleaved": true,
+  "cameraFieldsPresentInPanoramaAndTrackDoPack": true,
+  "timelapseInfoByteHasPreviewOrExternalBits": true,
   "reliableStopWithCameraIsolationEstablished": false,
   "pureGimbalProgramPrimitiveOpenable": false,
   "hg724ModelSpecificProgramEntryEstablished": false,
   "missingHg724NamedCallerDoesNotProveNoInheritedEntry": true,
-  "reasonNotClosed": "mInfoByte bit maps are resolved: 04:25 packs preview (bit3) and controlExternalDevice (bit7) beside mode/tripod/start-stop; 04:37 packs startOrPreview (bit3) beside the same. Named panorama mExposure and track mRecordOrPreview remain interleaved. Create UI callers invoke those setters. Isolation is statically disproven for a pure gimbal primitive; RS 4 Mini model/component reachability and a camera-free stop path still need hardware or a different source entry.",
+  "reasonNotClosed": "mInfoByte bit layout is established for 04:25/37. Create call sites, stop chains, and shared getInstance/mSetter reuse are traced, but call-argument values, camera isolation, stop effects, and RS 4 Mini model/component reachability each still hit a recorded dynamic or session boundary (see dynamicBoundaries). Program sends stay closed.",
   "remaining": [
     "Do not open 04:25/37/62/63 sends.",
-    "Do not treat missing HG724-named program methods as no inherited entry."
+    "Do not treat missing HG724-named program methods as no inherited entry.",
+    "Do not claim camera isolation is statically established or statically disproven from layout alone."
   ]
 }

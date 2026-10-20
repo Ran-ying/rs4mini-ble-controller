@@ -76,3 +76,7 @@ python/.venv/bin/python -m unittest discover -s tools/research -p test_ronin_tra
 
 新增22项边界测试覆盖时间分段/float32/反向损失，ActualPose与MotorAngle分离、整数符号/宽度/窄化/舍入、未知/重复/缺失/截断记录、参数和通知寄存器绑定及哈希预检。
 APK、恢复DEX及完整反汇编留在忽略目录，不进入Git；全部是离线源码与手写分析视图，无厂商代码执行或硬件操作。
+
+## 后续：八段程序重审（2026-10-20）
+
+见 [PROGRAM_PREFIX.md](PROGRAM_PREFIX.md)。

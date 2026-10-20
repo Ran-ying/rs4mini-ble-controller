@@ -409,6 +409,16 @@ if manifest.get('profileValueSdk',{}).get('implemented'):
     modes={r['name']:r['value'] for r in profiles['workModeSourceEnums']}
     objc_modes=(root/'macos/RSControlCore.m').read_text().split('NSDictionary *RSAppProfileValueSpec(',1)[1]
     assert json.loads(re.search(r'const workModes=(\{.*?\});',js).group(1))==py['WORK_MODES']==json.loads(re.search(r'NSDictionary \*modes=(@\{.*?\});',objc_modes).group(1).replace('@',''))==modes
+if manifest.get('programPrefixResearch'):
+    prog=json.loads((root/manifest['programPrefixResearch']).read_text())
+    assert prog['apkSha256']==controls['apkSha256'] and prog['scannedBanks']==list(range(8))
+    assert prog['pureGimbalProgramPrimitiveOpenable'] is False and prog['programExecutionOpened'] is False
+    assert prog['cameraFieldsInterleavedWithPanorama'] is True and 'mExposure' in prog['panoramaDoPackFields']
+    assert prog['hg724NamedProgramCallers']==[] and prog['newBanks01And07External']==[]
+    assert [len(prog['commands'][k]['externalDirectCallers']) for k in ['25','37','62','63']]==[12,3,12,4]
+    for key in ['04:25','04:37','04:62','04:63']:
+        row=next(row for row in manifest['commands'] if row['key']==key)
+        assert row['programPrefixResearch']==manifest['programPrefixResearch'] and not row['implementation']
 if manifest.get('motionPrefixResearch'):
     motion=json.loads((root/manifest['motionPrefixResearch']).read_text())
     assert motion['apkSha256']==controls['apkSha256'] and motion['scannedBanks']==list(range(8))

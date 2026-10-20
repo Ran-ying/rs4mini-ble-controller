@@ -58,3 +58,7 @@ python/.venv/bin/python -m unittest discover -s tools/research -p test_ronin_pro
 APK及bank03/05哈希在可选解析器加载前验证。小型解析器只读所选HG724赋值模板及有限常量，不模拟全部DEX/Java执行。
 方法指纹、资源事实和局部条件分支不能代替完整CFG、异常/动态Map、固件接收与物理测试。
 后续仍需主页面挂载、型号/预设条件、单位/参考系、相机隔离和执行/停止/通知关联证据。
+
+## 后续：八段程序重审（2026-10-20）
+
+见 [PROGRAM_PREFIX.md](PROGRAM_PREFIX.md)。

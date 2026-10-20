@@ -1,0 +1,1658 @@
+{
+  "schemaVersion": 1,
+  "apkSha256": "4ef0aa1e351990168a522500728790e22794618b0bcbd4c6277c7375148dc4f4",
+  "bankSha256": {
+    "0": "2229f1f19aa8fe8d819c7b3cecbd844928da817e2bc9cfddfda1c0e120e4cc59",
+    "1": "0083e9f9e0e615602470ea148cfd581a0c7413a012ef5494b613242d55754f99",
+    "2": "f75800c8edb40823c72afdd0eee575135e995440da9a5fd9bfb3e5b3e9e6fe68",
+    "3": "861be662ee36ce3b195c0c1aa179642e34793df3a88e933fa1dfe2a7202a9528",
+    "4": "2fd9aa02f5c9f4217e7e6ef75d724a1ce64efa7c1f365ddb20c93be1fef85f77",
+    "5": "f78b34474816ca253b4133bdbd79ebcbf725f52d58ac00b63f921ff7082470d2",
+    "6": "4da9764901f753190e0c88b5a142a4f9cf1eed9b1b9214bdf97a21f00edcb990",
+    "7": "3fc2c4adccd59794f5c28b898d577ed414758875cadb7ce7f6782ffd5b64b723"
+  },
+  "appCodeExecuted": false,
+  "liveUiExecuted": false,
+  "targetDeviceVerified": false,
+  "wholeProtocolRecovered": false,
+  "researchToolProvidesSdkInterface": false,
+  "sdkSendAdded": false,
+  "sdkReceiveAdded": false,
+  "scannedBanks": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "banks": [
+    {
+      "segment": 0,
+      "derivedSha256": "2229f1f19aa8fe8d819c7b3cecbd844928da817e2bc9cfddfda1c0e120e4cc59",
+      "methodCount": 53828,
+      "methodWithCodeCount": 50517,
+      "instructionCount": 682926
+    },
+    {
+      "segment": 1,
+      "derivedSha256": "0083e9f9e0e615602470ea148cfd581a0c7413a012ef5494b613242d55754f99",
+      "methodCount": 12143,
+      "methodWithCodeCount": 11452,
+      "instructionCount": 132775
+    },
+    {
+      "segment": 2,
+      "derivedSha256": "f75800c8edb40823c72afdd0eee575135e995440da9a5fd9bfb3e5b3e9e6fe68",
+      "methodCount": 15931,
+      "methodWithCodeCount": 15446,
+      "instructionCount": 249001
+    },
+    {
+      "segment": 3,
+      "derivedSha256": "861be662ee36ce3b195c0c1aa179642e34793df3a88e933fa1dfe2a7202a9528",
+      "methodCount": 38674,
+      "methodWithCodeCount": 36349,
+      "instructionCount": 559947
+    },
+    {
+      "segment": 4,
+      "derivedSha256": "2fd9aa02f5c9f4217e7e6ef75d724a1ce64efa7c1f365ddb20c93be1fef85f77",
+      "methodCount": 56720,
+      "methodWithCodeCount": 53246,
+      "instructionCount": 587995
+    },
+    {
+      "segment": 5,
+      "derivedSha256": "f78b34474816ca253b4133bdbd79ebcbf725f52d58ac00b63f921ff7082470d2",
+      "methodCount": 55055,
+      "methodWithCodeCount": 53173,
+      "instructionCount": 677878
+    },
+    {
+      "segment": 6,
+      "derivedSha256": "4da9764901f753190e0c88b5a142a4f9cf1eed9b1b9214bdf97a21f00edcb990",
+      "methodCount": 48024,
+      "methodWithCodeCount": 45737,
+      "instructionCount": 705675
+    },
+    {
+      "segment": 7,
+      "derivedSha256": "3fc2c4adccd59794f5c28b898d577ed414758875cadb7ce7f6782ffd5b64b723",
+      "methodCount": 3240,
+      "methodWithCodeCount": 2977,
+      "instructionCount": 36394
+    }
+  ],
+  "methods": [
+    {
+      "segment": 3,
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "stopFixDelayPreviewWork",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "instructionSha256": "f08188bfe4dc1fb5cb861621ab6ba29c9c943a601713494f1da9738c10c333c2",
+      "mentionsHg724": false,
+      "cameraOrExposureMentions": [],
+      "references": [
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-static",
+          "instructionByteOffset": 0,
+          "invokeText": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 10,
+          "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setMode(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 20,
+          "invokeText": "v0, v2, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setIsTripod(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 28,
+          "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setStartOrStop(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 36,
+          "invokeText": "v0, v3, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->start(Ldji/midware/interfaces/DJIDataCallBack;)V"
+        }
+      ]
+    },
+    {
+      "segment": 3,
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "stopPanoPreviewWork",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "instructionSha256": "6c09c993e495cf1f60b9acf1577ca318a63317a776037511853e96b132fd2e38",
+      "mentionsHg724": false,
+      "cameraOrExposureMentions": [],
+      "references": [
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;",
+          "operation": "invoke-static",
+          "instructionByteOffset": 0,
+          "invokeText": "Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 10,
+          "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;->setStopStartOrPreview(I)Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 18,
+          "invokeText": "v0, v2, Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;->start(Ldji/midware/interfaces/DJIDataCallBack;)V"
+        }
+      ]
+    },
+    {
+      "segment": 3,
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "stopPathDelayPreviewWork",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "instructionSha256": "70eb34516ae7fed723f8dc91b7044fdb6220840804756fb88df231ddaa32f9d4",
+      "mentionsHg724": false,
+      "cameraOrExposureMentions": [],
+      "references": [
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-static",
+          "instructionByteOffset": 0,
+          "invokeText": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 10,
+          "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setMode(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 18,
+          "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setIsTripod(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 28,
+          "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setStartOrStop(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 36,
+          "invokeText": "v0, v2, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->start(Ldji/midware/interfaces/DJIDataCallBack;)V"
+        }
+      ]
+    },
+    {
+      "segment": 3,
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "stopTrackPreviewWork",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "instructionSha256": "7b0e3df2376b9d177e09023ccb8ed7d4723c83aad51b6d73f0e2b35df61f35a7",
+      "mentionsHg724": false,
+      "cameraOrExposureMentions": [
+        {
+          "token": "RecordOrPreview",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 10
+        },
+        {
+          "token": "setRecordOrPreview",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 10
+        }
+      ],
+      "references": [
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-static",
+          "instructionByteOffset": 0,
+          "invokeText": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 10,
+          "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setRecordOrPreview(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 18,
+          "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setStartOrStop(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 26,
+          "invokeText": "v0, v2, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->start(Ldji/midware/interfaces/DJIDataCallBack;)V"
+        }
+      ]
+    },
+    {
+      "segment": 3,
+      "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+      "method": "stopTrackingTimeLapseWork",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "instructionSha256": "f08188bfe4dc1fb5cb861621ab6ba29c9c943a601713494f1da9738c10c333c2",
+      "mentionsHg724": false,
+      "cameraOrExposureMentions": [],
+      "references": [
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-static",
+          "instructionByteOffset": 0,
+          "invokeText": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 10,
+          "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setMode(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 20,
+          "invokeText": "v0, v2, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setIsTripod(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 28,
+          "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setStartOrStop(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 36,
+          "invokeText": "v0, v3, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->start(Ldji/midware/interfaces/DJIDataCallBack;)V"
+        }
+      ]
+    },
+    {
+      "segment": 3,
+      "className": "Lcom/dji/ronin/ui/create/follow/CreateFollowActivity;",
+      "method": "<init>",
+      "descriptor": "()V",
+      "instructionSha256": "17fd765b8a4b39f149e05213bd4bd6f6b9fff95fb9a8b37eacce162f36fe106c",
+      "mentionsHg724": false,
+      "cameraOrExposureMentions": [],
+      "references": [
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-static",
+          "instructionByteOffset": 70,
+          "invokeText": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+        }
+      ]
+    },
+    {
+      "segment": 3,
+      "className": "Lcom/dji/ronin/ui/create/follow/CreateFollowActivity;",
+      "method": "startTimeLapse",
+      "descriptor": "()V",
+      "instructionSha256": "71c269b80fd37adaa32bd4ebd5718370a81b30f7645e43b096e4759454501453",
+      "mentionsHg724": false,
+      "cameraOrExposureMentions": [],
+      "references": [
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 68,
+          "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setMode(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 76,
+          "invokeText": "v0, v2, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setIsTripod(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 84,
+          "invokeText": "v0, v2, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setISPreview(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 92,
+          "invokeText": "v0, v2, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setStartOrStop(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 178,
+          "invokeText": "v3, v4, v2, v5, v1, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->addRoadPosition(I S S S)Z"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 192,
+          "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->start(Ldji/midware/interfaces/DJIDataCallBack;)V"
+        }
+      ]
+    },
+    {
+      "segment": 3,
+      "className": "Lcom/dji/ronin/ui/create/follow/CreateFollowActivity;",
+      "method": "stopTimeLapse",
+      "descriptor": "()V",
+      "instructionSha256": "d4f6f250a0dc564751526cc1b5039cb099fe59ddcc63904327342096859df64b",
+      "mentionsHg724": false,
+      "cameraOrExposureMentions": [],
+      "references": [
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 6,
+          "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setMode(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 16,
+          "invokeText": "v0, v2, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setIsTripod(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 24,
+          "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setStartOrStop(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 36,
+          "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->start(Ldji/midware/interfaces/DJIDataCallBack;)V"
+        }
+      ]
+    },
+    {
+      "segment": 3,
+      "className": "Lcom/dji/ronin/ui/create/tapgo/CreateFixDelayView;",
+      "method": "<init>",
+      "descriptor": "(Landroid/content/Context; Landroid/util/AttributeSet;)V",
+      "instructionSha256": "9837f4afe7ac4bb6f6b9c9eb21ef73c220301378b5c8aa35dd72036d7b582e71",
+      "mentionsHg724": false,
+      "cameraOrExposureMentions": [],
+      "references": [
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-static",
+          "instructionByteOffset": 20,
+          "invokeText": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+        }
+      ]
+    },
+    {
+      "segment": 3,
+      "className": "Lcom/dji/ronin/ui/create/tapgo/CreateFixDelayView;",
+      "method": "sendToDeviceStart",
+      "descriptor": "(I)V",
+      "instructionSha256": "8aaf527c5ca0440ed3278a7b344e62573077f3f46af5b38d59be445a15d6b68d",
+      "mentionsHg724": false,
+      "cameraOrExposureMentions": [],
+      "references": [
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 6,
+          "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setMode(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 14,
+          "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setIsTripod(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 22,
+          "invokeText": "v0, v11, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setISPreview(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 32,
+          "invokeText": "v11, v0, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setStartOrStop(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 118,
+          "invokeText": "v2, v3, v0, v4, v1, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->addRoadPosition(I S S S)Z"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 134,
+          "invokeText": "v11, v0, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->start(Ldji/midware/interfaces/DJIDataCallBack;)V"
+        }
+      ]
+    },
+    {
+      "segment": 3,
+      "className": "Lcom/dji/ronin/ui/create/tapgo/CreateFixDelayView;",
+      "method": "sendToDeviceStop",
+      "descriptor": "()V",
+      "instructionSha256": "2a2b5ba7fcfb614ef156ee09b29710d7c711e6bb96832ad3918847da007d771e",
+      "mentionsHg724": false,
+      "cameraOrExposureMentions": [],
+      "references": [
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 6,
+          "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setMode(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 16,
+          "invokeText": "v0, v2, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setIsTripod(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 24,
+          "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setStartOrStop(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 38,
+          "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->start(Ldji/midware/interfaces/DJIDataCallBack;)V"
+        }
+      ]
+    },
+    {
+      "segment": 3,
+      "className": "Lcom/dji/ronin/ui/create/ronin2/CreateKeyPointView;",
+      "method": "<init>",
+      "descriptor": "(Landroid/content/Context; Landroid/util/AttributeSet;)V",
+      "instructionSha256": "9c6fe98d739994f1a52a8d340eea46e2f26db083210909dbe36b53dc75a3c8a3",
+      "mentionsHg724": false,
+      "cameraOrExposureMentions": [],
+      "references": [
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-static",
+          "instructionByteOffset": 60,
+          "invokeText": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+        }
+      ]
+    },
+    {
+      "segment": 3,
+      "className": "Lcom/dji/ronin/ui/create/ronin2/CreateKeyPointView;",
+      "method": "sendToDeviceStart",
+      "descriptor": "(I Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "instructionSha256": "a73b45e29309755615f79fc887df71249d5145fa420eadfd0cc285ac98f5bb2b",
+      "mentionsHg724": false,
+      "cameraOrExposureMentions": [
+        {
+          "token": "RecordOrPreview",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 4
+        },
+        {
+          "token": "setRecordOrPreview",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 4
+        }
+      ],
+      "references": [
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 4,
+          "invokeText": "v0, v8, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setRecordOrPreview(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 14,
+          "invokeText": "v8, v0, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setStartOrStop(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 24,
+          "invokeText": "v8, v0, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setIsTripod(Z)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-virtual/range",
+          "instructionByteOffset": 86,
+          "invokeText": "v1 ... v6, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->addRoadPoint(F F F F F)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 98,
+          "invokeText": "v8, v9, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->start(Ldji/midware/interfaces/DJIDataCallBack;)V"
+        }
+      ]
+    },
+    {
+      "segment": 3,
+      "className": "Lcom/dji/ronin/ui/create/ronin2/CreateKeyPointView;",
+      "method": "sendToDeviceStop",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "instructionSha256": "b71e86194e7960f92227bc43e02fa9943dfc0de85794b0eca9f58c9ab69a3c53",
+      "mentionsHg724": false,
+      "cameraOrExposureMentions": [],
+      "references": [
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 6,
+          "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setStartOrStop(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 16,
+          "invokeText": "v0, v3, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->start(Ldji/midware/interfaces/DJIDataCallBack;)V"
+        }
+      ]
+    },
+    {
+      "segment": 3,
+      "className": "Lcom/dji/ronin/ui/create/panorama/CreatePanoramaView;",
+      "method": "<init>",
+      "descriptor": "(Landroid/content/Context; Landroid/util/AttributeSet;)V",
+      "instructionSha256": "0b1cf1e3b2eb2a9a76f87826275bd7b420dde6d672e23a73c8aa77b6a7936907",
+      "mentionsHg724": false,
+      "cameraOrExposureMentions": [],
+      "references": [
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;",
+          "operation": "invoke-static",
+          "instructionByteOffset": 48,
+          "invokeText": "Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;"
+        }
+      ]
+    },
+    {
+      "segment": 3,
+      "className": "Lcom/dji/ronin/ui/create/panorama/CreatePanoramaView;",
+      "method": "sendToDeviceStart",
+      "descriptor": "(I)V",
+      "instructionSha256": "297511f711da29fcc216d021d63adfee70f1f52fac024a570be842531753b877",
+      "mentionsHg724": false,
+      "cameraOrExposureMentions": [
+        {
+          "token": "setPictures",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 74
+        },
+        {
+          "token": "Exposure",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 118
+        },
+        {
+          "token": "setExposure",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 118
+        }
+      ],
+      "references": [
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 74,
+          "invokeText": "v2, v3, v0, Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;->setPictures(I I)Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 98,
+          "invokeText": "v0, v2, v3, v4, v1, Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;->setRange(I I I I)Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 106,
+          "invokeText": "v0, v6, Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;->setStopStartOrPreview(I)Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 118,
+          "invokeText": "v6, v0, Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;->setExposureTime(I)Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 130,
+          "invokeText": "v6, v0, Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;->start(Ldji/midware/interfaces/DJIDataCallBack;)V"
+        }
+      ]
+    },
+    {
+      "segment": 3,
+      "className": "Lcom/dji/ronin/ui/create/panorama/CreatePanoramaView;",
+      "method": "sendToDeviceStop",
+      "descriptor": "()V",
+      "instructionSha256": "cb69b9b1e8f177ec5cdfcd10cadc51aa74d1dcc932682da934f9444fe2383f04",
+      "mentionsHg724": false,
+      "cameraOrExposureMentions": [],
+      "references": [
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 20,
+          "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;->setStopStartOrPreview(I)Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 32,
+          "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;->start(Ldji/midware/interfaces/DJIDataCallBack;)V"
+        }
+      ]
+    },
+    {
+      "segment": 3,
+      "className": "Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;",
+      "method": "<init>",
+      "descriptor": "(Landroid/content/Context; Landroid/util/AttributeSet;)V",
+      "instructionSha256": "ba111cfb5795ed06e62eb18b9dbb4a7dc8fcb27553447d502a9de144e130a492",
+      "mentionsHg724": false,
+      "cameraOrExposureMentions": [],
+      "references": [
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-static",
+          "instructionByteOffset": 58,
+          "invokeText": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+        }
+      ]
+    },
+    {
+      "segment": 3,
+      "className": "Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;",
+      "method": "previewToggle",
+      "descriptor": "()V",
+      "instructionSha256": "f892508d78cd502c64995c6625bad96fa0953daf57f4ec84398fcf5d0a7910d7",
+      "mentionsHg724": false,
+      "cameraOrExposureMentions": [
+        {
+          "token": "RecordOrPreview",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 68
+        },
+        {
+          "token": "setRecordOrPreview",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 68
+        },
+        {
+          "token": "RecordOrPreview",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 256
+        },
+        {
+          "token": "setRecordOrPreview",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 256
+        }
+      ],
+      "references": [
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 68,
+          "invokeText": "v0, v2, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setRecordOrPreview(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 78,
+          "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setStartOrStop(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 86,
+          "invokeText": "v0, v2, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setIsTripod(Z)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-virtual/range",
+          "instructionByteOffset": 150,
+          "invokeText": "v2 ... v7, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->addRoadPoint(F F F F F)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 172,
+          "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->start(Ldji/midware/interfaces/DJIDataCallBack;)V"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 256,
+          "invokeText": "v0, v2, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setRecordOrPreview(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 264,
+          "invokeText": "v0, v2, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setStartOrStop(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 284,
+          "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->start(Ldji/midware/interfaces/DJIDataCallBack;)V"
+        }
+      ]
+    },
+    {
+      "segment": 3,
+      "className": "Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;",
+      "method": "sendToDeviceStart",
+      "descriptor": "(I Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "instructionSha256": "a3118eedc680f6dabc2893b2fcaa0090dd36b301778982e2c298f1159486e9f7",
+      "mentionsHg724": false,
+      "cameraOrExposureMentions": [
+        {
+          "token": "RecordOrPreview",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 4
+        },
+        {
+          "token": "setRecordOrPreview",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 4
+        }
+      ],
+      "references": [
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 4,
+          "invokeText": "v0, v12, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setRecordOrPreview(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 14,
+          "invokeText": "v12, v0, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setStartOrStop(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 24,
+          "invokeText": "v12, v1, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setIsTripod(Z)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-virtual/range",
+          "instructionByteOffset": 112,
+          "invokeText": "v5 ... v10, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->addRoadPoint(F F F F F)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 124,
+          "invokeText": "v12, v13, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->start(Ldji/midware/interfaces/DJIDataCallBack;)V"
+        }
+      ]
+    },
+    {
+      "segment": 3,
+      "className": "Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;",
+      "method": "sendToDeviceStop",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "instructionSha256": "9aabe3da4281255e27bbd03d96f440149771487b2d723d69fabd284c819df670",
+      "mentionsHg724": false,
+      "cameraOrExposureMentions": [],
+      "references": [
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 12,
+          "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setStartOrStop(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 22,
+          "invokeText": "v0, v3, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->start(Ldji/midware/interfaces/DJIDataCallBack;)V"
+        }
+      ]
+    },
+    {
+      "segment": 3,
+      "className": "Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;",
+      "method": "<init>",
+      "descriptor": "(Landroid/content/Context; Landroid/util/AttributeSet;)V",
+      "instructionSha256": "4c0eb259644fcddc387fc8a8874052a36d2c6dd1a68096e8fce2a977f95b55c4",
+      "mentionsHg724": false,
+      "cameraOrExposureMentions": [],
+      "references": [
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-static",
+          "instructionByteOffset": 60,
+          "invokeText": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+        }
+      ]
+    },
+    {
+      "segment": 3,
+      "className": "Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;",
+      "method": "sendToDeviceStart",
+      "descriptor": "(I)V",
+      "instructionSha256": "ecd0f6d82cc7d100c11d90450b8cedd6634d49cf9b8bf5bbae4aea02a6dd4fb9",
+      "mentionsHg724": false,
+      "cameraOrExposureMentions": [],
+      "references": [
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 42,
+          "invokeText": "v3, v0, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setMode(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 94,
+          "invokeText": "v0, v3, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setControlExternalDevice(Z)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 102,
+          "invokeText": "v0, v2, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setIsTripod(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 110,
+          "invokeText": "v0, v15, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setISPreview(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 118,
+          "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setStartOrStop(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 128,
+          "invokeText": "v0, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->clearPoint()V"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 236,
+          "invokeText": "v8, v9, v10, v11, v12, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->addRoadPosition(I S S S)Z"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 302,
+          "invokeText": "v8, v9, v10, v11, v12, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->addRoadPosition(I S S S)Z"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 364,
+          "invokeText": "v8, v9, v10, v11, v12, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->addRoadPosition(I S S S)Z"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 428,
+          "invokeText": "v5, v8, v9, v10, v3, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->addRoadPosition(I S S S)Z"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 498,
+          "invokeText": "v8, v5, v9, v10, v3, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->addRoadPosition(I S S S)Z"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 530,
+          "invokeText": "v0, v15, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->start(Ldji/midware/interfaces/DJIDataCallBack;)V"
+        }
+      ]
+    },
+    {
+      "segment": 3,
+      "className": "Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;",
+      "method": "sendToDeviceStop",
+      "descriptor": "()V",
+      "instructionSha256": "efa764e4ea176cf33b8db581e2bd9a9556eacb61fc67640fedbe3d8823485685",
+      "mentionsHg724": false,
+      "cameraOrExposureMentions": [],
+      "references": [
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 42,
+          "invokeText": "v3, v0, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setMode(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 50,
+          "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setIsTripod(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 62,
+          "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setISPreview(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 70,
+          "invokeText": "v0, v2, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->setStartOrStop(I)Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 98,
+          "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;->start(Ldji/midware/interfaces/DJIDataCallBack;)V"
+        }
+      ]
+    },
+    {
+      "segment": 3,
+      "className": "Lcom/dji/ronin/ui/create/timelapse/CreateTimelapseView;",
+      "method": "<init>",
+      "descriptor": "(Landroid/content/Context; Landroid/util/AttributeSet;)V",
+      "instructionSha256": "ed0cb594fdbfcf7e04270c4ff60a1a3b45a182e2118a857b84f7e2c8ce5402aa",
+      "mentionsHg724": false,
+      "cameraOrExposureMentions": [],
+      "references": [
+        {
+          "target": "Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;",
+          "operation": "invoke-direct",
+          "instructionByteOffset": 38,
+          "invokeText": "v1, Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;-><init>()V"
+        }
+      ]
+    },
+    {
+      "segment": 3,
+      "className": "Lcom/dji/ronin/ui/create/timelapse/CreateTimelapseView;",
+      "method": "sendToDeviceStart",
+      "descriptor": "(I)V",
+      "instructionSha256": "038994b0af2ddc40a8066a4f1850fb48a62e2b68f21bbd15637e4e7cf83c57a0",
+      "mentionsHg724": false,
+      "cameraOrExposureMentions": [],
+      "references": [
+        {
+          "target": "Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 32,
+          "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;->setMode(I)Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 40,
+          "invokeText": "v0, v4, Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;->setIsTripod(I)Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 48,
+          "invokeText": "v0, v8, Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;->setStartOrPreview(I)Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 56,
+          "invokeText": "v8, v3, Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;->setStartOrStop(I)Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 68,
+          "invokeText": "v8, v0, v1, Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;->setDuration(J)Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;",
+          "operation": "invoke-virtual/range",
+          "instructionByteOffset": 132,
+          "invokeText": "v1 ... v6, Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;->addRoadPosition(J I I I)Z"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 148,
+          "invokeText": "v8, v0, Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;->start(Ldji/midware/interfaces/DJIDataCallBack;)V"
+        }
+      ]
+    },
+    {
+      "segment": 3,
+      "className": "Lcom/dji/ronin/ui/create/timelapse/CreateTimelapseView;",
+      "method": "sendToDeviceStop",
+      "descriptor": "()V",
+      "instructionSha256": "0db7b533a1c8690e99a5c88bdd6544ec7b2c74c6485a26996fd2834225c602d9",
+      "mentionsHg724": false,
+      "cameraOrExposureMentions": [],
+      "references": [
+        {
+          "target": "Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 6,
+          "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;->setMode(I)Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 14,
+          "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;->setStartOrStop(I)Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 28,
+          "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;->start(Ldji/midware/interfaces/DJIDataCallBack;)V"
+        }
+      ]
+    },
+    {
+      "segment": 3,
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "<init>",
+      "descriptor": "(Landroid/content/Context; Landroid/util/AttributeSet;)V",
+      "instructionSha256": "342acd065c69d1ef073f2189f12db988063a969af0f44e68278cd1f70ec246ba",
+      "mentionsHg724": false,
+      "cameraOrExposureMentions": [],
+      "references": [
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-static",
+          "instructionByteOffset": 58,
+          "invokeText": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->getInstance()Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+        }
+      ]
+    },
+    {
+      "segment": 3,
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "previewToggle",
+      "descriptor": "()V",
+      "instructionSha256": "3d1c4786a21a27aeac5e9c9be993cdad1371c6eaa486cb13c71e2903806dabd6",
+      "mentionsHg724": false,
+      "cameraOrExposureMentions": [
+        {
+          "token": "RecordOrPreview",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 68
+        },
+        {
+          "token": "setRecordOrPreview",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 68
+        },
+        {
+          "token": "RecordOrPreview",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 256
+        },
+        {
+          "token": "setRecordOrPreview",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 256
+        }
+      ],
+      "references": [
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 68,
+          "invokeText": "v0, v2, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setRecordOrPreview(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 78,
+          "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setStartOrStop(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 86,
+          "invokeText": "v0, v2, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setIsTripod(Z)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-virtual/range",
+          "instructionByteOffset": 150,
+          "invokeText": "v2 ... v7, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->addRoadPoint(F F F F F)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 172,
+          "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->start(Ldji/midware/interfaces/DJIDataCallBack;)V"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 256,
+          "invokeText": "v0, v2, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setRecordOrPreview(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 264,
+          "invokeText": "v0, v2, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setStartOrStop(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 284,
+          "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->start(Ldji/midware/interfaces/DJIDataCallBack;)V"
+        }
+      ]
+    },
+    {
+      "segment": 3,
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "sendToDeviceStart",
+      "descriptor": "(I Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "instructionSha256": "35606af2c1f59be5d768735cdcfdc5bce2285cfbdad4dda6773fb4497135c918",
+      "mentionsHg724": false,
+      "cameraOrExposureMentions": [
+        {
+          "token": "RecordOrPreview",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 6
+        },
+        {
+          "token": "setRecordOrPreview",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 6
+        }
+      ],
+      "references": [
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 6,
+          "invokeText": "v0, v13, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setRecordOrPreview(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 16,
+          "invokeText": "v13, v0, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setStartOrStop(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 26,
+          "invokeText": "v13, v1, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setIsTripod(Z)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-virtual/range",
+          "instructionByteOffset": 120,
+          "invokeText": "v6 ... v11, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->addRoadPoint(F F F F F)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 132,
+          "invokeText": "v13, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->clearPoint()V"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-virtual/range",
+          "instructionByteOffset": 194,
+          "invokeText": "v2 ... v7, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->addRoadPoint(F F F F F)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-virtual/range",
+          "instructionByteOffset": 232,
+          "invokeText": "v1 ... v6, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->addRoadPoint(F F F F F)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 248,
+          "invokeText": "v13, v14, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->start(Ldji/midware/interfaces/DJIDataCallBack;)V"
+        }
+      ]
+    },
+    {
+      "segment": 3,
+      "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+      "method": "sendToDeviceStop",
+      "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+      "instructionSha256": "0b0e73326b4fe2167959d93e85e38d993b93a44278d0e8766167dc1a43e27260",
+      "mentionsHg724": false,
+      "cameraOrExposureMentions": [],
+      "references": [
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 14,
+          "invokeText": "v0, v1, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->setStartOrStop(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+        },
+        {
+          "target": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+          "operation": "invoke-virtual",
+          "instructionByteOffset": 24,
+          "invokeText": "v0, v3, Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;->start(Ldji/midware/interfaces/DJIDataCallBack;)V"
+        }
+      ]
+    }
+  ],
+  "commands": {
+    "25": {
+      "key": "04:25",
+      "modelClass": "Ldji/midware/data/model/P3/DataGimbalSetDelayTimelapseParams;",
+      "definedInBanks": [
+        5
+      ],
+      "externalDirectCallers": [
+        {
+          "segment": 3,
+          "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+          "method": "stopFixDelayPreviewWork",
+          "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+          "mentionsHg724": false,
+          "hasCameraOrExposureMention": false
+        },
+        {
+          "segment": 3,
+          "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+          "method": "stopPathDelayPreviewWork",
+          "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+          "mentionsHg724": false,
+          "hasCameraOrExposureMention": false
+        },
+        {
+          "segment": 3,
+          "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+          "method": "stopTrackingTimeLapseWork",
+          "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+          "mentionsHg724": false,
+          "hasCameraOrExposureMention": false
+        },
+        {
+          "segment": 3,
+          "className": "Lcom/dji/ronin/ui/create/follow/CreateFollowActivity;",
+          "method": "<init>",
+          "descriptor": "()V",
+          "mentionsHg724": false,
+          "hasCameraOrExposureMention": false
+        },
+        {
+          "segment": 3,
+          "className": "Lcom/dji/ronin/ui/create/follow/CreateFollowActivity;",
+          "method": "startTimeLapse",
+          "descriptor": "()V",
+          "mentionsHg724": false,
+          "hasCameraOrExposureMention": false
+        },
+        {
+          "segment": 3,
+          "className": "Lcom/dji/ronin/ui/create/follow/CreateFollowActivity;",
+          "method": "stopTimeLapse",
+          "descriptor": "()V",
+          "mentionsHg724": false,
+          "hasCameraOrExposureMention": false
+        },
+        {
+          "segment": 3,
+          "className": "Lcom/dji/ronin/ui/create/tapgo/CreateFixDelayView;",
+          "method": "<init>",
+          "descriptor": "(Landroid/content/Context; Landroid/util/AttributeSet;)V",
+          "mentionsHg724": false,
+          "hasCameraOrExposureMention": false
+        },
+        {
+          "segment": 3,
+          "className": "Lcom/dji/ronin/ui/create/tapgo/CreateFixDelayView;",
+          "method": "sendToDeviceStart",
+          "descriptor": "(I)V",
+          "mentionsHg724": false,
+          "hasCameraOrExposureMention": false
+        },
+        {
+          "segment": 3,
+          "className": "Lcom/dji/ronin/ui/create/tapgo/CreateFixDelayView;",
+          "method": "sendToDeviceStop",
+          "descriptor": "()V",
+          "mentionsHg724": false,
+          "hasCameraOrExposureMention": false
+        },
+        {
+          "segment": 3,
+          "className": "Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;",
+          "method": "<init>",
+          "descriptor": "(Landroid/content/Context; Landroid/util/AttributeSet;)V",
+          "mentionsHg724": false,
+          "hasCameraOrExposureMention": false
+        },
+        {
+          "segment": 3,
+          "className": "Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;",
+          "method": "sendToDeviceStart",
+          "descriptor": "(I)V",
+          "mentionsHg724": false,
+          "hasCameraOrExposureMention": false
+        },
+        {
+          "segment": 3,
+          "className": "Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;",
+          "method": "sendToDeviceStop",
+          "descriptor": "()V",
+          "mentionsHg724": false,
+          "hasCameraOrExposureMention": false
+        }
+      ],
+      "startStop": {
+        "startMethods": [
+          "Lcom/dji/ronin/ui/create/follow/CreateFollowActivity;->startTimeLapse",
+          "Lcom/dji/ronin/ui/create/tapgo/CreateFixDelayView;->sendToDeviceStart",
+          "Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;->sendToDeviceStart"
+        ],
+        "stopMethods": [
+          "Lcom/dji/ronin/ui/create/follow/CreateFollowActivity;->stopTimeLapse",
+          "Lcom/dji/ronin/ui/create/tapgo/CreateFixDelayView;->sendToDeviceStop",
+          "Lcom/dji/ronin/ui/create/tapgo/CreatePathDelayView;->sendToDeviceStop"
+        ],
+        "utilsStopMethods": [
+          "Lcom/dji/ronin/ui/create/CreateUtils;->stopFixDelayPreviewWork",
+          "Lcom/dji/ronin/ui/create/CreateUtils;->stopPathDelayPreviewWork",
+          "Lcom/dji/ronin/ui/create/CreateUtils;->stopTrackingTimeLapseWork"
+        ]
+      },
+      "hg724NamedCallerCount": 0,
+      "callersWithCameraOrExposureMentions": 0,
+      "sendOpened": false
+    },
+    "37": {
+      "key": "04:37",
+      "modelClass": "Ldji/midware/data/model/P3/DataRonin2SetTimelapseParams;",
+      "definedInBanks": [
+        5
+      ],
+      "externalDirectCallers": [
+        {
+          "segment": 3,
+          "className": "Lcom/dji/ronin/ui/create/timelapse/CreateTimelapseView;",
+          "method": "<init>",
+          "descriptor": "(Landroid/content/Context; Landroid/util/AttributeSet;)V",
+          "mentionsHg724": false,
+          "hasCameraOrExposureMention": false
+        },
+        {
+          "segment": 3,
+          "className": "Lcom/dji/ronin/ui/create/timelapse/CreateTimelapseView;",
+          "method": "sendToDeviceStart",
+          "descriptor": "(I)V",
+          "mentionsHg724": false,
+          "hasCameraOrExposureMention": false
+        },
+        {
+          "segment": 3,
+          "className": "Lcom/dji/ronin/ui/create/timelapse/CreateTimelapseView;",
+          "method": "sendToDeviceStop",
+          "descriptor": "()V",
+          "mentionsHg724": false,
+          "hasCameraOrExposureMention": false
+        }
+      ],
+      "startStop": {
+        "startMethods": [
+          "Lcom/dji/ronin/ui/create/timelapse/CreateTimelapseView;->sendToDeviceStart"
+        ],
+        "stopMethods": [
+          "Lcom/dji/ronin/ui/create/timelapse/CreateTimelapseView;->sendToDeviceStop"
+        ],
+        "utilsStopMethods": []
+      },
+      "hg724NamedCallerCount": 0,
+      "callersWithCameraOrExposureMentions": 0,
+      "sendOpened": false
+    },
+    "62": {
+      "key": "04:62",
+      "modelClass": "Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+      "definedInBanks": [
+        5
+      ],
+      "externalDirectCallers": [
+        {
+          "segment": 3,
+          "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+          "method": "stopTrackPreviewWork",
+          "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+          "mentionsHg724": false,
+          "hasCameraOrExposureMention": true
+        },
+        {
+          "segment": 3,
+          "className": "Lcom/dji/ronin/ui/create/ronin2/CreateKeyPointView;",
+          "method": "<init>",
+          "descriptor": "(Landroid/content/Context; Landroid/util/AttributeSet;)V",
+          "mentionsHg724": false,
+          "hasCameraOrExposureMention": false
+        },
+        {
+          "segment": 3,
+          "className": "Lcom/dji/ronin/ui/create/ronin2/CreateKeyPointView;",
+          "method": "sendToDeviceStart",
+          "descriptor": "(I Ldji/midware/interfaces/DJIDataCallBack;)V",
+          "mentionsHg724": false,
+          "hasCameraOrExposureMention": true
+        },
+        {
+          "segment": 3,
+          "className": "Lcom/dji/ronin/ui/create/ronin2/CreateKeyPointView;",
+          "method": "sendToDeviceStop",
+          "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+          "mentionsHg724": false,
+          "hasCameraOrExposureMention": false
+        },
+        {
+          "segment": 3,
+          "className": "Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;",
+          "method": "<init>",
+          "descriptor": "(Landroid/content/Context; Landroid/util/AttributeSet;)V",
+          "mentionsHg724": false,
+          "hasCameraOrExposureMention": false
+        },
+        {
+          "segment": 3,
+          "className": "Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;",
+          "method": "previewToggle",
+          "descriptor": "()V",
+          "mentionsHg724": false,
+          "hasCameraOrExposureMention": true
+        },
+        {
+          "segment": 3,
+          "className": "Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;",
+          "method": "sendToDeviceStart",
+          "descriptor": "(I Ldji/midware/interfaces/DJIDataCallBack;)V",
+          "mentionsHg724": false,
+          "hasCameraOrExposureMention": true
+        },
+        {
+          "segment": 3,
+          "className": "Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;",
+          "method": "sendToDeviceStop",
+          "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+          "mentionsHg724": false,
+          "hasCameraOrExposureMention": false
+        },
+        {
+          "segment": 3,
+          "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+          "method": "<init>",
+          "descriptor": "(Landroid/content/Context; Landroid/util/AttributeSet;)V",
+          "mentionsHg724": false,
+          "hasCameraOrExposureMention": false
+        },
+        {
+          "segment": 3,
+          "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+          "method": "previewToggle",
+          "descriptor": "()V",
+          "mentionsHg724": false,
+          "hasCameraOrExposureMention": true
+        },
+        {
+          "segment": 3,
+          "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+          "method": "sendToDeviceStart",
+          "descriptor": "(I Ldji/midware/interfaces/DJIDataCallBack;)V",
+          "mentionsHg724": false,
+          "hasCameraOrExposureMention": true
+        },
+        {
+          "segment": 3,
+          "className": "Lcom/dji/ronin/ui/create/track/CreateTrackView;",
+          "method": "sendToDeviceStop",
+          "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+          "mentionsHg724": false,
+          "hasCameraOrExposureMention": false
+        }
+      ],
+      "startStop": {
+        "startMethods": [
+          "Lcom/dji/ronin/ui/create/ronin2/CreateKeyPointView;->sendToDeviceStart",
+          "Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;->sendToDeviceStart",
+          "Lcom/dji/ronin/ui/create/track/CreateTrackView;->sendToDeviceStart"
+        ],
+        "stopMethods": [
+          "Lcom/dji/ronin/ui/create/ronin2/CreateKeyPointView;->sendToDeviceStop",
+          "Lcom/dji/ronin/ui/create/ronin2/track/Ronin2CreateTrackView;->sendToDeviceStop",
+          "Lcom/dji/ronin/ui/create/track/CreateTrackView;->sendToDeviceStop"
+        ],
+        "utilsStopMethods": [
+          "Lcom/dji/ronin/ui/create/CreateUtils;->stopTrackPreviewWork"
+        ]
+      },
+      "hg724NamedCallerCount": 0,
+      "callersWithCameraOrExposureMentions": 6,
+      "sendOpened": false
+    },
+    "63": {
+      "key": "04:63",
+      "modelClass": "Ldji/midware/data/model/P3/DataGimbalSetPanoramaParams;",
+      "definedInBanks": [
+        5
+      ],
+      "externalDirectCallers": [
+        {
+          "segment": 3,
+          "className": "Lcom/dji/ronin/ui/create/CreateUtils;",
+          "method": "stopPanoPreviewWork",
+          "descriptor": "(Ldji/midware/interfaces/DJIDataCallBack;)V",
+          "mentionsHg724": false,
+          "hasCameraOrExposureMention": false
+        },
+        {
+          "segment": 3,
+          "className": "Lcom/dji/ronin/ui/create/panorama/CreatePanoramaView;",
+          "method": "<init>",
+          "descriptor": "(Landroid/content/Context; Landroid/util/AttributeSet;)V",
+          "mentionsHg724": false,
+          "hasCameraOrExposureMention": false
+        },
+        {
+          "segment": 3,
+          "className": "Lcom/dji/ronin/ui/create/panorama/CreatePanoramaView;",
+          "method": "sendToDeviceStart",
+          "descriptor": "(I)V",
+          "mentionsHg724": false,
+          "hasCameraOrExposureMention": true
+        },
+        {
+          "segment": 3,
+          "className": "Lcom/dji/ronin/ui/create/panorama/CreatePanoramaView;",
+          "method": "sendToDeviceStop",
+          "descriptor": "()V",
+          "mentionsHg724": false,
+          "hasCameraOrExposureMention": false
+        }
+      ],
+      "startStop": {
+        "startMethods": [
+          "Lcom/dji/ronin/ui/create/panorama/CreatePanoramaView;->sendToDeviceStart"
+        ],
+        "stopMethods": [
+          "Lcom/dji/ronin/ui/create/panorama/CreatePanoramaView;->sendToDeviceStop"
+        ],
+        "utilsStopMethods": [
+          "Lcom/dji/ronin/ui/create/CreateUtils;->stopPanoPreviewWork"
+        ]
+      },
+      "hg724NamedCallerCount": 0,
+      "callersWithCameraOrExposureMentions": 1,
+      "sendOpened": false
+    }
+  },
+  "panoramaDoPackFields": [
+    "mLeft",
+    "mRight",
+    "mTop",
+    "mBottom",
+    "mHorizontal",
+    "mVertical",
+    "mExposure",
+    "mCommand"
+  ],
+  "trackControlApis": [
+    "setIsTripod(Z)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+    "setRecordOrPreview(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;",
+    "setStartOrStop(I)Ldji/midware/data/model/P3/DataGimbalSetTrackStatus;"
+  ],
+  "hg724NamedProgramCallers": [],
+  "newBanks01And07External": [],
+  "cameraFieldsInterleavedWithPanorama": true,
+  "trackRecordPreviewInterleaved": true,
+  "reliableStopWithCameraIsolationEstablished": false,
+  "pureGimbalProgramPrimitiveOpenable": false,
+  "programExecutionOpened": false,
+  "priorTrackPointResearch": "protocol/research/ronin-track-points-evidence.json",
+  "priorProgramEntryResearch": "protocol/research/ronin-program-entry-evidence.json",
+  "remaining": [
+    "Eight-bank scan finds Create* UI start/stop callers only; no HG724-named abstraction invokes program protocol classes.",
+    "Panorama doPack still includes mExposure; track APIs include setRecordOrPreview — camera/capture fields are not isolated.",
+    "CreateUtils stop*PreviewWork helpers exist but do not establish camera-isolated reliable stop for SDK.",
+    "Therefore no pure-gimbal program primitive is opened; ActualPose/MotorAngle separation remains as in track-point research."
+  ]
+}

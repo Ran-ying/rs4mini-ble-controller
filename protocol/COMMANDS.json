@@ -507,14 +507,15 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "当前App通用10字节点/最多6点、OR型info及外设位已静态核对；HG724调用、单位/范围、停止/相机隔离和本机效果未完成，未开放SDK发送",
+      "remaining": "当前App通用10字节点/最多6点、OR型info及外设位已静态核对；八段类外调用均在 Create UI（含 start/stop），无 HG724 具名入口。停止助手存在但相机隔离未建立，未开放 SDK 发送。",
       "officialAppAliases": [
         "SetDelayTimelapseParams"
       ],
       "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
       "programResearch": "protocol/research/ronin-program-evidence.json",
       "programEntryResearch": "protocol/research/ronin-program-entry-evidence.json",
-      "programReceiveResearch": "protocol/research/ronin-program-receive-evidence.json"
+      "programReceiveResearch": "protocol/research/ronin-program-receive-evidence.json",
+      "programPrefixResearch": "protocol/research/ronin-program-prefix-evidence.json"
     },
     {
       "key": "04:27",
@@ -677,13 +678,14 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "另一版延时最多5点、mode=1两字节、总时长覆盖首点时长已核对；与25分开，HG724调用/字段单位/完成与停止未验收，未开放SDK发送",
+      "remaining": "另一版延时最多5点等布局已核对；八段类外调用仅 CreateTimelapseView start/stop，无 HG724 具名入口。完成/停止与相机隔离未验收，未开放 SDK 发送。",
       "officialAppAliases": [
         "SetTimelapseParams"
       ],
       "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
       "programResearch": "protocol/research/ronin-program-evidence.json",
-      "programReceiveResearch": "protocol/research/ronin-program-receive-evidence.json"
+      "programReceiveResearch": "protocol/research/ronin-program-receive-evidence.json",
+      "programPrefixResearch": "protocol/research/ronin-program-prefix-evidence.json"
     },
     {
       "key": "04:38",
@@ -747,7 +749,7 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "已核对通用最多10点、UI秒数换算/角度显示、ActualPose缓存来源、预览与最终发送的首点差异及Roll固定0；物理参考系、与04:05关节的关系、型号支持、相机隔离和停止/完成仍未验收，未开放SDK发送",
+      "remaining": "路点/ActualPose 等既有证据保留；八段类外调用为 CreateTrack/KeyPoint/Ronin2Track UI，含 setRecordOrPreview，无 HG724 具名入口。相机/录制隔离与停止/完成未验收，未开放 SDK 发送。",
       "officialAppAliases": [
         "SetTrack"
       ],
@@ -756,7 +758,8 @@
       "programEntryResearch": "protocol/research/ronin-program-entry-evidence.json",
       "trackWorkflowResearch": "protocol/research/ronin-track-workflow-evidence.json",
       "programReceiveResearch": "protocol/research/ronin-program-receive-evidence.json",
-      "trackPointResearch": "protocol/research/ronin-track-points-evidence.json"
+      "trackPointResearch": "protocol/research/ronin-track-points-evidence.json",
+      "programPrefixResearch": "protocol/research/ronin-program-prefix-evidence.json"
     },
     {
       "key": "04:63",
@@ -765,14 +768,15 @@
       "responseCodec": "unknown",
       "targetEvidence": "official-app-enum",
       "implementation": [],
-      "remaining": "通用10字节混合宽度及Create UI调用已核对，含曝光/拍摄字段；型号、预览隔离和物理取消未验收，未开放SDK发送",
+      "remaining": "通用布局含曝光/拍摄字段；八段 UI 调用仍 setExposureTime/setPictures，无 HG724 具名入口。预览隔离与物理取消未验收，未开放 SDK 发送。",
       "officialAppAliases": [
         "SetPanorama"
       ],
       "officialAppEvidence": "protocol/research/ronin-2.2.2-evidence.json",
       "programResearch": "protocol/research/ronin-program-evidence.json",
       "programEntryResearch": "protocol/research/ronin-program-entry-evidence.json",
-      "programReceiveResearch": "protocol/research/ronin-program-receive-evidence.json"
+      "programReceiveResearch": "protocol/research/ronin-program-receive-evidence.json",
+      "programPrefixResearch": "protocol/research/ronin-program-prefix-evidence.json"
     },
     {
       "key": "04:64",
@@ -931,7 +935,8 @@
     "tools/research/ronin_activation_entry.py",
     "tools/research/ronin_save_prefix_trace.py",
     "tools/research/ronin_gap_prefix_trace.py",
-    "tools/research/ronin_motion_prefix_trace.py"
+    "tools/research/ronin_motion_prefix_trace.py",
+    "tools/research/ronin_program_prefix_trace.py"
   ],
   "modelIdentityResearch": "protocol/research/ronin-hg724-evidence.json",
   "codeRestorationResearch": "protocol/research/ronin-code-restoration-evidence.json",
@@ -1350,5 +1355,6 @@
   },
   "savePrefixCallerResearch": "protocol/research/ronin-save-prefix-callers-evidence.json",
   "gapPrefixResearch": "protocol/research/ronin-gap-prefix-evidence.json",
-  "motionPrefixResearch": "protocol/research/ronin-motion-prefix-evidence.json"
+  "motionPrefixResearch": "protocol/research/ronin-motion-prefix-evidence.json",
+  "programPrefixResearch": "protocol/research/ronin-program-prefix-evidence.json"
 }

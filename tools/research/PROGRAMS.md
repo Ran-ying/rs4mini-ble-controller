@@ -98,3 +98,7 @@ python/.venv/bin/python -m unittest discover -s tools/research -p test_ronin_pro
 完成/停止/断线效果及相机/外设分支隔离。本批不等于固件程序可用，不新增高级组合，全部命令门槛false。
 
 离线track向量仅接受有限float与源UI使用的0/1字段子集；不模拟全部Java int、NaN/Infinity或源单例状态。
+
+## 后续：八段程序重审（2026-10-20）
+
+见 [PROGRAM_PREFIX.md](PROGRAM_PREFIX.md)。

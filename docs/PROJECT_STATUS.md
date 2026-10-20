@@ -2,6 +2,10 @@
 
 研究方法、证据等级、下一步顺序与完成条件见 [研究路线图](RESEARCH_ROADMAP.md)。
 
+## 最新研究：程序 25/37/62/63 八段重审
+
+2026-10-20。ronin_program_prefix_trace.py：四类协议仅 Create UI 类外调用，无 HG724 具名入口；全景含 mExposure，轨迹含 setRecordOrPreview。纯稳定器原语不可开放，程序执行保持关闭。见 [PROGRAM_PREFIX.md](../tools/research/PROGRAM_PREFIX.md)。
+
 ## 最新研究：04:14/0C/4C 八段运动重审
 
 2026-10-20。ronin_motion_prefix_trace.py：0C 当前 App 为 yaw/roll/pitch uint16 LE+标志；UI send 无 roll、stop 不清零；14 仍仅基础 rotate；4C 八段 8 个类外调用、无按轴回中。均不开放新发送。见 [MOTION_PREFIX.md](../tools/research/MOTION_PREFIX.md)。

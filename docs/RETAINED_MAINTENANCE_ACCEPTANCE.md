@@ -18,3 +18,11 @@
 补测±1.0°：Pitch两轮ACK及关闭通过，最近一轮机械Pitch−0.9→0.0→−0.9；用户仍肉眼看不清。Roll一轮ACK及关闭通过，机械Roll−0.5→+0.7→−0.4，用户确认“有变化无异常”。误差和读数分辨率保留，不能把这些样本升级为所有负载精度保证或偏移持久化。
 
 离线：Node250、Python3.8/3.12各231、研究558、原生1562核心+265生命周期+3独立SDK+230GUI适配，严格TS、分层门槛和签名构建通过。已移除发送接口的生命周期测试由入口不存在检查取代；其离线协议向量仍保留。不运行实时GUI。
+
+## 下一步入口定位
+
+2026-10-20查阅[DJI RS 4 Mini官方用户手册](https://dl.djicdn.com/downloads/DJI_RS4_Mini/20250220/UM-mini/RS4_Mini_User_Manual_en.pdf)，屏幕首页区分Auto Tune与以颜色表示的Balance Status；系统设置另列Horiz Calibration。该说明不能提供BLE命令或证明旧参数37启动有效，也不能把被动平衡颜色视为旧三轴测试报告。
+
+[DJI官方帮助](https://repair.dji.com/help/content?customId=01700007797&lang=en&paperDocType=ARTICLE&re=US&spaceId=17)另列Gimbal Auto Check，并区分调参和系统校准。自检、水平校准、AUTO部件校准及system_calc不能按文字相似直接互换。
+
+下一步只请用户查看屏幕有无水平校准入口，不启动额外任务；再与固定APK的实际调用/型号条件及传输证据对齐。未建立路径之前，不盲发04:08/GYRO05、不改用04:40、不制造成功或支持/不支持结论。所有本轮BLE客户端均已关闭。

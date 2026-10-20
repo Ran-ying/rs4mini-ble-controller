@@ -1,0 +1,1357 @@
+{
+  "date": "2026-10-20",
+  "sdkVersion": "0.7.38",
+  "nativeVersion": "0.3.39",
+  "runtimeChanged": false,
+  "scope": "Node BleDevice existing SDK, continuous non-calibration hardware coverage",
+  "otherPorts": "offline vectors/regression/build only this round; previous basic hardware evidence retained",
+  "results": {
+    "settings": {
+      "port": "node",
+      "sdkVersion": "0.7.38",
+      "entry": "BleDevice",
+      "startedAt": "2026-10-20T19:17:01.536Z",
+      "finishedAt": "2026-10-20T19:17:27.971Z",
+      "exclusions": [
+        "autotune start/stop",
+        "horizontal calibration",
+        "fine tune already tested",
+        "recenter outside small sweep",
+        "nonzero motion not repeated",
+        "other-model experimental writes",
+        "unnegotiated CENTER source versions"
+      ],
+      "rows": [
+        {
+          "name": "connect",
+          "ok": true
+        },
+        {
+          "name": "deviceLayerOnly",
+          "ok": true,
+          "elapsedMs": 0
+        },
+        {
+          "name": "attitude.fresh.0",
+          "ok": true,
+          "elapsedMs": 947
+        },
+        {
+          "name": "joints.fresh.0",
+          "ok": true,
+          "elapsedMs": 1006
+        },
+        {
+          "name": "attitude.fresh.1",
+          "ok": true,
+          "elapsedMs": 988
+        },
+        {
+          "name": "joints.fresh.1",
+          "ok": true,
+          "elapsedMs": 1005
+        },
+        {
+          "name": "attitude.fresh.2",
+          "ok": true,
+          "elapsedMs": 1004
+        },
+        {
+          "name": "joints.fresh.2",
+          "ok": true,
+          "elapsedMs": 990
+        },
+        {
+          "name": "attitude.cached",
+          "ok": true,
+          "elapsedMs": 1
+        },
+        {
+          "name": "joints.cached",
+          "ok": true,
+          "elapsedMs": 0
+        },
+        {
+          "name": "telemetry.copy",
+          "ok": true,
+          "elapsedMs": 1
+        },
+        {
+          "name": "setVelocity.zero",
+          "ok": true,
+          "elapsedMs": 206
+        },
+        {
+          "name": "degreeInfo",
+          "ok": true,
+          "elapsedMs": 33
+        },
+        {
+          "name": "program.single.track",
+          "ok": true,
+          "elapsedMs": 30
+        },
+        {
+          "name": "program.single.timelapse",
+          "ok": true,
+          "elapsedMs": 29
+        },
+        {
+          "name": "program.single.panorama",
+          "ok": true,
+          "elapsedMs": 30
+        },
+        {
+          "name": "center.Ver1_1",
+          "ok": true,
+          "elapsedMs": 31
+        },
+        {
+          "name": "readParameters.knownMixedWidths",
+          "ok": true,
+          "elapsedMs": 29
+        },
+        {
+          "name": "sensitivity.echo",
+          "ok": true,
+          "elapsedMs": 300
+        },
+        {
+          "name": "sensitivity.changeRestore",
+          "ok": true,
+          "elapsedMs": 554
+        },
+        {
+          "name": "customFollow.echo",
+          "ok": true,
+          "elapsedMs": 316
+        },
+        {
+          "name": "motorSettings.echo",
+          "ok": true,
+          "elapsedMs": 315
+        },
+        {
+          "name": "axisMode.echo",
+          "ok": true,
+          "elapsedMs": 299
+        },
+        {
+          "name": "userProfile.echo",
+          "ok": true,
+          "elapsedMs": 300
+        },
+        {
+          "name": "workMode.echo",
+          "ok": true,
+          "elapsedMs": 301
+        },
+        {
+          "name": "smoothTrack.echo",
+          "ok": true,
+          "elapsedMs": 314
+        },
+        {
+          "name": "smoothTrack.pitch",
+          "ok": true,
+          "elapsedMs": 29
+        },
+        {
+          "name": "smoothTrack.roll",
+          "ok": true,
+          "elapsedMs": 30
+        },
+        {
+          "name": "smoothTrack.yaw",
+          "ok": true,
+          "elapsedMs": 29
+        },
+        {
+          "name": "Follow.mode.speed",
+          "ok": true,
+          "elapsedMs": 331
+        },
+        {
+          "name": "Follow.mode.acceleration",
+          "ok": true,
+          "elapsedMs": 314
+        },
+        {
+          "name": "Follow.mode.deadZone",
+          "ok": true,
+          "elapsedMs": 346
+        },
+        {
+          "name": "Follow.all",
+          "ok": true,
+          "elapsedMs": 30
+        },
+        {
+          "name": "Follow.axis.pitch",
+          "ok": true,
+          "elapsedMs": 30
+        },
+        {
+          "name": "Follow.axis.roll",
+          "ok": true,
+          "elapsedMs": 30
+        },
+        {
+          "name": "Follow.axis.yaw",
+          "ok": true,
+          "elapsedMs": 30
+        },
+        {
+          "name": "Follow.parameter.speed",
+          "ok": true,
+          "elapsedMs": 30
+        },
+        {
+          "name": "Follow.numeric.pitch.speed",
+          "ok": true,
+          "elapsedMs": 284
+        },
+        {
+          "name": "Follow.numeric.roll.speed",
+          "ok": true,
+          "elapsedMs": 285
+        },
+        {
+          "name": "Follow.numeric.yaw.speed",
+          "ok": true,
+          "elapsedMs": 299
+        },
+        {
+          "name": "Follow.parameter.acceleration",
+          "ok": true,
+          "elapsedMs": 30
+        },
+        {
+          "name": "Follow.numeric.pitch.acceleration",
+          "ok": true,
+          "elapsedMs": 286
+        },
+        {
+          "name": "Follow.numeric.roll.acceleration",
+          "ok": true,
+          "elapsedMs": 298
+        },
+        {
+          "name": "Follow.numeric.yaw.acceleration",
+          "ok": true,
+          "elapsedMs": 315
+        },
+        {
+          "name": "Follow.parameter.deadZone",
+          "ok": true,
+          "elapsedMs": 28
+        },
+        {
+          "name": "Follow.numeric.pitch.deadZone",
+          "ok": true,
+          "elapsedMs": 285
+        },
+        {
+          "name": "Follow.numeric.roll.deadZone",
+          "ok": true,
+          "elapsedMs": 285
+        },
+        {
+          "name": "Follow.numeric.yaw.deadZone",
+          "ok": true,
+          "elapsedMs": 286
+        },
+        {
+          "name": "Rc.mode.speed",
+          "ok": true,
+          "elapsedMs": 329
+        },
+        {
+          "name": "Rc.mode.deadZone",
+          "ok": true,
+          "elapsedMs": 315
+        },
+        {
+          "name": "Rc.mode.smoothing",
+          "ok": true,
+          "elapsedMs": 315
+        },
+        {
+          "name": "Rc.all",
+          "ok": true,
+          "elapsedMs": 30
+        },
+        {
+          "name": "Rc.axis.pitch",
+          "ok": true,
+          "elapsedMs": 45
+        },
+        {
+          "name": "Rc.axis.roll",
+          "ok": true,
+          "elapsedMs": 29
+        },
+        {
+          "name": "Rc.axis.yaw",
+          "ok": true,
+          "elapsedMs": 30
+        },
+        {
+          "name": "Rc.parameter.speed",
+          "ok": true,
+          "elapsedMs": 29
+        },
+        {
+          "name": "Rc.numeric.pitch.speed",
+          "ok": true,
+          "elapsedMs": 284
+        },
+        {
+          "name": "Rc.numeric.roll.speed",
+          "ok": true,
+          "elapsedMs": 299
+        },
+        {
+          "name": "Rc.numeric.yaw.speed",
+          "ok": true,
+          "elapsedMs": 285
+        },
+        {
+          "name": "Rc.parameter.deadZone",
+          "ok": true,
+          "elapsedMs": 31
+        },
+        {
+          "name": "Rc.numeric.pitch.deadZone",
+          "ok": true,
+          "elapsedMs": 283
+        },
+        {
+          "name": "Rc.numeric.roll.deadZone",
+          "ok": true,
+          "elapsedMs": 286
+        },
+        {
+          "name": "Rc.numeric.yaw.deadZone",
+          "ok": true,
+          "elapsedMs": 300
+        },
+        {
+          "name": "Rc.parameter.smoothing",
+          "ok": true,
+          "elapsedMs": 30
+        },
+        {
+          "name": "Rc.numeric.pitch.smoothing",
+          "ok": true,
+          "elapsedMs": 300
+        },
+        {
+          "name": "Rc.numeric.roll.smoothing",
+          "ok": true,
+          "elapsedMs": 300
+        },
+        {
+          "name": "Rc.numeric.yaw.smoothing",
+          "ok": true,
+          "elapsedMs": 285
+        },
+        {
+          "name": "motor.all",
+          "ok": true,
+          "elapsedMs": 361
+        },
+        {
+          "name": "motor.axis.pitch",
+          "ok": true,
+          "elapsedMs": 120
+        },
+        {
+          "name": "motor.axis.roll",
+          "ok": true,
+          "elapsedMs": 119
+        },
+        {
+          "name": "motor.axis.yaw",
+          "ok": true,
+          "elapsedMs": 120
+        },
+        {
+          "name": "motor.parameter.stiffness",
+          "ok": true,
+          "elapsedMs": 104
+        },
+        {
+          "name": "motor.numeric.pitch.stiffness",
+          "ok": true,
+          "elapsedMs": 287
+        },
+        {
+          "name": "motor.numeric.roll.stiffness",
+          "ok": true,
+          "elapsedMs": 299
+        },
+        {
+          "name": "motor.numeric.yaw.stiffness",
+          "ok": true,
+          "elapsedMs": 300
+        },
+        {
+          "name": "motor.parameter.strength",
+          "ok": true,
+          "elapsedMs": 90
+        },
+        {
+          "name": "motor.numeric.pitch.strength",
+          "ok": true,
+          "elapsedMs": 285
+        },
+        {
+          "name": "motor.numeric.roll.strength",
+          "ok": true,
+          "elapsedMs": 300
+        },
+        {
+          "name": "motor.numeric.yaw.strength",
+          "ok": true,
+          "elapsedMs": 285
+        },
+        {
+          "name": "motor.parameter.gyroFiltering",
+          "ok": true,
+          "elapsedMs": 90
+        },
+        {
+          "name": "motor.numeric.pitch.gyroFiltering",
+          "ok": true,
+          "elapsedMs": 301
+        },
+        {
+          "name": "motor.numeric.roll.gyroFiltering",
+          "ok": true,
+          "elapsedMs": 284
+        },
+        {
+          "name": "motor.numeric.yaw.gyroFiltering",
+          "ok": true,
+          "elapsedMs": 286
+        },
+        {
+          "name": "motor.parameter.preControl",
+          "ok": true,
+          "elapsedMs": 89
+        },
+        {
+          "name": "motor.numeric.pitch.preControl",
+          "ok": true,
+          "elapsedMs": 285
+        },
+        {
+          "name": "motor.numeric.roll.preControl",
+          "ok": true,
+          "elapsedMs": 285
+        },
+        {
+          "name": "motor.numeric.yaw.preControl",
+          "ok": true,
+          "elapsedMs": 284
+        },
+        {
+          "name": "standalone.all",
+          "ok": true,
+          "elapsedMs": 31
+        },
+        {
+          "name": "standalone.axis.pitch",
+          "ok": true,
+          "elapsedMs": 28
+        },
+        {
+          "name": "standalone.axis.roll",
+          "ok": true,
+          "elapsedMs": 30
+        },
+        {
+          "name": "standalone.axis.yaw",
+          "ok": true,
+          "elapsedMs": 30
+        },
+        {
+          "name": "standalone.parameter.speed",
+          "ok": true,
+          "elapsedMs": 29
+        },
+        {
+          "name": "standalone.single.pitch.speed",
+          "ok": true,
+          "elapsedMs": 29
+        },
+        {
+          "name": "standalone.single.roll.speed",
+          "ok": true,
+          "elapsedMs": 31
+        },
+        {
+          "name": "standalone.single.yaw.speed",
+          "ok": true,
+          "elapsedMs": 30
+        },
+        {
+          "name": "standalone.parameter.smoothing",
+          "ok": true,
+          "elapsedMs": 30
+        },
+        {
+          "name": "standalone.single.pitch.smoothing",
+          "ok": true,
+          "elapsedMs": 30
+        },
+        {
+          "name": "standalone.single.roll.smoothing",
+          "ok": true,
+          "elapsedMs": 30
+        },
+        {
+          "name": "standalone.single.yaw.smoothing",
+          "ok": true,
+          "elapsedMs": 30
+        },
+        {
+          "name": "standalone.echo.pitch.speed",
+          "ok": true,
+          "elapsedMs": 286
+        },
+        {
+          "name": "standalone.echo.roll.speed",
+          "ok": true,
+          "elapsedMs": 285
+        },
+        {
+          "name": "standalone.echo.yaw.speed",
+          "ok": true,
+          "elapsedMs": 284
+        },
+        {
+          "name": "standalone.echo.pitch.smoothing",
+          "ok": true,
+          "elapsedMs": 283
+        },
+        {
+          "name": "standalone.echo.roll.smoothing",
+          "ok": true,
+          "elapsedMs": 286
+        },
+        {
+          "name": "standalone.echo.yaw.smoothing",
+          "ok": true,
+          "elapsedMs": 285
+        },
+        {
+          "name": "callbacks",
+          "ok": true,
+          "elapsedMs": 0
+        },
+        {
+          "name": "decoder.session.0",
+          "ok": true,
+          "elapsedMs": 0
+        },
+        {
+          "name": "disconnect.0",
+          "ok": true,
+          "elapsedMs": 206
+        },
+        {
+          "name": "reconnect.0",
+          "ok": true,
+          "elapsedMs": 332
+        },
+        {
+          "name": "decoder.session.1",
+          "ok": true,
+          "elapsedMs": 0
+        },
+        {
+          "name": "disconnect.1",
+          "ok": true,
+          "elapsedMs": 206
+        },
+        {
+          "name": "reconnect.1",
+          "ok": true,
+          "elapsedMs": 750
+        },
+        {
+          "name": "decoder.session.2",
+          "ok": true,
+          "elapsedMs": 0
+        },
+        {
+          "name": "disconnect.2",
+          "ok": true,
+          "elapsedMs": 204
+        },
+        {
+          "name": "reconnect.2",
+          "ok": true,
+          "elapsedMs": 765
+        },
+        {
+          "name": "autoReconnect.enableDisable",
+          "ok": true,
+          "elapsedMs": 1
+        },
+        {
+          "name": "stop",
+          "ok": true,
+          "elapsedMs": 204
+        },
+        {
+          "name": "decoder.finalSession",
+          "ok": true,
+          "elapsedMs": 0
+        },
+        {
+          "name": "close",
+          "ok": true
+        }
+      ],
+      "counts": {
+        "notification": 603,
+        "message": 751,
+        "telemetry": 26,
+        "disconnect": 4,
+        "errors": 0,
+        "status": {
+          "abnormal": 262,
+          "program": 53
+        }
+      },
+      "passiveObserved": {
+        "tutorialStatus": false,
+        "sensorCalibrationStatus": false,
+        "externalDeviceStatus": false,
+        "peripheralStatus": false,
+        "programStatus": true,
+        "abnormalStatus": true,
+        "batteryStatus": false,
+        "handheldStickStatus": false,
+        "userParameterStatus": false,
+        "calibrationStatus": false
+      },
+      "decoderSessions": [
+        {
+          "invalidFrames": 0,
+          "discardedBytes": 0
+        },
+        {
+          "invalidFrames": 0,
+          "discardedBytes": 0
+        },
+        {
+          "invalidFrames": 0,
+          "discardedBytes": 0
+        }
+      ]
+    },
+    "motionAndReconnect": {
+      "port": "node",
+      "entry": "BleDevice",
+      "sdkVersion": "0.7.38",
+      "startedAt": "2026-10-20T19:15:53.316Z",
+      "finishedAt": "2026-10-20T19:16:11.716Z",
+      "rows": [
+        {
+          "name": "velocity.pan.outBackStop",
+          "ok": true,
+          "elapsedMs": 5010,
+          "value": {
+            "outwardDegrees": 0.34000000000003183,
+            "reverseDegrees": -0.30999999999994543,
+            "finalOffsetDegrees": 0.029999999999972715,
+            "velocityZero": true
+          }
+        },
+        {
+          "name": "velocity.tilt.outBackStop",
+          "ok": true,
+          "elapsedMs": 4995,
+          "value": {
+            "outwardDegrees": -0.8999999999999773,
+            "reverseDegrees": 0.7999999999999545,
+            "finalOffsetDegrees": -0.10000000000002274,
+            "velocityZero": true
+          }
+        },
+        {
+          "name": "velocity.roll.outBackStop",
+          "ok": true,
+          "elapsedMs": 5010,
+          "value": {
+            "outwardDegrees": 0.39999999999997726,
+            "reverseDegrees": -0.39999999999997726,
+            "finalOffsetDegrees": 0,
+            "velocityZero": true
+          }
+        },
+        {
+          "name": "decoder.beforeLinkDrop",
+          "ok": true,
+          "elapsedMs": 0
+        },
+        {
+          "name": "autoReconnect.realLinkDrop.0",
+          "ok": true,
+          "elapsedMs": 1004,
+          "value": {
+            "restored": true,
+            "attempt": 1,
+            "velocityZero": true,
+            "joints": {
+              "pitch": 3.7,
+              "roll": -0.5,
+              "yaw": 90.71,
+              "unit": "deg",
+              "raw": {
+                "pitch": 37,
+                "roll": -5,
+                "yaw": 9071
+              },
+              "timestamp": 1792523769516
+            }
+          }
+        },
+        {
+          "name": "autoReconnect.realLinkDrop.1",
+          "ok": true,
+          "elapsedMs": 1006,
+          "value": {
+            "restored": true,
+            "attempt": 1,
+            "velocityZero": true,
+            "joints": {
+              "pitch": 3.7,
+              "roll": -0.5,
+              "yaw": 90.71,
+              "unit": "deg",
+              "raw": {
+                "pitch": 37,
+                "roll": -5,
+                "yaw": 9071
+              },
+              "timestamp": 1792523770521
+            }
+          }
+        },
+        {
+          "name": "autoReconnect.realLinkDrop.2",
+          "ok": true,
+          "elapsedMs": 990,
+          "value": {
+            "restored": true,
+            "attempt": 1,
+            "velocityZero": true,
+            "joints": {
+              "pitch": 3.7,
+              "roll": -0.5,
+              "yaw": 90.71,
+              "unit": "deg",
+              "raw": {
+                "pitch": 37,
+                "roll": -5,
+                "yaw": 9071
+              },
+              "timestamp": 1792523771511
+            }
+          }
+        },
+        {
+          "name": "noGuardOrBackgroundError",
+          "ok": true,
+          "elapsedMs": 0
+        },
+        {
+          "name": "close",
+          "ok": true
+        }
+      ],
+      "samples": [
+        {
+          "label": "baseline",
+          "joints": {
+            "pitch": 3.8,
+            "roll": -0.4,
+            "yaw": 90.68,
+            "unit": "deg",
+            "raw": {
+              "pitch": 38,
+              "roll": -4,
+              "yaw": 9068
+            },
+            "timestamp": 1792523753496
+          }
+        },
+        {
+          "label": "pan",
+          "before": {
+            "pitch": 3.8,
+            "roll": -0.6,
+            "yaw": 90.68,
+            "unit": "deg",
+            "raw": {
+              "pitch": 38,
+              "roll": -6,
+              "yaw": 9068
+            },
+            "timestamp": 1792523754504
+          },
+          "positions": [
+            {
+              "pitch": 3.8,
+              "roll": -0.5,
+              "yaw": 91.02,
+              "unit": "deg",
+              "raw": {
+                "pitch": 38,
+                "roll": -5,
+                "yaw": 9102
+              },
+              "timestamp": 1792523756511
+            },
+            {
+              "pitch": 3.8,
+              "roll": -0.4,
+              "yaw": 90.71,
+              "unit": "deg",
+              "raw": {
+                "pitch": 38,
+                "roll": -4,
+                "yaw": 9071
+              },
+              "timestamp": 1792523758506
+            }
+          ]
+        },
+        {
+          "label": "tilt",
+          "before": {
+            "pitch": 3.8,
+            "roll": -0.5,
+            "yaw": 90.71,
+            "unit": "deg",
+            "raw": {
+              "pitch": 38,
+              "roll": -5,
+              "yaw": 9071
+            },
+            "timestamp": 1792523759511
+          },
+          "positions": [
+            {
+              "pitch": 2.9,
+              "roll": -0.5,
+              "yaw": 90.71,
+              "unit": "deg",
+              "raw": {
+                "pitch": 29,
+                "roll": -5,
+                "yaw": 9071
+              },
+              "timestamp": 1792523761506
+            },
+            {
+              "pitch": 3.7,
+              "roll": -0.5,
+              "yaw": 90.71,
+              "unit": "deg",
+              "raw": {
+                "pitch": 37,
+                "roll": -5,
+                "yaw": 9071
+              },
+              "timestamp": 1792523763501
+            }
+          ]
+        },
+        {
+          "label": "roll",
+          "before": {
+            "pitch": 3.7,
+            "roll": -0.5,
+            "yaw": 90.71,
+            "unit": "deg",
+            "raw": {
+              "pitch": 37,
+              "roll": -5,
+              "yaw": 9071
+            },
+            "timestamp": 1792523764506
+          },
+          "positions": [
+            {
+              "pitch": 3.8,
+              "roll": -0.1,
+              "yaw": 90.71,
+              "unit": "deg",
+              "raw": {
+                "pitch": 38,
+                "roll": -1,
+                "yaw": 9071
+              },
+              "timestamp": 1792523766501
+            },
+            {
+              "pitch": 3.7,
+              "roll": -0.5,
+              "yaw": 90.71,
+              "unit": "deg",
+              "raw": {
+                "pitch": 37,
+                "roll": -5,
+                "yaw": 9071
+              },
+              "timestamp": 1792523768511
+            }
+          ]
+        }
+      ],
+      "reconnectEvents": [
+        "idle",
+        "waiting",
+        "connecting",
+        "restored",
+        "disabled",
+        "idle",
+        "waiting",
+        "connecting",
+        "restored",
+        "disabled",
+        "idle",
+        "waiting",
+        "connecting",
+        "restored",
+        "disabled",
+        "disabled"
+      ],
+      "guardTrip": false,
+      "errors": [],
+      "exclusions": [
+        "calibration",
+        "fine tune",
+        "recenter",
+        "composed motion",
+        "nonzero motion during link drop"
+      ]
+    },
+    "experimentalQueries": {
+      "port": "node",
+      "entry": "BleDevice",
+      "sdkVersion": "0.7.38",
+      "sourceProfile": "rs3",
+      "rows": [
+        {
+          "name": "experimental.query.version",
+          "ok": true,
+          "flags": 128,
+          "commandSet": 0,
+          "commandId": 1,
+          "payloadLength": 30,
+          "semanticsVerified": false
+        },
+        {
+          "name": "experimental.query.position",
+          "ok": false,
+          "code": "RS4MINI_RESPONSE_TIMEOUT"
+        },
+        {
+          "name": "experimental.query.controlStatus",
+          "ok": true,
+          "flags": 128,
+          "commandSet": 4,
+          "commandId": 11,
+          "payloadLength": 6,
+          "semanticsVerified": false
+        },
+        {
+          "name": "experimental.query.type",
+          "ok": true,
+          "flags": 128,
+          "commandSet": 4,
+          "commandId": 28,
+          "payloadLength": 1,
+          "semanticsVerified": false
+        },
+        {
+          "name": "decoder",
+          "ok": true
+        },
+        {
+          "name": "close",
+          "ok": true
+        }
+      ],
+      "targetModelLayoutVerified": false
+    }
+  },
+  "offline": {
+    "node": 243,
+    "python38": 223,
+    "research": 558,
+    "nativeCore": 1562,
+    "nativeLifecycle": 256,
+    "nativeStandalone": 3,
+    "nativeGuiAdapter": 210,
+    "types": "passed",
+    "boundaries": "passed",
+    "signedBuild": "passed"
+  },
+  "limits": {
+    "calibration": "excluded by user this round; earlier three-port completion evidence retained",
+    "fineTune": "earlier measured plus user-observed evidence; not repeated",
+    "recenter": "pending explicit authorization for current yaw near90deg, beyond small sweep",
+    "experimentalPosition": "repeat RS4MINI_RESPONSE_TIMEOUT; raw other-model candidate, not supported target position query",
+    "experimentalOtherQueries": "correlated raw replies only, target layout not verified",
+    "experimentalWrites": "sleep/other-model motion excluded; no new send unlock",
+    "center": "Ver1_1 only; other source-version layouts/session negotiation not device verified",
+    "settings": "same-value write/readback only except sensitivity toggle+restore; not every value/mode or reboot persistence",
+    "programRequests": "ACK only, does not verify a new push or physical program execution",
+    "passiveStatuses": "only abnormal/program observed this round; absent streams not hardware decode passes",
+    "reconnect": "static link-loss injection; zero velocity retained, no nonzero stream replay tested this round"
+  },
+  "inventoryComplete": false,
+  "advancedDevelopmentAllowed": false,
+  "allRetainedSdkHardwareAccepted": false,
+  "publicEntryCoverage": {
+    "BleDevice": [
+      {
+        "name": "connected",
+        "kind": "getter",
+        "evidence": "state_observation"
+      },
+      {
+        "name": "activeOperation",
+        "kind": "getter",
+        "evidence": "state_observation"
+      },
+      {
+        "name": "velocity",
+        "kind": "getter",
+        "evidence": "state_observation"
+      },
+      {
+        "name": "latestTelemetry",
+        "kind": "getter",
+        "evidence": "state_observation"
+      },
+      {
+        "name": "reconnectState",
+        "kind": "getter",
+        "evidence": "state_observation"
+      },
+      {
+        "name": "connect",
+        "kind": "method",
+        "evidence": "this_round_current_options"
+      },
+      {
+        "name": "enableAutoReconnect",
+        "kind": "method",
+        "evidence": "this_round_current_options"
+      },
+      {
+        "name": "disableAutoReconnect",
+        "kind": "method",
+        "evidence": "this_round_current_options"
+      },
+      {
+        "name": "setVelocity",
+        "kind": "method",
+        "evidence": "this_round_current_options"
+      },
+      {
+        "name": "requestDegreeInfo",
+        "kind": "method",
+        "evidence": "this_round_current_options"
+      },
+      {
+        "name": "getAttitude",
+        "kind": "method",
+        "evidence": "this_round_current_options"
+      },
+      {
+        "name": "getJointAngles",
+        "kind": "method",
+        "evidence": "this_round_current_options"
+      },
+      {
+        "name": "stop",
+        "kind": "method",
+        "evidence": "this_round_current_options"
+      },
+      {
+        "name": "recenter",
+        "kind": "method",
+        "evidence": "pending_full_motion_authorization"
+      },
+      {
+        "name": "disconnect",
+        "kind": "method",
+        "evidence": "this_round_current_options"
+      },
+      {
+        "name": "close",
+        "kind": "method",
+        "evidence": "this_round_current_options"
+      }
+    ],
+    "AppCommands": [
+      {
+        "name": "tutorialStatus",
+        "kind": "getter",
+        "evidence": "no_stream_this_round_offline_codec_evidence_only"
+      },
+      {
+        "name": "sensorCalibrationStatus",
+        "kind": "getter",
+        "evidence": "no_stream_this_round_offline_codec_evidence_only"
+      },
+      {
+        "name": "externalDeviceStatus",
+        "kind": "getter",
+        "evidence": "no_stream_this_round_offline_codec_evidence_only"
+      },
+      {
+        "name": "peripheralStatus",
+        "kind": "getter",
+        "evidence": "no_stream_this_round_offline_codec_evidence_only"
+      },
+      {
+        "name": "programStatus",
+        "kind": "getter",
+        "evidence": "passive_stream_observed_this_round"
+      },
+      {
+        "name": "abnormalStatus",
+        "kind": "getter",
+        "evidence": "passive_stream_observed_this_round"
+      },
+      {
+        "name": "batteryStatus",
+        "kind": "getter",
+        "evidence": "no_stream_this_round_offline_codec_evidence_only"
+      },
+      {
+        "name": "handheldStickStatus",
+        "kind": "getter",
+        "evidence": "no_stream_this_round_offline_codec_evidence_only"
+      },
+      {
+        "name": "userParameterStatus",
+        "kind": "getter",
+        "evidence": "no_stream_this_round_offline_codec_evidence_only"
+      },
+      {
+        "name": "profile",
+        "kind": "getter",
+        "evidence": "state_observation"
+      },
+      {
+        "name": "calibrationStatus",
+        "kind": "getter",
+        "evidence": "no_stream_this_round_offline_codec_evidence_only"
+      },
+      {
+        "name": "useProfile",
+        "kind": "method",
+        "evidence": "this_round_current_options"
+      },
+      {
+        "name": "getCenterActivationInfo",
+        "kind": "method",
+        "evidence": "this_round_current_options"
+      },
+      {
+        "name": "sendProgramStatusRequest",
+        "kind": "method",
+        "evidence": "this_round_current_options"
+      },
+      {
+        "name": "sendComponentCalibrationRequest",
+        "kind": "method",
+        "evidence": "user_excluded_this_round_previous_hardware_completion"
+      },
+      {
+        "name": "sendFineTuneRequest",
+        "kind": "method",
+        "evidence": "not_repeated_previous_measured_and_user_observed"
+      },
+      {
+        "name": "getUserProfile",
+        "kind": "method",
+        "evidence": "this_round_current_options"
+      },
+      {
+        "name": "getWorkMode",
+        "kind": "method",
+        "evidence": "this_round_current_options"
+      },
+      {
+        "name": "sendUserProfileRequest",
+        "kind": "method",
+        "evidence": "this_round_current_options"
+      },
+      {
+        "name": "sendWorkModeRequest",
+        "kind": "method",
+        "evidence": "this_round_current_options"
+      },
+      {
+        "name": "getSmoothTrackAxes",
+        "kind": "method",
+        "evidence": "this_round_current_options"
+      },
+      {
+        "name": "sendSmoothTrackAxesRequest",
+        "kind": "method",
+        "evidence": "this_round_current_options"
+      },
+      {
+        "name": "getAxisMode",
+        "kind": "method",
+        "evidence": "this_round_current_options"
+      },
+      {
+        "name": "sendAxisModeRequest",
+        "kind": "method",
+        "evidence": "this_round_current_options"
+      },
+      {
+        "name": "readParameters",
+        "kind": "method",
+        "evidence": "this_round_current_options"
+      },
+      {
+        "name": "getFollowSensitivity",
+        "kind": "method",
+        "evidence": "this_round_current_options"
+      },
+      {
+        "name": "getStandaloneTuning",
+        "kind": "method",
+        "evidence": "this_round_current_options"
+      },
+      {
+        "name": "setStandaloneTuning",
+        "kind": "method",
+        "evidence": "this_round_current_options"
+      },
+      {
+        "name": "getFollowTuning",
+        "kind": "method",
+        "evidence": "this_round_current_options"
+      },
+      {
+        "name": "setFollowTuning",
+        "kind": "method",
+        "evidence": "this_round_current_options"
+      },
+      {
+        "name": "getRcTuning",
+        "kind": "method",
+        "evidence": "this_round_current_options"
+      },
+      {
+        "name": "setRcTuning",
+        "kind": "method",
+        "evidence": "this_round_current_options"
+      },
+      {
+        "name": "getMotorTuning",
+        "kind": "method",
+        "evidence": "this_round_current_options"
+      },
+      {
+        "name": "setMotorTuning",
+        "kind": "method",
+        "evidence": "this_round_current_options"
+      },
+      {
+        "name": "sendAutoTuneRequest",
+        "kind": "method",
+        "evidence": "user_excluded_this_round_previous_hardware_completion"
+      },
+      {
+        "name": "getFollowSettings",
+        "kind": "method",
+        "evidence": "this_round_current_options"
+      },
+      {
+        "name": "setFollowSettings",
+        "kind": "method",
+        "evidence": "this_round_current_options"
+      },
+      {
+        "name": "getRcSettings",
+        "kind": "method",
+        "evidence": "this_round_current_options"
+      },
+      {
+        "name": "setRcSettings",
+        "kind": "method",
+        "evidence": "this_round_current_options"
+      },
+      {
+        "name": "getCustomFollowSettings",
+        "kind": "method",
+        "evidence": "this_round_current_options"
+      },
+      {
+        "name": "getMotorSettings",
+        "kind": "method",
+        "evidence": "this_round_current_options"
+      },
+      {
+        "name": "setCustomFollowSettings",
+        "kind": "method",
+        "evidence": "this_round_current_options"
+      },
+      {
+        "name": "setMotorSettings",
+        "kind": "method",
+        "evidence": "this_round_current_options"
+      },
+      {
+        "name": "setFollowSensitivity",
+        "kind": "method",
+        "evidence": "this_round_current_options"
+      }
+    ],
+    "ExperimentalDevice": [
+      {
+        "name": "profile",
+        "kind": "getter",
+        "evidence": "state_observation"
+      },
+      {
+        "name": "status",
+        "kind": "getter",
+        "evidence": "state_observation"
+      },
+      {
+        "name": "useProfile",
+        "kind": "method",
+        "evidence": "this_round_current_options"
+      },
+      {
+        "name": "query",
+        "kind": "method",
+        "evidence": "three_raw_responses_position_timeout"
+      },
+      {
+        "name": "setSleep",
+        "kind": "method",
+        "evidence": "other_model_write_excluded_no_target_support_proof"
+      }
+    ]
+  }
+}

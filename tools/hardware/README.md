@@ -31,3 +31,7 @@ RS4MINI_SDK_TEST=yes RS4MINI_SDK_MAINTENANCE=fine-tune sh tools/hardware/sdk-mai
 其他项目需同时替换维护变量与Python命令位置参数。原生构建不初始化蓝牙，--run还需独立选择维护变量；只链接Foundation/CoreBluetooth及设备SDK。私有完整帧/测量记录仅存忽略目录node/captures，stdout为不含设备身份的结果摘要。
 
 completed/terminal与native rows表示SDK响应和测量结果，不自动填写physicalObservedByUser。最终实机效果由人工观察单独记入[验收队列](../../docs/SDK_ACCEPTANCE_QUEUE.md)。单次例程超时后不会猜测固件已停止；完成提示需要人手确认。遇超时/异常不自动开始下一任务。
+
+## Node连续非校准全覆盖
+
+见[本轮范围、结果和复现](../../docs/SDK_NODE_CONTINUOUS_ACCEPTANCE.md)。`sdk-node-continuous.mjs`连续原值写回/回读及查询/显式重连；`sdk-node-small-motion.mjs`仅设备SDK三轴短时速度/停止和静态掉线自动重连；`sdk-node-research-queries.mjs`只读实验查询并保留当前position超时。分别显式启用相应授权开关。均不运行校准、不调用高级组合；原始帧在忽略目录，stdout去除身份。`sdk-node-recenter.mjs`要求独立完整回中授权，不自动串入。

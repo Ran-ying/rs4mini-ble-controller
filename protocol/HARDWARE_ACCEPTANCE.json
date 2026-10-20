@@ -336,12 +336,13 @@
     },
     {
       "id": "component.write",
-      "title": "AUTO 部件校准请求",
+      "title": "水平校准（AUTO）",
       "write": true,
       "state": "physical_completion_observed",
       "evidence": [
         "AUTO00 ACK statusCode0 with empty business body; calibration=null, businessComplete=false. 168 passive04:30 samples over17.13s:158 PROCESSING,10 COMPLETE; final rawProgress100/rawStatus0. 60s observation, clean close. Temporal association observed; no request ID or independent physical metrology.",
-        "Current retest04:30 PROCESSING->COMPLETE100; user confirmed calibration completed and returned to normal screen; manual acknowledgement outside SDK."
+        "Current retest04:30 PROCESSING->COMPLETE100; user confirmed calibration completed and returned to normal screen; manual acknowledgement outside SDK.",
+        "User-requested repeat AUTO00 again04:30 COMPLETE100, clean close. User explicitly identified device menu name as horizontal calibration; device separately names07 manual fine tune. API names retained; no new command or request-ID guarantee."
       ]
     },
     {

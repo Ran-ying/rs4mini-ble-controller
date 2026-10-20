@@ -1,5 +1,7 @@
 # 部件校准候选请求（SDK0.7.30 / 原生0.3.30 build33）
 
+2026-10-20实机名称确认：用户在重复AUTO00测试时确认，RS4 Mini屏幕将此功能称为“水平校准”。本文历史名“AUTO部件校准”指同一请求；现有API名称保留兼容。两轮收到04:30 COMPLETE100，用户确认完成；设备结果提示需手动确认。该会话名称证据不改变报文不含请求关联ID的边界，也不声称其他型号均同名。
+
 应用仍使用统一高级入口RS4Mini（原生RSGimbal），设备命令通过appCommands封装。显式选择`ronin-2.2.2`来源后，`sendComponentCalibrationRequest({sourcePart:'AUTO'})`发送已定位HG724高级校准入口的04:08/00；这不是原有`sendAutoCalibrationRequest()`的system_calc/index36，也不是6A自动调参或30传感器状态。只有AUTO发送可用，不按完整部件枚举自动开放其他动作。
 
 ```js

@@ -26,3 +26,16 @@
 [DJI官方帮助](https://repair.dji.com/help/content?customId=01700007797&lang=en&paperDocType=ARTICLE&re=US&spaceId=17)另列Gimbal Auto Check，并区分调参和系统校准。自检、水平校准、AUTO部件校准及system_calc不能按文字相似直接互换。
 
 下一步只请用户查看屏幕有无水平校准入口，不启动额外任务；再与固定APK的实际调用/型号条件及传输证据对齐。未建立路径之前，不盲发04:08/GYRO05、不改用04:40、不制造成功或支持/不支持结论。所有本轮BLE客户端均已关闭。
+
+## 用户补充与名称纠正
+
+用户已在设备系统设置找到“水平校准”，但对先前运行的判断来自动作，不记得当时具体文字或轮次；因此没有确证AUTO00就是屏幕自动水平校准。
+
+| 实际SDK调用 | 当前可用名称 | 验收边界 |
+|---|---|---|
+| sendFineTuneRequest(axis:roll) | Roll手动水平微调 | 用户确认±1°有变化无异常；不能因此称自动水平校准完成 |
+| sendFineTuneRequest(axis:pitch) | Pitch俯仰微调 | ACK及机械角正反变化，用户肉眼看不清 |
+| sendComponentCalibrationRequest(sourcePart:AUTO) | AUTO传感器/部件校准 | 04:30 COMPLETE100及用户完成确认；与屏幕自动水平校准的等同性待核 |
+| sendAutoCalibrationRequest() | 旧system_calc参数校准请求 | 本机无可观察效果；不是已验证的屏幕水平校准入口 |
+
+自动调参6A调整电机；传感器AUTO08、Roll手动水平微调07、旧system_calc参数36分别记录，不混用名称或完成证据。不能概括为“水平校准都没有做”，也不能反向把可见倾斜动作当作自动水平校准身份的证明。下一步优先定位屏幕自动水平校准对应路径；不重复无反应的旧参数请求。

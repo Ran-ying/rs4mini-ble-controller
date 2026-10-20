@@ -406,7 +406,7 @@ export class BleDevice {
       await this.reconnectTask;
       if (session && this.session === session) {
         this._invalidate(session, failure('RS4MINI_DISCONNECTED', 'RS 4 Mini disconnected'));
-        try { if (session.rx) await bounded(() => session.rx.unsubscribeAsync(), this.ioTimeoutMs); } catch (reason) { error ||= reason; }
+        try { if (session.rx && this.adapter.unsubscribeBeforeDisconnect !== false) await bounded(() => session.rx.unsubscribeAsync(), this.ioTimeoutMs); } catch (reason) { error ||= reason; }
         try { await bounded(() => session.peripheral.disconnectAsync(), this.ioTimeoutMs); } catch (reason) { error ||= reason; }
         this._emit('onDisconnect');
       }

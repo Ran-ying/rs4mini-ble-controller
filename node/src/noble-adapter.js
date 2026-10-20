@@ -3,7 +3,13 @@ import noble from '@stoprocent/noble';
 // Each controller gets its own lazy Noble instance. Closing an unused controller
 // must not initialize Bluetooth, and closing one must not stop a future instance.
 export class NobleAdapter {
-  constructor(native) { this.native = native; this.started = false; this.stopped = false; }
+  constructor(native) {
+    this.native = native; this.started = false; this.stopped = false;
+    // CoreBluetooth cancels this central's connection and notification delivery
+    // together. Explicit setNotify(false) fails on the tested DJI characteristic.
+    // Other transports retain their explicit unsubscribe-before-disconnect path.
+    this.unsubscribeBeforeDisconnect = process.platform !== 'darwin';
+  }
   get state() { this.started = true; return this.native.state; }
   on(event, callback) { this.native.on(event, callback); return this; }
   removeListener(event, callback) { this.native.removeListener(event, callback); return this; }

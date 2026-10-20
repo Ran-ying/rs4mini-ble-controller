@@ -3,6 +3,7 @@ import asyncio
 import copy
 import inspect
 import math
+import sys
 import time
 from contextlib import suppress
 from bleak import BleakClient, BleakScanner
@@ -45,6 +46,10 @@ class BleDevice(ReconnectMixin):
         self.decoder = DumlStreamDecoder()
         self.onNotification = self.onMessage = self.onTelemetry = self.onDisconnect = self.onError = None
         self._factory = client_factory or (lambda address, **kwargs: BleakClient(cached_device(address), **kwargs))
+        # Default CoreBluetooth disconnect cancels this client's notifications.
+        # The tested DJI characteristic rejects an explicit stop_notify write.
+        # Injected clients and other platforms retain explicit unsubscribe.
+        self._unsubscribe_before_disconnect = sys.platform != 'darwin' or client_factory is not None
         self._scanner = scanner or BleakScanner
         self._connectTask = self._disconnectTask = self._closeTask = self._stopTask = self._streamTask = None
         self._context = self._operation = self._streamStop = self._writeLock = None
@@ -497,7 +502,8 @@ class BleDevice(ReconnectMixin):
             self.deviceName = self._latestTelemetry = None
             if candidate:
                 try:
-                    await self._bounded(candidate.stop_notify(NOTIFY), self.ioTimeoutMs / 1000)
+                    if self._unsubscribe_before_disconnect:
+                        await self._bounded(candidate.stop_notify(NOTIFY), self.ioTimeoutMs / 1000)
                 except Exception as reason:
                     error = error or reason
                 try:

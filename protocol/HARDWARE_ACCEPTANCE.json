@@ -2,7 +2,7 @@
   "sessionDate": "2026-10-20",
   "scope": "existing SDK methods, distinct from unknown protocol inventory",
   "fullAcceptanceComplete": false,
-  "sourceVersion": "0.7.33 / native0.3.35",
+  "sourceVersion": "Node/Python0.7.35 / native0.3.36",
   "operations": [
     {
       "id": "sensitivity.read",
@@ -208,7 +208,9 @@
       "write": false,
       "state": "partial",
       "evidence": [
-        "12 filtered single reads pass; default bulk returns first record only"
+        "12 filtered single reads pass; default bulk returns first record only",
+        "Retest single Pitch/stiffness succeeds; axis4/parameter3/all12 selections each return only first record, strict parser rejects incomplete context.",
+        "Independent Python3.12/Bleak reproduced same failure while before/after sensitivity reads pass; cleanup fixed and verified separately."
       ]
     },
     {
@@ -244,7 +246,9 @@
       "write": false,
       "state": "failed_timeout",
       "evidence": [
-        "No correlated response with 1.8s then 6s deadlines"
+        "No correlated response with 1.8s then 6s deadlines",
+        "Retest:10s no response; same-session before/after sensitivity read succeeds; raw capture contains no reply with this command ID.",
+        "Independent Python3.12/Bleak reproduced same failure while before/after sensitivity reads pass; cleanup fixed and verified separately."
       ]
     },
     {
@@ -280,7 +284,9 @@
       "write": false,
       "state": "failed_timeout_push_available",
       "evidence": [
-        "Explicit6E queries timed out before/during/after run; passive6E progress and Complete100 arrive"
+        "Explicit6E queries timed out before/during/after run; passive6E progress and Complete100 arrive",
+        "Retest:10s no response; same-session before/after sensitivity read succeeds; raw capture contains no reply with this command ID.",
+        "Independent Python3.12/Bleak reproduced same failure while before/after sensitivity reads pass; cleanup fixed and verified separately."
       ]
     },
     {
@@ -307,7 +313,8 @@
       "write": true,
       "state": "device_progress_complete_observed",
       "evidence": [
-        "Start/stop sent; source6E Processing20..80 then Complete100 after~28s; stop after completion, firmware-abort test pending"
+        "Start/stop sent; source6E Processing20..80 then Complete100 after~28s; stop after completion, firmware-abort test pending",
+        "Subsequent stop at Processing30 observed Complete10025ms later;40s observation; no independent abort flag."
       ]
     },
     {
@@ -316,7 +323,8 @@
       "write": true,
       "state": "acknowledged_stuck_start",
       "evidence": [
-        "ACK0,30successive source status START1, no completion; user explicitly power-cycled and confirmed settled before further maintenance"
+        "ACK0,30successive source status START1, no completion; user explicitly power-cycled and confirmed settled before further maintenance",
+        "After confirmed power cycle and later AUTO completion, parameter remains START1; persistent/request-echo hypothesis, not proof ongoing task."
       ]
     },
     {
@@ -334,7 +342,8 @@
       "write": true,
       "state": "acknowledged_stuck_testing",
       "evidence": [
-        "ACK0,30successive TESTING64 with empty axis results; no completion/physical report; awaiting user power-cycle before next maintenance"
+        "ACK0,30successive TESTING64 with empty axis results; no completion/physical report; awaiting user power-cycle before next maintenance",
+        "User later confirmed second power cycle/settled. Subsequent read still TESTING64/null axes, so do not infer active task from register alone."
       ]
     },
     {
@@ -370,7 +379,8 @@
       "write": true,
       "state": "sent_no_new_requested_stream",
       "evidence": [
-        "6 non-camera names across3source groups sent; 8s no new parameter/peripheral stream; transport send is not remote subscription proof"
+        "6 non-camera names across3source groups sent; 8s no new parameter/peripheral stream; transport send is not remote subscription proof",
+        "Retest isolated single-key MotorEnabled then PeripheralPosPitch,10s each: no new corresponding stream, only existing abnormal/program statuses; close clean."
       ]
     },
     {
@@ -393,8 +403,8 @@
     }
   ],
   "ports": {
-    "node": "42 allowed App operations invoked, motion/reconnect samples recorded; functional failures and cleanup error remain.",
-    "python": "Python3.12 full small-motion session passed; fixed Python3.8.10 cached UUID default path real connect/fresh attitude/joints/sensitivity1/close passed, invalidFrames0.",
+    "node": "Node0.7.35 CoreBluetooth cleanup retest passes. Handle/6E10s timeout and multi-record motor response remain failures.",
+    "python": "0.7.35 default macOS disconnect fix; both3.8/3.12 actual close passed. Independent3.12 motor bulk/handle/6E failures reproduced; prior3.12 small-motion evidence retained.",
     "native": "0.3.36 actual connection, Pitch/stiffness41 read, controls recovered, Pan90.47->target92.47/settled92.21->saved home90.57, disconnect passed.",
     "web": "removed_by_user_2026-10-20; historical chooser failure retained in session docs; no unpairing"
   },
@@ -425,14 +435,13 @@
         "three automatic reconnection rounds restore zero velocity"
       ],
       "remaining": [
-        "recenter would leave small-sweep scope (current yaw near90deg)",
-        "cleanup Unknown error after repeated reconnect"
+        "recenter would leave small-sweep scope (current yaw near90deg)"
       ],
-      "cleanup": "Final close after3 reconnect rounds reports Unknown error; decoder invalidFrames0/discardedBytes0; do not suppress or claim clean shutdown."
+      "cleanup": "Historical unsubscribe error preserved. Node0.7.35 three independent close sessions and final close after three static reconnect rounds pass; listener removal and manager stop verified."
     }
   },
   "cleanupAfterSystemDisconnect": "Python full session and Node subscription/settings/autotune sessions close cleanly after authorized OS HID disconnect; do not suppress earlier unsubscribe errors",
-  "targetRelease": "0.7.34 / native0.3.36",
+  "targetRelease": "Node/Python0.7.35 / native0.3.36",
   "experimental": {
     "query.version": "raw response received",
     "query.position": "RS4MINI_RESPONSE_TIMEOUT",
@@ -465,5 +474,45 @@
     "firmwareAbortVerified": false,
     "close": "Unknown error; connected=false, closed=true"
   },
-  "appExecutionCompleteDefinition": "All42 user-permitted named App operations invoked; NOT allPassed/fullAcceptanceComplete."
+  "appExecutionCompleteDefinition": "All42 user-permitted named App operations invoked; NOT allPassed/fullAcceptanceComplete.",
+  "cleanupRetest": {
+    "failureStage": "unsubscribeAsync:Unknown error; peripheral.disconnectAsync succeeds",
+    "fix": "Node0.7.35 macOS Noble cancels local connection without redundant explicit notification-disable write; generic transports unchanged; real disconnect errors propagate",
+    "independentSessions": 3,
+    "cleanCloses": 3,
+    "staticReconnectRounds": 3,
+    "reconnectFinalClose": "passed",
+    "badFrames": 0,
+    "rootCauseOfPeripheralNotifyRejection": "unverified",
+    "python": "Python3.12 reproduced stop_notify error before fix, same queries close cleanly after fix; Python3.8 cached UUID/read/fresh telemetry/close after fix pass, invalidFrames0; old temporary read runner version label0.7.34 is stale, source pyproject0.7.35 used."
+  },
+  "rollSettlingRetest": {
+    "afterAuthorizedAutoTune": true,
+    "trials": [
+      {
+        "minSpeed": 0.025,
+        "maxSpeed": 0.06,
+        "gain": 0.02,
+        "target": 0.5,
+        "settled": 0.6,
+        "errorDeg": 0.1,
+        "passed": true
+      },
+      {
+        "minSpeed": 0.01,
+        "maxSpeed": 0.025,
+        "gain": 0.012,
+        "target": 0.6000000000000001,
+        "settled": 0.5,
+        "errorDeg": -0.1,
+        "passed": true
+      }
+    ],
+    "toleranceDeg": 0.5,
+    "historicalFailureStillRecorded": true,
+    "defaultsAndAllLoadsVerified": false,
+    "close": {
+      "ok": true
+    }
+  }
 }

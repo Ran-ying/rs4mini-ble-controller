@@ -1,4 +1,4 @@
-# RS4 Mini Node.js SDK 0.7.34
+# RS4 Mini Node.js SDK 0.7.35
 
 通过 Noble 直接连接 DJI RS 4 Mini，支持三轴速度、约 1 Hz 的姿态与关节反馈，以及低速关节位置闭环。完整参数、错误码和并发规则见 [API.md](API.md)。
 
@@ -204,3 +204,5 @@ gimbal.onError = error => console.error(error);
 ## 0.7.33 CENTER只读信息候选 / 原生0.3.33 build36
 
 显式App来源新增getCenterActivationInfo（Python另有get_center_activation_info，原生RSGimbal继承同名selector），要求sourceVersion四种已知格式，无默认/OTHER/协商。固定E5/CENTER-id7、COMMON00:32 GET01/11与严格关联明文ACK；完整本次业务体解析active/date/SN原始值及源signed-decimal字符串、尾部，无旧SN缓存成功回退。GIMBAL04:32同命令号隔离，原生完成后恢复普通04路由；无激活/绑定/SET/FAIL/自动回复/重试/重放或高级新增。见[接口契约](../docs/APP_CENTER_INFO.md)（仓库根目录）。设备/当前版本/布局/激活有效性未验收，全命令及高级门槛false，无硬件/liveUI/厂商执行。
+
+macOS关闭说明（0.7.35）：Noble取消本地CoreBluetooth连接并清理监听器，不额外写入设备拒绝的通知关闭值；其他适配器仍显式unsubscribe。真实断开失败仍报告。实机复测及未通过项见仓库docs/HARDWARE_RETEST_2026-10-20.md。

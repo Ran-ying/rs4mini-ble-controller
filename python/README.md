@@ -1,4 +1,4 @@
-# Python SDK 0.7.34
+# Python SDK 0.7.35
 
 Python 3.8+、Bleak 后端。保留早期 camelCase 和 snake_case 调用，同时补充反馈、低速位置闭环、缓存 ID、停止取消和 `close()`。
 
@@ -209,3 +209,5 @@ timeoutMs 分别限制每段，停留不计入下段；snake_case 为 `move_thro
 默认客户端可将显式 deviceId 中的 CoreBluetooth UUID 取回为 Bleak 设备对象，因此不要求设备再次广播；未知UUID沿用扫描回退。此桥接只负责设备取回，GATT/通知/写入仍由Bleak和原SDK生命周期管理。PyObjC按需导入，自定义client_factory和非macOS平台不使用该桥接。已在Python3.12实测连接、读取、三轴小幅往返及关闭；3.8/3.12各258项离线回归通过。系统已连接的HID会话下曾发生取消通知Unknown error，断开系统连接后复测正常；不要吞掉清理错误或把mock结果当硬件证明。见仓库docs/HARDWARE_FULL_ACCEPTANCE.md。
 
 Bleak0.22的设备构造要求RSSI参数，新版无此参数；缓存取回按真实构造签名适配，无广播信号强度时保留None，不伪造测量值。修复后的3.8实机复测待现场确认。
+
+macOS关闭说明（0.7.35）：默认Bleak/CoreBluetooth路径通过disconnect取消本地连接，不额外调用设备拒绝的stop_notify；注入客户端及其他平台保留原流程。真实断开错误仍传播。复测记录见仓库docs/HARDWARE_RETEST_2026-10-20.md。

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.7.35
+
+- On macOS Noble, close the local CoreBluetooth connection without a redundant notification-disable write that the tested DJI characteristic rejects. Local listeners are removed, disconnect stays bounded, and real disconnect/stop errors still propagate. Other adapters retain explicit unsubscribe.
+- Retest unsupported multi-record motor replies and handle/6E query timeouts; preserve failures rather than replacing them with cached or partial success. Python0.7.35 applies the equivalent fix only to its default macOS Bleak client; injected clients and other platforms retain explicit stop_notify. Native0.3.36 is unchanged.
+
 ## 0.7.34
 
 - Resolve cached CoreBluetooth UUIDs for the Python default Bleak client, allowing connection without fresh advertisements; fake clients and non-macOS platforms remain independent of PyObjC.

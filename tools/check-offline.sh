@@ -16,6 +16,7 @@ elif [ -x "$project_dir/python/.venv/bin/python" ]; then
 else
   python_bin=python3
 fi
+RS4MINI_PYTHON="$python_bin" node tools/verify-reconstruction.mjs
 "$python_bin" tools/check-boundaries.py
 "$python_bin" -m unittest discover -s tools/research -v
 "$python_bin" -m unittest discover -s python/tests -v

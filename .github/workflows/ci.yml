@@ -22,6 +22,7 @@ jobs:
         working-directory: node
       - run: npm test
         working-directory: node
+      - run: node tools/verify-reconstruction.mjs
       - run: npm exec --yes --package typescript@5.9.3 -- tsc --noEmit --strict --target ES2022 --module NodeNext --moduleResolution NodeNext examples/types-smoke.mts
         working-directory: node
       - run: npm pack --dry-run

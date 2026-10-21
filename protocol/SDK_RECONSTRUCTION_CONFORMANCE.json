@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "document": "docs/SDK_RECONSTRUCTION_SPEC.md",
+  "specificationVersion": 1,
+  "baselineRuntimeCommit": "61f953e6f9f4492745f7fd49a855130d8b26b57b",
+  "sdkVersion": "0.7.39",
+  "nativeVersion": "0.3.40",
+  "nativeBuild": 43,
+  "verificationTool": "tools/verify-reconstruction.mjs",
+  "independentCases": 7573,
+  "completeSyntheticFrameVectors": 42,
+  "nodePublicApiClasses": 5,
+  "nodePublicPrototypeMembers": 72,
+  "nativePublicHeaders": [
+    "macos/RSBleDevice.h",
+    "macos/RSGimbal.h"
+  ],
+  "referencePythonVersions": [
+    "3.8",
+    "3.12"
+  ],
+  "referenceSelfTest": "passed",
+  "standaloneDocumentVectorRunner": "passed",
+  "bluetoothInitialized": false,
+  "hardwareActions": false,
+  "runtimeChanged": false,
+  "inventoryComplete": false,
+  "advancedDevelopmentAllowed": false
+}

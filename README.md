@@ -1,5 +1,7 @@
 # rs4mini-ble-controller
 
+独立复刻入口：[当前SDK完整蓝牙协议与实现规范](docs/SDK_RECONSTRUCTION_SPEC.md)，单文件包含全部保留命令、参数/响应布局、事务规则、参考代码及合成报文；不依赖APK或历史聊天。
+
 > 0.7.39 / macOS0.3.40 build43：已按用户要求移除实验区position查询和六类未验收状态的公开属性、缓存、事件及GUI显示；保留四类已实测状态。以下旧版本记录为历史。详见[本轮清理](docs/SDK_UNVERIFIED_REMOVAL.md)。
 
 > 2026-10-20：仅Node连续非校准实测，普通批次119/119、小幅速度与自动重连9/9通过；实验区position候选仍超时，15°偏离后回中及用户观察通过。[Node连续非校准验收](docs/SDK_NODE_CONTINUOUS_ACCEPTANCE.md)。运行时版本不变。

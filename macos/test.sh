@@ -16,3 +16,7 @@ CLANG_MODULE_CACHE_PATH="$project_dir/.module-cache" xcrun clang -fobjc-arc -fmo
 CLANG_MODULE_CACHE_PATH="$project_dir/.module-cache" xcrun clang -fobjc-arc -fmodules -Wall -Wextra -Wno-unused-parameter -Werror \
   -framework Foundation -framework CoreBluetooth "$project_dir/RSControlCore.m" "$project_dir/RSMotionCore.m" "$project_dir/RSBleDevice.m" "$project_dir/RSGimbal.m" "$project_dir/RSSDKActions.m" "$project_dir/test-sdk-actions.m" -o "$project_dir/.build/test-sdk-actions"
 "$project_dir/.build/test-sdk-actions"
+# GUI keyboard ownership uses callbacks only; no window or BLE manager is created.
+CLANG_MODULE_CACHE_PATH="$project_dir/.module-cache" xcrun clang -fobjc-arc -fmodules -Wall -Wextra -Wno-unused-parameter -Werror \
+  -framework Foundation -framework AppKit "$project_dir/RSManualControls.m" "$project_dir/test-manual-controls.m" -o "$project_dir/.build/test-manual-controls"
+"$project_dir/.build/test-manual-controls"

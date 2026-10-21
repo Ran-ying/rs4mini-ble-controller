@@ -1,6 +1,7 @@
 // Optional offscreen AppKit layout check; never creates a Bluetooth manager.
 #import <AppKit/AppKit.h>
 #import "RSSDKPanel.h"
+#import "RSManualControls.h"
 @interface RSSDKPanel (LayoutTest)
 - (void)groupChanged:(id)sender;
 - (void)operationChanged:(id)sender;
@@ -21,7 +22,16 @@ static void RequireViewport(NSScrollView *scroll, NSString *phase) {
     }
 }
 int main(){@autoreleasepool{
-    [NSApplication sharedApplication];OfflineGimbal *g=[OfflineGimbal alloc];NSUInteger checked=0;
+    [NSApplication sharedApplication];
+    for(NSString *title in @[@"↑",@"↓",@"←",@"→",@"↺ Roll",@"Roll ↻"]) {
+        RSHoldButton *button=[[RSHoldButton alloc]initWithFrame:NSMakeRect(0,0,[title containsString:@"Roll"]?120:80,[title containsString:@"Roll"]?46:54)];
+        button.title=title;button.font=[NSFont systemFontOfSize:[title containsString:@"Roll"]?15:25 weight:NSFontWeightSemibold];
+        NSRect text=[button titleDrawingRect];
+        if(!NSContainsRect(NSInsetRect(button.bounds,1,1),text)){fprintf(stderr,"Direction title outside border\n");return 1;}
+        [button cacheDisplayInRect:button.bounds toBitmapImageRep:[button bitmapImageRepForCachingDisplayInRect:button.bounds]];
+    }
+    if(RSArrowFocusAllowsControl([NSTextView new])||RSArrowFocusAllowsControl([NSTextField new])||RSArrowFocusAllowsControl([NSPopUpButton new])||RSArrowFocusAllowsControl([NSSlider new])||!RSArrowFocusAllowsControl([NSButton new])){fprintf(stderr,"Keyboard editor/control focus gate failed\n");return 1;}
+    OfflineGimbal *g=[OfflineGimbal alloc];NSUInteger checked=0;
     for(NSNumber *height in @[@820,@600]) {
         NSWindow *w=[[NSWindow alloc]initWithContentRect:NSMakeRect(0,0,1080,height.doubleValue) styleMask:0 backing:NSBackingStoreBuffered defer:NO];
         NSScrollView *scroll=[RSSDKPanel scrollViewWithFrame:NSMakeRect(430,0,650,height.doubleValue) gimbal:(id)g];

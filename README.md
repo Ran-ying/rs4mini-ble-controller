@@ -2,7 +2,7 @@
 
 通过电脑 BLE 直接控制 **DJI RS 4 Mini** 的非官方 SDK。Node.js 为主实现，Python 提供异步接口，macOS 提供原生控制面板。
 
-当前版本：Node / Python **0.7.39**；macOS **0.3.41 / build 44**。包名为 `rs4mini-sdk`，目前通过源码或本地打包安装，未发布到 npm / PyPI。
+当前版本：Node / Python **0.7.39**；macOS **0.3.42 / build 45**。包名为 `rs4mini-sdk`，目前通过源码或本地打包安装，未发布到 npm / PyPI。
 
 ## 当前能力
 
@@ -237,7 +237,7 @@ cd "$HOME/rs4mini-ble-controller"
 RS4MINI_PYTHON="$PWD/.venv/bin/python" sh tools/check-offline.sh
 ```
 
-原生界面构建和启动：
+原生界面支持按住方向键控制航向/俯仰，松开停止，速度沿用驱动力滑块；输入框内保留文本操作，失焦停止。原生界面构建和启动：
 
 ```sh
 sh macos/build.sh

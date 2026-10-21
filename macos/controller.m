@@ -3,23 +3,12 @@
 
 #import "RSGimbal.h"
 #import "RSSDKPanel.h"
-
-@interface HoldButton : NSButton
-@property(nonatomic, copy) void (^onPress)(void);
-@property(nonatomic, copy) void (^onRelease)(void);
-@end
-
-@implementation HoldButton
-- (void)mouseDown:(NSEvent *)event {
-    if (!self.enabled) return;
-    if (self.onPress) self.onPress();
-    [super mouseDown:event];
-    if (self.onRelease) self.onRelease();
-}
-@end
+#import "RSManualControls.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, NSWindowDelegate>
 @property(nonatomic, strong) NSWindow *window;
+@property(nonatomic, strong) RSArrowKeys *arrowKeys;
+@property(nonatomic, strong) id inputMonitor;
 @property(nonatomic, strong) RSSDKPanel *sdkPanel;
 @property(nonatomic, strong) NSTimer *sdkRefresh;
 @property(nonatomic, strong) RSGimbal *gimbal;
@@ -74,7 +63,7 @@ static NSTextField *Label(NSString *text, CGFloat size, NSFontWeight weight) {
     scroll.documentView = v; [self.window.contentView addSubview:scroll];
     NSTextField *title = Label(@"RS 4 MINI", 26, NSFontWeightBold);
     title.frame = NSMakeRect(40, 536, 340, 36); [v addSubview:title];
-    NSTextField *subtitle = Label(@"DIRECT BLUETOOTH CONTROL", 11, NSFontWeightMedium);
+    NSTextField *subtitle = Label(@"方向键 ↑↓←→：按住移动，松开停止；输入时不接管", 11, NSFontWeightMedium);
     subtitle.textColor = NSColor.secondaryLabelColor;
     subtitle.frame = NSMakeRect(40, 512, 340, 20); [v addSubview:subtitle];
 
@@ -90,21 +79,22 @@ static NSTextField *Label(NSString *text, CGFloat size, NSFontWeight weight) {
     self.speedSlider = [NSSlider sliderWithValue:20 minValue:3 maxValue:100 target:self action:@selector(speedChanged:)];
     self.speedSlider.frame = NSMakeRect(75, 354, 270, 26); [v addSubview:self.speedSlider];
 
-    HoldButton *(^makeHold)(NSString *, NSRect, double, double, double) = ^HoldButton *(NSString *text, NSRect frame, double pan, double tilt, double roll) {
-        HoldButton *b = [[HoldButton alloc] initWithFrame:frame];
+    RSHoldButton *(^makeHold)(NSString *, NSRect, double, double, double) = ^RSHoldButton *(NSString *text, NSRect frame, double pan, double tilt, double roll) {
+        RSHoldButton *b = [[RSHoldButton alloc] initWithFrame:frame];
         b.title = text; b.font = [NSFont systemFontOfSize:25 weight:NSFontWeightSemibold];
-        b.bezelStyle = NSBezelStyleTexturedRounded; b.enabled = NO;
+        [b setButtonType:NSButtonTypeMomentaryChange]; b.bordered = NO; b.enabled = NO;
+        b.toolTip = @"按住移动，松开停止；方向键也可控制 Pan / Tilt";
         __weak typeof(self) weakSelf = self;
-        b.onPress = ^{ double s = weakSelf.speedSlider.doubleValue / 100.0; [weakSelf.gimbal drivePan:pan * s tilt:tilt * s roll:roll * s]; };
+        b.onPress = ^{ [weakSelf.arrowKeys reset]; double s = weakSelf.speedSlider.doubleValue / 100.0; [weakSelf.gimbal drivePan:pan * s tilt:tilt * s roll:roll * s]; };
         b.onRelease = ^{ [weakSelf.gimbal stop]; };
         [v addSubview:b]; return b;
     };
-    HoldButton *up = makeHold(@"↑", NSMakeRect(170, 284, 80, 54), 0, 1, 0);
-    HoldButton *left = makeHold(@"←", NSMakeRect(82, 224, 80, 54), -1, 0, 0);
-    HoldButton *right = makeHold(@"→", NSMakeRect(258, 224, 80, 54), 1, 0, 0);
-    HoldButton *down = makeHold(@"↓", NSMakeRect(170, 164, 80, 54), 0, -1, 0);
-    HoldButton *rollLeft = makeHold(@"↺ Roll", NSMakeRect(82, 100, 120, 46), 0, 0, -1);
-    HoldButton *rollRight = makeHold(@"Roll ↻", NSMakeRect(218, 100, 120, 46), 0, 0, 1);
+    RSHoldButton *up = makeHold(@"↑", NSMakeRect(170, 284, 80, 54), 0, 1, 0);
+    RSHoldButton *left = makeHold(@"←", NSMakeRect(82, 224, 80, 54), -1, 0, 0);
+    RSHoldButton *right = makeHold(@"→", NSMakeRect(258, 224, 80, 54), 1, 0, 0);
+    RSHoldButton *down = makeHold(@"↓", NSMakeRect(170, 164, 80, 54), 0, -1, 0);
+    RSHoldButton *rollLeft = makeHold(@"↺ Roll", NSMakeRect(82, 100, 120, 46), 0, 0, -1);
+    RSHoldButton *rollRight = makeHold(@"Roll ↻", NSMakeRect(218, 100, 120, 46), 0, 0, 1);
     rollLeft.font = rollRight.font = [NSFont systemFontOfSize:15 weight:NSFontWeightSemibold];
     self.motionButtons = @[up, left, right, down, rollLeft, rollRight];
 
@@ -170,6 +160,7 @@ static NSTextField *Label(NSString *text, CGFloat size, NSFontWeight weight) {
         weakSelf.status.textColor = ready ? NSColor.systemGreenColor : NSColor.secondaryLabelColor;
         weakSelf.connectButton.title = ready ? @"断开稳定器" : (weakSelf.gimbal.connecting ? @"取消连接" : @"连接稳定器");
         weakSelf.connectButton.enabled = YES;
+        if (!ready || weakSelf.gimbal.busy) [weakSelf.arrowKeys reset];
         for (NSButton *button in weakSelf.motionButtons) button.enabled = ready && !weakSelf.gimbal.busy;
         weakSelf.moveButton.enabled = weakSelf.currentButton.enabled = ready && !weakSelf.gimbal.busy && weakSelf.latestJoints != nil;
         [weakSelf refreshExpansion];
@@ -195,6 +186,7 @@ static NSTextField *Label(NSString *text, CGFloat size, NSFontWeight weight) {
     self.gimbal.messageHandler=^(NSDictionary *message){[weakSelf.sdkPanel receiveMessage:message];};
     self.sdkRefresh=[NSTimer timerWithTimeInterval:0.2 repeats:YES block:^(NSTimer *timer){[weakSelf.sdkPanel refresh];}];
     [[NSRunLoop mainRunLoop]addTimer:self.sdkRefresh forMode:NSRunLoopCommonModes];
+    [self installArrowKeys];
     [self refreshExpansion];
 }
 
@@ -255,10 +247,32 @@ static NSTextField *Label(NSString *text, CGFloat size, NSFontWeight weight) {
     }
     [self.gimbal moveTo:targets];
 }
-- (void)applicationWillResignActive:(NSNotification *)notification { [self.gimbal stop]; }
-- (void)windowDidResignKey:(NSNotification *)notification { [self.gimbal stop]; }
+- (void)installArrowKeys {
+    self.arrowKeys=[RSArrowKeys new];__weak typeof(self) weak=self;
+    self.arrowKeys.drive=^(double pan,double tilt){
+        double speed=weak.speedSlider.doubleValue/100.0;
+        [weak.gimbal drivePan:pan*speed tilt:tilt*speed roll:0];
+        [weak highlightArrowsPan:pan tilt:tilt];
+    };
+    self.arrowKeys.stop=^{[weak highlightArrowsPan:0 tilt:0];[weak.gimbal stop];};
+    self.inputMonitor=[NSEvent addLocalMonitorForEventsMatchingMask:NSEventMaskKeyDown|NSEventMaskKeyUp|NSEventMaskLeftMouseDown|NSEventMaskFlagsChanged handler:^NSEvent *(NSEvent *event){
+        if(event.type==NSEventTypeLeftMouseDown){[weak.arrowKeys reset];return event;}
+        NSEventModifierFlags modifiers=event.modifierFlags&(NSEventModifierFlagCommand|NSEventModifierFlagControl|NSEventModifierFlagOption|NSEventModifierFlagShift);
+        if(event.type==NSEventTypeFlagsChanged){if(modifiers)[weak.arrowKeys reset];return event;}
+        if(event.type==NSEventTypeKeyDown&&(event.keyCode<123||event.keyCode>126))[weak.arrowKeys reset];
+        BOOL allowed=NSApp.active&&weak.window.keyWindow&&event.window==weak.window&&!weak.window.attachedSheet&&weak.gimbal.ready&&!weak.gimbal.busy&&!modifiers&&RSArrowFocusAllowsControl(weak.window.firstResponder);
+        return [weak.arrowKeys keyCode:event.keyCode down:event.type==NSEventTypeKeyDown repeat:event.isARepeat allowed:allowed]?nil:event;
+    }];
+}
+- (void)highlightArrowsPan:(double)pan tilt:(double)tilt {
+    NSArray *held=@[@(tilt>0),@(pan<0),@(pan>0),@(tilt<0)];
+    for(NSUInteger i=0;i<4;i++){[self.motionButtons[i] highlight:[held[i] boolValue]];self.motionButtons[i].needsDisplay=YES;}
+}
+- (void)applicationWillResignActive:(NSNotification *)notification { [self.arrowKeys reset]; [self.gimbal stop]; }
+- (void)windowDidResignKey:(NSNotification *)notification { [self.arrowKeys reset]; [self.gimbal stop]; }
 
 - (void)connectTapped:(id)sender {
+    [self.arrowKeys reset];
     if (self.gimbal.ready || self.gimbal.connecting) [self.gimbal disconnect];
     else { self.connectButton.enabled = NO; [self.gimbal connect]; }
 }
@@ -266,10 +280,12 @@ static NSTextField *Label(NSString *text, CGFloat size, NSFontWeight weight) {
 - (void)speedChanged:(NSSlider *)sender {
     self.speedLabel.stringValue = [NSString stringWithFormat:@"摇杆驱动力 %.0f%%", sender.doubleValue];
 }
-- (void)stopTapped:(id)sender { [self.gimbal stop]; }
+- (void)stopTapped:(id)sender { [self.arrowKeys reset]; [self.gimbal stop]; }
 - (void)centerTapped:(id)sender { [self.gimbal recenter]; }
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender { return YES; }
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender {
+    if(self.inputMonitor){[NSEvent removeMonitor:self.inputMonitor];self.inputMonitor=nil;}
+    [self.arrowKeys reset];
     self.gimbal.autoReconnectEnabled = NO;
     if (self.gimbal.connecting) { [self.gimbal disconnect]; return NSTerminateNow; }
     if (!self.gimbal.ready) return NSTerminateNow;

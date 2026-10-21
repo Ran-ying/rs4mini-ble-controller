@@ -31,7 +31,7 @@ git clone https://github.com/Ran-ying/rs4mini-ble-controller.git "$HOME/rs4mini-
 cd "$HOME/rs4mini-ble-controller"
 ```
 
-已有仓库时，在工作树干净的前提下执行 `git pull --ff-only`。下面 Node 和 Python 可任选一端部署。
+已有仓库时，在工作树干净的前提下执行 `git pull --ff-only`。下面 Node、Python 和 macOS 原生应用可按需要独立部署。仅使用原生应用时不需要安装 Node、Python 或它们的依赖。
 
 ## Node.js 部署与调用
 
@@ -227,7 +227,71 @@ Python 同时提供 snake_case 别名，例如 `get_joint_angles(fresh=True, tim
 | Python 导入失败 | 检查运行脚本的解释器是否为安装 SDK 的 `.venv/bin/python` |
 | 请求超时 | 不代表设备一定未执行，写入或维护请求不要盲目自动重试 |
 
-## 开发检查与 macOS 面板
+## macOS 原生应用部署
+
+当前版本 **0.3.42 / build 45**。应用使用 Objective-C / AppKit / CoreBluetooth，直接调用原生 SDK，不依赖 Node 或 Python。应用声明最低 macOS 12；构建需要 Xcode Command Line Tools，默认生成当前 Mac 架构的应用。
+
+### 首次构建和启动
+
+先执行一次工具安装，并完成系统弹出的安装流程：
+
+```sh
+xcode-select --install
+```
+
+若已安装，无需重复执行。克隆仓库后，从仓库根目录构建：
+
+```sh
+cd "$HOME/rs4mini-ble-controller"
+sh macos/build.sh
+open "macos/RS 4 Mini Control.app"
+```
+
+构建脚本使用系统 `clang` 编译原生 SDK 和界面，创建应用包，执行本地 ad-hoc 签名并校验。产物位于 `macos/RS 4 Mini Control.app`，可直接双击运行。当前没有 Developer ID 签名或公证，也不是预先发布的 Universal 双架构安装包。
+
+### 可选：安装到个人应用目录
+
+将已构建的应用复制到当前用户的 Applications 文件夹：
+
+```sh
+mkdir -p "$HOME/Applications"
+ditto "$HOME/rs4mini-ble-controller/macos/RS 4 Mini Control.app" "$HOME/Applications/RS 4 Mini Control.app"
+open "$HOME/Applications/RS 4 Mini Control.app"
+```
+
+此后固定使用其中一份应用，避免误开旧副本。首次连接时允许应用使用蓝牙；若此前拒绝，可到“系统设置 → 隐私与安全性 → 蓝牙”开启 **RS 4 Mini Control** 的权限，并重新启动应用。
+
+### 连接和控制
+
+1. 稳定器开机并启用蓝牙，退出 DJI App、Node / Python 脚本等其他控制程序。
+2. 点击“连接稳定器”，等待连接成功及姿态 / 关节反馈。
+3. 运动前确认三轴解锁、负载平衡且无遮挡，先调低“摇杆驱动力”。
+4. 鼠标按住方向按钮，或按住键盘 ↑↓ 控制俯仰、←→ 控制航向；松开停止。键盘速度沿用驱动力滑块，输入框及下拉框内保留原有方向键功能。失焦和断开会清除按键状态，不恢复旧运动。
+5. 右侧“设备 SDK”中先启用 `ronin-2.2.2` 来源，再选择参数读取或其他操作；设备写入需勾选对应开关，校准完成后可能需要在稳定器屏幕手动确认。
+
+### 更新和离线检查
+
+先完全退出旧应用。工作树干净时拉取并重新构建：
+
+```sh
+cd "$HOME/rs4mini-ble-controller"
+git pull --ff-only
+sh macos/build.sh
+open "macos/RS 4 Mini Control.app"
+```
+
+若使用个人 Applications 目录中的副本，构建后还需再次执行上面的 `ditto` 复制命令，再启动那一份应用。
+
+可选的原生测试和界面布局检查均不连接或移动稳定器；布局检查需在已登录的 macOS 图形会话内运行：
+
+```sh
+sh macos/test.sh
+sh macos/check-layout.sh
+```
+
+更多原生界面说明见 [macOS README](macos/README.md)。
+
+## 开发检查
 
 Node 的 `npm test` 和 Python 的单元测试使用假设备，不扫描、不连接、不移动硬件。完整开发检查还需要 Xcode 工具及已缓存的 TypeScript：
 
@@ -235,13 +299,6 @@ Node 的 `npm test` 和 Python 的单元测试使用假设备，不扫描、不�
 cd "$HOME/rs4mini-ble-controller"
 (cd node && npm exec --yes --package typescript@5.9.3 -- tsc --version)
 RS4MINI_PYTHON="$PWD/.venv/bin/python" sh tools/check-offline.sh
-```
-
-原生界面支持按住方向键控制航向/俯仰，松开停止，速度沿用驱动力滑块；输入框内保留文本操作，失焦停止。原生界面构建和启动：
-
-```sh
-sh macos/build.sh
-open "macos/RS 4 Mini Control.app"
 ```
 
 ## 文档入口

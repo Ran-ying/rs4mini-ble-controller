@@ -25,3 +25,7 @@ Python的六组snake_case属性、原生对应`app…Status`属性、内部缓�
 离线Node228、Python3.8与3.12各209、研究558、原生1562核心+236生命周期+3独立SDK+210GUI适配检查，以及严格TypeScript、分层和签名构建通过。机器结果见[清理验收记录](../protocol/SDK_SCOPE_CLEANUP_ACCEPTANCE.json)。安装后的tarball228及严格类型消费者、wheel209通过，实际导入位置已核对；Node114文件、wheel40模块、原生ZIP3文件与当前源码/签名构建逐字节一致。验收日志和安装包在工作区outputs；Node直接设备SDK只读基础24/24、保留实验区查询/解码/关闭5/5实机复测通过；不含运动、设置写入、调参或校准。所有客户端正常关闭。
 
 此前[连续验收](SDK_NODE_CONTINUOUS_ACCEPTANCE.md)及机器记录按当时版本保留，包括position超时和无通知事实；删除接口不会把历史失败改写为通过。当前去除这些入口后，现有常规SDK继续按已测数值、负载和平台范围使用，不宣称厂商全部BLE命令已实现。
+
+## 交付状态
+
+运行时代码提交`18ccfcf4622e87c8c39686d6ee8ebd3b0b685d1a`已推送main，[对应CI39486122304](https://github.com/Ran-ying/rs4mini-ble-controller/actions/runs/39486122304) completed/success且完整head一致。源码归档570文件逐字节对应代码提交，Node114文件、wheel40模块、原生ZIP3文件逐字节核对，四个交付包SHA256一致。此状态在后续文档提交补记，不改变运行时或安装包。

@@ -208,5 +208,19 @@
   "calibrationOrMotionExecutedThisCleanup": false,
   "allClientsClosed": true,
   "inventoryComplete": false,
-  "advancedDevelopmentAllowed": false
+  "advancedDevelopmentAllowed": false,
+  "delivery": {
+    "runtimeCodeCommit": "18ccfcf4622e87c8c39686d6ee8ebd3b0b685d1a",
+    "runtimeCodeCiRun": 39486122304,
+    "runtimeCodeCiStatus": "completed",
+    "runtimeCodeCiConclusion": "success",
+    "sourceArchiveFileCountAtRuntimeCommit": 570,
+    "artifactFiles": {
+      "node": 114,
+      "wheelModules": 40,
+      "nativeZip": 3
+    },
+    "allFourArtifactChecksumsVerified": true,
+    "note": "Runtime and installed packages correspond to runtimeCodeCommit. A subsequent documentation-only commit records this completed delivery state."
+  }
 }

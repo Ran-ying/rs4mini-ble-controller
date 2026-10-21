@@ -1,374 +1,256 @@
 # rs4mini-ble-controller
 
-独立复刻入口：[当前SDK完整蓝牙协议与实现规范](docs/SDK_RECONSTRUCTION_SPEC.md)，单文件包含全部保留命令、参数/响应布局、事务规则、参考代码及合成报文；不依赖APK或历史聊天。
+通过电脑 BLE 直接控制 **DJI RS 4 Mini** 的非官方 SDK。Node.js 为主实现，Python 提供异步接口，macOS 提供原生控制面板。
 
-> 0.7.39 / macOS0.3.40 build43：已按用户要求移除实验区position查询和六类未验收状态的公开属性、缓存、事件及GUI显示；保留四类已实测状态。以下旧版本记录为历史。详见[本轮清理](docs/SDK_UNVERIFIED_REMOVAL.md)。
+当前版本：Node / Python **0.7.39**；macOS **0.3.40 / build 43**。包名为 `rs4mini-sdk`，目前通过源码或本地打包安装，未发布到 npm / PyPI。
 
-> 2026-10-20：仅Node连续非校准实测，普通批次119/119、小幅速度与自动重连9/9通过；实验区position候选仍超时，15°偏离后回中及用户观察通过。[Node连续非校准验收](docs/SDK_NODE_CONTINUOUS_ACCEPTANCE.md)。运行时版本不变。
+## 当前能力
 
-> 0.7.38 / macOS0.3.39：用户要求移除旧system_calc和旧平衡测试的启动/状态共4个公开方法，三端及GUI同步。保留已实测的电机自动调参、AUTO水平校准、Pitch/Roll手动微调。绿色平衡状态读取未实现；不计作当前SDK能力。详见[逐项验收](docs/SDK_ACCEPTANCE_QUEUE.md)。
+- 三轴速度、限时运动、停止、三轴回中。
+- 姿态角与机械关节角反馈；基于关节反馈的 `moveTo()` 定位。
+- 跟随灵敏度、跟随 / RC 档位及数值、自定义跟随、电机设置、轴模式、配置与工作模式的读取和设置。
+- 12 项电机参数逐项读取与单项设置。
+- 电机自动调参、AUTO 水平校准、Pitch / Roll 手动微调，以及四类保留状态通知。
+- 已有主机组合能力：速度轨迹、关节路点、保存位置返回、有界自动重连。
 
+应用统一从 `RS4Mini` 进入：基础操作直接调用，命名设备参数从同一实例的 `appCommands` 调用，共用一条连接。`moveTo()`、轨迹和路点是电脑端组合算法，详见[架构边界](docs/ARCHITECTURE.md)。
 
-> 当前变更：用户已要求移除参数/程序连续订阅、手柄/摇杆写入和恢复设置的公开SDK入口及GUI动作。下文相关旧版本描述为历史；被动状态和程序状态单次查询保留。本机已确认AUTO对应水平校准，Roll对应手动水平微调；旧system_calc与平衡测试无反应，完整验收尚未完成。
+当前保留范围及验收见[项目状态](docs/PROJECT_STATUS.md)、[Node 连续验收](docs/SDK_NODE_CONTINUOUS_ACCEPTANCE.md)和[接口清理说明](docs/SDK_UNVERIFIED_REMOVAL.md)。全部固件蓝牙命令尚未解析完成；相机控制、视觉跟踪与 Web 端不在当前范围。
 
+## 部署准备
 
-当前可用性：[Node / Python / macOS 独立 SDK 实机验收](docs/SDK_ONLY_ACCEPTANCE.md)，电机已改逐项读取；两项无响应查询已从SDK移除。
+以下命令以 macOS 的 Terminal / zsh 为例，安装到主目录。当前实机验证平台为 macOS；Linux / Windows 的蓝牙后端及权限需要另行验证。
 
-研究接手入口：[当前研究方法与推进路线](docs/RESEARCH_ROADMAP.md)，包括证据门槛、下一步顺序和每项完成条件。
-
-通过电脑 BLE 直接控制 DJI RS 4 Mini 的非官方项目。Node.js **0.7.39** 为主实现；Python **0.7.39**、macOS 原生面板 **0.3.40** 提供三轴速度、姿态/机械关节反馈、低速定位、轨迹与路点、保存位置返回和显式自动重连。相机控制和视觉跟踪不属于当前范围。
-
-macOS 0.3.39 提供[设备 SDK 面板](docs/MACOS_SDK_PANEL.md)：命名参数、校准请求、被动状态和 CENTER 只读信息均可从 GUI 调用。
-
-当前[全项实机验收记录](docs/HARDWARE_FULL_ACCEPTANCE.md)与[逐项清单](protocol/HARDWARE_ACCEPTANCE.json)区分已测通过、失败、未完成及用户排除项目；接口存在和ACK不能代替设备效果。
-
-**当前状态：底层 SDK 已增加当前 App 参数事务、调参请求与状态封装；全部非相机 BLE 能力仍未完成。**
-完成项、验证证据与后续接手入口统一保存在 [项目状态](docs/PROJECT_STATUS.md)。
-
-最新[八段具名恢复](tools/research/PREFIX_RESTORATION.md)已解决01/07元数据缺口；新增激活库等源引用仍待型号/BLE语义审计，不代表全命令完成。
-
-0.7.11增加[独立配置输入源与数值SDK](docs/APP_STANDALONE_TUNING.md)：六项参数、显式输入源2同包写入，读取保留实际输入源。尚无实机验收。
-
-最新[预设与模式研究](tools/research/PROFILES.md)区分配置、运动预设和工作模式，确认HG724条件新列表不能套用旧PF/PTF编号；尚未据此新增接口。
-
-最新[订阅与推送包层研究](tools/research/SUBSCRIPTIONS.md)区分CENTER/id7无ACK订阅、本地取消与源预设推送偏移；尚无本机效果或新接口声明。
-
-0.7.12新增[固定用户参数被动解码](docs/APP_USER_PARAMETERS.md)，17项源码字段与独立缓存，不发送订阅，不代表本机活动预设确认。
-
-最新[微调、手柄与重置研究](tools/research/FINE_HANDLE_RESET.md)核对66方法与型号继承，区分真实轴值、FF对象默认、手柄缓存回退及HG724重置载荷；SDK进度见下文。
-
-0.7.13新增[手柄参数只读查询](docs/APP_HANDLE_SETTINGS.md)，保留8个源字段原值与额外字节，不增加设置写入。
-
-0.7.14增加[Pitch/Roll微调请求](docs/APP_FINE_TUNE.md)：源码float32编码、独占至ACK，实际效果和暂停状态未验收。
-
-## 安装与离线验证
-
-需要 Node.js 18+。macOS 原生构建还需要 Xcode Command Line Tools。
+- Node.js **18+**；Python **3.8+**，新部署建议使用 Python 3.12。
+- macOS 安装 Xcode Command Line Tools：尚未安装时执行 `xcode-select --install`，用于原生依赖和面板构建。
+- 在“系统设置 → 隐私与安全性 → 蓝牙”允许运行脚本的 Terminal / IDE 使用蓝牙。
+- 稳定器开机并启用蓝牙，退出 DJI App 或其他占用它的控制程序。读取反馈不需要先在系统蓝牙页面配对；脚本仍需执行 `connect()`。
 
 ```sh
-git clone https://github.com/Ran-ying/rs4mini-ble-controller.git
-cd rs4mini-ble-controller
+git clone https://github.com/Ran-ying/rs4mini-ble-controller.git "$HOME/rs4mini-ble-controller"
+cd "$HOME/rs4mini-ble-controller"
+```
+
+已有仓库时，在工作树干净的前提下执行 `git pull --ff-only`。下面 Node 和 Python 可任选一端部署。
+
+## Node.js 部署与调用
+
+### 安装
+
+先安装仓库依赖并离线测试，再创建独立调用工程：
+
+```sh
+cd "$HOME/rs4mini-ble-controller"
 npm --prefix node ci
-python3 -m venv python/.venv
-python/.venv/bin/python -m pip install --upgrade pip
-python/.venv/bin/python -m pip install -e ./python
-cd node
-npm exec --yes --package typescript@5.9.3 -- tsc --version
-cd ..
-sh tools/check-offline.sh
-```
-
-统一检查不扫描、不连接、不移动稳定器；TypeScript 首次缓存后使用离线模式。单独运行：
-
-```sh
 npm --prefix node test
-python/.venv/bin/python -m unittest discover -s python/tests -v
-sh macos/test.sh
+
+mkdir -p "$HOME/rs4mini-node-app"
+cd "$HOME/rs4mini-node-app"
+npm init -y
+npm install "$HOME/rs4mini-ble-controller/node"
 ```
 
-## Node 使用
+这是本地源码安装，不要用 `npm install rs4mini-sdk` 代替。示例使用 `.mjs`，无需修改应用的 `package.json`。
 
-在 `node/` 目录下创建脚本：
+### 连接并读取
+
+在 `~/rs4mini-node-app/` 保存为 `read.mjs`：
 
 ```js
-import { RS4Mini } from './src/index.js';
+import { RS4Mini } from 'rs4mini-sdk';
+
 const gimbal = new RS4Mini({ ioTimeoutMs: 3000 });
+gimbal.onError = error => console.error(error.code, error.message);
 try {
   await gimbal.connect({ timeoutMs: 30000 });
-  console.log(await gimbal.getJointAngles({ fresh: true }));
+  console.log('姿态角：', await gimbal.getAttitude({ fresh: true }));
+  console.log('机械关节角：', await gimbal.getJointAngles({ fresh: true }));
+
+  gimbal.appCommands.useProfile('ronin-2.2.2');
+  console.log('跟随灵敏度：', await gimbal.appCommands.getFollowSensitivity());
+  console.log('电机参数：', await gimbal.appCommands.getMotorTuning({ timeoutMs: 15000 }));
 } finally {
   await gimbal.close();
 }
-```
 
-运动前确认负载平衡、无遮挡，并退出其他控制程序。下列命令会连接硬件，位置演示会移动：
+```
 
 ```sh
-cd node
-npm run telemetry:capture
-npm run test:neutral
-npm run example:position
-RS4MINI_POSITION_AXIS=tilt RS4MINI_POSITION_DELTA=3 npm run example:position
+cd "$HOME/rs4mini-node-app"
+node read.mjs
 ```
 
-默认位置示例为 Pan 5° 往返。`moveTo()` 以机械关节角为目标：Pan=Yaw、Tilt=Pitch、Roll=Roll；反馈约 1 Hz，适用于低速定位。`setVelocityDeg()` 是经验换算，不是闭环角速度。
+这个示例连接设备、读取反馈和参数后关闭，不发送运动或校准请求。电机的 12 项参数按单项顺序读取；多项结果为 `readMode: 'sequential'`、`atomic: false`，读取 `values` 和 `replies`，不是同一时刻的原子快照。
 
-## SDK 与组合能力
+### 小幅运动
 
-蓝牙设备 SDK 负责连接、协议、设备指令和反馈；`moveTo()`、轨迹、路点与保存位置返回由电脑端组合这些能力实现。
-当前已拆为设备 SDK 与高级封装两个模块，应用仅使用 `RS4Mini`（原生为 `RSGimbal`）入口；基础操作也通过该入口访问。能力归属、姿态/关节解释及剩余功能可行性见 [架构边界](docs/ARCHITECTURE.md)。
+稳定器三轴解锁、负载平衡且周围无遮挡后，在同一目录保存为 `move.mjs`。这段会先 Pan 约 3° 往返，再以低速向 Tilt 方向运动 300 ms：
 
-## 各端状态
+```js
+import { RS4Mini } from 'rs4mini-sdk';
 
-| 功能 | Node 0.7.39 | Python 0.7.39 | macOS 面板 0.3.40 |
-|---|---|---|---|
-| 三轴速度 / 停止 / 三轴回中 | 有 | 有 | 有 |
-| 反馈解析与 CRC 重组 | 有 | 有 | 有 |
-| 关节目标位置 / 逐轴容差 | 可配置 | 可配置 | 固定低速参数 + 面板输入 |
-| 限时运动 / 角速度换算 | 有 | 有 | 手动按住控制 |
-| 取消与停止阶段互斥 | 有 | 有 | 有 |
-| 连接截止时间与清理 | 有 | 有 | 有，30 秒 |
-| 缓存 ID 重连 | 有 | 有 | 检索系统连接与重新扫描 |
-| 失焦停止 | 由调用方实现 | 由调用方实现 | 失焦/退出 |
-| 有界自动重连，不恢复运动 | 显式启用 | 显式启用 | 当前设备 ID，最多 5 次 |
-| 插值速度轨迹 / 关节路点与停留 | 有 | 有 | API + JSON 文件载入 |
-| 保存位置与选轴返回 | 有 | 有 | 有 |
-| 显式顺序四元数数学转换 | 有 | 有 | 有 |
-| 显式App来源的手柄状态候选 | 被动SDK快照 | 被动SDK快照 | 被动SDK快照 |
-| 独立实验协议配置 | 有 | 有 | 有，查询独占操作槽 |
+const gimbal = new RS4Mini();
+try {
+  await gimbal.connect();
+  const start = await gimbal.getJointAngles({ fresh: true });
+  const target = ((start.yaw + 3 + 540) % 360) - 180;
+  await gimbal.moveTo({ pan: target, toleranceDeg: 1 });
+  await gimbal.moveTo({ pan: start.yaw, toleranceDeg: 1 });
+  await gimbal.moveFor({ tilt: 0.05, durationMs: 300 });
+} finally {
+  await gimbal.close();
+}
 
-当前三端已有实际连接/小幅运动样本，完整结果、失败和剩余项目见[全项实机记录](docs/HARDWARE_FULL_ACCEPTANCE.md)。历史 Node 单轴定位与 0.5.0 的连接采样证据见 [验证记录](docs/VALIDATION.md)，不能代替新版本的物理运动测试。
-
-## 其他端启动
-
-Python 只读反馈和小幅位置示例：
+```
 
 ```sh
-python/.venv/bin/python python/examples/telemetry_capture.py
-python/.venv/bin/python python/examples/position_demo.py
+node move.mjs
 ```
 
-原生面板：
+若需在连接期间持续观察反馈，可设置 `gimbal.onTelemetry = sample => console.log(sample.jointAngles)`；四类设备状态通过 `gimbal.onAppStatus` 接收，需先选择 App 来源配置。
+
+## Python 部署与调用
+
+### 安装
+
+```sh
+cd "$HOME/rs4mini-ble-controller"
+python3 -m venv .venv
+.venv/bin/python -m pip install --upgrade pip
+.venv/bin/python -m pip install -e ./python
+.venv/bin/python -m unittest discover -s python/tests -v
+```
+
+依赖 Bleak 由 pip 安装。后续始终使用这个虚拟环境的 Python；不需要 `sudo pip` 或修改系统 Python。
+
+### 连接并读取
+
+在仓库根目录保存为 `read.py`：
+
+```python
+import asyncio
+from rs4mini_sdk import RS4Mini
+
+async def main():
+    gimbal = RS4Mini(ioTimeoutMs=3000)
+    gimbal.onError = lambda error: print(error.code, str(error))
+    try:
+        await gimbal.connect(timeoutMs=30000)
+        print("姿态角：", await gimbal.getAttitude(fresh=True))
+        print("机械关节角：", await gimbal.getJointAngles(fresh=True))
+
+        gimbal.appCommands.useProfile("ronin-2.2.2")
+        print("跟随灵敏度：", await gimbal.appCommands.getFollowSensitivity())
+        print("电机参数：", await gimbal.appCommands.getMotorTuning(timeoutMs=15000))
+    finally:
+        await gimbal.close()
+
+if __name__ == "__main__":
+    asyncio.run(main())
+
+```
+
+```sh
+cd "$HOME/rs4mini-ble-controller"
+.venv/bin/python read.py
+```
+
+这个示例与 Node 读取相同类别的数据，不触发运动或校准。Python 通过 `asyncio` 顺序等待各次操作。
+
+### 小幅运动
+
+与 Node 示例相同的 Pan 约 3° 往返与低速 Tilt 300 ms，保存为仓库根目录的 `move.py`：
+
+```python
+import asyncio
+from rs4mini_sdk import RS4Mini
+
+async def main():
+    gimbal = RS4Mini()
+    try:
+        await gimbal.connect()
+        start = await gimbal.getJointAngles(fresh=True)
+        target = (start["yaw"] + 3 + 180) % 360 - 180
+        await gimbal.moveTo(pan=target, toleranceDeg=1)
+        await gimbal.moveTo(pan=start["yaw"], toleranceDeg=1)
+        await gimbal.moveFor(tilt=0.05, durationMs=300)
+    finally:
+        await gimbal.close()
+
+if __name__ == "__main__":
+    asyncio.run(main())
+
+```
+
+```sh
+.venv/bin/python move.py
+```
+
+Python 同时提供 snake_case 别名，例如 `get_joint_angles(fresh=True, timeout_ms=3000)`、`move_to(pan=10, tolerance_deg=1)`。注意 `moveFor(durationMs=300, ...)` 使用毫秒，旧别名 `move_for(0.3, ...)` 使用秒。
+
+## 常用调用对照
+
+下列调用均在连接成功后执行，`gimbal` 为同一实例。参数接口先调用 `appCommands.useProfile('ronin-2.2.2')`，无需再创建第二个控制器。
+
+| 操作 | Node.js | Python |
+|---|---|---|
+| 新鲜姿态反馈 | `await gimbal.getAttitude({fresh: true})` | `await gimbal.getAttitude(fresh=True)` |
+| 新鲜关节反馈 | `await gimbal.getJointAngles({fresh: true})` | `await gimbal.getJointAngles(fresh=True)` |
+| 连续低速 Pan | `await gimbal.setVelocity({pan: 0.05})` | `await gimbal.setVelocity(pan=0.05)` |
+| 停止主机运动 | `await gimbal.stop()` | `await gimbal.stop()` |
+| 三轴回中 | `await gimbal.recenter()` | `await gimbal.recenter()` |
+| 读取跟随灵敏度 | `await gimbal.appCommands.getFollowSensitivity()` | `await gimbal.appCommands.getFollowSensitivity()` |
+| 设置跟随灵敏度 | `await gimbal.appCommands.setFollowSensitivity({mode: 1})` | `await gimbal.appCommands.setFollowSensitivity(mode=1)` |
+| 读取 Pitch 电机四项 | `await gimbal.appCommands.getMotorTuning({axis: 'pitch'})` | `await gimbal.appCommands.getMotorTuning(axis='pitch')` |
+| 永久关闭并释放资源 | `await gimbal.close()` | `await gimbal.close()` |
+
+`setVelocity()` 会持续发帧，直到更新速度、停止或关闭；需要有界时长时优先使用 `moveFor()`。设置参数会改变设备状态，按需要显式调用；部署读取示例不执行写入。自动调参和水平校准结束后可能需要在稳定器屏幕手动确认，调用格式见[调参与状态](docs/APP_CALIBRATION.md)、[水平校准](docs/APP_COMPONENT_CALIBRATION.md)和[微调](docs/APP_FINE_TUNE.md)。
+
+## 反馈、运动与连接约定
+
+- 姿态角描述平台姿态，机械关节角描述轴的位置，不能互换。`moveTo()` 的 `pan / tilt / roll` 分别对应关节 `yaw / pitch / roll`，单位为度。
+- `fresh: true` 等待下一条反馈，不发送主动姿态查询；当前反馈约 1 Hz。默认定位容差 1°，适合低速定位；±180° 的输入范围不是机械安全范围。
+- `stop()` 取消主机运动并发送三个中位帧；不保证中止固件校准任务。蓝牙丢失后，软件无法保证设备收到停止。
+- 有限运动与参数写入共享操作槽。出现 `RS4MINI_BUSY` 时等待当前操作完成，避免并发启动运动或写入。
+- `disconnect()` 后实例可重新连接；`close()` 永久关闭实例。脚本用 `try/finally` 调用 `close()`，确保释放 Noble / Bleak 连接。
+- 自动重连默认关闭，需显式启用；重连只恢复链路，不恢复旧速度或轨迹。
+
+## 常见问题
+
+| 现象 | 检查方法 |
+|---|---|
+| 连接超时 / 搜不到 | 检查开机、蓝牙权限及其他 App 占用；不要同时运行 Node、Python 和原生面板连接同一设备 |
+| 系统显示已连接，脚本仍未连接 | 每个进程都需要自己的 `connect()` 和 GATT 句柄；系统状态不能代替 SDK 连接 |
+| 想复用设备 ID | Node：`new RS4Mini({deviceId: '本机缓存ID'})`；Python：`RS4Mini(deviceId='本机缓存ID')`。macOS 使用 CoreBluetooth UUID，设备标识不提交仓库 |
+| 反馈超时 | 确认设备未断开；`getJointAngles` 等待约 1 Hz 推送，按需增大 `timeoutMs` |
+| Node 脚本结束后仍不退出 | 检查是否在 `finally` 中 `await gimbal.close()` |
+| Python 导入失败 | 检查运行脚本的解释器是否为安装 SDK 的 `.venv/bin/python` |
+| 请求超时 | 不代表设备一定未执行，写入或维护请求不要盲目自动重试 |
+
+## 开发检查与 macOS 面板
+
+Node 的 `npm test` 和 Python 的单元测试使用假设备，不扫描、不连接、不移动硬件。完整开发检查还需要 Xcode 工具及已缓存的 TypeScript：
+
+```sh
+cd "$HOME/rs4mini-ble-controller"
+(cd node && npm exec --yes --package typescript@5.9.3 -- tsc --version)
+RS4MINI_PYTHON="$PWD/.venv/bin/python" sh tools/check-offline.sh
+```
+
+原生界面构建和启动：
 
 ```sh
 sh macos/build.sh
 open "macos/RS 4 Mini Control.app"
 ```
 
-Web 端已于2026-10-20按用户要求移除。当前维护 Node、Python SDK 与 macOS 原生界面；不需要浏览器或重新配对。
-
-**底层命令完整性尚未验收，暂不新增高级功能。** 已知命令、未知字段和本机证据分别列在 [设备命令审计](docs/SDK_COMMANDS.md)，机器清单为 `protocol/COMMANDS.json`。
-
-## 文档和限制
-
-- [Node 使用说明](node/README.md)、[完整 API](node/API.md)、[版本记录](node/CHANGELOG.md)
-- [Python 说明](python/README.md)、[macOS 说明](macos/README.md)
-- [协议](docs/PROTOCOL.md)、[开发交接](AGENTS.md)、[开发背景](docs/DEVELOPMENT.md)
-- [统一实机清单](docs/HARDWARE_CHECKLIST.md)、[代码验收计划](docs/IMPLEMENTATION_PLAN.md)
-
-停止通过 BLE 发送三个中位帧；写入失败时断开软件连接，不能保证固件已收到停止。位置目标的 ±180° 范围不代表机械安全范围。默认 `moveTo()` 继续使用已确认的速度协议；原生角度、速率、休眠/唤醒和额外状态放在显式研究配置中，本机尚未验证。四元数转换不自动假定设备坐标；保存位置返回不等于固件单轴回中。自动重连默认关闭，即使启用也不恢复旧运动。
-
-[非相机能力边界](docs/CAPABILITIES.md) 列出已实现、实验接口及仍缺少本机协议依据的功能。不能将本版本称为“全部蓝牙能力完整支持”。
-
-源码以 MIT 许可提供，与 DJI 无官方隶属关系。设备 ID、原始抓包、依赖和生成应用不提交 Git；当前没有进行 npm 发布或二进制发布。
-
-
-当前 App 来源参数 SDK 提供显式配置下的参数读取和跟随灵敏度读写，复用既有连接。调用入口、各端差异与未验收边界见 [参数 SDK](docs/APP_COMMANDS.md)。全部底层命令仍未完成，高级功能开发继续暂停。
-
-
-0.7.4 新增显式当前App来源的自定义跟随与电机设置位字段读取/修改；保留其他位、共享事务截止时间和操作槽。入口及未验收边界见 [命名设置SDK](docs/APP_SETTINGS.md)。
-
-
-0.7.5 封装当前型号路径的无ACK自动调参请求、校准状态查询/通知，严格区分本机写入、设备报告与物理完成。接口和待验收边界见 [调参请求与状态](docs/APP_CALIBRATION.md)。
-
-
-0.7.6新增十二个命名电机数值参数的31/32读写，和普通用户参数命令空间分开；源码范围与实际设备效果分别验收。见 [电机参数SDK](docs/APP_MOTOR_TUNING.md)。
-
-平衡测试新增静态证据：[调用链与同名参数冲突](tools/research/BALANCE_TEST.md)。运行时版本未变，尚未新增该SDK接口或硬件验收。
-
-0.7.7新增显式来源的平衡测试启动请求与三轴结果读取，见 [平衡测试SDK](docs/APP_BALANCE_TEST.md)；尚无实机验收。
-
-0.7.8新增与自动调参分开的system_calc自动校准请求/状态，见 [APP_SYSTEM_CALIBRATION.md](docs/APP_SYSTEM_CALIBRATION.md)，尚未确认水平校准身份或实机效果。
-
-
-多段恢复续报：已严格恢复6段49,542条code_item，原business05哈希不变；另外2段未恢复，模式UI语义仍需核对。见 [CODE_BANKS.md](tools/research/CODE_BANKS.md)。运行时保持0.7.8/0.3.8，无新增发送或硬件操作。
-
-0.7.9新增六组跟随/摇杆按轴档位读改写，保留其他轴与未解释低两位，见 [APP_FOLLOW_MODES.md](docs/APP_FOLLOW_MODES.md)。尚无实机验收，不是PF/PTF/FPV预设。
-
-
-数值参数静态续报：[普通18项与独立配置分支](tools/research/NUMERIC_PARAMS.md)。已核对有效继承、缺省读取模型及1/2字节编码，独立配置由App与输入源2同包写入。本批尚未新增这些SDK接口，运行时保持0.7.9/0.3.9。
-
-0.7.10新增18项普通跟随/摇杆数值读写，保留未知无符号读值并明确活动预设未验证，见 [APP_NUMERIC_TUNING.md](docs/APP_NUMERIC_TUNING.md)。
-
-手柄单字段请求见 [APP_HANDLE_WRITE.md](docs/APP_HANDLE_WRITE.md)，实际设备/FF语义尚未验收。
-
-0.7.16新增[HG724恢复设置请求](docs/APP_FACTORY_RESET.md)，仅源分支与ACK封装，恢复范围和本机实际效果未验收。
-
-新增[保存命令六段引用审计](tools/research/SAVE_CALLERS.md)，扩大检索范围，仍缺HG724业务调用证据，未新增保存接口。
-
-新模式调用链已追至[参数17/18/19与轴模式34](tools/research/PROFILES.md)，与现有132/35位设置分开；完整切换事务和本机效果尚未验收。
-
-0.7.17新增[轴模式34命名读写](docs/APP_AXIS_MODE.md)，源枚举与未知位分别保留，完整跟随模式/本机效果未验收。
-
-0.7.18新增[普通跟随轴17/18/19读写](docs/APP_SMOOTH_TRACK.md)，未指定字段省略、异常值保留，完整模式/实机效果未验收。
-
-0.7.19新增[配置0与工作模式62命名读写](docs/APP_PROFILE_VALUES.md)，未知原值保留，未确认活动预设/完整跟随模式或本机效果。
-
-新增[六段命令引用矩阵与0D边界](tools/research/COMMAND_REFERENCES.md)，区分枚举名、实现候选与型号/硬件证据，不新增试探发送。
-
-
-最新[原生角度控制研究](tools/research/ANGLES.md)已区分04:0A两种布局与HG724继承rotate的04:14路径；能力/地址/暂停及物理完成仍待核对，未新增当前App角度发送接口。
-
-
-后续[角度能力与包上下文研究](tools/research/ANGLE_CONTEXT.md)核对初始化覆盖、接收ID传递及EYE两个不同重载；本机地址、依赖适用性/恢复与物理完成仍未验收，没有新增发送。
-
-
-[暂停状态与等待依赖审计](tools/research/STABILIZATION_DEPENDENCY.md)区分源stabilization状态、3秒等待与真实云台停止/到位；关闭也返回paused、等待不按请求序号关联，未新增运行时功能或声明本机支持。
-
-
-[回中平台分支与App入口研究](tools/research/RESET_ROUTES.md)已区分通用SpecialControl流程和三处直接FE01源分支；现有实测回中保持不变，未开放其他模式或混合控制发送。
-
-
-0.7.20新增[手柄状态被动候选](docs/APP_HANDHELD_STICK.md)，仅显式App来源、无58发送/订阅，真实57布局、单位与轴映射等待本机验收；未新增高级功能。
-
-
-0.7.21新增[异常与电量被动候选](docs/APP_SOURCE_STATUS.md)，显式App来源、原始位/255保留，不触发请求或自动控制；本机布局与通知仍未验收。
-
-
-[教程命令源审计](tools/research/TUTORIAL.md)记录未知步骤回退与32位移位边界；未定位HG724业务入口，不新增教程发送或以教程标志判定运动完成。
-
-
-[HG724支持键规则研究](tools/research/KEY_SUPPORT.md)区分声明支持谓词、缓存动作注册与原生BLE命令；保留多匹配歧义，不据键数量声明协议完整或新增发送。
-
-
-[HG724初始化与动作声明分派](tools/research/REGISTRATION.md)补齐继承目录及两个动作的静态声明链，仍非运行时注册或本机验收；不改变SDK发送与高级门槛。
-
-
-[固件动作程序通用源审计](tools/research/PROGRAMS.md)核对62/25/37/63请求与38/64/6B状态差异；仅静态业务体证据，尚无HG724完整路径或SDK新增发送，全命令门槛false。
-
-
-[程序菜单与HG724条件分类](tools/research/PROGRAM_ENTRY.md)补齐产品缓存/布局声明链，区分快门线帮助与检查函数可达性；尚未证明完整型号工作流，不新增发送或高级功能。
-
-
-[主页面挂载与轨迹UI工作流](tools/research/TRACK_WORKFLOW.md)补齐静态挂载链，区分ACK后的界面状态、重订阅和物理停止；仍未开放程序SDK或高级功能。
-
-
-[程序基础接收路径](tools/research/PROGRAM_RECEIVE.md)区分ACK返回码与业务首字节、6B双路分派及扩展命令表边界；仅静态研究，不新增SDK发送或高级功能。
-
-
-0.7.22新增[程序状态被动候选](docs/APP_PROGRAM_STATUS.md)：显式App来源下38/64/6B独立帧快照，未知/重复记录保留，无查询/订阅/自动ACK，不等于物理完成；完整命令仍未验收。
-
-
-0.7.23新增[单次程序状态请求](docs/APP_PROGRAM_REQUEST.md)：显式App来源、固定type2与三个命名程序，仅关联ACK、业务体不透明；不承诺新通知，不增加连续订阅或动作执行，本机未验收。
-
-
-0.7.24新增[程序状态推送启停请求](docs/APP_PROGRAM_SUBSCRIPTION.md)：显式program与布尔enabled，固定type0/1及关联ACK；不证明远端订阅状态、不自动维护或恢复订阅，不发送动作程序命令。本机仍未验收。
-
-
-新增[轨迹路点与ActualPose审计](tools/research/TRACK_POINTS.md)：UI秒数分段、首点/Roll规则及04:66缓存来源已核对，不能把原生轨迹角度直接当作现有机械关节角。仅研究，无SDK发送或硬件操作，运行时仍0.7.24/0.3.24，全命令门槛false。
-
-
-0.7.25新增[外设状态源候选](docs/APP_PERIPHERAL_STATUS.md)：46源类型/43 getter视图、保留tag21碰撞和GPS整数截断；不改现有姿态/关节，不自动ACK/订阅或控制，本机未验收。
-
-
-新增[完整订阅键与初始化条件审计](tools/research/SUBSCRIPTION_CATALOG.md)：152个注册键分开记录显式索引、21个元数据条件键与2个型号条件；不将缺失0或资源预期索引自动变成SDK发送表。仅离线研究，运行时仍0.7.25/0.3.25，全命令门槛false。
-
-
-## 订阅初始化审计（2026-10-18）
-
-固定六段13方法审计确认元数据异步加载、逐项发布与BaseCommand构造时一次性捕获；不能推断真实调度、竞争或捕获0。独立SDK可明确选择固定DB已加载的索引分支，无需依赖App缓存；本机路由/通知/远端取消仍未验证。见[SUBSCRIPTION_INIT.md](tools/research/SUBSCRIPTION_INIT.md)和证据protocol/research/ronin-subscription-init-evidence.json。两次实际提取JSON逐字节一致，新增7项研究测试。此研究检查点不发布新的运行时版本；已提交运行时仍0.7.25/0.3.25。单次订阅SDK正在工作树中开发，尚未交付，不计作已完成；全命令与高级门槛仍false，无硬件或厂商执行。
-
-
-## 0.7.26单次命名参数订阅 / 原生0.3.26 build29
-
-显式App来源下发送固定DB已加载/HG724静态分支的152命名键非空单次04:12请求，CENTER/id7、无ACK；报告21元数据和2型号条件键。不提供空集停止、后台刷新、反向请求或重连重放；三条中位前导及独占操作槽，不由发送成功判断远端订阅、通知新鲜度或物理效果。详见[单次参数订阅](docs/APP_PARAMETER_SUBSCRIPTION.md)。此版本扩展此前“仅研究/工作树开发”的历史状态；实际型号/路由/通知/远端停止仍待验收，全命令及高级门槛false，无硬件/实时UI/厂商执行。
-
-
-## 外设数据04:69源审计（运行时不变）
-
-固定六段36方法、12数据类型/4来源枚举，核对tag2的控制来源及三轴signed16原值、无ACK start、空doPack和基础双路分发。仅定位跟踪界面读取两轴的一个直接调用者，无HG724或物理单位/路由证据。源旧字段保留/短包只清速度与离线独立帧视图区分；未增加SDK收发、相机/视觉或高级功能。见[EXTERNAL_DEVICE.md](tools/research/EXTERNAL_DEVICE.md)和protocol/research/ronin-external-device-evidence.json。运行时仍0.7.26/0.3.26，全部命令及高级门槛false，无硬件/实时UI/厂商执行。
-
-
-## 0.7.27外设数据被动候选 / 原生0.3.27 build30
-
-显式App来源下externalDeviceStatus/kind=externalDevice解析04:69完整TLV，tag2保留来源及三轴signed16原值、未知/重复与尾字节；Other7与未知原值分开，不继承源单例旧值或短包清零副作用。来源/断线清空，观察者隔离；不发送/订阅/自动ACK，不完成查询或改变姿态/关节、运动所有权。见[外设数据候选SDK](docs/APP_EXTERNAL_DEVICE_STATUS.md)。本机布局/单位/参考系均未验收，未新增相机/视觉/高级功能，无硬件/liveUI/厂商执行，全命令门槛false；此前“仅研究未接SDK”为历史状态。
-
-
-## 校准08/30域与近似类绑定研究
-
-固定六段48方法、17直接调用、9类型化声明/9枚举引用，确认04:30实际绑定SensorCalibrateStatus而非近似AutoCalibrationStatus；30状态COMPLETE0/PROCESSING1/FAIL3/OTHER9，与08响应FAIL0/SUCCESS1/PROCESSING2分开，不复用bool inProgress或system_calc表。08单字节部件及ACK业务偏移已核对，型号入口/实际扩展、路由/物理中止仍未完成。详见[校准源审计](tools/research/SENSOR_CALIBRATION.md)及protocol/research/ronin-sensor-calibration-evidence.json。仅离线研究，运行时0.7.27/0.3.27不变，没有SDK收发、相机/视觉/高级新增或硬件/liveUI/厂商执行，完整命令门槛false。
-
-
-## 0.7.28传感器校准被动候选 / 原生0.3.28 build31
-
-显式App来源下sensorCalibrationStatus/kind=sensorCalibration解析04:30两字节源进度/状态及尾部，保留0..255原值，映射0/1/3/9并标记未知；不复用08状态或旧inProgress，不补短包默认，不由COMPLETE结束查询/运动。缓存复制/不可变、观察者隔离、来源/断线清空。见[传感器校准候选SDK](docs/APP_SENSOR_CALIBRATION_STATUS.md)。没有查询/订阅/自动ACK/校准触发或相机/视觉/高级新增；本机/单位/请求关联与物理完成未验收，无硬件/liveUI/厂商执行，全命令门槛false。此前当前App30“未接SDK”限定为历史状态。
-
-
-## 校准入口条件与HG724静态分支研究
-
-63方法/2布局核对SystemStatus→新设置构造链、普通GYRO05/高级AUTO00的04:08及MotorEnabled缓存门槛。所选项与ModelName均HG724的显式源码情形中，普通隐藏/高级显示且旁路版本；阈值00.02.32.25严格大于、缓存/异步可见性与实际设备分开。高级ACK后60秒本地计时和百分比显示不证明固件中止/请求关联。见[校准入口研究](tools/research/CALIBRATION_ENTRY.md)及protocol/research/ronin-calibration-entry-evidence.json。不与system_calc/index36混用，未新增SDK收发/高级功能或硬件/liveUI/厂商执行，运行时仍0.7.28/0.3.28，完整命令门槛false。
-
-
-## 0.7.29接收业务解析边界 / 原生0.3.29 build32
-
-关联App ACK、04:05反馈、04:6E调参通知和旧研究状态拒绝加密/无效flags，原始帧保持可观察；加密读取不推进参数写入，加密关节不进入定位反馈。没有新增命令、解密、协商、硬件操作或高级功能，完整命令与高级门槛仍false。契约见 docs/PLAINTEXT_BOUNDARIES.md（仓库根目录）；本版本取代此前宽松解析行为，历史版本记录保留。
-
-
-## 校准默认包头与条件加密研究
-
-固定六段28方法审计确认04:08新对象默认APP/id0→GIMBAL/id0、条件加密前flags40；NEEDACK.YES线上值2不是ordinal。通用发送层可按可变会话策略加密包括命令集/命令号的区间；接收事件关闭仍可能运行分类分支，不把业务Encrypt.NO当最终线上保证。见[校准传输审计](tools/research/CALIBRATION_TRANSPORT.md)（仓库根目录）及protocol/research/ronin-calibration-transport-evidence.json。未实现/执行JNI或APK、未新增SDK收发/高级功能、没有硬件或实时UI，运行时仍0.7.29/0.3.29，完整命令门槛false。
-
-
-## BLE直连路由与默认策略研究
-
-固定六段37方法核对BluetoothService→Main DJIPackManager→通用parseOne，以及监听、常规发送队列、服务切换、分片与GATT写入。Main继承needCheckEncrypt=true且构造enabledSetDataEvent=true，与DataBase共享加密管理器单例；源路由/构造策略已定位，实际会话与对端接受仍未验证。五处直接字段写入限构造，其他管理器false不套用到BLE。见[BLE路由研究](tools/research/BLE_ROUTE.md)（仓库根目录）及protocol/research/ronin-ble-route-evidence.json。未新增SDK收发/解密/高级功能，无硬件/liveUI/厂商执行，运行时0.7.29/0.3.29及完整命令false不变。
-
-
-## 04:08 ACK与业务域研究
-
-固定bank05独立核对20方法，基础表ACK剥离ccode后part/status对应原始payload1/2；GIMBAL回调成功仅返回码0，与业务SUCCESS1分开。短业务体不补PROCESSING；源混合命令key仅命令集/命令/序号，不照搬到SDK严格会话/ACK/端点关联。见[校准ACK研究](tools/research/CALIBRATION_ACK.md)（仓库根目录）及protocol/research/ronin-calibration-ack-evidence.json。没有SDK发送/解密/高级新增、硬件/liveUI或厂商执行，运行时0.7.29/0.3.29及完整命令false不变。
-
-
-## 0.7.30部件校准候选 / 原生0.3.30 build33
-
-显式App来源新增sendComponentCalibrationRequest(sourcePart=AUTO)，同一操作槽内停主机运动、读取35反向bit0门槛、发送04:08/00并等待严格关联ACK；禁用不自动开电机，读取与ACK共用截止时间，不重发/重放。返回码、可不完整的业务part/status和物理完成分开，不更新其他校准/传感器/姿态缓存，不提供固件中止或高级等待组合。见 docs/APP_COMPONENT_CALIBRATION.md（仓库根目录）。实际会话/设备/物理效果待验收，完整命令门槛false；未操作硬件或实时UI。
-
-
-## HG724手柄工厂与04:58键绑定研究
-
-固定bank05核对19方法与注解，HG724条件工厂选择MobileHandheldControllerAbstraction；StickGimbalControlEnabled键支持和实际Setter注解对应04:58布尔类。方法名中的MicroPhones不定义功能，不新增麦克风/相机接口。工厂参数1是数量、普通index0，不改作接收地址；源链不证明现场反射/注册或固件效果。见[手柄绑定研究](tools/research/HANDHELD_BINDING.md)（仓库根目录）及protocol/research/ronin-handheld-binding-evidence.json。未新增SDK收发/高级功能，无硬件/liveUI/厂商执行，运行时0.7.30/0.3.30及全命令false不变。
-
-
-## 0.7.31手柄摇杆开关候选 / 原生0.3.31 build34
-
-显式App来源新增sendHandheldStickControlRequest(enabled:boolean)，停止前验证/快照，同一操作槽内中位停止后一次04:58 bool00/01并等待严格关联ACK。不透明尾部保留，requestedEnabled不回写57缓存；无订阅/查询/重试/重放/反向回滚、摇杆接管或麦克风/相机/高级新增。见 docs/APP_HANDHELD_STICK_CONTROL.md（仓库根目录）。型号源链不等于实机效果或持久化，设备/物理/回读/通知关联标志false；未操作硬件/实时UI，完整命令门槛false。
-
-
-## 0.7.32教程状态被动候选 / 原生0.3.32 build35
-
-显式App来源下tutorialStatus（Python另有tutorial_status，原生appTutorialStatus）与kind=tutorial被动解码04:2B；保留步骤原值、完整32位无符号/有符号状态、9个数值标志、未知位与尾部，以及独立Java位移视图。未知步骤的源回退STEP_FINISH不是完成证明，bit30/31不解释为物理生命周期。缓存复制/不可变、观察者隔离，来源切换/断线清空；不发查询、订阅、ACK或04:2C，不结束查询或moveTo。本机布局/通知、请求关联及物理完成均未验收，完整命令和高级门槛仍false。契约见 docs/APP_TUTORIAL_STATUS.md（仓库根目录）。
-
-
-## 04:40平衡调整请求与旧视图研究
-
-固定六段61方法核对同命令发送/接收类、8个请求值、状态二进制字符串按十进制解析为0/1/10/11和非连续建议枚举；6个类外直接调用方法集中旧GimbalAdjustView。源attach可能关电机、20秒本地timer、错误/完成/超时发STOP，而detach未发STOP；不等于本机停止保证。见[平衡调整审计](tools/research/BALANCE_ADJUST.md)（仓库根目录）及protocol/research/ronin-balance-adjust-evidence.json。HG724入口、线上包层和物理效果未确认，未开放04:40 SDK收发、不替代balance_test/index37，无硬件/UI/厂商执行或高级新增，运行时仍0.7.32/0.3.32，全命令门槛false。
-
-
-## 平衡入口型号条件与共享布局研究
-
-固定六段30方法、4视图映射/3独立布局确认：有效所选项为HG724且BalanceCheck入口被调用时走GimbalVideoAdjustRS3，视频测试按钮GONE；两个新旧视频名共享同一布局/根类，不能连接为GimbalAdjustHG701的04:40发送。强制旧测试页可见说明是独立条件，不证明普通导航；限定字段引用扫描未建立旧调整页入口，也不证明固件不支持。见tools/research/BALANCE_ENTRY.md及protocol/research/ronin-balance-entry-evidence.json（仓库根目录）。没有新增SDK收发/高级功能或硬件/liveUI/厂商执行，运行时仍0.7.32/0.3.32，全部命令门槛false。
-
-
-## 01/07备份槽位的独立审计
-
-固定APK新增3137条（01段2623/07段514）备份到准确code_off ULEB槽位及方法owner数值索引的核对，复用完整长度/异常表/不重叠校验；不恢复字符串/类型/原型身份，不输出可解析DEX。前128KiB在01另涉及3111条type_ids，在07涉及全部type/proto及部分field_ids，不能只补字符串表。见tools/research/CODE_SLOTS.md及protocol/research/ronin-code-slots-evidence.json（仓库根目录）。既有六段具名恢复/调用扫描范围不变，不把01/07加入其BANKS；运行时仍0.7.32/0.3.32，无SDK收发/高级新增、硬件/liveUI/厂商执行，完整门槛false。
-
-
-## 八段具名恢复与新增调用者
-
-静态保护层线索结合自写SM4-ECB解码，八段完整保护容器源Adler32一致，独立OpenSSL核对全部1MiB前缀一致；01/07现已恢复可解析的类/方法/原型视图，共匹配52679条备份。源SHA1不匹配保护容器仍明确记录，派生校验和不冒充原始源码签名。旧六段[112,originalSize)元数据/代码字节一致、原文件不改写。新增01/07解析找到19方法/60稳定器直接引用，含激活库入口，未证明HG724/BLE路径或新增SDK发送。当前范围以tools/research/PREFIX_RESTORATION.md及protocol/research/ronin-prefix-restoration-evidence.json为准（仓库根目录）；旧六段扫描和“01/07未恢复”保留为历史证据，不自动提升旧结论为八段重审。运行时0.7.32/0.3.32，全App/全协议、全命令及高级门槛仍false，无硬件/liveUI/厂商代码执行。
-
-
-## COMMON00:32激活状态源审计
-
-八段56方法确认COMMON/ActiveStatus wire50（非ordinal20）、显式null Class、版本查询00与可能更新单例的版本响应，以及GET/SET/FAIL的版本/SN布局。Ver1_3与Ver13不同；新版SN最多复制16字节但分配仍用原始字节数+10。新增只读解析严格区分显式null与未知对象，旧通用解析器不改写。见tools/research/ACTIVATION.md及protocol/research/ronin-activation-evidence.json（仓库根目录）。00:32单列后当前清单49个命令或缺口条目，不是49项设备支持；无HG724/实际BLE/包层/网络业务及持久化验收，SDK收发未开放。运行时0.7.32/0.3.32，无设备激活/硬件/liveUI/厂商执行或高级新增，完整门槛false。
-
-
-## COMMON00:32接收与查询缓存边界
-
-八段39方法审计确认基础COMMON表isBlock=false/isMix=true，构造独立needsCcode=true，明文ACK先剥离返回码；显式null模型仍有按GIMBAL名称反射回退的条件路径。源激活状态类在null/长度/ACK检查前保存业务体，短版本响应可能先覆盖缓存，SDK不能照搬。八段精确invoke owner扫描7方法，5个类外方法无GIMBAL字段字面引用，不当成不支持或完整数据流证明。见[接收审计](tools/research/ACTIVATION_RECEIVE.md)（仓库根目录）及protocol/research/ronin-activation-receive-evidence.json。没有SDK收发、激活/硬件/liveUI/厂商执行或高级新增；运行时0.7.32/0.3.32、清单49项及两门槛false不变。
-
-
-## COMMON00:32 GET与V13/V14格式审计
-
-固定bank05的34方法补GET响应/旧推送/V13设备信息与V14验证信息；全部八段哈希校验但本批方法范围仍仅05。GET的SN偏移8/9与推送1/2分开，源signed-byte十进制SN转换、V13/V14声明长度与实际复制/固定32字节区、标记51/54与版本枚举不同均保留。源V13处理可自动发135字节用户信息请求，工具不执行处理器或回复；isPushActivated直接存isEmpty不当激活成功。见[格式审计](tools/research/ACTIVATION_FORMATS.md)（仓库根目录）及protocol/research/ronin-activation-formats-evidence.json。HG724入口/实际会话/激活有效性/网络绑定未验收，无SDK收发/高级新增或硬件/liveUI/厂商执行；运行时0.7.32/0.3.32、清单49及两门槛false不变。
-
-
-## HG724序列号CENTER路由与默认模块门槛
-
-新增17方法与八段4个直接模块字段引用方法审计：HG724最近继承Ronin2的GimbalSerialNumber Getter，DataCenterActiveStatus/CENTER5/id7→COMMON00:32 GET，初始源Ver1_1体11不是GetVer00或GIMBAL/id0。源回调getPushSN在新读取空时可能保留旧值；通用基类module_type_唯一直接写为构造默认8，GIMBAL4/CENTER5默认均不通过V13/V14门槛，不等于固件不支持或排除native/反射修改。见[入口审计](tools/research/ACTIVATION_ENTRY.md)（仓库根目录）及protocol/research/ronin-activation-entry-evidence.json。只读源码路径提升为app-code-path，实际注册/会话/版本/设备/网络绑定未验收，SDK未开放；运行时0.7.32/0.3.32、清单49及全命令/高级门槛false。无硬件/liveUI/厂商执行或高级新增。
-
-
-## 0.7.34 CENTER只读信息候选 / 原生0.3.33 build36
-
-显式App来源新增getCenterActivationInfo（Python另有get_center_activation_info，原生RSGimbal继承同名selector），要求sourceVersion四种已知格式，无默认/OTHER/协商。固定E5/CENTER-id7、COMMON00:32 GET01/11与严格关联明文ACK；完整本次业务体解析active/date/SN原始值及源signed-decimal字符串、尾部，无旧SN缓存成功回退。GIMBAL04:32同命令号隔离，原生完成后恢复普通04路由；无激活/绑定/SET/FAIL/自动回复/重试/重放或高级新增。见[接口契约](docs/APP_CENTER_INFO.md)（仓库根目录）。设备/当前版本/布局/激活有效性未验收，全命令及高级门槛false，无硬件/liveUI/厂商执行。
+## 文档入口
+
+- [Node 部署说明](node/README.md) · [完整 Node API](node/API.md) · [Python 部署说明](python/README.md)
+- [macOS 面板](macos/README.md) · [GUI SDK 入口](docs/MACOS_SDK_PANEL.md)
+- [SDK 独立复刻规范](docs/SDK_RECONSTRUCTION_SPEC.md)：全部现存蓝牙通道、命令、响应、参数布局、参考代码和合成报文
+- [项目状态](docs/PROJECT_STATUS.md) · [底层命令清单](docs/SDK_COMMANDS.md) · [研究路线](docs/RESEARCH_ROADMAP.md)
+- [Node 连续验收](docs/SDK_NODE_CONTINUOUS_ACCEPTANCE.md) · [维护功能验收](docs/SDK_ACCEPTANCE_QUEUE.md) · [移除接口记录](docs/SDK_UNVERIFIED_REMOVAL.md)
+- [协议记录](docs/PROTOCOL.md) · [开发背景](docs/DEVELOPMENT.md) · [开发交接](AGENTS.md)
+
+历史版本和研究证据保留在各专题文档及 Git 记录中；当前可调用接口以本版本 API 和复刻规范为准。源码以 MIT 许可提供，与 DJI 无官方隶属关系。

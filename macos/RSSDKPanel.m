@@ -23,6 +23,19 @@
 @end
 
 @implementation RSSDKPanel
++ (NSScrollView *)scrollViewWithFrame:(NSRect)frame gimbal:(RSGimbal *)gimbal {
+    NSScrollView *scroll=[[NSScrollView alloc]initWithFrame:frame];
+    scroll.hasVerticalScroller=YES;scroll.autohidesScrollers=YES;
+    scroll.scrollerStyle=NSScrollerStyleOverlay;scroll.drawsBackground=NO;
+    // The document uses clip-view coordinates, not the container's window origin.
+    RSSDKPanel *panel=[[self alloc]initWithFrame:NSMakeRect(0,0,scroll.contentSize.width,820) gimbal:gimbal];
+    panel.autoresizingMask=NSViewWidthSizable;
+    scroll.documentView=panel;
+    [scroll tile];[panel layoutSubtreeIfNeeded];
+    [scroll.contentView scrollToPoint:NSMakePoint(0,MAX(0,NSHeight(panel.frame)-scroll.contentSize.height))];
+    [scroll reflectScrolledClipView:scroll.contentView];
+    return scroll;
+}
 static NSTextField *Text(NSString *s) { NSTextField *v=[NSTextField wrappingLabelWithString:s];v.font=[NSFont systemFontOfSize:12];return v; }
 static NSScrollView *Viewer(NSTextView **output) {
     NSScrollView *scroll=[NSScrollView new];scroll.hasVerticalScroller=YES;scroll.autohidesScrollers=YES;scroll.borderType=NSBezelBorder;

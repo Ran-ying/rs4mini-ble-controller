@@ -188,11 +188,9 @@ static NSTextField *Label(NSString *text, CGFloat size, NSFontWeight weight) {
     self.gimbal.experimentalStatusHandler = ^(NSDictionary *sample) {
         weakSelf.scriptLabel.stringValue = [@"实验状态（未验证）：" stringByAppendingString:sample.description];
     };
-    self.sdkPanel=[[RSSDKPanel alloc]initWithFrame:NSMakeRect(430,0,650,820) gimbal:self.gimbal];
-    NSScrollView *sdkScroll=[[NSScrollView alloc]initWithFrame:NSMakeRect(430,0,650,self.window.contentView.bounds.size.height)];
-    sdkScroll.hasVerticalScroller=YES;sdkScroll.autohidesScrollers=YES;sdkScroll.scrollerStyle=NSScrollerStyleOverlay;sdkScroll.drawsBackground=NO;
-    sdkScroll.documentView=self.sdkPanel;[self.window.contentView addSubview:sdkScroll];
-    [sdkScroll.contentView scrollToPoint:NSMakePoint(0,MAX(0,820-sdkScroll.contentSize.height))];[sdkScroll reflectScrolledClipView:sdkScroll.contentView];
+    NSScrollView *sdkScroll=[RSSDKPanel scrollViewWithFrame:NSMakeRect(430,0,650,self.window.contentView.bounds.size.height) gimbal:self.gimbal];
+    self.sdkPanel=(RSSDKPanel *)sdkScroll.documentView;
+    [self.window.contentView addSubview:sdkScroll];
     self.gimbal.appStatusHandler=^(NSDictionary *sample){[weakSelf.sdkPanel receiveStatus:sample];};
     self.gimbal.messageHandler=^(NSDictionary *message){[weakSelf.sdkPanel receiveMessage:message];};
     self.sdkRefresh=[NSTimer timerWithTimeInterval:0.2 repeats:YES block:^(NSTimer *timer){[weakSelf.sdkPanel refresh];}];

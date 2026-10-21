@@ -12,4 +12,40 @@
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)s{return [RSGimbal instanceMethodSignatureForSelector:s];}
 - (void)forwardInvocation:(NSInvocation *)i {if(i.methodSignature.methodReturnLength){void *z=calloc(1,i.methodSignature.methodReturnLength);[i setReturnValue:z];free(z);}}
 @end
-int main(){@autoreleasepool{[NSApplication sharedApplication];OfflineGimbal *g=[OfflineGimbal alloc];RSSDKPanel *p=[[RSSDKPanel alloc]initWithFrame:NSMakeRect(0,0,650,820) gimbal:(id)g];NSWindow *w=[[NSWindow alloc]initWithContentRect:p.frame styleMask:0 backing:NSBackingStoreBuffered defer:NO];w.contentView=p;NSPopUpButton *groups=[p valueForKey:@"group"],*operations=[p valueForKey:@"operation"];NSUInteger checked=0;for(NSInteger i=0;i<groups.numberOfItems;i++){[groups selectItemAtIndex:i];[p groupChanged:nil];for(NSInteger j=0;j<operations.numberOfItems;j++){[operations selectItemAtIndex:j];[p operationChanged:nil];[p layoutSubtreeIfNeeded];NSView *form=[p valueForKey:@"form"],*tabs=[p valueForKey:@"tabs"];NSRect fr=[form convertRect:form.bounds toView:p],tr=[tabs convertRect:tabs.bounds toView:p];if(NSMinY(tr)<0||NSMaxY(fr)>820||NSHeight(tr)<140){fprintf(stderr,"Layout overflow: %s\n",operations.titleOfSelectedItem.UTF8String);return 1;}checked++;}}printf("Offline AppKit form layout: %lu operations fit 650x820; no Bluetooth manager.\n",(unsigned long)checked);}return 0;}
+static void RequireViewport(NSScrollView *scroll, NSString *phase) {
+    NSView *panel=scroll.documentView;
+    NSRect visible=[panel convertRect:panel.bounds toView:scroll.contentView];
+    NSRect clip=scroll.contentView.bounds;
+    if(fabs(NSMinX(panel.frame))>0.5 || fabs(NSMinX(visible)-NSMinX(clip))>0.5 || fabs(NSWidth(visible)-NSWidth(clip))>0.5) {
+        fprintf(stderr,"Horizontal viewport overflow (%s): document %s, visible %s, clip %s\n",phase.UTF8String,NSStringFromRect(panel.frame).UTF8String,NSStringFromRect(visible).UTF8String,NSStringFromRect(clip).UTF8String);exit(1);
+    }
+}
+int main(){@autoreleasepool{
+    [NSApplication sharedApplication];OfflineGimbal *g=[OfflineGimbal alloc];NSUInteger checked=0;
+    for(NSNumber *height in @[@820,@600]) {
+        NSWindow *w=[[NSWindow alloc]initWithContentRect:NSMakeRect(0,0,1080,height.doubleValue) styleMask:0 backing:NSBackingStoreBuffered defer:NO];
+        NSScrollView *scroll=[RSSDKPanel scrollViewWithFrame:NSMakeRect(430,0,650,height.doubleValue) gimbal:(id)g];
+        [w.contentView addSubview:scroll];
+        // Check the production host before any user scrolling or event-loop correction.
+        RequireViewport(scroll,@"initial attachment");
+        RSSDKPanel *p=(RSSDKPanel *)scroll.documentView;
+        NSPopUpButton *groups=[p valueForKey:@"group"],*operations=[p valueForKey:@"operation"];
+        for(NSInteger i=0;i<groups.numberOfItems;i++) {
+            [groups selectItemAtIndex:i];[p groupChanged:nil];
+            for(NSInteger j=0;j<operations.numberOfItems;j++) {
+                [operations selectItemAtIndex:j];[p operationChanged:nil];[p layoutSubtreeIfNeeded];
+                NSView *form=[p valueForKey:@"form"],*tabs=[p valueForKey:@"tabs"];
+                NSRect fr=[form convertRect:form.bounds toView:p],tr=[tabs convertRect:tabs.bounds toView:p];
+                if(NSMinY(tr)<0||NSMaxY(fr)>820||NSHeight(tr)<140){fprintf(stderr,"Layout overflow: %s\n",operations.titleOfSelectedItem.UTF8String);return 1;}
+                for(NSView *item in ((NSStackView *)p.subviews.firstObject).arrangedSubviews) {
+                    NSRect itemRect=[item convertRect:item.bounds toView:p];
+                    if(NSMinX(itemRect)<-0.5||NSMaxX(itemRect)>NSWidth(p.bounds)+0.5){fprintf(stderr,"Horizontal control overflow: %s\n",operations.titleOfSelectedItem.UTF8String);return 1;}
+                }
+                RequireViewport(scroll,@"operation selection");checked++;
+            }
+        }
+        [scroll.contentView scrollToPoint:NSZeroPoint];[scroll reflectScrolledClipView:scroll.contentView];RequireViewport(scroll,@"scrolled bottom");
+        [scroll.contentView scrollToPoint:NSMakePoint(0,MAX(0,820-scroll.contentSize.height))];[scroll reflectScrolledClipView:scroll.contentView];RequireViewport(scroll,@"scrolled top");
+    }
+    printf("Offline AppKit layout: %lu operation/viewport combinations; initial attachment and scrolling fit; no Bluetooth manager.\n",(unsigned long)checked);
+}return 0;}
